@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet 4 ALL - Find the Best Internet Providers in Your Area</title>
+    <meta name="description" content="Compare internet providers, plans, and prices in your area. Find high-speed internet from Spectrum, AT&T, T-Mobile, and more. Call now for exclusive deals!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        <i class="fas fa-bolt"></i> Limited Time: Get up to <strong>$200 off</strong> installation when you order today! 
+        <a href="tel:1-888-555-0123">Call Now</a>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-wifi"></i></div>
+                    <span>Internet 4 ALL</span>
+                </a>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html" class="nav-link active">Home</a></li>
+                        <li><a href="pages/providers.html" class="nav-link">Providers</a></li>
+                        <li><a href="pages/compare.html" class="nav-link">Compare</a></li>
+                        <li><a href="pages/speed-test.html" class="nav-link">Speed Test</a></li>
+                        <li><a href="pages/resources.html" class="nav-link">Resources</a></li>
+                    </ul>
+                    <a href="tel:1-888-555-0123" class="phone-cta">
+                        <i class="fas fa-phone"></i>
+                        <span>1-888-555-0123</span>
+                    </a>
+                </nav>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Find the Best Internet Service in Your Area</h1>
+                <p class="hero-subtitle">Compare plans from top providers. Get connected today with speeds up to 5 Gbps. Enter your ZIP code to see what's available.</p>
+                
+                <!-- Search Box -->
+                <div class="search-box" id="searchBox">
+                    <input type="text" id="zipInput" placeholder="Enter your ZIP code" maxlength="5">
+                    <button id="searchBtn">
+                        <span>Find Providers</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <p class="search-hint">Or call <a href="tel:1-888-555-0123" style="color: var(--primary); font-weight: 600;">1-888-555-0123</a> to speak with an expert</p>
+
+                <!-- Trust Badges -->
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Free Service</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Unbiased Comparison</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Expert Support</span>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">9+</div>
+                        <div class="stat-label">Major Providers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label">Internet Plans</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label">US Coverage</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Providers -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Top Internet Providers We Compare</h2>
+                <p class="section-subtitle">We partner with the nation's leading providers to help you find the best service</p>
+            </div>
+            <div class="provider-logos">
+                <a href="pages/provider-spectrum.html" class="provider-logo-item">
+                    <img src="https://logo.clearbit.com/spectrum.com" alt="Spectrum" onerror="this.outerHTML='<span style=\'font-weight:700;color:var(--primary)\'>Spectrum</span>'">
+                </a>
+                <a href="pages/provider-att.html" class="provider-logo-item">
+                    <img src="https://logo.clearbit.com/att.com" alt="AT&T" onerror="this.outerHTML='<span style=\'font-weight:700;color:var(--primary)\'>AT&T</span>'">
+                </a>
+                <a href="pages/provider-tmobile.html" class="provider-logo-item">
+                    <img src="https://logo.clearbit.com/t-mobile.com" alt="T-Mobile" onerror="this.outerHTML='<span style=\'font-weight:700;color:var(--primary)\'>T-Mobile</span>'">
+                </a>
+                <a href="pages/provider-frontier.html" class="provider-logo-item">
+                    <img src="https://logo.clearbit.com/frontier.com" alt="Frontier" onerror="this.outerHTML='<span style=\'font-weight:700;color:var(--primary)\'>Frontier</span>'">
+                </a>
+                <a href="pages/provider-optimum.html" class="provider-logo-item">
+                    <img src="https://logo.clearbit.com/optimum.com" alt="Optimum" onerror="this.outerHTML='<span style=\'font-weight:700;color:var(--primary)\'>Optimum</span>'">
+                </a>
+                <a href="pages/provider-earthlink.html" class="provider-logo-item">
+                    <img src="https://logo.clearbit.com/earthlink.net" alt="EarthLink" onerror="this.outerHTML='<span style=\'font-weight:700;color:var(--primary)\'>EarthLink</span>'">
+                </a>
+                <a href="pages/provider-windstream.html" class="provider-logo-item">
+                    <img src="https://logo.clearbit.com/windstream.com" alt="Kinetic" onerror="this.outerHTML='<span style=\'font-weight:700;color:var(--primary)\'>Kinetic</span>'">
+                </a>
+                <a href="pages/provider-brightspeed.html" class="provider-logo-item">
+                    <img src="https://logo.clearbit.com/brightspeed.com" alt="Brightspeed" onerror="this.outerHTML='<span style=\'font-weight:700;color:var(--primary)\'>Brightspeed</span>'">
+                </a>
+                <a href="pages/provider-altafiber.html" class="provider-logo-item">
+                    <img src="https://logo.clearbit.com/altafiber.com" alt="altafiber" onerror="this.outerHTML='<span style=\'font-weight:700;color:var(--primary)\'>altafiber</span>'">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Get connected in 3 simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Enter Your ZIP Code</h3>
+                    <p>Tell us where you live and we'll instantly show all internet providers available at your address.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Compare Plans & Prices</h3>
+                    <p>Review speeds, prices, and features side by side. Filter by what matters most to you.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Connected</h3>
+                    <p>Order online or call us. Most providers offer installation within 2-3 days.</p>
+                </div>
+            </div>
+            
+            <!-- Conversion Card -->
+            <div class="conversion-card mt-2xl">
+                <h3>Need Help Choosing?</h3>
+                <p>Our internet experts are standing by to help you find the perfect plan.</p>
+                <div class="phone-number">
+                    <i class="fas fa-phone"></i> 1-888-555-0123
+                </div>
+                <a href="tel:1-888-555-0123" class="btn">Call Now - It's Free!</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Provider Cards -->
+    <section class="section section-alt" id="providers">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Popular Internet Providers</h2>
+                <p class="section-subtitle">Explore plans from top-rated providers</p>
+            </div>
+            
+            <div class="providers-grid" id="providersGrid">
+                <!-- Provider cards will be dynamically inserted -->
+            </div>
+            
+            <div class="text-center mt-xl">
+                <a href="pages/providers.html" class="btn btn-primary">View All Providers</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Helpful Resources</h2>
+                <p class="section-subtitle">Learn everything you need to make the right choice</p>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <h3>What Speed Do I Need?</h3>
+                    <p>Find out the recommended internet speed based on your household size and usage habits.</p>
+                    <a href="pages/resources.html#speed-guide" class="info-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Fiber vs Cable vs DSL</h3>
+                    <p>Understand the differences between connection types and which one is best for you.</p>
+                    <a href="pages/resources.html#connection-types" class="info-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <h3>Save on Your Internet Bill</h3>
+                    <p>Tips and tricks to get the best deal and avoid hidden fees from your provider.</p>
+                    <a href="pages/resources.html#save-money" class="info-card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do I find internet providers in my area?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Simply enter your ZIP code in the search box above, and we'll instantly show you all available internet providers at your address. You can also call us at 1-888-555-0123 for personalized assistance.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What internet speed do I need?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            For basic browsing and email, 25 Mbps is sufficient. For streaming HD video, aim for 50-100 Mbps. For 4K streaming, gaming, or households with multiple users, we recommend 200+ Mbps. Use our speed test to check your current speeds.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is your service really free?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! Internet 4 ALL is completely free to use. We help you compare providers and find the best deal at no cost to you. We're compensated by providers when you sign up through our service.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I keep my current phone number and email?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            In most cases, yes. Your phone number can typically be transferred to a new provider. Email addresses from your old provider may need to be changed, but services like Gmail are free and work with any internet provider.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section">
+        <div class="container container-sm">
+            <div class="conversion-card">
+                <h3>Ready to Get Connected?</h3>
+                <p>Enter your ZIP code or call now to find the best internet deals in your area.</p>
+                <div class="search-box" style="background: white; max-width: 400px; margin: 0 auto var(--space-lg);">
+                    <input type="text" id="ctaZipInput" placeholder="ZIP Code" maxlength="5" style="padding: var(--space-sm) var(--space-md);">
+                    <button id="ctaSearchBtn" style="padding: var(--space-sm) var(--space-lg);">
+                        <span>Search</span>
+                    </button>
+                </div>
+                <p style="margin-bottom: var(--space-md);">Or call for immediate assistance:</p>
+                <div class="phone-number">
+                    <i class="fas fa-phone"></i> 1-888-555-0123
+                </div>
+                <p style="font-size: 0.875rem; opacity: 0.8;">Available Mon-Fri 8am-10pm, Sat-Sun 9am-7pm ET</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon"><i class="fas fa-wifi"></i></div>
+                        <span>Internet 4 ALL</span>
+                    </a>
+                    <p>Your trusted resource for finding and comparing internet providers. We help millions of Americans get connected with the best internet service for their needs.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Providers</h4>
+                    <ul>
+                        <li><a href="pages/provider-spectrum.html">Spectrum</a></li>
+                        <li><a href="pages/provider-att.html">AT&T</a></li>
+                        <li><a href="pages/provider-tmobile.html">T-Mobile</a></li>
+                        <li><a href="pages/provider-frontier.html">Frontier</a></li>
+                        <li><a href="pages/provider-optimum.html">Optimum</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="pages/resources.html">Internet Guides</a></li>
+                        <li><a href="pages/speed-test.html">Speed Test</a></li>
+                        <li><a href="pages/compare.html">Compare Plans</a></li>
+                        <li><a href="pages/resources.html#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="pages/about.html">About Us</a></li>
+                        <li><a href="pages/contact.html">Contact</a></li>
+                        <li><a href="pages/privacy.html">Privacy Policy</a></li>
+                        <li><a href="pages/terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Internet 4 ALL. All rights reserved.</p>
+                <p>Call us: <a href="tel:1-888-555-0123" style="color: var(--accent-light);">1-888-555-0123</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA Bar -->
+    <div class="sticky-cta">
+        <div class="sticky-cta-text">
+            <i class="fas fa-bolt"></i> Get <span>exclusive deals</span> when you call now!
+        </div>
+        <a href="tel:1-888-555-0123" class="btn-cta">
+            <i class="fas fa-phone"></i>
+            <span>1-888-555-0123</span>
+        </a>
+    </div>
+
+    <!-- Floating Phone Button (Mobile) -->
+    <a href="tel:1-888-555-0123" class="floating-phone">
+        <i class="fas fa-phone"></i>
+    </a>
+
+    <!-- Chat Button -->
+    <button class="chat-button" id="chatBtn">
+        <span class="online-dot"></span>
+        <i class="fas fa-comments"></i>
+        <span>Chat Now</span>
+    </button>
+
+    <script src="js/providers-data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

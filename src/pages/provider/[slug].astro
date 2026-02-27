@@ -1,0 +1,209 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import CallbackForm from '@components/CallbackForm.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor, renderStars, stateNames } from '@lib/providers';
+import { formatPhoneForTel, generateProviderSchema, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+export function getStaticPaths() {
+  const providers = getAllProviders();
+  return providers.map(p => ({
+    params: { slug: p.slug },
+    props: { provider: p },
+  }));
+}
+
+interface Props { provider: Provider; }
+const { provider } = Astro.props;
+
+const minPrice = getMinPrice(provider);
+const maxSpeed = getMaxSpeed(provider);
+const maxUpload = getMaxUpload(provider);
+
+const faqs = [
+  { question: `Is ${provider.name} available in my area?`, answer: `${provider.name} is available in ${provider.coverage.includes('Nationwide') ? 'all 50 states' : provider.coverage.length + ' states: ' + provider.coverage.join(', ')}. Enter your ZIP code above to check exact availability at your address.` },
+  { question: `What is ${provider.name}'s fastest plan?`, answer: `${provider.name}'s fastest plan offers up to ${formatSpeed(maxSpeed)} download speed. Prices start at ${formatPrice(minPrice)}/mo.` },
+  { question: `Does ${provider.name} have data caps?`, answer: provider.plans[0]?.dataCap === 'Unlimited' ? `No, ${provider.name} offers unlimited data on all plans — no throttling, no overage fees.` : `${provider.name} plans include data allowances. See plan details above for specific caps.` },
+  { question: `Does ${provider.name} require a contract?`, answer: provider.plans[0]?.contract === 'None' ? `No, ${provider.name} does not require annual contracts. You can cancel anytime.` : `Some ${provider.name} plans require a contract. Check plan details above.` },
+];
+
+const schemas = [
+  generateProviderSchema(provider),
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Providers', url: 'https://internet4all.com/providers' },
+    { name: provider.name, url: `https://internet4all.com/provider/${provider.slug}` },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`${provider.name} Internet Plans, Prices & Reviews (${new Date().getFullYear()})`}
+  description={`${provider.name} offers internet speeds up to ${formatSpeed(maxSpeed)} starting at ${formatPrice(minPrice)}/mo. Read reviews, compare plans, and call for exclusive deals.`}
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[
+        { name: 'Providers', url: '/providers' },
+        { name: provider.name },
+      ]} />
+
+      <!-- Provider Header -->
+      <div class="card" style="margin-bottom: var(--space-2xl); padding: var(--space-2xl);">
+        <div class="flex items-center gap-lg flex-wrap">
+          <div style="width:72px;height:72px;border-radius:var(--radius-lg);background:var(--gray-50);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+            {provider.logo ? (
+              <img src={provider.logo} alt={`${provider.name} logo`} width="72" height="72" style="padding:8px; object-fit:contain;" />
+            ) : (
+              <span style="font-weight:800;font-size:var(--text-2xl);color:var(--text-tertiary);">{provider.name.charAt(0)}</span>
+            )}
+          </div>
+          <div style="flex:1; min-width: 0;">
+            <div class="flex items-center gap-sm flex-wrap">
+              <h1 style="font-size: var(--text-3xl);">{provider.name}</h1>
+            </div>
+            <div class="flex items-center gap-md flex-wrap mt-sm">
+              {provider.types.map(t => (
+                <span class={`tag tag-${t}`}>{getTypeLabel(t)}</span>
+              ))}
+              <span class="rating">
+                <span class="star-filled">{'★'.repeat(Math.floor(provider.rating))}</span>
+                <span class="star-empty">{'☆'.repeat(5 - Math.floor(provider.rating))}</span>
+                <span class="rating-value">{provider.rating}</span>
+                <span class="rating-count">({provider.reviewCount.toLocaleString()} reviews)</span>
+              </span>
+            </div>
+          </div>
+          <div class="flex gap-sm">
+            {provider.isPartner && (
+              <a href={formatPhoneForTel(provider.phone)} class="btn btn-call">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                Call {provider.phone}
+              </a>
+            )}
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-bar" style="margin-top: var(--space-xl); border-top-color: var(--border);">
+          <div class="stat-item">
+            <div class="stat-value">{formatSpeed(maxSpeed)}</div>
+            <div class="stat-label">Max Download</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">{formatSpeed(maxUpload)}</div>
+            <div class="stat-label">Max Upload</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">{formatPrice(minPrice)}</div>
+            <div class="stat-label">Starting Price</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">{provider.plans[0]?.dataCap || 'N/A'}</div>
+            <div class="stat-label">Data Cap</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">{provider.plans[0]?.contract || 'None'}</div>
+            <div class="stat-label">Contract</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="reveal" style="margin-bottom: var(--space-2xl);">
+        <p style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 800px;">{provider.description}</p>
+      </div>
+
+      <!-- Plans -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">{provider.name} Internet Plans</h2>
+        <div class="grid grid-3">
+          {provider.plans.map((plan, i) => (
+            <div class={`plan-card ${i === Math.floor(provider.plans.length / 2) ? 'plan-card--featured gradient-border' : ''}`}>
+              {i === Math.floor(provider.plans.length / 2) && (
+                <div class="badge badge-blue" style="position:absolute;top:var(--space-md);right:var(--space-md);">Most Popular</div>
+              )}
+              <div class="plan-name">{plan.name}</div>
+              <div class="plan-speed">{formatSpeed(plan.speed)}</div>
+              <div class="plan-speed-unit">download · {formatSpeed(plan.uploadSpeed)} upload</div>
+              <div class="plan-price">
+                {formatPrice(plan.promoPrice)} <span>/mo</span>
+              </div>
+              {plan.promoPrice < plan.price && (
+                <div class="plan-original-price">Regular price {formatPrice(plan.price)}/mo</div>
+              )}
+              <div style="margin-top: var(--space-sm); font-size: var(--text-xs); color: var(--text-tertiary);">
+                {plan.contract} contract · {plan.dataCap} data
+              </div>
+              <ul class="plan-features">
+                {plan.features.map(f => <li>{f}</li>)}
+              </ul>
+              {provider.isPartner && (
+                <a href={formatPhoneForTel(provider.phone)} class="btn btn-cta w-full" style="margin-top: var(--space-lg);">
+                  Call to Order
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Pros & Cons -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">{provider.name} Pros & Cons</h2>
+        <div class="pros-cons">
+          <div class="card">
+            <h4 style="color: var(--brand-green); margin-bottom: var(--space-md);">✓ Pros</h4>
+            <ul class="pros-list">
+              {provider.pros.map(p => <li>{p}</li>)}
+            </ul>
+          </div>
+          <div class="card">
+            <h4 style="color: var(--brand-red); margin-bottom: var(--space-md);">✕ Cons</h4>
+            <ul class="cons-list">
+              {provider.cons.map(c => <li>{c}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coverage -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">{provider.name} Coverage</h2>
+        <div class="card">
+          <p style="margin-bottom: var(--space-md);">{provider.name} is available in {provider.coverage.includes('Nationwide') ? 'all 50 states across the US.' : `${provider.coverage.length} states:`}</p>
+          {!provider.coverage.includes('Nationwide') && (
+            <div class="flex flex-wrap gap-sm">
+              {provider.coverage.map(state => (
+                <span class="tag">{stateNames[state] || state}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">{provider.name} FAQ</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Callback -->
+      <div class="reveal">
+        <CallbackForm providerName={provider.name} phone={provider.phone} />
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar text={`Get ${provider.name} — exclusive deals available.`} phone={provider.phone} />
+</Base>

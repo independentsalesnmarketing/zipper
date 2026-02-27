@@ -1,0 +1,18 @@
+{
+  "name": "internet4all-website",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Internet 4 ALL — Find the Best Internet Providers in Your Area",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.0",
+    "@astrojs/sitemap": "^3.2.0"
+  }
+}

@@ -4,282 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Internet Providers in Your Area - Internet 4 ALL</title>
-    <meta name="description" content="Compare internet providers available in your area. View plans, prices, and speeds from Spectrum, AT&T, T-Mobile, Frontier, and more.">
+    <meta name="description" content="Compare internet providers available in your area. View plans, prices, speeds, and deals from Spectrum, AT&T, Verizon, T-Mobile, Frontier, and more.">
+    <link rel="canonical" href="https://internet4all.com/pages/providers.html">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='18' width='100' height='100' fill='%231d4ed8'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'>i4</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
-    <!-- Urgency Banner -->
-    <div class="urgency-banner">
-        <i class="fas fa-bolt"></i> Limited Time: Get up to <strong>$200 off</strong> installation! 
-        <a href="tel:1-888-555-0123">Call 1-888-555-0123</a>
-    </div>
-
-    <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="header-inner">
-                <a href="../index.html" class="logo">
-                    <div class="logo-icon"><i class="fas fa-wifi"></i></div>
-                    <span>Internet 4 ALL</span>
-                </a>
-                <nav class="nav">
-                    <ul class="nav-links">
-                        <li><a href="../index.html" class="nav-link">Home</a></li>
-                        <li><a href="providers.html" class="nav-link active">Providers</a></li>
-                        <li><a href="compare.html" class="nav-link">Compare</a></li>
-                        <li><a href="speed-test.html" class="nav-link">Speed Test</a></li>
-                        <li><a href="resources.html" class="nav-link">Resources</a></li>
-                    </ul>
-                    <a href="tel:1-888-555-0123" class="phone-cta">
-                        <i class="fas fa-phone"></i>
-                        <span>1-888-555-0123</span>
-                    </a>
-                </nav>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+        <div class="wrap header-inner">
+            <a href="../index.html" class="logo"><div class="logo-mark"><i class="fas fa-wifi"></i></div><div class="logo-text">Internet 4 <span>ALL</span></div></a>
+            <nav class="nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="providers.html" class="nav-link active">Providers</a>
+                <a href="compare.html" class="nav-link">Compare</a>
+                <a href="speed-test.html" class="nav-link">Speed Test</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="tel:1-888-555-0123" class="header-phone"><i class="fas fa-phone-alt"></i> 1-888-555-0123</a>
+            </nav>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span></button>
         </div>
     </header>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="providers.html" class="nav-link active">Providers</a>
+        <a href="compare.html" class="nav-link">Compare</a>
+        <a href="speed-test.html" class="nav-link">Speed Test</a>
+        <a href="resources.html" class="nav-link">Resources</a>
+        <div class="mobile-cta"><a href="tel:1-888-555-0123"><i class="fas fa-phone-alt"></i> 1-888-555-0123</a><p>Talk to an internet expert</p></div>
+    </div>
 
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb">
-        <div class="container">
-            <ul class="breadcrumb-list">
-                <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-                <li class="breadcrumb-separator">/</li>
-                <li class="breadcrumb-item" id="breadcrumbLocation">Internet Providers</li>
-            </ul>
-        </div>
-    </nav>
+    <nav class="breadcrumb"><div class="wrap"><a href="../index.html">Home</a> <span class="sep">/</span> <span class="current" id="breadLoc">Internet Providers</span></div></nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1 class="page-title" id="pageTitle">Internet Providers</h1>
-            <p class="page-description" id="pageDescription">Compare plans, prices, and speeds from top providers</p>
-            
-            <!-- Search Box -->
-            <div class="search-box mt-lg" style="max-width: 400px;">
-                <input type="text" id="zipInput" placeholder="Enter ZIP code" maxlength="5">
-                <button id="searchBtn">
-                    <span>Search</span>
-                    <i class="fas fa-search"></i>
-                </button>
+    <div class="page-head">
+        <div class="wrap">
+            <h1 id="pageTitle">Internet Providers</h1>
+            <p id="pageDesc">Compare plans, prices, and speeds from top providers in your area</p>
+            <div class="search-bar" style="max-width:440px;margin:20px auto 0">
+                <input type="text" id="zipInput" placeholder="ZIP code (e.g. 10001)" maxlength="5" inputmode="numeric" aria-label="ZIP code">
+                <button id="searchBtn"><i class="fas fa-search"></i> <span>Search</span></button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Main Content -->
-    <main class="section">
-        <div class="container">
-            <!-- Results Header -->
-            <div class="results-header">
-                <div class="results-count" id="resultsCount">
-                    Showing <strong>9</strong> providers
-                </div>
-                <div class="results-cta">
-                    <span>Need help choosing?</span>
-                    <a href="tel:1-888-555-0123" class="phone-cta">
-                        <i class="fas fa-phone"></i> Call Now
-                    </a>
-                </div>
-            </div>
+    <main id="main">
+        <div class="results-section">
+            <div class="wrap">
+                <!-- Location Banner -->
+                <div id="locationBanner" class="loc-banner" style="display:none"></div>
 
-            <!-- Filters -->
-            <div class="filters">
-                <div class="filters-row">
-                    <div class="filter-group">
-                        <label class="filter-label">Connection Type</label>
-                        <div class="filter-chips" id="typeFilters">
-                            <button class="filter-chip active" data-type="all">All</button>
-                            <button class="filter-chip" data-type="fiber">Fiber</button>
-                            <button class="filter-chip" data-type="cable">Cable</button>
-                            <button class="filter-chip" data-type="dsl">DSL</button>
-                            <button class="filter-chip" data-type="5g">5G/Wireless</button>
-                        </div>
-                    </div>
-                    <div class="filter-group" style="min-width: 150px; flex: 0;">
-                        <label class="filter-label">Sort By</label>
-                        <select class="filter-select" id="sortSelect">
-                            <option value="recommended">Recommended</option>
-                            <option value="price-low">Price: Low to High</option>
-                            <option value="price-high">Price: High to Low</option>
-                            <option value="speed">Fastest Speed</option>
-                            <option value="rating">Highest Rated</option>
-                        </select>
-                    </div>
+                <!-- Results count -->
+                <div class="results-meta">
+                    <div class="results-count" id="resultsCount">Showing <strong>10</strong> providers</div>
+                    <div class="results-help"><span>Need help?</span> <a href="tel:1-888-555-0123" class="btn btn-green btn-sm"><i class="fas fa-phone-alt"></i> Call</a></div>
                 </div>
-            </div>
 
-            <!-- Provider Grid -->
-            <div class="providers-grid" id="providersGrid">
-                <!-- Dynamically populated -->
-            </div>
-
-            <!-- Conversion Card -->
-            <div class="conversion-card mt-2xl">
-                <h3>Can't Decide? Let Us Help!</h3>
-                <p>Our internet experts will find the perfect plan for your needs and budget.</p>
-                <div class="phone-number">
-                    <i class="fas fa-phone"></i> 1-888-555-0123
+                <!-- Filters -->
+                <div class="filters">
+                    <button class="chip active" data-filter-type="all">All</button>
+                    <button class="chip" data-filter-type="fiber">Fiber</button>
+                    <button class="chip" data-filter-type="cable">Cable</button>
+                    <button class="chip" data-filter-type="dsl">DSL</button>
+                    <button class="chip" data-filter-type="5g">5G</button>
+                    <select class="sort-select" id="sortSelect">
+                        <option value="recommended">Recommended</option>
+                        <option value="price-low">Price: Low → High</option>
+                        <option value="price-high">Price: High → Low</option>
+                        <option value="speed">Fastest Speed</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
                 </div>
-                <a href="tel:1-888-555-0123" class="btn">Call Now - Free Expert Advice</a>
+
+                <!-- Results -->
+                <div class="results-list" id="providersGrid"></div>
+
+                <!-- CTA -->
+                <div class="cta-box" style="margin-top:48px">
+                    <h3>Can't Decide? Let Us Help!</h3>
+                    <p>Our internet experts will find the perfect plan for your needs and budget.</p>
+                    <div class="cta-phone"><i class="fas fa-phone-alt"></i> 1-888-555-0123</div>
+                    <a href="tel:1-888-555-0123" class="btn btn-white btn-lg"><i class="fas fa-phone-alt"></i> Call Now — Free Expert Advice</a>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="../index.html" class="logo">
-                        <div class="logo-icon"><i class="fas fa-wifi"></i></div>
-                        <span>Internet 4 ALL</span>
-                    </a>
-                    <p>Your trusted resource for finding and comparing internet providers.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Providers</h4>
-                    <ul>
-                        <li><a href="provider-spectrum.html">Spectrum</a></li>
-                        <li><a href="provider-att.html">AT&T</a></li>
-                        <li><a href="provider-tmobile.html">T-Mobile</a></li>
-                        <li><a href="provider-frontier.html">Frontier</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="resources.html">Internet Guides</a></li>
-                        <li><a href="speed-test.html">Speed Test</a></li>
-                        <li><a href="compare.html">Compare Plans</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><a href="tel:1-888-555-0123">1-888-555-0123</a></li>
-                        <li><a href="mailto:help@internet4all.com">Email Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Internet 4 ALL. All rights reserved.</p>
-            </div>
+    <!-- Modal -->
+    <div class="modal-overlay" id="providerModal">
+        <div class="modal">
+            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+            <div class="modal-header" id="modalHeader"></div>
+            <div class="modal-body" id="modalBody"></div>
         </div>
-    </footer>
-
-    <!-- Sticky CTA -->
-    <div class="sticky-cta">
-        <div class="sticky-cta-text">
-            <i class="fas fa-bolt"></i> Get <span>exclusive deals</span> - Call now!
-        </div>
-        <a href="tel:1-888-555-0123" class="btn-cta">
-            <i class="fas fa-phone"></i> 1-888-555-0123
-        </a>
     </div>
 
-    <!-- Floating Phone -->
-    <a href="tel:1-888-555-0123" class="floating-phone">
-        <i class="fas fa-phone"></i>
-    </a>
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo"><div class="logo-mark"><i class="fas fa-wifi"></i></div><div class="logo-text">Internet 4 <span>ALL</span></div></a>
+                    <p>Your trusted resource for finding and comparing internet providers.</p>
+                </div>
+                <div><h4>Providers</h4><ul>
+                    <li><a href="provider.html?id=spectrum">Spectrum</a></li>
+                    <li><a href="provider.html?id=att">AT&T</a></li>
+                    <li><a href="provider.html?id=verizon">Verizon</a></li>
+                    <li><a href="provider.html?id=tmobile">T-Mobile</a></li>
+                    <li><a href="provider.html?id=frontier">Frontier</a></li>
+                </ul></div>
+                <div><h4>Tools</h4><ul>
+                    <li><a href="compare.html">Compare Plans</a></li>
+                    <li><a href="speed-test.html">Speed Test</a></li>
+                    <li><a href="resources.html">Guides</a></li>
+                </ul></div>
+                <div><h4>Contact</h4><ul>
+                    <li><a href="tel:1-888-555-0123"><i class="fas fa-phone-alt" style="margin-right:4px;font-size:.625rem"></i> 1-888-555-0123</a></li>
+                    <li><a href="mailto:help@internet4all.com"><i class="fas fa-envelope" style="margin-right:4px;font-size:.625rem"></i> help@internet4all.com</a></li>
+                </ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Internet 4 ALL. All rights reserved.</p><p>Call: <a href="tel:1-888-555-0123">1-888-555-0123</a></p></div>
+        </div>
+    </footer>
+    <div class="sticky-cta"><div class="sticky-cta-inner"><span class="sticky-cta-text">Need help? <strong>Call an expert</strong></span><a href="tel:1-888-555-0123" class="sticky-cta-btn"><i class="fas fa-phone-alt"></i> Call</a></div></div>
 
     <script src="../js/providers-data.js"></script>
+    <script src="../js/api.js"></script>
     <script src="../js/app.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const zip = urlParams.get('zip') || sessionStorage.getItem('searchZip');
-            
-            if (zip) {
-                document.getElementById('zipInput').value = zip;
-                loadProvidersForZip(zip);
-            } else {
-                loadAllProviders();
-            }
-            
-            initFilters();
-        });
-        
-        let currentProviders = [];
-        let currentFilter = 'all';
-        let currentSort = 'recommended';
-        
-        function loadProvidersForZip(zip) {
-            const result = getProvidersByZip(zip);
-            currentProviders = result.providers;
-            
-            document.getElementById('pageTitle').textContent = `Internet Providers in ${result.city}, ${result.state}`;
-            document.getElementById('pageDescription').textContent = `${currentProviders.length} providers available in your area`;
-            document.getElementById('breadcrumbLocation').textContent = `Providers in ${result.city}, ${result.state}`;
-            
-            renderProviders();
-        }
-        
-        function loadAllProviders() {
-            currentProviders = [...providers];
-            renderProviders();
-        }
-        
-        function renderProviders() {
-            let filtered = [...currentProviders];
-            
-            // Apply type filter
-            if (currentFilter !== 'all') {
-                filtered = filtered.filter(p => p.types.includes(currentFilter));
-            }
-            
-            // Apply sort
-            switch (currentSort) {
-                case 'price-low':
-                    filtered.sort((a, b) => Math.min(...a.plans.map(p => p.promoPrice || p.price)) - Math.min(...b.plans.map(p => p.promoPrice || p.price)));
-                    break;
-                case 'price-high':
-                    filtered.sort((a, b) => Math.min(...b.plans.map(p => p.promoPrice || p.price)) - Math.min(...a.plans.map(p => p.promoPrice || p.price)));
-                    break;
-                case 'speed':
-                    filtered.sort((a, b) => Math.max(...b.plans.map(p => p.speed)) - Math.max(...a.plans.map(p => p.speed)));
-                    break;
-                case 'rating':
-                    filtered.sort((a, b) => b.rating - a.rating);
-                    break;
-            }
-            
-            document.getElementById('resultsCount').innerHTML = `Showing <strong>${filtered.length}</strong> provider${filtered.length !== 1 ? 's' : ''}`;
-            document.getElementById('providersGrid').innerHTML = filtered.map(p => createProviderCard(p)).join('');
-        }
-        
-        function initFilters() {
-            // Type filters
-            document.querySelectorAll('.filter-chip').forEach(chip => {
-                chip.addEventListener('click', () => {
-                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-                    chip.classList.add('active');
-                    currentFilter = chip.dataset.type;
-                    renderProviders();
-                });
-            });
-            
-            // Sort
-            document.getElementById('sortSelect').addEventListener('change', (e) => {
-                currentSort = e.target.value;
-                renderProviders();
-            });
-            
-            // Search
-            document.getElementById('searchBtn').addEventListener('click', () => {
-                const zip = document.getElementById('zipInput').value;
-                if (zip.length === 5) {
-                    window.location.href = `providers.html?zip=${zip}`;
-                }
-            });
-        }
-    </script>
 </body>
 </html>

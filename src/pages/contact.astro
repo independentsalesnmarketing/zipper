@@ -1,0 +1,94 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { MAIN_PHONE } from '@lib/providers';
+import { generateBreadcrumbSchema } from '@lib/utils';
+---
+<Base
+  title="Contact Us — Internet 4 ALL"
+  description="Get in touch with Internet 4 ALL. Call us for free internet help, report issues, or send feedback."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Contact Us', url: 'https://internet4all.com/contact' }])]}
+>
+  <section class="section" style="padding-top:var(--space-xl);">
+    <div class="container" style="max-width:700px;">
+      <Breadcrumb items={[{ name: 'Contact Us' }]} />
+      <h1 class="reveal">Contact <span class="gradient-text">Us</span></h1>
+      <p class="reveal" style="font-size:var(--text-lg);margin-top:var(--space-md);">We're real people who genuinely want to help you find better internet.</p>
+
+      <!-- Call Card -->
+      <div class="card gradient-border reveal" style="padding:var(--space-xl);text-align:center;margin:var(--space-xl) 0;">
+        <div style="font-size:2rem;margin-bottom:var(--space-sm);">📞</div>
+        <h2 style="margin-bottom:var(--space-xs);">Call Us</h2>
+        <p style="font-size:var(--text-sm);color:var(--text-muted);margin-bottom:var(--space-md);">The fastest way to get help. Free, no obligation.</p>
+        <a href={`tel:${MAIN_PHONE.replace(/[^0-9]/g, '')}`} class="btn btn-call" style="font-size:var(--text-xl);">
+          📞 {MAIN_PHONE}
+        </a>
+        <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:var(--space-sm);">Mon-Fri 8am-10pm ET · Sat-Sun 9am-7pm ET</p>
+      </div>
+
+      <!-- Contact Options -->
+      <div class="grid grid-2 reveal" style="margin-bottom:var(--space-xl);">
+        <div class="card text-center">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">🛠️</div>
+          <h4>Technical Issues</h4>
+          <p style="font-size:var(--text-sm);margin-top:var(--space-xs);">Found a bug or inaccurate info? Let us know so we can fix it.</p>
+        </div>
+        <div class="card text-center">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">🤝</div>
+          <h4>Business Inquiries</h4>
+          <p style="font-size:var(--text-sm);margin-top:var(--space-xs);">Interested in becoming a partner provider? Call our main line.</p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="card reveal" style="padding:var(--space-xl);">
+        <h3 style="margin-bottom:var(--space-lg);">Send Us a Message</h3>
+        <form id="contact-form" style="display:grid;gap:var(--space-md);">
+          <div class="grid grid-2" style="gap:var(--space-md);">
+            <div>
+              <label class="form-label" for="contact-name">Name</label>
+              <input type="text" id="contact-name" class="form-input" placeholder="Your name" required />
+            </div>
+            <div>
+              <label class="form-label" for="contact-phone">Phone (optional)</label>
+              <input type="tel" id="contact-phone" class="form-input" placeholder="(555) 555-5555" />
+            </div>
+          </div>
+          <div>
+            <label class="form-label" for="contact-subject">Subject</label>
+            <select id="contact-subject" class="form-input" required>
+              <option value="">Select a topic...</option>
+              <option value="help">I need help finding internet</option>
+              <option value="correction">Report incorrect information</option>
+              <option value="bug">Website bug / technical issue</option>
+              <option value="business">Business inquiry / partnership</option>
+              <option value="feedback">General feedback</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="contact-message">Message</label>
+            <textarea id="contact-message" class="form-input" rows="5" placeholder="How can we help?" required style="resize:vertical;"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+        </form>
+        <div id="form-success" style="display:none;text-align:center;padding:var(--space-xl);">
+          <div style="font-size:2rem;margin-bottom:var(--space-md);">✅</div>
+          <h3>Message Sent!</h3>
+          <p style="font-size:var(--text-sm);margin-top:var(--space-sm);">Thank you for reaching out. For immediate help, call us at <a href={`tel:${MAIN_PHONE.replace(/[^0-9]/g, '')}`} style="color:var(--brand-green);">{MAIN_PHONE}</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <StickyCallBar />
+
+  <script>
+    document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // In production, this would submit to an API
+      document.getElementById('contact-form')!.style.display = 'none';
+      document.getElementById('form-success')!.style.display = 'block';
+    });
+  </script>
+</Base>

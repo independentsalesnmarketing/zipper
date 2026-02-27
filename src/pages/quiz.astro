@@ -1,0 +1,256 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import CallbackForm from '@components/CallbackForm.astro';
+import { getPartnerProviders, formatSpeed, formatPrice, MAIN_PHONE } from '@lib/providers';
+import { generateBreadcrumbSchema } from '@lib/utils';
+
+const partners = getPartnerProviders();
+---
+<Base
+  title="Internet Needs Quiz — Find Your Perfect Plan in 60 Seconds"
+  description="Answer 5 quick questions and get a personalized internet plan recommendation based on your household size, usage, and budget."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Internet Quiz', url: 'https://internet4all.com/quiz' }])]}
+>
+  <section class="section" style="padding-top:var(--space-xl);">
+    <div class="container" style="max-width:700px;">
+      <Breadcrumb items={[{ name: 'Internet Quiz' }]} />
+
+      <div class="text-center reveal">
+        <div class="badge" style="margin-bottom:var(--space-md);">❓ 60-Second Quiz</div>
+        <h1>What Internet Plan <span class="gradient-text">Do You Need?</span></h1>
+        <p class="hero-subtitle" style="max-width:480px;margin:var(--space-sm) auto 0;">Answer 5 quick questions. We'll recommend the perfect speed and plan for your household.</p>
+      </div>
+
+      <!-- Quiz Container -->
+      <div id="quiz" class="reveal" style="margin-top:var(--space-2xl);">
+        <!-- Progress Bar -->
+        <div style="margin-bottom:var(--space-xl);">
+          <div class="flex items-center" style="justify-content:space-between;margin-bottom:var(--space-xs);">
+            <span id="quiz-step" style="font-size:var(--text-sm);font-weight:700;">Question 1 of 5</span>
+            <span id="quiz-pct" style="font-size:var(--text-sm);color:var(--text-muted);">0%</span>
+          </div>
+          <div class="progress-bar"><div id="quiz-bar" class="progress-fill" style="width:0%;"></div></div>
+        </div>
+
+        <!-- Questions -->
+        <div id="q-container">
+          <!-- Q1 -->
+          <div class="quiz-question card" data-q="1">
+            <h3 style="margin-bottom:var(--space-lg);">How many people are in your household?</h3>
+            <div class="grid grid-2" style="gap:var(--space-sm);">
+              <button class="quiz-opt btn btn-secondary" data-value="1">👤 Just me</button>
+              <button class="quiz-opt btn btn-secondary" data-value="2">👥 2 people</button>
+              <button class="quiz-opt btn btn-secondary" data-value="3">👨‍👩‍👧 3-4 people</button>
+              <button class="quiz-opt btn btn-secondary" data-value="5">👨‍👩‍👧‍👦 5+ people</button>
+            </div>
+          </div>
+          <!-- Q2 -->
+          <div class="quiz-question card" data-q="2" style="display:none;">
+            <h3 style="margin-bottom:var(--space-lg);">What do you mainly use the internet for?</h3>
+            <div class="grid grid-2" style="gap:var(--space-sm);">
+              <button class="quiz-opt btn btn-secondary" data-value="basic">📧 Email & browsing</button>
+              <button class="quiz-opt btn btn-secondary" data-value="streaming">📺 Streaming (Netflix, YouTube)</button>
+              <button class="quiz-opt btn btn-secondary" data-value="gaming">🎮 Gaming</button>
+              <button class="quiz-opt btn btn-secondary" data-value="wfh">💻 Work from home</button>
+            </div>
+          </div>
+          <!-- Q3 -->
+          <div class="quiz-question card" data-q="3" style="display:none;">
+            <h3 style="margin-bottom:var(--space-lg);">How many devices connect to your WiFi?</h3>
+            <div class="grid grid-2" style="gap:var(--space-sm);">
+              <button class="quiz-opt btn btn-secondary" data-value="3">📱 1-3 devices</button>
+              <button class="quiz-opt btn btn-secondary" data-value="7">📱💻 4-7 devices</button>
+              <button class="quiz-opt btn btn-secondary" data-value="12">🏠 8-12 devices</button>
+              <button class="quiz-opt btn btn-secondary" data-value="20">🏢 13+ devices</button>
+            </div>
+          </div>
+          <!-- Q4 -->
+          <div class="quiz-question card" data-q="4" style="display:none;">
+            <h3 style="margin-bottom:var(--space-lg);">Do multiple people stream or game at the same time?</h3>
+            <div class="grid grid-2" style="gap:var(--space-sm);">
+              <button class="quiz-opt btn btn-secondary" data-value="0">Almost never</button>
+              <button class="quiz-opt btn btn-secondary" data-value="1">Sometimes</button>
+              <button class="quiz-opt btn btn-secondary" data-value="2">Often</button>
+              <button class="quiz-opt btn btn-secondary" data-value="3">All the time</button>
+            </div>
+          </div>
+          <!-- Q5 -->
+          <div class="quiz-question card" data-q="5" style="display:none;">
+            <h3 style="margin-bottom:var(--space-lg);">What's your monthly budget for internet?</h3>
+            <div class="grid grid-2" style="gap:var(--space-sm);">
+              <button class="quiz-opt btn btn-secondary" data-value="30">Under $30/mo</button>
+              <button class="quiz-opt btn btn-secondary" data-value="50">$30-$50/mo</button>
+              <button class="quiz-opt btn btn-secondary" data-value="75">$50-$75/mo</button>
+              <button class="quiz-opt btn btn-secondary" data-value="999">$75+/mo (I want the best)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div id="quiz-results" style="display:none;"></div>
+      </div>
+
+      <!-- CTA below quiz -->
+      <div style="margin-top:var(--space-3xl);">
+        <CallbackForm providerName="Internet 4 ALL (Quiz)" phone={MAIN_PHONE} />
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar text="Need help choosing? Talk to an expert." />
+
+<script define:vars={{ partners: partners.map(p => ({ name: p.name, slug: p.slug, phone: p.phone, types: p.types, plans: p.plans })), mainPhone: MAIN_PHONE }}>
+(function() {
+  const answers = {};
+  let current = 1;
+  const total = 5;
+
+  document.querySelectorAll('.quiz-opt').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const q = parseInt(this.closest('.quiz-question').dataset.q);
+      answers[q] = this.dataset.value;
+      
+      // Highlight selected
+      this.closest('.quiz-question').querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('btn-primary'));
+      this.classList.add('btn-primary');
+      this.classList.remove('btn-secondary');
+      
+      setTimeout(() => {
+        if (q < total) {
+          // Next question
+          document.querySelector(`.quiz-question[data-q="${q}"]`).style.display = 'none';
+          document.querySelector(`.quiz-question[data-q="${q + 1}"]`).style.display = 'block';
+          current = q + 1;
+          document.getElementById('quiz-step').textContent = `Question ${current} of ${total}`;
+          document.getElementById('quiz-pct').textContent = Math.round((current - 1) / total * 100) + '%';
+          document.getElementById('quiz-bar').style.width = ((current - 1) / total * 100) + '%';
+        } else {
+          // Show results
+          showResults();
+        }
+      }, 300);
+    });
+  });
+
+  function showResults() {
+    document.getElementById('quiz-step').textContent = 'Results';
+    document.getElementById('quiz-pct').textContent = '100%';
+    document.getElementById('quiz-bar').style.width = '100%';
+    document.querySelector(`.quiz-question[data-q="${total}"]`).style.display = 'none';
+
+    // Calculate recommended speed
+    const people = parseInt(answers[1]) || 1;
+    const usage = answers[2] || 'basic';
+    const devices = parseInt(answers[3]) || 3;
+    const concurrent = parseInt(answers[4]) || 0;
+    const budget = parseInt(answers[5]) || 50;
+
+    let baseSpeed = 25;
+    if (usage === 'streaming') baseSpeed = 50;
+    if (usage === 'gaming') baseSpeed = 100;
+    if (usage === 'wfh') baseSpeed = 75;
+
+    let recSpeed = baseSpeed * people;
+    recSpeed += devices * 5;
+    recSpeed += concurrent * 50;
+    recSpeed = Math.max(25, Math.min(recSpeed, 2000));
+
+    // Round to common tiers
+    const tiers = [25, 50, 100, 200, 300, 500, 1000, 2000];
+    let tier = tiers.find(t => t >= recSpeed) || 2000;
+
+    // Grade
+    let grade, gradeColor, label;
+    if (tier <= 50) { grade = 'Basic'; gradeColor = 'var(--brand-green)'; label = 'Light browsing, email, social media'; }
+    else if (tier <= 100) { grade = 'Standard'; gradeColor = 'var(--brand-blue-light)'; label = 'Streaming, video calls, moderate use'; }
+    else if (tier <= 300) { grade = 'Power'; gradeColor = 'var(--brand-purple)'; label = 'Multiple users, gaming, HD streaming'; }
+    else if (tier <= 500) { grade = 'Heavy'; gradeColor = 'var(--brand-blue)'; label = 'Large household, 4K streaming, competitive gaming'; }
+    else { grade = 'Ultra'; gradeColor = 'var(--gradient-primary)'; label = 'Maximum performance, future-proof'; }
+
+    // Find matching plans from partners
+    const matches = [];
+    partners.forEach(p => {
+      const plan = p.plans.find(pl => pl.speed >= tier && (pl.promoPrice || pl.price) <= budget);
+      const any = p.plans.find(pl => pl.speed >= tier);
+      if (plan) {
+        matches.push({ provider: p, plan, exact: true });
+      } else if (any) {
+        matches.push({ provider: p, plan: any, exact: false });
+      }
+    });
+    matches.sort((a, b) => (a.plan.promoPrice || a.plan.price) - (b.plan.promoPrice || b.plan.price));
+
+    let html = `
+      <div class="card" style="text-align:center;padding:var(--space-2xl);margin-bottom:var(--space-xl);border-top:3px solid ${gradeColor};">
+        <div style="font-size:var(--text-sm);color:var(--text-muted);margin-bottom:var(--space-xs);">We recommend</div>
+        <div style="font-size:clamp(2.5rem,6vw,4rem);font-weight:900;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">${tier} Mbps</div>
+        <div style="font-size:var(--text-lg);font-weight:700;margin:var(--space-xs) 0;">${grade} Internet</div>
+        <p style="font-size:var(--text-sm);color:var(--text-muted);">${label}</p>
+        <div style="margin-top:var(--space-lg);padding-top:var(--space-lg);border-top:1px solid var(--border);">
+          <div style="display:flex;justify-content:center;gap:var(--space-xl);flex-wrap:wrap;font-size:var(--text-sm);">
+            <div>👤 <strong>${people}</strong> ${people === 1 ? 'person' : 'people'}</div>
+            <div>📱 <strong>${devices}</strong> devices</div>
+            <div>💰 <strong>$${budget === 999 ? '75+' : budget}</strong>/mo budget</div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    if (matches.length > 0) {
+      html += `<h3 style="margin-bottom:var(--space-lg);">Matching Plans From Our Partners</h3>`;
+      matches.slice(0, 4).forEach(m => {
+        const price = m.plan.promoPrice || m.plan.price;
+        html += `
+          <div class="card" style="margin-bottom:var(--space-md);${m.exact ? '' : 'opacity:0.85;'}">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-md);">
+              <div>
+                <h4>${m.provider.name}</h4>
+                <div style="font-size:var(--text-sm);">${m.plan.name} — <strong>${m.plan.speed >= 1000 ? (m.plan.speed / 1000) + ' Gbps' : m.plan.speed + ' Mbps'}</strong></div>
+                ${!m.exact ? '<div style="font-size:var(--text-xs);color:var(--brand-yellow);">⚠️ Exceeds budget — but meets speed needs</div>' : ''}
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:var(--text-xl);font-weight:900;color:var(--brand-green);">$${price.toFixed(2)}<span style="font-size:var(--text-xs);font-weight:400;">/mo</span></div>
+                <a href="tel:${m.provider.phone.replace(/[^0-9]/g, '')}" class="btn btn-call" style="margin-top:var(--space-xs);font-size:var(--text-sm);">📞 Call Now</a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    } else {
+      html += `
+        <div class="card text-center" style="padding:var(--space-xl);">
+          <p>We didn't find an exact match within your speed + budget range. Call us — we'll find creative solutions!</p>
+          <a href="tel:${mainPhone.replace(/[^0-9]/g, '')}" class="btn btn-call" style="margin-top:var(--space-md);font-size:var(--text-lg);">📞 ${mainPhone}</a>
+        </div>
+      `;
+    }
+
+    html += `
+      <div class="text-center" style="margin-top:var(--space-xl);">
+        <button id="quiz-restart" class="btn btn-secondary">↩ Retake Quiz</button>
+      </div>
+    `;
+
+    const resultsEl = document.getElementById('quiz-results');
+    resultsEl.innerHTML = html;
+    resultsEl.style.display = 'block';
+
+    document.getElementById('quiz-restart')?.addEventListener('click', () => {
+      resultsEl.style.display = 'none';
+      resultsEl.innerHTML = '';
+      document.querySelector('.quiz-question[data-q="1"]').style.display = 'block';
+      document.querySelectorAll('.quiz-opt').forEach(b => {
+        b.classList.remove('btn-primary');
+        b.classList.add('btn-secondary');
+      });
+      current = 1;
+      document.getElementById('quiz-step').textContent = 'Question 1 of 5';
+      document.getElementById('quiz-pct').textContent = '0%';
+      document.getElementById('quiz-bar').style.width = '0%';
+    });
+  }
+})();
+</script>
+</Base>

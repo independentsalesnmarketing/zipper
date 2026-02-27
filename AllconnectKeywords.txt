@@ -1,0 +1,910 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+internet providers in my area	USD	50000	0%	0%	High	93	6.17	26.49
+wifi providers near me	USD	50000	-90%	-90%	High	82	10.00	39.50
+internet availability by address	USD	50000	-90%	-90%	High	89	4.65	20.26
+internet providers for my address	USD	50000	-90%	-90%	High	94	5.71	27.00
+internet options by address	USD	50000	0%	-90%	High	90	5.02	23.37
+cheap internet plans	USD	50000	0%	0%	Low	20	5.10	23.51
+cable tv providers	USD	50000	-90%	-90%	Medium	58	2.17	12.49
+cable providers near me	USD	50000	0%	-90%	High	79	3.63	15.89
+cheapest home internet	USD	50000	0%	0%	Medium	34	5.20	24.82
+cable tv providers in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+cable internet	USD	50000	0%	900%	Low	8	4.91	18.48
+internet providers by address	USD	50000	0%	-90%	High	90	5.02	23.37
+cable and internet providers	USD	50000	0%	900%	Low	11	5.87	21.92
+cable internet providers	USD	50000	0%	900%	Low	11	5.87	21.92
+internet services for my address	USD	50000	-90%	-90%	High	94	5.71	27.00
+internet services by address	USD	50000	0%	-90%	High	90	5.02	23.37
+isps in my area	USD	50000	0%	0%	High	93	6.17	26.49
+best isp in my area	USD	50000	0%	0%	High	91	5.58	26.49
+cable options near me	USD	50000	0%	-90%	High	79	3.63	15.89
+isp for my address	USD	50000	-90%	-90%	High	94	5.71	27.00
+internet nyc	USD	50000	0%	0%	Low	33	1.33	15.85
+cable company in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+internet carriers in my area	USD	50000	0%	0%	High	93	6.17	26.49
+cable providers in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+internet choices in my area	USD	50000	0%	0%	High	93	6.17	26.49
+isp providers by address	USD	50000	0%	-90%	High	90	5.02	23.37
+cable tv in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+cheapest internet providers	USD	50000	0%	0%	High	72	5.65	24.20
+isp by address	USD	50000	0%	-90%	High	90	5.02	23.37
+cheap wireless internet	USD	50000	0%	0%	High	95	7.90	31.51
+wifi for cheap	USD	50000	0%	0%	High	95	7.90	31.51
+cable service providers near me	USD	50000	0%	-90%	High	79	3.63	15.89
+internet options for my area	USD	50000	0%	0%	High	93	6.17	26.49
+cable options in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+cheap internet companies	USD	50000	0%	0%	High	72	5.65	24.20
+internet for cheap	USD	50000	0%	0%	High	92	6.00	25.89
+cable services near me	USD	50000	0%	-90%	High	79	3.63	15.89
+isp providers in my area	USD	50000	0%	0%	High	93	6.17	26.49
+wifi internet providers near me	USD	50000	-90%	-90%	High	82	10.00	39.50
+cable tv providers near me	USD	50000	0%	-90%	High	79	3.63	15.89
+internet cable service	USD	50000	0%	900%	Low	11	5.87	21.92
+internet companies for my area	USD	50000	0%	0%	High	93	6.17	26.49
+internet providers home	USD	50000	0%	0%	Medium	49	7.00	29.90
+cable tv and internet providers	USD	50000	0%	900%	Low	11	5.87	21.92
+tv cable services	USD	50000	0%	900%	Low	20	3.87	16.52
+cheapest isp	USD	50000	0%	0%	High	72	5.65	24.20
+cable service providers	USD	50000	-90%	-90%	Medium	58	2.17	12.49
+cable and internet plans	USD	50000	0%	9900%	Low	0	3.62	15.97
+internet carriers for my address	USD	50000	-90%	-90%	High	94	5.71	27.00
+internet services offered in my area	USD	50000	0%	0%	High	93	6.17	26.49
+internet cable tv providers	USD	50000	0%	900%	Low	11	5.87	21.92
+internet availability for my address	USD	50000	-90%	-90%	High	89	4.65	20.26
+providers internet	USD	50000	0%	0%	High	72	7.00	28.37
+cable television in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+best internet providers for my area	USD	50000	0%	0%	High	91	5.58	26.49
+broadband providers by address	USD	50000	0%	-90%	High	90	5.02	23.37
+cheap internet for house	USD	50000	0%	0%	Medium	34	5.20	24.82
+cable tv service providers near me	USD	50000	0%	-90%	High	79	3.63	15.89
+cabletv near me	USD	50000	0%	-90%	High	79	3.63	15.89
+internet cable plans	USD	50000	0%	9900%	Low	0	3.62	15.97
+cable tv and internet service	USD	50000	0%	900%	Low	11	5.87	21.92
+best providers for internet	USD	50000	0%	0%	High	78	4.53	22.28
+internet access providers in my area	USD	50000	0%	0%	High	93	6.17	26.49
+isp at address	USD	50000	0%	-90%	High	90	5.02	23.37
+isp service by address	USD	50000	0%	-90%	High	90	5.02	23.37
+service providers internet	USD	50000	0%	0%	High	72	7.00	28.37
+find cable in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+providers wifi	USD	50000	0%	-90%	High	90	8.00	36.01
+universal remote rca	USD	50000	0%	0%	High	72	0.26	1.55
+internet cable internet	USD	50000	0%	900%	Low	8	4.91	18.48
+cable tv bundle	USD	50000	0%	900%	Low	7	1.68	9.09
+cable tv & internet service	USD	50000	0%	900%	Low	11	5.87	21.92
+cable providers internet	USD	50000	0%	900%	Low	11	5.87	21.92
+xfinity bill phone number	USD	50000	-90%	-90%	Low	1	1.14	4.66
+wifi in my area	USD	5000	0%	0%	High	95	8.40	37.37
+fiber optic internet near me	USD	5000	0%	0%	High	90	3.98	18.29
+cable companies near me	USD	5000	0%	-90%	High	82	4.77	19.52
+high speed internet in my area	USD	5000	0%	0%	High	90	5.66	23.30
+cheapest internet in my area	USD	5000	0%	0%	High	89	4.23	19.72
+cable providers	USD	5000	0%	0%	Medium	54	3.19	12.75
+tv and internet packages	USD	5000	0%	0%	High	81	2.94	16.16
+cheapest wifi plans	USD	5000	0%	0%	High	80	6.70	30.00
+internet options for my address	USD	5000	0%	0%	High	92	5.52	26.49
+cheap wifi near me	USD	5000	0%	0%	Medium	66	9.05	36.68
+cable and internet	USD	5000	-90%	-90%	High	85	5.31	22.86
+internet plans near me	USD	5000	0%	0%	High	93	5.44	26.40
+best internet providers near me	USD	5000	0%	0%	High	93	7.00	27.64
+tv internet	USD	5000	0%	-90%	Medium	66	2.87	17.37
+find internet providers by address	USD	5000	0%	0%	High	89	5.10	26.50
+high speed internet by address	USD	5000	0%	0%	High	82	3.54	16.65
+internet providers chicago	USD	5000	0%	0%	High	83	6.00	31.71
+wifi providers in my area	USD	5000	0%	0%	High	94	7.30	32.63
+internet and tv bundles	USD	5000	0%	0%	High	81	2.94	16.16
+rural internet providers	USD	5000	0%	0%	Medium	49	4.55	19.51
+internet providers los angeles	USD	5000	0%	0%	High	81	6.45	25.87
+internet providers dallas	USD	5000	0%	0%	High	87	9.09	48.06
+internet providers houston	USD	5000	0%	0%	High	88	7.61	45.77
+wifi options near me	USD	5000	0%	-90%	High	98	8.65	37.80
+cheap cable and internet	USD	5000	-90%	-90%	High	70	3.34	17.42
+tv providers near me	USD	5000	0%	0%	High	85	2.57	12.75
+wifi services in my area	USD	5000	-90%	-90%	High	99	9.58	43.36
+internet providers jacksonville fl	USD	5000	-90%	-90%	High	89	7.79	50.00
+cable services in my area	USD	5000	0%	0%	High	90	4.21	19.41
+tv and internet providers	USD	5000	0%	-90%	High	76	2.65	14.04
+internet providers nyc	USD	5000	0%	0%	High	74	6.81	26.69
+cheapest wifi provider	USD	5000	0%	0%	High	92	8.03	30.65
+cable and internet providers near me	USD	5000	0%	0%	High	86	5.35	22.84
+cheapest internet near me	USD	5000	0%	0%	High	94	6.75	28.56
+internet tv packages	USD	5000	0%	-90%	High	78	1.81	12.46
+internet providers tampa	USD	5000	0%	-90%	High	85	8.34	49.84
+wifi available at my address	USD	5000	0%	900%	High	86	7.04	27.44
+internet providers charlotte nc	USD	5000	-90%	-90%	High	87	8.34	35.30
+internet providers lubbock	USD	5000	0%	0%	High	87	10.53	67.41
+internet providers austin	USD	5000	0%	0%	Medium	45	6.88	26.65
+cable and internet near me	USD	5000	0%	0%	High	98	6.65	26.68
+internet providers el paso	USD	5000	-90%	-90%	High	87	5.80	28.87
+best internet provider houston	USD	5000	0%	-90%	High	81	4.58	20.65
+seattle internet providers	USD	5000	0%	0%	High	82	6.16	28.65
+san diego internet providers	USD	5000	0%	0%	High	92	5.94	32.43
+internet providers orlando	USD	5000	-90%	-90%	High	85	6.69	33.20
+internet providers st louis	USD	5000	0%	-90%	High	90	6.11	30.41
+best cheap wifi	USD	5000	0%	0%	High	93	7.90	30.26
+tv providers in my area	USD	5000	0%	0%	High	84	2.44	14.86
+internet specials near me	USD	5000	0%	0%	High	96	7.54	27.50
+cheap wifi in my area	USD	5000	-90%	-90%	High	92	6.98	31.94
+internet and tv	USD	5000	0%	-90%	Medium	66	2.87	17.37
+cable and internet deals	USD	5000	0%	0%	Medium	46	3.71	18.47
+tv internet bundles	USD	5000	0%	0%	High	81	2.94	16.16
+internet providers new york	USD	5000	0%	0%	High	74	6.81	26.69
+best internet and tv bundles	USD	5000	0%	-90%	High	75	1.86	12.00
+best internet provider nyc	USD	5000	0%	-90%	High	73	4.17	22.80
+internet providers miami	USD	5000	0%	-90%	High	69	5.70	22.69
+best cheap internet	USD	5000	-90%	-90%	High	88	6.45	30.26
+fiber optic internet in my area	USD	5000	0%	0%	High	88	4.20	21.07
+internet and tv providers near me	USD	5000	0%	-90%	High	83	3.34	16.69
+internet providers okc	USD	5000	0%	-90%	High	80	5.81	38.52
+internet providers baltimore	USD	5000	0%	0%	High	81	7.48	30.22
+internet packages near me	USD	5000	0%	0%	High	96	7.54	27.50
+wifi service providers near me	USD	5000	0%	0%	High	98	10.94	39.96
+fiber optic near me	USD	5000	0%	0%	High	86	4.72	21.58
+internet and cable providers in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+cable and internet in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+internet available near me	USD	5000	0%	-90%	High	88	6.53	26.49
+check internet providers by address	USD	5000	0%	0%	High	87	4.80	22.20
+cheap internet providers near me	USD	5000	0%	0%	High	97	5.78	22.55
+fiber wifi near me	USD	5000	0%	0%	High	95	6.83	28.71
+internet providers atlanta	USD	5000	-90%	-90%	High	85	6.50	38.99
+internet and cable packages	USD	5000	0%	0%	Medium	46	3.71	18.47
+internet providers san jose	USD	5000	0%	-90%	High	88	5.53	25.72
+cable internet providers in my area	USD	5000	0%	0%	High	75	5.77	21.54
+internet bundles	USD	5000	0%	-90%	Medium	62	5.41	19.50
+tv internet providers	USD	5000	0%	0%	High	69	1.44	11.04
+internet providers boston	USD	5000	0%	0%	High	81	8.06	32.76
+cheap good wifi	USD	5000	0%	0%	High	93	7.90	30.26
+cable and internet services near me	USD	5000	0%	0%	High	98	6.65	26.68
+tv and internet providers in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+best cable and internet deals	USD	5000	0%	0%	Medium	55	2.98	14.20
+cable and internet bundle	USD	5000	0%	0%	High	69	3.46	19.20
+best internet provider new york	USD	5000	0%	-90%	High	73	4.17	22.80
+best cable tv providers	USD	5000	0%	0%	Low	29	1.44	9.50
+cable internet in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+cheap good internet	USD	5000	-90%	-90%	High	88	6.45	30.26
+cheap cable near me	USD	5000	0%	0%	High	77	3.01	14.86
+internet at my house	USD	5000	0%	-90%	High	89	7.45	36.65
+cheapest high speed internet	USD	5000	0%	-90%	High	67	5.10	21.56
+internet providers for rural areas	USD	5000	0%	0%	Medium	49	4.55	19.51
+internet provider search	USD	5000	0%	0%	Low	26	2.68	22.47
+find internet provider	USD	5000	0%	-90%	High	80	4.55	29.08
+best affordable wifi	USD	5000	0%	0%	High	93	7.90	30.26
+isp available at my address	USD	5000	-90%	-90%	High	81	3.50	20.46
+tv packages in my area	USD	5000	0%	0%	High	84	2.44	14.86
+philadelphia internet providers	USD	5000	0%	-90%	High	80	8.17	35.40
+find internet providers for my address	USD	5000	0%	0%	High	91	6.16	28.99
+cable internet providers near me	USD	5000	0%	0%	High	86	5.35	22.84
+tulsa internet providers	USD	5000	0%	-90%	High	89	5.00	27.27
+charlotte internet providers	USD	5000	-90%	-90%	High	87	8.34	35.30
+cheap internet options	USD	5000	-90%	-90%	Medium	52	4.83	22.34
+jacksonville internet providers	USD	5000	-90%	-90%	High	89	7.79	50.00
+routers compatible with spectrum	USD	5000	0%	0%	High	100	0.37	13.80
+best and cheapest internet provider	USD	5000	0%	-90%	High	85	5.77	23.99
+internet cable tv	USD	5000	0%	-90%	Medium	63	2.00	12.75
+tv companies near me	USD	5000	0%	0%	High	85	2.57	12.75
+best tv internet bundles	USD	5000	0%	-90%	High	75	1.86	12.00
+fiber optic cable near me	USD	5000	0%	-90%	High	100	2.83	15.50
+cheapest internet providers in my area	USD	5000	0%	-90%	High	89	5.38	23.67
+internet and tv service in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+tv internet providers near me	USD	5000	0%	-90%	High	83	3.34	16.69
+cable tv and internet in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+available wifi in my area	USD	5000	0%	0%	High	88	7.12	31.75
+best and cheapest internet	USD	5000	-90%	-90%	High	88	6.45	30.26
+best cable and internet packages	USD	5000	0%	0%	Medium	55	2.98	14.20
+cable and internet services in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+cable internet bundles	USD	5000	0%	0%	High	69	3.46	19.20
+internet & tv	USD	5000	0%	0%	High	86	1.37	8.80
+wifi service providers in my area	USD	5000	0%	0%	High	94	7.30	32.63
+internet providers in dallas tx	USD	5000	0%	0%	High	87	9.09	48.06
+internet providers lubbock tx	USD	5000	0%	0%	High	87	10.53	67.41
+internet tv providers in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+internet companies nyc	USD	5000	0%	0%	High	74	6.81	26.69
+cheap internet connection	USD	5000	0%	-90%	Medium	63	4.88	25.96
+wifi offered in my area	USD	5000	0%	0%	High	94	7.30	32.63
+best and cheapest wifi	USD	5000	0%	0%	High	93	7.90	30.26
+cleveland internet providers	USD	5000	0%	-90%	High	93	7.96	39.22
+cable tv and internet bundles	USD	5000	0%	0%	Medium	46	3.71	18.47
+wifi carriers in my area	USD	5000	0%	0%	High	94	7.30	32.63
+internet providers available at my address	USD	5000	0%	900%	High	94	6.66	30.20
+cheapest wifi for home	USD	5000	0%	0%	High	87	6.54	30.70
+high speed internet providers in my area	USD	5000	0%	0%	High	90	5.66	23.30
+tv and internet service near me	USD	5000	0%	-90%	High	83	3.34	16.69
+la internet providers	USD	5000	0%	0%	High	81	6.45	25.87
+internet cable packages	USD	5000	0%	0%	Medium	46	3.71	18.47
+comparing internet providers	USD	5000	0%	0%	Medium	48	3.28	25.09
+best deal for internet	USD	5000	0%	0%	High	84	5.92	22.06
+cable internet deals	USD	5000	0%	0%	Medium	46	3.71	18.47
+internets available in my area	USD	5000	0%	0%	High	86	5.35	26.49
+best cable internet deals	USD	5000	0%	0%	Medium	55	2.98	14.20
+cheap internet plans for home	USD	5000	-90%	-90%	High	89	4.48	20.00
+available internet providers by address	USD	5000	-90%	-90%	High	81	3.50	20.46
+cable service providers in my area	USD	5000	0%	0%	High	90	4.21	19.41
+internet providers in houston tx	USD	5000	0%	0%	High	88	7.61	45.77
+available internet providers in my area	USD	5000	0%	-90%	High	86	5.98	26.49
+cable companies that service my area	USD	5000	0%	0%	High	90	4.21	19.41
+cable tv services in my area	USD	5000	0%	0%	High	90	4.21	19.41
+cheapest wifi company	USD	5000	0%	0%	High	92	8.03	30.65
+television providers near me	USD	5000	0%	0%	High	85	2.57	12.75
+internet services jacksonville fl	USD	5000	-90%	-90%	High	89	7.79	50.00
+internet choices by address	USD	5000	0%	0%	High	92	5.52	26.49
+television services in my area	USD	5000	0%	0%	High	91	3.07	14.86
+best internet tv packages	USD	5000	0%	-90%	High	75	1.86	12.00
+internet & tv providers in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+cable tv and internet providers near me	USD	5000	0%	0%	High	86	5.35	22.84
+internet providers nashville tn	USD	5000	0%	-90%	High	82	8.40	45.47
+internet for tv	USD	5000	0%	0%	High	86	1.37	8.80
+cheap and good internet	USD	5000	-90%	-90%	High	88	6.45	30.26
+baltimore city internet providers	USD	5000	0%	0%	High	81	7.48	30.22
+television providers in my area	USD	5000	0%	0%	High	84	2.44	14.86
+cheap cable internet	USD	5000	-90%	-90%	High	70	3.34	17.42
+isp availability by address	USD	5000	-90%	-90%	High	81	3.50	20.46
+television service providers in my area	USD	5000	0%	0%	High	84	2.44	14.86
+tv internet service in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+available internet near me	USD	5000	0%	-90%	High	88	6.53	26.49
+internet services miami	USD	5000	0%	-90%	High	69	5.70	22.69
+best cheapest internet provider	USD	5000	0%	-90%	High	85	5.77	23.99
+cable companies available in my area	USD	5000	0%	0%	High	90	4.21	19.41
+centurylink compatible modems	USD	5000	-90%	-90%	High	87	0.22	0.65
+tv and internet plans	USD	5000	0%	-90%	High	78	1.81	12.46
+cable tv and internet providers in my area	USD	5000	0%	0%	High	75	5.77	21.54
+good wifi for cheap	USD	5000	0%	0%	High	93	7.90	30.26
+dial up internet providers	USD	5000	0%	900%	Low	5	2.05	9.40
+cable & internet providers in my area	USD	5000	0%	0%	High	75	5.77	21.54
+cable co near me	USD	5000	0%	-90%	High	82	4.77	19.52
+internet option for my address	USD	5000	0%	0%	High	92	5.52	26.49
+cable tv and internet packages	USD	5000	0%	0%	Medium	46	3.71	18.47
+inexpensive internet providers in my area	USD	5000	0%	-90%	High	89	5.38	23.67
+isp available in my area	USD	5000	0%	0%	High	86	5.35	26.49
+cheap cable tv near me	USD	5000	0%	0%	High	77	3.01	14.86
+cheap home internet providers	USD	5000	0%	-90%	Medium	63	4.88	25.96
+best deals for internet and tv	USD	5000	0%	-90%	High	68	1.73	12.00
+internet options los angeles	USD	5000	0%	0%	High	81	6.45	25.87
+internet providers near me cheap	USD	5000	0%	0%	High	97	5.78	22.55
+best internet pricing	USD	5000	0%	-90%	High	78	3.99	18.52
+internet providers baltimore city	USD	5000	0%	0%	High	81	7.48	30.22
+internet and tv packages in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+deals on cable tv and internet	USD	5000	0%	0%	Medium	46	3.71	18.47
+cable tv and internet near me	USD	5000	0%	0%	High	98	6.65	26.68
+internet providers in baltimore city	USD	5000	0%	0%	High	81	7.48	30.22
+least expensive internet provider	USD	5000	0%	-90%	Medium	63	4.88	25.96
+internet providers st louis mo	USD	5000	0%	-90%	High	90	6.11	30.41
+cheapest internet services near me	USD	5000	0%	0%	High	97	5.78	22.55
+find an isp	USD	5000	0%	-90%	High	80	4.55	29.08
+internet providers san antonio tx	USD	5000	0%	0%	High	94	6.69	35.73
+television and internet providers	USD	5000	0%	-90%	High	76	2.65	14.04
+cheap and good wifi	USD	5000	0%	0%	High	93	7.90	30.26
+internet and tv service providers	USD	5000	0%	-90%	High	76	2.65	14.04
+tv providers with internet	USD	5000	0%	-90%	High	76	2.65	14.04
+television and internet providers in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+internet plans for my area	USD	5000	0%	-90%	High	87	5.04	24.00
+cable internet packages in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+internet providers orlando florida	USD	5000	-90%	-90%	High	85	6.69	33.20
+best inexpensive internet	USD	5000	-90%	-90%	High	88	6.45	30.26
+inexpensive internet near me	USD	5000	0%	0%	High	94	6.75	28.56
+cable tv internet packages	USD	5000	0%	0%	Medium	46	3.71	18.47
+cheap wireless internet near me	USD	5000	0%	0%	Medium	66	9.05	36.68
+best tv internet service	USD	5000	0%	-90%	High	70	0.79	6.13
+stl internet providers	USD	5000	0%	-90%	High	90	6.11	30.41
+internet tv packages in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+cheapest cable tv and internet	USD	5000	-90%	-90%	High	70	3.34	17.42
+internet and cable packages in my area	USD	5000	0%	0%	High	75	5.77	21.54
+cheap cable service near me	USD	5000	0%	0%	High	77	3.01	14.86
+best internet & tv packages	USD	5000	0%	-90%	High	68	1.73	12.00
+internet providers in nashville	USD	5000	0%	-90%	High	82	8.40	45.47
+cheap wifi for house	USD	5000	0%	0%	High	87	6.54	30.70
+inexpensive high speed internet	USD	5000	0%	-90%	High	67	5.10	21.56
+best tv and internet service	USD	5000	-90%	-90%	High	70	0.92	5.00
+tampa florida internet providers	USD	5000	0%	-90%	High	85	8.34	49.84
+cheap good internet providers	USD	5000	0%	-90%	High	85	5.77	23.99
+tv and internet service providers in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+rural internet companies	USD	5000	0%	0%	Medium	49	4.55	19.51
+cable tv & internet providers in my area	USD	5000	0%	0%	High	75	5.77	21.54
+television companies near me	USD	5000	0%	0%	High	85	2.57	12.75
+best deal on cable tv and internet	USD	5000	0%	0%	Medium	55	2.98	14.20
+internet and tv service providers near me	USD	5000	0%	-90%	High	83	3.34	16.69
+internet providers in las vegas nv	USD	5000	0%	0%	High	87	4.32	20.05
+tv services providers in my area	USD	5000	0%	0%	High	84	2.44	14.86
+tv and internet companies	USD	5000	0%	-90%	High	76	2.65	14.04
+cable providers available in my area	USD	5000	0%	0%	High	90	4.21	19.41
+internet choices for my address	USD	5000	0%	0%	High	92	5.52	26.49
+frontier internet speeds and prices	USD	5000	0%	0%	Low	32	1.52	12.30
+phone internet cable bundle	USD	5000	0%	0%	Medium	35	2.74	13.57
+internet best plans	USD	5000	0%	-90%	High	73	3.79	17.56
+cheap isp providers	USD	5000	0%	-90%	Medium	63	4.88	25.96
+cable service available in my area	USD	5000	0%	0%	High	90	4.21	19.41
+cable and internet bundle deals	USD	5000	0%	0%	Medium	46	3.71	18.47
+best price for internet and tv	USD	5000	0%	-90%	High	68	1.73	12.00
+cable internet companies in my area	USD	5000	0%	0%	High	75	5.77	21.54
+orlando internet companies	USD	5000	-90%	-90%	High	85	6.69	33.20
+provider tv internet	USD	5000	0%	0%	High	69	1.44	11.04
+cable for tv and internet	USD	5000	0%	-90%	Medium	63	2.00	12.75
+internet providers baltimore md	USD	5000	0%	0%	High	81	7.48	30.22
+my internet providers	USD	5000	0%	0%	Low	11	2.65	14.86
+good cable and internet packages	USD	5000	0%	0%	Medium	55	2.98	14.20
+cheapest wifi internet plans	USD	5000	0%	0%	High	80	6.70	30.00
+internet company comparison	USD	5000	0%	0%	Medium	48	3.28	25.09
+cheapest cable service in my area	USD	5000	-90%	0%	High	83	1.71	14.86
+fiber optic lines near me	USD	5000	0%	-90%	High	100	2.83	15.50
+best isp nyc	USD	5000	0%	-90%	High	73	4.17	22.80
+phone internet and tv packages	USD	5000	0%	-90%	High	69	2.59	13.29
+cheap cable company near me	USD	5000	0%	0%	High	77	3.01	14.86
+most affordable internet providers	USD	5000	0%	-90%	Medium	63	4.88	25.96
+cheap and good internet providers	USD	5000	0%	-90%	High	85	5.77	23.99
+internet television packages	USD	5000	0%	-90%	High	78	1.81	12.46
+internet tv service providers in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+isp st louis	USD	5000	0%	-90%	High	90	6.11	30.41
+internet and cable providers for my area	USD	5000	0%	0%	High	75	5.77	21.54
+best internet tv package deals	USD	5000	0%	-90%	High	68	1.73	12.00
+phone number for xfinity billing	USD	5000	0%	0%	Low	1	1.43	4.21
+best tv internet providers	USD	5000	-90%	-90%	High	70	0.92	5.00
+cable isp	USD	5000	900%	9900%	Low	0	2.40	14.86
+best tv and internet bundle deals	USD	5000	0%	-90%	High	75	1.86	12.00
+cheapest cable provider in my area	USD	5000	-90%	0%	High	83	1.71	14.86
+cable tv and internet options in my area	USD	5000	0%	0%	High	75	5.77	21.54
+xfinity payment phone number	USD	5000	0%	0%	Low	1	1.21	3.28
+cheapest cable and internet providers	USD	5000	-90%	-90%	High	79	1.76	9.67
+cable tv internet bundles	USD	5000	0%	0%	Medium	46	3.71	18.47
+pay directv by phone	USD	5000	0%	0%	Low	1	1.13	3.85
+best cable tv internet deals	USD	5000	0%	0%	Medium	55	2.98	14.20
+best internet & tv deals	USD	5000	0%	-90%	High	68	1.73	12.00
+cheapest high speed internet provider	USD	5000	0%	-90%	High	67	5.10	21.56
+lowest internet cost	USD	5000	0%	0%	High	69	4.81	21.45
+routers for spectrum internet	USD	5000	0%	0%	High	89	0.57	13.80
+tv and internet providers for my area	USD	5000	0%	-90%	High	69	3.61	18.03
+best cheap isp	USD	5000	0%	-90%	High	85	5.77	23.99
+best deals for internet and tv packages	USD	5000	0%	-90%	High	75	1.86	12.00
+television bundles	USD	5000	-90%	-90%	High	79	1.86	6.22
+providers tv	USD	5000	0%	0%	High	71	2.03	8.75
+isp in new york	USD	5000	0%	0%	High	74	6.81	26.69
+xfinity phone number for billing	USD	5000	0%	0%	Low	1	1.43	4.21
+best deals for tv and internet packages	USD	5000	0%	-90%	High	75	1.86	12.00
+tv internet package deals	USD	5000	0%	-90%	High	78	1.81	12.46
+spectrum v att	USD	5000	0%	0%	Low	4	4.17	17.76
+tv providers my area	USD	5000	0%	0%	High	84	2.44	14.86
+xfinity billing telephone number	USD	5000	0%	0%	Low	1	1.43	4.21
+rural isp providers	USD	5000	0%	0%	Medium	49	4.55	19.51
+internet cable television	USD	5000	0%	-90%	Medium	63	2.00	12.75
+telephone number for comcast billing	USD	5000	0%	0%	Low	1	1.43	4.21
+cable internet package deals	USD	5000	0%	0%	Medium	46	3.71	18.47
+comcast bill phone number	USD	5000	0%	0%	Low	1	1.43	4.21
+comcast pay bill telephone number	USD	5000	0%	0%	Low	1	1.21	3.28
+comcast phone number billing	USD	5000	0%	0%	Low	1	1.43	4.21
+comcast xfinity phone number to pay bill	USD	5000	0%	0%	Low	1	1.21	3.28
+frontier communications internet speed test	USD	5000	0%	0%	Low	1	0.02	0.03
+frontier internet speed check	USD	5000	0%	0%	Low	1	0.02	0.03
+frontier internet test speed	USD	5000	0%	0%	Low	1	0.02	0.03
+internet cable tv deals	USD	5000	0%	0%	Medium	46	3.71	18.47
+number for comcast billing	USD	5000	0%	0%	Low	1	1.43	4.21
+speed test internet frontier	USD	5000	0%	0%	Low	1	0.02	0.03
+wifi available near me	USD	500	0%	0%	High	84	7.29	33.53
+cable in my area	USD	500	0%	0%	High	96	5.03	21.90
+best internet deals near me	USD	500	0%	0%	High	88	6.63	25.38
+rural internet providers near me	USD	500	-90%	-90%	Medium	59	3.62	16.12
+tv and internet packages near me	USD	500	0%	0%	High	81	2.22	17.68
+cheap cable and internet packages near me	USD	500	0%	0%	High	85	2.08	12.75
+compare internet providers in my area	USD	500	0%	0%	High	69	3.67	20.51
+check internet availability	USD	500	0%	-90%	High	70	4.01	20.46
+internet coverage by address	USD	500	0%	0%	High	70	3.64	20.38
+cheap fast internet	USD	500	0%	-90%	High	91	5.60	24.93
+internet providers near me by address	USD	500	0%	0%	High	96	5.67	26.49
+internet near me by address	USD	500	0%	0%	High	87	7.68	28.51
+cable internet providers for my address	USD	500	0%	0%	High	88	5.80	20.00
+wifi providers houston	USD	500	-90%	-90%	High	88	7.29	51.82
+internet houston	USD	500	0%	0%	High	88	7.33	50.00
+cable companies in my area by zip code	USD	500	0%	0%	High	72	3.14	15.57
+cheap unlimited internet	USD	500	0%	0%	High	87	4.60	18.79
+internet providers milwaukee	USD	500	0%	0%	High	90	7.00	39.17
+wifi and cable	USD	500	0%	0%	High	77	6.66	25.59
+internet prices in my area	USD	500	0%	0%	High	83	4.27	18.05
+wifi providers for my address	USD	500	0%	0%	High	94	7.38	35.00
+wifi at my address	USD	500	0%	0%	High	91	8.50	37.01
+wireless internet providers in my area	USD	500	0%	0%	High	90	5.35	23.84
+cheap internet las vegas	USD	500	0%	0%	High	83	3.81	20.00
+internet los angeles	USD	500	0%	0%	High	77	7.49	29.07
+cheap fast wifi	USD	500	0%	0%	High	92	7.92	31.52
+internet providers york pa	USD	500	0%	0%	High	85	6.23	26.44
+internet providers riverside	USD	500	0%	0%	Medium	60	6.62	21.09
+internet and tv bundles near me	USD	500	-90%	-90%	High	78	3.12	18.85
+internet providers for me	USD	500	0%	0%	High	89	6.41	28.20
+wifi for my address	USD	500	0%	0%	High	91	8.50	37.01
+home internet providers chicago	USD	500	0%	0%	High	91	6.04	29.72
+home internet providers nyc	USD	500	0%	0%	High	79	6.00	27.50
+internet providers in my area by address	USD	500	0%	0%	High	81	4.78	25.66
+wifi company in my area	USD	500	-90%	-90%	High	72	9.86	32.83
+allconnect internet	USD	500	0%	0%	High	72	7.79	33.71
+affordable internet near me	USD	500	0%	-90%	High	93	6.55	28.89
+internet offers near me	USD	500	0%	0%	High	92	8.00	27.00
+cable deals near me	USD	500	0%	0%	Medium	65	2.55	14.86
+local internet providers in my area	USD	500	0%	0%	High	88	6.23	26.49
+internet providers sarasota	USD	500	0%	0%	High	91	5.69	36.11
+search internet providers by address	USD	500	0%	0%	High	80	3.56	20.25
+cable and internet deals near me	USD	500	0%	-90%	High	87	6.06	24.59
+good internet providers near me	USD	500	900%	0%	High	93	7.28	26.49
+internet providers fort lauderdale	USD	500	0%	0%	High	86	5.28	22.09
+internet providers madison	USD	500	0%	0%	High	90	6.35	29.12
+cable tv and internet	USD	500	0%	0%	High	80	2.91	17.85
+cable available in my area	USD	500	0%	0%	High	85	2.56	14.86
+wifi providers dallas	USD	500	0%	-90%	High	98	12.17	59.81
+best internet and phone bundles	USD	500	0%	0%	High	91	4.04	17.57
+internet dallas	USD	500	0%	0%	High	73	7.13	46.60
+nyc wifi providers	USD	500	0%	0%	High	87	9.32	33.66
+tv and internet service	USD	500	0%	0%	High	68	3.87	19.52
+cable and internet bundles near me	USD	500	0%	-90%	High	86	3.87	17.56
+cheap home internet near me	USD	500	0%	0%	High	96	6.38	28.67
+wifi near me cheap	USD	500	0%	-90%	Medium	62	10.64	43.07
+wifi options for my address	USD	500	0%	0%	High	93	7.71	35.00
+most affordable internet	USD	500	0%	0%	High	86	4.27	21.57
+high speed internet availability by address	USD	500	0%	0%	High	84	3.74	16.50
+internet providers st petersburg fl	USD	500	0%	0%	High	86	12.75	59.25
+the cheapest internet	USD	500	900%	0%	High	93	4.28	22.25
+tv and internet in my area	USD	500	-90%	-90%	High	73	3.06	15.13
+chicago internet	USD	500	0%	0%	High	80	6.36	29.81
+lowest internet prices	USD	500	0%	0%	High	84	4.50	18.65
+wifi dallas	USD	500	0%	0%	High	79	9.10	59.69
+internet providers port st lucie	USD	500	0%	0%	High	91	5.43	28.05
+fiber providers near me	USD	500	0%	0%	High	75	5.07	28.72
+best tv provider in my area	USD	500	0%	0%	High	78	1.61	11.59
+wifi and cable deals	USD	500	0%	0%	High	82	6.38	25.14
+cable and wifi near me	USD	500	0%	0%	High	71	9.36	42.05
+internet providers for my location	USD	500	0%	0%	High	90	5.93	26.92
+internet provider check	USD	500	0%	-90%	High	79	3.32	22.40
+tv internet deals	USD	500	0%	-90%	Medium	65	2.49	12.75
+wifi los angeles	USD	500	0%	0%	High	82	9.03	45.08
+cheapest internet in houston	USD	500	0%	0%	High	84	6.04	33.39
+phone and internet bundles near me	USD	500	-90%	-90%	High	89	6.07	23.03
+internet providers st paul	USD	500	0%	0%	High	85	5.90	33.56
+good internet providers in my area	USD	500	-90%	-90%	High	87	6.99	26.49
+wifi and tv bundles	USD	500	0%	0%	Medium	46	3.79	18.21
+cable and wifi bundle	USD	500	0%	0%	High	82	6.38	25.14
+internet providers hanover pa	USD	500	0%	-90%	High	87	6.28	83.23
+shop internet providers	USD	500	-90%	-90%	High	88	6.41	31.46
+cheap internet plans near me	USD	500	0%	0%	High	92	4.55	20.46
+wifi availability by address	USD	500	0%	900%	High	91	4.84	25.89
+home internet providers for my address	USD	500	0%	0%	High	88	6.00	23.80
+fiber optic internet providers in my area	USD	500	0%	0%	Medium	64	5.23	23.08
+internet providers st augustine	USD	500	-90%	-90%	High	91	4.74	24.57
+wifi providers chicago	USD	500	0%	0%	High	89	7.79	51.49
+cheaper wifi options	USD	500	0%	0%	High	98	6.00	27.11
+best cable service in my area	USD	500	0%	0%	High	89	2.57	14.86
+cable provider by address	USD	500	-90%	-90%	High	79	4.18	17.65
+internet options for me	USD	500	0%	0%	High	89	6.41	28.20
+wifi and cable near me	USD	500	0%	0%	High	100	12.16	49.20
+internet orlando	USD	500	0%	0%	High	95	6.12	32.90
+cheapest internet provider in las vegas	USD	500	0%	0%	High	89	3.84	16.34
+internet providers katy	USD	500	0%	0%	High	93	8.24	43.31
+best internet and cable provider in my area	USD	500	0%	-90%	High	86	4.06	14.86
+residential internet providers near me	USD	500	-90%	-90%	High	98	6.35	26.49
+fastest internet for my address	USD	500	0%	0%	High	86	4.31	24.00
+internet providers saginaw mi	USD	500	0%	0%	High	91	7.00	27.44
+home cable and internet	USD	500	0%	0%	Medium	58	6.50	23.75
+cable and internet packages near me	USD	500	0%	-90%	High	86	3.87	17.56
+internet promotions in my area	USD	500	0%	0%	High	87	5.31	18.28
+find isp by address	USD	500	0%	0%	High	82	3.41	22.83
+wifi companies dallas	USD	500	0%	-90%	High	98	12.17	59.81
+internet providers for my house	USD	500	0%	0%	High	86	6.15	32.43
+internet provider options	USD	500	-90%	-90%	High	85	5.46	25.00
+most affordable wifi	USD	500	0%	0%	High	88	6.82	34.57
+cable providers for my address	USD	500	0%	0%	High	85	5.17	18.39
+wifi internet providers in my area	USD	500	-90%	-90%	Medium	47	7.06	27.83
+fiber options in my area	USD	500	0%	0%	High	83	4.09	22.23
+cheapest wifi plans nyc	USD	500	0%	0%	High	89	6.12	25.45
+cable packages near me	USD	500	0%	0%	Medium	65	2.55	14.86
+fiber optic internet providers near me	USD	500	-90%	-90%	Medium	57	4.83	22.70
+home wifi in my area	USD	500	0%	-99%	High	93	10.15	37.56
+cheap cable and internet packages	USD	500	0%	0%	Medium	46	2.63	13.14
+cheapest way to get internet	USD	500	0%	0%	High	100	3.15	16.53
+cheap reliable internet	USD	500	0%	0%	High	80	5.12	24.68
+no contract cable and internet packages	USD	500	0%	0%	Low	29		
+cheap internet philadelphia	USD	500	-90%	-90%	High	91	7.74	28.33
+wifi companies nyc	USD	500	0%	0%	High	87	9.32	33.66
+madison wi internet providers	USD	500	0%	0%	High	90	6.35	29.12
+internet companies that service my area	USD	500	0%	0%	High	78	8.90	35.77
+the cheapest internet provider	USD	500	0%	0%	High	90	3.77	20.00
+internet milwaukee	USD	500	-90%	-90%	High	85	8.86	33.24
+available broadband in my area	USD	500	0%	-90%	High	74	3.43	20.46
+internet compare plans	USD	500	0%	0%	Medium	49	3.45	22.81
+cheap wifi for apartment	USD	500	0%	0%	High	91	5.39	25.49
+internet and phone service near me	USD	500	0%	0%	High	98	7.30	20.88
+cheapest internet in austin	USD	500	0%	0%	High	87	5.37	23.38
+cheap home wifi near me	USD	500	0%	0%	Medium	62	8.23	34.70
+best internet provider indianapolis	USD	500	0%	0%	High	87	7.00	34.75
+local cable company	USD	500	0%	0%	High	85	3.80	14.86
+tv and internet near me	USD	500	900%	0%	High	75	3.76	20.46
+cable availability by address	USD	500	0%	-90%	High	86	3.12	15.89
+best wifi nyc	USD	500	0%	0%	High	87	7.74	34.27
+best cable and internet providers	USD	500	0%	0%	Medium	65	3.08	18.31
+cheapest internet kansas city	USD	500	-90%	-90%	High	98	4.82	20.40
+internet providers gastonia nc	USD	500	-90%	-90%	High	89	5.95	20.77
+best internet plans in my area	USD	500	0%	0%	High	88	4.80	20.46
+internet and phone providers in my area	USD	500	0%	0%	High	83	6.99	20.46
+internet providers in this area	USD	500	0%	0%	High	90	6.45	30.04
+best internet options in my area	USD	500	0%	0%	High	84	5.73	26.38
+cheapest internet and tv package	USD	500	0%	0%	High	75	1.85	10.34
+wifi providers seattle	USD	500	-90%	-90%	High	88	5.84	33.16
+cheapest internet in lubbock	USD	500	0%	0%	High	84	5.54	35.61
+isp in my area by address	USD	500	0%	0%	High	81	4.78	25.66
+cheap internet providers dallas	USD	500	-90%	-90%	High	89	5.65	26.65
+internet provider address lookup	USD	500	0%	0%	High	80	3.56	20.25
+cheap wifi services near me	USD	500	0%	0%	High	78	8.67	36.81
+isp options by address	USD	500	0%	0%	High	85	3.73	23.43
+cheapest internet in tucson	USD	500	0%	0%	High	74	3.37	14.86
+cheap internet los angeles	USD	500	0%	0%	High	87	6.13	19.56
+cheapest and fastest internet	USD	500	-90%	-90%	High	85	5.28	31.21
+cable and internet companies	USD	500	0%	0%	Medium	48	6.26	23.19
+best cable internet provider	USD	500	0%	0%	Medium	65	3.08	18.31
+internet providers sugar land	USD	500	-90%	-90%	High	92	7.00	32.09
+home internet and tv	USD	500	0%	0%	High	77	4.51	19.15
+fayetteville nc internet providers	USD	500	0%	0%	High	84	9.15	45.68
+internet providers in mesquite tx	USD	500	-90%	-90%	High	91	5.89	32.25
+internet baltimore	USD	500	-90%	-90%	High	73	7.50	31.61
+internet dallas tx	USD	500	0%	0%	High	73	7.13	46.60
+cheap no contract internet	USD	500	-90%	-90%	High	84	5.57	27.90
+wifi providers new york	USD	500	0%	0%	High	87	9.32	33.66
+cable internet providers by address	USD	500	0%	0%	Low	24	3.66	15.00
+cheap internet san antonio	USD	500	0%	0%	High	89	5.34	23.77
+internet plans houston	USD	500	0%	0%	High	80	5.68	34.94
+shop for internet	USD	500	0%	0%	High	73	8.30	33.52
+internet access in my area	USD	500	0%	0%	High	82	4.20	25.00
+isp search by address	USD	500	0%	0%	High	79	2.53	15.30
+cheapest wifi nyc	USD	500	-90%	-90%	High	86	7.16	27.60
+cable deals in my area	USD	500	0%	0%	High	77	3.06	14.86
+top internet providers near me	USD	500	-90%	-90%	High	79	5.59	34.25
+cheap internet and tv	USD	500	0%	0%	High	78	1.24	10.48
+wifi options at my address	USD	500	-90%	-90%	High	94	5.80	39.17
+internet provider lookup	USD	500	0%	0%	High	78	3.33	22.26
+wifi that services my area	USD	500	-90%	0%	High	76	9.36	44.00
+high speed internet available in my area	USD	500	0%	-90%	High	81	4.27	14.80
+most affordable home internet	USD	500	0%	0%	High	80	4.63	22.92
+best internet providers orlando	USD	500	0%	0%	High	86	4.98	18.72
+internet providers sunnyvale	USD	500	0%	0%	High	92	4.99	22.18
+cheap home internet providers near me	USD	500	0%	-90%	Medium	59	5.26	23.91
+internet providers katy tx	USD	500	0%	0%	High	93	8.24	43.31
+compare internet plans in my area	USD	500	0%	0%	High	88	3.39	20.63
+internet providers savannah ga	USD	500	0%	0%	High	86	7.00	41.82
+isp options	USD	500	0%	0%	Medium	37	3.83	24.48
+cable tv deals in my area	USD	500	0%	0%	High	77	3.06	14.86
+waco internet	USD	500	-90%	-90%	High	97	12.75	60.17
+cheapest internet milwaukee	USD	500	-90%	-90%	High	95	5.97	19.79
+internet providers for my home	USD	500	0%	0%	High	86	6.15	32.43
+internet options for my house	USD	500	0%	0%	High	77	4.45	25.00
+mediacom tv packages	USD	500	0%	0%	Low	14	1.54	13.78
+internet lookup by address	USD	500	-90%	-90%	High	82	3.57	18.32
+cheapest internet in charlotte	USD	500	0%	-90%	High	94	5.30	18.31
+internet services near me cheap	USD	500	0%	0%	High	86	8.76	34.52
+best internet deal in my area	USD	500	0%	0%	High	89	6.20	21.94
+internet in jacksonville fl	USD	500	0%	0%	High	96	11.14	50.66
+manhattan internet providers	USD	500	-90%	-90%	High	72	7.08	28.47
+check isp by address	USD	500	0%	0%	High	82	3.41	22.83
+wifi networks in my area	USD	500	0%	0%	High	85	5.91	27.17
+best internet nyc	USD	500	0%	-90%	High	75	6.62	26.87
+internet options chicago	USD	500	0%	0%	High	91	5.00	24.91
+cable tv available in my area	USD	500	0%	0%	High	85	2.56	14.86
+cable and internet companies near me	USD	500	0%	0%	Medium	66	5.39	38.68
+internet providers danbury ct	USD	500	0%	-90%	High	85	5.39	31.76
+internet providers in riverside ca	USD	500	0%	0%	Medium	60	6.62	21.09
+find fiber internet	USD	500	900%	0%	High	86	6.34	27.55
+cable networks near me	USD	500	0%	0%	High	82	4.08	17.01
+cheap cable and internet near me	USD	500	-90%	-90%	High	75	3.74	15.25
+best internet and cell phone bundle	USD	500	0%	0%	High	89	2.63	13.65
+south lake tahoe internet providers	USD	500	0%	0%	High	95	5.60	25.52
+cheap internet san diego	USD	500	-90%	-90%	High	79	4.12	13.00
+internet providers great falls mt	USD	500	0%	0%	High	72	4.43	18.28
+phone internet providers	USD	500	0%	-90%	Medium	63	6.06	24.33
+fiber optic providers near me	USD	500	0%	-90%	High	94	5.28	69.82
+local cable company near me	USD	500	0%	0%	High	82	3.80	15.89
+infinity telephone number	USD	500	0%	0%	High	69	2.58	6.99
+cheapest internet in pittsburgh	USD	500	-90%	-90%	High	75	3.85	24.95
+st louis internet	USD	500	-90%	-90%	High	83	7.00	37.57
+tv internet bundles near me	USD	500	-90%	-90%	High	78	3.12	18.85
+look up internet providers by address	USD	500	0%	0%	High	82	3.41	22.83
+best internet provider st louis	USD	500	0%	0%	High	81	3.59	17.23
+check for internet providers	USD	500	0%	-90%	High	79	3.32	22.40
+optimum internet plans price	USD	500	0%	0%	Low	20	0.93	10.62
+cheapest internet nyc	USD	500	0%	0%	High	84	4.88	20.34
+cheapest home wifi plans	USD	500	0%	-99%	High	73	5.63	27.62
+cheapest internet and cable bundle	USD	500	0%	0%	Medium	46	2.63	13.14
+fiber internet modem	USD	500	0%	0%	High	86	0.58	12.75
+isp deals	USD	500	0%	0%	High	74	6.59	23.84
+isp availability	USD	500	0%	0%	High	72	2.73	19.01
+internet and phone providers	USD	500	0%	-90%	Medium	63	6.06	24.33
+cheap internet tv	USD	500	0%	0%	High	78	1.24	10.48
+cable internet companies	USD	500	0%	0%	Medium	48	6.26	23.19
+optimum internet only plans	USD	500	0%	0%	Low	23	0.83	11.50
+cheap internet nashville	USD	500	0%	0%	High	90	7.49	32.93
+cable and internet options in my area	USD	500	0%	0%	High	68	6.55	19.21
+internet and tv bundles in my area	USD	500	-90%	-90%	Medium	65	3.13	13.58
+cheap tv and internet service	USD	500	-90%	-90%	Medium	63	1.49	10.53
+internet and streaming bundle	USD	500	0%	-90%	High	80	3.04	12.86
+best internet providers jacksonville fl	USD	500	0%	0%	High	94	5.08	40.59
+spectrum fios	USD	500	0%	0%	Low	23	2.75	4.71
+internet providers galveston	USD	500	-90%	-90%	High	83	6.89	31.27
+least expensive wifi	USD	500	0%	0%	High	88	6.82	34.57
+cable wifi packages	USD	500	0%	0%	High	82	6.38	25.14
+internet services available to me	USD	500	0%	-90%	High	90	4.25	21.58
+most affordable internet plans	USD	500	0%	-90%	Medium	60	4.25	16.23
+cheapest internet wifi	USD	500	0%	0%	High	96	5.90	26.48
+internet providers duluth ga	USD	500	0%	0%	High	88	5.59	19.84
+internet providers fairfax va	USD	500	-90%	-90%	High	90	5.96	22.76
+the cheapest wifi	USD	500	0%	-90%	High	91	4.94	22.23
+cable and wifi providers	USD	500	0%	-90%	High	84	6.30	23.01
+cheap internet chicago	USD	500	0%	0%	High	87	4.28	24.12
+best deals on internet in my area	USD	500	0%	0%	High	89	6.20	21.94
+cheap internet companies near me	USD	500	-90%	-90%	High	93	5.41	24.83
+st petersburg internet providers	USD	500	0%	0%	High	86	12.75	59.25
+internet plans nyc	USD	500	-90%	0%	High	72	4.22	15.28
+internet fort lauderdale	USD	500	0%	0%	High	82	5.03	37.60
+cheap internet indianapolis	USD	500	0%	0%	High	82	6.52	45.84
+tv and wifi providers	USD	500	-90%	0%	High	96	2.67	13.96
+cable tv packages in my area	USD	500	0%	0%	High	77	3.06	14.86
+internet provider options by address	USD	500	0%	0%	High	85	3.73	23.43
+cheap internet prices	USD	500	0%	0%	High	86	4.27	21.57
+internet providers in	USD	500	-90%	-90%	High	78	7.84	27.00
+cheap internet portland	USD	500	-90%	-90%	High	91	4.60	25.62
+internet and tv deals near me	USD	500	0%	0%	High	81	2.22	17.68
+best internet provider in milwaukee	USD	500	0%	0%	High	86	5.34	26.12
+internet companies for my address	USD	500	0%	900%	High	93	7.27	29.58
+best and cheapest home internet	USD	500	0%	0%	High	95	5.34	25.64
+cheapest internet only service	USD	500	0%	0%	Medium	62	3.36	20.00
+check internet providers at address	USD	500	0%	0%	High	84	4.25	22.08
+internet provider plans	USD	500	0%	0%	Low	21	5.31	23.16
+cable only companies	USD	500	0%	900%	Low	14	1.70	12.75
+cable offers in my area	USD	500	0%	0%	High	85	2.56	14.86
+best budget internet provider	USD	500	-90%	-90%	High	91	5.57	22.03
+phone and internet providers near me	USD	500	0%	-90%	High	96	4.85	20.46
+cheap internet jacksonville fl	USD	500	0%	0%	High	96	5.48	34.55
+cable internet deals near me	USD	500	0%	-90%	High	87	6.06	24.59
+cheap internet boston	USD	500	-90%	-90%	High	80	6.00	22.80
+somerville internet providers	USD	500	-90%	-90%	High	82	7.25	28.13
+tv internet services	USD	500	0%	0%	High	68	3.87	19.52
+best internet cable bundle	USD	500	0%	0%	Medium	53	2.95	12.75
+internet bundle packages	USD	500	-90%	-90%	High	77	5.27	19.77
+tv bundles deals	USD	500	0%	0%	High	86	1.79	6.17
+internet providers in winter haven fl	USD	500	-90%	-90%	High	93	6.89	38.60
+best affordable internet provider	USD	500	-90%	-90%	High	91	5.57	22.03
+lake havasu internet providers	USD	500	0%	0%	High	86	3.65	20.95
+west palm beach internet providers	USD	500	0%	0%	High	95	6.75	31.62
+glendale ca internet providers	USD	500	-90%	-90%	High	80	6.43	18.62
+best cheapest home internet	USD	500	0%	0%	High	95	5.34	25.64
+nyc internet options	USD	500	-90%	0%	High	77	6.59	26.17
+best cable and internet	USD	500	0%	0%	Medium	65	3.08	18.31
+check for internet providers by address	USD	500	0%	0%	High	86	4.47	25.59
+st augustine internet providers	USD	500	-90%	-90%	High	91	4.74	24.57
+wifi availability near me	USD	500	0%	0%	High	84	7.29	33.53
+internet providers in sugar land tx	USD	500	-90%	-90%	High	92	7.00	32.09
+best cable near me	USD	500	0%	0%	High	89	2.88	14.86
+cable internet and phone providers in my area	USD	500	0%	0%	High	85	4.84	14.87
+wifi service nyc	USD	500	0%	0%	High	87	9.32	33.66
+wifi dallas tx	USD	500	0%	0%	High	79	9.10	59.69
+internet services in my location	USD	500	0%	0%	High	90	5.93	26.92
+compare isp in my area	USD	500	0%	0%	High	69	3.67	20.51
+routers that work with spectrum	USD	500	0%	0%	High	100	0.31	13.80
+cheapest wifi in las vegas	USD	500	-90%	0%	High	85	4.30	25.60
+cheap internet and phone service	USD	500	0%	0%	Medium	61	4.02	19.49
+internet providers available to me	USD	500	0%	-90%	High	90	4.25	21.58
+best rural internet providers	USD	500	0%	0%	High	85	3.28	16.08
+internet providers in waco tx	USD	500	0%	0%	High	95	10.11	38.52
+internet in st petersburg fl	USD	500	0%	0%	High	86	12.75	59.25
+winter haven internet providers	USD	500	-90%	-90%	High	93	6.89	38.60
+cable phone and internet	USD	500	0%	0%	Medium	58	3.07	14.68
+best wifi in los angeles	USD	500	-90%	-90%	High	88	7.82	45.13
+cheap tv and internet deals	USD	500	0%	0%	High	75	1.85	10.34
+high speed internet options for my address	USD	500	0%	900%	High	77	4.37	22.90
+internet providers knoxville	USD	500	0%	0%	High	83	9.36	45.08
+cable tv packages near me	USD	500	0%	-90%	High	83	1.74	14.66
+cheapest wireless internet plans	USD	500	0%	0%	High	92	5.91	30.26
+cable & wifi deals	USD	500	0%	0%	High	82	6.38	25.14
+cheap internet charlotte nc	USD	500	0%	-90%	High	94	5.30	18.31
+internet tv bundles in my area	USD	500	-90%	-90%	Medium	65	3.13	13.58
+phone & internet providers in my area	USD	500	0%	0%	High	83	6.99	20.46
+best cable in my area	USD	500	0%	0%	High	80	1.87	14.86
+mckinney tx internet providers	USD	500	0%	0%	High	85	5.95	38.07
+internet tv phone providers in my area	USD	500	-90%	0%	High	75	3.59	14.86
+wifi in houston tx	USD	500	0%	0%	High	87	10.09	76.20
+800 mbps internet speed	USD	500	0%	0%	Medium	52	3.59	17.00
+cable tv providers for my address	USD	500	0%	0%	High	85	5.17	18.39
+ann arbor internet	USD	500	0%	0%	High	85	7.60	46.09
+best tv internet phone bundles	USD	500	0%	0%	Low	32	1.72	10.00
+fiber optic services near me	USD	500	0%	-90%	High	82	5.72	84.26
+internet services for my location	USD	500	0%	0%	High	90	5.93	26.92
+cheap cable in my area	USD	500	0%	-90%	Medium	64	2.78	13.06
+check what internet providers are in my area	USD	500	0%	0%	High	86	4.68	23.72
+fiber optic providers	USD	500	0%	0%	Low	15	4.30	29.99
+cheap internet new york	USD	500	0%	0%	High	84	4.88	20.34
+isp options in my area	USD	500	0%	0%	High	82	4.20	21.79
+cable specials near me	USD	500	0%	0%	Medium	65	2.55	14.86
+tv and internet deals near me	USD	500	0%	0%	High	81	2.22	17.68
+cheapest tv internet bundles	USD	500	-90%	-90%	Low	27	2.11	6.02
+best isp for my address	USD	500	0%	0%	High	91	4.71	29.43
+cheap wifi chicago	USD	500	0%	0%	High	93	4.75	31.02
+lowest cost home internet	USD	500	900%	900%	Low	10	4.62	21.61
+cheap phone internet plans	USD	500	0%	0%	High	98	5.31	19.31
+best internet cell phone bundle	USD	500	0%	0%	High	89	2.63	13.65
+cable provider by zip code	USD	500	-90%	-90%	Low	23	3.19	15.00
+best internet and tv bundles in my area	USD	500	0%	0%	High	82	1.74	15.93
+cheap internet dallas	USD	500	0%	0%	High	83	5.65	13.50
+tv cable company near me	USD	500	0%	0%	High	79	3.30	14.86
+cheapest internet only plans	USD	500	0%	0%	High	79	4.30	17.25
+best wifi new york	USD	500	0%	0%	High	87	7.74	34.27
+cable tv options for my area	USD	500	0%	0%	High	85	2.56	14.86
+internet services fort lauderdale	USD	500	0%	0%	High	86	5.28	22.09
+st pete internet providers	USD	500	0%	0%	High	86	12.75	59.25
+internet and phone service providers	USD	500	0%	-90%	Medium	63	6.06	24.33
+cable tv deals near me	USD	500	0%	0%	Medium	65	2.55	14.86
+cable wifi providers near me	USD	500	0%	0%	High	82	5.56	24.44
+tv bundle packages	USD	500	0%	0%	High	86	1.79	6.17
+find isp in my area	USD	500	0%	0%	High	76	4.54	27.00
+internet providers st paul mn	USD	500	0%	0%	High	85	5.90	33.56
+home internet tv	USD	500	0%	0%	High	77	4.51	19.15
+internet providers lake havasu city az	USD	500	0%	0%	High	86	3.65	20.95
+internet in st louis mo	USD	500	-90%	-90%	High	83	7.00	37.57
+telephone and internet providers	USD	500	0%	-90%	Medium	63	6.06	24.33
+best internet tv phone bundle deals	USD	500	-90%	-90%	Medium	61	2.03	8.25
+compare internet services in my area	USD	500	0%	0%	High	69	3.67	20.51
+internet in manhattan	USD	500	0%	0%	High	77	6.68	28.40
+at&t fiber setup	USD	500	0%	0%	Low	28	4.45	10.00
+cheap tv service near me	USD	500	-90%	-90%	High	81	1.45	6.61
+internet providers in charlottesville va	USD	500	0%	0%	High	78	7.73	46.33
+cheap internet in phoenix	USD	500	0%	0%	High	74	3.47	15.79
+internet providers in new haven ct	USD	500	0%	0%	High	78	7.67	42.21
+finding internet in my area	USD	500	0%	0%	High	88	4.45	27.50
+cable tv availability by address	USD	500	0%	-90%	High	86	3.12	15.89
+internet phone tv packages	USD	500	0%	-90%	Medium	66	2.45	7.06
+cable internet bundles near me	USD	500	0%	-90%	High	86	3.87	17.56
+cable service deals	USD	500	0%	-90%	Medium	65	1.86	8.56
+internet en orlando	USD	500	0%	0%	High	95	6.12	32.90
+internet tv near me	USD	500	900%	0%	High	75	3.76	20.46
+spectrum compatible wifi routers	USD	500	0%	0%	High	100	0.48	8.28
+hughesnet customer service pay bill	USD	500	0%	0%	Low	4	0.03	3.09
+cheapest internet provider houston	USD	500	0%	0%	High	87	4.46	27.97
+local cable provider	USD	500	0%	0%	High	68	3.43	14.86
+cable and internet companies in my area	USD	500	0%	0%	High	68	6.55	19.21
+phone internet cable providers my area	USD	500	0%	0%	High	85	4.84	14.87
+best internet plan near me	USD	500	0%	-90%	High	93	4.10	20.46
+cheapest internet and tv bundles	USD	500	0%	-90%	Medium	48	3.02	12.26
+internet providers at my home	USD	500	0%	0%	High	86	6.15	32.43
+cheapest internet and phone bundle	USD	500	0%	0%	High	83	4.35	16.45
+available internet services	USD	500	0%	0%	High	72	2.73	19.01
+best cable and internet bundle	USD	500	0%	0%	Medium	53	2.95	12.75
+internet en orlando florida	USD	500	0%	0%	High	95	6.12	32.90
+tv phone and internet providers in my area	USD	500	-90%	0%	High	75	3.59	14.86
+cheap internet and phone plans	USD	500	0%	0%	High	98	5.31	19.31
+wifi tv bundle	USD	500	0%	0%	Medium	46	3.79	18.21
+internet providers in christiansburg va	USD	500	0%	-90%	High	89	5.56	26.53
+internet plans new york	USD	500	-90%	0%	High	72	4.22	15.28
+internet tv in my area	USD	500	-90%	-90%	High	73	3.06	15.13
+isps that service my area	USD	500	0%	0%	High	78	8.90	35.77
+i need an internet provider	USD	500	0%	0%	High	92	12.53	50.47
+local isp in my area	USD	500	0%	0%	High	88	6.23	26.49
+other cable providers in my area	USD	500	-90%	-90%	Medium	64	3.28	15.89
+locate internet providers by address	USD	500	0%	0%	High	82	3.41	22.83
+cheap internet in atlanta	USD	500	0%	-90%	High	84	4.13	20.01
+cheap internet spokane	USD	500	0%	-90%	High	87	3.71	25.33
+check isp in my area	USD	500	0%	0%	High	86	4.68	23.72
+best phone internet bundles	USD	500	0%	0%	High	91	4.04	17.57
+internet providers in richmond ky	USD	500	0%	0%	High	94	9.00	42.76
+internet providers in st augustine fl	USD	500	-90%	-90%	High	91	4.74	24.57
+cheapest internet and phone	USD	500	-90%	-90%	High	78	3.76	15.49
+internet and phone bundle near me	USD	500	-90%	-90%	High	89	6.07	23.03
+internet providers in waco	USD	500	0%	0%	High	95	10.11	38.52
+wireless internet without cable	USD	500	0%	0%	High	100	3.22	14.62
+tv internet near me	USD	500	900%	0%	High	75	3.76	20.46
+telephone and internet providers near me	USD	500	0%	-90%	High	96	4.85	20.46
+cheap internet tv service	USD	500	-90%	-90%	Medium	63	1.49	10.53
+find broadband providers by address	USD	500	0%	0%	High	82	3.41	22.83
+cable and wifi companies near me	USD	500	0%	0%	High	82	5.56	24.44
+internet cable companies near me	USD	500	0%	0%	High	77	5.76	22.59
+isp in area	USD	500	0%	0%	High	82	4.64	26.49
+cable packages in my area	USD	500	0%	0%	High	77	3.06	14.86
+optimum internet only cost	USD	500	0%	0%	Medium	36	0.93	11.50
+fiber optic internet cable near me	USD	500	0%	0%	High	99	2.23	14.50
+internet providers in boulder co	USD	500	0%	0%	High	84	5.46	27.80
+best tv internet and phone bundles	USD	500	0%	0%	Low	32	1.72	10.00
+internet providers milwaukee wi	USD	500	0%	0%	High	90	7.00	39.17
+cable suppliers in my area	USD	500	0%	0%	High	79	3.80	15.89
+local tv cable companies	USD	500	0%	0%	High	68	3.43	14.86
+wifi prices comparison	USD	500	-90%	0%	High	85	5.73	40.52
+cheap internet providers los angeles	USD	500	0%	0%	High	91	3.50	15.21
+internet and tv offers	USD	500	0%	-90%	Medium	65	2.49	12.75
+cheap phone internet	USD	500	-90%	-90%	High	78	3.76	15.49
+tv internet and phone	USD	500	0%	0%	Low	31	3.09	14.75
+internet phone tv bundles in my area	USD	500	0%	0%	High	71	2.04	12.00
+cable and internet prices	USD	500	0%	0%	Low	15	1.96	9.52
+cable service by address	USD	500	-90%	-90%	High	79	4.18	17.65
+cheapest internet cable bundle	USD	500	0%	0%	Medium	46	2.63	13.14
+best internet providers for my address	USD	500	0%	0%	High	91	4.71	29.43
+cheapest internet sacramento	USD	500	0%	-90%	High	95	5.05	21.26
+optimum internet plans for home	USD	500	0%	0%	Low	31	2.30	11.50
+cheap internet tv deals	USD	500	0%	0%	High	75	1.85	10.34
+internet providers cost comparison	USD	500	-90%	-90%	High	72	3.23	15.68
+best internet in new york	USD	500	0%	-90%	High	75	6.62	26.87
+internet milwaukee wi	USD	500	-90%	-90%	High	85	8.86	33.24
+wifi options for my area	USD	500	0%	0%	High	90	8.00	29.06
+find fiber internet near me	USD	500	900%	0%	High	89	5.10	25.72
+best cell phone and internet bundle	USD	500	0%	0%	High	89	2.63	13.65
+deals on internet and tv	USD	500	0%	-90%	Medium	65	2.49	12.75
+best tv and internet bundles in my area	USD	500	0%	0%	High	82	1.74	15.93
+internet packages cheap	USD	500	0%	0%	Medium	59	5.19	21.98
+tv providers by zip code	USD	500	0%	0%	Low	13	2.01	12.13
+wifi and tv services	USD	500	-90%	-90%	High	80	1.74	12.62
+new isp in my area	USD	500	0%	-90%	High	92	8.59	28.09
+cable internet prices	USD	500	0%	0%	Low	15	1.96	9.52
+cable wifi bundle deals	USD	500	0%	0%	High	82	6.38	25.14
+isp for my house	USD	500	0%	0%	High	86	6.15	32.43
+cable wifi providers	USD	500	0%	-90%	High	84	6.30	23.01
+best tv bundles deals	USD	500	0%	0%	High	71	0.93	4.19
+cost of cable and internet per month	USD	500	0%	900%	Low	20	1.70	7.18
+isp at my location	USD	500	0%	0%	High	90	5.93	26.92
+top isp in my area	USD	500	0%	0%	High	92	4.57	24.00
+cable specials in my area	USD	500	0%	0%	High	77	3.06	14.86
+internet tv and phone bundles in my area	USD	500	0%	0%	High	71	2.04	12.00
+cheapest internet in tulsa	USD	500	-90%	-90%	High	82	4.20	23.95
+cable internet cost	USD	500	0%	0%	Low	8	1.78	8.52
+best internet provider deal	USD	500	0%	-90%	High	76	5.22	22.48
+internet deal in my area	USD	500	0%	0%	High	87	6.95	26.49
+best deal for internet and phone	USD	500	0%	0%	High	95	4.33	18.17
+all isp in my area	USD	500	0%	0%	High	84	4.27	25.31
+cheapest internet in okc	USD	500	0%	0%	High	94	5.42	35.93
+cable tv plus internet	USD	500	0%	0%	Medium	61	5.12	19.51
+shop internet services	USD	500	-90%	-90%	High	88	6.41	31.46
+cable tv and wifi	USD	500	0%	0%	High	77	6.66	25.59
+optimum internet only price	USD	500	0%	0%	Medium	36	0.93	11.50
+tv internet service providers	USD	500	0%	0%	High	68	3.87	19.52
+tv internet options	USD	500	0%	0%	High	75	1.08	7.38
+cable and internet cost	USD	500	0%	0%	Low	8	1.78	8.52
+optimum wifi pricing	USD	500	0%	0%	Medium	50	1.51	11.50
+least expensive internet plans	USD	500	0%	-90%	Medium	60	4.25	16.23
+recommended routers for spectrum	USD	500	0%	0%	High	82	0.47	13.80
+at&t fiber self install	USD	500	0%	0%	Low	7	3.18	24.36
+lowest cost internet provider	USD	500	0%	0%	Low	26	4.40	20.58
+internet and cable cost per month	USD	500	0%	900%	Low	20	1.70	7.18
+cheapest wifi plan near me	USD	500	0%	-90%	Medium	63	6.54	30.26
+the best cable provider	USD	500	0%	-90%	Medium	59	1.95	11.30
+cheap tv plan	USD	500	0%	0%	Medium	67	0.97	4.41
+cheapest phone internet tv bundles	USD	500	0%	-90%	Medium	62	2.14	15.89
+compare internet pricing	USD	500	0%	-90%	Medium	64	3.68	20.48
+bundle tv deals	USD	500	0%	0%	High	86	1.79	6.17
+find cable provider	USD	500	0%	-90%	High	82	3.93	15.89
+isp by location	USD	500	0%	0%	Low	8	1.51	8.15
+internet and cable providers by address	USD	500	0%	0%	Low	24	3.66	15.00
+internet availability checker by address	USD	500	0%	0%	High	80	4.05	20.46
+cable tv by zip code	USD	500	0%	0%	Low	13	2.01	12.13
+best deals for tv internet and phone bundles	USD	500	-90%	-90%	Medium	61	2.03	8.25
+find isp for address	USD	500	0%	0%	High	82	3.41	22.83
+windstream compatible modem	USD	500	900%	0%	Medium	54	0.18	0.60
+cheap cable internet packages	USD	500	0%	0%	Medium	46	2.63	13.14
+best internet cable package	USD	500	0%	0%	Medium	53	2.95	12.75
+cheapest internet tv package	USD	500	0%	0%	High	75	1.85	10.34
+cable and internet providers by zip code	USD	500	-90%	-90%	Low	23	3.19	15.00
+cheap cable internet near me	USD	500	-90%	-90%	High	75	3.74	15.25
+best internet and phone packages	USD	500	0%	0%	High	95	4.33	18.17
+cable tv with wifi	USD	500	0%	0%	High	77	6.66	25.59
+wifi router spectrum compatible	USD	500	0%	0%	High	100	0.48	8.28
+cable television and internet	USD	500	0%	0%	High	80	2.91	17.85
+telephone internet providers	USD	500	0%	-90%	Medium	63	6.06	24.33
+comcast payment phone number	USD	500	0%	0%	Low	0		
+cox att	USD	500	0%	0%	Low	28	2.54	20.69
+tv telephone and internet packages	USD	500	0%	0%	High	71	2.35	9.94
+telephone bundles	USD	500	0%	0%	High	100	4.30	13.30
+compare dish and directv	USD	500	0%	0%	Low	2	2.45	12.17
+finding internet providers in my area	USD	500	0%	0%	High	76	4.54	27.00
+bundles tv	USD	500	0%	0%	Medium	46	1.79	5.51
+cable services by zip code	USD	500	0%	0%	Low	13	2.01	12.13
+modem for windstream	USD	500	0%	0%	High	80	0.22	6.74
+spectrum router compatible	USD	500	0%	0%	Medium	55	0.59	13.80
+best tv internet bundles in my area	USD	500	0%	0%	High	84	1.96	12.00
+cable tv and internet providers by zip code	USD	500	-90%	-90%	Low	23	3.19	15.00
+cable tv internet phone	USD	500	0%	0%	Medium	58	3.07	14.68
+century link compatible routers	USD	500	0%	0%	High	90	0.21	0.68
+comcast pay phone number	USD	500	0%	0%	Low	0		
+compare directv and dish network	USD	500	0%	0%	Low	2	2.45	12.17
+compare dish network to directv	USD	500	0%	0%	Low	2	2.45	12.17
+connect rca remote to tv	USD	500	0%	0%	Low	0		
+define upload speed	USD	500	0%	0%	Low	2	0.06	25.36
+directv bill pay by phone	USD	500	0%	0%	Low	1		
+dish payment address	USD	500	900%	0%	Low	0		
+frontier internet test	USD	500	0%	0%	Low	1		
+hughesnet pay bill by phone	USD	500	0%	900%	Low	1	0.20	3.36
+lowest wifi prices	USD	500	-90%	-90%	High	88	4.69	20.00
+mbps upload	USD	500	0%	0%	Low	4	1.05	31.37
+test my internet speed frontier	USD	500	0%	0%	Low	1		
+xfinity billing dept phone number	USD	500	0%	0%	Low	1		
+xfinity internet billing phone number	USD	500	0%	0%	Low	1		

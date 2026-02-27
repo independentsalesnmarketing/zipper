@@ -1,0 +1,168 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import SearchBar from '@components/SearchBar.astro';
+import CallbackForm from '@components/CallbackForm.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getPartnerProviders, formatSpeed, formatPrice, MAIN_PHONE } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+
+const partners = getPartnerProviders().slice(0, 6);
+const faqs = [
+  { q: 'How do I switch internet providers without losing service?', a: 'Schedule your new service install first. Keep your old service active until the new one is working. Once confirmed, cancel the old provider and return their equipment. The whole process typically takes less than a week.' },
+  { q: 'Will I have to pay an early termination fee?', a: 'If you\'re under contract, possibly. However, many providers offer to buy out your contract when you switch. Call us and we\'ll check if your new provider offers a buyout — potentially saving you hundreds.' },
+  { q: 'Can I keep my email address if I switch?', a: 'Provider-issued emails (like @comcast.net) may be affected. We recommend switching to a free service like Gmail before canceling. Your personal email addresses won\'t be affected.' },
+  { q: 'Will I get a better deal by switching?', a: 'Almost always, yes. New customer promotions typically save 30-50% compared to the rate your current provider charges after your promo period ends. Our average caller saves $360/year by switching.' },
+  { q: 'What about my equipment?', a: 'Return your old provider\'s equipment (modem/router) within 30 days to avoid charges. Your new provider will supply their own equipment — or you can buy your own compatible modem/router to avoid rental fees.' },
+];
+
+const painPoints = [
+  { icon: '🐌', title: 'Slow Speeds', desc: 'Buffering during Netflix? Pages loading slowly? Work calls dropping? You deserve better.' },
+  { icon: '📉', title: 'Unreliable Connection', desc: 'Frequent outages and disconnects make everything harder. It shouldn\'t be this frustrating.' },
+  { icon: '💸', title: 'Price Keeps Rising', desc: 'Your "introductory rate" is long gone. Now you\'re paying full price for the same service.' },
+  { icon: '😤', title: 'Terrible Support', desc: 'Hours on hold, no resolution, empty promises. Your time is worth more than that.' },
+];
+---
+<Base
+  title="Switch Internet Providers — Better Speeds, Lower Prices, Zero Downtime"
+  description="Tired of slow internet and rising prices? Switch to a better provider today. Compare options, get exclusive deals, and make the switch with zero downtime."
+  schema={[
+    generateBreadcrumbSchema([
+      { name: 'Home', url: 'https://internet4all.com' },
+      { name: 'Switch Provider', url: 'https://internet4all.com/switch' }
+    ]),
+    generateFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })))
+  ]}
+>
+  <!-- Hero -->
+  <section class="hero" style="padding-bottom:var(--space-xl);">
+    <div class="container text-center">
+      <Breadcrumb items={[{ name: 'Switch Provider' }]} />
+      <div class="badge reveal" style="margin-bottom:var(--space-md);background:rgba(239,68,68,0.15);color:#f87171;">🔄 Time to Switch</div>
+      <h1 class="reveal">Your Internet Sucks?<br/><span class="gradient-text">Let's Fix That Today.</span></h1>
+      <p class="hero-subtitle reveal">Stop settling for slow speeds and bad service. We'll find you something better — often for less money.</p>
+      <div class="flex justify-center reveal" style="margin-top:var(--space-xl);">
+        <SearchBar placeholder="Enter your ZIP to see better options" size="large" />
+      </div>
+      <div class="reveal" style="margin-top:var(--space-md);">
+        <a href={`tel:${MAIN_PHONE.replace(/[^0-9]/g, '')}`} class="btn btn-call" style="font-size:var(--text-lg);">
+          📞 {MAIN_PHONE} — Switch Now
+        </a>
+        <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:var(--space-xs);">Free expert help. Average call: 8 minutes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain Points -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <h2 class="text-center reveal">Sound <span class="gradient-text">Familiar?</span></h2>
+      <div class="grid grid-2" style="margin-top:var(--space-xl);">
+        {painPoints.map((p, i) => (
+          <div class={`card reveal`} style={`transition-delay:${i * 80}ms;border-left:3px solid var(--brand-red);`}>
+            <div class="flex items-center" style="gap:var(--space-md);margin-bottom:var(--space-sm);">
+              <span style="font-size:1.6rem;">{p.icon}</span>
+              <h4>{p.title}</h4>
+            </div>
+            <p style="font-size:var(--text-sm);">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+      <div class="text-center reveal" style="margin-top:var(--space-xl);">
+        <p style="font-size:var(--text-xl);font-weight:700;">You don't have to put up with it.</p>
+        <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-xs);">Our average customer gets <strong style="color:var(--brand-green);">2x faster speeds</strong> and saves <strong style="color:var(--brand-green);">$30/month</strong> after switching.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Switching Works -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center reveal">Switching is <span class="gradient-text">Easier Than You Think</span></h2>
+      <div class="grid grid-4" style="margin-top:var(--space-xl);">
+        {[
+          { step: '1', title: 'Call Us', desc: 'Tell us what\'s wrong with your current service and what you need.' },
+          { step: '2', title: 'We Compare', desc: 'We check every provider at your address and find the best upgrade.' },
+          { step: '3', title: 'Schedule Install', desc: 'We help you pick a plan and schedule installation — often same week.' },
+          { step: '4', title: 'Cancel Old Service', desc: 'Once your new service works, cancel the old one and return equipment.' },
+        ].map((s, i) => (
+          <div class={`card text-center reveal`} style={`transition-delay:${i * 80}ms;`}>
+            <div style="width:48px;height:48px;border-radius:50%;background:var(--gradient-primary);display:grid;place-items:center;font-weight:800;margin:0 auto var(--space-md);">{s.step}</div>
+            <h4 style="margin-bottom:var(--space-xs);">{s.title}</h4>
+            <p style="font-size:var(--text-sm);">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Better Options -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <h2 class="text-center reveal">Your <span class="gradient-text">Better Options</span></h2>
+      <p class="text-center reveal" style="max-width:500px;margin:var(--space-sm) auto var(--space-xl);">New customer deals mean you'll likely pay less than what you're paying right now.</p>
+      <div class="grid grid-3">
+        {partners.map((p, i) => {
+          const best = p.plans[0];
+          const fastest = p.plans[p.plans.length - 1];
+          return (
+            <div class={`card reveal`} style={`transition-delay:${i * 70}ms;`}>
+              <div style="margin-bottom:var(--space-md);">
+                <h4>{p.name}</h4>
+                <div style="font-size:var(--text-xs);color:var(--text-muted);">{p.types.join(' / ')}</div>
+              </div>
+              <div class="flex" style="gap:var(--space-lg);margin-bottom:var(--space-md);">
+                <div>
+                  <div style="font-size:var(--text-xs);color:var(--text-muted);">From</div>
+                  <div style="font-weight:800;color:var(--brand-green);">{formatPrice(best.promoPrice || best.price)}/mo</div>
+                </div>
+                <div>
+                  <div style="font-size:var(--text-xs);color:var(--text-muted);">Up to</div>
+                  <div style="font-weight:800;">{formatSpeed(fastest.speed)}</div>
+                </div>
+              </div>
+              <a href={`tel:${p.phone.replace(/[^0-9]/g, '')}`} class="btn btn-call" style="width:100%;text-align:center;font-size:var(--text-sm);">
+                📞 Switch to {p.name}
+              </a>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Savings Stat -->
+  <section class="section">
+    <div class="container">
+      <div class="card gradient-border text-center" style="padding:var(--space-2xl);">
+        <h2 class="reveal">Average Savings After Switching</h2>
+        <div class="reveal" style="font-size:clamp(3rem,8vw,5rem);font-weight:900;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:var(--space-md) 0;">$360/year</div>
+        <p class="reveal" style="font-size:var(--text-base);max-width:480px;margin:0 auto;">That's $30/month back in your pocket — plus faster speeds, better reliability, and customer support that actually answers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container" style="max-width:740px;">
+      <h2 class="text-center reveal" style="margin-bottom:var(--space-xl);">Switching <span class="gradient-text">FAQ</span></h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <div class="faq-item reveal">
+            <button class="faq-question">{f.q}</button>
+            <div class="faq-answer"><div class="faq-answer-inner">{f.a}</div></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container" style="max-width:650px;">
+      <CallbackForm providerName="Internet 4 ALL (Switch)" phone={MAIN_PHONE} />
+    </div>
+  </section>
+
+  <StickyCallBar text="Ready to switch? One call, better internet." />
+</Base>

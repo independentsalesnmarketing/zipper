@@ -1,0 +1,177 @@
+---
+import Base from '@layouts/Base.astro';
+import SearchBar from '@components/SearchBar.astro';
+import ProviderCard from '@components/ProviderCard.astro';
+import CallbackForm from '@components/CallbackForm.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed } from '@lib/providers';
+import { generateFAQSchema } from '@lib/utils';
+
+const partners = getPartnerProviders();
+const topProviders = partners.slice(0, 6);
+
+const faqs = [
+  { question: 'How does Internet 4 ALL work?', answer: 'We compare internet providers available at your address. Enter your ZIP code and we show you every option — plans, prices, speeds, and ratings. When you\'re ready, call our experts and they\'ll set everything up for you.' },
+  { question: 'Is this service really free?', answer: 'Yes, 100% free for you. We partner with top internet providers who compensate us for connecting you with their service. You pay the same price (or less with our exclusive deals) as going direct.' },
+  { question: 'How do you rank internet providers?', answer: 'Our ranking algorithm considers speed, price, technology type (fiber > cable > DSL), customer ratings, data caps, contract terms, and real-time availability at your address via the FCC Broadband Map.' },
+  { question: 'Can I keep my current phone number when switching?', answer: 'In most cases, yes. When you call us, our specialists will handle the entire switching process including number porting if applicable.' },
+  { question: 'What if I\'m moving to a new address?', answer: 'Perfect timing! Enter your new ZIP code and we\'ll show you all available providers at your new address. Our moving specialists can have internet ready the day you arrive.' },
+  { question: 'Do you offer customer support?', answer: 'Absolutely. Call our team at 1-888-555-0123 Mon-Fri 8AM-10PM EST, Sat-Sun 9AM-8PM EST. We\'re real people who know internet service inside and out.' },
+];
+---
+<Base
+  title="Internet 4 ALL — Find the Best Internet Providers in Your Area"
+  description="Compare internet providers, plans, and prices near you. Fiber, cable, 5G, and satellite options. Call now for exclusive deals. Free comparison tool."
+  schema={[generateFAQSchema(faqs)]}
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge reveal">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Trusted by 500,000+ Americans
+      </div>
+      <h1 class="reveal">
+        Find the <span class="gradient-text">Best Internet</span><br/>in Your Area
+      </h1>
+      <p class="hero-subtitle reveal">
+        Compare providers, plans, and prices in seconds. Get connected with exclusive deals you won't find anywhere else.
+      </p>
+      <div class="reveal" style="display:flex; justify-content:center;">
+        <SearchBar size="large" placeholder="Enter your ZIP code (e.g. 10001)" />
+      </div>
+
+      <div class="stats-bar reveal">
+        <div class="stat-item">
+          <div class="stat-value">15+</div>
+          <div class="stat-label">Providers Compared</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">50</div>
+          <div class="stat-label">States Covered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">98%</div>
+          <div class="stat-label">US Coverage</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$0</div>
+          <div class="stat-label">Service Fee</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What brings you here? (Trigger Grid) -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center reveal">
+        <h2>What Brings You Here Today?</h2>
+        <p class="hero-subtitle" style="max-width: 500px;">Pick your situation — we'll get you the best deal fast.</p>
+      </div>
+      <div class="trigger-grid" style="margin-top: var(--space-2xl);">
+        <a href="/movers" class="trigger-card trigger-card--moving reveal reveal-delay-1">
+          <div class="trigger-icon">🏠</div>
+          <h4>I'm Moving</h4>
+          <p>Find the best internet at your new address</p>
+        </a>
+        <a href="/switch" class="trigger-card trigger-card--switch reveal reveal-delay-2">
+          <div class="trigger-icon">😤</div>
+          <h4>My Internet Sucks</h4>
+          <p>Switch to a faster, more reliable provider</p>
+        </a>
+        <a href="/deals" class="trigger-card trigger-card--price reveal reveal-delay-3">
+          <div class="trigger-icon">💸</div>
+          <h4>My Bill Is Too High</h4>
+          <p>Find cheaper plans without losing speed</p>
+        </a>
+        <a href="/get-connected" class="trigger-card trigger-card--disconnected reveal reveal-delay-4">
+          <div class="trigger-icon">🔌</div>
+          <h4>I Need Internet Now</h4>
+          <p>Get connected ASAP — same-day options</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Providers -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="text-center reveal">
+        <h2>Top-Rated Internet Providers</h2>
+        <p class="hero-subtitle" style="max-width: 550px;">Top providers ranked by speed, value, and customer satisfaction.</p>
+      </div>
+      <div class="flex flex-col gap-md" style="margin-top: var(--space-2xl);">
+        {topProviders.map((p, i) => (
+          <div class="reveal" style={`transition-delay: ${i * 80}ms;`}>
+            <ProviderCard
+              provider={p}
+              rank={i + 1}
+              badge={i === 0 ? 'best-overall' : i === 1 ? 'best-speed' : i === 2 ? 'best-value' : undefined}
+            />
+          </div>
+        ))}
+      </div>
+      <div class="text-center" style="margin-top: var(--space-xl);">
+        <a href="/providers" class="btn btn-secondary btn-lg">View All Providers →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center reveal">
+        <h2>How It Works</h2>
+        <p class="hero-subtitle" style="max-width: 500px;">Get the best internet in 3 simple steps.</p>
+      </div>
+      <div class="grid grid-3" style="margin-top: var(--space-2xl);">
+        <div class="card text-center reveal reveal-delay-1">
+          <div style="width:56px;height:56px;border-radius:var(--radius-lg);background:var(--brand-blue-50);display:flex;align-items:center;justify-content:center;margin-inline:auto;margin-bottom:var(--space-md);font-size:1.5rem;font-weight:800;color:var(--brand-blue);">1</div>
+          <h4>Enter Your ZIP</h4>
+          <p style="margin-top:var(--space-sm);">We check which providers serve your exact address with real-time FCC data.</p>
+        </div>
+        <div class="card text-center reveal reveal-delay-2">
+          <div style="width:56px;height:56px;border-radius:var(--radius-lg);background:var(--brand-green-50);display:flex;align-items:center;justify-content:center;margin-inline:auto;margin-bottom:var(--space-md);font-size:1.5rem;font-weight:800;color:var(--brand-green);">2</div>
+          <h4>Compare Plans</h4>
+          <p style="margin-top:var(--space-sm);">See every plan side-by-side — speeds, prices, ratings, data caps, and contracts.</p>
+        </div>
+        <div class="card text-center reveal reveal-delay-3">
+          <div style="width:56px;height:56px;border-radius:var(--radius-lg);background:var(--brand-amber-50);display:flex;align-items:center;justify-content:center;margin-inline:auto;margin-bottom:var(--space-md);font-size:1.5rem;font-weight:800;color:var(--brand-amber);">3</div>
+          <h4>Call & Get Connected</h4>
+          <p style="margin-top:var(--space-sm);">Speak to an expert who handles everything — ordering, installation scheduling, even switching from your old provider.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Callback Form -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <CallbackForm />
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="text-center reveal">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div style="margin-top: var(--space-2xl);">
+        {faqs.map(faq => (
+          <div class="faq-item reveal">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar />
+</Base>

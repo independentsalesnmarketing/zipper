@@ -1,0 +1,587 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+isp near me	USD	500000	-90%	-90%	High	81	7.74	27.88
+internet providers near me	USD	500000	-90%	-90%	High	81	7.74	27.88
+internet suppliers near me	USD	500000	-90%	-90%	High	81	7.74	27.88
+internet carriers near me	USD	500000	-90%	-90%	High	81	7.74	27.88
+internet companies near me	USD	500000	-90%	-90%	High	81	7.74	27.88
+isp provider near me	USD	500000	-90%	-90%	High	81	7.74	27.88
+internet isp near me	USD	500000	-90%	-90%	High	81	7.74	27.88
+isp in my area	USD	50000	0%	0%	High	93	6.17	26.49
+internet providers by address	USD	50000	0%	-90%	High	90	5.02	23.37
+internet providers for my area	USD	50000	0%	0%	High	93	6.17	26.49
+internet options by address	USD	50000	0%	-90%	High	90	5.02	23.37
+best internet provider in my area	USD	50000	0%	0%	High	91	5.58	26.49
+internet providers at my address	USD	50000	-90%	-90%	High	94	5.71	27.00
+internet available at my address	USD	50000	-90%	-90%	High	89	4.65	20.26
+internet services in my area	USD	50000	0%	0%	High	93	6.17	26.49
+broadband now	USD	50000	0%	-90%	Medium	46	2.47	14.40
+internet options in my area	USD	50000	0%	0%	High	93	6.17	26.49
+isp for my address	USD	50000	-90%	-90%	High	94	5.71	27.00
+internet availability by address	USD	50000	-90%	-90%	High	89	4.65	20.26
+internet services by address	USD	50000	0%	-90%	High	90	5.02	23.37
+internet for my area	USD	50000	-90%	-90%	High	96	6.39	28.59
+internet near me	USD	50000	0%	0%	High	88	9.68	39.25
+internet companies in my area	USD	50000	0%	0%	High	93	6.17	26.49
+wifi providers near me	USD	50000	-90%	-90%	High	82	10.00	39.50
+isp by address	USD	50000	0%	-90%	High	90	5.02	23.37
+isp providers by address	USD	50000	0%	-90%	High	90	5.02	23.37
+best isp in my area	USD	50000	0%	0%	High	91	5.58	26.49
+internet choices in my area	USD	50000	0%	0%	High	93	6.17	26.49
+internet carriers in my area	USD	50000	0%	0%	High	93	6.17	26.49
+home internet providers near me	USD	50000	0%	0%	High	76	7.81	30.75
+wifi near me	USD	50000	0%	0%	Medium	65	10.37	45.77
+service providers in my area	USD	50000	0%	0%	High	93	6.17	26.49
+internet suppliers in my area	USD	50000	0%	0%	High	93	6.17	26.49
+best internet providers	USD	50000	0%	0%	High	78	4.53	22.28
+internet providers	USD	50000	0%	0%	High	72	7.00	28.37
+isp providers	USD	50000	0%	0%	High	72	7.00	28.37
+wifi companies near me	USD	50000	-90%	-90%	High	82	10.00	39.50
+home internet services near me	USD	50000	0%	0%	High	76	7.81	30.75
+wifi services near me	USD	50000	0%	-90%	High	97	12.22	46.45
+internet offered in my area	USD	50000	0%	0%	High	93	6.17	26.49
+home internet provider	USD	50000	0%	0%	Medium	49	7.00	29.90
+isp providers in my area	USD	50000	0%	0%	High	93	6.17	26.49
+broadband internet	USD	50000	0%	0%	Low	24	3.19	16.02
+internet offered at my address	USD	50000	-90%	-90%	High	89	4.65	20.26
+internet packages in my area	USD	50000	0%	0%	High	93	6.17	26.49
+internet close to me	USD	50000	0%	0%	High	88	9.68	39.25
+wifi internet providers near me	USD	50000	-90%	-90%	High	82	10.00	39.50
+best isp	USD	50000	0%	0%	High	78	4.53	22.28
+best internet options	USD	50000	0%	0%	High	78	4.53	22.28
+best internet company	USD	50000	0%	0%	High	78	4.53	22.28
+internet carriers for my address	USD	50000	-90%	-90%	High	94	5.71	27.00
+fastest isp in my area	USD	50000	0%	0%	High	91	5.58	26.49
+home internet companies near me	USD	50000	0%	0%	High	76	7.81	30.75
+internet isp	USD	50000	0%	0%	High	72	7.00	28.37
+internet services offered in my area	USD	50000	0%	0%	High	93	6.17	26.49
+internet servers in my area	USD	50000	0%	0%	High	93	6.17	26.49
+best internet company in my area	USD	50000	0%	0%	High	91	5.58	26.49
+internet network providers	USD	50000	0%	-90%	Medium	34	6.79	28.87
+broadband providers by address	USD	50000	0%	-90%	High	90	5.02	23.37
+internet offers at my address	USD	50000	-90%	-90%	High	89	4.65	20.26
+home internet carriers	USD	50000	0%	0%	Medium	49	7.00	29.90
+in my area internet providers	USD	50000	0%	0%	High	93	6.17	26.49
+internet isp in my area	USD	50000	0%	0%	High	93	6.17	26.49
+isp providers for my address	USD	50000	-90%	-90%	High	94	5.71	27.00
+internet available to my address	USD	50000	-90%	-90%	High	89	4.65	20.26
+isp services	USD	50000	0%	-90%	Medium	34	6.79	28.87
+good isp in my area	USD	50000	0%	0%	High	91	5.58	26.49
+best internet supplier in my area	USD	50000	0%	0%	High	91	5.58	26.49
+near me internet	USD	50000	0%	0%	High	88	9.68	39.25
+isp at address	USD	50000	0%	-90%	High	90	5.02	23.37
+internet internet providers	USD	50000	0%	0%	High	72	7.00	28.37
+internet access providers	USD	50000	0%	0%	Low	11	3.92	19.42
+best isp provider	USD	50000	0%	0%	High	78	4.53	22.28
+internet isp providers	USD	50000	0%	-90%	Medium	34	6.79	28.87
+providers wifi	USD	50000	0%	-90%	High	90	8.00	36.01
+best internet isp	USD	50000	0%	0%	High	78	4.53	22.28
+providers of internet	USD	50000	0%	0%	High	72	7.00	28.37
+my area internet	USD	50000	-90%	-90%	High	96	6.39	28.59
+best internet connection provider	USD	50000	0%	0%	High	78	4.53	22.28
+isp service by address	USD	50000	0%	-90%	High	90	5.02	23.37
+find internet providers by address	USD	5000	0%	0%	High	89	5.10	26.50
+internet options for my address	USD	5000	0%	0%	High	92	5.52	26.49
+internet providers in my area by zip code	USD	5000	0%	0%	High	88	3.99	19.63
+internet available in my area	USD	5000	0%	0%	High	86	5.35	26.49
+internet at my address	USD	5000	0%	0%	High	91	6.16	28.99
+local internet providers	USD	5000	0%	0%	High	74	6.86	25.84
+internet providers by zip code	USD	5000	-90%	-90%	High	77	2.80	17.97
+check internet providers by address	USD	5000	0%	0%	High	87	4.80	22.20
+internet by address	USD	5000	0%	-90%	High	87	4.03	21.85
+wifi in my area	USD	5000	0%	0%	High	95	8.40	37.37
+internet options near me	USD	5000	0%	0%	High	95	6.97	27.00
+wifi options near me	USD	5000	0%	-90%	High	98	8.65	37.80
+broadband internet near me	USD	5000	-90%	-90%	High	81	4.34	23.26
+home internet providers in my area	USD	5000	0%	-90%	High	100	8.90	33.08
+wifi available at my address	USD	5000	0%	900%	High	86	7.04	27.44
+high speed internet in my area	USD	5000	0%	0%	High	90	5.66	23.30
+find internet for my address	USD	5000	0%	0%	High	91	6.16	28.99
+find internet providers	USD	5000	0%	-90%	High	80	4.55	29.08
+wifi service in my area	USD	5000	-90%	-90%	High	99	9.58	43.36
+internet available near me	USD	5000	0%	-90%	High	88	6.53	26.49
+high speed internet near me	USD	5000	0%	0%	High	95	6.72	25.24
+fastest internet in my area	USD	5000	0%	0%	High	89	5.49	24.09
+home internet in my area	USD	5000	0%	-90%	High	91	7.03	30.48
+isp available at my address	USD	5000	-90%	-90%	High	81	3.50	20.46
+internet access near me	USD	5000	0%	-90%	High	88	6.53	26.49
+best internet providers near me	USD	5000	0%	0%	High	93	7.00	27.64
+wifi service providers near me	USD	5000	0%	0%	High	98	10.94	39.96
+local internet providers near me	USD	5000	0%	0%	High	93	7.00	26.49
+internet provider search	USD	5000	0%	0%	Low	26	2.68	22.47
+wifi available in my area	USD	5000	0%	0%	High	88	7.12	31.75
+wifi providers in my area	USD	5000	0%	0%	High	94	7.30	32.63
+internet availability by zip code	USD	5000	-90%	-90%	High	77	2.80	17.97
+internet address check	USD	5000	0%	0%	High	80	3.25	18.89
+internet availability	USD	5000	0%	-90%	High	78	3.73	18.55
+internet plans in my area	USD	5000	0%	-90%	High	87	5.04	24.00
+internet at my house	USD	5000	0%	-90%	High	89	7.45	36.65
+cable internet providers in my area	USD	5000	0%	0%	High	75	5.77	21.54
+wireless internet providers near me	USD	5000	0%	-90%	High	75	5.87	23.00
+cheapest internet provider near me	USD	5000	0%	0%	High	97	5.78	22.55
+better internet in my area	USD	5000	0%	0%	High	86	5.54	26.49
+find internet providers for my address	USD	5000	0%	0%	High	91	6.16	28.99
+internet services available by address	USD	5000	-90%	-90%	High	81	3.50	20.46
+local internet companies	USD	5000	0%	0%	High	74	6.86	25.84
+best internet near me	USD	5000	0%	0%	High	93	7.00	27.64
+best wifi near me	USD	5000	0%	0%	High	86	9.46	40.53
+best wifi providers	USD	5000	0%	0%	High	86	6.20	29.78
+fast internet near me	USD	5000	0%	0%	High	92	7.05	26.69
+wireless internet in my area	USD	5000	0%	0%	High	95	8.40	37.37
+best home internet	USD	5000	0%	0%	High	94	6.02	25.59
+internet options	USD	5000	0%	0%	High	71	5.37	23.15
+best home internet provider	USD	5000	0%	0%	High	88	5.20	24.36
+broadband provider	USD	5000	0%	9900%	Low	0	4.22	20.52
+home internet near me	USD	5000	0%	-90%	High	77	8.06	40.57
+the best internet provider	USD	5000	0%	-90%	High	86	4.43	20.00
+internet providers available at my address	USD	5000	0%	900%	High	94	6.66	30.20
+wifi internet providers	USD	5000	0%	-90%	High	93	8.13	32.31
+fastest home internet in my area	USD	5000	-90%	-99%	High	76	6.65	28.76
+highest speed internet in my area	USD	5000	0%	0%	High	90	5.66	23.30
+wifi service providers	USD	5000	0%	-90%	High	92	10.73	41.91
+cheapest internet providers in my area	USD	5000	0%	-90%	High	89	5.38	23.67
+wifi service providers in my area	USD	5000	0%	0%	High	94	7.30	32.63
+cheapest internet in my area	USD	5000	0%	0%	High	89	4.23	19.72
+internet plans near me	USD	5000	0%	0%	High	93	5.44	26.40
+best internet	USD	5000	0%	0%	High	78	5.43	22.36
+top internet providers	USD	5000	0%	0%	High	83	6.17	25.00
+cable internet providers near me	USD	5000	0%	0%	High	86	5.35	22.84
+internet for my home	USD	5000	0%	-90%	High	89	7.45	36.65
+fast internet providers near me	USD	5000	0%	0%	High	82	6.39	32.17
+available internet providers by address	USD	5000	-90%	-90%	High	81	3.50	20.46
+internet providers nyc	USD	5000	0%	0%	High	74	6.81	26.69
+good wifi near me	USD	5000	0%	0%	High	86	9.46	40.53
+internet packages near me	USD	5000	0%	0%	High	96	7.54	27.50
+other internet providers	USD	5000	-90%	-90%	High	75	5.65	21.58
+high speed internet providers in my area	USD	5000	0%	0%	High	90	5.66	23.30
+wifi offered in my area	USD	5000	0%	0%	High	94	7.30	32.63
+wifi availability in my area	USD	5000	0%	0%	High	88	7.12	31.75
+internet choices by address	USD	5000	0%	0%	High	92	5.52	26.49
+list of internet providers	USD	5000	0%	0%	Low	10	3.14	17.86
+wifi carriers in my area	USD	5000	0%	0%	High	94	7.30	32.63
+my internet provider	USD	5000	0%	0%	Low	11	2.65	14.86
+cable internet in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+good wifi services	USD	5000	0%	-90%	High	88	6.80	30.37
+best wifi companies	USD	5000	0%	0%	High	85	6.72	29.52
+best wifi internet provider	USD	5000	0%	0%	High	86	6.20	29.78
+best internet company near me	USD	5000	0%	0%	High	93	7.00	27.64
+comparing internet providers	USD	5000	0%	0%	Medium	48	3.28	25.09
+find isp	USD	5000	0%	-90%	High	80	4.55	29.08
+isp availability by address	USD	5000	-90%	-90%	High	81	3.50	20.46
+us internet providers	USD	5000	0%	-90%	Medium	35	3.50	15.00
+internet and wifi providers in my area	USD	5000	0%	0%	High	94	7.30	32.63
+isp search	USD	5000	0%	0%	Low	26	2.68	22.47
+broadband internet providers	USD	5000	0%	900%	Low	4	5.33	20.76
+local isp	USD	5000	0%	0%	High	74	6.86	25.84
+available internet near me	USD	5000	0%	-90%	High	88	6.53	26.49
+internet option for my address	USD	5000	0%	0%	High	92	5.52	26.49
+internet options by zip code	USD	5000	-90%	-90%	High	77	2.80	17.97
+home wifi service providers	USD	5000	-90%	-90%	High	91	7.72	40.51
+best isp near me	USD	5000	0%	0%	High	93	7.00	27.64
+isp comparison	USD	5000	0%	0%	Medium	48	3.28	25.09
+isp available in my area	USD	5000	0%	0%	High	86	5.35	26.49
+best wireless internet in my area	USD	5000	0%	0%	High	92	6.18	33.76
+check internet at address	USD	5000	0%	0%	High	80	3.25	18.89
+home wifi companies	USD	5000	-90%	-90%	High	91	7.72	40.51
+address check for internet	USD	5000	0%	0%	High	80	3.25	18.89
+best wifi service provider	USD	5000	0%	0%	High	86	6.20	29.78
+isp by zip	USD	5000	-90%	-90%	High	77	2.80	17.97
+wireless internet available in my area	USD	5000	0%	0%	High	88	7.12	31.75
+internet options for home	USD	5000	0%	0%	High	99	5.65	25.00
+cable & internet providers in my area	USD	5000	0%	0%	High	75	5.77	21.54
+internet choices near me	USD	5000	0%	0%	High	95	6.97	27.00
+other internet services	USD	5000	-90%	-90%	High	75	5.65	21.58
+check for internet	USD	5000	0%	0%	Low	23	0.06	10.16
+zip code internet providers	USD	5000	-90%	-90%	High	77	2.80	17.97
+options for internet	USD	5000	0%	0%	High	71	5.37	23.15
+internet providers close to me	USD	5000	0%	0%	High	95	6.97	27.00
+local isp providers	USD	5000	0%	0%	High	74	6.86	25.84
+internet check by address	USD	5000	0%	0%	High	80	3.25	18.89
+isp by zip code	USD	5000	-90%	-90%	High	77	2.80	17.97
+internet companies serving my address	USD	5000	0%	900%	High	94	6.66	30.20
+internet choices for my address	USD	5000	0%	0%	High	92	5.52	26.49
+local internet carriers	USD	5000	0%	0%	High	74	6.86	25.84
+high speed isp in my area	USD	5000	0%	0%	High	90	5.66	23.30
+internet services available by zip code	USD	5000	-90%	-90%	High	77	2.80	17.97
+get internet provider	USD	5000	0%	-90%	High	80	4.55	29.08
+internet wifi service in my area	USD	5000	0%	0%	High	94	7.30	32.63
+internet dealers near me	USD	5000	0%	0%	High	96	7.54	27.50
+isp providers by zip code	USD	5000	-90%	-90%	High	77	2.80	17.97
+fastest isp near me	USD	5000	0%	0%	High	82	6.39	32.17
+us isp providers	USD	5000	0%	-90%	Medium	35	3.50	15.00
+internet providers by map	USD	5000	0%	0%	Medium	63	1.81	14.16
+internet carriers by zip code	USD	5000	-90%	-90%	High	77	2.80	17.97
+cheapest isp in my area	USD	5000	0%	-90%	High	89	5.38	23.67
+isp available at address	USD	5000	-90%	-90%	High	81	3.50	20.46
+internet services available at address	USD	5000	-90%	-90%	High	81	3.50	20.46
+cable isp in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+different isp providers	USD	5000	-90%	-90%	High	75	5.65	21.58
+available internet connection in my area	USD	5000	0%	0%	High	86	5.35	26.49
+internet providers in america	USD	5000	0%	-90%	Medium	35	3.50	15.00
+get internet	USD	5000	0%	-90%	High	82	9.37	48.11
+internet coverage map by address	USD	5000	0%	0%	High	72	2.73	15.18
+high speed internet by address	USD	5000	0%	0%	High	82	3.54	16.65
+get wifi today	USD	5000	0%	0%	High	93	13.28	59.51
+wifi isp providers	USD	5000	0%	0%	High	96	8.27	34.77
+find isp provider	USD	5000	0%	-90%	High	80	4.55	29.08
+find me an internet provider	USD	5000	0%	-90%	High	80	4.55	29.08
+internet provider map	USD	5000	0%	0%	Medium	63	1.81	14.16
+broadband providers usa	USD	5000	0%	-90%	Medium	35	3.50	15.00
+best isp service provider	USD	5000	0%	0%	High	83	6.17	25.00
+internet speed test by address	USD	5000	0%	0%	Medium	38	1.77	12.75
+internet providers near me by address	USD	500	0%	0%	High	96	5.67	26.49
+internet options at my house	USD	500	0%	0%	High	77	4.45	25.00
+wifi available near me	USD	500	0%	0%	High	84	7.29	33.53
+wifi providers for my address	USD	500	0%	0%	High	94	7.38	35.00
+internet around me	USD	500	0%	-90%	High	97	9.21	36.79
+internet near me by address	USD	500	0%	0%	High	87	7.68	28.51
+best internet for my address	USD	500	0%	0%	High	89	5.49	28.21
+compare internet providers in my area	USD	500	0%	0%	High	69	3.67	20.51
+internet in my area by address	USD	500	0%	0%	High	94	7.52	29.93
+cable internet providers for my address	USD	500	0%	0%	High	88	5.80	20.00
+find internet in my area	USD	500	0%	0%	High	88	4.45	27.50
+find my internet provider	USD	500	0%	0%	High	83	4.39	27.43
+search internet providers by address	USD	500	0%	0%	High	80	3.56	20.25
+internet for me	USD	500	0%	0%	High	88	9.30	34.06
+check internet availability	USD	500	0%	-90%	High	70	4.01	20.46
+internet providers in my area by address	USD	500	0%	0%	High	81	4.78	25.66
+internet where i live	USD	500	0%	-90%	High	83	7.25	26.97
+home internet options by address	USD	500	0%	0%	High	86	5.18	23.97
+internet providers for me	USD	500	0%	0%	High	89	6.41	28.20
+high speed internet at my address	USD	500	0%	0%	High	90	4.93	20.66
+find internet providers in my area	USD	500	0%	0%	High	76	4.54	27.00
+wifi for my address	USD	500	0%	0%	High	91	8.50	37.01
+check internet availability by address	USD	500	0%	0%	High	80	4.05	20.46
+internet at my location	USD	500	0%	0%	High	88	6.68	27.00
+find internet	USD	500	0%	0%	Medium	60	4.10	28.54
+fastest internet speed in my area	USD	500	0%	-90%	High	76	3.79	18.54
+internet finder	USD	500	0%	0%	High	77	3.35	21.29
+internet providers around me	USD	500	0%	0%	High	87	7.35	27.09
+best internet provider for my address	USD	500	0%	0%	High	91	4.71	29.43
+wifi at my address	USD	500	0%	0%	High	91	8.50	37.01
+high speed internet providers near me	USD	500	0%	0%	High	85	5.96	22.54
+internet by zip code	USD	500	0%	0%	High	76	2.23	16.58
+wifi options for my address	USD	500	0%	0%	High	93	7.71	35.00
+internet providers available in my area	USD	500	-90%	-90%	Medium	65	3.87	20.00
+internet coverage by address	USD	500	0%	0%	High	70	3.64	20.38
+broadband providers near me	USD	500	0%	0%	Medium	65	4.16	20.46
+home internet available in my area	USD	500	0%	0%	High	77	5.59	26.49
+the best internet provider in my area	USD	500	0%	0%	High	91	5.91	24.25
+internet access by address	USD	500	0%	0%	High	82	4.29	22.55
+internet finder by address	USD	500	0%	0%	High	79	3.71	24.00
+internet providers for my location	USD	500	0%	0%	High	90	5.93	26.92
+local internet providers in my area	USD	500	0%	0%	High	88	6.23	26.49
+home internet providers for my address	USD	500	0%	0%	High	88	6.00	23.80
+internet available at my house	USD	500	0%	-90%	High	84	5.21	24.66
+internet plans for my address	USD	500	0%	0%	High	84	6.00	25.95
+high speed internet availability by address	USD	500	0%	0%	High	84	3.74	16.50
+find isp by address	USD	500	0%	0%	High	82	3.41	22.83
+wifi companies in my area	USD	500	0%	0%	High	92	8.69	38.98
+wifi in my area by address	USD	500	-90%	0%	High	80	7.66	50.04
+broadband internet in my area	USD	500	0%	0%	High	78	4.31	22.06
+internet near me now	USD	500	0%	0%	High	95	8.86	36.60
+best home internet in my area	USD	500	0%	0%	High	90	6.23	27.37
+top internet providers in my area	USD	500	0%	0%	High	92	4.57	24.00
+internet in the area	USD	500	0%	0%	High	88	6.20	33.17
+check what internet is available at my address	USD	500	0%	0%	High	87	5.60	26.06
+good internet providers near me	USD	500	900%	0%	High	93	7.28	26.49
+wifi options in my area	USD	500	0%	0%	High	90	8.00	29.06
+fastest internet for my address	USD	500	0%	0%	High	86	4.31	24.00
+internet services around me	USD	500	0%	0%	High	87	7.35	27.09
+internet available to me	USD	500	0%	0%	High	85	5.85	25.66
+internet provider check	USD	500	0%	-90%	High	79	3.32	22.40
+best wifi for my address	USD	500	0%	0%	High	91	6.52	34.96
+internet options for me	USD	500	0%	0%	High	89	6.41	28.20
+get wifi near me	USD	500	0%	0%	High	84	12.50	54.18
+internet in our area	USD	500	-90%	-90%	High	87	7.59	27.00
+local internet	USD	500	0%	0%	High	86	6.64	26.54
+wifi availability	USD	500	0%	0%	High	70	5.39	25.89
+find internet near me	USD	500	0%	0%	High	85	7.37	40.45
+best internet for my location	USD	500	0%	0%	High	86	5.01	26.49
+isp options by address	USD	500	0%	0%	High	85	3.73	23.43
+wifi for me	USD	500	-90%	-90%	High	97	11.48	56.98
+wifi carriers near me	USD	500	0%	0%	High	95	9.34	38.39
+internet connections in my area	USD	500	0%	0%	High	82	4.20	25.00
+wifi availability by address	USD	500	0%	900%	High	91	4.84	25.89
+wifi plans in my area	USD	500	-90%	-90%	High	87	9.18	30.84
+home internet for my address	USD	500	-90%	-90%	High	88	6.93	26.81
+wifi near me for home	USD	500	0%	-90%	High	67	10.64	53.12
+get internet near me	USD	500	0%	0%	High	85	7.37	40.45
+isp finder	USD	500	0%	0%	High	78	3.09	20.72
+best high speed internet near me	USD	500	0%	0%	High	91	7.00	26.41
+fastest internet provider in my area	USD	500	0%	-99%	High	82	5.56	28.60
+internet providers for my house	USD	500	0%	0%	High	86	6.15	32.43
+business internet providers in my area	USD	500	-90%	-90%	High	85	34.78	112.64
+good internet providers in my area	USD	500	-90%	-90%	High	87	6.99	26.49
+fastest available internet in my area	USD	500	-90%	-90%	Medium	63	3.91	16.66
+wifi internet providers in my area	USD	500	-90%	-90%	Medium	47	7.06	27.83
+internet companies available in my area	USD	500	0%	0%	High	82	6.81	25.77
+wifi carriers	USD	500	0%	0%	High	89	9.26	35.00
+local wifi providers	USD	500	0%	0%	High	79	7.79	27.83
+wifi for my house	USD	500	0%	0%	High	93	10.07	50.08
+business internet in my area	USD	500	0%	-90%	High	97	33.00	138.25
+isp in my area by address	USD	500	0%	0%	High	81	4.78	25.66
+internet provider address lookup	USD	500	0%	0%	High	80	3.56	20.25
+get internet today	USD	500	0%	0%	High	89	12.41	51.68
+internet in my area by zip code	USD	500	0%	-90%	High	82	4.68	23.00
+internet coverage in my area	USD	500	0%	0%	High	79	5.25	25.00
+best wifi service near me	USD	500	0%	0%	High	90	8.61	36.16
+best wifi service in my area	USD	500	0%	0%	High	94	5.86	33.41
+internet providers in this area	USD	500	0%	0%	High	90	6.45	30.04
+isp search by address	USD	500	0%	0%	High	79	2.53	15.30
+internet offers near me	USD	500	0%	0%	High	92	8.00	27.00
+all internet providers	USD	500	0%	0%	Medium	63	5.96	22.99
+internet companies that service my area	USD	500	0%	0%	High	78	8.90	35.77
+high speed wifi near me	USD	500	0%	0%	High	84	10.52	36.18
+internet servers near me	USD	500	-90%	-90%	High	88	4.65	22.35
+high speed internet availability	USD	500	900%	0%	Low	20	3.01	16.74
+internet provider lookup	USD	500	0%	0%	High	78	3.33	22.26
+best wifi providers in my area	USD	500	0%	0%	High	90	5.31	29.34
+network providers in my area	USD	500	0%	-90%	High	81	3.81	23.23
+internet near	USD	500	0%	0%	High	78	10.33	38.65
+best home internet provider in my area	USD	500	0%	0%	High	92	5.47	27.68
+home internet options near me	USD	500	0%	0%	High	96	7.00	28.18
+all internet providers in my area	USD	500	0%	0%	High	84	4.27	25.31
+best internet options in my area	USD	500	0%	0%	High	84	5.73	26.38
+home wifi near me	USD	500	0%	-90%	Medium	65	9.84	45.09
+get home internet	USD	500	0%	0%	High	81	13.14	68.98
+wifi in area	USD	500	0%	0%	High	77	6.48	29.33
+internet services in my area by zip code	USD	500	-90%	-90%	High	96	5.15	21.50
+internet access in my area	USD	500	0%	0%	High	82	4.20	25.00
+wifi options at my address	USD	500	-90%	-90%	High	94	5.80	39.17
+internet near my address	USD	500	0%	900%	High	98	6.47	30.59
+residential internet providers near me	USD	500	-90%	-90%	High	98	6.35	26.49
+wireless internet providers in my area	USD	500	0%	0%	High	90	5.35	23.84
+cable internet providers by address	USD	500	0%	0%	Low	24	3.66	15.00
+check isp by address	USD	500	0%	0%	High	82	3.41	22.83
+internet company around me	USD	500	-90%	-90%	High	80	9.19	35.00
+home internet availability	USD	500	0%	0%	Medium	51	1.37	25.00
+internet that services my address	USD	500	0%	0%	High	83	8.35	33.05
+internet search by address	USD	500	0%	0%	High	79	3.71	24.00
+internet providers near me for home	USD	500	0%	0%	High	79	7.00	28.28
+internet provider options	USD	500	-90%	-90%	High	85	5.46	25.00
+internet en mi area	USD	500	0%	0%	High	79	3.22	16.93
+i need internet now	USD	500	-90%	-90%	High	74	7.00	39.21
+good internet in my area	USD	500	0%	0%	High	87	6.19	29.48
+home wifi in my area	USD	500	0%	-99%	High	93	10.15	37.56
+internet and wifi providers near me	USD	500	900%	0%	High	91	5.07	26.49
+wifi that services my area	USD	500	-90%	0%	High	76	9.36	44.00
+other internet providers in my area	USD	500	0%	0%	High	86	6.11	21.98
+wifi internet near me	USD	500	0%	0%	High	67	11.97	40.28
+high speed internet available in my area	USD	500	0%	-90%	High	81	4.27	14.80
+internet lookup by address	USD	500	-90%	-90%	High	82	3.57	18.32
+find best internet provider in my area	USD	500	0%	0%	High	82	6.00	39.47
+internet coverage	USD	500	0%	0%	Medium	63	3.39	17.93
+compare internet plans in my area	USD	500	0%	0%	High	88	3.39	20.63
+good internet near me	USD	500	0%	0%	High	94	7.81	33.92
+broadbandnow map	USD	500	0%	0%	Medium	51	1.97	13.82
+best home internet near me	USD	500	0%	0%	High	97	6.61	25.61
+home wifi providers near me	USD	500	0%	-90%	Medium	54	10.67	35.00
+isp lookup by address	USD	500	0%	0%	Medium	59	1.93	14.86
+look up internet providers by address	USD	500	0%	0%	High	82	3.41	22.83
+providers in my area	USD	500	0%	0%	High	69	2.86	22.38
+isp options	USD	500	0%	0%	Medium	37	3.83	24.48
+best high speed internet provider	USD	500	0%	0%	Medium	55	4.21	21.73
+best wifi options	USD	500	-90%	-90%	High	91	7.06	31.04
+check for internet providers	USD	500	0%	-90%	High	79	3.32	22.40
+internet wifi near me	USD	500	-90%	0%	High	77	10.41	41.52
+internet around my area	USD	500	0%	0%	High	98	7.60	27.00
+best internet plans near me	USD	500	0%	-90%	High	93	4.10	20.46
+wifi available	USD	500	0%	0%	High	70	5.39	25.89
+best home internet provider near me	USD	500	0%	-90%	High	80	6.27	34.80
+most reliable internet provider	USD	500	0%	0%	High	75	1.94	15.99
+best internet plans in my area	USD	500	0%	0%	High	88	4.80	20.46
+best high speed internet in my area	USD	500	0%	0%	High	84	4.17	23.74
+fast speed internet near me	USD	500	0%	0%	High	87	8.91	30.00
+best wifi companies near me	USD	500	0%	0%	High	86	7.12	35.54
+list of internet providers in my area	USD	500	0%	-90%	High	90	4.02	20.46
+fiber availability by address	USD	500	0%	0%	High	82	2.58	14.00
+isp availability	USD	500	0%	0%	High	72	2.73	19.01
+internet pricing in my area	USD	500	0%	0%	High	83	4.27	18.05
+other internet services in my area	USD	500	0%	0%	High	86	6.11	21.98
+internet providers for my home	USD	500	0%	0%	High	86	6.15	32.43
+best internet connection	USD	500	0%	0%	High	79	4.68	17.61
+top internet providers near me	USD	500	-90%	-90%	High	79	5.59	34.25
+internet options for my home	USD	500	0%	0%	High	77	4.45	25.00
+internet providers in my zip code	USD	500	0%	0%	High	71	4.20	26.51
+high speed internet options in my area	USD	500	0%	-90%	High	94	4.34	20.46
+internet providers near	USD	500	0%	0%	High	86	8.43	33.54
+fiber internet options for my address	USD	500	0%	900%	High	87	4.03	22.70
+cheapest wifi provider near me	USD	500	0%	0%	Medium	66	7.00	30.67
+cheapest high speed internet near me	USD	500	0%	0%	High	88	6.29	23.26
+wifi service available in my area	USD	500	0%	0%	High	94	8.75	33.96
+cable wifi near me	USD	500	0%	0%	High	71	9.36	42.05
+internet providers near my location	USD	500	-90%	-90%	High	80	6.44	26.49
+internet provider options by address	USD	500	0%	0%	High	85	3.73	23.43
+internet coverage map by zip code	USD	500	0%	0%	High	80	2.39	12.75
+internet comparison in my area	USD	500	0%	0%	High	93	4.57	26.90
+internet choices	USD	500	0%	0%	High	74	4.14	16.67
+internet services available to me	USD	500	0%	-90%	High	90	4.25	21.58
+wifi companies that service my area	USD	500	0%	900%	High	91	9.12	40.00
+check internet providers at address	USD	500	0%	0%	High	84	4.25	22.08
+wifi today near me	USD	500	-90%	0%	High	94	16.69	67.90
+internet companies for my address	USD	500	0%	900%	High	93	7.27	29.58
+best internet provider at my address	USD	500	0%	0%	High	89	5.49	28.21
+choose internet provider	USD	500	0%	-90%	High	72	4.03	29.04
+isp around me	USD	500	0%	0%	High	87	7.35	27.09
+best wifi providers near me	USD	500	0%	-90%	High	85	7.00	34.21
+wifi services available at my address	USD	500	-90%	0%	High	82	8.62	32.58
+wifi networks in my area	USD	500	0%	0%	High	85	5.91	27.17
+internet in my zip code	USD	500	0%	-90%	High	77	4.26	26.49
+business internet service providers in my area	USD	500	-90%	-90%	High	85	34.78	112.64
+find internet providers near me	USD	500	-90%	-90%	High	81	5.80	32.81
+internet providers in	USD	500	-90%	-90%	High	78	7.84	27.00
+internet companies that service my address	USD	500	0%	0%	High	95	7.71	30.08
+internet providers by zip	USD	500	0%	-90%	Medium	60	2.38	21.44
+local internet services in my area	USD	500	0%	0%	High	88	6.23	26.49
+check for internet providers by address	USD	500	0%	0%	High	86	4.47	25.59
+broadband internet providers near me	USD	500	0%	0%	Medium	65	4.16	20.46
+good wifi companies near me	USD	500	0%	0%	High	86	7.12	35.54
+high speed internet companies	USD	500	0%	-90%	Medium	50	5.67	21.81
+compare internet speeds	USD	500	0%	0%	Low	32	1.58	16.10
+internet providers available to me	USD	500	0%	-90%	High	90	4.25	21.58
+internet by zip	USD	500	0%	0%	High	76	2.23	16.58
+all wifi providers	USD	500	900%	0%	High	73	5.89	22.71
+home internet providers by zip code	USD	500	0%	-90%	High	85	4.71	17.38
+wifi availability near me	USD	500	0%	0%	High	84	7.29	33.53
+compare internet in my area	USD	500	0%	0%	High	93	4.57	26.90
+compare isp in my area	USD	500	0%	0%	High	69	3.67	20.51
+internet available at my home	USD	500	0%	-90%	High	84	5.21	24.66
+high speed internet options for my address	USD	500	0%	900%	High	77	4.37	22.90
+isp check	USD	500	0%	0%	Low	29	1.89	15.71
+no internet providers in my area	USD	500	0%	-90%	Medium	66	2.45	16.53
+best isp for my address	USD	500	0%	0%	High	91	4.71	29.43
+check what internet providers are in my area	USD	500	0%	0%	High	86	4.68	23.72
+fast internet at my address	USD	500	0%	0%	High	86	4.31	24.00
+internet connections near me	USD	500	0%	0%	High	89	5.45	26.49
+internet locator	USD	500	0%	0%	Low	24	4.41	21.61
+high speed internet my address	USD	500	0%	0%	High	90	4.93	20.66
+isp options in my area	USD	500	0%	0%	High	82	4.20	21.79
+find my isp	USD	500	0%	0%	Medium	36	2.05	23.55
+service provider near me	USD	500	0%	0%	Medium	61	6.80	28.05
+wireless isp near me	USD	500	0%	0%	High	91	5.31	20.36
+best home wifi providers	USD	500	0%	0%	High	86	6.39	31.44
+best internet options for my address	USD	500	0%	900%	High	88	5.43	27.46
+check internet access by address	USD	500	0%	0%	High	80	4.05	20.46
+fastest speed internet in my area	USD	500	0%	-90%	High	76	3.79	18.54
+find isp in my area	USD	500	0%	0%	High	76	4.54	27.00
+best wifi service for my area	USD	500	0%	0%	High	94	5.86	33.41
+best internet price in my area	USD	500	-90%	-90%	High	90	4.14	21.62
+network providers near me	USD	500	0%	0%	Medium	48	4.00	25.65
+all internet companies	USD	500	0%	0%	Medium	63	5.96	22.99
+local wifi companies	USD	500	0%	0%	High	79	7.79	27.83
+high speed internet companies near me	USD	500	0%	0%	High	85	5.96	22.54
+internet providers at my home	USD	500	0%	0%	High	86	6.15	32.43
+washington internet providers	USD	500	0%	0%	High	77	5.50	28.63
+wifi at my home	USD	500	0%	0%	High	98	10.13	48.15
+top rated internet providers near me	USD	500	0%	0%	Low	28	4.87	27.98
+home internet checker	USD	500	0%	0%	Medium	51	0.86	21.35
+best internet at my location	USD	500	0%	0%	High	86	5.01	26.49
+locate internet providers by address	USD	500	0%	0%	High	82	3.41	22.83
+check isp in my area	USD	500	0%	0%	High	86	4.68	23.72
+broadband available	USD	500	0%	0%	Medium	64	2.03	15.00
+cable wifi providers near me	USD	500	0%	0%	High	82	5.56	24.44
+local wifi providers near me	USD	500	0%	0%	High	76	7.07	30.12
+internet provider options in my area	USD	500	0%	0%	High	82	4.20	21.79
+search internet by address	USD	500	-90%	-90%	High	82	3.57	18.32
+good internet company	USD	500	0%	-90%	High	73	6.00	27.40
+check address internet availability	USD	500	0%	0%	High	80	4.05	20.46
+find broadband providers by address	USD	500	0%	0%	High	82	3.41	22.83
+options for high speed internet	USD	500	-90%	0%	Low	22	3.57	15.95
+best internet plan near me	USD	500	0%	-90%	High	93	4.10	20.46
+i need an internet provider	USD	500	0%	0%	High	92	12.53	50.47
+broadband internet options	USD	500	0%	-90%	Medium	45	2.61	16.67
+isp in area	USD	500	0%	0%	High	82	4.64	26.49
+cable and wifi providers near me	USD	500	0%	0%	High	82	5.56	24.44
+fastest high speed internet in my area	USD	500	0%	-90%	High	76	3.79	18.54
+fastest internet connection in my area	USD	500	0%	-90%	High	76	3.79	18.54
+cheapest internet company near me	USD	500	-90%	-90%	High	93	5.41	24.83
+list internet providers in my area	USD	500	0%	-90%	High	90	4.02	20.46
+good high speed internet providers	USD	500	0%	0%	Medium	55	4.21	21.73
+internet i can get	USD	500	0%	-90%	High	67	5.41	27.00
+internet serviceability check	USD	500	0%	-90%	High	79	3.32	22.40
+all internet services in my area	USD	500	0%	0%	High	84	4.27	25.31
+broadbandnow internet	USD	500	900%	9900%	Low	4	2.87	14.55
+isp for my house	USD	500	0%	0%	High	86	6.15	32.43
+comparing internet plans	USD	500	0%	0%	Medium	49	3.45	22.81
+isp at my location	USD	500	0%	0%	High	90	5.93	26.92
+isp available to me	USD	500	0%	-90%	High	90	4.25	21.58
+isp for my location	USD	500	0%	0%	High	90	5.93	26.92
+other isp in my area	USD	500	0%	0%	High	86	6.11	21.98
+internet for zip code	USD	500	0%	0%	High	76	2.23	16.58
+find the internet	USD	500	0%	0%	Medium	60	4.10	28.54
+all isp in my area	USD	500	0%	0%	High	84	4.27	25.31
+best high speed internet for my area	USD	500	0%	0%	High	84	4.17	23.74
+find isp providers in my area	USD	500	0%	0%	High	76	4.54	27.00
+find isp near me	USD	500	-90%	-90%	High	81	5.80	32.81
+internet availability at my house	USD	500	0%	-90%	High	84	5.21	24.66
+internet speed providers	USD	500	-90%	0%	Low	25	2.06	14.86
+top isp providers	USD	500	0%	0%	Medium	58	4.25	20.00
+cable internet by address	USD	500	0%	0%	Low	24	3.66	15.00
+price comparison for internet providers	USD	500	-90%	-90%	High	72	3.23	15.68
+check internet available at address	USD	500	0%	0%	High	80	4.05	20.46
+broadband internet search	USD	500	0%	0%	Medium	67	2.28	13.51
+internet deal in my area	USD	500	0%	0%	High	87	6.95	26.49
+internet place near me	USD	500	0%	0%	Low	26	10.06	29.04
+internet wifi options	USD	500	0%	0%	High	100	5.63	21.65
+isp near	USD	500	0%	0%	High	86	8.43	33.54
+best internet provider us	USD	500	0%	0%	Medium	58	2.10	14.00
+broadband internet finder	USD	500	-90%	-90%	High	72	2.83	18.17
+find my service provider	USD	500	0%	0%	High	83	4.39	27.43
+ips providers	USD	500	-90%	-90%	Medium	33	4.81	16.65
+internet carrier options	USD	500	-90%	-90%	High	85	5.46	25.00
+look up internet	USD	500	0%	900%	Low	5	3.89	22.05
+best home wifi companies	USD	500	0%	0%	High	86	6.39	31.44
+broadband isp	USD	500	0%	-90%	Low	10	2.05	14.20
+isp provider search	USD	500	0%	0%	High	78	3.33	22.26
+isp by location	USD	500	0%	0%	Low	8	1.51	8.15
+find my provider internet	USD	500	0%	0%	High	83	4.39	27.43
+find isp for address	USD	500	0%	0%	High	82	3.41	22.83
+find best isp in my area	USD	500	0%	0%	High	82	6.00	39.47
+isp in the area	USD	500	0%	0%	High	82	4.64	26.49
+internet companies list	USD	500	0%	-90%	Medium	52	5.55	20.03
+isp in my zip code	USD	500	0%	0%	High	71	4.20	26.51
+best network providers in my area	USD	500	-90%	0%	High	83	4.78	20.75
+broadband in usa	USD	500	900%	0%	Low	7	1.76	11.51
+provider check internet	USD	500	0%	-90%	High	79	3.32	22.40
+all isps	USD	500	0%	0%	Medium	63	5.96	22.99
+lookup isp by address	USD	500	0%	0%	Medium	59	1.93	14.86
+isp check by address	USD	500	0%	0%	High	84	4.25	22.08
+wifi address search	USD	500	0%	-90%	Low	7	1.80	17.74
+isp provider list	USD	500	0%	-90%	Medium	50	2.75	20.00
+address internet lookup	USD	500	-90%	-90%	High	82	3.57	18.32
+broadband availability checker	USD	500	0%	0%	Medium	63	2.41	16.20
+broadband finder	USD	500	-90%	-90%	High	72	2.83	18.17
+check internet in my area	USD	500	0%	-90%	High	73	3.44	23.19
+fiber at my address	USD	500	0%	0%	High	86	3.85	16.23
+wifi coverage in my area	USD	500	0%	0%	High	82	5.55	24.43
+broadband available in my area	USD	500	0%	-90%	High	74	3.43	20.46
+broadband check	USD	500	0%	-90%	Medium	43	1.59	8.90
+internet availability map	USD	500	0%	0%	High	75	2.27	12.75
+find broadband	USD	500	0%	0%	Medium	67	2.28	13.51
+broadband search	USD	500	0%	0%	Medium	67	2.28	13.51
+internet now	USD	500	0%	0%	High	76	4.72	19.50
+isp now	USD	500	0%	0%	Medium	49	3.06	12.75
+internet eligibility	USD	500	0%	0%	High	67	3.75	17.96
+wifi in the us	USD	500	0%	0%	Medium	56	3.23	13.56
+find wifi near me	USD	500	0%	-90%	High	82	5.26	29.38
+fiber internet address check	USD	500	0%	0%	High	85	3.39	14.84
+all internets	USD	500	900%	900%	Low	20	3.64	18.32
+fiber internet by address	USD	500	0%	0%	High	87	3.07	16.87
+fiber internet availability by address	USD	500	0%	900%	High	67	3.39	15.26
+wifi nearby	USD	500	0%	0%	High	72	7.79	38.26
+find internet availability by address	USD	500	0%	0%	High	82	3.41	22.83
+check my internet provider	USD	500	0%	0%	Low	24	3.01	17.30
+broadband internet availability	USD	500	0%	0%	Medium	64	2.03	15.00
+broadband availability map	USD	500	0%	0%	Medium	35	1.57	10.66
+check my area for internet	USD	500	0%	-90%	High	73	3.44	23.19
+cable and internet providers by address	USD	500	0%	0%	Low	24	3.66	15.00
+broadband net	USD	500	0%	0%	Low	22	2.91	16.50
+fiber address checker	USD	500	0%	900%	High	75	2.61	14.89
+broadbandsearch	USD	500	0%	0%	Medium	49	1.66	10.50
+broadband usa	USD	500	900%	0%	Low	7	1.76	11.51
+find broadband providers in my area	USD	500	0%	0%	High	76	4.54	27.00
+broadband internet checker	USD	500	0%	-90%	Medium	43	1.59	8.90
+broadband com	USD	500	0%	-90%	Medium	53	1.78	13.55
+broadbandnow com	USD	500	0%	0%	Medium	51	2.97	20.00
+inmyarea com	USD	500	0%	0%	High	77	2.19	18.91
+internet availability by zip	USD	500	0%	-90%	Medium	60	2.38	21.44

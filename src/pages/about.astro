@@ -1,0 +1,66 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { MAIN_PHONE } from '@lib/providers';
+import { generateBreadcrumbSchema } from '@lib/utils';
+---
+<Base
+  title="About Internet 4 ALL — Our Mission to Connect America"
+  description="Internet 4 ALL helps Americans find and compare internet providers. Free, unbiased, and backed by real data. Learn about our mission and team."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'About Us', url: 'https://internet4all.com/about' }])]}
+>
+  <section class="section" style="padding-top:var(--space-xl);">
+    <div class="container" style="max-width:740px;">
+      <Breadcrumb items={[{ name: 'About Us' }]} />
+      <h1 class="reveal">About <span class="gradient-text">Internet 4 ALL</span></h1>
+
+      <div class="card reveal" style="padding:var(--space-xl);margin:var(--space-xl) 0;">
+        <h2 style="font-size:var(--text-xl);margin-bottom:var(--space-md);">Our Mission</h2>
+        <p style="font-size:var(--text-lg);line-height:1.8;">Everyone deserves fast, affordable internet. We exist to help Americans navigate the confusing world of internet providers — for free. No hidden agendas, no mystery fees, just honest information and real human help.</p>
+      </div>
+
+      <div class="reveal" style="margin-bottom:var(--space-xl);">
+        <h2 style="margin-bottom:var(--space-lg);">What We Do</h2>
+        <div class="grid grid-1" style="gap:var(--space-md);">
+          {[
+            { icon: '🔍', title: 'Compare Providers', desc: 'We track pricing, speeds, and availability data from every major internet provider so you can compare them in one place.' },
+            { icon: '📞', title: 'Free Expert Help', desc: 'Call us and speak to a real person. We\'ll help you understand your options, choose the right plan, and get connected.' },
+            { icon: '⚖️', title: 'Unbiased Recommendations', desc: 'We show you all available options — not just our partners. Our ratings are based on data, not advertising dollars.' },
+            { icon: '🛠️', title: 'Free Tools', desc: 'Speed tests, bill analyzers, internet quizzes — all free, no signup required. Built to help you make smarter decisions.' },
+          ].map(item => (
+            <div class="card flex items-center" style="gap:var(--space-lg);">
+              <span style="font-size:1.8rem;min-width:40px;">{item.icon}</span>
+              <div>
+                <h4 style="margin-bottom:var(--space-xs);">{item.title}</h4>
+                <p style="font-size:var(--text-sm);">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="card gradient-border reveal" style="padding:var(--space-xl);text-align:center;">
+        <h3 style="margin-bottom:var(--space-sm);">How We Make Money</h3>
+        <p style="font-size:var(--text-sm);max-width:500px;margin:0 auto;">We earn commissions when you sign up with one of our partner providers through our site or phone lines. This keeps everything free for you. We always disclose which providers are partners and never let partnerships influence our rankings or recommendations.</p>
+      </div>
+
+      <div class="reveal" style="margin-top:var(--space-xl);">
+        <h2 style="margin-bottom:var(--space-lg);">By the Numbers</h2>
+        <div class="stats-bar">
+          <div><div class="stat-value">15+</div><div class="stat-label">Providers Tracked</div></div>
+          <div><div class="stat-value">50</div><div class="stat-label">States Covered</div></div>
+          <div><div class="stat-value">500K+</div><div class="stat-label">People Helped</div></div>
+          <div><div class="stat-value">100%</div><div class="stat-label">Free</div></div>
+        </div>
+      </div>
+
+      <div class="text-center reveal" style="margin-top:var(--space-2xl);">
+        <h3>Questions?</h3>
+        <p style="margin:var(--space-sm) 0 var(--space-md);">We'd love to hear from you.</p>
+        <a href={`tel:${MAIN_PHONE.replace(/[^0-9]/g, '')}`} class="btn btn-call">📞 {MAIN_PHONE}</a>
+      </div>
+    </div>
+  </section>
+  <StickyCallBar />
+</Base>

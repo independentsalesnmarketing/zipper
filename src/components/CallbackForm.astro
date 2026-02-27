@@ -1,0 +1,60 @@
+---
+import { MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel } from '@lib/utils';
+
+interface Props {
+  providerName?: string;
+  phone?: string;
+}
+const { providerName, phone = MAIN_PHONE } = Astro.props;
+---
+<div class="callback-form">
+  <h3>
+    {providerName
+      ? `Get ${providerName} — Call Now`
+      : 'Speak to an Internet Expert'}
+  </h3>
+  <p>Our specialists can help you find the perfect plan in under 5 minutes. No pressure, no waiting.</p>
+
+  <div style="display: flex; flex-direction: column; gap: var(--space-md); align-items: center; text-align: center;">
+    <a href={formatPhoneForTel(phone)} class="btn btn-call btn-lg">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      {phone}
+    </a>
+    <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin: 0;">
+      Mon-Fri 8AM-10PM EST · Sat-Sun 9AM-8PM EST
+    </p>
+  </div>
+
+  <hr class="divider" style="margin-block: var(--space-xl);" />
+
+  <p style="font-size: var(--text-sm); color: var(--text-tertiary); margin-bottom: var(--space-md); text-align: center;">
+    Or request a callback at your preferred time
+  </p>
+
+  <form class="flex flex-col gap-md" action="#" method="POST" data-form="callback">
+    <div class="grid grid-2 gap-md">
+      <div class="form-group">
+        <label class="form-label" for="cb-name">Your Name</label>
+        <input class="form-input" type="text" id="cb-name" name="name" required placeholder="John Smith" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="cb-phone">Phone Number</label>
+        <input class="form-input" type="tel" id="cb-phone" name="phone" required placeholder="(555) 123-4567" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="cb-zip">ZIP Code</label>
+      <input class="form-input" type="text" id="cb-zip" name="zip" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required placeholder="10001" />
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="cb-time">Best Time to Call</label>
+      <select class="form-select" id="cb-time" name="preferred_time">
+        <option value="morning">Morning (8AM-12PM)</option>
+        <option value="afternoon" selected>Afternoon (12PM-5PM)</option>
+        <option value="evening">Evening (5PM-8PM)</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg w-full">Request Callback</button>
+  </form>
+</div>

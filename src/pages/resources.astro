@@ -1,0 +1,80 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import SearchBar from '@components/SearchBar.astro';
+import { generateBreadcrumbSchema } from '@lib/utils';
+
+const guides = [
+  { title: 'How to Choose the Right Internet Provider', desc: 'Everything to consider — speed, price, technology, contracts, and data caps.', icon: '📋', href: '/resources' },
+  { title: 'Fiber vs Cable vs DSL vs 5G: What\'s the Difference?', desc: 'Understand the pros and cons of each internet technology type.', icon: '🔌', href: '/resources' },
+  { title: 'How Much Internet Speed Do I Need?', desc: 'Calculate your ideal speed based on your household size and usage habits.', icon: '⚡', href: '/resources' },
+  { title: 'How to Lower Your Internet Bill', desc: 'Proven strategies to negotiate a better rate or switch to save money.', icon: '💰', href: '/deals' },
+  { title: 'The Ultimate Guide to Moving Your Internet', desc: 'Step-by-step: transfer, cancel, or set up new internet when you move.', icon: '🏠', href: '/movers' },
+  { title: 'How to Switch Internet Providers Without Downtime', desc: 'Seamless switching — overlapping service, equipment returns, and more.', icon: '🔄', href: '/switch' },
+  { title: 'Internet for Rural Areas: Your Best Options', desc: 'Satellite, fixed wireless, and new 5G options for underserved areas.', icon: '🌾', href: '/resources' },
+  { title: 'Work From Home Internet Requirements', desc: 'What speed and features you need for reliable remote work.', icon: '💻', href: '/resources' },
+  { title: 'Gaming Internet: What You Actually Need', desc: 'Ping, jitter, and speed requirements for competitive and casual gaming.', icon: '🎮', href: '/resources' },
+];
+
+const tools = [
+  { title: 'Speed Test', desc: 'Check your actual download and upload speeds.', icon: '📊', href: '/speed-test' },
+  { title: 'Internet Quiz', desc: 'Answer 5 questions and get a personalized recommendation.', icon: '❓', href: '/quiz' },
+  { title: 'Bill Analyzer', desc: 'Upload your bill — we\'ll find you a better deal.', icon: '🧾', href: '/bill-analyzer' },
+  { title: 'Provider Compare', desc: 'Compare providers side-by-side.', icon: '⚖️', href: '/compare' },
+];
+---
+<Base
+  title="Internet Resources & Guides — How to Choose, Save, and Get Connected"
+  description="Expert guides on choosing internet providers, understanding speeds, lowering your bill, and getting connected. Free tools and resources."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Resources', url: 'https://internet4all.com/resources' }])]}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Resources' }]} />
+
+      <div class="text-center reveal">
+        <h1>Internet <span class="gradient-text">Resources</span> & Guides</h1>
+        <p class="hero-subtitle" style="max-width:550px;margin-inline:auto;">Everything you need to make smart decisions about your internet service.</p>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="flex justify-center reveal" style="margin-top: var(--space-xl); margin-bottom: var(--space-3xl);">
+        <SearchBar placeholder="Enter your ZIP to get started" />
+      </div>
+
+      <!-- Free Tools -->
+      <div class="reveal" style="margin-bottom:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-xl);">Free Tools</h2>
+        <div class="grid grid-4">
+          {tools.map((tool, i) => (
+            <a href={tool.href} class={`card text-center reveal reveal-delay-${i + 1}`} style="cursor:pointer;">
+              <div style="font-size:2rem;margin-bottom:var(--space-sm);">{tool.icon}</div>
+              <h4 style="font-size:var(--text-base);">{tool.title}</h4>
+              <p style="font-size:var(--text-sm);margin-top:var(--space-xs);">{tool.desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Guides -->
+      <div class="reveal">
+        <h2 style="margin-bottom:var(--space-xl);">Guides & Articles</h2>
+        <div class="grid grid-3">
+          {guides.map((guide, i) => (
+            <a href={guide.href} class={`card reveal`} style={`cursor:pointer;transition-delay:${Math.min(i * 70, 400)}ms;`}>
+              <div style="font-size:1.8rem;margin-bottom:var(--space-md);">{guide.icon}</div>
+              <h4 style="font-size:var(--text-lg);">{guide.title}</h4>
+              <p style="font-size:var(--text-sm);margin-top:var(--space-sm);">{guide.desc}</p>
+              <span style="display:inline-flex;align-items:center;gap:0.3em;margin-top:var(--space-md);font-size:var(--text-sm);color:var(--brand-blue-light);">
+                Read More →
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar />
+</Base>

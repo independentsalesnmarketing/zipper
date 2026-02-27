@@ -1,0 +1,57 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import { generateBreadcrumbSchema } from '@lib/utils';
+---
+<Base
+  title="Terms of Service — Internet 4 ALL"
+  description="Terms and conditions governing the use of Internet 4 ALL website and services."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Terms of Service', url: 'https://internet4all.com/terms' }])]}
+>
+  <section class="section" style="padding-top:var(--space-xl);">
+    <div class="container" style="max-width:740px;">
+      <Breadcrumb items={[{ name: 'Terms of Service' }]} />
+      <h1 class="reveal">Terms of <span class="gradient-text">Service</span></h1>
+      <p class="reveal" style="color:var(--text-muted);margin-top:var(--space-sm);">Last updated: January 2025</p>
+
+      <div class="reveal" style="margin-top:var(--space-xl);font-size:var(--text-sm);line-height:1.9;">
+        <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Acceptance of Terms</h2>
+        <p>By accessing and using Internet 4 ALL ("the Site"), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our site.</p>
+
+        <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Services Description</h2>
+        <p>Internet 4 ALL provides internet provider comparison tools, educational resources, and referral services to help consumers find internet service. Our services are provided free of charge to consumers. We earn commissions from partner internet providers when consumers sign up for service through our referral channels.</p>
+
+        <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Accuracy of Information</h2>
+        <p>We strive to keep all pricing, speed, and availability information current and accurate. However, internet provider plans change frequently. Information on our site is for general comparison purposes and may not reflect real-time pricing or availability at your specific address. Always confirm exact pricing and plan details with the provider before committing.</p>
+
+        <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Affiliate Disclosure</h2>
+        <p>Internet 4 ALL participates in affiliate/referral programs with internet service providers. When you sign up for service through our phone lines or referral links, we may earn a commission. This does not increase the cost to you. Our editorial ratings and rankings are independent of partnership status.</p>
+
+        <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">User Conduct</h2>
+        <p>You agree not to:</p>
+        <ul style="list-style:disc;padding-left:var(--space-lg);">
+          <li>Use the site for any unlawful purpose</li>
+          <li>Attempt to interfere with the proper functioning of the site</li>
+          <li>Scrape, crawl, or extract data from the site without permission</li>
+          <li>Submit false or misleading information through our forms</li>
+          <li>Impersonate any person or entity</li>
+        </ul>
+
+        <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Intellectual Property</h2>
+        <p>All content on Internet 4 ALL, including text, graphics, logos, tools, and software, is the property of Internet 4 ALL or its licensors and is protected by copyright and other intellectual property laws. You may not reproduce, distribute, or create derivative works without written permission.</p>
+
+        <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Third-Party Services</h2>
+        <p>Our site connects you with third-party internet service providers. Your relationship with those providers is governed by their own terms and conditions. Internet 4 ALL is not responsible for the services, pricing, or customer experience provided by any internet service provider.</p>
+
+        <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Limitation of Liability</h2>
+        <p>Internet 4 ALL provides information and referral services on an "as is" basis. We make no warranties, expressed or implied, regarding the accuracy, completeness, or suitability of any information on the site. In no event shall Internet 4 ALL be liable for any indirect, incidental, special, or consequential damages arising from your use of the site.</p>
+
+        <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Changes to Terms</h2>
+        <p>We reserve the right to modify these terms at any time. Changes will be effective upon posting to the site. Continued use of the site constitutes acceptance of modified terms.</p>
+
+        <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Contact</h2>
+        <p>For questions about these terms, please visit our <a href="/contact" style="color:var(--brand-blue-light);">Contact page</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>

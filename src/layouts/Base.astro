@@ -1,0 +1,118 @@
+---
+import '@styles/global.css';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import { generateWebsiteSchema } from '@lib/utils';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  schema?: Record<string, any> | Record<string, any>[];
+}
+
+const {
+  title,
+  description = 'Find the best internet providers in your area. Compare plans, prices, and speeds from top providers. Call now for exclusive deals.',
+  canonical,
+  ogImage = '/og-default.png',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const siteName = 'Internet 4 ALL';
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site).toString();
+const schemas = schema
+  ? (Array.isArray(schema) ? schema : [schema])
+  : [generateWebsiteSchema()];
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{fullTitle}</title>
+
+  <link rel="canonical" href={canonicalUrl} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+
+  <!-- Preload fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- JSON-LD Schema -->
+  {schemas.map(s => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))}
+</head>
+<body>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+
+  <!-- Scroll reveal observer -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+  <!-- Sticky CTA bar logic -->
+  <script>
+    const stickyCta = document.querySelector('.sticky-cta');
+    if (stickyCta) {
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const current = window.scrollY;
+        if (current > 400) {
+          stickyCta.classList.add('visible');
+        } else {
+          stickyCta.classList.remove('visible');
+        }
+        lastScroll = current;
+      }, { passive: true });
+    }
+  </script>
+
+  <!-- FAQ accordion -->
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        if (item) item.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>

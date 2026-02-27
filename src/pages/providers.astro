@@ -1,0 +1,635 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import SearchBar from '@components/SearchBar.astro';
+import ProviderCard from '@components/ProviderCard.astro';
+import CallbackForm from '@components/CallbackForm.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed } from '@lib/providers';
+import { generateBreadcrumbSchema } from '@lib/utils';
+
+const allProviders = getAllProviders();
+const breadcrumbs = [{ name: 'Providers', url: '/providers' }];
+// Pass serializable provider data to client script for API matching
+const providerDataForClient = allProviders.map(p => ({
+  id: p.id, name: p.name, slug: p.slug, types: p.types, rating: p.rating,
+  reviewCount: p.reviewCount, isPartner: p.isPartner, phone: p.phone,
+  logo: p.logo, coverage: p.coverage,
+  maxSpeed: getMaxSpeed(p), minPrice: getMinPrice(p),
+  plans: p.plans.map(pl => ({ speed: pl.speed, uploadSpeed: pl.uploadSpeed, price: pl.price, promoPrice: pl.promoPrice })),
+}));
+
+// State → provider mapping for local fallback
+import { stateProviders } from '@lib/providers';
+const stateProvidersForClient = stateProviders;
+
+// ZIP3 prefix → state mapping for local fallback
+const zip3ToState = {
+  '010':'MA','011':'MA','012':'MA','013':'MA','014':'MA','015':'MA','016':'MA','017':'MA','018':'MA','019':'MA',
+  '020':'MA','021':'MA','022':'MA','023':'MA','024':'MA','025':'MA','026':'MA','027':'MA',
+  '028':'RI','029':'RI',
+  '030':'NH','031':'NH','032':'NH','033':'NH','034':'NH','035':'NH','036':'NH','037':'NH','038':'NH',
+  '039':'ME','040':'ME','041':'ME','042':'ME','043':'ME','044':'ME','045':'ME','046':'ME','047':'ME','048':'ME','049':'ME',
+  '050':'VT','051':'VT','052':'VT','053':'VT','054':'VT','055':'VT','056':'VT','057':'VT','058':'VT','059':'VT',
+  '060':'CT','061':'CT','062':'CT','063':'CT','064':'CT','065':'CT','066':'CT','067':'CT','068':'CT','069':'CT',
+  '070':'NJ','071':'NJ','072':'NJ','073':'NJ','074':'NJ','075':'NJ','076':'NJ','077':'NJ','078':'NJ','079':'NJ','080':'NJ','081':'NJ','082':'NJ','083':'NJ','084':'NJ','085':'NJ','086':'NJ','087':'NJ','088':'NJ','089':'NJ',
+  '100':'NY','101':'NY','102':'NY','103':'NY','104':'NY','105':'NY','106':'NY','107':'NY','108':'NY','109':'NY','110':'NY','111':'NY','112':'NY','113':'NY','114':'NY','115':'NY','116':'NY','117':'NY','118':'NY','119':'NY','120':'NY','121':'NY','122':'NY','123':'NY','124':'NY','125':'NY','126':'NY','127':'NY','128':'NY','129':'NY','130':'NY','131':'NY','132':'NY','133':'NY','134':'NY','135':'NY','136':'NY','137':'NY','138':'NY','139':'NY','140':'NY','141':'NY','142':'NY','143':'NY','144':'NY','145':'NY','146':'NY','147':'NY','148':'NY','149':'NY',
+  '150':'PA','151':'PA','152':'PA','153':'PA','154':'PA','155':'PA','156':'PA','157':'PA','158':'PA','159':'PA','160':'PA','161':'PA','162':'PA','163':'PA','164':'PA','165':'PA','166':'PA','167':'PA','168':'PA','169':'PA','170':'PA','171':'PA','172':'PA','173':'PA','174':'PA','175':'PA','176':'PA','177':'PA','178':'PA','179':'PA','180':'PA','181':'PA','182':'PA','183':'PA','184':'PA','185':'PA','186':'PA','187':'PA','188':'PA','189':'PA','190':'PA','191':'PA','192':'PA','193':'PA','194':'PA','195':'PA','196':'PA',
+  '197':'DE','198':'DE','199':'DE',
+  '200':'DC','201':'VA','202':'DC','203':'DC','204':'DC','205':'DC',
+  '206':'MD','207':'MD','208':'MD','209':'MD','210':'MD','211':'MD','212':'MD','214':'MD','215':'MD','216':'MD','217':'MD','218':'MD','219':'MD',
+  '220':'VA','221':'VA','222':'VA','223':'VA','224':'VA','225':'VA','226':'VA','227':'VA','228':'VA','229':'VA','230':'VA','231':'VA','232':'VA','233':'VA','234':'VA','235':'VA','236':'VA','237':'VA','238':'VA','239':'VA','240':'VA','241':'VA','242':'VA','243':'VA','244':'VA','245':'VA','246':'WV',
+  '247':'WV','248':'WV','249':'WV','250':'WV','251':'WV','252':'WV','253':'WV','254':'WV','255':'WV','256':'WV','257':'WV','258':'WV','259':'WV','260':'WV','261':'WV','262':'WV','263':'WV','264':'WV','265':'WV','266':'WV','267':'WV','268':'WV',
+  '270':'NC','271':'NC','272':'NC','273':'NC','274':'NC','275':'NC','276':'NC','277':'NC','278':'NC','279':'NC','280':'NC','281':'NC','282':'NC','283':'NC','284':'NC','285':'NC','286':'NC','287':'NC','288':'NC','289':'NC',
+  '290':'SC','291':'SC','292':'SC','293':'SC','294':'SC','295':'SC','296':'SC','297':'SC','298':'SC','299':'SC',
+  '300':'GA','301':'GA','302':'GA','303':'GA','304':'GA','305':'GA','306':'GA','307':'GA','308':'GA','309':'GA','310':'GA','311':'GA','312':'GA','313':'GA','314':'GA','315':'GA','316':'GA','317':'GA','318':'GA','319':'GA',
+  '320':'FL','321':'FL','322':'FL','323':'FL','324':'FL','325':'FL','326':'FL','327':'FL','328':'FL','329':'FL','330':'FL','331':'FL','332':'FL','333':'FL','334':'FL','335':'FL','336':'FL','337':'FL','338':'FL','339':'FL',
+  '350':'AL','351':'AL','352':'AL','354':'AL','355':'AL','356':'AL','357':'AL','358':'AL','359':'AL','360':'AL','361':'AL','362':'AL','363':'AL','364':'AL','365':'AL','366':'AL','367':'AL','368':'AL','369':'AL',
+  '370':'TN','371':'TN','372':'TN','373':'TN','374':'TN','375':'TN','376':'TN','377':'TN','378':'TN','379':'TN','380':'TN','381':'TN','382':'TN','383':'TN','384':'TN','385':'TN',
+  '386':'MS','387':'MS','388':'MS','389':'MS','390':'MS','391':'MS','392':'MS','393':'MS','394':'MS','395':'MS','396':'MS','397':'MS',
+  '400':'KY','401':'KY','402':'KY','403':'KY','404':'KY','405':'KY','406':'KY','407':'KY','408':'KY','409':'KY','410':'KY','411':'KY','412':'KY','413':'KY','414':'KY','415':'KY','416':'KY','417':'KY','418':'KY',
+  '420':'KY','421':'KY','422':'KY','423':'KY','424':'KY','425':'KY','426':'KY','427':'KY',
+  '430':'OH','431':'OH','432':'OH','433':'OH','434':'OH','435':'OH','436':'OH','437':'OH','438':'OH','439':'OH','440':'OH','441':'OH','442':'OH','443':'OH','444':'OH','445':'OH','446':'OH','447':'OH','448':'OH','449':'OH','450':'OH','451':'OH','452':'OH','453':'OH','454':'OH','455':'OH','456':'OH','457':'OH','458':'OH',
+  '460':'IN','461':'IN','462':'IN','463':'IN','464':'IN','465':'IN','466':'IN','467':'IN','468':'IN','469':'IN','470':'IN','471':'IN','472':'IN','473':'IN','474':'IN','475':'IN','476':'IN','477':'IN','478':'IN','479':'IN',
+  '480':'MI','481':'MI','482':'MI','483':'MI','484':'MI','485':'MI','486':'MI','487':'MI','488':'MI','489':'MI','490':'MI','491':'MI','492':'MI','493':'MI','494':'MI','495':'MI','496':'MI','497':'MI','498':'MI','499':'MI',
+  '500':'IA','501':'IA','502':'IA','503':'IA','504':'IA','505':'IA','506':'IA','507':'IA','508':'IA','509':'IA','510':'IA','511':'IA','512':'IA','513':'IA','514':'IA','515':'IA','516':'IA','520':'IA','521':'IA','522':'IA','523':'IA','524':'IA','525':'IA','526':'IA','527':'IA','528':'IA',
+  '530':'WI','531':'WI','532':'WI','534':'WI','535':'WI','537':'WI','538':'WI','539':'WI','540':'WI','541':'WI','542':'WI','543':'WI','544':'WI','545':'WI','546':'WI','547':'WI','548':'WI','549':'WI',
+  '550':'MN','551':'MN','553':'MN','554':'MN','555':'MN','556':'MN','557':'MN','558':'MN','559':'MN','560':'MN','561':'MN','562':'MN','563':'MN','564':'MN','565':'MN','566':'MN','567':'MN',
+  '570':'SD','571':'SD','572':'SD','573':'SD','574':'SD','575':'SD','576':'SD','577':'SD',
+  '580':'ND','581':'ND','582':'ND','583':'ND','584':'ND','585':'ND','586':'ND','587':'ND','588':'ND',
+  '590':'MT','591':'MT','592':'MT','593':'MT','594':'MT','595':'MT','596':'MT','597':'MT','598':'MT','599':'MT',
+  '600':'IL','601':'IL','602':'IL','603':'IL','604':'IL','605':'IL','606':'IL','607':'IL','608':'IL','609':'IL','610':'IL','611':'IL','612':'IL','613':'IL','614':'IL','615':'IL','616':'IL','617':'IL','618':'IL','619':'IL','620':'IL','621':'IL','622':'IL','623':'IL','624':'IL','625':'IL','626':'IL','627':'IL','628':'IL','629':'IL',
+  '630':'MO','631':'MO','633':'MO','634':'MO','635':'MO','636':'MO','637':'MO','638':'MO','639':'MO','640':'MO','641':'MO','644':'MO','645':'MO','646':'MO','647':'MO','648':'MO','649':'MO','650':'MO','651':'MO','652':'MO','653':'MO','654':'MO','655':'MO','656':'MO','657':'MO','658':'MO',
+  '660':'KS','661':'KS','662':'KS','664':'KS','665':'KS','666':'KS','667':'KS','668':'KS','669':'KS','670':'KS','671':'KS','672':'KS','673':'KS','674':'KS','675':'KS','676':'KS','677':'KS','678':'KS','679':'KS',
+  '680':'NE','681':'NE','683':'NE','684':'NE','685':'NE','686':'NE','687':'NE','688':'NE','689':'NE','690':'NE','691':'NE','692':'NE','693':'NE',
+  '700':'LA','701':'LA','703':'LA','704':'LA','705':'LA','706':'LA','707':'LA','708':'LA','710':'LA','711':'LA','712':'LA','713':'LA','714':'LA',
+  '716':'AR','717':'AR','718':'AR','719':'AR','720':'AR','721':'AR','722':'AR','723':'AR','724':'AR','725':'AR','726':'AR','727':'AR','728':'AR','729':'AR',
+  '730':'OK','731':'OK','734':'OK','735':'OK','736':'OK','737':'OK','738':'OK','739':'OK','740':'OK','741':'OK','743':'OK','744':'OK','745':'OK','746':'OK','747':'OK','748':'OK','749':'OK',
+  '750':'TX','751':'TX','752':'TX','753':'TX','754':'TX','755':'TX','756':'TX','757':'TX','758':'TX','759':'TX','760':'TX','761':'TX','762':'TX','763':'TX','764':'TX','765':'TX','766':'TX','767':'TX','768':'TX','769':'TX','770':'TX','771':'TX','772':'TX','773':'TX','774':'TX','775':'TX','776':'TX','777':'TX','778':'TX','779':'TX','780':'TX','781':'TX','782':'TX','783':'TX','784':'TX','785':'TX','786':'TX','787':'TX','788':'TX','789':'TX','790':'TX','791':'TX','792':'TX','793':'TX','794':'TX','795':'TX','796':'TX','797':'TX','798':'TX','799':'TX',
+  '800':'CO','801':'CO','802':'CO','803':'CO','804':'CO','805':'CO','806':'CO','807':'CO','808':'CO','809':'CO','810':'CO','811':'CO','812':'CO','813':'CO','814':'CO','815':'CO','816':'CO',
+  '820':'WY','821':'WY','822':'WY','823':'WY','824':'WY','825':'WY','826':'WY','827':'WY','828':'WY','829':'WY','830':'WY','831':'WY',
+  '832':'ID','833':'ID','834':'ID','835':'ID','836':'ID','837':'ID','838':'ID',
+  '840':'UT','841':'UT','842':'UT','843':'UT','844':'UT','845':'UT','846':'UT','847':'UT',
+  '850':'AZ','851':'AZ','852':'AZ','853':'AZ','855':'AZ','856':'AZ','857':'AZ','859':'AZ','860':'AZ','863':'AZ','864':'AZ','865':'AZ',
+  '870':'NM','871':'NM','873':'NM','874':'NM','875':'NM','877':'NM','878':'NM','879':'NM','880':'NM','881':'NM','882':'NM','883':'NM','884':'NM',
+  '889':'NV','890':'NV','891':'NV','893':'NV','894':'NV','895':'NV','896':'NV','897':'NV','898':'NV',
+  '900':'CA','901':'CA','902':'CA','903':'CA','904':'CA','905':'CA','906':'CA','907':'CA','908':'CA','910':'CA','911':'CA','912':'CA','913':'CA','914':'CA','915':'CA','916':'CA','917':'CA','918':'CA','919':'CA','920':'CA','921':'CA','922':'CA','923':'CA','924':'CA','925':'CA','926':'CA','927':'CA','928':'CA',
+  '930':'CA','931':'CA','932':'CA','933':'CA','934':'CA','935':'CA','936':'CA','937':'CA','938':'CA','939':'CA','940':'CA','941':'CA','942':'CA','943':'CA','944':'CA','945':'CA','946':'CA','947':'CA','948':'CA','949':'CA','950':'CA','951':'CA','952':'CA','953':'CA','954':'CA','955':'CA','956':'CA','957':'CA','958':'CA','959':'CA','960':'CA','961':'CA',
+  '967':'HI','968':'HI',
+  '970':'OR','971':'OR','972':'OR','973':'OR','974':'OR','975':'OR','976':'OR','977':'OR','978':'OR','979':'OR',
+  '980':'WA','981':'WA','982':'WA','983':'WA','984':'WA','985':'WA','986':'WA','988':'WA','989':'WA','990':'WA','991':'WA','992':'WA','993':'WA','994':'WA',
+  '995':'AK','996':'AK','997':'AK','998':'AK','999':'AK'
+};
+---
+<Base
+  title="Internet Providers in Your Area — Compare Plans & Prices"
+  description="Find and compare all internet providers available at your address. See plans, speeds, prices, and ratings. Enter your ZIP code to get started."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Providers', url: 'https://internet4all.com/providers' }])]}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="text-center" style="margin-bottom: var(--space-2xl);">
+        <h1 class="reveal">Find Internet Providers <span class="light-gradient-text">in Your Area</span></h1>
+        <p class="hero-subtitle reveal" style="max-width: 550px; margin-inline:auto;">Enter your ZIP code to see every provider, plan, and price at your address.</p>
+        <div class="reveal" style="display:flex; justify-content:center; margin-top: var(--space-xl);">
+          <SearchBar size="large" placeholder="Enter your 5-digit ZIP code" />
+        </div>
+      </div>
+
+      <!-- Location banner (hidden until search) -->
+      <div id="location-banner" class="card" style="display:none; text-align:center; margin-bottom: var(--space-xl); padding: var(--space-lg);">
+        <h3 id="location-text" style="font-size: var(--text-xl);">Showing providers for <strong id="location-city" style="color: var(--brand-blue);"></strong></h3>
+        <p id="location-count" class="text-secondary text-sm mt-sm"></p>
+      </div>
+
+      <!-- Loading state -->
+      <div id="loading-state" style="display:none;">
+        <div class="flex flex-col gap-md">
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-card"></div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div id="filters-bar" class="flex items-center justify-between flex-wrap gap-md" style="margin-bottom: var(--space-lg);">
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="fiber">Fiber</button>
+          <button class="filter-btn" data-filter="cable">Cable</button>
+          <button class="filter-btn" data-filter="5g">5G</button>
+          <button class="filter-btn" data-filter="dsl">DSL</button>
+          <button class="filter-btn" data-filter="satellite">Satellite</button>
+        </div>
+        <div class="flex gap-sm items-center">
+          <span class="text-sm text-tertiary">Sort:</span>
+          <select class="sort-select" id="sort-select">
+            <option value="recommended">Recommended</option>
+            <option value="speed">Fastest Speed</option>
+            <option value="price">Lowest Price</option>
+            <option value="rating">Highest Rated</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Provider List (server-rendered, all providers) -->
+      <div id="provider-list" class="flex flex-col gap-md">
+        {allProviders.map((p, i) => (
+          <div class="provider-item reveal" data-provider-id={p.id} data-types={p.types.join(',')} data-speed={getMaxSpeed(p)} data-price={getMinPrice(p)} data-rating={p.rating} data-partner={p.isPartner ? '1' : '0'} style={`transition-delay: ${Math.min(i * 60, 400)}ms;`}>
+            <ProviderCard provider={p} rank={i + 1} />
+          </div>
+        ))}
+      </div>
+
+      <div id="no-results" class="card text-center" style="display:none; padding: var(--space-3xl);">
+        <h3>No Providers Found</h3>
+        <p style="margin-top:var(--space-sm);">No providers matched your ZIP code. Showing all available providers instead.</p>
+        <button id="show-all-btn" class="btn btn-primary" style="margin-top: var(--space-md);">Show All Providers</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container container--narrow">
+      <CallbackForm />
+    </div>
+  </section>
+
+  <StickyCallBar />
+</Base>
+
+<script define:vars={{ providerDataForClient, stateProvidersForClient, zip3ToState }}>
+  // ========================================
+  // BroadbandMap API Integration (ported)
+  // ========================================
+
+  const NAME_MAP = {
+    'charter': 'spectrum', 'charter communications': 'spectrum', 'charter communications inc': 'spectrum', 'spectrum': 'spectrum',
+    'at&t': 'att', 'att': 'att', 'at&t inc': 'att', 'at&t services': 'att', 'at&t corp': 'att', 'bellsouth': 'att', 'at&t internet': 'att', 'at&t fiber': 'att',
+    'at&t air': 'att', 'att air': 'att',
+    't-mobile fiber': 'tmobile', 'metronet': 'tmobile', 'metronet holdings': 'tmobile', 'metronet inc': 'tmobile', 'metronet communications': 'tmobile',
+    't-mobile': 'tmobile-5g', 'tmobile': 'tmobile-5g', 't-mobile usa': 'tmobile-5g', 't-mobile us': 'tmobile-5g', 't-mobile home internet': 'tmobile-5g',
+    'verizon': 'verizon', 'verizon communications': 'verizon', 'verizon fios': 'verizon', 'verizon business': 'verizon', 'mci': 'verizon',
+    'windstream': 'windstream', 'windstream holdings': 'windstream', 'windstream communications': 'windstream', 'kinetic': 'windstream', 'kinetic by windstream': 'windstream',
+    'altice': 'optimum', 'altice usa': 'optimum', 'optimum': 'optimum', 'optimum by altice': 'optimum', 'cablevision': 'optimum', 'suddenlink': 'optimum', 'suddenlink communications': 'optimum',
+    'frontier': 'frontier', 'frontier communications': 'frontier', 'frontier communications corp': 'frontier',
+    'earthlink': 'earthlink', 'earthlink inc': 'earthlink', 'earthlink llc': 'earthlink',
+    'brightspeed': 'brightspeed', 'lumen': 'brightspeed', 'lumen technologies': 'brightspeed', 'centurylink': 'brightspeed', 'centurytel': 'brightspeed',
+    'altafiber': 'altafiber', 'alta fiber': 'altafiber', 'cincinnati bell': 'altafiber', 'cincinnati bell inc': 'altafiber', 'hawaiian telcom': 'altafiber',
+    'xfinity': 'xfinity', 'comcast': 'xfinity', 'comcast cable': 'xfinity', 'comcast communications': 'xfinity', 'xfinity internet': 'xfinity',
+    'starlink': 'starlink', 'starlink services': 'starlink', 'spacex': 'starlink', 'space exploration technologies': 'starlink',
+    'viasat': 'viasat', 'viasat inc': 'viasat', 'exede': 'viasat',
+    'hughesnet': 'hughesnet', 'hughes network systems': 'hughesnet', 'hughes': 'hughesnet',
+  };
+
+  const localProviders = providerDataForClient;
+
+  function fetchWithTimeout(url, timeout) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeout);
+    return fetch(url, { signal: controller.signal }).then(r => { clearTimeout(timer); return r; }).catch(e => { clearTimeout(timer); throw e; });
+  }
+
+  async function geocodeZip(zip) {
+    try {
+      const resp = await fetchWithTimeout(`https://api.zippopotam.us/us/${zip}`, 6000);
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data.places && data.places.length > 0) {
+          return { lat: parseFloat(data.places[0].latitude), lng: parseFloat(data.places[0].longitude), city: data.places[0]['place name'] || 'Your Area', state: data.places[0]['state abbreviation'] || '' };
+        }
+      }
+    } catch (e) { console.warn('[Geo] zippopotam failed:', e.message); }
+    try {
+      const resp = await fetchWithTimeout(`https://nominatim.openstreetmap.org/search?postalcode=${zip}&country=US&format=json&limit=1`, 8000);
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data && data.length > 0) {
+          const parts = (data[0].display_name || '').split(',').map(s => s.trim());
+          return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon), city: parts[0] || 'Your Area', state: parts.length >= 2 ? parts[parts.length - 2] : '' };
+        }
+      }
+    } catch (e) { console.warn('[Geo] Nominatim failed:', e.message); }
+    return null;
+  }
+
+  function mapTechnology(tech) {
+    if (!tech) return null;
+    const t = tech.toLowerCase();
+    if (t.includes('fiber') || t === 'fttp' || t === 'ftth' || t === 'fttb') return 'fiber';
+    if (t.includes('cable') || t.includes('docsis') || t === 'hfc' || t.includes('coax')) return 'cable';
+    if (t.includes('dsl') || t.includes('adsl') || t.includes('vdsl') || t.includes('copper')) return 'dsl';
+    if (t.includes('5g') || t.includes('nr') || t.includes('fixed wireless') || t.includes('fixed_wireless') || t.includes('mmwave')) return '5g';
+    if (t.includes('satellite')) return 'satellite';
+    if (t.includes('wireless') || t.includes('lte') || t.includes('4g') || t.includes('cellular')) return '5g';
+    return null;
+  }
+
+  function normalizeApiResponse(data) {
+    const records = Array.isArray(data) ? data : (data?.results || data?.data || data?.providers || []);
+    const byProvider = new Map();
+    records.forEach(rec => {
+      const name = rec.provider || rec.provider_name || rec.name || rec.brand_name || '';
+      if (!name) return;
+      const key = name.toLowerCase().trim();
+      if (!byProvider.has(key)) byProvider.set(key, { rawName: name, technologies: [], maxDownload: 0, maxUpload: 0 });
+      const entry = byProvider.get(key);
+      const tech = (rec.technology || rec.tech || rec.technology_type || '').toLowerCase();
+      const mapped = mapTechnology(tech);
+      if (mapped && !entry.technologies.includes(mapped)) entry.technologies.push(mapped);
+      const dl = parseFloat(rec.max_download_mbps || rec.max_download_speed || rec.max_download || rec.download_speed || rec.max_advertised_download_speed || 0) || 0;
+      const ul = parseFloat(rec.max_upload_mbps || rec.max_upload_speed || rec.max_upload || rec.upload_speed || rec.max_advertised_upload_speed || 0) || 0;
+      if (dl > entry.maxDownload) entry.maxDownload = dl;
+      if (ul > entry.maxUpload) entry.maxUpload = ul;
+    });
+    return Array.from(byProvider.values()).map(e => ({
+      rawName: e.rawName, types: e.technologies.length > 0 ? e.technologies : ['cable'], maxSpeed: e.maxDownload, maxUpload: e.maxUpload
+    }));
+  }
+
+  function matchProviderName(rawName) {
+    if (!rawName) return null;
+    const lower = rawName.toLowerCase().trim();
+    if (NAME_MAP[lower]) return NAME_MAP[lower];
+    for (const [key, id] of Object.entries(NAME_MAP)) {
+      if (lower.includes(key) || key.includes(lower)) return id;
+    }
+    const match = localProviders.find(p => lower.includes(p.id) || lower.includes(p.name.toLowerCase()) || p.name.toLowerCase().includes(lower));
+    return match ? match.id : null;
+  }
+
+  function enrichAndRank(apiProviders) {
+    const matchedIds = new Set();
+    const enriched = [];
+
+    // First pass: match API providers to local database
+    apiProviders.forEach(apiP => {
+      const id = matchProviderName(apiP.rawName);
+      const local = id ? localProviders.find(p => p.id === id) : null;
+      if (local) {
+        matchedIds.add(local.id);
+        enriched.push({
+          ...local,
+          apiConfirmed: true,
+          // Use API-confirmed types — this is what's actually available at this address
+          apiTypes: apiP.types,
+          // Use API speed as the truth for this location (don't inflate with national max)
+          maxSpeed: apiP.maxSpeed || local.maxSpeed || 0,
+          apiSpeed: apiP.maxSpeed
+        });
+      } else {
+        // Non-partner provider from the API — include them for honest results
+        enriched.push({
+          id: apiP.rawName.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+          name: apiP.rawName,
+          types: apiP.types,
+          maxSpeed: apiP.maxSpeed || 0,
+          minPrice: 0,
+          rating: null,
+          isPartner: false,
+          apiConfirmed: true,
+          apiTypes: apiP.types,
+          apiSpeed: apiP.maxSpeed,
+          slug: null,
+          phone: null,
+          logo: null,
+          plans: [],
+        });
+      }
+    });
+
+    // DO NOT add nationwide providers that the API didn’t confirm.
+    // The API already returns what’s really available at this location.
+    // Adding unconfirmed nationwide providers is what made results look the same everywhere.
+
+    // Score and sort: HARD PARTITION — partners ALWAYS before non-partners
+    enriched.sort((a, b) => {
+      // Hard partition: partners always first, period
+      if (a.isPartner && !b.isPartner) return -1;
+      if (!a.isPartner && b.isPartner) return 1;
+
+      // Within the same tier (both partner or both non-partner), use scoring
+      let sa = 0, sb = 0;
+      // API-confirmed gets a boost
+      if (a.apiConfirmed) sa += 15; if (b.apiConfirmed) sb += 15;
+      // Technology scoring — use API-confirmed types
+      var aTypes = a.apiTypes || a.types;
+      var bTypes = b.apiTypes || b.types;
+      if (aTypes.includes('fiber')) sa += 15; if (bTypes.includes('fiber')) sb += 15;
+      if (aTypes.includes('5g')) sa += 10; if (bTypes.includes('5g')) sb += 10;
+      if (aTypes.includes('cable')) sa += 8; if (bTypes.includes('cable')) sb += 8;
+      // Speed scoring — use API speeds (the truth for this location)
+      const aSpeed = a.apiSpeed || a.maxSpeed || 0;
+      const bSpeed = b.apiSpeed || b.maxSpeed || 0;
+      sa += Math.min(14, Math.floor(aSpeed / 200)); sb += Math.min(14, Math.floor(bSpeed / 200));
+      // Rating
+      if (a.rating) sa += Math.floor(a.rating * 2); if (b.rating) sb += Math.floor(b.rating * 2);
+      return sb - sa;
+    });
+
+    return enriched;
+  }
+
+  // ========================================
+  // DOM Interaction
+  // ========================================
+
+  const providerList = document.getElementById('provider-list');
+  const locationBanner = document.getElementById('location-banner');
+  const locationCity = document.getElementById('location-city');
+  const locationCount = document.getElementById('location-count');
+  const loadingState = document.getElementById('loading-state');
+  const noResults = document.getElementById('no-results');
+  const showAllBtn = document.getElementById('show-all-btn');
+  const allItems = document.querySelectorAll('.provider-item');
+
+  function showLoading() { if (loadingState) loadingState.style.display = ''; if (providerList) providerList.style.display = 'none'; }
+  function hideLoading() { if (loadingState) loadingState.style.display = 'none'; if (providerList) providerList.style.display = ''; }
+
+  function showAllProviders() {
+    allItems.forEach(function(el) { el.style.display = ''; });
+    if (noResults) noResults.style.display = 'none';
+    if (locationBanner) locationBanner.style.display = 'none';
+  }
+
+  function filterByIds(matchedIds) {
+    var visibleCount = 0;
+    allItems.forEach(function(el) {
+      var id = el.getAttribute('data-provider-id');
+      var show = matchedIds.indexOf(id) !== -1;
+      el.style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+    });
+    return visibleCount;
+  }
+
+  // Local fallback: derive provider IDs from ZIP using state mapping
+  function getLocalProviderIds(zip) {
+    var prefix = zip.substring(0, 3);
+    var state = zip3ToState[prefix];
+    if (!state) return [];
+    var ids = stateProvidersForClient[state];
+    if (!ids || ids.length === 0) return [];
+    // Filter to only IDs that exist in our local provider database
+    return ids.filter(function(id) {
+      return localProviders.some(function(p) { return p.id === id; });
+    });
+  }
+
+  // Track which provider IDs are currently matched by search (null = no search active)
+  var _currentMatchedIds = null;
+
+  async function searchByZip(zip) {
+    showLoading();
+
+    try {
+      const geo = await geocodeZip(zip);
+      if (!geo || geo.lat === null) {
+        hideLoading();
+        var localIds = getLocalProviderIds(zip);
+        if (localIds.length > 0) {
+          _currentMatchedIds = localIds;
+          var cnt = filterByIds(localIds);
+          if (locationBanner) locationBanner.style.display = '';
+          if (locationCount) locationCount.textContent = cnt + ' provider' + (cnt !== 1 ? 's' : '') + ' found at ZIP ' + zip;
+        } else {
+          showAllProviders();
+        }
+        return;
+      }
+
+      // Show location banner
+      if (locationBanner && locationCity && locationCount) {
+        locationCity.textContent = `${geo.city}, ${geo.state}`;
+        locationBanner.style.display = '';
+      }
+
+      // Call BroadbandMap API
+      let apiProviders = [];
+      try {
+        const resp = await fetchWithTimeout(`https://broadbandmap.com/api/v1/location/internet?lat=${geo.lat}&lng=${geo.lng}`, 10000);
+        if (resp.ok) {
+          const data = await resp.json();
+          apiProviders = normalizeApiResponse(data);
+          console.log('[API] BroadbandMap returned', apiProviders.length, 'providers');
+        }
+      } catch (e) {
+        console.warn('[API] BroadbandMap failed:', e.message);
+      }
+
+      if (apiProviders.length > 0) {
+        const ranked = enrichAndRank(apiProviders);
+        // Separate providers that exist in DOM vs API-only providers
+        const knownIds = ranked.filter(p => p.slug || localProviders.find(lp => lp.id === p.id)).map(p => p.id);
+        const apiOnlyProviders = ranked.filter(p => !p.slug && !localProviders.find(lp => lp.id === p.id));
+
+        hideLoading();
+        _currentMatchedIds = knownIds;
+        const count = filterByIds(knownIds);
+
+        // Update each card's displayed speed and types to match API data
+        var typeLabelsMap = { fiber:'Fiber', cable:'Cable', '5g':'5G', dsl:'DSL', satellite:'Satellite' };
+        ranked.forEach(p => {
+          if (!p.apiTypes || !p.id) return;
+          var el = providerList.querySelector('[data-provider-id="' + p.id + '"]');
+          if (!el) return;
+
+          // Update displayed speed to use API speed
+          var apiSpd = p.apiSpeed || 0;
+          if (apiSpd > 0) {
+            var speedEl = el.querySelector('.pc-speed');
+            if (speedEl) {
+              if (apiSpd >= 1000) {
+                speedEl.innerHTML = (apiSpd / 1000).toFixed(apiSpd % 1000 === 0 ? 0 : 1) + '<span class="pc-speed-unit">Gbps</span>';
+              } else {
+                speedEl.innerHTML = apiSpd + '<span class="pc-speed-unit">Mbps</span>';
+              }
+            }
+            // Update data attribute for sorting
+            el.setAttribute('data-speed', String(apiSpd));
+          }
+
+          // Update displayed technology tags to match API-confirmed types
+          var tagsEl = el.querySelector('.pc-tags');
+          if (tagsEl && p.apiTypes.length > 0) {
+            tagsEl.innerHTML = p.apiTypes.map(function(t) {
+              return '<span class="tag tag-' + t + '">' + (typeLabelsMap[t] || t) + '</span>';
+            }).join('');
+            el.setAttribute('data-types', p.apiTypes.join(','));
+          }
+        });
+
+        // Re-order DOM to match ranking — partners ALWAYS first
+        if (providerList) {
+          knownIds.forEach(id => {
+            const el = providerList.querySelector(`[data-provider-id="${id}"]`);
+            if (el) providerList.appendChild(el);
+          });
+        }
+
+        // Inject API-only providers (not in our database) AFTER all known providers
+        if (apiOnlyProviders.length > 0 && providerList) {
+          var typeLabels = { fiber:'Fiber', cable:'Cable', '5g':'5G Home', dsl:'DSL', satellite:'Satellite' };
+          apiOnlyProviders.forEach(p => {
+            var speedStr = p.maxSpeed >= 1000 ? (p.maxSpeed/1000).toFixed(p.maxSpeed%1000===0?0:1) : String(p.maxSpeed);
+            var speedUnit = p.maxSpeed >= 1000 ? 'Gbps' : 'Mbps';
+            var tagsHtml = p.types.map(t => `<span class="tag tag-${t}">${typeLabels[t] || t}</span>`).join('');
+            var el = document.createElement('div');
+            el.className = 'provider-item';
+            el.setAttribute('data-types', p.types.join(','));
+            el.setAttribute('data-speed', String(p.maxSpeed || 0));
+            el.setAttribute('data-price', '0');
+            el.setAttribute('data-rating', '0');
+            el.setAttribute('data-partner', '0');
+            el.innerHTML = `<div class="provider-card">
+  <div class="pc-main">
+    <div class="pc-logo">
+      <span style="font-weight:700; font-size: var(--text-lg); color: var(--brand-blue);">${p.name.charAt(0)}</span>
+    </div>
+    <div class="pc-info">
+      <span class="pc-name">${p.name}</span>
+      <div class="pc-tags">${tagsHtml}</div>
+      <div class="pc-stats">
+        <div class="pc-stat-group">
+          <span class="pc-stat-label">Max Speed</span>
+          <span class="pc-stat-value pc-speed">${speedStr}<span class="pc-speed-unit">${speedUnit}</span></span>
+        </div>
+        <div class="pc-stat-group">
+          <span class="pc-stat-label">Starting At</span>
+          <span class="pc-stat-value pc-price">N/A</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pc-actions">
+    <span class="btn btn-secondary" style="opacity:0.5;pointer-events:none;">No Plans Available</span>
+  </div>
+</div>`;
+            providerList.appendChild(el);
+          });
+        }
+
+        if (locationCount) locationCount.textContent = `${count + apiOnlyProviders.length} provider${(count + apiOnlyProviders.length) !== 1 ? 's' : ''} found at ZIP ${zip} — Live data`;
+
+        if (count === 0 && apiOnlyProviders.length === 0) {
+          showAllProviders();
+          if (noResults) noResults.style.display = '';
+        }
+      } else {
+        // API returned nothing — use local state-level data
+        hideLoading();
+        var localIds = getLocalProviderIds(zip);
+        if (localIds.length > 0) {
+          _currentMatchedIds = localIds;
+          var cnt2 = filterByIds(localIds);
+          if (locationCount) locationCount.textContent = cnt2 + ' provider' + (cnt2 !== 1 ? 's' : '') + ' found at ZIP ' + zip + ' — Regional data';
+          if (locationBanner) locationBanner.style.display = '';
+          // Re-order DOM: partners first
+          if (providerList) {
+            localIds.forEach(function(id) {
+              var el = providerList.querySelector('[data-provider-id="' + id + '"]');
+              if (el) providerList.appendChild(el);
+            });
+          }
+        } else {
+          showAllProviders();
+          if (locationCount) locationCount.textContent = 'Could not verify provider availability — showing all providers.';
+          if (locationBanner) locationBanner.style.display = '';
+        }
+      }
+    } catch (e) {
+      console.error('[Search] Error:', e);
+      hideLoading();
+      var localIds = getLocalProviderIds(zip);
+      if (localIds.length > 0) {
+        _currentMatchedIds = localIds;
+        filterByIds(localIds);
+        if (locationBanner) locationBanner.style.display = '';
+        if (locationCount) locationCount.textContent = 'Regional data for ZIP ' + zip;
+      } else {
+        showAllProviders();
+      }
+    }
+  }
+
+  // Check for ZIP in URL params on page load
+  const params = new URLSearchParams(window.location.search);
+  const zip = params.get('zip');
+  if (zip && /^\d{5}$/.test(zip)) {
+    // Pre-fill the search input
+    var input = document.querySelector('.search-bar input[name="zip"]');
+    if (input) input.value = zip;
+    searchByZip(zip);
+  }
+
+  // Intercept search form submission to stay on page
+  const searchForm = document.querySelector('.search-bar');
+  if (searchForm) {
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      var input = searchForm.querySelector('input[name="zip"]');
+      var val = input && input.value ? input.value.trim() : '';
+      if (val && /^\d{5}$/.test(val)) {
+        window.history.replaceState({}, '', `/providers?zip=${val}`);
+        searchByZip(val);
+      }
+    });
+  }
+
+  // Show all button
+  if (showAllBtn) {
+    showAllBtn.addEventListener('click', () => {
+      showAllProviders();
+    });
+  }
+
+  // Filtering — track which IDs are active from search
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter') || 'all';
+
+      allItems.forEach(function(item) {
+        var types = item.getAttribute('data-types') || '';
+        var matchesFilter = filter === 'all' || types.indexOf(filter) !== -1;
+        var id = item.getAttribute('data-provider-id');
+        
+        if (_currentMatchedIds) {
+          // Search is active: show only if in matched IDs AND matches filter
+          var inSearch = _currentMatchedIds.indexOf(id) !== -1;
+          item.style.display = (inSearch && matchesFilter) ? '' : 'none';
+        } else {
+          // No search: just filter
+          item.style.display = matchesFilter ? '' : 'none';
+        }
+      });
+    });
+  });
+
+  // Sorting
+  var sortSelect = document.getElementById('sort-select');
+  if (sortSelect && providerList) {
+    sortSelect.addEventListener('change', () => {
+      const items = Array.from(providerList.querySelectorAll('.provider-item'));
+      items.sort((a, b) => {
+        const av = (k) => parseFloat(a.getAttribute(`data-${k}`) || '0');
+        const bv = (k) => parseFloat(b.getAttribute(`data-${k}`) || '0');
+        switch (sortSelect.value) {
+          case 'speed': return bv('speed') - av('speed');
+          case 'price': return av('price') - bv('price');
+          case 'rating': return bv('rating') - av('rating');
+          default:
+            const ap = parseInt(a.getAttribute('data-partner') || '0');
+            const bp = parseInt(b.getAttribute('data-partner') || '0');
+            if (bp !== ap) return bp - ap;
+            return bv('rating') - av('rating');
+        }
+      });
+      items.forEach(el => providerList.appendChild(el));
+    });
+  }
+</script>

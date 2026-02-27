@@ -3,251 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internet Speed Test - Internet 4 ALL</title>
-    <meta name="description" content="Test your internet speed for free. Check download, upload, and ping to see if you're getting the speeds you're paying for.">
+    <title>Free Internet Speed Test - Check Your Connection | Internet 4 ALL</title>
+    <meta name="description" content="Test your internet speed instantly. Check download, upload, and ping speeds with our free tool and find out if you're getting what you pay for.">
+    <link rel="canonical" href="https://internet4all.com/pages/speed-test.html">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='18' width='100' height='100' fill='%231d4ed8'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'>i4</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
-    <!-- Urgency Banner -->
-    <div class="urgency-banner">
-        <i class="fas fa-bolt"></i> Slow internet? We can help! <a href="tel:1-888-555-0123">Call 1-888-555-0123</a>
-    </div>
-
-    <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="header-inner">
-                <a href="../index.html" class="logo">
-                    <div class="logo-icon"><i class="fas fa-wifi"></i></div>
-                    <span>Internet 4 ALL</span>
-                </a>
-                <nav class="nav">
-                    <ul class="nav-links">
-                        <li><a href="../index.html" class="nav-link">Home</a></li>
-                        <li><a href="providers.html" class="nav-link">Providers</a></li>
-                        <li><a href="compare.html" class="nav-link">Compare</a></li>
-                        <li><a href="speed-test.html" class="nav-link active">Speed Test</a></li>
-                        <li><a href="resources.html" class="nav-link">Resources</a></li>
-                    </ul>
-                    <a href="tel:1-888-555-0123" class="phone-cta">
-                        <i class="fas fa-phone"></i>
-                        <span>1-888-555-0123</span>
-                    </a>
-                </nav>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+        <div class="wrap header-inner">
+            <a href="../index.html" class="logo"><div class="logo-mark"><i class="fas fa-wifi"></i></div><div class="logo-text">Internet 4 <span>ALL</span></div></a>
+            <nav class="nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="providers.html" class="nav-link">Providers</a>
+                <a href="compare.html" class="nav-link">Compare</a>
+                <a href="speed-test.html" class="nav-link active">Speed Test</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="tel:1-888-555-0123" class="header-phone"><i class="fas fa-phone-alt"></i> 1-888-555-0123</a>
+            </nav>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span></button>
         </div>
     </header>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="providers.html" class="nav-link">Providers</a>
+        <a href="compare.html" class="nav-link">Compare</a>
+        <a href="speed-test.html" class="nav-link active">Speed Test</a>
+        <a href="resources.html" class="nav-link">Resources</a>
+        <div class="mobile-cta"><a href="tel:1-888-555-0123"><i class="fas fa-phone-alt"></i> 1-888-555-0123</a><p>Talk to an internet expert</p></div>
+    </div>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1 class="page-title">Internet Speed Test</h1>
-            <p class="page-description">Check if you're getting the speeds you're paying for</p>
+    <nav class="breadcrumb"><div class="wrap"><a href="../index.html">Home</a> <span class="sep">/</span> <span class="current">Speed Test</span></div></nav>
+
+    <div class="page-head">
+        <div class="wrap">
+            <h1>Internet Speed Test</h1>
+            <p>Test your connection speed and find out if you're getting what you pay for</p>
         </div>
-    </section>
+    </div>
 
-    <!-- Speed Test -->
-    <main class="section">
-        <div class="container container-sm">
-            <div class="speed-test-widget">
-                <div class="speed-gauge">
-                    <div class="speed-gauge-circle" id="speedGauge">
-                        <span class="speed-value" id="speedValue">0</span>
-                        <span class="speed-unit">Mbps</span>
+    <main class="section" id="main">
+        <div class="wrap">
+            <!-- Speed Test Widget -->
+            <div class="speed-hero">
+                <div class="speed-ring">
+                    <svg width="260" height="260" viewBox="0 0 260 260">
+                        <circle cx="130" cy="130" r="110" fill="none" stroke="var(--border)" stroke-width="14"/>
+                        <circle id="speedCircle" cx="130" cy="130" r="110" fill="none" stroke="url(#speedGradient)" stroke-width="14" stroke-linecap="round" stroke-dasharray="691" stroke-dashoffset="691" style="transition:stroke-dashoffset 0.1s linear;transform:rotate(-90deg);transform-origin:center"/>
+                        <defs><linearGradient id="speedGradient"><stop offset="0%" stop-color="var(--blue)"/><stop offset="100%" stop-color="var(--teal)"/></linearGradient></defs>
+                    </svg>
+                    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+                        <div id="speedBig" class="speed-big">0</div>
+                        <div class="speed-unit">Mbps</div>
                     </div>
                 </div>
-                
-                <div class="speed-metrics">
-                    <div class="speed-metric">
-                        <div class="speed-metric-label">Download</div>
-                        <div class="speed-metric-value" id="downloadSpeed">-- Mbps</div>
-                    </div>
-                    <div class="speed-metric">
-                        <div class="speed-metric-label">Upload</div>
-                        <div class="speed-metric-value" id="uploadSpeed">-- Mbps</div>
-                    </div>
-                    <div class="speed-metric">
-                        <div class="speed-metric-label">Ping</div>
-                        <div class="speed-metric-value" id="pingValue">-- ms</div>
+                <button id="startSpeedTest" class="btn btn-blue btn-lg" style="min-width:220px;font-size:1.1rem"><i class="fas fa-play" style="margin-right:8px"></i> Start Speed Test</button>
+
+                <!-- Speed Result Cards -->
+                <div id="speedResultCards" style="display:none;margin-top:32px">
+                    <div class="speed-results">
+                        <div class="speed-result">
+                            <div style="color:var(--blue);font-size:1.25rem;margin-bottom:6px"><i class="fas fa-download"></i></div>
+                            <div id="dlSpeed" class="speed-result-val">--</div>
+                            <div class="speed-result-label">Download</div>
+                        </div>
+                        <div class="speed-result">
+                            <div style="color:var(--teal);font-size:1.25rem;margin-bottom:6px"><i class="fas fa-upload"></i></div>
+                            <div id="ulSpeed" class="speed-result-val">--</div>
+                            <div class="speed-result-label">Upload</div>
+                        </div>
+                        <div class="speed-result">
+                            <div style="color:var(--amber);font-size:1.25rem;margin-bottom:6px"><i class="fas fa-signal"></i></div>
+                            <div id="pingSpeed" class="speed-result-val">--</div>
+                            <div class="speed-result-label">Ping</div>
+                        </div>
                     </div>
                 </div>
-                
-                <button class="speed-test-btn" id="startTest">
-                    <i class="fas fa-play"></i> Start Speed Test
-                </button>
-                
-                <p class="mt-md" style="font-size: 0.875rem; color: var(--text-muted);">
-                    For best results, close other tabs and apps before testing.
-                </p>
+                <!-- Interpretation (populated by JS after test) -->
+                <div id="speedResults" style="display:none;margin-top:24px"></div>
             </div>
 
-            <!-- Results Interpretation -->
-            <div class="info-card mt-xl" id="resultsCard" style="display: none;">
-                <h3 id="resultsTitle">Your Results</h3>
-                <p id="resultsText"></p>
-                <div class="mt-lg" style="background: var(--background); padding: var(--space-lg); border-radius: var(--radius);">
-                    <p style="margin-bottom: var(--space-sm);"><strong>Not happy with your speeds?</strong></p>
-                    <p style="color: var(--text-secondary); margin-bottom: var(--space-md);">We can help you find a faster internet provider in your area.</p>
-                    <a href="tel:1-888-555-0123" class="btn btn-primary">
-                        <i class="fas fa-phone"></i> Call 1-888-555-0123
-                    </a>
-                </div>
+            <!-- Speed Recommendations Table -->
+            <div class="section-head" style="margin-top:64px">
+                <h2>What Speed Do You Actually Need?</h2>
+                <p>A realistic guide based on your usage</p>
+            </div>
+            <div style="overflow-x:auto">
+                <table class="compare-table" style="max-width:800px;margin:0 auto">
+                    <thead><tr><th>Activity</th><th>Min. Speed</th><th>Recommended</th></tr></thead>
+                    <tbody>
+                        <tr><td><i class="fas fa-envelope" style="width:20px;color:var(--txt-m)"></i> Email &amp; Browsing</td><td>5 Mbps</td><td>25 Mbps</td></tr>
+                        <tr><td><i class="fas fa-video" style="width:20px;color:var(--txt-m)"></i> HD Streaming</td><td>10 Mbps</td><td>50 Mbps</td></tr>
+                        <tr><td><i class="fas fa-tv" style="width:20px;color:var(--txt-m)"></i> 4K Streaming</td><td>25 Mbps</td><td>100 Mbps</td></tr>
+                        <tr><td><i class="fas fa-gamepad" style="width:20px;color:var(--txt-m)"></i> Online Gaming</td><td>25 Mbps</td><td>100 Mbps</td></tr>
+                        <tr><td><i class="fas fa-laptop-house" style="width:20px;color:var(--txt-m)"></i> Work from Home</td><td>25 Mbps</td><td>100 Mbps</td></tr>
+                        <tr><td><i class="fas fa-house-signal" style="width:20px;color:var(--txt-m)"></i> Smart Home (10+ devices)</td><td>100 Mbps</td><td>300 Mbps</td></tr>
+                        <tr><td><i class="fas fa-users" style="width:20px;color:var(--txt-m)"></i> Large Household (5+)</td><td>200 Mbps</td><td>500 Mbps+</td></tr>
+                    </tbody>
+                </table>
             </div>
 
-            <!-- Speed Guide -->
-            <div class="mt-2xl">
-                <h2 class="section-title text-center mb-lg">What Do Your Results Mean?</h2>
-                
-                <div style="display: grid; gap: var(--space-md);">
-                    <div class="info-card" style="border-left: 4px solid var(--success);">
-                        <h3 style="color: var(--success);"><i class="fas fa-check-circle"></i> 100+ Mbps - Excellent</h3>
-                        <p>Perfect for 4K streaming, online gaming, video calls, and households with multiple users.</p>
-                    </div>
-                    <div class="info-card" style="border-left: 4px solid var(--info);">
-                        <h3 style="color: var(--info);"><i class="fas fa-check-circle"></i> 50-100 Mbps - Good</h3>
-                        <p>Great for HD streaming, video conferencing, and most everyday activities for 2-4 people.</p>
-                    </div>
-                    <div class="info-card" style="border-left: 4px solid var(--warning);">
-                        <h3 style="color: var(--warning);"><i class="fas fa-exclamation-circle"></i> 25-50 Mbps - Fair</h3>
-                        <p>Suitable for basic streaming and browsing. May experience slowdowns with multiple users.</p>
-                    </div>
-                    <div class="info-card" style="border-left: 4px solid #ef4444;">
-                        <h3 style="color: #ef4444;"><i class="fas fa-times-circle"></i> Below 25 Mbps - Slow</h3>
-                        <p>May experience buffering and slow load times. Consider upgrading your internet plan.</p>
-                    </div>
+            <!-- Tips -->
+            <div class="section-head" style="margin-top:64px">
+                <h2>Improve Your Speed Test Accuracy</h2>
+                <p>Get the most reliable results with these tips</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card reveal">
+                    <div class="card-icon blue"><i class="fas fa-ethernet"></i></div>
+                    <h3>Use a Wired Connection</h3>
+                    <p>Connect directly to your router with an ethernet cable for the most accurate results.</p>
+                </div>
+                <div class="card reveal reveal-d1">
+                    <div class="card-icon teal"><i class="fas fa-times-circle"></i></div>
+                    <h3>Close Other Apps</h3>
+                    <p>Streaming, downloads, and background apps consume bandwidth and skew results.</p>
+                </div>
+                <div class="card reveal reveal-d2">
+                    <div class="card-icon orange"><i class="fas fa-sync-alt"></i></div>
+                    <h3>Test Multiple Times</h3>
+                    <p>Run 3–5 tests at different times of day, then average the results.</p>
                 </div>
             </div>
 
             <!-- CTA -->
-            <div class="conversion-card mt-2xl">
-                <h3>Ready for Faster Internet?</h3>
-                <p>Our experts can find you a better plan at a great price.</p>
-                <div class="phone-number">
-                    <i class="fas fa-phone"></i> 1-888-555-0123
+            <div class="cta-box" style="margin-top:64px">
+                <h3>Not Getting the Speeds You're Paying For?</h3>
+                <p>Our experts can help you find a faster, more reliable plan in your area.</p>
+                <div class="cta-phone"><i class="fas fa-phone-alt"></i> 1-888-555-0123</div>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center">
+                    <a href="tel:1-888-555-0123" class="btn btn-white btn-lg"><i class="fas fa-phone-alt"></i> Call for Free Help</a>
+                    <a href="providers.html" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.2);color:var(--white)"><i class="fas fa-search"></i> Find Better Plans</a>
                 </div>
-                <a href="tel:1-888-555-0123" class="btn">Find Faster Internet Now</a>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2024 Internet 4 ALL. All rights reserved. | <a href="tel:1-888-555-0123" style="color: var(--accent-light);">1-888-555-0123</a></p>
+        <div class="wrap">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo"><div class="logo-mark"><i class="fas fa-wifi"></i></div><div class="logo-text">Internet 4 <span>ALL</span></div></a>
+                    <p>Your trusted resource for finding and comparing internet providers.</p>
+                </div>
+                <div><h4>Providers</h4><ul>
+                    <li><a href="provider.html?id=spectrum">Spectrum</a></li>
+                    <li><a href="provider.html?id=att">AT&T</a></li>
+                    <li><a href="provider.html?id=verizon">Verizon</a></li>
+                    <li><a href="provider.html?id=tmobile">T-Mobile</a></li>
+                    <li><a href="provider.html?id=frontier">Frontier</a></li>
+                </ul></div>
+                <div><h4>Tools</h4><ul>
+                    <li><a href="compare.html">Compare Plans</a></li>
+                    <li><a href="speed-test.html">Speed Test</a></li>
+                    <li><a href="resources.html">Guides</a></li>
+                </ul></div>
+                <div><h4>Contact</h4><ul>
+                    <li><a href="tel:1-888-555-0123"><i class="fas fa-phone-alt" style="margin-right:4px;font-size:.625rem"></i> 1-888-555-0123</a></li>
+                    <li><a href="mailto:help@internet4all.com"><i class="fas fa-envelope" style="margin-right:4px;font-size:.625rem"></i> help@internet4all.com</a></li>
+                </ul></div>
             </div>
+            <div class="footer-bottom"><p>&copy; 2026 Internet 4 ALL. All rights reserved.</p><p>Call: <a href="tel:1-888-555-0123">1-888-555-0123</a></p></div>
         </div>
     </footer>
+    <div class="sticky-cta"><div class="sticky-cta-inner"><span class="sticky-cta-text">Not fast enough? <strong>We can help</strong></span><a href="tel:1-888-555-0123" class="sticky-cta-btn"><i class="fas fa-phone-alt"></i> Call</a></div></div>
 
-    <!-- Sticky CTA -->
-    <div class="sticky-cta">
-        <div class="sticky-cta-text">
-            Slow speeds? Get <span>faster internet</span> today!
-        </div>
-        <a href="tel:1-888-555-0123" class="btn-cta">
-            <i class="fas fa-phone"></i> 1-888-555-0123
-        </a>
-    </div>
-
-    <a href="tel:1-888-555-0123" class="floating-phone">
-        <i class="fas fa-phone"></i>
-    </a>
-
+    <script src="../js/providers-data.js"></script>
+    <script src="../js/api.js"></script>
     <script src="../js/app.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const startBtn = document.getElementById('startTest');
-            const speedValue = document.getElementById('speedValue');
-            const downloadSpeed = document.getElementById('downloadSpeed');
-            const uploadSpeed = document.getElementById('uploadSpeed');
-            const pingValue = document.getElementById('pingValue');
-            const speedGauge = document.getElementById('speedGauge');
-            const resultsCard = document.getElementById('resultsCard');
-            
-            let testing = false;
-            
-            startBtn.addEventListener('click', () => {
-                if (testing) return;
-                testing = true;
-                
-                startBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing...';
-                startBtn.disabled = true;
-                
-                // Reset
-                speedValue.textContent = '0';
-                downloadSpeed.textContent = '-- Mbps';
-                uploadSpeed.textContent = '-- Mbps';
-                pingValue.textContent = '-- ms';
-                speedGauge.style.borderColor = 'var(--border)';
-                resultsCard.style.display = 'none';
-                
-                // Simulate speed test
-                const finalDownload = Math.floor(Math.random() * 300) + 50;
-                const finalUpload = Math.floor(Math.random() * 50) + 10;
-                const finalPing = Math.floor(Math.random() * 30) + 5;
-                
-                let current = 0;
-                const interval = setInterval(() => {
-                    current += Math.random() * 20;
-                    if (current >= finalDownload) {
-                        current = finalDownload;
-                        clearInterval(interval);
-                        
-                        // Show final results
-                        downloadSpeed.textContent = finalDownload + ' Mbps';
-                        uploadSpeed.textContent = finalUpload + ' Mbps';
-                        pingValue.textContent = finalPing + ' ms';
-                        
-                        // Color gauge
-                        if (finalDownload >= 100) {
-                            speedGauge.style.borderColor = 'var(--success)';
-                        } else if (finalDownload >= 50) {
-                            speedGauge.style.borderColor = 'var(--info)';
-                        } else if (finalDownload >= 25) {
-                            speedGauge.style.borderColor = 'var(--warning)';
-                        } else {
-                            speedGauge.style.borderColor = '#ef4444';
-                        }
-                        
-                        // Show results card
-                        showResults(finalDownload);
-                        
-                        startBtn.innerHTML = '<i class="fas fa-redo"></i> Test Again';
-                        startBtn.disabled = false;
-                        testing = false;
-                    }
-                    
-                    speedValue.textContent = Math.floor(current);
-                }, 100);
-            });
-            
-            function showResults(speed) {
-                resultsCard.style.display = 'block';
-                const title = document.getElementById('resultsTitle');
-                const text = document.getElementById('resultsText');
-                
-                if (speed >= 100) {
-                    title.innerHTML = '<i class="fas fa-check-circle" style="color:var(--success)"></i> Excellent Speed!';
-                    text.textContent = 'Your internet is performing great. You should have no issues with 4K streaming, gaming, or video calls.';
-                } else if (speed >= 50) {
-                    title.innerHTML = '<i class="fas fa-check-circle" style="color:var(--info)"></i> Good Speed';
-                    text.textContent = 'Your internet is solid for most activities. You may want to upgrade if you have many devices or users.';
-                } else if (speed >= 25) {
-                    title.innerHTML = '<i class="fas fa-exclamation-circle" style="color:var(--warning)"></i> Fair Speed';
-                    text.textContent = 'Your speeds are okay for basic use but you may experience slowdowns with multiple users or HD streaming.';
-                } else {
-                    title.innerHTML = '<i class="fas fa-times-circle" style="color:#ef4444"></i> Slow Speed';
-                    text.textContent = 'Your internet is slower than recommended. You may experience buffering, slow downloads, and poor video quality.';
-                }
-            }
-        });
-    </script>
 </body>
 </html>

@@ -1,0 +1,810 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+speedtest internet speed	USD	5000000	0%	0%	Low	1	0.03	4.71
+xfinityspeedtest	USD	500000	-90%	-90%	Low	0	5.70	19.05
+comcast check internet speed	USD	500000	-90%	-90%	Low	0	5.70	19.05
+comcast cable speed	USD	500000	-90%	-90%	Low	0	5.70	19.05
+myspeed xfinity	USD	500000	-90%	-90%	Low	0	5.70	19.05
+xfinity network speed	USD	500000	-90%	-90%	Low	0	5.70	19.05
+comcast network speed	USD	500000	-90%	-90%	Low	0	5.70	19.05
+bandwidth test comcast	USD	500000	-90%	-90%	Low	0	5.70	19.05
+bandwidth test xfinity	USD	500000	-90%	-90%	Low	0	5.70	19.05
+check my speed comcast	USD	500000	-90%	-90%	Low	0	5.70	19.05
+checking speed of my internet	USD	500000	0%	0%	Low	6	0.04	4.80
+comcast internet speeds test	USD	500000	-90%	-90%	Low	0	5.70	19.05
+comcast network speed test	USD	500000	-90%	-90%	Low	0	5.70	19.05
+comcast test my speed	USD	500000	-90%	-90%	Low	0	5.70	19.05
+ookla speed test xfinity	USD	500000	-90%	-90%	Low	0	5.70	19.05
+wifi test internet speed	USD	500000	0%	0%	Low	4	0.03	5.00
+xfinity internet speed check	USD	500000	-90%	-90%	Low	0	5.70	19.05
+xfinity net speed	USD	500000	-90%	-90%	Low	0	5.70	19.05
+xfinity network speed test	USD	500000	-90%	-90%	Low	0	5.70	19.05
+internet providers for my address	USD	50000	-90%	-90%	High	94	5.71	27.00
+internet providers for my area	USD	50000	0%	0%	High	93	6.17	26.49
+cable tv providers	USD	50000	-90%	-90%	Medium	58	2.17	12.49
+cable providers near me	USD	50000	0%	-90%	High	79	3.63	15.89
+cable tv providers in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+cable companies in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+cable internet	USD	50000	0%	900%	Low	8	4.91	18.48
+internet providers by address	USD	50000	0%	-90%	High	90	5.02	23.37
+cable and internet providers	USD	50000	0%	900%	Low	11	5.87	21.92
+cable internet providers	USD	50000	0%	900%	Low	11	5.87	21.92
+armstrong internet	USD	50000	0%	0%	Medium	42	0.81	7.91
+internet services for my address	USD	50000	-90%	-90%	High	94	5.71	27.00
+internet services by address	USD	50000	0%	-90%	High	90	5.02	23.37
+tv cable companies	USD	50000	-90%	-90%	Medium	58	2.17	12.49
+cable options near me	USD	50000	0%	-90%	High	79	3.63	15.89
+cable providers in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+cable tv in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+cable service providers near me	USD	50000	0%	-90%	High	79	3.63	15.89
+cable options in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+cable services near me	USD	50000	0%	-90%	High	79	3.63	15.89
+speedtest wifi	USD	50000	0%	0%	Low	10	0.04	3.51
+cable television providers	USD	50000	-90%	-90%	Medium	58	2.17	12.49
+cable tv providers near me	USD	50000	0%	-90%	High	79	3.63	15.89
+fubo channels	USD	50000	-90%	-90%	Low	13	0.07	3.49
+spectrumspeedtest	USD	50000	0%	0%	Low	13	8.28	13.80
+cable & internet	USD	50000	0%	900%	Low	8	4.91	18.48
+cable tv and internet providers	USD	50000	0%	900%	Low	11	5.87	21.92
+armstrong cable company	USD	50000	0%	0%	Low	23	0.17	2.94
+tv cable services	USD	50000	0%	900%	Low	20	3.87	16.52
+cable service providers	USD	50000	-90%	-90%	Medium	58	2.17	12.49
+cox speeds	USD	50000	-90%	-90%	Low	1	1.06	10.54
+cable and internet plans	USD	50000	0%	9900%	Low	0	3.62	15.97
+cable tv service provider near me	USD	50000	0%	-90%	High	79	3.63	15.89
+cable television near me	USD	50000	0%	-90%	High	79	3.63	15.89
+internet cable tv providers	USD	50000	0%	900%	Low	11	5.87	21.92
+isp provider by address	USD	50000	0%	-90%	High	90	5.02	23.37
+smartmover	USD	50000	0%	0%	Medium	33	2.10	39.82
+providers internet	USD	50000	0%	0%	High	72	7.00	28.37
+cox speed check	USD	50000	-90%	-90%	Low	1	1.06	10.54
+cable television in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+broadband providers by address	USD	50000	0%	-90%	High	90	5.02	23.37
+television cable companies	USD	50000	-90%	-90%	Medium	58	2.17	12.49
+check internet speed cox	USD	50000	-90%	-90%	Low	1	1.06	10.54
+cables companies	USD	50000	0%	-90%	Medium	61	4.10	18.30
+spectrum bandwidth test	USD	50000	0%	0%	Low	13	8.28	13.80
+cable co in my area	USD	50000	0%	-90%	High	87	3.33	14.86
+cabletv near me	USD	50000	0%	-90%	High	79	3.63	15.89
+cable television providers near me	USD	50000	0%	-90%	High	79	3.63	15.89
+speedcheck xfinity	USD	50000	0%	0%	Low	0	4.00	21.62
+spectrum internet speeds test	USD	50000	0%	0%	Low	10	13.80	13.80
+cable tv carriers	USD	50000	-90%	-90%	Medium	58	2.17	12.49
+internet cable plans	USD	50000	0%	9900%	Low	0	3.62	15.97
+cable tv and internet service	USD	50000	0%	900%	Low	11	5.87	21.92
+spectrum network speeds	USD	50000	0%	0%	Low	13	8.28	13.80
+coxspeedtest	USD	50000	-90%	-90%	Low	1	1.06	10.54
+television cable services	USD	50000	0%	900%	Low	20	3.87	16.52
+cox bandwidth test	USD	50000	-90%	-90%	Low	1	1.06	10.54
+check my speed cox	USD	50000	-90%	-90%	Low	1	1.06	10.54
+speedtest for spectrum	USD	50000	0%	0%	Low	13	8.28	13.80
+spectrum internet speed checker	USD	50000	0%	0%	Low	13	8.28	13.80
+test wifi speeds	USD	50000	0%	0%	Low	9	0.03	3.89
+providers wifi	USD	50000	0%	-90%	High	90	8.00	36.01
+checking spectrum internet speed	USD	50000	0%	0%	Low	10	13.80	13.80
+internet cable internet	USD	50000	0%	900%	Low	8	4.91	18.48
+fubo tv channel	USD	50000	-90%	-90%	Low	13	0.07	3.49
+comcast check speed	USD	50000	-90%	-90%	Low	1	5.70	10.50
+spectrum check internet speed	USD	50000	0%	0%	Low	13	8.28	13.80
+cable to internet	USD	50000	0%	900%	Low	8	4.91	18.48
+my comcast speed	USD	50000	0%	0%	Low	0	4.00	21.62
+tv with cable	USD	50000	0%	0%	Medium	37	1.90	10.73
+cable tv & internet service	USD	50000	0%	900%	Low	11	5.87	21.92
+checking the internet speed	USD	50000	0%	0%	Low	12	0.04	4.91
+cox internet speeds test	USD	50000	-90%	-90%	Low	1	1.06	10.54
+speed test internet xfinity	USD	50000	0%	0%	Low	1	2.24	12.83
+cable providers internet	USD	50000	0%	900%	Low	11	5.87	21.92
+check internet wifi speed	USD	50000	0%	0%	Low	10	0.04	3.51
+comcast broadband speed test	USD	50000	0%	0%	Low	1	2.24	12.83
+comcast xfinity internet speed test	USD	50000	0%	0%	Low	1	2.24	12.83
+comcastspeed test	USD	50000	-90%	-90%	Low	1	5.70	10.50
+cox communication speed test	USD	50000	-90%	-90%	Low	1	1.06	10.54
+cox network speed test	USD	50000	-90%	-90%	Low	1	1.06	10.54
+cox speed test internet speed	USD	50000	-90%	-90%	Low	1	1.06	10.54
+cox test my speed	USD	50000	-90%	-90%	Low	1	1.06	10.54
+internet xfinity speed test	USD	50000	0%	0%	Low	1	2.24	12.83
+my spectrum speed test	USD	50000	0%	0%	Low	13	8.28	13.80
+spectrum speed test internet speed	USD	50000	0%	0%	Low	13	8.28	13.80
+speed test xfinity internet	USD	50000	0%	0%	Low	1	2.24	12.83
+speedtest download speed	USD	50000	0%	0%	Low	4	0.03	2.33
+speedtest xfi	USD	50000	0%	0%	Low	0	4.00	21.62
+test the speed of my wifi	USD	50000	0%	0%	Low	10	0.04	3.51
+xfinity internet speeds test	USD	50000	0%	0%	Low	1	2.24	12.83
+xfinity test speed internet	USD	50000	0%	0%	Low	1	2.24	12.83
+cable companies near me	USD	5000	0%	-90%	High	82	4.77	19.52
+cable providers	USD	5000	0%	0%	Medium	54	3.19	12.75
+tv and internet packages	USD	5000	0%	0%	High	81	2.94	16.16
+tv internet	USD	5000	0%	-90%	Medium	66	2.87	17.37
+find internet providers by address	USD	5000	0%	0%	High	89	5.10	26.50
+tv providers near me	USD	5000	0%	0%	High	85	2.57	12.75
+cable services in my area	USD	5000	0%	0%	High	90	4.21	19.41
+tv and internet providers	USD	5000	0%	-90%	High	76	2.65	14.04
+cable and internet providers near me	USD	5000	0%	0%	High	86	5.35	22.84
+xfinity internet speeds	USD	5000	0%	-90%	Low	20	1.25	13.16
+internet tv packages	USD	5000	0%	-90%	High	78	1.81	12.46
+cheapest cable tv providers in my area	USD	5000	-90%	0%	High	83	1.71	14.86
+cable and internet near me	USD	5000	0%	0%	High	98	6.65	26.68
+comcast internet speeds	USD	5000	0%	-90%	Low	20	1.25	13.16
+cable alternatives	USD	5000	0%	0%	High	100	0.70	5.39
+cable and internet deals	USD	5000	0%	0%	Medium	46	3.71	18.47
+internet and tv providers near me	USD	5000	0%	-90%	High	83	3.34	16.69
+internet packages near me	USD	5000	0%	0%	High	96	7.54	27.50
+internet and cable providers in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+cable and internet in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+internet and cable packages	USD	5000	0%	0%	Medium	46	3.71	18.47
+cable internet providers in my area	USD	5000	0%	0%	High	75	5.77	21.54
+tv internet providers	USD	5000	0%	0%	High	69	1.44	11.04
+spectrum upload speed	USD	5000	0%	0%	Low	33	5.79	13.80
+best cable service	USD	5000	0%	0%	High	76	1.32	8.46
+cable and internet services near me	USD	5000	0%	0%	High	98	6.65	26.68
+tv and internet providers in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+best cable and internet deals	USD	5000	0%	0%	Medium	55	2.98	14.20
+xfinity speeds	USD	5000	0%	0%	Low	15	1.50	10.24
+best cable tv providers	USD	5000	0%	0%	Low	29	1.44	9.50
+cable tv options near me	USD	5000	0%	0%	High	83	2.69	14.86
+cable internet in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+internet provider search	USD	5000	0%	0%	Low	26	2.68	22.47
+find internet provider	USD	5000	0%	-90%	High	80	4.55	29.08
+spectrum internet test	USD	5000	0%	0%	Low	18	13.80	13.80
+cable options	USD	5000	-90%	-90%	High	88	1.55	10.00
+spectrum speed	USD	5000	0%	0%	Medium	38	3.00	13.80
+new internet providers	USD	5000	-90%	-90%	High	75	7.35	36.23
+tv packages in my area	USD	5000	0%	0%	High	84	2.44	14.86
+best cable provider	USD	5000	0%	0%	Low	29	1.44	9.50
+charter internet speeds	USD	5000	0%	-100%	Medium	36	2.48	13.80
+cable tv companies near me	USD	5000	0%	0%	High	83	2.69	14.86
+find internet providers for my address	USD	5000	0%	0%	High	91	6.16	28.99
+best cable tv deals	USD	5000	-90%	-90%	Medium	64	1.41	7.34
+cable internet providers near me	USD	5000	0%	0%	High	86	5.35	22.84
+affordable cable and internet	USD	5000	-90%	-90%	High	70	3.34	17.42
+cox internet speeds	USD	5000	0%	0%	Low	25	0.52	5.75
+internet cable tv	USD	5000	0%	-90%	Medium	63	2.00	12.75
+tv companies near me	USD	5000	0%	0%	High	85	2.57	12.75
+internet and tv service in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+tv internet providers near me	USD	5000	0%	-90%	High	83	3.34	16.69
+cable tv and internet in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+best cable and internet packages	USD	5000	0%	0%	Medium	55	2.98	14.20
+cable and internet services in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+internet & tv	USD	5000	0%	0%	High	86	1.37	8.80
+mbps test	USD	5000	0%	0%	Low	4	0.03	7.99
+internet tv providers in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+spectrum internet upload speed	USD	5000	0%	0%	Low	33	5.79	13.80
+cutting the cord	USD	5000	0%	0%	Low	3	0.24	4.06
+internet providers available at my address	USD	5000	0%	900%	High	94	6.66	30.20
+high speed internet providers in my area	USD	5000	0%	0%	High	90	5.66	23.30
+tv and internet service near me	USD	5000	0%	-90%	High	83	3.34	16.69
+internet cable packages	USD	5000	0%	0%	Medium	46	3.71	18.47
+cut the cable	USD	5000	0%	-90%	Medium	40	0.31	5.43
+cable internet deals	USD	5000	0%	0%	Medium	46	3.71	18.47
+test my internet speed spectrum	USD	5000	0%	-90%	Low	19	8.28	13.80
+best cable internet deals	USD	5000	0%	0%	Medium	55	2.98	14.20
+available internet providers by address	USD	5000	-90%	-90%	High	81	3.50	20.46
+cable service providers in my area	USD	5000	0%	0%	High	90	4.21	19.41
+internet speed spectrum	USD	5000	0%	-99%	Medium	38	2.98	8.28
+cable companies that service my area	USD	5000	0%	0%	High	90	4.21	19.41
+cable tv services in my area	USD	5000	0%	0%	High	90	4.21	19.41
+television providers near me	USD	5000	0%	0%	High	85	2.57	12.75
+charter speeds	USD	5000	0%	0%	Low	16	13.13	13.80
+television services in my area	USD	5000	0%	0%	High	91	3.07	14.86
+internet cable near me	USD	5000	0%	0%	High	98	6.65	26.68
+internet & tv providers in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+cable tv service near me	USD	5000	0%	0%	High	83	2.69	14.86
+cable tv and internet providers near me	USD	5000	0%	0%	High	86	5.35	22.84
+internet for tv	USD	5000	0%	0%	High	86	1.37	8.80
+television providers in my area	USD	5000	0%	0%	High	84	2.44	14.86
+television service providers in my area	USD	5000	0%	0%	High	84	2.44	14.86
+tv internet service in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+cable companies available in my area	USD	5000	0%	0%	High	90	4.21	19.41
+tv and internet plans	USD	5000	0%	-90%	High	78	1.81	12.46
+cable tv and internet providers in my area	USD	5000	0%	0%	High	75	5.77	21.54
+tv carriers in my area	USD	5000	0%	0%	High	84	2.44	14.86
+options to cable tv	USD	5000	-90%	-90%	High	88	1.55	10.00
+cable & internet providers in my area	USD	5000	0%	0%	High	75	5.77	21.54
+cable co near me	USD	5000	0%	-90%	High	82	4.77	19.52
+cable tv and internet packages	USD	5000	0%	0%	Medium	46	3.71	18.47
+router speed test	USD	5000	0%	0%	Low	4	0.10	3.82
+speedtest charter	USD	5000	0%	0%	Low	16	13.13	13.80
+best deals for internet and tv	USD	5000	0%	-90%	High	68	1.73	12.00
+internet and tv packages in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+deals on cable tv and internet	USD	5000	0%	0%	Medium	46	3.71	18.47
+cable tv and internet near me	USD	5000	0%	0%	High	98	6.65	26.68
+television and internet providers	USD	5000	0%	-90%	High	76	2.65	14.04
+internet and tv service providers	USD	5000	0%	-90%	High	76	2.65	14.04
+tv providers with internet	USD	5000	0%	-90%	High	76	2.65	14.04
+television and internet providers in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+cutting cable tv	USD	5000	0%	-90%	Medium	40	0.31	5.43
+spectrum test my internet speed	USD	5000	0%	-90%	Low	19	8.28	13.80
+cable internet packages in my area	USD	5000	0%	-90%	High	78	5.93	21.40
+xfinity wifi check	USD	5000	0%	0%	Low	1	3.55	14.84
+low cost cable and internet	USD	5000	-90%	-90%	High	70	3.34	17.42
+cable tv internet packages	USD	5000	0%	0%	Medium	46	3.71	18.47
+best tv internet service	USD	5000	0%	-90%	High	70	0.79	6.13
+internet tv packages in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+internet and cable packages in my area	USD	5000	0%	0%	High	75	5.77	21.54
+cheap cable service near me	USD	5000	0%	0%	High	77	3.01	14.86
+best internet & tv packages	USD	5000	0%	-90%	High	68	1.73	12.00
+best tv and internet service	USD	5000	-90%	-90%	High	70	0.92	5.00
+tv and internet service providers in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+cheap cable tv and internet	USD	5000	-90%	-90%	High	70	3.34	17.42
+internet speed for spectrum	USD	5000	0%	-99%	Medium	38	2.98	8.28
+cable internet companies near me	USD	5000	0%	0%	High	86	5.35	22.84
+cheap cable providers in my area	USD	5000	-90%	0%	High	83	1.71	14.86
+cable tv & internet providers in my area	USD	5000	0%	0%	High	75	5.77	21.54
+television companies near me	USD	5000	0%	0%	High	85	2.57	12.75
+cox cable internet speed	USD	5000	0%	0%	Low	25	0.52	5.75
+cheap cable companies in my area	USD	5000	-90%	0%	High	83	1.71	14.86
+best deal on cable tv and internet	USD	5000	0%	0%	Medium	55	2.98	14.20
+internet and tv service providers near me	USD	5000	0%	-90%	High	83	3.34	16.69
+tv services providers in my area	USD	5000	0%	0%	High	84	2.44	14.86
+tv and internet companies	USD	5000	0%	-90%	High	76	2.65	14.04
+check wifi speed xfinity	USD	5000	0%	0%	Low	1	1.89	12.30
+cable providers available in my area	USD	5000	0%	0%	High	90	4.21	19.41
+internet cable companies in my area	USD	5000	0%	0%	High	75	5.77	21.54
+wifi speed xfinity	USD	5000	0%	0%	Low	1	1.89	12.30
+comcast xfinity speed	USD	5000	0%	0%	Low	15	1.50	10.24
+best cable package	USD	5000	-90%	-90%	Medium	64	1.41	7.34
+cable service available in my area	USD	5000	0%	0%	High	90	4.21	19.41
+cheapest cable tv in my area	USD	5000	-90%	0%	High	83	1.71	14.86
+best price for internet and tv	USD	5000	0%	-90%	High	68	1.73	12.00
+provider tv internet	USD	5000	0%	0%	High	69	1.44	11.04
+cable for tv and internet	USD	5000	0%	-90%	Medium	63	2.00	12.75
+my internet providers	USD	5000	0%	0%	Low	11	2.65	14.86
+good cable and internet packages	USD	5000	0%	0%	Medium	55	2.98	14.20
+get internet provider	USD	5000	0%	-90%	High	80	4.55	29.08
+cheapest cable service in my area	USD	5000	-90%	0%	High	83	1.71	14.86
+cheap cable companies near me	USD	5000	0%	0%	High	77	3.01	14.86
+alternatives for cable tv	USD	5000	0%	0%	High	100	0.70	5.39
+internet television packages	USD	5000	0%	-90%	High	78	1.81	12.46
+internet tv service providers in my area	USD	5000	0%	-90%	High	69	3.61	18.03
+internet velocity test	USD	5000	0%	0%	Low	16	0.06	4.62
+tv providers for my area	USD	5000	0%	0%	High	84	2.44	14.86
+speedtest mediacom	USD	5000	0%	0%	Low	2	3.68	18.14
+comcast xfinity internet speed	USD	5000	0%	-90%	Low	20	1.25	13.16
+other options for cable tv	USD	5000	0%	0%	High	100	0.70	5.39
+internet and cable providers for my area	USD	5000	0%	0%	High	75	5.77	21.54
+best cable tv package	USD	5000	-90%	-90%	Medium	64	1.41	7.34
+good cable service	USD	5000	0%	0%	High	76	1.32	8.46
+affordable cable near me	USD	5000	0%	0%	High	77	3.01	14.86
+best deals on cable	USD	5000	-90%	-90%	Medium	64	1.41	7.34
+best tv internet providers	USD	5000	-90%	-90%	High	70	0.92	5.00
+cable isp	USD	5000	900%	9900%	Low	0	2.40	14.86
+check my internet speed spectrum	USD	5000	0%	-90%	Low	19	8.28	13.80
+good cable deals	USD	5000	-90%	-90%	Medium	64	1.41	7.34
+cox cable speed	USD	5000	0%	0%	Low	25	0.52	5.75
+spectrum internet speeds upload	USD	5000	0%	0%	Low	33	5.79	13.80
+cable tv and internet options in my area	USD	5000	0%	0%	High	75	5.77	21.54
+xfinity broadband speed	USD	5000	0%	-90%	Low	20	1.25	13.16
+test router speed	USD	5000	0%	0%	Low	4	0.10	3.82
+test internet speed charter	USD	5000	0%	0%	Low	16	13.13	13.80
+cox communications internet speed	USD	5000	0%	0%	Low	25	0.52	5.75
+mbps test speed	USD	5000	0%	0%	Low	6	0.04	5.66
+best cable tv internet deals	USD	5000	0%	0%	Medium	55	2.98	14.20
+best internet & tv deals	USD	5000	0%	-90%	High	68	1.73	12.00
+spectrum wifi speed test	USD	5000	0%	0%	Low	14	8.28	13.80
+mediacom speed	USD	5000	0%	0%	Low	2	3.68	18.14
+television and internet packages	USD	5000	0%	0%	High	81	2.94	16.16
+test my internet speed charter	USD	5000	0%	0%	Low	16	13.13	13.80
+tv and internet providers for my area	USD	5000	0%	-90%	High	69	3.61	18.03
+wifi speed test spectrum	USD	5000	0%	0%	Low	14	8.28	13.80
+best deals for internet and tv packages	USD	5000	0%	-90%	High	75	1.86	12.00
+providers tv	USD	5000	0%	0%	High	71	2.03	8.75
+spectrum internet is slow	USD	5000	0%	0%	Low	2	3.00	8.28
+fastest internet speed test	USD	5000	0%	0%	Low	3	0.08	9.03
+xfinity check wifi speed	USD	5000	0%	0%	Low	1	1.89	12.30
+cheap cable and internet providers	USD	5000	-90%	-90%	High	79	1.76	9.67
+best deals for tv and internet packages	USD	5000	0%	-90%	High	75	1.86	12.00
+tv internet package deals	USD	5000	0%	-90%	High	78	1.81	12.46
+wifi speed comcast	USD	5000	0%	0%	Low	1	1.89	12.30
+tv providers my area	USD	5000	0%	0%	High	84	2.44	14.86
+television service provider	USD	5000	0%	0%	High	75	2.28	14.86
+xfinity cable speed	USD	5000	0%	0%	Low	15	1.50	10.24
+check xfinity wifi speed	USD	5000	0%	0%	Low	1	1.89	12.30
+provider internet tv	USD	5000	0%	0%	High	69	1.44	11.04
+internet cable television	USD	5000	0%	-90%	Medium	63	2.00	12.75
+modem test speed	USD	5000	0%	0%	Low	3	0.21	6.85
+test high speed internet	USD	5000	0%	0%	Low	24	0.03	1.60
+check spectrum internet	USD	5000	0%	0%	Low	18	13.80	13.80
+test my speed spectrum	USD	5000	0%	-90%	Low	19	8.28	13.80
+check my speed spectrum	USD	5000	0%	-90%	Low	19	8.28	13.80
+mbps internet speed test	USD	5000	0%	0%	Low	6	0.04	5.66
+cable internet package deals	USD	5000	0%	0%	Medium	46	3.71	18.47
+cable speed check	USD	5000	-90%	-90%	Low	16	0.10	3.63
+cable speedtest	USD	5000	-90%	-90%	Low	16	0.10	3.63
+charter bandwidth test	USD	5000	0%	0%	Low	16	13.13	13.80
+charter internet speed check	USD	5000	0%	0%	Low	16	13.13	13.80
+charter speed check	USD	5000	0%	0%	Low	16	13.13	13.80
+charter test speed	USD	5000	0%	0%	Low	16	13.13	13.80
+comcast internet is slow	USD	5000	0%	0%	Low	1	0.75	7.24
+comcast network test	USD	5000	0%	-90%	Low	1	5.70	28.56
+comcast test	USD	5000	0%	-90%	Low	0		
+comcast wifi test	USD	5000	0%	0%	Low	1	3.55	14.84
+comcast xfinity slow internet	USD	5000	0%	0%	Low	1	0.75	7.24
+connections speed test	USD	5000	0%	0%	Low	2	0.21	6.31
+cord tv	USD	5000	0%	0%	High	81	0.05	0.58
+ethernet speedtest	USD	5000	0%	0%	Low	20	0.05	2.01
+free speed test wifi	USD	5000	0%	900%	Low	8	0.21	3.55
+highspeed internet speed test	USD	5000	0%	0%	Low	24	0.03	1.60
+internet cable tv deals	USD	5000	0%	0%	Medium	46	3.71	18.47
+internet test comcast	USD	5000	0%	-90%	Low	1	5.70	28.56
+internet test xfinity	USD	5000	0%	-90%	Low	1	5.70	28.56
+mediacom check internet speed	USD	5000	0%	0%	Low	2	3.68	18.14
+mediacom speed check	USD	5000	0%	0%	Low	2	3.68	18.14
+megabit per second test	USD	5000	0%	0%	Low	4	0.03	7.99
+optimum cable speed test	USD	5000	0%	-90%	Low	4	0.92	10.40
+run a speed test on internet	USD	5000	0%	0%	Low	8	0.04	3.36
+slow spectrum internet	USD	5000	0%	0%	Low	2	3.00	8.28
+sparklight speedtest	USD	5000	0%	0%	Low	1	3.23	9.29
+spectrum cable speed test	USD	5000	0%	0%	Low	16	13.13	13.80
+spectrum check my internet speed	USD	5000	0%	-90%	Low	19	8.28	13.80
+spectrum check my speed	USD	5000	0%	-90%	Low	19	8.28	13.80
+spectrum speed test wifi	USD	5000	0%	0%	Low	14	8.28	13.80
+spectrum test my speed	USD	5000	0%	-90%	Low	19	8.28	13.80
+speed of internet connection test	USD	5000	0%	0%	Low	2	0.17	6.54
+speed test spectrum wifi	USD	5000	0%	0%	Low	14	8.28	13.80
+speed test xfinity wifi	USD	5000	0%	0%	Low	1	1.89	12.30
+test connection speeds	USD	5000	0%	0%	Low	4	0.29	8.00
+test internet xfinity	USD	5000	0%	-90%	Low	1	5.70	28.56
+test my internet speed wifi	USD	5000	0%	0%	Low	19	0.04	4.42
+test my spectrum internet speed	USD	5000	0%	-90%	Low	19	8.28	13.80
+test to check internet speed	USD	5000	0%	0%	Low	15	0.06	4.14
+test xfinity wifi speed	USD	5000	0%	0%	Low	1	1.89	12.30
+upload download speed check	USD	5000	0%	0%	Low	14	0.03	3.30
+upload download speeds test	USD	5000	0%	0%	Low	14	0.03	3.30
+wifi speed test comcast	USD	5000	0%	0%	Low	1	1.89	12.30
+wifi test xfinity	USD	5000	0%	0%	Low	1	3.55	14.84
+wireless speed check	USD	5000	0%	0%	Low	12	0.03	2.44
+xfinity test internet	USD	5000	0%	-90%	Low	1	5.70	28.56
+xfinity test wifi	USD	5000	0%	0%	Low	1	3.55	14.84
+xfinity wifi speed check	USD	5000	0%	0%	Low	1	1.89	12.30
+xfinity wifi tester	USD	5000	0%	0%	Low	1	3.55	14.84
+smartmove internet	USD	500	0%	-90%	High	78	3.99	50.51
+internet and cable	USD	500	0%	0%	High	83	5.96	23.70
+options for cable tv in my area	USD	500	0%	-90%	High	71	2.20	12.54
+cable in my area	USD	500	0%	0%	High	96	5.03	21.90
+tv and internet packages near me	USD	500	0%	0%	High	81	2.22	17.68
+cheap cable and internet packages near me	USD	500	0%	0%	High	85	2.08	12.75
+cheap cable tv for low income	USD	500	0%	0%	High	72	1.29	7.75
+internet providers near me by address	USD	500	0%	0%	High	96	5.67	26.49
+cable internet providers for my address	USD	500	0%	0%	High	88	5.80	20.00
+atlantic broadband internet	USD	500	0%	0%	Medium	50	3.86	25.79
+wifi and cable	USD	500	0%	0%	High	77	6.66	25.59
+cable movers	USD	500	0%	-90%	Medium	37	5.05	138.13
+cable deals	USD	500	0%	0%	High	78	2.92	12.30
+local cable providers	USD	500	0%	0%	High	68	3.43	14.86
+cable providers houston	USD	500	0%	-90%	Medium	58	3.41	20.01
+free cable and internet	USD	500	0%	0%	High	68	3.00	13.43
+vast internet	USD	500	0%	0%	Medium	48	2.00	10.17
+cable deals near me	USD	500	0%	0%	Medium	65	2.55	14.86
+cable and internet deals near me	USD	500	0%	-90%	High	87	6.06	24.59
+cable tv and internet	USD	500	0%	0%	High	80	2.91	17.85
+local cable companies	USD	500	0%	0%	High	85	3.80	14.86
+cable available in my area	USD	500	0%	0%	High	85	2.56	14.86
+tv and internet service	USD	500	0%	0%	High	68	3.87	19.52
+internet providers that service my area	USD	500	0%	0%	High	78	8.90	35.77
+cable and wifi packages	USD	500	0%	0%	High	82	6.38	25.14
+tv and internet in my area	USD	500	-90%	-90%	High	73	3.06	15.13
+comcast speeds	USD	500	0%	-90%	Low	19	1.82	14.78
+cable companies new jersey	USD	500	0%	0%	High	72	3.12	15.61
+best cable company	USD	500	0%	0%	High	70	2.01	14.24
+cable for seniors	USD	500	0%	0%	Medium	55	1.48	7.96
+cable tv deals	USD	500	0%	-90%	Medium	65	1.86	8.56
+low income cable and internet	USD	500	-90%	-90%	High	70	3.00	18.64
+wifi and cable deals	USD	500	0%	0%	High	82	6.38	25.14
+cable and wifi near me	USD	500	0%	0%	High	71	9.36	42.05
+tv internet deals	USD	500	0%	-90%	Medium	65	2.49	12.75
+free cable for low income	USD	500	0%	0%	Medium	44	2.09	12.63
+home internet providers for my address	USD	500	0%	0%	High	88	6.00	23.80
+best cable service in my area	USD	500	0%	0%	High	89	2.57	14.86
+cable provider by address	USD	500	-90%	-90%	High	79	4.18	17.65
+wifi and cable near me	USD	500	0%	0%	High	100	12.16	49.20
+best internet and cable provider in my area	USD	500	0%	-90%	High	86	4.06	14.86
+cable tv for seniors	USD	500	0%	0%	Medium	55	1.48	7.96
+home cable and internet	USD	500	0%	0%	Medium	58	6.50	23.75
+cable and internet packages near me	USD	500	0%	-90%	High	86	3.87	17.56
+cable providers for my address	USD	500	0%	0%	High	85	5.17	18.39
+xfinity wifi speeds	USD	500	0%	0%	Low	19	1.34	10.24
+cable packages near me	USD	500	0%	0%	Medium	65	2.55	14.86
+cablemover	USD	500	0%	0%	Medium	40	4.49	133.71
+cheap cable and internet packages	USD	500	0%	0%	Medium	46	2.63	13.14
+cable services company	USD	500	0%	0%	Low	27	5.32	17.43
+tv and internet near me	USD	500	900%	0%	High	75	3.76	20.46
+cable availability by address	USD	500	0%	-90%	High	86	3.12	15.89
+best cable and internet providers	USD	500	0%	0%	Medium	65	3.08	18.31
+xfinity fast	USD	500	-90%	-90%	Medium	35	4.33	29.72
+best cable provider in my area	USD	500	0%	0%	High	80	1.87	14.86
+get cable tv	USD	500	0%	0%	High	88	4.68	23.27
+satellite tv providers near me	USD	500	-90%	-90%	High	75	1.76	9.59
+cut the cord tv	USD	500	0%	0%	Low	32	0.46	2.85
+internet providers in this area	USD	500	0%	0%	High	90	6.45	30.04
+cable companies nyc	USD	500	0%	0%	High	70	4.12	16.30
+new cable service	USD	500	0%	-90%	High	79	7.00	33.75
+spectrum wifi speeds	USD	500	0%	0%	Medium	36	3.00	13.80
+spectrum wifi test	USD	500	0%	-90%	Low	21	8.28	13.80
+best cable company near me	USD	500	0%	0%	High	89	2.88	14.86
+cable and internet companies	USD	500	0%	0%	Medium	48	6.26	23.19
+best cable internet provider	USD	500	0%	0%	Medium	65	3.08	18.31
+home internet and tv	USD	500	0%	0%	High	77	4.51	19.15
+xfinity mbps	USD	500	0%	0%	Low	27	1.01	8.17
+cable providers lubbock	USD	500	0%	-90%	High	85	2.42	18.43
+cable internet providers by address	USD	500	0%	0%	Low	24	3.66	15.00
+local cable	USD	500	0%	0%	High	72	3.49	14.86
+cable prices	USD	500	0%	-90%	Medium	46	1.09	6.33
+tv cable companies near me	USD	500	0%	0%	High	79	3.30	14.86
+cable deals in my area	USD	500	0%	0%	High	77	3.06	14.86
+local tv providers	USD	500	0%	0%	High	75	2.14	14.86
+search for internet providers by address	USD	500	0%	0%	High	92	4.11	20.00
+spectrum download speed	USD	500	0%	0%	Low	31	4.50	8.28
+low cost cable tv for seniors	USD	500	0%	0%	Medium	53	1.25	6.01
+cable carriers in my area	USD	500	0%	0%	High	79	3.80	15.89
+smartmoveus	USD	500	0%	0%	Medium	51	5.56	94.56
+cable specials	USD	500	-90%	-90%	High	72	3.11	12.75
+cable tv deals in my area	USD	500	0%	0%	High	77	3.06	14.86
+charter spectrum internet speeds	USD	500	0%	-90%	Low	26	5.34	13.80
+cable tv available in my area	USD	500	0%	0%	High	85	2.56	14.86
+cable and internet companies near me	USD	500	0%	0%	Medium	66	5.39	38.68
+low income cable	USD	500	0%	0%	High	70	1.67	11.87
+cable tv prices	USD	500	0%	-90%	Medium	49	1.05	9.09
+spectrum internet speeds in my area	USD	500	0%	0%	Medium	41	2.75	13.80
+cheap cable for seniors	USD	500	0%	0%	Medium	53	1.25	6.01
+phone internet providers	USD	500	0%	-90%	Medium	63	6.06	24.33
+local cable company near me	USD	500	0%	0%	High	82	3.80	15.89
+cable services with internet	USD	500	0%	0%	Medium	51	7.00	23.67
+cable tv providers houston	USD	500	0%	-90%	Medium	58	3.41	20.01
+good cable companies	USD	500	0%	0%	High	78	1.27	9.01
+armstrong cable packages	USD	500	0%	0%	Low	22	0.36	2.35
+cable internet companies	USD	500	0%	0%	Medium	48	6.26	23.19
+cable and internet options in my area	USD	500	0%	0%	High	68	6.55	19.21
+tv cable providers near me	USD	500	-90%	-90%	High	83	2.78	14.86
+the best cable company	USD	500	0%	-90%	Medium	59	1.95	11.30
+cheap tv and internet service	USD	500	-90%	-90%	Medium	63	1.49	10.53
+best cable company in my area	USD	500	0%	0%	High	89	2.57	14.86
+cable wifi packages	USD	500	0%	0%	High	82	6.38	25.14
+cable companies houston	USD	500	0%	-90%	Medium	58	3.41	20.01
+cable prices near me	USD	500	-90%	-90%	High	88	1.82	14.86
+cable and wifi providers	USD	500	0%	-90%	High	84	6.30	23.01
+cable companies in florida	USD	500	0%	0%	Medium	56	3.37	15.00
+spectrum download and upload speeds	USD	500	0%	0%	Low	31	6.90	13.80
+xfinity fast internet speed	USD	500	0%	0%	Medium	38	1.14	10.00
+spectrum speed in my area	USD	500	0%	0%	Medium	41	2.75	13.80
+all cable companies	USD	500	0%	0%	Medium	55	5.19	20.72
+tv and wifi providers	USD	500	-90%	0%	High	96	2.67	13.96
+cable tv packages in my area	USD	500	0%	0%	High	77	3.06	14.86
+cable companies in maryland	USD	500	-90%	-90%	Medium	50	3.12	13.08
+speedcheck spectrum	USD	500	0%	0%	Low	20	8.28	13.80
+internet providers in	USD	500	-90%	-90%	High	78	7.84	27.00
+cable tv providers philadelphia	USD	500	0%	0%	Medium	66	3.32	20.99
+cable companies in ct	USD	500	0%	0%	Low	26	4.10	15.60
+internet and tv deals near me	USD	500	0%	0%	High	81	2.22	17.68
+tv cable companies in my area	USD	500	0%	-90%	High	76	2.52	14.86
+cable deals for seniors	USD	500	0%	-90%	Medium	54	1.46	6.28
+cable tv deals for seniors	USD	500	0%	-90%	Medium	54	1.46	6.28
+local cable tv	USD	500	0%	0%	High	85	3.80	14.86
+cable tv offers	USD	500	0%	-90%	Medium	56	2.63	14.42
+cable discount for seniors	USD	500	0%	0%	Medium	58	1.39	6.76
+cable offers in my area	USD	500	0%	0%	High	85	2.56	14.86
+check internet speed xfinity	USD	500	0%	0%	Low	2	5.70	20.56
+cable internet deals near me	USD	500	0%	-90%	High	87	6.06	24.59
+tv internet services	USD	500	0%	0%	High	68	3.87	19.52
+optimum internet speeds	USD	500	0%	0%	Low	30	0.93	11.50
+xfinity dvr plans	USD	500	0%	900%	Low	3	0.03	10.45
+cable choices in my area	USD	500	0%	0%	High	85	2.56	14.86
+spectrum internet mbps	USD	500	0%	0%	Medium	46	3.00	13.80
+cable nyc	USD	500	0%	0%	Medium	46	3.10	14.27
+spectrum internet download speed	USD	500	-90%	0%	Low	32	6.90	13.80
+tv options near me	USD	500	0%	-90%	High	81	1.80	11.37
+cox wifi speeds	USD	500	0%	0%	Low	10	1.15	8.72
+xfinity internet check	USD	500	0%	0%	Low	22	7.33	40.92
+best cable and internet	USD	500	0%	0%	Medium	65	3.08	18.31
+best cable near me	USD	500	0%	0%	High	89	2.88	14.86
+cable internet and phone providers in my area	USD	500	0%	0%	High	85	4.84	14.87
+spectrum bandwidth	USD	500	0%	0%	Low	18	4.10	13.80
+cable tv specials	USD	500	0%	-90%	Medium	65	1.86	8.56
+internet providers by zip	USD	500	0%	-90%	Medium	60	2.38	21.44
+spectrum upload and download speeds	USD	500	0%	0%	Low	31	6.90	13.80
+spectrum ping test	USD	500	0%	0%	Low	22	13.80	13.80
+cutting the cord options	USD	500	0%	0%	Medium	64	0.33	5.08
+cable phone and internet	USD	500	0%	0%	Medium	58	3.07	14.68
+local cable tv providers	USD	500	0%	0%	High	68	3.43	14.86
+charter spectrum speeds	USD	500	0%	-90%	Low	26	5.34	13.80
+high speed internet options for my address	USD	500	0%	900%	High	77	4.37	22.90
+cable providers nyc	USD	500	0%	0%	High	70	4.12	16.30
+top cable companies	USD	500	0%	0%	Medium	43	2.99	12.75
+cable tv packages near me	USD	500	0%	-90%	High	83	1.74	14.66
+cable & wifi deals	USD	500	0%	0%	High	82	6.38	25.14
+internet tv bundles in my area	USD	500	-90%	-90%	Medium	65	3.13	13.58
+cox internet slow	USD	500	0%	0%	Low	3	2.02	6.62
+best cable in my area	USD	500	0%	0%	High	80	1.87	14.86
+check my internet speed xfinity	USD	500	0%	0%	Low	1		
+cable tv providers for my address	USD	500	0%	0%	High	85	5.17	18.39
+cable providers new york	USD	500	0%	0%	High	70	4.12	16.30
+cut the cable options	USD	500	0%	0%	High	78	0.50	4.46
+florida cable providers	USD	500	0%	0%	Medium	56	3.37	15.00
+check what internet providers are in my area	USD	500	0%	0%	High	86	4.68	23.72
+cable specials near me	USD	500	0%	0%	Medium	65	2.55	14.86
+cable tv providers colorado springs	USD	500	0%	0%	High	68	3.58	17.92
+low cost cable for seniors	USD	500	0%	0%	Medium	53	1.25	6.01
+armstrong cable tv packages prices	USD	500	-90%	-99%	Low	18	0.53	2.63
+cable companies in colorado springs	USD	500	0%	0%	High	68	3.58	17.92
+internet cable company near me	USD	500	0%	0%	High	77	5.76	22.59
+cable providers philadelphia	USD	500	0%	0%	Medium	66	3.32	20.99
+cox download speed	USD	500	-90%	-90%	Low	17	0.80	6.27
+tv phone internet providers my area	USD	500	-90%	0%	High	75	3.59	14.86
+cox wifi test	USD	500	0%	-90%	Low	2		
+cable tv for low income	USD	500	0%	0%	High	70	1.67	11.87
+cable companies in houston texas	USD	500	0%	-90%	Medium	58	3.41	20.01
+cable tv offers in my area	USD	500	0%	0%	High	77	3.06	14.86
+ping test spectrum	USD	500	0%	0%	Low	22	13.80	13.80
+cutting the cable cord	USD	500	0%	0%	Medium	36	0.22	3.42
+cable tv options for my area	USD	500	0%	0%	High	85	2.56	14.86
+internet and phone service providers	USD	500	0%	-90%	Medium	63	6.06	24.33
+cable tv deals near me	USD	500	0%	0%	Medium	65	2.55	14.86
+cable wifi providers near me	USD	500	0%	0%	High	82	5.56	24.44
+home internet tv	USD	500	0%	0%	High	77	4.51	19.15
+xfinity check internet	USD	500	0%	0%	Low	22	7.33	40.92
+telephone and internet providers	USD	500	0%	-90%	Medium	63	6.06	24.33
+tv cable companies my area	USD	500	0%	-90%	High	76	2.52	14.86
+tv cable options in my area	USD	500	0%	0%	High	85	2.56	14.86
+speedtest spectrum internet	USD	500	0%	0%	Low	15	13.80	13.80
+cable companies in texas	USD	500	0%	-90%	Medium	47	2.81	13.71
+optimum speeds	USD	500	0%	0%	Medium	39	0.93	11.06
+cable companies in philadelphia	USD	500	0%	0%	Medium	66	3.32	20.99
+smart moves us	USD	500	0%	0%	Medium	51	5.56	94.56
+cable tv availability by address	USD	500	0%	-90%	High	86	3.12	15.89
+cable service deals	USD	500	0%	-90%	Medium	65	1.86	8.56
+high speed internet check	USD	500	0%	0%	Low	32	0.09	6.85
+internet tv near me	USD	500	900%	0%	High	75	3.76	20.46
+armstrong cable internet	USD	500	0%	0%	Medium	33	1.13	8.72
+best cable deals in my area	USD	500	0%	-90%	High	73	1.81	10.39
+spectrum mbps speed	USD	500	0%	0%	Medium	40	3.00	13.80
+cable internet phone	USD	500	0%	0%	Medium	58	3.07	14.68
+cable and internet companies in my area	USD	500	0%	0%	High	68	6.55	19.21
+phone internet cable providers my area	USD	500	0%	0%	High	85	4.84	14.87
+best cable tv deals in my area	USD	500	0%	-90%	High	73	1.81	10.39
+check my internet speed cox	USD	500	0%	0%	Low	1		
+cable and wifi providers near me	USD	500	0%	0%	High	82	5.56	24.44
+tv phone and internet providers in my area	USD	500	-90%	0%	High	75	3.59	14.86
+smartmove connect	USD	500	0%	0%	Medium	39	6.00	63.17
+wifi speed internet	USD	500	0%	0%	Low	15	0.06	4.65
+internet tv in my area	USD	500	-90%	-90%	High	73	3.06	15.13
+check speed xfinity	USD	500	-90%	0%	Low	1		
+speed test wifi router	USD	500	0%	0%	Low	6	0.16	4.27
+download speed spectrum	USD	500	0%	0%	Low	31	4.50	8.28
+indianapolis cable providers	USD	500	0%	0%	High	86	2.77	16.23
+top cable providers	USD	500	0%	-90%	Medium	57	2.20	14.10
+find my cable provider	USD	500	0%	-90%	High	82	3.93	15.89
+fast xfinity internet	USD	500	0%	0%	Medium	45	2.61	18.17
+spectrum internet bandwidth	USD	500	0%	0%	Medium	46	3.00	13.80
+tv internet near me	USD	500	900%	0%	High	75	3.76	20.46
+cable and wifi companies near me	USD	500	0%	0%	High	82	5.56	24.44
+cable providers colorado springs	USD	500	0%	0%	High	68	3.58	17.92
+check my internet speed comcast	USD	500	0%	0%	Low	2	5.70	20.56
+internet tv phone	USD	500	0%	0%	Low	31	3.09	14.75
+cable packages in my area	USD	500	0%	0%	High	77	3.06	14.86
+cable suppliers in my area	USD	500	0%	0%	High	79	3.80	15.89
+just cable tv	USD	500	900%	900%	High	69	1.37	14.86
+local tv cable companies	USD	500	0%	0%	High	68	3.43	14.86
+online cable options	USD	500	-90%	-90%	High	77	1.70	8.66
+internet and tv offers	USD	500	0%	-90%	Medium	65	2.49	12.75
+tv internet and phone	USD	500	0%	0%	Low	31	3.09	14.75
+internet phone tv bundles in my area	USD	500	0%	0%	High	71	2.04	12.00
+cable and internet prices	USD	500	0%	0%	Low	15	1.96	9.52
+cox speed test business	USD	500	-90%	-90%	Low	3		
+comcast fast	USD	500	-90%	-90%	Medium	35	4.33	29.72
+cable service by address	USD	500	-90%	-90%	High	79	4.18	17.65
+cheap cable for low income	USD	500	0%	0%	High	72	1.29	7.75
+best internet providers for my address	USD	500	0%	0%	High	91	4.71	29.43
+check mbps	USD	500	0%	0%	Low	9	0.03	5.42
+cable in ct	USD	500	0%	0%	Low	26	4.10	15.60
+internet atlantic broadband	USD	500	0%	0%	Medium	50	3.86	25.79
+sparklight internet speed	USD	500	0%	0%	Low	25	4.15	6.00
+ny cable company	USD	500	0%	0%	High	70	4.12	16.30
+cable and tv deals	USD	500	0%	-90%	Medium	65	1.86	8.56
+best cable tv in my area	USD	500	0%	0%	High	80	1.87	14.86
+name of cable companies	USD	500	0%	0%	Medium	44	4.65	14.86
+spectrum internet upload and download speeds	USD	500	0%	0%	Low	31	6.90	13.80
+cable providers in ct	USD	500	0%	0%	High	72	3.43	16.45
+best cable tv near me	USD	500	0%	0%	High	89	2.88	14.86
+top cable tv providers	USD	500	0%	-90%	Medium	57	2.20	14.10
+deals on internet and tv	USD	500	0%	-90%	Medium	65	2.49	12.75
+armstrong tv	USD	500	0%	0%	Low	28	0.31	3.19
+atlantic broadband packages	USD	500	0%	0%	Low	29		
+optimum deals for seniors	USD	500	0%	900%	Medium	59	0.93	11.50
+xfinity download speeds	USD	500	0%	-90%	Low	4	5.30	17.27
+best tv and internet bundles in my area	USD	500	0%	0%	High	82	1.74	15.93
+wifi and tv services	USD	500	-90%	-90%	High	80	1.74	12.62
+spectrum internet check	USD	500	0%	0%	Medium	35	6.90	13.80
+cable internet prices	USD	500	0%	0%	Low	15	1.96	9.52
+mediacom internet speed	USD	500	0%	-90%	Low	29	4.00	13.36
+florida cable	USD	500	900%	0%	Medium	38	5.02	15.00
+tv service companies	USD	500	0%	-90%	High	78	1.95	14.86
+cable and satellite providers	USD	500	0%	900%	Low	20	2.83	14.86
+spectrum test internet	USD	500	0%	900%	Low	23	8.00	13.80
+cox wifi slow	USD	500	0%	-90%	Low	5	1.45	8.65
+optimum discounts for seniors	USD	500	0%	0%	Low	31	1.03	11.50
+comcast internet checker	USD	500	0%	0%	Low	22	7.33	40.92
+cable wifi providers	USD	500	0%	-90%	High	84	6.30	23.01
+cost of cable and internet per month	USD	500	0%	900%	Low	20	1.70	7.18
+affordable cable and internet services	USD	500	-90%	-90%	Medium	45	3.26	12.75
+cable specials in my area	USD	500	0%	0%	High	77	3.06	14.86
+lubbock cable providers	USD	500	0%	-90%	High	85	2.42	18.43
+cable internet cost	USD	500	0%	0%	Low	8	1.78	8.52
+cable internet by address	USD	500	0%	0%	Low	24	3.66	15.00
+spectrum internet download and upload speeds	USD	500	0%	0%	Low	31	6.90	13.80
+cable providers houston tx	USD	500	0%	-90%	Medium	58	3.41	20.01
+armstrong internet speeds	USD	500	0%	0%	Low	23	0.26	3.54
+cable companies in alabama	USD	500	0%	-90%	Medium	63	5.65	23.80
+armstrong cable and internet	USD	500	0%	0%	Medium	33	1.13	8.72
+internet and tv options	USD	500	0%	0%	High	75	1.08	7.38
+cable providers in lubbock tx	USD	500	0%	-90%	High	85	2.42	18.43
+low cost cable tv for low income	USD	500	0%	0%	High	72	1.29	7.75
+maryland cable providers	USD	500	-90%	-90%	Medium	50	3.12	13.08
+cable in houston tx	USD	500	0%	-90%	Medium	58	3.41	20.01
+price of cable tv per month	USD	500	0%	0%	Medium	44	0.87	5.09
+cable network in my area	USD	500	-90%	-90%	High	80	4.39	15.55
+optimum senior discount	USD	500	0%	0%	Low	31	1.03	11.50
+comcast cable for low income	USD	500	0%	0%	Low	15	3.47	15.00
+free cable tv for low income	USD	500	0%	0%	Medium	44	2.09	12.63
+cable tv and wifi	USD	500	0%	0%	High	77	6.66	25.59
+tv internet service providers	USD	500	0%	0%	High	68	3.87	19.52
+tv internet options	USD	500	0%	0%	High	75	1.08	7.38
+cable and internet cost	USD	500	0%	0%	Low	8	1.78	8.52
+smartmoveconnect	USD	500	0%	0%	Medium	39	6.00	63.17
+spectrum business speed test	USD	500	0%	0%	Low	33	3.25	54.00
+cable tv san francisco	USD	500	0%	-90%	Medium	53	1.05	7.38
+wifi mbps test	USD	500	0%	0%	Low	17	0.04	3.43
+new cable companies	USD	500	-90%	-90%	Medium	58	2.75	14.86
+texas cable providers	USD	500	0%	-90%	Medium	47	2.81	13.71
+spanish cable	USD	500	0%	0%	Low	1	1.14	7.61
+cable companies in usa	USD	500	-90%	-90%	Low	31	2.70	11.03
+armstrong cable tv	USD	500	0%	0%	Low	29	0.45	3.55
+cable in houston	USD	500	0%	-90%	Medium	58	3.41	20.01
+cheap tv and internet packages	USD	500	0%	0%	High	75	1.85	10.34
+spectrum wifi checker	USD	500	0%	-90%	Low	21	8.28	13.80
+florida cable tv providers	USD	500	0%	0%	Medium	56	3.37	15.00
+cable company prices	USD	500	0%	-90%	Medium	49	1.05	9.09
+cable tv providers in california	USD	500	-90%	-90%	Medium	42	1.81	12.39
+internet moving	USD	500	0%	-90%	Medium	52	7.45	26.34
+internet and cable cost per month	USD	500	0%	900%	Low	20	1.70	7.18
+cable tv choices in my area	USD	500	0%	0%	High	85	2.56	14.86
+cable in new york	USD	500	0%	0%	Medium	46	3.10	14.27
+spectrum broadband speeds	USD	500	0%	0%	Low	23	5.00	13.80
+the best cable provider	USD	500	0%	-90%	Medium	59	1.95	11.30
+the best cable	USD	500	0%	-90%	Medium	59	1.95	11.30
+cable companies in nc	USD	500	0%	-90%	Medium	47	4.63	12.75
+check modem speed	USD	500	0%	-90%	Low	11	0.39	12.75
+check speed of internet xfinity	USD	500	0%	0%	Low	1		
+cable tv in florida	USD	500	0%	0%	Medium	56	3.37	15.00
+armstrong cable prices	USD	500	-90%	-90%	Low	19	0.40	1.87
+internet speed do i need	USD	500	0%	0%	Medium	48	0.35	17.76
+cox connection test	USD	500	-90%	-90%	Low	1		
+find cable provider	USD	500	0%	-90%	High	82	3.93	15.89
+internet wifi test	USD	500	0%	900%	Low	17	0.04	2.28
+tv cable companies in usa	USD	500	-90%	-90%	Low	31	2.70	11.03
+check wifi speed test	USD	500	0%	0%	Low	24	0.04	3.27
+armstrong packages	USD	500	0%	0%	Low	22	0.36	2.35
+cable tv providers in ct	USD	500	0%	0%	High	72	3.43	16.45
+cable television deals	USD	500	0%	-90%	Medium	65	1.86	8.56
+internet and cable providers by address	USD	500	0%	0%	Low	24	3.66	15.00
+suddenlink speeds	USD	500	0%	-90%	Low	8	2.49	10.24
+internet providers n	USD	500	0%	-90%	Low	12	0.82	8.94
+cable tv providers in new jersey	USD	500	0%	0%	High	72	3.12	15.61
+compare cable tv providers	USD	500	0%	0%	Low	19	1.66	8.84
+armstrong cable internet packages	USD	500	0%	-90%	Low	30	0.83	5.08
+cheap cable internet packages	USD	500	0%	0%	Medium	46	2.63	13.14
+best internet cable package	USD	500	0%	0%	Medium	53	2.95	12.75
+cable tv in usa	USD	500	0%	-90%	Medium	35	1.30	7.80
+comcast download speed	USD	500	0%	-90%	Low	4	5.30	17.27
+new cable tv	USD	500	0%	0%	Low	14	2.90	12.24
+cutting the cable tv cord	USD	500	0%	0%	Medium	36	0.22	3.42
+cheap cable internet near me	USD	500	-90%	-90%	High	75	3.74	15.25
+cox internet tester	USD	500	-90%	-90%	Low	1		
+cable tv providers in usa	USD	500	-90%	-90%	Low	31	2.70	11.03
+cable tv with wifi	USD	500	0%	0%	High	77	6.66	25.59
+slow internet spectrum	USD	500	0%	0%	Low	3	2.20	7.27
+best cable television	USD	500	0%	0%	High	78	1.27	9.01
+armstrong cable tv packages	USD	500	0%	0%	Low	22	0.36	2.35
+average cost of cable tv and internet per month	USD	500	0%	0%	Medium	37	1.08	4.48
+xfinity business speed test	USD	500	-90%	-90%	Low	22	6.48	21.45
+xfinity upload and download speeds	USD	500	0%	0%	Low	6	4.12	15.00
+cable television and internet	USD	500	0%	0%	High	80	2.91	17.85
+charter spectrum speedtest	USD	500	0%	0%	Low	16	8.28	13.80
+cable company in california	USD	500	-90%	-90%	Medium	42	1.81	12.39
+wifi speed test for gaming	USD	500	900%	0%	Low	7	0.10	6.07
+senior cable tv discounts	USD	500	0%	0%	Medium	58	1.39	6.76
+testing xfinity internet speed	USD	500	0%	0%	Low	2	5.70	20.56
+us cable tv providers	USD	500	-90%	-90%	Low	31	2.70	11.03
+armstrong cable deals	USD	500	0%	0%	Low	22	0.36	2.35
+armstrong television	USD	500	0%	0%	Low	28	0.31	3.19
+best options to cut the cord	USD	500	0%	0%	Medium	52	0.25	3.21
+cable tv companies in florida	USD	500	0%	0%	Medium	56	3.37	15.00
+atlantic broadband deals	USD	500	0%	0%	Low	29		
+comcast upload and download speeds	USD	500	0%	0%	Low	6	4.12	15.00
+cable providers in the us	USD	500	-90%	-90%	Low	31	2.70	11.03
+ethernet cable speed test	USD	500	0%	0%	High	85	0.40	1.77
+speedtest sparklight	USD	500	0%	0%	Low	1		
+suddenlink speed test	USD	500	0%	-90%	Low	8	2.49	10.24
+time warner speed	USD	500	0%	0%	Low	12	8.28	13.80
+vast broad band	USD	500	0%	0%	Low	24	1.25	2.80
+internet speed test wifi	USD	500	0%	900%	Low	18	0.05	2.71
+fastest wifi speed test	USD	500	-90%	0%	Low	5	0.46	7.02
+cable internet speed test	USD	500	0%	900%	Low	3		
+comcast internet connection test	USD	500	0%	0%	Low	2	5.70	20.56
+usa cable providers	USD	500	-90%	-90%	Low	31	2.70	11.03
+cable companies in america	USD	500	-90%	-90%	Low	31	2.70	11.03
+cable providers in california	USD	500	-90%	-90%	Medium	42	1.81	12.39
+alabama cable providers	USD	500	0%	-90%	Medium	63	5.65	23.80
+speed test spectrum ookla	USD	500	0%	0%	Low	20	8.28	13.80
+cox wifi is slow	USD	500	0%	-90%	Low	5	1.45	8.65
+spectrum network speed test	USD	500	0%	0%	Low	20	8.28	13.80
+optimum internet slow	USD	500	0%	0%	Low	3	0.83	5.15
+all cable tv	USD	500	0%	0%	Medium	55	5.19	20.72
+armstrong cable and internet prices	USD	500	0%	0%	Medium	51	0.78	5.25
+armstrong cable package deals	USD	500	0%	0%	Low	22	0.36	2.35
+best tv internet bundles in my area	USD	500	0%	0%	High	84	1.96	12.00
+cable television service providers	USD	500	0%	0%	Low	18	2.75	14.86
+cable tv internet phone	USD	500	0%	0%	Medium	58	3.07	14.68
+charter spectrum internet speed test	USD	500	0%	0%	Low	16	8.28	13.80
+check my xfinity speed	USD	500	-90%	0%	Low	1		
+checking connection speed	USD	500	-90%	0%	Low	6	1.90	8.43
+comcast connection test	USD	500	0%	0%	Low	1		
+comcast high speed internet test	USD	500	0%	0%	Low	2	5.70	20.56
+cox download speed test	USD	500	-90%	-90%	Low	17	0.80	6.27
+cox test wifi speed	USD	500	0%	0%	Low	10	1.15	8.72
+download speed test comcast	USD	500	0%	-90%	Low	4	5.30	17.27
+download speed test spectrum	USD	500	0%	0%	Low	31	4.50	8.28
+download speed test xfinity	USD	500	0%	-90%	Low	4	5.30	17.27
+download speeds xfinity	USD	500	0%	-90%	Low	4	5.30	17.27
+internet access cable	USD	500	0%	900%	Low	4	5.44	14.86
+internet speed test by spectrum	USD	500	0%	0%	Low	27		
+internet speed test comcast business	USD	500	0%	900%	Low	20	11.60	26.59
+internet speed test for spectrum	USD	500	-90%	-90%	Low	19	12.24	13.80
+internet speed test megabytes	USD	500	900%	0%	Low	4		
+internet speed test megabytes per second	USD	500	900%	0%	Low	5	0.05	9.60
+mbps internet test	USD	500	0%	0%	Low	13	0.04	3.93
+measure my connection speed	USD	500	0%	0%	Low	6	0.21	6.08
+my speed test xfinity	USD	500	0%	0%	Low	0		
+my xfinity speed test	USD	500	0%	0%	Low	0		
+ookla speed test spectrum	USD	500	0%	-90%	Low	20	8.28	13.80
+optimum internet is slow	USD	500	0%	0%	Low	3	0.83	5.15
+ping test xfinity	USD	500	0%	0%	Low	0		
+senior discount optimum	USD	500	0%	0%	Low	31	1.03	11.50
+slow internet speed xfinity	USD	500	0%	0%	Low	1		
+spectrum download speed test	USD	500	0%	0%	Low	31	4.50	8.28
+spectrum running slow	USD	500	0%	0%	Low	3		
+spectrum slow speed	USD	500	0%	0%	Low	2		
+spectrum slow wifi	USD	500	0%	0%	Low	2	2.48	7.80
+spectrum speed test mobile	USD	500	900%	0%	Low	4	6.90	13.80
+spectrum speed test ookla	USD	500	0%	0%	Low	19	7.85	13.80
+spectrum why is my internet so slow	USD	500	-90%	-90%	Low	3		
+spectrum wifi is slow	USD	500	0%	0%	Low	2	2.48	7.80
+speed test armstrong	USD	500	0%	0%	Low	2		
+speed test for wifi internet	USD	500	0%	0%	Low	15	0.06	4.65
+speed test home internet	USD	500	-90%	0%	Low	11	0.09	4.89
+speed test my router	USD	500	0%	0%	Low	12	0.14	4.65
+speed test of wifi online	USD	500	0%	-90%	Low	14	0.04	3.26
+speed test of wifi router	USD	500	0%	0%	Low	6	0.16	4.27
+speed test spectrum business	USD	500	0%	0%	Low	33	3.25	54.00
+suddenlink speed check	USD	500	0%	-90%	Low	8	2.49	10.24
+suddenlink speed test ookla	USD	500	0%	-90%	Low	8	2.49	10.24
+suddenlink test my speed	USD	500	0%	-90%	Low	8	2.49	10.24
+suddenlink test speed	USD	500	0%	-90%	Low	8	2.49	10.24
+test my comcast internet speed	USD	500	0%	0%	Low	2	5.70	20.56
+test my cox internet speed	USD	500	0%	-90%	Low	1		
+test my internet speed suddenlink	USD	500	0%	-90%	Low	8	2.49	10.24
+test my xfinity internet speed	USD	500	0%	0%	Low	2	5.70	20.56
+testing internet speed spectrum	USD	500	0%	0%	Low	17	13.80	13.80
+testing mbps	USD	500	0%	0%	Low	5	0.02	4.67
+testing spectrum internet speed	USD	500	0%	0%	Low	20	13.80	13.80
+time warner cable speed test	USD	500	0%	0%	Low	12	8.28	13.80
+time warner internet speed test	USD	500	0%	0%	Low	12	8.28	13.80
+tv cutting	USD	500	0%	0%	Low	0		
+wifi gaming speed test	USD	500	900%	0%	Low	7	0.10	6.07
+wifi speed test cox	USD	500	0%	0%	Low	10	1.15	8.72
+wifi speed test optimum	USD	500	0%	0%	Low	11	2.35	10.40
+xfinity download speed slow	USD	500	0%	0%	Low	0		
+xfinity high speed internet test	USD	500	0%	0%	Low	2	5.70	20.56
+xfinity internet connection test	USD	500	0%	0%	Low	2	5.70	20.56
+xfinity network test	USD	500	-90%	0%	Low	1		
+xfinity slow download speed	USD	500	0%	0%	Low	0		
+xfinity slow internet speed	USD	500	0%	0%	Low	1		
+xfinity test connection	USD	500	0%	0%	Low	1		
+xfinity upload download speeds	USD	500	0%	0%	Low	6	4.12	15.00

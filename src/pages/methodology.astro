@@ -1,0 +1,69 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { generateBreadcrumbSchema } from '@lib/utils';
+---
+<Base
+  title="Our Methodology — How We Rank and Compare Internet Providers"
+  description="Transparency matters. Learn exactly how Internet 4 ALL ranks providers, calculates ratings, and makes recommendations. No secrets."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Methodology', url: 'https://internet4all.com/methodology' }])]}
+>
+  <section class="section" style="padding-top:var(--space-xl);">
+    <div class="container" style="max-width:740px;">
+      <Breadcrumb items={[{ name: 'Our Methodology' }]} />
+      <h1 class="reveal">Our <span class="gradient-text">Methodology</span></h1>
+      <p class="reveal" style="font-size:var(--text-lg);margin-top:var(--space-md);">We believe in full transparency. Here's exactly how we evaluate and rank internet providers.</p>
+
+      <div class="reveal" style="margin-top:var(--space-2xl);">
+        <h2 style="margin-bottom:var(--space-md);">Rating System</h2>
+        <p>Every provider receives a rating from 1.0 to 5.0 based on a weighted average of five factors:</p>
+        <div class="grid grid-1" style="gap:var(--space-md);margin-top:var(--space-lg);">
+          {[
+            { factor: 'Speed & Performance', weight: '25%', desc: 'Advertised speeds, real-world performance data, upload speeds, and latency.' },
+            { factor: 'Value for Money', weight: '25%', desc: 'Price relative to speed tier, promotional vs. regular pricing, equipment fees, and data caps.' },
+            { factor: 'Reliability', weight: '20%', desc: 'Uptime history, outage frequency, FCC broadband reports, and customer-reported reliability.' },
+            { factor: 'Customer Satisfaction', weight: '15%', desc: 'ACSI scores, BBB ratings, customer reviews across multiple platforms, and complaint ratios.' },
+            { factor: 'Coverage & Availability', weight: '15%', desc: 'Geographic footprint, number of states served, urban vs. rural availability, and technology types offered.' },
+          ].map(f => (
+            <div class="card">
+              <div class="flex items-center" style="justify-content:space-between;margin-bottom:var(--space-xs);">
+                <h4>{f.factor}</h4>
+                <span class="badge">{f.weight}</span>
+              </div>
+              <p style="font-size:var(--text-sm);">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top:var(--space-2xl);">
+        <h2 style="margin-bottom:var(--space-md);">Data Sources</h2>
+        <ul style="list-style:disc;padding-left:var(--space-lg);font-size:var(--text-sm);line-height:2;">
+          <li>Provider websites and official plan pages (updated monthly)</li>
+          <li>FCC Broadband Data Collection and Form 477 filings</li>
+          <li>American Customer Satisfaction Index (ACSI) telecom reports</li>
+          <li>Better Business Bureau ratings and complaint data</li>
+          <li>User reviews from verified customers across multiple platforms</li>
+          <li>Speed test data from independent testing tools (Ookla, M-Lab)</li>
+          <li>State public utility commission filings</li>
+        </ul>
+      </div>
+
+      <div class="reveal" style="margin-top:var(--space-2xl);">
+        <h2 style="margin-bottom:var(--space-md);">How We Handle Partnerships</h2>
+        <div class="card" style="border-left:3px solid var(--brand-green);">
+          <p style="font-size:var(--text-sm);line-height:1.8;">
+            <strong>Partnerships never influence our ratings or rankings.</strong> All providers are ranked by the same methodology regardless of partnership status. We earn commissions when users sign up through our phone lines — this keeps the service free for you. We refuse to adjust ratings or give preferential placement in exchange for higher commissions.
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top:var(--space-2xl);">
+        <h2 style="margin-bottom:var(--space-md);">Update Frequency</h2>
+        <p style="font-size:var(--text-sm);line-height:1.8;">We update pricing and plan data monthly. Ratings are recalculated quarterly. Coverage data is updated as new FCC filings become available. If you spot outdated information, please <a href="/contact" style="color:var(--brand-blue-light);">contact us</a> and we'll correct it promptly.</p>
+      </div>
+    </div>
+  </section>
+  <StickyCallBar />
+</Base>

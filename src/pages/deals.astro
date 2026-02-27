@@ -1,0 +1,176 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import SearchBar from '@components/SearchBar.astro';
+import CallbackForm from '@components/CallbackForm.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getPartnerProviders, formatSpeed, formatPrice, MAIN_PHONE } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+
+const partners = getPartnerProviders();
+const faqs = [
+  { q: 'Are these prices really available in my area?', a: 'Prices shown are starting promotional rates. Actual availability depends on your address. Enter your ZIP code above or call us to get the exact pricing for your location — it may be even lower than listed.' },
+  { q: 'How long do promotional prices last?', a: 'Most promotions run 12-24 months. After that, rates go to standard pricing. Pro tip: Set a calendar reminder and call us when your promo ends — we\'ll find you another deal.' },
+  { q: 'Is there a catch?', a: 'No catch from us — Internet 4 ALL is 100% free. Providers may require a contract or have installation fees, which we\'ll disclose before you commit. We only recommend providers we\'d use ourselves.' },
+  { q: 'Will I need to pay for a modem/router?', a: 'Some providers include equipment for free, others have a monthly rental fee ($5-$15/mo). You can often save by buying your own compatible modem and router — ask us which ones work best.' },
+  { q: 'Can I negotiate a lower price with my current provider?', a: 'Yes! Knowing competitor rates gives you leverage. Use our price data below to call and negotiate — or skip the hassle and let us find you a new provider deal that\'s already lower.' },
+];
+
+// Sort by cheapest promo price
+const dealProviders = [...partners].sort((a, b) => {
+  const priceA = a.plans[0]?.promoPrice || a.plans[0]?.price || 999;
+  const priceB = b.plans[0]?.promoPrice || b.plans[0]?.price || 999;
+  return priceA - priceB;
+});
+---
+<Base
+  title="Best Internet Deals — Lowest Prices on High-Speed Internet"
+  description="Your internet bill too high? Compare the lowest internet prices from top providers. Exclusive deals, promo rates, and price-lock guarantees. Save up to 50%."
+  schema={[
+    generateBreadcrumbSchema([
+      { name: 'Home', url: 'https://internet4all.com' },
+      { name: 'Best Deals', url: 'https://internet4all.com/deals' }
+    ]),
+    generateFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })))
+  ]}
+>
+  <!-- Hero -->
+  <section class="hero" style="padding-bottom:var(--space-xl);">
+    <div class="container text-center">
+      <Breadcrumb items={[{ name: 'Best Deals' }]} />
+      <div class="badge reveal" style="margin-bottom:var(--space-md);background:rgba(34,197,94,0.15);color:var(--brand-green);">💰 Save Money</div>
+      <h1 class="reveal">Your Bill Too High?<br/><span class="gradient-text">Here Are Today's Best Deals.</span></h1>
+      <p class="hero-subtitle reveal">Internet prices only go up — unless you do something about it. We found the lowest available rates from every major provider.</p>
+      <div class="flex justify-center reveal" style="margin-top:var(--space-xl);">
+        <SearchBar placeholder="Enter your ZIP — see deals near you" size="large" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Price Shock Stats -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="stats-bar reveal">
+        <div>
+          <div class="stat-value" style="color:var(--brand-red);">$73</div>
+          <div class="stat-label">Avg. US Internet Bill</div>
+        </div>
+        <div>
+          <div class="stat-value" style="color:var(--brand-green);">$35</div>
+          <div class="stat-label">Avg. Deal Starting Price</div>
+        </div>
+        <div>
+          <div class="stat-value" style="color:var(--brand-blue-light);">50%</div>
+          <div class="stat-label">Average Savings</div>
+        </div>
+        <div>
+          <div class="stat-value">$456</div>
+          <div class="stat-label">Saved Per Year</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deal Cards -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center reveal">Today's <span class="gradient-text">Best Prices</span></h2>
+      <p class="text-center reveal" style="max-width:500px;margin:var(--space-sm) auto var(--space-xl);">Sorted by lowest price. New customer promo rates — call for exact pricing at your address.</p>
+      <div class="grid grid-2">
+        {dealProviders.map((p, i) => {
+          const cheapest = p.plans[0];
+          const fastest = p.plans[p.plans.length - 1];
+          const savings = cheapest.price - (cheapest.promoPrice || cheapest.price);
+          return (
+            <div class={`card reveal`} style={`transition-delay:${i * 60}ms;`}>
+              <div class="flex items-center" style="gap:var(--space-md);margin-bottom:var(--space-md);">
+                {i === 0 && <span class="badge" style="background:rgba(34,197,94,0.15);color:var(--brand-green);font-size:var(--text-xs);">🏆 Cheapest</span>}
+                <div>
+                  <h4>{p.name}</h4>
+                  <span style="font-size:var(--text-xs);color:var(--text-muted);">{p.types.join(' / ')}</span>
+                </div>
+              </div>
+              <div class="flex" style="gap:var(--space-xl);flex-wrap:wrap;margin-bottom:var(--space-md);">
+                <div>
+                  <div style="font-size:var(--text-xs);color:var(--text-muted);">Starting at</div>
+                  <div style="font-size:var(--text-2xl);font-weight:900;color:var(--brand-green);">
+                    {formatPrice(cheapest.promoPrice || cheapest.price)}<span style="font-size:var(--text-xs);font-weight:400;">/mo</span>
+                  </div>
+                  {savings > 0 && <div style="font-size:var(--text-xs);color:var(--text-muted);text-decoration:line-through;">{formatPrice(cheapest.price)}/mo regular</div>}
+                </div>
+                <div>
+                  <div style="font-size:var(--text-xs);color:var(--text-muted);">Speeds</div>
+                  <div style="font-weight:700;">{formatSpeed(cheapest.speed)} – {formatSpeed(fastest.speed)}</div>
+                </div>
+                <div>
+                  <div style="font-size:var(--text-xs);color:var(--text-muted);">Contract</div>
+                  <div style="font-weight:700;">{cheapest.contract}</div>
+                </div>
+              </div>
+              <!-- Plans -->
+              <div style="border-top:1px solid var(--border);padding-top:var(--space-md);margin-bottom:var(--space-md);">
+                {p.plans.map(plan => (
+                  <div class="flex items-center" style="justify-content:space-between;padding:var(--space-xs) 0;font-size:var(--text-sm);">
+                    <span>{plan.name}</span>
+                    <span style="font-weight:700;">{formatPrice(plan.promoPrice || plan.price)}/mo — {formatSpeed(plan.speed)}</span>
+                  </div>
+                ))}
+              </div>
+              <a href={`tel:${p.phone.replace(/[^0-9]/g, '')}`} class="btn btn-call" style="width:100%;text-align:center;">
+                📞 Get This Deal
+              </a>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Save money tips -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <h2 class="text-center reveal" style="margin-bottom:var(--space-xl);">5 Ways to <span class="gradient-text">Lower Your Internet Bill</span></h2>
+      <div class="grid grid-1" style="max-width:700px;margin:0 auto;">
+        {[
+          { num: '1', title: 'Switch to a new provider', desc: 'New customer promos give you the lowest rates. Most of the deals above are cheaper than what you\'re paying now.' },
+          { num: '2', title: 'Negotiate with your current provider', desc: 'Call and say "I\'m thinking of switching to [competitor] for $X/month." They\'ll often match or beat it.' },
+          { num: '3', title: 'Downgrade your speed tier', desc: 'Most households don\'t need gigabit. If you\'re paying for 1 Gbps but only use 100 Mbps, downgrade and save $20-40/mo.' },
+          { num: '4', title: 'Buy your own modem/router', desc: 'Equipment rental adds $10-15/month. A good modem costs ~$80 and pays for itself in 6 months.' },
+          { num: '5', title: 'Bundle or remove extras', desc: 'Drop services you don\'t use (TV, phone line). Or bundle services with one provider for a multi-service discount.' },
+        ].map((tip, i) => (
+          <div class={`card reveal flex items-center`} style={`gap:var(--space-lg);transition-delay:${i * 60}ms;`}>
+            <div style="min-width:48px;height:48px;border-radius:50%;background:var(--gradient-primary);display:grid;place-items:center;font-weight:900;font-size:var(--text-lg);">{tip.num}</div>
+            <div>
+              <h4 style="margin-bottom:var(--space-xs);">{tip.title}</h4>
+              <p style="font-size:var(--text-sm);">{tip.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container" style="max-width:740px;">
+      <h2 class="text-center reveal" style="margin-bottom:var(--space-xl);">Deals <span class="gradient-text">FAQ</span></h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <div class="faq-item reveal">
+            <button class="faq-question">{f.q}</button>
+            <div class="faq-answer"><div class="faq-answer-inner">{f.a}</div></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container" style="max-width:650px;">
+      <CallbackForm providerName="Internet 4 ALL (Deals)" phone={MAIN_PHONE} />
+    </div>
+  </section>
+
+  <StickyCallBar text="Stop overpaying. Call for today's best deal." />
+</Base>

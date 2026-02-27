@@ -1,0 +1,243 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import CallbackForm from '@components/CallbackForm.astro';
+import { getPartnerProviders, formatSpeed, formatPrice, MAIN_PHONE } from '@lib/providers';
+import { generateBreadcrumbSchema } from '@lib/utils';
+
+const partners = getPartnerProviders();
+---
+<Base
+  title="Internet Bill Analyzer — Find Out If You're Overpaying"
+  description="Enter your current internet plan details and we'll show you if you're overpaying. Get personalized savings recommendations from cheaper providers."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Bill Analyzer', url: 'https://internet4all.com/bill-analyzer' }])]}
+>
+  <section class="section" style="padding-top:var(--space-xl);">
+    <div class="container" style="max-width:700px;">
+      <Breadcrumb items={[{ name: 'Bill Analyzer' }]} />
+
+      <div class="text-center reveal">
+        <div class="badge" style="margin-bottom:var(--space-md);background:rgba(34,197,94,0.15);color:var(--brand-green);">🧾 Free Analysis</div>
+        <h1>Are You <span class="gradient-text">Overpaying</span> for Internet?</h1>
+        <p class="hero-subtitle" style="max-width:480px;margin:var(--space-sm) auto 0;">Tell us what you pay and what you get. We'll find out if there's a better deal — in under 30 seconds.</p>
+      </div>
+
+      <!-- Analyzer Form -->
+      <div id="bill-form" class="card reveal" style="margin-top:var(--space-2xl);padding:var(--space-xl);">
+        <h3 style="margin-bottom:var(--space-lg);">Your Current Internet Plan</h3>
+        <div class="grid grid-2" style="gap:var(--space-md);">
+          <div>
+            <label class="form-label" for="current-provider">Current Provider</label>
+            <select id="current-provider" class="form-input">
+              <option value="">Select provider...</option>
+              <option value="att">AT&T</option>
+              <option value="spectrum">Spectrum</option>
+              <option value="xfinity">Xfinity / Comcast</option>
+              <option value="verizon">Verizon</option>
+              <option value="tmobile">T-Mobile</option>
+              <option value="frontier">Frontier</option>
+              <option value="cox">Cox</option>
+              <option value="optimum">Optimum</option>
+              <option value="windstream">Windstream</option>
+              <option value="centurylink">CenturyLink</option>
+              <option value="hughesnet">HughesNet</option>
+              <option value="viasat">Viasat</option>
+              <option value="starlink">Starlink</option>
+              <option value="earthlink">EarthLink</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="current-speed">Download Speed (Mbps)</label>
+            <input type="number" id="current-speed" class="form-input" placeholder="e.g. 200" min="1" max="10000" />
+          </div>
+          <div>
+            <label class="form-label" for="current-price">Monthly Bill ($)</label>
+            <input type="number" id="current-price" class="form-input" placeholder="e.g. 79.99" min="1" max="500" step="0.01" />
+          </div>
+          <div>
+            <label class="form-label" for="current-zip">ZIP Code</label>
+            <input type="text" id="current-zip" class="form-input" placeholder="e.g. 90210" maxlength="5" pattern="[0-9]{5}" inputmode="numeric" />
+          </div>
+        </div>
+
+        <div style="margin-top:var(--space-lg);">
+          <label class="form-label">Are you under contract?</label>
+          <div class="flex" style="gap:var(--space-sm);">
+            <button class="contract-opt btn btn-secondary" data-value="yes" type="button">Yes</button>
+            <button class="contract-opt btn btn-secondary" data-value="no" type="button">No</button>
+            <button class="contract-opt btn btn-secondary" data-value="unsure" type="button">Not sure</button>
+          </div>
+        </div>
+
+        <button id="analyze-btn" class="btn btn-cta" style="width:100%;margin-top:var(--space-xl);font-size:var(--text-lg);">
+          🔍 Analyze My Bill
+        </button>
+      </div>
+
+      <!-- Results -->
+      <div id="bill-results" style="display:none;margin-top:var(--space-xl);"></div>
+
+      <!-- CTA -->
+      <div style="margin-top:var(--space-3xl);">
+        <CallbackForm providerName="Internet 4 ALL (Bill Analyzer)" phone={MAIN_PHONE} />
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar text="Overpaying? Let's fix that." />
+
+<script define:vars={{ partners: partners.map(p => ({ name: p.name, slug: p.slug, phone: p.phone, types: p.types, plans: p.plans })), mainPhone: MAIN_PHONE }}>
+(function() {
+  let contract = 'unsure';
+  
+  document.querySelectorAll('.contract-opt').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.contract-opt').forEach(b => { b.classList.remove('btn-primary'); b.classList.add('btn-secondary'); });
+      this.classList.remove('btn-secondary');
+      this.classList.add('btn-primary');
+      contract = this.dataset.value;
+    });
+  });
+
+  document.getElementById('analyze-btn')?.addEventListener('click', () => {
+    const provider = document.getElementById('current-provider').value;
+    const speed = parseInt(document.getElementById('current-speed').value) || 0;
+    const price = parseFloat(document.getElementById('current-price').value) || 0;
+    const zip = document.getElementById('current-zip').value;
+
+    if (!speed || !price) {
+      alert('Please enter your current speed and monthly bill.');
+      return;
+    }
+
+    analyze(provider, speed, price, zip, contract);
+  });
+
+  function analyze(currentProvider, speed, price, zip, contract) {
+    // Cost per Mbps
+    const costPerMbps = price / speed;
+    const avgCostPerMbps = 0.40; // national avg ~$0.40/Mbps
+    
+    // Find better deals from partners
+    const betterDeals = [];
+    partners.forEach(p => {
+      p.plans.forEach(plan => {
+        const planPrice = plan.promoPrice || plan.price;
+        if (plan.speed >= speed && planPrice < price) {
+          betterDeals.push({
+            provider: p.name,
+            phone: p.phone,
+            plan: plan.name,
+            speed: plan.speed,
+            price: planPrice,
+            savings: price - planPrice,
+            annualSavings: (price - planPrice) * 12,
+          });
+        }
+      });
+    });
+    betterDeals.sort((a, b) => b.annualSavings - a.annualSavings);
+
+    // Calculate verdict
+    let verdict, verdictColor, verdictIcon;
+    if (costPerMbps > avgCostPerMbps * 2) {
+      verdict = 'Significantly Overpaying';
+      verdictColor = 'var(--brand-red)';
+      verdictIcon = '🔴';
+    } else if (costPerMbps > avgCostPerMbps * 1.3) {
+      verdict = 'Paying Above Average';
+      verdictColor = '#f59e0b';
+      verdictIcon = '🟡';
+    } else if (costPerMbps > avgCostPerMbps * 0.8) {
+      verdict = 'Fair Price';
+      verdictColor = 'var(--brand-blue-light)';
+      verdictIcon = '🔵';
+    } else {
+      verdict = 'Great Deal!';
+      verdictColor = 'var(--brand-green)';
+      verdictIcon = '🟢';
+    }
+
+    const topDeal = betterDeals[0];
+    const maxSave = topDeal ? topDeal.annualSavings : 0;
+
+    let html = `
+      <div class="card" style="text-align:center;padding:var(--space-2xl);border-top:3px solid ${verdictColor};">
+        <div style="font-size:2rem;">${verdictIcon}</div>
+        <h2 style="margin:var(--space-sm) 0;color:${verdictColor};">${verdict}</h2>
+        <div style="display:flex;justify-content:center;gap:var(--space-xl);flex-wrap:wrap;margin:var(--space-lg) 0;">
+          <div>
+            <div style="font-size:var(--text-xs);color:var(--text-muted);">Your cost/Mbps</div>
+            <div style="font-size:var(--text-xl);font-weight:900;">$${costPerMbps.toFixed(2)}</div>
+          </div>
+          <div>
+            <div style="font-size:var(--text-xs);color:var(--text-muted);">National avg</div>
+            <div style="font-size:var(--text-xl);font-weight:900;">$${avgCostPerMbps.toFixed(2)}</div>
+          </div>
+          ${maxSave > 0 ? `
+          <div>
+            <div style="font-size:var(--text-xs);color:var(--text-muted);">You could save</div>
+            <div style="font-size:var(--text-xl);font-weight:900;color:var(--brand-green);">$${maxSave.toFixed(0)}/yr</div>
+          </div>
+          ` : ''}
+        </div>
+        <p style="font-size:var(--text-sm);max-width:420px;margin:0 auto;">
+          You're paying <strong>$${price.toFixed(2)}/mo</strong> for <strong>${speed >= 1000 ? (speed/1000).toFixed(1) + ' Gbps' : speed + ' Mbps'}</strong>.
+          ${costPerMbps > avgCostPerMbps ? `That's <strong style="color:var(--brand-red);">${((costPerMbps / avgCostPerMbps - 1) * 100).toFixed(0)}% above</strong> the national average cost per Mbps.` : `That's <strong style="color:var(--brand-green);">${((1 - costPerMbps / avgCostPerMbps) * 100).toFixed(0)}% below</strong> the national average — nice!`}
+        </p>
+      </div>
+    `;
+
+    if (betterDeals.length > 0) {
+      html += `<h3 style="margin:var(--space-xl) 0 var(--space-lg);">${betterDeals.length} Better ${betterDeals.length === 1 ? 'Deal' : 'Deals'} Found</h3>`;
+      betterDeals.slice(0, 5).forEach((d, i) => {
+        html += `
+          <div class="card" style="margin-bottom:var(--space-md);${i === 0 ? 'border-left:3px solid var(--brand-green);' : ''}">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-md);">
+              <div>
+                ${i === 0 ? '<span class="badge" style="background:rgba(34,197,94,0.15);color:var(--brand-green);font-size:var(--text-xs);margin-bottom:var(--space-xs);display:inline-block;">Best Savings</span>' : ''}
+                <h4>${d.provider}</h4>
+                <div style="font-size:var(--text-sm);">${d.plan} — <strong>${d.speed >= 1000 ? (d.speed/1000) + ' Gbps' : d.speed + ' Mbps'}</strong></div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:var(--text-xl);font-weight:900;color:var(--brand-green);">$${d.price.toFixed(2)}<span style="font-size:var(--text-xs);font-weight:400;">/mo</span></div>
+                <div style="font-size:var(--text-sm);color:var(--brand-green);">Save $${d.savings.toFixed(2)}/mo ($${d.annualSavings.toFixed(0)}/yr)</div>
+                <a href="tel:${d.phone.replace(/[^0-9]/g, '')}" class="btn btn-call" style="margin-top:var(--space-xs);font-size:var(--text-sm);">📞 Switch Now</a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    } else {
+      html += `
+        <div class="card text-center" style="margin-top:var(--space-lg);padding:var(--space-xl);">
+          <p>We didn't find a plan that beats your current price for the same speed tier. But you might still save by switching — call for a personalized quote.</p>
+          <a href="tel:${mainPhone.replace(/[^0-9]/g, '')}" class="btn btn-call" style="margin-top:var(--space-md);">📞 ${mainPhone}</a>
+        </div>
+      `;
+    }
+
+    html += `
+      ${contract === 'yes' ? '<div class="card" style="margin-top:var(--space-lg);background:rgba(245,158,11,0.08);border-left:3px solid #f59e0b;"><p style="font-size:var(--text-sm);"><strong>⚠️ You mentioned you\'re under contract.</strong> Check your early termination fee. Some new providers will buy out your contract — ask when you call.</p></div>' : ''}
+      <div class="text-center" style="margin-top:var(--space-xl);">
+        <button id="analyze-again" class="btn btn-secondary">↩ Analyze Another Bill</button>
+      </div>
+    `;
+
+    const resultsEl = document.getElementById('bill-results');
+    resultsEl.innerHTML = html;
+    resultsEl.style.display = 'block';
+    document.getElementById('bill-form').style.display = 'none';
+    resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    document.getElementById('analyze-again')?.addEventListener('click', () => {
+      resultsEl.style.display = 'none';
+      document.getElementById('bill-form').style.display = 'block';
+      document.getElementById('bill-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+})();
+</script>
+</Base>

@@ -3,333 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internet Resources & Guides - Internet 4 ALL</title>
-    <meta name="description" content="Learn everything about internet service: speed guides, connection types, money-saving tips, and more.">
+    <title>Internet Resources &amp; Guides - Everything You Need to Know | Internet 4 ALL</title>
+    <meta name="description" content="Learn about internet connection types, how to save money on your bill, speed recommendations, and tips for choosing the best internet provider.">
+    <link rel="canonical" href="https://internet4all.com/pages/resources.html">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='18' width='100' height='100' fill='%231d4ed8'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='white' font-family='Arial,sans-serif' font-weight='bold'>i4</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
-    <!-- Urgency Banner -->
-    <div class="urgency-banner">
-        <i class="fas fa-bolt"></i> Questions? Our experts are ready to help! <a href="tel:1-888-555-0123">Call 1-888-555-0123</a>
-    </div>
-
-    <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="header-inner">
-                <a href="../index.html" class="logo">
-                    <div class="logo-icon"><i class="fas fa-wifi"></i></div>
-                    <span>Internet 4 ALL</span>
-                </a>
-                <nav class="nav">
-                    <ul class="nav-links">
-                        <li><a href="../index.html" class="nav-link">Home</a></li>
-                        <li><a href="providers.html" class="nav-link">Providers</a></li>
-                        <li><a href="compare.html" class="nav-link">Compare</a></li>
-                        <li><a href="speed-test.html" class="nav-link">Speed Test</a></li>
-                        <li><a href="resources.html" class="nav-link active">Resources</a></li>
-                    </ul>
-                    <a href="tel:1-888-555-0123" class="phone-cta">
-                        <i class="fas fa-phone"></i>
-                        <span>1-888-555-0123</span>
-                    </a>
-                </nav>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+        <div class="wrap header-inner">
+            <a href="../index.html" class="logo"><div class="logo-mark"><i class="fas fa-wifi"></i></div><div class="logo-text">Internet 4 <span>ALL</span></div></a>
+            <nav class="nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="providers.html" class="nav-link">Providers</a>
+                <a href="compare.html" class="nav-link">Compare</a>
+                <a href="speed-test.html" class="nav-link">Speed Test</a>
+                <a href="resources.html" class="nav-link active">Resources</a>
+                <a href="tel:1-888-555-0123" class="header-phone"><i class="fas fa-phone-alt"></i> 1-888-555-0123</a>
+            </nav>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span></button>
         </div>
     </header>
-
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1 class="page-title">Internet Resources & Guides</h1>
-            <p class="page-description">Everything you need to know about choosing the right internet service</p>
-        </div>
-    </section>
-
-    <!-- Resources Content -->
-    <main class="section">
-        <div class="container">
-            <!-- Speed Guide -->
-            <section id="speed-guide" class="mb-2xl">
-                <h2 class="section-title">What Internet Speed Do I Need?</h2>
-                <p class="section-subtitle mb-lg">Use this guide to determine the right speed for your household</p>
-                
-                <div class="comparison-container">
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th>Activity</th>
-                                <th>Minimum Speed</th>
-                                <th>Recommended</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Email & Web Browsing</td>
-                                <td>1-5 Mbps</td>
-                                <td>10+ Mbps</td>
-                            </tr>
-                            <tr>
-                                <td>Social Media</td>
-                                <td>3-5 Mbps</td>
-                                <td>10+ Mbps</td>
-                            </tr>
-                            <tr>
-                                <td>HD Video Streaming (Netflix, etc.)</td>
-                                <td>5 Mbps</td>
-                                <td>25+ Mbps</td>
-                            </tr>
-                            <tr>
-                                <td>4K Video Streaming</td>
-                                <td>25 Mbps</td>
-                                <td>50+ Mbps</td>
-                            </tr>
-                            <tr>
-                                <td>Video Conferencing (Zoom)</td>
-                                <td>3 Mbps</td>
-                                <td>25+ Mbps</td>
-                            </tr>
-                            <tr>
-                                <td>Online Gaming</td>
-                                <td>5 Mbps</td>
-                                <td>50+ Mbps</td>
-                            </tr>
-                            <tr>
-                                <td>Working From Home</td>
-                                <td>25 Mbps</td>
-                                <td>100+ Mbps</td>
-                            </tr>
-                            <tr>
-                                <td>Smart Home Devices</td>
-                                <td>5-10 Mbps per device</td>
-                                <td>100+ Mbps total</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="info-card mt-lg" style="background: var(--background);">
-                    <p><strong>Pro Tip:</strong> Multiply the speeds by the number of people/devices using the internet simultaneously. A family of 4 with multiple devices should aim for at least 200 Mbps.</p>
-                </div>
-            </section>
-
-            <!-- Connection Types -->
-            <section id="connection-types" class="mb-2xl">
-                <h2 class="section-title">Connection Types Explained</h2>
-                <p class="section-subtitle mb-lg">Understanding the differences between fiber, cable, DSL, and 5G</p>
-                
-                <div class="info-grid">
-                    <div class="info-card">
-                        <div class="info-card-icon" style="background: linear-gradient(135deg, rgba(5,150,105,0.1) 0%, rgba(5,150,105,0.2) 100%);"><i class="fas fa-bolt" style="color: var(--success);"></i></div>
-                        <h3>Fiber Optic</h3>
-                        <p><strong>Best for:</strong> Heavy users, gamers, large households</p>
-                        <ul style="margin: var(--space-md) 0; padding-left: var(--space-lg); color: var(--text-secondary);">
-                            <li>Fastest speeds (up to 5 Gbps)</li>
-                            <li>Symmetrical upload/download</li>
-                            <li>Most reliable connection</li>
-                            <li>Low latency for gaming</li>
-                        </ul>
-                        <p style="color: var(--text-muted); font-size: 0.875rem;"><strong>Providers:</strong> AT&T Fiber, Frontier, altafiber</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="info-card-icon" style="background: linear-gradient(135deg, rgba(2,132,199,0.1) 0%, rgba(2,132,199,0.2) 100%);"><i class="fas fa-tv" style="color: var(--info);"></i></div>
-                        <h3>Cable Internet</h3>
-                        <p><strong>Best for:</strong> Most households, streaming, general use</p>
-                        <ul style="margin: var(--space-md) 0; padding-left: var(--space-lg); color: var(--text-secondary);">
-                            <li>Fast speeds (up to 1 Gbps)</li>
-                            <li>Widely available</li>
-                            <li>Good for streaming</li>
-                            <li>Slower upload speeds</li>
-                        </ul>
-                        <p style="color: var(--text-muted); font-size: 0.875rem;"><strong>Providers:</strong> Spectrum, Optimum</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="info-card-icon" style="background: linear-gradient(135deg, rgba(217,119,6,0.1) 0%, rgba(217,119,6,0.2) 100%);"><i class="fas fa-phone" style="color: var(--warning);"></i></div>
-                        <h3>DSL</h3>
-                        <p><strong>Best for:</strong> Light users, rural areas</p>
-                        <ul style="margin: var(--space-md) 0; padding-left: var(--space-lg); color: var(--text-secondary);">
-                            <li>Moderate speeds (up to 100 Mbps)</li>
-                            <li>Uses phone lines</li>
-                            <li>Available in most areas</li>
-                            <li>Speed depends on distance</li>
-                        </ul>
-                        <p style="color: var(--text-muted); font-size: 0.875rem;"><strong>Providers:</strong> Windstream, EarthLink</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="info-card-icon" style="background: linear-gradient(135deg, rgba(139,92,246,0.1) 0%, rgba(139,92,246,0.2) 100%);"><i class="fas fa-broadcast-tower" style="color: #8b5cf6;"></i></div>
-                        <h3>5G / Fixed Wireless</h3>
-                        <p><strong>Best for:</strong> Urban areas, flexibility, no wiring needed</p>
-                        <ul style="margin: var(--space-md) 0; padding-left: var(--space-lg); color: var(--text-secondary);">
-                            <li>Speeds up to 300 Mbps</li>
-                            <li>No installation required</li>
-                            <li>No contracts</li>
-                            <li>Requires 5G coverage</li>
-                        </ul>
-                        <p style="color: var(--text-muted); font-size: 0.875rem;"><strong>Providers:</strong> T-Mobile 5G Home Internet</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Money Saving Tips -->
-            <section id="save-money" class="mb-2xl">
-                <h2 class="section-title">How to Save on Your Internet Bill</h2>
-                
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>1. Negotiate with your current provider</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Call your provider and ask for a better rate. Mention competitor pricing. Many providers have retention departments that can offer promotional rates to keep you as a customer.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>2. Buy your own modem/router</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Many providers charge $10-15/month to rent equipment. Buying your own can save $100+ per year. Make sure to check compatibility with your provider first.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>3. Don't pay for more speed than you need</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                A household of 2 people probably doesn't need gigabit internet. Use our speed guide above to find the right plan for your actual usage.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>4. Look for bundle discounts</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Some providers offer discounts when you bundle internet with TV or mobile phone service. But always compare the total cost vs. buying services separately.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>5. Ask about promotional rates for new customers</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                New customer rates are often 30-50% lower than regular pricing. If you're switching providers, you can take advantage of these deals.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FAQ -->
-            <section id="faq" class="mb-2xl">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>What's the difference between Mbps and Gbps?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Mbps (megabits per second) and Gbps (gigabits per second) measure internet speed. 1 Gbps = 1,000 Mbps. Most home internet plans are measured in Mbps, while fiber plans often offer speeds in Gbps.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>Why is my internet slower than advertised?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Several factors can affect speed: WiFi vs. wired connection, router quality, distance from router, network congestion, and number of connected devices. Test with a wired connection for accurate results.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>Do I need unlimited data?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Most users won't exceed a 1TB data cap. However, if you stream 4K video frequently, have multiple users, or work from home with large file transfers, unlimited data is recommended.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>Can I switch providers if I'm under contract?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Yes, but you may face early termination fees. Some new providers will pay your termination fee as an incentive. Many modern plans have no contracts at all.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA -->
-            <div class="conversion-card">
-                <h3>Still Have Questions?</h3>
-                <p>Our internet experts are here to help you find the perfect plan.</p>
-                <div class="phone-number">
-                    <i class="fas fa-phone"></i> 1-888-555-0123
-                </div>
-                <a href="tel:1-888-555-0123" class="btn">Talk to an Expert - Free!</a>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2024 Internet 4 ALL. All rights reserved. | <a href="tel:1-888-555-0123" style="color: var(--accent-light);">1-888-555-0123</a></p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Sticky CTA -->
-    <div class="sticky-cta">
-        <div class="sticky-cta-text">
-            Questions? Get <span>free expert help</span>!
-        </div>
-        <a href="tel:1-888-555-0123" class="btn-cta">
-            <i class="fas fa-phone"></i> 1-888-555-0123
-        </a>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="providers.html" class="nav-link">Providers</a>
+        <a href="compare.html" class="nav-link">Compare</a>
+        <a href="speed-test.html" class="nav-link">Speed Test</a>
+        <a href="resources.html" class="nav-link active">Resources</a>
+        <div class="mobile-cta"><a href="tel:1-888-555-0123"><i class="fas fa-phone-alt"></i> 1-888-555-0123</a><p>Talk to an internet expert</p></div>
     </div>
 
-    <a href="tel:1-888-555-0123" class="floating-phone">
-        <i class="fas fa-phone"></i>
-    </a>
+    <nav class="breadcrumb"><div class="wrap"><a href="../index.html">Home</a> <span class="sep">/</span> <span class="current">Resources</span></div></nav>
 
+    <div class="page-head">
+        <div class="wrap">
+            <h1>Internet Resources &amp; Guides</h1>
+            <p>Everything you need to make an informed decision about your internet service</p>
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-top:20px">
+                <a href="#connection-types" class="btn btn-outline btn-sm">Connection Types</a>
+                <a href="#speed-guide" class="btn btn-outline btn-sm">Speed Guide</a>
+                <a href="#save-money" class="btn btn-outline btn-sm">Save Money</a>
+                <a href="#faq" class="btn btn-outline btn-sm">FAQ</a>
+            </div>
+        </div>
+    </div>
+
+    <main id="main">
+        <!-- Connection Types -->
+        <section class="section" id="connection-types">
+            <div class="wrap">
+                <div class="section-head">
+                    <h2>Understanding Internet Connection Types</h2>
+                    <p>Not all internet is created equal. Here's what you need to know about each technology.</p>
+                </div>
+                <div class="cards-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+                    <div class="card reveal">
+                        <div class="card-icon blue"><i class="fas fa-bolt"></i></div>
+                        <h3>Fiber Optic</h3>
+                        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:12px">
+                            <span class="result-tag" data-type="fiber">Fiber</span>
+                            <span style="font-size:.8rem;color:var(--txt-m)">Up to 5 Gbps</span>
+                        </div>
+                        <p>The gold standard. Fiber uses light pulses through glass cables for symmetrical upload and download speeds, extremely low latency, and exceptional reliability.</p>
+                        <div style="margin-top:12px">
+                            <div class="pros-item"><i class="fas fa-check"></i> Fastest speeds available</div>
+                            <div class="pros-item"><i class="fas fa-check"></i> Symmetrical upload/download</div>
+                            <div class="pros-item"><i class="fas fa-check"></i> Ultra-low latency</div>
+                            <div class="pros-item"><i class="fas fa-check"></i> Not affected by weather</div>
+                            <div class="cons-item"><i class="fas fa-times"></i> Limited availability</div>
+                            <div class="cons-item"><i class="fas fa-times"></i> Higher installation cost</div>
+                        </div>
+                    </div>
+                    <div class="card reveal reveal-d1">
+                        <div class="card-icon teal"><i class="fas fa-tv"></i></div>
+                        <h3>Cable</h3>
+                        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:12px">
+                            <span class="result-tag">Cable</span>
+                            <span style="font-size:.8rem;color:var(--txt-m)">Up to 1.2 Gbps</span>
+                        </div>
+                        <p>Uses the same coaxial cables as cable TV. Widely available with fast download speeds, though upload speeds are typically much slower.</p>
+                        <div style="margin-top:12px">
+                            <div class="pros-item"><i class="fas fa-check"></i> Widely available</div>
+                            <div class="pros-item"><i class="fas fa-check"></i> Fast download speeds</div>
+                            <div class="pros-item"><i class="fas fa-check"></i> Bundling options with TV</div>
+                            <div class="cons-item"><i class="fas fa-times"></i> Slower upload speeds</div>
+                            <div class="cons-item"><i class="fas fa-times"></i> Peak-hour congestion</div>
+                            <div class="cons-item"><i class="fas fa-times"></i> Shared bandwidth</div>
+                        </div>
+                    </div>
+                    <div class="card reveal reveal-d2">
+                        <div class="card-icon orange"><i class="fas fa-phone-alt"></i></div>
+                        <h3>DSL</h3>
+                        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:12px">
+                            <span class="result-tag">DSL</span>
+                            <span style="font-size:.8rem;color:var(--txt-m)">Up to 100 Mbps</span>
+                        </div>
+                        <p>Uses existing telephone lines. Available almost everywhere but speeds decrease the farther you are from the provider's central office.</p>
+                        <div style="margin-top:12px">
+                            <div class="pros-item"><i class="fas fa-check"></i> Very widely available</div>
+                            <div class="pros-item"><i class="fas fa-check"></i> Dedicated line (no sharing)</div>
+                            <div class="pros-item"><i class="fas fa-check"></i> Often the cheapest option</div>
+                            <div class="cons-item"><i class="fas fa-times"></i> Slowest technology</div>
+                            <div class="cons-item"><i class="fas fa-times"></i> Speed depends on distance</div>
+                            <div class="cons-item"><i class="fas fa-times"></i> Being phased out</div>
+                        </div>
+                    </div>
+                    <div class="card reveal">
+                        <div class="card-icon" style="background:rgba(217,119,6,.08);color:var(--amber)"><i class="fas fa-broadcast-tower"></i></div>
+                        <h3>5G / Fixed Wireless</h3>
+                        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:12px">
+                            <span class="result-tag" data-type="5g">5G</span>
+                            <span style="font-size:.8rem;color:var(--txt-m)">Up to 1 Gbps</span>
+                        </div>
+                        <p>Uses cellular towers to deliver home internet wirelessly. No cables needed — just plug in the gateway. Fast-expanding coverage with competitive speeds.</p>
+                        <div style="margin-top:12px">
+                            <div class="pros-item"><i class="fas fa-check"></i> No installation needed</div>
+                            <div class="pros-item"><i class="fas fa-check"></i> No contracts (usually)</div>
+                            <div class="pros-item"><i class="fas fa-check"></i> Growing coverage</div>
+                            <div class="cons-item"><i class="fas fa-times"></i> Weather/obstruction sensitive</div>
+                            <div class="cons-item"><i class="fas fa-times"></i> Variable speeds</div>
+                            <div class="cons-item"><i class="fas fa-times"></i> Potential data deprioritization</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Speed Guide -->
+        <section class="section section-alt" id="speed-guide">
+            <div class="wrap">
+                <div class="section-head">
+                    <h2>How Much Speed Do You Really Need?</h2>
+                    <p>Don't overpay for speeds you won't use. Here's a realistic guide based on your household.</p>
+                </div>
+                <div class="cards-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+                    <div class="card reveal" style="border-top:4px solid var(--blue)">
+                        <div style="font-size:2.5rem;font-weight:800;color:var(--blue);font-family:var(--font-d)">25–50</div>
+                        <div style="font-size:.875rem;color:var(--txt-m);margin-bottom:12px">Mbps</div>
+                        <h3><i class="fas fa-user" style="margin-right:6px"></i> Solo / Light Use</h3>
+                        <p>Perfect for 1–2 people who mainly browse, email, and stream in SD/HD.</p>
+                        <ul style="list-style:none;padding:0;margin:12px 0 0;font-size:.875rem;color:var(--txt-lt)">
+                            <li style="padding:4px 0"><i class="fas fa-check" style="color:var(--green);width:18px"></i> Web browsing</li>
+                            <li style="padding:4px 0"><i class="fas fa-check" style="color:var(--green);width:18px"></i> Email &amp; social media</li>
+                            <li style="padding:4px 0"><i class="fas fa-check" style="color:var(--green);width:18px"></i> HD streaming (1 device)</li>
+                            <li style="padding:4px 0"><i class="fas fa-check" style="color:var(--green);width:18px"></i> Video calls</li>
+                        </ul>
+                    </div>
+                    <div class="card reveal reveal-d1" style="border-top:4px solid var(--teal)">
+                        <div style="font-size:2.5rem;font-weight:800;color:var(--teal);font-family:var(--font-d)">100–300</div>
+                        <div style="font-size:.875rem;color:var(--txt-m);margin-bottom:12px">Mbps</div>
+                        <h3><i class="fas fa-users" style="margin-right:6px"></i> Family / Moderate</h3>
+                        <p>Ideal for 2–4 people who stream, game, and work from home simultaneously.</p>
+                        <ul style="list-style:none;padding:0;margin:12px 0 0;font-size:.875rem;color:var(--txt-lt)">
+                            <li style="padding:4px 0"><i class="fas fa-check" style="color:var(--green);width:18px"></i> 4K streaming (2–3 devices)</li>
+                            <li style="padding:4px 0"><i class="fas fa-check" style="color:var(--green);width:18px"></i> Online gaming</li>
+                            <li style="padding:4px 0"><i class="fas fa-check" style="color:var(--green);width:18px"></i> Remote work + Zoom</li>
+                            <li style="padding:4px 0"><i class="fas fa-check" style="color:var(--green);width:18px"></i> Smart home devices</li>
+                        </ul>
+                    </div>
+                    <div class="card reveal reveal-d2" style="border-top:4px solid var(--purple)">
+                        <div style="font-size:2.5rem;font-weight:800;color:var(--purple);font-family:var(--font-d)">500+</div>
+                        <div style="font-size:.875rem;color:var(--txt-m);margin-bottom:12px">Mbps</div>
+                        <h3><i class="fas fa-house-signal" style="margin-right:6px"></i> Power / Heavy Use</h3>
+                        <p>For 4+ people or demanding use: multiple 4K streams, competitive gaming, large file transfers.</p>
+                        <ul style="list-style:none;padding:0;margin:12px 0 0;font-size:.875rem;color:var(--txt-lt)">
+                            <li style="padding:4px 0"><i class="fas fa-check" style="color:var(--green);width:18px"></i> 4K streaming (5+ devices)</li>
+                            <li style="padding:4px 0"><i class="fas fa-check" style="color:var(--green);width:18px"></i> Competitive gaming</li>
+                            <li style="padding:4px 0"><i class="fas fa-check" style="color:var(--green);width:18px"></i> Large uploads/downloads</li>
+                            <li style="padding:4px 0"><i class="fas fa-check" style="color:var(--green);width:18px"></i> Full smart home</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Save Money -->
+        <section class="section" id="save-money">
+            <div class="wrap">
+                <div class="section-head">
+                    <h2>7 Ways to Save on Your Internet Bill</h2>
+                    <p>The average American overpays by $10–20/month. Here's how to keep more money in your pocket.</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span><strong>1.</strong> Negotiate with your current provider</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p>Call your provider's retention department and mention you're considering switching. Many will offer promotional pricing, credits, or speed upgrades. Be polite but firm, and have competitor pricing ready.</p></div></div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span><strong>2.</strong> Don't rent your router — buy your own</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p>Most providers charge $10–15/month to rent a router. A quality router costs $80–150 and pays for itself in under a year. Check your provider's compatible equipment list before purchasing.</p></div></div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span><strong>3.</strong> Right-size your plan</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p>Many people pay for gigabit when 200 Mbps would suffice. Use our speed test to check what you actually use during peak hours. Downgrading from 1 Gig to 300 Mbps can save $20–40/month.</p></div></div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span><strong>4.</strong> Look for new customer promotions</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p>If you've been with the same provider for years, you're likely paying more than new customers. Consider switching when your contract ends to take advantage of introductory rates.</p></div></div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span><strong>5.</strong> Skip the bundle if you don't need TV</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p>Triple-play bundles often seem like a deal but include services you don't use. Internet-only plans are almost always cheaper if you rely on streaming services instead of cable TV.</p></div></div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span><strong>6.</strong> Check for low-income assistance programs</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p>The FCC's Affordable Connectivity Program provides up to $30/month toward internet bills for qualifying households. Many providers also have their own low-income plans offering service for $20–30/month.</p></div></div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span><strong>7.</strong> Ask about autopay and paperless billing discounts</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p>Many providers offer $5–10/month off when you enroll in autopay and paperless billing. It's free money for something you'd probably do anyway.</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section section-alt" id="faq">
+            <div class="wrap">
+                <div class="section-head">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Quick answers to the most common internet questions</p>
+                </div>
+                <div class="faq-list" style="max-width:800px;margin:0 auto">
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>What's the difference between download and upload speed?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p><strong>Download speed</strong> measures how fast data comes TO your device (streaming, browsing). <strong>Upload speed</strong> measures how fast data goes FROM your device (video calls, cloud backups). Most people need fast download speeds, but remote workers should also prioritize upload.</p></div></div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>What is latency (ping)?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p>Latency (milliseconds) is the time for data to travel from your device to a server and back. Under 20ms is excellent, 20–50ms is good, over 100ms causes lag. Fiber has the lowest latency, satellite the highest.</p></div></div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>What is a data cap?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p>A data cap limits total data per month. Many "unlimited" plans have soft caps (e.g., 1.2 TB) after which speeds may be throttled. Fiber plans typically have no caps. 1 TB is enough for most households.</p></div></div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Should I get a contract or go month-to-month?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p>Contracts lock in lower prices for 12–24 months but have termination fees ($100–400). Month-to-month costs more but offers flexibility. If staying 1–2+ years, a contract is usually the better deal.</p></div></div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Why is my internet slower than advertised?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p>Providers advertise "up to" speeds. Common causes: Wi-Fi interference (try 5GHz), outdated router, too many devices, peak-hour congestion. If consistently below 70% of advertised, contact your provider.</p></div></div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>How do I switch internet providers?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><p>1) Research providers in your area. 2) Schedule installation with the new provider. 3) Keep old service active until new one works. 4) Cancel old service and return equipment. 5) Schedule the switch at end of billing cycle.</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="wrap">
+                <div class="cta-box">
+                    <h3>Still Have Questions?</h3>
+                    <p>Our internet experts are standing by to help you find the perfect plan. Free, no-obligation advice.</p>
+                    <div class="cta-phone"><i class="fas fa-phone-alt"></i> 1-888-555-0123</div>
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center">
+                        <a href="tel:1-888-555-0123" class="btn btn-white btn-lg"><i class="fas fa-phone-alt"></i> Call an Expert</a>
+                        <a href="providers.html" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.2);color:var(--white)"><i class="fas fa-search"></i> Search Providers</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo"><div class="logo-mark"><i class="fas fa-wifi"></i></div><div class="logo-text">Internet 4 <span>ALL</span></div></a>
+                    <p>Your trusted resource for finding and comparing internet providers.</p>
+                </div>
+                <div><h4>Providers</h4><ul>
+                    <li><a href="provider.html?id=spectrum">Spectrum</a></li>
+                    <li><a href="provider.html?id=att">AT&T</a></li>
+                    <li><a href="provider.html?id=verizon">Verizon</a></li>
+                    <li><a href="provider.html?id=tmobile">T-Mobile</a></li>
+                    <li><a href="provider.html?id=frontier">Frontier</a></li>
+                </ul></div>
+                <div><h4>Tools</h4><ul>
+                    <li><a href="compare.html">Compare Plans</a></li>
+                    <li><a href="speed-test.html">Speed Test</a></li>
+                    <li><a href="resources.html">Guides</a></li>
+                </ul></div>
+                <div><h4>Contact</h4><ul>
+                    <li><a href="tel:1-888-555-0123"><i class="fas fa-phone-alt" style="margin-right:4px;font-size:.625rem"></i> 1-888-555-0123</a></li>
+                    <li><a href="mailto:help@internet4all.com"><i class="fas fa-envelope" style="margin-right:4px;font-size:.625rem"></i> help@internet4all.com</a></li>
+                </ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Internet 4 ALL. All rights reserved.</p><p>Call: <a href="tel:1-888-555-0123">1-888-555-0123</a></p></div>
+        </div>
+    </footer>
+    <div class="sticky-cta"><div class="sticky-cta-inner"><span class="sticky-cta-text">Need help? <strong>Free expert advice</strong></span><a href="tel:1-888-555-0123" class="sticky-cta-btn"><i class="fas fa-phone-alt"></i> Call</a></div></div>
+
+    <script src="../js/providers-data.js"></script>
+    <script src="../js/api.js"></script>
     <script src="../js/app.js"></script>
 </body>
 </html>

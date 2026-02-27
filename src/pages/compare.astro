@@ -1,0 +1,116 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema } from '@lib/utils';
+
+const partners = getPartnerProviders();
+const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
+---
+<Base
+  title="Compare Internet Providers Side-by-Side — Plans, Prices & Speeds"
+  description="Compare the top internet providers side by side. See speeds, prices, data caps, contract terms, and ratings all in one view."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Compare', url: 'https://internet4all.com/compare' }])]}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container container--wide">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="text-center reveal" style="margin-bottom: var(--space-2xl);">
+        <h1>Compare Internet Providers <span class="gradient-text">Side-by-Side</span></h1>
+        <p class="hero-subtitle" style="max-width:550px;margin-inline:auto;">All the details you need to make the right choice — in one clear table.</p>
+      </div>
+
+      <!-- Comparison Table -->
+      <div class="reveal" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+        <table class="compare-table" style="min-width: 900px;">
+          <thead>
+            <tr>
+              <th style="min-width:180px;">Provider</th>
+              <th>Type</th>
+              <th>Max Speed</th>
+              <th>Max Upload</th>
+              <th>Starting Price</th>
+              <th>Data Cap</th>
+              <th>Contract</th>
+              <th>Rating</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {partners.map(p => {
+              const maxSpeed = getMaxSpeed(p);
+              const maxUpload = getMaxUpload(p);
+              const minPrice = getMinPrice(p);
+              const isFastest = maxSpeed >= 2000;
+              const isCheapest = minPrice <= 40;
+              return (
+                <tr>
+                  <td>
+                    <div class="flex items-center gap-sm">
+                      <div style="width:36px;height:36px;border-radius:var(--radius-sm);background:var(--gray-800);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;">
+                        {p.logo ? (
+                          <img src={p.logo} alt={p.name} width="36" height="36" loading="lazy" style="padding:4px;object-fit:contain;" />
+                        ) : (
+                          <span style="font-size:var(--text-xs);font-weight:700;color:var(--text-tertiary);">{p.name.charAt(0)}</span>
+                        )}
+                      </div>
+                      <a href={`/provider/${p.slug}`} style="font-weight:600;color:var(--text-primary);">{p.name}</a>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="flex gap-xs flex-wrap">
+                      {p.types.map(t => <span class={`tag tag-${t}`} style="font-size:0.65rem;">{getTypeLabel(t)}</span>)}
+                    </div>
+                  </td>
+                  <td class={isFastest ? 'highlight' : ''}>{formatSpeed(maxSpeed)}</td>
+                  <td>{formatSpeed(maxUpload)}</td>
+                  <td class={isCheapest ? 'highlight' : ''}>{formatPrice(minPrice)}/mo</td>
+                  <td>{p.plans[0]?.dataCap || 'N/A'}</td>
+                  <td>{p.plans[0]?.contract || 'None'}</td>
+                  <td>
+                    <span class="rating" style="font-size: var(--text-xs);">
+                      <span class="star-filled">{'★'.repeat(Math.floor(p.rating))}</span>
+                      <span class="rating-value">{p.rating}</span>
+                    </span>
+                  </td>
+                  <td>
+                    <a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Key Insights -->
+      <div class="grid grid-3 reveal" style="margin-top: var(--space-3xl);">
+        <div class="card text-center">
+          <div style="font-size:2rem;margin-bottom:var(--space-sm);">⚡</div>
+          <h4>Fastest Provider</h4>
+          <p style="margin-top:var(--space-sm);">
+            <strong>{partners.reduce((a, b) => getMaxSpeed(a) > getMaxSpeed(b) ? a : b).name}</strong> offers the fastest max speed at {formatSpeed(Math.max(...partners.map(p => getMaxSpeed(p))))}.
+          </p>
+        </div>
+        <div class="card text-center">
+          <div style="font-size:2rem;margin-bottom:var(--space-sm);">💰</div>
+          <h4>Best Value</h4>
+          <p style="margin-top:var(--space-sm);">
+            <strong>{partners.reduce((a, b) => getMinPrice(a) < getMinPrice(b) ? a : b).name}</strong> has the lowest starting price at {formatPrice(Math.min(...partners.map(p => getMinPrice(p))))}/mo.
+          </p>
+        </div>
+        <div class="card text-center">
+          <div style="font-size:2rem;margin-bottom:var(--space-sm);">⭐</div>
+          <h4>Highest Rated</h4>
+          <p style="margin-top:var(--space-sm);">
+            <strong>{partners.reduce((a, b) => a.rating > b.rating ? a : b).name}</strong> leads with a {partners.reduce((a, b) => a.rating > b.rating ? a : b).rating} star rating.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar />
+</Base>

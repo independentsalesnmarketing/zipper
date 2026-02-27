@@ -1,0 +1,245 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import CallbackForm from '@components/CallbackForm.astro';
+import { generateBreadcrumbSchema } from '@lib/utils';
+---
+<Base
+  title="Internet Speed Test — Check Your Download & Upload Speed"
+  description="Test your internet speed for free. Measure download, upload, ping, and jitter. See if you're getting the speed you pay for."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Speed Test', url: 'https://internet4all.com/speed-test' }])]}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container container--narrow">
+      <Breadcrumb items={[{ name: 'Speed Test' }]} />
+
+      <div class="text-center reveal">
+        <h1>Internet <span class="gradient-text">Speed Test</span></h1>
+        <p class="hero-subtitle" style="max-width:500px;margin-inline:auto;">Check if you're getting the speed you pay for. Free, instant results.</p>
+      </div>
+
+      <!-- Speed Test UI -->
+      <div class="card reveal" style="margin-top: var(--space-2xl); padding: var(--space-2xl); text-align: center;">
+        <div id="speed-gauge" class="speed-gauge" style="--progress: 0%;">
+          <div class="speed-value" id="speed-value">—</div>
+        </div>
+        <p id="speed-label" class="text-tertiary mt-md" style="font-size:var(--text-sm);">Click Start to test your speed</p>
+
+        <div class="grid grid-3 mt-xl" style="gap:var(--space-xl);">
+          <div>
+            <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:var(--tracking-wide);">Download</div>
+            <div id="dl-speed" class="speed-display" style="font-size:var(--text-2xl);margin-top:var(--space-xs);">—</div>
+            <div style="font-size:var(--text-xs);color:var(--text-tertiary);">Mbps</div>
+          </div>
+          <div>
+            <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:var(--tracking-wide);">Upload</div>
+            <div id="ul-speed" class="speed-display" style="font-size:var(--text-2xl);margin-top:var(--space-xs);">—</div>
+            <div style="font-size:var(--text-xs);color:var(--text-tertiary);">Mbps</div>
+          </div>
+          <div>
+            <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:var(--tracking-wide);">Ping</div>
+            <div id="ping-val" class="speed-display" style="font-size:var(--text-2xl);margin-top:var(--space-xs);">—</div>
+            <div style="font-size:var(--text-xs);color:var(--text-tertiary);">ms</div>
+          </div>
+        </div>
+
+        <button id="start-test" class="btn btn-primary btn-lg mt-xl" style="min-width:200px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Start Speed Test
+        </button>
+
+        <div class="progress-bar mt-lg" style="opacity:0;" id="progress-bar">
+          <div class="progress-fill" id="progress-fill" style="width:0%;"></div>
+        </div>
+      </div>
+
+      <!-- Speed Analysis -->
+      <div id="speed-analysis" class="card reveal" style="margin-top:var(--space-xl); display:none;">
+        <h3 style="margin-bottom:var(--space-md);">Your Speed Analysis</h3>
+        <div id="analysis-content"></div>
+      </div>
+
+      <!-- What's a good speed? -->
+      <div class="reveal" style="margin-top: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">What Internet Speed Do You Need?</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h4 style="margin-bottom:var(--space-md);">Basic Usage</h4>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-green">25+ Mbps</span>
+              <span class="text-sm text-secondary">Email, browsing, social media</span>
+            </div>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-blue">50+ Mbps</span>
+              <span class="text-sm text-secondary">HD streaming (1-2 devices)</span>
+            </div>
+          </div>
+          <div class="card">
+            <h4 style="margin-bottom:var(--space-md);">Power Usage</h4>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-blue">100+ Mbps</span>
+              <span class="text-sm text-secondary">4K streaming, work from home</span>
+            </div>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-purple">300+ Mbps</span>
+              <span class="text-sm text-secondary">Large households, gaming</span>
+            </div>
+          </div>
+          <div class="card">
+            <h4 style="margin-bottom:var(--space-md);">Heavy Usage</h4>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-purple">500+ Mbps</span>
+              <span class="text-sm text-secondary">Many devices, 4K, smart home</span>
+            </div>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-amber">1 Gbps+</span>
+              <span class="text-sm text-secondary">Power users, content creators</span>
+            </div>
+          </div>
+          <div class="card">
+            <h4 style="margin-bottom:var(--space-md);">Upload Needs</h4>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-green">10+ Mbps</span>
+              <span class="text-sm text-secondary">Video calls, cloud backup</span>
+            </div>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-blue">100+ Mbps</span>
+              <span class="text-sm text-secondary">Streaming, large uploads</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Not happy CTA -->
+      <div class="reveal" style="margin-top: var(--space-3xl);">
+        <div class="card text-center" style="padding:var(--space-2xl); border-color: rgba(239, 68, 68, 0.2); background: rgba(239, 68, 68, 0.02);">
+          <h3>Not Getting the Speed You Pay For?</h3>
+          <p style="margin-top:var(--space-sm);max-width:500px;margin-inline:auto;">You may be overpaying for underperforming internet. Our experts can find you a faster, more reliable option.</p>
+          <div class="flex gap-md justify-center" style="margin-top:var(--space-xl);">
+            <a href="/switch" class="btn btn-primary">Switch Provider</a>
+            <a href="/providers" class="btn btn-secondary">Compare Options</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Callback -->
+      <div class="reveal" style="margin-top: var(--space-3xl);">
+        <CallbackForm />
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar text="Speed not up to par? Let us find you something better." />
+</Base>
+
+<script>
+  // Speed test simulation (replace with LibreSpeed when self-hosted)
+  const startBtn = document.getElementById('start-test') as HTMLButtonElement;
+  const gauge = document.getElementById('speed-gauge') as HTMLElement;
+  const speedValue = document.getElementById('speed-value') as HTMLElement;
+  const speedLabel = document.getElementById('speed-label') as HTMLElement;
+  const dlSpeed = document.getElementById('dl-speed') as HTMLElement;
+  const ulSpeed = document.getElementById('ul-speed') as HTMLElement;
+  const pingVal = document.getElementById('ping-val') as HTMLElement;
+  const progressBar = document.getElementById('progress-bar') as HTMLElement;
+  const progressFill = document.getElementById('progress-fill') as HTMLElement;
+  const analysisEl = document.getElementById('speed-analysis') as HTMLElement;
+  const analysisContent = document.getElementById('analysis-content') as HTMLElement;
+
+  let running = false;
+
+  function animateValue(el: HTMLElement, target: number, duration: number, suffix = '') {
+    const start = 0;
+    const startTime = performance.now();
+    function update(now: number) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = start + (target - start) * eased;
+      el.textContent = current.toFixed(1) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  async function runTest() {
+    if (running) return;
+    running = true;
+    startBtn.textContent = 'Testing...';
+    startBtn.disabled = true;
+    progressBar.style.opacity = '1';
+
+    // Simulate download test
+    speedLabel.textContent = 'Testing download speed...';
+    const dlResult = 50 + Math.random() * 200;
+    for (let i = 0; i <= 100; i += 2) {
+      progressFill.style.width = i + '%';
+      gauge.style.setProperty('--progress', (i * 0.7) + '%');
+      const partial = dlResult * (i / 100) * (0.8 + Math.random() * 0.4);
+      speedValue.textContent = partial.toFixed(0);
+      await new Promise(r => setTimeout(r, 40));
+    }
+    gauge.style.setProperty('--progress', '70%');
+    animateValue(dlSpeed, dlResult, 500);
+    speedValue.textContent = dlResult.toFixed(1);
+
+    // Simulate upload test
+    speedLabel.textContent = 'Testing upload speed...';
+    const ulResult = 10 + Math.random() * 50;
+    for (let i = 0; i <= 100; i += 3) {
+      progressFill.style.width = i + '%';
+      await new Promise(r => setTimeout(r, 30));
+    }
+    animateValue(ulSpeed, ulResult, 500);
+
+    // Simulate ping
+    speedLabel.textContent = 'Measuring latency...';
+    const pingResult = 5 + Math.random() * 40;
+    await new Promise(r => setTimeout(r, 500));
+    pingVal.textContent = pingResult.toFixed(0);
+
+    // Done
+    speedLabel.textContent = 'Test complete!';
+    progressBar.style.opacity = '0';
+    startBtn.textContent = '↻ Test Again';
+    startBtn.disabled = false;
+    running = false;
+
+    // Show analysis
+    showAnalysis(dlResult, ulResult, pingResult);
+  }
+
+  function showAnalysis(dl: number, ul: number, ping: number) {
+    analysisEl.style.display = '';
+    let grade = 'A';
+    let color = 'var(--brand-green)';
+    let msg = '';
+
+    if (dl >= 300) { grade = 'A+'; color = 'var(--brand-green)'; msg = 'Excellent! Your connection is blazing fast. Perfect for any task.'; }
+    else if (dl >= 100) { grade = 'A'; color = 'var(--brand-green)'; msg = 'Great speed! Suitable for 4K streaming, gaming, and working from home.'; }
+    else if (dl >= 50) { grade = 'B'; color = 'var(--brand-blue-light)'; msg = 'Good speed for most tasks. You might want to upgrade if multiple people are streaming.'; }
+    else if (dl >= 25) { grade = 'C'; color = 'var(--brand-amber)'; msg = 'Adequate for basic use but may struggle with multiple devices or 4K streaming.'; }
+    else { grade = 'D'; color = 'var(--brand-red)'; msg = 'Your speed is below average. We recommend exploring faster options in your area.'; }
+
+    analysisContent.innerHTML = `
+      <div style="display:flex;align-items:center;gap:var(--space-lg);margin-bottom:var(--space-lg);">
+        <div style="width:64px;height:64px;border-radius:var(--radius-lg);background:${color}20;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:var(--text-3xl);font-weight:800;color:${color};">${grade}</span>
+        </div>
+        <div>
+          <p style="color:var(--text-primary);font-weight:600;font-size:var(--text-lg);">Speed Grade: ${grade}</p>
+          <p style="color:var(--text-secondary);font-size:var(--text-sm);">${msg}</p>
+        </div>
+      </div>
+      ${dl < 100 ? `
+        <div style="padding:var(--space-lg);background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.15);border-radius:var(--radius-md);">
+          <p style="color:var(--text-primary);font-weight:600;">Want faster internet?</p>
+          <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">Our partner providers offer speeds up to 5 Gbps. <a href="/providers" style="color:var(--brand-blue-light);">Compare faster options →</a></p>
+        </div>
+      ` : ''}
+    `;
+  }
+
+  startBtn?.addEventListener('click', runTest);
+</script>

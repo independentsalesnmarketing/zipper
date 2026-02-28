@@ -400,7 +400,7 @@
 
   .btn-cta {
     background: var(--gradient-cta);
-    color: var(--white);
+    color: #000d2e;
     font-size: var(--text-base);
     padding: 0.85em 2em;
     border-radius: var(--radius-md);
@@ -413,7 +413,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.2), transparent);
+    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.15), transparent);
     transform: translateX(-100%);
   }
   .btn-cta:hover {
@@ -426,7 +426,7 @@
 
   .btn-call {
     background: var(--gradient-cta);
-    color: var(--white);
+    color: #000d2e;
     font-weight: 700;
     padding: 0.7em 1.6em;
     border-radius: var(--radius-full);

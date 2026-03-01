@@ -4,9 +4,10 @@ import SearchBar from '@components/SearchBar.astro';
 import ProviderCard from '@components/ProviderCard.astro';
 import CallbackForm from '@components/CallbackForm.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed } from '@lib/providers';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed } from '@lib/providers';
 import { generateFAQSchema } from '@lib/utils';
 
+const allProviders = getAllProviders();
 const partners = getPartnerProviders();
 const topProviders = partners.slice(0, 6);
 
@@ -44,6 +45,22 @@ const faqs = [
       <div class="hero-search reveal">
         <SearchBar size="large" placeholder="Enter your ZIP code" />
         <p class="hero-hint">No signup required • See all options in 10 seconds</p>
+      </div>
+
+      <!-- Provider Logos Section -->
+      <div class="providers-logos reveal" style="margin-top: var(--space-2xl);">
+        <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-lg);">Compare from 16+ providers</p>
+        <div class="logos-grid">
+          {allProviders.map((p) => (
+            <div class="logo-item">
+              {p.logo ? (
+                <img src={p.logo} alt={p.name} loading="lazy" />
+              ) : (
+                <span class="logo-fallback">{p.name.charAt(0)}</span>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </section>

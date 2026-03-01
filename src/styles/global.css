@@ -685,8 +685,9 @@
     align-items: center;
     padding: var(--space-md) var(--space-lg);
     background: var(--white);
-    border: 1px solid var(--border);
+    border: 2px solid var(--gray-300);
     border-radius: var(--radius-lg);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     transition: all var(--duration-normal) var(--ease-out);
     position: relative;
     overflow: hidden;
@@ -702,12 +703,13 @@
   }
   .provider-card:hover {
     border-color: #0052ff;
-    box-shadow: 0 4px 12px rgba(0,82,255,0.15);
+    box-shadow: 0 6px 16px rgba(0,82,255,0.2);
     transform: none;
   }
   .provider-card[data-rank="1"] {
     border-color: #0052ff;
-    background: linear-gradient(135deg, rgba(0,82,255,0.03), rgba(0,82,255,0.08));
+    background: linear-gradient(135deg, rgba(0,82,255,0.05), rgba(0,217,255,0.05));
+    box-shadow: 0 4px 12px rgba(0,82,255,0.2);
   }
 
   .pc-left { display: flex; align-items: center; gap: var(--space-sm); position: relative; z-index: 1; }

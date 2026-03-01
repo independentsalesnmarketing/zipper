@@ -25,38 +25,74 @@ const faqs = [
   schema={[generateFAQSchema(faqs)]}
 >
   <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-badge reveal">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        Trusted by 500,000+ Americans
-      </div>
-      <h1 class="reveal">
-        Find the <span class="gradient-text">Best Internet</span><br/>in Your Area
-      </h1>
-      <p class="hero-subtitle reveal">
-        Compare providers, plans, and prices in seconds. Get connected with exclusive deals you won't find anywhere else.
-      </p>
-      <div class="reveal" style="display:flex; justify-content:center;">
-        <SearchBar size="large" placeholder="Enter your ZIP code (e.g. 10001)" />
+  <section class="hero-enhanced">
+    <div class="hero-background"></div>
+    <div class="container hero-content">
+      <div class="hero-upper reveal">
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Trusted by 500,000+ Americans
+        </div>
+        <h1 class="hero-headline">
+          Stop Overpaying for <span class="gradient-text">Slow Internet</span>
+        </h1>
+        <p class="hero-description">
+          Compare <strong>15+ providers</strong> available at your address in seconds. Find faster speeds, save money, and get exclusive deals you won't find anywhere else.
+        </p>
       </div>
 
-      <div class="stats-bar reveal">
-        <div class="stat-item">
-          <div class="stat-value">15+</div>
-          <div class="stat-label">Providers Compared</div>
+      <div class="hero-search-wrapper reveal">
+        <SearchBar size="large" placeholder="Enter your ZIP code" />
+        <p class="hero-search-note">No signup required • See prices in seconds</p>
+      </div>
+
+      <div class="hero-value-props reveal">
+        <div class="value-prop">
+          <div class="vp-icon">✓</div>
+          <div class="vp-content">
+            <h4>15+ Providers</h4>
+            <p>Fiber, cable, 5G & more</p>
+          </div>
         </div>
-        <div class="stat-item">
-          <div class="stat-value">50</div>
-          <div class="stat-label">States Covered</div>
+        <div class="value-prop">
+          <div class="vp-icon">⚡</div>
+          <div class="vp-content">
+            <h4>Real-Time Availability</h4>
+            <p>FCC Broadband Map data</p>
+          </div>
         </div>
-        <div class="stat-item">
+        <div class="value-prop">
+          <div class="vp-icon">💰</div>
+          <div class="vp-content">
+            <h4>Exclusive Deals</h4>
+            <p>Save up to $50/month</p>
+          </div>
+        </div>
+        <div class="value-prop">
+          <div class="vp-icon">📞</div>
+          <div class="vp-content">
+            <h4>Expert Support</h4>
+            <p>Free setup & consultation</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-bar-enhanced reveal">
+        <div class="stat-item-enhanced">
           <div class="stat-value">98%</div>
           <div class="stat-label">US Coverage</div>
         </div>
-        <div class="stat-item">
+        <div class="stat-item-enhanced">
+          <div class="stat-value">500K+</div>
+          <div class="stat-label">Happy Customers</div>
+        </div>
+        <div class="stat-item-enhanced">
           <div class="stat-value">$0</div>
           <div class="stat-label">Service Fee</div>
+        </div>
+        <div class="stat-item-enhanced">
+          <div class="stat-value">24/7</div>
+          <div class="stat-label">Expert Support</div>
         </div>
       </div>
     </div>
@@ -66,29 +102,33 @@ const faqs = [
   <section class="section">
     <div class="container">
       <div class="text-center reveal">
-        <h2>What Brings You Here Today?</h2>
-        <p class="hero-subtitle" style="max-width: 500px;">Pick your situation — we'll get you the best deal fast.</p>
+        <h2>What's Your Situation?</h2>
+        <p class="section-subtitle">Select your scenario below — we'll guide you to the perfect solution</p>
       </div>
       <div class="trigger-grid" style="margin-top: var(--space-2xl);">
         <a href="/movers" class="trigger-card trigger-card--moving reveal reveal-delay-1">
           <div class="trigger-icon">🏠</div>
           <h4>I'm Moving</h4>
-          <p>Find the best internet at your new address</p>
+          <p>Get internet set up at your new place before you arrive</p>
+          <div class="card-meta">Save time • Same-day setup options</div>
         </a>
         <a href="/switch" class="trigger-card trigger-card--switch reveal reveal-delay-2">
-          <div class="trigger-icon">😤</div>
-          <h4>My Internet Sucks</h4>
-          <p>Switch to a faster, more reliable provider</p>
+          <div class="trigger-icon">⚡</div>
+          <h4>I Need Faster Internet</h4>
+          <p>Upgrade to blazing speeds — or switch away from your current provider</p>
+          <div class="card-meta">Compare speeds instantly • No contracts</div>
         </a>
         <a href="/deals" class="trigger-card trigger-card--price reveal reveal-delay-3">
-          <div class="trigger-icon">💸</div>
+          <div class="trigger-icon">💰</div>
           <h4>My Bill Is Too High</h4>
-          <p>Find cheaper plans without losing speed</p>
+          <p>Slash your monthly bill without losing quality or speed</p>
+          <div class="card-meta">Save up to $50/month • See deals now</div>
         </a>
         <a href="/get-connected" class="trigger-card trigger-card--disconnected reveal reveal-delay-4">
-          <div class="trigger-icon">🔌</div>
-          <h4>I Need Internet Now</h4>
-          <p>Get connected ASAP — same-day options</p>
+          <div class="trigger-icon">📡</div>
+          <h4>I Need Internet ASAP</h4>
+          <p>Get connected today with emergency & same-day installation options</p>
+          <div class="card-meta">Priority support • Fastest available</div>
         </a>
       </div>
     </div>
@@ -122,24 +162,69 @@ const faqs = [
   <section class="section">
     <div class="container">
       <div class="text-center reveal">
-        <h2>How It Works</h2>
-        <p class="hero-subtitle" style="max-width: 500px;">Get the best internet in 3 simple steps.</p>
+        <h2>Find Your Perfect Internet in 3 Steps</h2>
+        <p class="section-subtitle">No hassle, no hidden fees — just fast internet for less money</p>
       </div>
-      <div class="grid grid-3" style="margin-top: var(--space-2xl);">
-        <div class="card text-center reveal reveal-delay-1">
-          <div style="width:56px;height:56px;border-radius:var(--radius-lg);background:var(--brand-blue-50);display:flex;align-items:center;justify-content:center;margin-inline:auto;margin-bottom:var(--space-md);font-size:1.5rem;font-weight:800;color:var(--brand-blue);">1</div>
-          <h4>Enter Your ZIP</h4>
-          <p style="margin-top:var(--space-sm);">We check which providers serve your exact address with real-time FCC data.</p>
+      <div class="how-it-works-grid" style="margin-top: var(--space-2xl);">
+        <div class="step-card reveal reveal-delay-1">
+          <div class="step-number step-number-1">1</div>
+          <h4>Enter Your ZIP Code</h4>
+          <p>Tell us where you're located. We instantly check which providers are available at your exact address using real-time FCC Broadband Map data.</p>
+          <div class="step-highlight">✓ 98% US Coverage</div>
         </div>
-        <div class="card text-center reveal reveal-delay-2">
-          <div style="width:56px;height:56px;border-radius:var(--radius-lg);background:var(--brand-green-50);display:flex;align-items:center;justify-content:center;margin-inline:auto;margin-bottom:var(--space-md);font-size:1.5rem;font-weight:800;color:var(--brand-green);">2</div>
-          <h4>Compare Plans</h4>
-          <p style="margin-top:var(--space-sm);">See every plan side-by-side — speeds, prices, ratings, data caps, and contracts.</p>
+        <div class="step-card reveal reveal-delay-2">
+          <div class="step-number step-number-2">2</div>
+          <h4>Compare All Available Plans</h4>
+          <p>See every option side-by-side: download speeds, prices, reviews, data caps, contract terms, and exclusive deals. Make an informed decision in seconds.</p>
+          <div class="step-highlight">✓ 15+ Providers Available</div>
         </div>
-        <div class="card text-center reveal reveal-delay-3">
-          <div style="width:56px;height:56px;border-radius:var(--radius-lg);background:var(--brand-amber-50);display:flex;align-items:center;justify-content:center;margin-inline:auto;margin-bottom:var(--space-md);font-size:1.5rem;font-weight:800;color:var(--brand-amber);">3</div>
-          <h4>Call & Get Connected</h4>
-          <p style="margin-top:var(--space-sm);">Speak to an expert who handles everything — ordering, installation scheduling, even switching from your old provider.</p>
+        <div class="step-card reveal reveal-delay-3">
+          <div class="step-number step-number-3">3</div>
+          <h4>Call Our Expert & Get Connected</h4>
+          <p>A specialist walks you through everything. We handle setup, installation scheduling, even porting your current number. You're online the same day.</p>
+          <div class="step-highlight">✓ Same-Day Installation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="text-center reveal">
+        <h2>We're Not Just Another Comparison Site</h2>
+        <p class="section-subtitle">Here's what sets Internet 4 ALL apart from BroadbandNow, AllConnect, and others</p>
+      </div>
+      <div class="comparison-grid" style="margin-top: var(--space-2xl);">
+        <div class="comparison-item reveal reveal-delay-1">
+          <div class="comparison-icon">🎯</div>
+          <h4>100% Free Service</h4>
+          <p>You never pay us a dime. We earn from provider partnerships, and you get the best prices anyway.</p>
+        </div>
+        <div class="comparison-item reveal reveal-delay-2">
+          <div class="comparison-icon">⚡</div>
+          <h4>Real-Time Availability</h4>
+          <p>We use live FCC data to show EXACTLY which providers serve your address. No guessing or surprises.</p>
+        </div>
+        <div class="comparison-item reveal reveal-delay-3">
+          <div class="comparison-icon">💬</div>
+          <h4>Expert Human Support</h4>
+          <p>Not a chatbot. Real broadband specialists who know fiber, cable, 5G, satellite—and which is best for you.</p>
+        </div>
+        <div class="comparison-item reveal reveal-delay-4">
+          <div class="comparison-icon">🎁</div>
+          <h4>Exclusive Deals Only Here</h4>
+          <p>Partner with us and save up to $50/month on plans you won't find available elsewhere.</p>
+        </div>
+        <div class="comparison-item reveal reveal-delay-5">
+          <div class="comparison-icon">⏱️</div>
+          <h4>Fastest Setup Process</h4>
+          <p>From search to installed in one day. We handle all the paperwork, switching, and coordination.</p>
+        </div>
+        <div class="comparison-item reveal reveal-delay-6">
+          <div class="comparison-icon">🏆</div>
+          <h4>Transparent Ranking</h4>
+          <p>Our algorithm considers speed, price, technology type, ratings, and real availability at your address.</p>
         </div>
       </div>
     </div>

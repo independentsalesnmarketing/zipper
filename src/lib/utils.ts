@@ -72,6 +72,36 @@ export function generateFAQSchema(faqs: { question: string; answer: string }[]) 
   };
 }
 
+export function generateOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Internet 4 ALL',
+    url: 'https://internet4all.com',
+    logo: 'https://internet4all.com/logo.png',
+    description: 'Find the best internet providers in your area. Compare plans, prices, and speeds from 24+ providers.',
+    sameAs: [
+      'https://facebook.com/internet4all',
+      'https://twitter.com/internet4all',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'Customer Service',
+      telephone: '+1-888-555-0123',
+      areaServed: 'US',
+      availableLanguage: 'en',
+      hoursAvailable: 'Mon-Fri 8AM-10PM EST, Sat-Sun 9AM-8PM EST',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.5',
+      bestRating: '5',
+      worstRating: '1',
+      ratingCount: '500',
+    },
+  };
+}
+
 export function generateProviderSchema(provider: {
   name: string;
   description: string;

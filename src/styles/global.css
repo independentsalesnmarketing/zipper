@@ -1960,6 +1960,18 @@
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
   }
+
+  /* ---- Loading Spinner ---- */
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* ---- Pulse Button Animation ---- */
+  @keyframes pulse-btn {
+    0%, 100% { transform: scale(1); box-shadow: 0 8px 24px rgba(0, 82, 255, 0.35); }
+    50% { transform: scale(1.05); box-shadow: 0 12px 32px rgba(0, 82, 255, 0.5); }
+  }
   .skeleton-card {
     height: 120px;
     border-radius: var(--radius-lg);

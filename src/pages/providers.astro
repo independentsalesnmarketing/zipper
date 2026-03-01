@@ -180,9 +180,15 @@ const zip3ToState = {
     <div class="container">
       <!-- Interactive Map -->
       <div id="map-container" style="display:none;">
-        <div style="margin-bottom: var(--space-md);">
-          <h3>Service Area Map</h3>
-          <p class="text-secondary" style="margin-top: var(--space-sm);">Providers available in this area</p>
+        <div style="margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <h3>Service Area Map</h3>
+            <p class="text-secondary" style="margin-top: var(--space-sm);">Providers available in this area</p>
+          </div>
+          <div id="map-zip-badge" style="background:var(--brand-blue);color:white;padding:var(--space-md);border-radius:var(--radius-lg);text-align:center;display:none;">
+            <div style="font-size:var(--text-xs);color:#cce5ff;margin-bottom:4px;">ZIP CODE</div>
+            <div style="font-size:var(--text-3xl);font-weight:900;" id="map-zip-display">00000</div>
+          </div>
         </div>
         <div id="map" style="width:100%;height:400px;border-radius:var(--radius-lg);border:2px solid var(--border);overflow:hidden;"></div>
       </div>
@@ -454,7 +460,7 @@ const zip3ToState = {
   var _currentGeo = null;
 
   // Initialize or update map
-  function initializeMap(lat, lng, city) {
+  function initializeMap(lat, lng, city, zip) {
     const mapContainer = document.getElementById('map-container');
     const mapEl = document.getElementById('map');
 
@@ -473,15 +479,15 @@ const zip3ToState = {
       const script = document.createElement('script');
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
       script.onload = () => {
-        createMap(lat, lng, city);
+        createMap(lat, lng, city, zip);
       };
       document.head.appendChild(script);
     } else {
-      createMap(lat, lng, city);
+      createMap(lat, lng, city, zip);
     }
   }
 
-  function createMap(lat, lng, city) {
+  function createMap(lat, lng, city, zip) {
     const mapEl = document.getElementById('map');
     if (!mapEl) return;
 
@@ -499,8 +505,8 @@ const zip3ToState = {
       maxZoom: 19
     }).addTo(_mapInstance);
 
-    // Add marker for location
-    window.L.marker([lat, lng], {
+    // Add marker for location with ZIP code badge
+    const marker = window.L.marker([lat, lng], {
       title: city,
       icon: window.L.icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
@@ -510,7 +516,18 @@ const zip3ToState = {
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       })
-    }).addTo(_mapInstance).bindPopup(`<strong>${city}</strong><br>Service area`);
+    }).addTo(_mapInstance).bindPopup(`<div style="text-align:center;"><div style="background:#0052ff;color:white;padding:8px 16px;border-radius:8px;font-weight:700;font-size:16px;margin-bottom:8px;">${zip}</div><strong>${city}</strong><br>Service area</div>`);
+
+    // Open popup by default
+    marker.openPopup();
+
+    // Display ZIP code in the badge
+    const zipBadge = document.getElementById('map-zip-badge');
+    const zipDisplay = document.getElementById('map-zip-display');
+    if (zipBadge && zipDisplay) {
+      zipDisplay.textContent = zip;
+      zipBadge.style.display = '';
+    }
   }
 
   async function searchByZip(zip) {
@@ -536,7 +553,7 @@ const zip3ToState = {
       _currentGeo = geo;
 
       // Initialize map
-      initializeMap(geo.lat, geo.lng, `${geo.city}, ${geo.state}`);
+      initializeMap(geo.lat, geo.lng, `${geo.city}, ${geo.state}`, zip);
 
       // Show location banner
       if (locationBanner && locationCity && locationCount) {

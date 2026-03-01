@@ -706,11 +706,6 @@
     box-shadow: 0 6px 16px rgba(0,82,255,0.2);
     transform: none;
   }
-  .provider-card[data-rank="1"] {
-    border-color: #0052ff;
-    background: linear-gradient(135deg, rgba(0,82,255,0.05), rgba(0,217,255,0.05));
-    box-shadow: 0 4px 12px rgba(0,82,255,0.2);
-  }
 
   .pc-left { display: flex; align-items: center; gap: var(--space-sm); position: relative; z-index: 1; }
   .pc-center { display: flex; gap: var(--space-lg); position: relative; z-index: 1; }

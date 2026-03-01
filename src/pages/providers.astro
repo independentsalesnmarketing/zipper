@@ -96,6 +96,22 @@ const zip3ToState = {
         <div class="reveal" style="display:flex; justify-content:center; margin-top: var(--space-xl);">
           <SearchBar size="large" placeholder="Enter your 5-digit ZIP code" />
         </div>
+
+        <!-- Provider Logos Section -->
+        <div class="providers-logos reveal" style="margin-top: var(--space-2xl);">
+          <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-lg);">Compare from 15+ providers</p>
+          <div class="logos-grid">
+            {allProviders.slice(0, 12).map((p) => (
+              <div class="logo-item">
+                {p.logo ? (
+                  <img src={p.logo} alt={p.name} loading="lazy" />
+                ) : (
+                  <span class="logo-fallback">{p.name.charAt(0)}</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       <!-- Location banner (hidden until search) -->

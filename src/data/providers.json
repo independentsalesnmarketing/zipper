@@ -47,7 +47,7 @@
       "id": "att-air",
       "name": "AT&T Air",
       "slug": "att-air",
-      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F9051bda6af7849e1b75f0240b3b88182?format=webp&width=200",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2Fe91068d6188b48c396f5bea1838f8e4b?format=webp&width=200",
       "types": ["5g"],
       "rating": 4.2,
       "reviewCount": 15300,
@@ -66,7 +66,7 @@
       "id": "tmobile",
       "name": "T-Mobile Fiber",
       "slug": "tmobile-fiber",
-      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2Fa194057b34f24fa59c7115e0ec99b0a8?format=webp&width=200",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F9051bda6af7849e1b75f0240b3b88182?format=webp&width=200",
       "types": ["fiber"],
       "rating": 4.3,
       "reviewCount": 18200,
@@ -84,9 +84,9 @@
     },
     {
       "id": "tmobile-5g",
-      "name": "T-Mobile 5G Wireless",
+      "name": "T-Mobile 5G Home Internet",
       "slug": "tmobile-5g",
-      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F715c6ea8888544df80bdcac5e11dfd47?format=webp&width=200",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F2fe221f9cb074ccf97fb3001edfd0dcd?format=webp&width=200",
       "types": ["5g"],
       "rating": 4.1,
       "reviewCount": 28450,
@@ -314,7 +314,7 @@
       "id": "hughesnet",
       "name": "HughesNet",
       "slug": "hughesnet",
-      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F3619c76f1fc44ac4bac03045aa99bfe7?format=webp&width=200",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2Ff2da6daca5354abd8d41c5b0c349d86d?format=webp&width=200",
       "types": ["satellite"],
       "rating": 3.2,
       "reviewCount": 12500,
@@ -327,6 +327,66 @@
       "plans": [
         { "name": "HughesNet Select", "speed": 50, "uploadSpeed": 5, "price": 64.99, "promoPrice": 64.99, "contract": "2-year", "dataCap": "100 GB", "features": ["Basic satellite internet", "Built-in WiFi"] },
         { "name": "HughesNet Elite", "speed": 100, "uploadSpeed": 5, "price": 89.99, "promoPrice": 89.99, "contract": "2-year", "dataCap": "200 GB", "features": ["Faster speeds", "More data", "Video streaming"] }
+      ]
+    },
+    {
+      "id": "metronet",
+      "name": "Metronet",
+      "slug": "metronet",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2Fe8238f2705844011b827624ae722a3fc?format=webp&width=200",
+      "types": ["fiber"],
+      "rating": 4.2,
+      "reviewCount": 8900,
+      "isPartner": true,
+      "description": "Metronet brings true fiber internet to communities across the Midwest and beyond with competitive pricing and excellent customer service.",
+      "pros": ["True fiber-to-the-home", "No data caps", "Competitive pricing", "Excellent customer service"],
+      "cons": ["Limited to select markets", "Smaller service area"],
+      "coverage": ["IN","OH","IL","MI"],
+      "phone": "1-888-555-0125",
+      "plans": [
+        { "name": "Metronet 300", "speed": 300, "uploadSpeed": 300, "price": 49.99, "promoPrice": 39.99, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical speeds", "No data caps", "Free installation"] },
+        { "name": "Metronet 500", "speed": 500, "uploadSpeed": 500, "price": 59.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "features": ["Great for streaming", "Work from home ready"] },
+        { "name": "Metronet 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 79.99, "promoPrice": 69.99, "contract": "None", "dataCap": "Unlimited", "features": ["1 Gig symmetrical", "Gaming ready", "Best value"] }
+      ]
+    },
+    {
+      "id": "ziply",
+      "name": "Ziply Fiber",
+      "slug": "ziply",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2Ffc510a11bfda45d5a2fc1c49f8e8e27d?format=webp&width=200",
+      "types": ["fiber"],
+      "rating": 4.3,
+      "reviewCount": 12450,
+      "isPartner": true,
+      "description": "Ziply Fiber provides ultrafast fiber internet throughout the Pacific Northwest with no data caps and straightforward pricing.",
+      "pros": ["Ultrafast fiber speeds", "No data caps", "Straightforward pricing", "Excellent uptime"],
+      "cons": ["Limited to Pacific Northwest", "New to some areas"],
+      "coverage": ["WA","OR","ID"],
+      "phone": "1-888-555-0126",
+      "plans": [
+        { "name": "Ziply Fiber 300", "speed": 300, "uploadSpeed": 300, "price": 45.00, "promoPrice": 35.00, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical speeds", "No data caps", "Free tech support"] },
+        { "name": "Ziply Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 60.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "features": ["1 Gig symmetrical", "Price lock guarantee", "Premium WiFi"] },
+        { "name": "Ziply Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 75.00, "promoPrice": 65.00, "contract": "None", "dataCap": "Unlimited", "features": ["2 Gig speeds", "Multi-gig router included", "Best available"] }
+      ]
+    },
+    {
+      "id": "cox",
+      "name": "Cox",
+      "slug": "cox",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F621e5ae7fa8d4b7d915e455df5aad1a6?format=webp&width=200",
+      "types": ["cable"],
+      "rating": 4.0,
+      "reviewCount": 45600,
+      "isPartner": true,
+      "description": "Cox Communications offers cable internet with speeds up to 2 Gbps and competitive pricing across the Southwest and beyond.",
+      "pros": ["Wide availability", "Fast cable speeds", "Bundle options", "Reliable service"],
+      "cons": ["Data caps on lower tiers", "Price increases after promo period"],
+      "coverage": ["AZ","CA","NM","OK","TX","LA","AR"],
+      "phone": "1-888-555-0127",
+      "plans": [
+        { "name": "Cox Internet 100", "speed": 100, "uploadSpeed": 10, "price": 49.99, "promoPrice": 39.99, "contract": "None", "dataCap": "1 TB", "features": ["Good for streaming", "Self-install available"] },
+        { "name": "Cox Internet 300", "speed": 300, "uploadSpeed": 30, "price": 69.99, "promoPrice": 59.99, "contract": "None", "dataCap": "1 TB", "features": ["Great for 4K streaming", "Multiple devices", "WiFi 6"] },
+        { "name": "Cox Internet 1 Gig", "speed": 1000, "uploadSpeed": 100, "price": 99.99, "promoPrice": 89.99, "contract": "None", "dataCap": "Unlimited", "features": ["Gig speeds", "Unlimited data", "Gaming optimized"] }
       ]
     }
   ]

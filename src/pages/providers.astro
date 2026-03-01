@@ -99,9 +99,9 @@ const zip3ToState = {
 
         <!-- Provider Logos Section -->
         <div class="providers-logos reveal" style="margin-top: var(--space-2xl);">
-          <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-lg);">Compare from 16+ providers</p>
+          <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-lg);">Compare from 19+ providers</p>
           <div class="logos-grid">
-            {allProviders.slice(0, 16).map((p) => (
+            {allProviders.map((p) => (
               <div class="logo-item">
                 {p.logo ? (
                   <img src={p.logo} alt={p.name} loading="lazy" />
@@ -184,9 +184,9 @@ const zip3ToState = {
   const NAME_MAP = {
     'charter': 'spectrum', 'charter communications': 'spectrum', 'charter communications inc': 'spectrum', 'spectrum': 'spectrum',
     'at&t': 'att', 'att': 'att', 'at&t inc': 'att', 'at&t services': 'att', 'at&t corp': 'att', 'bellsouth': 'att', 'at&t internet': 'att', 'at&t fiber': 'att',
-    'at&t air': 'att', 'att air': 'att',
-    't-mobile fiber': 'tmobile', 'metronet': 'tmobile', 'metronet holdings': 'tmobile', 'metronet inc': 'tmobile', 'metronet communications': 'tmobile',
-    't-mobile': 'tmobile-5g', 'tmobile': 'tmobile-5g', 't-mobile usa': 'tmobile-5g', 't-mobile us': 'tmobile-5g', 't-mobile home internet': 'tmobile-5g',
+    'at&t air': 'att-air', 'att air': 'att-air',
+    't-mobile fiber': 'tmobile', 'metronet': 'metronet', 'metronet holdings': 'metronet', 'metronet inc': 'metronet', 'metronet communications': 'metronet',
+    't-mobile': 'tmobile-5g', 'tmobile': 'tmobile-5g', 't-mobile usa': 'tmobile-5g', 't-mobile us': 'tmobile-5g', 't-mobile home internet': 'tmobile-5g', 't-mobile 5g home internet': 'tmobile-5g',
     'verizon': 'verizon', 'verizon communications': 'verizon', 'verizon fios': 'verizon', 'verizon business': 'verizon', 'mci': 'verizon',
     'windstream': 'windstream', 'windstream holdings': 'windstream', 'windstream communications': 'windstream', 'kinetic': 'windstream', 'kinetic by windstream': 'windstream',
     'altice': 'optimum', 'altice usa': 'optimum', 'optimum': 'optimum', 'optimum by altice': 'optimum', 'cablevision': 'optimum', 'suddenlink': 'optimum', 'suddenlink communications': 'optimum',
@@ -198,6 +198,8 @@ const zip3ToState = {
     'starlink': 'starlink', 'starlink services': 'starlink', 'spacex': 'starlink', 'space exploration technologies': 'starlink',
     'viasat': 'viasat', 'viasat inc': 'viasat', 'exede': 'viasat',
     'hughesnet': 'hughesnet', 'hughes network systems': 'hughesnet', 'hughes': 'hughesnet',
+    'ziply': 'ziply', 'ziply fiber': 'ziply',
+    'cox': 'cox', 'cox communications': 'cox', 'cox cable': 'cox',
   };
 
   const localProviders = providerDataForClient;

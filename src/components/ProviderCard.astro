@@ -27,7 +27,7 @@ const maxSpeed = getMaxSpeed(provider);
   <div class="pc-provider-info">
     <div class="pc-logo">
       {provider.logo ? (
-        <img src={provider.logo} alt={`${provider.name} logo`} width="48" height="48" loading="lazy" />
+        <img src={provider.logo} alt={`${provider.name} logo`} width="64" height="64" loading="lazy" />
       ) : (
         <span class="pc-logo-fallback">{provider.name.charAt(0)}</span>
       )}

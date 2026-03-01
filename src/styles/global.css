@@ -234,9 +234,10 @@
   .section {
     padding-block: var(--space-section);
     position: relative;
+    background: var(--white);
   }
   .section:nth-child(even) {
-    background: linear-gradient(135deg, rgba(0,82,255,0.01), rgba(183,0,255,0.01));
+    background: var(--gray-50);
   }
 
   .grid { display: grid; gap: var(--space-lg); }

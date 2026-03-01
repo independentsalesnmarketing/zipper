@@ -746,8 +746,8 @@
   }
 
   .provider-card .pc-logo {
-    width: 64px;
-    height: 64px;
+    width: 100px;
+    height: 100px;
     border-radius: var(--radius-md);
     background: var(--gray-50);
     border: 1px solid var(--border);

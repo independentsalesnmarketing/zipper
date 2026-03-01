@@ -2,7 +2,7 @@
 import '@styles/global.css';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
-import { generateWebsiteSchema } from '@lib/utils';
+import { generateWebsiteSchema, generateOrganizationSchema } from '@lib/utils';
 
 interface Props {
   title: string;
@@ -26,8 +26,8 @@ const siteName = 'Internet 4 ALL';
 const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
 const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site).toString();
 const schemas = schema
-  ? (Array.isArray(schema) ? schema : [schema])
-  : [generateWebsiteSchema()];
+  ? (Array.isArray(schema) ? [generateWebsiteSchema(), generateOrganizationSchema(), ...schema] : [generateWebsiteSchema(), generateOrganizationSchema(), schema])
+  : [generateWebsiteSchema(), generateOrganizationSchema()];
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -112,6 +112,49 @@ const schemas = schema
         const item = btn.closest('.faq-item');
         if (item) item.classList.toggle('open');
       });
+    });
+  </script>
+
+  <!-- Analytics Event Tracking -->
+  <script>
+    // Track CTA clicks with data-event attributes
+    document.addEventListener('click', (e) => {
+      const target = e.target.closest('[data-event]');
+      if (target) {
+        const eventName = target.getAttribute('data-event');
+        const eventCategory = target.getAttribute('data-event-category') || 'engagement';
+        const eventLabel = target.getAttribute('data-event-label') || '';
+
+        // Send to Google Analytics (if gtag is available)
+        if (typeof gtag !== 'undefined') {
+          gtag('event', eventName, {
+            'event_category': eventCategory,
+            'event_label': eventLabel
+          });
+        }
+
+        // Log to console for development
+        console.log(`[Analytics] Event: ${eventName}, Category: ${eventCategory}, Label: ${eventLabel}`);
+      }
+    });
+
+    // Track form submissions
+    document.addEventListener('submit', (e) => {
+      const form = e.target;
+      if (form && form.getAttribute('data-form') === 'callback') {
+        const eventName = 'callback_form_submit';
+        const eventCategory = 'conversion';
+        const eventLabel = 'callback-form';
+
+        if (typeof gtag !== 'undefined') {
+          gtag('event', eventName, {
+            'event_category': eventCategory,
+            'event_label': eventLabel
+          });
+        }
+
+        console.log(`[Analytics] Event: ${eventName}, Category: ${eventCategory}, Label: ${eventLabel}`);
+      }
     });
   </script>
 </body>

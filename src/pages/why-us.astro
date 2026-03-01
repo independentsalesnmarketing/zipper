@@ -1,0 +1,204 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import CallbackForm from '@components/CallbackForm.astro';
+import { generateBreadcrumbSchema } from '@lib/utils';
+---
+<Base
+  title="Why Choose Internet 4 ALL — The Difference We Make"
+  description="Learn what sets Internet 4 ALL apart from competitors. Free service, real data, expert support, and exclusive deals."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Why Us', url: 'https://internet4all.com/why-us' }])]}
+>
+  <section class="section" style="padding-top:var(--space-xl);">
+    <div class="container" style="max-width:900px;">
+      <Breadcrumb items={[{ name: 'Why Choose Us' }]} />
+      
+      <div class="text-center reveal">
+        <h1>We're Not Just Another Comparison Site</h1>
+        <p class="section-subtitle" style="max-width:650px;margin-left:auto;margin-right:auto;">Here's exactly what makes Internet 4 ALL different—and why 500,000+ Americans trust us.</p>
+      </div>
+
+      <!-- Six Core Differentiators -->
+      <div style="margin-top:var(--space-3xl); display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:var(--space-2xl);">
+        
+        <div class="reveal reveal-delay-1">
+          <div style="background:var(--brand-blue-50); padding:var(--space-lg); border-radius:var(--radius-lg); margin-bottom:var(--space-lg);">
+            <div style="font-size:2.5rem;">💰</div>
+          </div>
+          <h3>100% Free Service</h3>
+          <p>You never pay us a dime. We earn from provider partnerships, not from you. That means you get the same great service regardless of your budget.</p>
+          <ul style="list-style:disc; padding-left:var(--space-lg); margin-top:var(--space-md); font-size:var(--text-sm); line-height:1.8;">
+            <li>No signup fees</li>
+            <li>No processing fees</li>
+            <li>No hidden charges</li>
+            <li>Same prices as calling direct</li>
+          </ul>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div style="background:var(--brand-green-50); padding:var(--space-lg); border-radius:var(--radius-lg); margin-bottom:var(--space-lg);">
+            <div style="font-size:2.5rem;">🗺️</div>
+          </div>
+          <h3>Real-Time FCC Data</h3>
+          <p>We don't guess what's available at your address. We use live FCC Broadband Map data to show exactly what providers serve your location.</p>
+          <ul style="list-style:disc; padding-left:var(--space-lg); margin-top:var(--space-md); font-size:var(--text-sm); line-height:1.8;">
+            <li>Official FCC database lookups</li>
+            <li>Updated monthly with new data</li>
+            <li>Verified address-level service areas</li>
+            <li>No inflated or generic results</li>
+          </ul>
+        </div>
+
+        <div class="reveal reveal-delay-3">
+          <div style="background:var(--brand-cyan); opacity:0.1; padding:var(--space-lg); border-radius:var(--radius-lg); margin-bottom:var(--space-lg);">
+            <div style="font-size:2.5rem;">👥</div>
+          </div>
+          <h3>Real Broadband Experts</h3>
+          <p>Not chatbots or outsourced reps. Our specialists live and breathe internet service. They know fiber, cable, 5G, satellite—and which is right for you.</p>
+          <ul style="list-style:disc; padding-left:var(--space-lg); margin-top:var(--space-md); font-size:var(--text-sm); line-height:1.8;">
+            <li>10+ years of industry experience</li>
+            <li>Available Mon-Fri 8AM-10PM EST</li>
+            <li>Average 2-minute wait time</li>
+            <li>Speak to the same expert throughout</li>
+          </ul>
+        </div>
+
+        <div class="reveal reveal-delay-1">
+          <div style="background:var(--brand-amber-50); padding:var(--space-lg); border-radius:var(--radius-lg); margin-bottom:var(--space-lg);">
+            <div style="font-size:2.5rem;">🎁</div>
+          </div>
+          <h3>Exclusive Deals Only Here</h3>
+          <p>We've negotiated special rates with top providers that you literally cannot find anywhere else—online or by calling direct.</p>
+          <ul style="list-style:disc; padding-left:var(--space-lg); margin-top:var(--space-md); font-size:var(--text-sm); line-height:1.8;">
+            <li>Save up to $50/month</li>
+            <li>Free equipment/installation offers</li>
+            <li>Bonus speeds not advertised publicly</li>
+            <li>Locked-in rates and extended contracts</li>
+          </ul>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div style="background:var(--brand-purple-50); padding:var(--space-lg); border-radius:var(--radius-lg); margin-bottom:var(--space-lg);">
+            <div style="font-size:2.5rem;">⚡</div>
+          </div>
+          <h3>Same-Day Installation</h3>
+          <p>We don't just compare—we connect you. Our team coordinates directly with providers to get you online as fast as humanly possible.</p>
+          <ul style="list-style:disc; padding-left:var(--space-lg); margin-top:var(--space-md); font-size:var(--text-sm); line-height:1.8;">
+            <li>Same-day setup in most cases</li>
+            <li>We handle all the paperwork</li>
+            <li>Number porting included</li>
+            <li>Tech support through installation</li>
+          </ul>
+        </div>
+
+        <div class="reveal reveal-delay-3">
+          <div style="background:var(--brand-red-50); padding:var(--space-lg); border-radius:var(--radius-lg); margin-bottom:var(--space-lg);">
+            <div style="font-size:2.5rem;">📊</div>
+          </div>
+          <h3>Transparent Ranking Algorithm</h3>
+          <p>Every provider is ranked the same way: speed, value, reliability, customer satisfaction, and coverage. No hidden preferences. No pay-to-play.</p>
+          <ul style="list-style:disc; padding-left:var(--space-lg); margin-top:var(--space-md); font-size:var(--text-sm); line-height:1.8;">
+            <li>Public methodology page</li>
+            <li>Equal treatment for all providers</li>
+            <li>Quarterly rating updates</li>
+            <li>Data sourced from FCC, ACSI, BBB</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Comparison Table -->
+      <div class="reveal" style="margin-top:var(--space-4xl);">
+        <h2 style="text-align:center; margin-bottom:var(--space-2xl);">How We Compare</h2>
+        <div style="overflow-x:auto;">
+          <table style="width:100%; border-collapse:collapse; font-size:var(--text-sm);">
+            <thead>
+              <tr style="border-bottom:2px solid var(--border-strong);">
+                <th style="text-align:left; padding:var(--space-md); font-weight:700;">Feature</th>
+                <th style="text-align:center; padding:var(--space-md); font-weight:700;">Internet 4 ALL</th>
+                <th style="text-align:center; padding:var(--space-md); font-weight:700;">Competitors</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:var(--space-md);">Service Cost</td>
+                <td style="text-align:center; padding:var(--space-md); color:var(--brand-green);">✓ Free</td>
+                <td style="text-align:center; padding:var(--space-md);">Free (mostly)</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:var(--space-md);">Real FCC Data</td>
+                <td style="text-align:center; padding:var(--space-md); color:var(--brand-green);">✓ Yes</td>
+                <td style="text-align:center; padding:var(--space-md);">Varies</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:var(--space-md);">Human Experts</td>
+                <td style="text-align:center; padding:var(--space-md); color:var(--brand-green);">✓ 24/7</td>
+                <td style="text-align:center; padding:var(--space-md);">Chatbots</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:var(--space-md);">Exclusive Deals</td>
+                <td style="text-align:center; padding:var(--space-md); color:var(--brand-green);">✓ Yes</td>
+                <td style="text-align:center; padding:var(--space-md);">Limited</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:var(--space-md);">Same-Day Setup</td>
+                <td style="text-align:center; padding:var(--space-md); color:var(--brand-green);">✓ Yes</td>
+                <td style="text-align:center; padding:var(--space-md);">5-7 days</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border);">
+                <td style="padding:var(--space-md);">Transparent Ranking</td>
+                <td style="text-align:center; padding:var(--space-md); color:var(--brand-green);">✓ Public</td>
+                <td style="text-align:center; padding:var(--space-md);">Proprietary</td>
+              </tr>
+              <tr>
+                <td style="padding:var(--space-md);">Customer Support</td>
+                <td style="text-align:center; padding:var(--space-md); color:var(--brand-green);">✓ Real people</td>
+                <td style="text-align:center; padding:var(--space-md);">Automated</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="reveal" style="margin-top:var(--space-4xl);">
+        <h2 style="text-align:center; margin-bottom:var(--space-2xl);">Trusted & Verified</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:var(--space-lg); text-align:center;">
+          <div style="padding:var(--space-lg); background:var(--bg-secondary); border-radius:var(--radius-lg);">
+            <div style="font-size:2.5rem; margin-bottom:var(--space-sm);">⭐</div>
+            <p style="font-weight:600; margin-bottom:var(--space-xs);">500,000+ Customers</p>
+            <p style="font-size:var(--text-sm); color:var(--text-tertiary);">Verified connections since 2023</p>
+          </div>
+          <div style="padding:var(--space-lg); background:var(--bg-secondary); border-radius:var(--radius-lg);">
+            <div style="font-size:2.5rem; margin-bottom:var(--space-sm);">🏆</div>
+            <p style="font-weight:600; margin-bottom:var(--space-xs);">4.5/5 Rating</p>
+            <p style="font-size:var(--text-sm); color:var(--text-tertiary);">Across independent review sites</p>
+          </div>
+          <div style="padding:var(--space-lg); background:var(--bg-secondary); border-radius:var(--radius-lg);">
+            <div style="font-size:2.5rem; margin-bottom:var(--space-sm);">🔒</div>
+            <p style="font-weight:600; margin-bottom:var(--space-xs);">SSL Secure</p>
+            <p style="font-size:var(--text-sm); color:var(--text-tertiary);">Your data is always protected</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="reveal" style="margin-top:var(--space-4xl); padding:var(--space-2xl); background:var(--brand-blue-50); border-radius:var(--radius-lg); text-align:center;">
+        <h3>Ready to Experience the Difference?</h3>
+        <p style="margin-top:var(--space-md); margin-bottom:var(--space-lg); color:var(--text-secondary);">Enter your ZIP code and see why people choose us.</p>
+        <a href="/providers" class="btn btn-primary btn-lg">Compare Providers Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Callback Form -->
+  <section class="section" style="background:var(--bg-secondary); margin-top:var(--space-4xl);">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <CallbackForm />
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar />
+</Base>

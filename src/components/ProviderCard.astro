@@ -15,68 +15,70 @@ const minPrice = getMinPrice(provider);
 const maxSpeed = getMaxSpeed(provider);
 ---
 
-<div class="provider-card" data-rank={rank}>
-  {badge && (
-    <div class={`pc-badge pc-badge-${badge}`}>
-      {badge === 'best-overall' ? '🏆 Best Overall' :
-       badge === 'best-speed' ? '⚡ Fastest' :
-       badge === 'best-value' ? '💰 Best Value' : badge}
-    </div>
-  )}
-
-  <div class="pc-provider-info">
-    <div class="pc-logo">
-      {provider.logo ? (
-        <img src={provider.logo} alt={`${provider.name} logo`} width="64" height="64" loading="lazy" />
-      ) : (
-        <span class="pc-logo-fallback">{provider.name.charAt(0)}</span>
-      )}
-    </div>
-    <a href={`/provider/${provider.slug}`} class="pc-name">{provider.name}</a>
-  </div>
-
-  <div class="pc-main-metrics">
-    <div class="main-metric metric-speed">
-      <div class="metric-label">Speed</div>
-      <div class="metric-display">
-        <span class="metric-number">{getSpeedValue(maxSpeed)}</span>
-        <span class="metric-unit">{getSpeedUnit(maxSpeed)}</span>
+<a href={`/provider/${provider.slug}`} class="provider-card-link">
+  <div class="provider-card" data-rank={rank}>
+    {badge && (
+      <div class={`pc-badge pc-badge-${badge}`}>
+        {badge === 'best-overall' ? '🏆 Best Overall' :
+         badge === 'best-speed' ? '⚡ Fastest' :
+         badge === 'best-value' ? '💰 Best Value' : badge}
       </div>
-    </div>
-    <div class="main-metric metric-price">
-      <div class="metric-label">From</div>
-      <div class="metric-display">
-        <span class="metric-number">{formatPrice(minPrice)}</span>
-        <span class="metric-unit">/mo</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="pc-secondary-info">
-    <div class="pc-tags">
-      {provider.types.map(t => (
-        <span class={`tag tag-${t}`}>{getTypeLabel(t)}</span>
-      ))}
-    </div>
-    <div class="pc-rating">
-      <span class="stars">{'★'.repeat(Math.floor(provider.rating))}</span>
-      <span class="rating-num">{provider.rating.toFixed(1)}</span>
-      <span class="rating-count">({provider.reviewCount.toLocaleString()})</span>
-    </div>
-  </div>
-
-  <div class="pc-actions">
-    {provider.isPartner && (
-      <a href={formatPhoneForTel(provider.phone)} class="btn btn-call">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-        Call Now
-      </a>
     )}
-    <a href={`/provider/${provider.slug}`} class="btn btn-secondary">
-      View Plans →
-    </a>
+
+    <!-- Left: Logo & Name -->
+    <div class="pc-left">
+      <div class="pc-logo-compact">
+        {provider.logo ? (
+          <img src={provider.logo} alt={`${provider.name} logo`} width="90" height="90" loading="lazy" />
+        ) : (
+          <span class="pc-logo-fallback">{provider.name.charAt(0)}</span>
+        )}
+      </div>
+      <div>
+        <div class="pc-name-compact">{provider.name}</div>
+        <div class="pc-tags-compact">
+          {provider.types.map(t => (
+            <span class={`tag tag-${t}`}>{getTypeLabel(t)}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Center: Speed & Price -->
+    <div class="pc-center">
+      <div class="metric-compact">
+        <div class="metric-label-compact">Speed</div>
+        <div class="metric-value-compact">
+          <span>{getSpeedValue(maxSpeed)}</span><span class="unit">{getSpeedUnit(maxSpeed)}</span>
+        </div>
+      </div>
+      <div class="metric-compact">
+        <div class="metric-label-compact">From</div>
+        <div class="metric-value-compact">
+          <span>{formatPrice(minPrice)}</span><span class="unit">/mo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Rating & Actions -->
+    <div class="pc-right">
+      <div class="pc-rating-compact">
+        <span class="stars">{'★'.repeat(Math.floor(provider.rating))}</span>
+        <span class="rating-num">{provider.rating.toFixed(1)}</span>
+      </div>
+      <div class="pc-actions-compact">
+        {provider.isPartner && (
+          <button type="button" onclick={`window.location.href='${formatPhoneForTel(provider.phone)}'`} class="btn btn-call">
+            Call Now
+          </button>
+        )}
+        <button type="button" onclick={`window.location.href='/provider/${provider.slug}'`} class="btn btn-secondary">
+          View Plans
+        </button>
+      </div>
+    </div>
   </div>
-</div>
+</a>
 
 {showPlans && (
   <div class="grid grid-3" style="margin-top: var(--space-md); margin-bottom: var(--space-lg);">

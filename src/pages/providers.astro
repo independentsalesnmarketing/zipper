@@ -99,42 +99,35 @@ const zip3ToState = {
 
         <!-- Provider Logos Section -->
         <div class="providers-logos reveal" style="margin-top: var(--space-2xl);">
-          <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-lg);">Compare from 18+ providers</p>
+          <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-lg);">Compare from 25+ providers</p>
           <div class="logos-grid">
             {allProviders.map((p) => (
-              <div class="logo-item">
+              <a href={`/provider/${p.slug}`} class="logo-item" title={p.name}>
                 {p.logo ? (
                   <img src={p.logo} alt={p.name} loading="lazy" />
                 ) : (
                   <span class="logo-fallback">{p.name.charAt(0)}</span>
                 )}
-              </div>
+              </a>
             ))}
           </div>
         </div>
       </div>
 
       <!-- Location banner (hidden until search) -->
-      <div id="location-banner" class="card" style="display:none; text-align:center; margin-bottom: var(--space-xl); padding: var(--space-lg);">
+      <div id="location-banner" class="card results-banner" style="display:none; text-align:center; margin-bottom: var(--space-xl); padding: var(--space-lg); animation: slideInDown 0.6s ease-out;">
         <h3 id="location-text" style="font-size: var(--text-xl);">Showing providers for <strong id="location-city" style="color: var(--brand-blue);"></strong></h3>
         <p id="location-count" class="text-secondary text-sm mt-sm"></p>
       </div>
 
-      <!-- Interactive Map -->
-      <div id="map-container" style="display:none; margin-bottom: var(--space-2xl);">
-        <div style="margin-bottom: var(--space-md);">
-          <h3>Service Area Map</h3>
-          <p class="text-secondary" style="margin-top: var(--space-sm);">Providers available in this area</p>
-        </div>
-        <div id="map" style="width:100%;height:400px;border-radius:var(--radius-lg);border:2px solid var(--border);overflow:hidden;"></div>
-      </div>
-
       <!-- Loading state -->
-      <div id="loading-state" style="display:none;">
-        <div class="flex flex-col gap-md">
-          <div class="skeleton skeleton-card"></div>
-          <div class="skeleton skeleton-card"></div>
-          <div class="skeleton skeleton-card"></div>
+      <div id="loading-state" style="display:none; margin-top: var(--space-2xl);">
+        <div style="text-align: center; padding: var(--space-2xl); background: var(--bg-secondary); border-radius: var(--radius-lg);">
+          <div style="display: inline-block; margin-bottom: var(--space-lg);">
+            <div style="width: 48px; height: 48px; border: 4px solid var(--border); border-top: 4px solid var(--brand-blue); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+          </div>
+          <p style="font-size: var(--text-lg); font-weight: 600; margin-bottom: var(--space-sm);">Finding Providers...</p>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm);">Searching FCC data for available options in your area</p>
         </div>
       </div>
 
@@ -160,12 +153,18 @@ const zip3ToState = {
       </div>
 
       <!-- Provider List (server-rendered, all providers) -->
-      <div id="provider-list" class="flex flex-col gap-md">
-        {allProviders.map((p, i) => (
-          <div class="provider-item reveal" data-provider-id={p.id} data-types={p.types.join(',')} data-speed={getMaxSpeed(p)} data-price={getMinPrice(p)} data-rating={p.rating} data-partner={p.isPartner ? '1' : '0'} style={`transition-delay: ${Math.min(i * 60, 400)}ms;`}>
-            <ProviderCard provider={p} rank={i + 1} />
-          </div>
-        ))}
+      <div id="provider-list-container" style="display:none; animation: slideInUp 0.8s ease-out;">
+        <div id="results-header" style="margin-bottom: var(--space-lg); padding-bottom: var(--space-lg); border-bottom: 2px solid var(--border);">
+          <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-sm);">Available Providers</h2>
+          <p class="text-secondary">Select a provider to view detailed plans and pricing</p>
+        </div>
+        <div id="provider-list" class="flex flex-col gap-md">
+          {allProviders.map((p, i) => (
+            <div class="provider-item reveal" data-provider-id={p.id} data-types={p.types.join(',')} data-speed={getMaxSpeed(p)} data-price={getMinPrice(p)} data-rating={p.rating} data-partner={p.isPartner ? '1' : '0'} style={`transition-delay: ${Math.min(i * 60, 400)}ms;`}>
+              <ProviderCard provider={p} rank={i + 1} />
+            </div>
+          ))}
+        </div>
       </div>
 
       <div id="no-results" class="card text-center" style="display:none; padding: var(--space-3xl);">
@@ -173,6 +172,37 @@ const zip3ToState = {
         <p style="margin-top:var(--space-sm);">No providers matched your ZIP code. Showing all available providers instead.</p>
         <button id="show-all-btn" class="btn btn-primary" style="margin-top: var(--space-md);">Show All Providers</button>
       </div>
+    </div>
+  </section>
+
+  <!-- Interactive Map Section (moved below providers) -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <!-- Interactive Map -->
+      <div id="map-container" style="display:none;">
+        <div style="margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <h3>Service Area Map</h3>
+            <p class="text-secondary" style="margin-top: var(--space-sm);">Providers available in this area</p>
+          </div>
+          <div id="map-zip-badge" style="background:var(--brand-blue);color:white;padding:var(--space-md);border-radius:var(--radius-lg);text-align:center;display:none;">
+            <div style="font-size:var(--text-xs);color:#cce5ff;margin-bottom:4px;">ZIP CODE</div>
+            <div style="font-size:var(--text-3xl);font-weight:900;" id="map-zip-display">00000</div>
+          </div>
+        </div>
+        <div id="map" style="width:100%;height:400px;border-radius:var(--radius-lg);border:2px solid var(--border);overflow:hidden;"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <!-- Floating results indicator button -->
+      <button id="scroll-to-results" class="scroll-btn" title="View results below" style="display:none; position:fixed; bottom:30px; right:30px; z-index:50; background:var(--brand-blue); color:white; border:none; border-radius:50%; width:64px; height:64px; font-size:24px; cursor:pointer; box-shadow:0 8px 24px rgba(0, 82, 255, 0.35); transition:all 0.3s ease; animation:pulse-btn 2s infinite;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin:auto;">
+          <polyline points="6 15 12 9 18 15"></polyline>
+        </svg>
+      </button>
     </div>
   </section>
 
@@ -209,6 +239,7 @@ const zip3ToState = {
     'hughesnet': 'hughesnet', 'hughes network systems': 'hughesnet', 'hughes': 'hughesnet',
     'ziply': 'ziply', 'ziply fiber': 'ziply',
     'cox': 'cox', 'cox communications': 'cox', 'cox cable': 'cox',
+    'minternet': 'mintmobile', 'mint mobile': 'mintmobile', 'mint': 'mintmobile',
   };
 
   const localProviders = providerDataForClient;
@@ -364,16 +395,35 @@ const zip3ToState = {
   // ========================================
 
   const providerList = document.getElementById('provider-list');
+  const providerListContainer = document.getElementById('provider-list-container');
   const locationBanner = document.getElementById('location-banner');
   const locationCity = document.getElementById('location-city');
   const locationCount = document.getElementById('location-count');
   const loadingState = document.getElementById('loading-state');
   const noResults = document.getElementById('no-results');
   const showAllBtn = document.getElementById('show-all-btn');
+  const scrollBtn = document.getElementById('scroll-to-results');
   const allItems = document.querySelectorAll('.provider-item');
 
-  function showLoading() { if (loadingState) loadingState.style.display = ''; if (providerList) providerList.style.display = 'none'; }
-  function hideLoading() { if (loadingState) loadingState.style.display = 'none'; if (providerList) providerList.style.display = ''; }
+  function showLoading() {
+    if (loadingState) loadingState.style.display = '';
+    if (providerListContainer) providerListContainer.style.display = 'none';
+    if (scrollBtn) scrollBtn.style.display = 'flex';
+  }
+
+  function hideLoading() {
+    if (loadingState) loadingState.style.display = 'none';
+    if (providerListContainer) providerListContainer.style.display = '';
+    if (scrollBtn) scrollBtn.style.display = 'none';
+    // Auto-scroll to results
+    setTimeout(() => {
+      if (locationBanner && locationBanner.style.display !== 'none') {
+        locationBanner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (providerListContainer) {
+        providerListContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 300);
+  }
 
   function showAllProviders() {
     allItems.forEach(function(el) { el.style.display = ''; });
@@ -411,7 +461,7 @@ const zip3ToState = {
   var _currentGeo = null;
 
   // Initialize or update map
-  function initializeMap(lat, lng, city) {
+  function initializeMap(lat, lng, city, zip) {
     const mapContainer = document.getElementById('map-container');
     const mapEl = document.getElementById('map');
 
@@ -430,15 +480,15 @@ const zip3ToState = {
       const script = document.createElement('script');
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
       script.onload = () => {
-        createMap(lat, lng, city);
+        createMap(lat, lng, city, zip);
       };
       document.head.appendChild(script);
     } else {
-      createMap(lat, lng, city);
+      createMap(lat, lng, city, zip);
     }
   }
 
-  function createMap(lat, lng, city) {
+  function createMap(lat, lng, city, zip) {
     const mapEl = document.getElementById('map');
     if (!mapEl) return;
 
@@ -456,8 +506,8 @@ const zip3ToState = {
       maxZoom: 19
     }).addTo(_mapInstance);
 
-    // Add marker for location
-    window.L.marker([lat, lng], {
+    // Add marker for location with ZIP code badge
+    const marker = window.L.marker([lat, lng], {
       title: city,
       icon: window.L.icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
@@ -467,7 +517,18 @@ const zip3ToState = {
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       })
-    }).addTo(_mapInstance).bindPopup(`<strong>${city}</strong><br>Service area`);
+    }).addTo(_mapInstance).bindPopup(`<div style="text-align:center;"><div style="background:#0052ff;color:white;padding:8px 16px;border-radius:8px;font-weight:700;font-size:16px;margin-bottom:8px;">${zip}</div><strong>${city}</strong><br>Service area</div>`);
+
+    // Open popup by default
+    marker.openPopup();
+
+    // Display ZIP code in the badge
+    const zipBadge = document.getElementById('map-zip-badge');
+    const zipDisplay = document.getElementById('map-zip-display');
+    if (zipBadge && zipDisplay) {
+      zipDisplay.textContent = zip;
+      zipBadge.style.display = '';
+    }
   }
 
   async function searchByZip(zip) {
@@ -493,7 +554,7 @@ const zip3ToState = {
       _currentGeo = geo;
 
       // Initialize map
-      initializeMap(geo.lat, geo.lng, `${geo.city}, ${geo.state}`);
+      initializeMap(geo.lat, geo.lng, `${geo.city}, ${geo.state}`, zip);
 
       // Show location banner
       if (locationBanner && locationCity && locationCount) {
@@ -677,6 +738,30 @@ const zip3ToState = {
   if (showAllBtn) {
     showAllBtn.addEventListener('click', () => {
       showAllProviders();
+    });
+  }
+
+  // Scroll to results button
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', () => {
+      if (locationBanner && locationBanner.style.display !== 'none') {
+        locationBanner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (providerListContainer) {
+        providerListContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    // Hide button when user scrolls down
+    window.addEventListener('scroll', () => {
+      if (scrollBtn.style.display !== 'none') {
+        const container = locationBanner && locationBanner.style.display !== 'none' ? locationBanner : providerListContainer;
+        if (container) {
+          const rect = container.getBoundingClientRect();
+          if (rect.top < window.innerHeight) {
+            scrollBtn.style.display = 'none';
+          }
+        }
+      }
     });
   }
 

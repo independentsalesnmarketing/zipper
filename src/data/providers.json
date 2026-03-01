@@ -368,6 +368,143 @@
         { "name": "HughesNet Select", "speed": 50, "uploadSpeed": 5, "price": 64.99, "promoPrice": 64.99, "contract": "2-year", "dataCap": "100 GB", "features": ["Basic satellite internet", "Built-in WiFi"] },
         { "name": "HughesNet Elite", "speed": 100, "uploadSpeed": 5, "price": 89.99, "promoPrice": 89.99, "contract": "2-year", "dataCap": "200 GB", "features": ["Faster speeds", "More data", "Video streaming"] }
       ]
+    },
+    {
+      "id": "wow",
+      "name": "WOW!",
+      "slug": "wow",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F6ee67e05c2f649daad2878f88267cbd0?format=webp&width=200",
+      "types": ["cable"],
+      "rating": 4.0,
+      "reviewCount": 28300,
+      "isPartner": true,
+      "description": "WOW! offers reliable cable internet with no annual contracts, no equipment fees, and speeds up to 2 Gbps.",
+      "pros": ["No annual contracts", "No equipment fees", "Affordable pricing", "Fast cable speeds", "Available nationwide"],
+      "cons": ["Data caps on lower tiers", "Upload speeds slower than fiber"],
+      "coverage": ["AR","FL","GA","IL","IN","KY","MI","MO","MS","OH","SC","TN"],
+      "phone": "1-888-555-0128",
+      "plans": [
+        { "name": "WOW! Internet 100", "speed": 100, "uploadSpeed": 10, "price": 39.99, "promoPrice": 29.99, "contract": "None", "dataCap": "1 TB", "features": ["Basic cable internet", "Affordable pricing", "Self-install available"] },
+        { "name": "WOW! Internet 300", "speed": 300, "uploadSpeed": 10, "price": 49.99, "promoPrice": 39.99, "contract": "None", "dataCap": "1 TB", "features": ["Great for streaming", "Multiple devices", "Standard WiFi"] },
+        { "name": "WOW! Internet 1 Gig", "speed": 1000, "uploadSpeed": 50, "price": 79.99, "promoPrice": 69.99, "contract": "None", "dataCap": "Unlimited", "features": ["Gigabit speeds", "Unlimited data", "Gaming optimized"] }
+      ]
+    },
+    {
+      "id": "fidium",
+      "name": "Fidium",
+      "slug": "fidium",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2Fdc35f45653b54bccbe6bd04a8fbe4753?format=webp&width=200",
+      "types": ["fiber"],
+      "rating": 4.4,
+      "reviewCount": 16200,
+      "isPartner": true,
+      "description": "Fidium delivers ultrafast fiber internet with symmetrical speeds, no data caps, and no annual contracts.",
+      "pros": ["True fiber to the home", "Symmetrical upload/download speeds", "No data caps", "No annual contracts", "Price lock guarantee"],
+      "cons": ["Limited availability in select regions", "New provider (expanding)"],
+      "coverage": ["ME","NH","VT","MA"],
+      "phone": "1-888-555-0129",
+      "plans": [
+        { "name": "Fidium Fiber 200", "speed": 200, "uploadSpeed": 200, "price": 49.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical fiber speeds", "No data caps", "Free WiFi 6 router"] },
+        { "name": "Fidium Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 59.99, "promoPrice": 59.99, "contract": "None", "dataCap": "Unlimited", "features": ["Great for streaming", "Work from home ready", "Whole home coverage"] },
+        { "name": "Fidium Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 79.99, "promoPrice": 79.99, "contract": "None", "dataCap": "Unlimited", "features": ["1 Gig symmetrical", "Premium WiFi 6E", "Gaming optimized"] }
+      ]
+    },
+    {
+      "id": "google-fiber",
+      "name": "Google Fiber",
+      "slug": "google-fiber",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F19560187fac24080b8cd0fe51eac2697?format=webp&width=200",
+      "types": ["fiber"],
+      "rating": 4.6,
+      "reviewCount": 52000,
+      "isPartner": true,
+      "description": "Google Fiber delivers incredibly fast fiber internet with symmetrical speeds up to 5 Gbps, no data caps, and industry-leading customer service.",
+      "pros": ["Symmetrical upload/download", "No data caps", "Gigabit speeds standard", "Industry-best customer service", "Works with any device"],
+      "cons": ["Limited to specific cities and neighborhoods", "Premium pricing", "Installation required"],
+      "coverage": ["AL","AZ","CA","CO","GA","IL","IN","KS","MO","NC","OH","OK","OR","TN","TX","UT","VA","WA"],
+      "phone": "1-888-555-0130",
+      "plans": [
+        { "name": "Google Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 70.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "features": ["1 Gig symmetrical", "Excellent TV-like experience", "Superb for all activities"] },
+        { "name": "Google Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 100.00, "promoPrice": 100.00, "contract": "None", "dataCap": "Unlimited", "features": ["2 Gig speeds", "Maximum performance", "Perfect for large households"] },
+        { "name": "Google Fiber 5 Gig", "speed": 5000, "uploadSpeed": 5000, "price": 150.00, "promoPrice": 150.00, "contract": "None", "dataCap": "Unlimited", "features": ["Fastest available speeds", "Premium performance", "Future-proof"] }
+      ]
+    },
+    {
+      "id": "geolinks",
+      "name": "GeoLinks",
+      "slug": "geolinks",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F0977d0a891e548b9b8f6e76c1bdbb4af?format=webp&width=200",
+      "types": ["fiber"],
+      "rating": 4.2,
+      "reviewCount": 8900,
+      "isPartner": true,
+      "description": "GeoLinks provides fiber-to-the-home internet in rural and underserved areas, bringing high-speed connectivity to communities nationwide.",
+      "pros": ["Fiber to the home", "Focus on rural areas", "No data caps", "Competitive pricing", "Growing availability"],
+      "cons": ["Limited service areas", "Newer in some regions"],
+      "coverage": ["CA","TX","NV","UT","AZ","CO","WY","MT"],
+      "phone": "1-888-555-0131",
+      "plans": [
+        { "name": "GeoLinks 500 Fiber", "speed": 500, "uploadSpeed": 500, "price": 49.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical fiber", "No data caps", "Rural coverage"] },
+        { "name": "GeoLinks 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 64.99, "promoPrice": 59.99, "contract": "None", "dataCap": "Unlimited", "features": ["Gig symmetrical speeds", "Whole home WiFi", "Reliable service"] },
+        { "name": "GeoLinks 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 79.99, "promoPrice": 74.99, "contract": "None", "dataCap": "Unlimited", "features": ["Ultra-fast 2 Gig", "Premium WiFi 6", "Best available"] }
+      ]
+    },
+    {
+      "id": "uscellular",
+      "name": "U.S. Cellular",
+      "slug": "uscellular",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F6d26938a588b49089e10ead8d3710bed?format=webp&width=200",
+      "types": ["5g"],
+      "rating": 4.1,
+      "reviewCount": 21300,
+      "isPartner": true,
+      "description": "U.S. Cellular offers 5G home internet with no annual contracts, no equipment fees, and affordable pricing across rural and urban areas.",
+      "pros": ["No annual contracts", "No equipment fees", "Fast 5G speeds", "Nationwide coverage expansion", "Simple pricing"],
+      "cons": ["Speed varies by location", "5G coverage still expanding"],
+      "coverage": ["Nationwide"],
+      "phone": "1-888-555-0132",
+      "plans": [
+        { "name": "U.S. Cellular 5G Home", "speed": 300, "uploadSpeed": 50, "price": 60.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "features": ["No contracts", "No equipment fees", "5G speeds"] },
+        { "name": "U.S. Cellular 5G Home Premium", "speed": 500, "uploadSpeed": 100, "price": 80.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "features": ["Faster 5G speeds", "Premium gateway", "Enhanced coverage"] }
+      ]
+    },
+    {
+      "id": "mediacom",
+      "name": "Mediacom",
+      "slug": "mediacom",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F1ed248849bc245399021676bd25b2c29?format=webp&width=200",
+      "types": ["cable"],
+      "rating": 3.8,
+      "reviewCount": 35600,
+      "isPartner": true,
+      "description": "Mediacom delivers reliable cable internet with speeds up to 1 Gbps across the Midwest and Mountain regions with flexible plans.",
+      "pros": ["Wide coverage in Midwest", "Affordable pricing", "Flexible plans", "Bundle options", "Reliable service"],
+      "cons": ["Data caps on lower tiers", "Upload speeds limited on cable"],
+      "coverage": ["AL","AR","FL","GA","IA","IL","IN","KS","KY","LA","MO","MS","NC","OH","TN","TX","UT","WI"],
+      "phone": "1-888-555-0133",
+      "plans": [
+        { "name": "Mediacom 60 Mbps", "speed": 60, "uploadSpeed": 6, "price": 39.99, "promoPrice": 29.99, "contract": "None", "dataCap": "600 GB", "features": ["Good for basic use", "Streaming ready", "Affordable"] },
+        { "name": "Mediacom 200 Mbps", "speed": 200, "uploadSpeed": 15, "price": 59.99, "promoPrice": 49.99, "contract": "None", "dataCap": "1 TB", "features": ["Multiple devices", "4K streaming capable", "WiFi 5"] },
+        { "name": "Mediacom 1 Gig", "speed": 1000, "uploadSpeed": 100, "price": 89.99, "promoPrice": 79.99, "contract": "None", "dataCap": "Unlimited", "features": ["Gigabit speeds", "Unlimited data", "Gaming optimized"] }
+      ]
+    },
+    {
+      "id": "mintmobile",
+      "name": "Mint Mobile",
+      "slug": "mintmobile",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F5a9ff0e63b8d4eb98ed8f913d6d08124?format=webp&width=200",
+      "types": ["5g"],
+      "rating": 4.3,
+      "reviewCount": 28900,
+      "isPartner": true,
+      "description": "Mint Mobile delivers 5G home internet with affordably-priced plans, no annual contracts, and nationwide coverage using T-Mobile's network.",
+      "pros": ["Affordable pricing", "No annual contracts", "No equipment fees", "5G speeds", "Nationwide coverage", "Flexible plans"],
+      "cons": ["5G speeds vary by location", "Coverage dependent on T-Mobile network"],
+      "coverage": ["Nationwide"],
+      "phone": "1-888-555-0134",
+      "plans": [
+        { "name": "Mint Mobile 5G Home", "speed": 100, "uploadSpeed": 20, "price": 30.00, "promoPrice": 25.00, "contract": "None", "dataCap": "Unlimited", "features": ["Affordable 5G", "No contracts", "No equipment fees"] }
+      ]
     }
   ]
 }

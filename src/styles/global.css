@@ -841,7 +841,16 @@
 
   .pc-actions-compact {
     display: flex;
-    gap: 6px;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .pc-actions-compact .btn {
+    padding: 0.6em 1.2em;
+    font-size: var(--text-sm);
+    white-space: nowrap;
+    flex: 1;
+    text-align: center;
   }
 
   .provider-card-old .pc-tags {

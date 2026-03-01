@@ -67,12 +67,12 @@ const maxSpeed = getMaxSpeed(provider);
     </div>
     <div class="pc-actions-compact">
       {provider.isPartner && (
-        <a href={formatPhoneForTel(provider.phone)} class="btn btn-call btn-sm">
-          Call
+        <a href={formatPhoneForTel(provider.phone)} class="btn btn-call">
+          Call Now
         </a>
       )}
-      <a href={`/provider/${provider.slug}`} class="btn btn-secondary btn-sm">
-        Plans →
+      <a href={`/provider/${provider.slug}`} class="btn btn-secondary">
+        View Plans
       </a>
     </div>
   </div>

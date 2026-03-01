@@ -1451,6 +1451,7 @@
     margin-top: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    text-align: center;
   }
 
   @media (max-width: 768px) {
@@ -1859,7 +1860,7 @@
     animation: drift 20s linear infinite;
   }
   .callback-form h3 { font-size: var(--text-2xl); margin-bottom: var(--space-sm); color: var(--white); }
-  .callback-form p { font-size: var(--text-sm); margin-bottom: var(--space-xl); }
+  .callback-form p { font-size: var(--text-sm); margin-bottom: var(--space-xl); color: var(--text-on-dark); }
   .callback-form .form-input { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: var(--white); }
   .callback-form .form-input::placeholder { color: rgba(255,255,255,0.4); }
   .callback-form .form-input:focus { border-color: var(--brand-green-light); box-shadow: 0 0 0 3px rgba(16,185,129,0.15); }

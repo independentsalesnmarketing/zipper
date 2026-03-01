@@ -368,6 +368,46 @@
         { "name": "HughesNet Select", "speed": 50, "uploadSpeed": 5, "price": 64.99, "promoPrice": 64.99, "contract": "2-year", "dataCap": "100 GB", "features": ["Basic satellite internet", "Built-in WiFi"] },
         { "name": "HughesNet Elite", "speed": 100, "uploadSpeed": 5, "price": 89.99, "promoPrice": 89.99, "contract": "2-year", "dataCap": "200 GB", "features": ["Faster speeds", "More data", "Video streaming"] }
       ]
+    },
+    {
+      "id": "wow",
+      "name": "WOW!",
+      "slug": "wow",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F6ee67e05c2f649daad2878f88267cbd0?format=webp&width=200",
+      "types": ["cable"],
+      "rating": 4.0,
+      "reviewCount": 28300,
+      "isPartner": true,
+      "description": "WOW! offers reliable cable internet with no annual contracts, no equipment fees, and speeds up to 2 Gbps.",
+      "pros": ["No annual contracts", "No equipment fees", "Affordable pricing", "Fast cable speeds", "Available nationwide"],
+      "cons": ["Data caps on lower tiers", "Upload speeds slower than fiber"],
+      "coverage": ["AR","FL","GA","IL","IN","KY","MI","MO","MS","OH","SC","TN"],
+      "phone": "1-888-555-0128",
+      "plans": [
+        { "name": "WOW! Internet 100", "speed": 100, "uploadSpeed": 10, "price": 39.99, "promoPrice": 29.99, "contract": "None", "dataCap": "1 TB", "features": ["Basic cable internet", "Affordable pricing", "Self-install available"] },
+        { "name": "WOW! Internet 300", "speed": 300, "uploadSpeed": 10, "price": 49.99, "promoPrice": 39.99, "contract": "None", "dataCap": "1 TB", "features": ["Great for streaming", "Multiple devices", "Standard WiFi"] },
+        { "name": "WOW! Internet 1 Gig", "speed": 1000, "uploadSpeed": 50, "price": 79.99, "promoPrice": 69.99, "contract": "None", "dataCap": "Unlimited", "features": ["Gigabit speeds", "Unlimited data", "Gaming optimized"] }
+      ]
+    },
+    {
+      "id": "fidium",
+      "name": "Fidium",
+      "slug": "fidium",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2Fdc35f45653b54bccbe6bd04a8fbe4753?format=webp&width=200",
+      "types": ["fiber"],
+      "rating": 4.4,
+      "reviewCount": 16200,
+      "isPartner": true,
+      "description": "Fidium delivers ultrafast fiber internet with symmetrical speeds, no data caps, and no annual contracts.",
+      "pros": ["True fiber to the home", "Symmetrical upload/download speeds", "No data caps", "No annual contracts", "Price lock guarantee"],
+      "cons": ["Limited availability in select regions", "New provider (expanding)"],
+      "coverage": ["ME","NH","VT","MA"],
+      "phone": "1-888-555-0129",
+      "plans": [
+        { "name": "Fidium Fiber 200", "speed": 200, "uploadSpeed": 200, "price": 49.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical fiber speeds", "No data caps", "Free WiFi 6 router"] },
+        { "name": "Fidium Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 59.99, "promoPrice": 59.99, "contract": "None", "dataCap": "Unlimited", "features": ["Great for streaming", "Work from home ready", "Whole home coverage"] },
+        { "name": "Fidium Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 79.99, "promoPrice": 79.99, "contract": "None", "dataCap": "Unlimited", "features": ["1 Gig symmetrical", "Premium WiFi 6E", "Gaming optimized"] }
+      ]
     }
   ]
 }

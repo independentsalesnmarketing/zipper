@@ -115,7 +115,7 @@ const zip3ToState = {
       </div>
 
       <!-- Location banner (hidden until search) -->
-      <div id="location-banner" class="card" style="display:none; text-align:center; margin-bottom: var(--space-xl); padding: var(--space-lg);">
+      <div id="location-banner" class="card results-banner" style="display:none; text-align:center; margin-bottom: var(--space-xl); padding: var(--space-lg); animation: slideInDown 0.6s ease-out;">
         <h3 id="location-text" style="font-size: var(--text-xl);">Showing providers for <strong id="location-city" style="color: var(--brand-blue);"></strong></h3>
         <p id="location-count" class="text-secondary text-sm mt-sm"></p>
       </div>
@@ -160,12 +160,18 @@ const zip3ToState = {
       </div>
 
       <!-- Provider List (server-rendered, all providers) -->
-      <div id="provider-list" class="flex flex-col gap-md">
-        {allProviders.map((p, i) => (
-          <div class="provider-item reveal" data-provider-id={p.id} data-types={p.types.join(',')} data-speed={getMaxSpeed(p)} data-price={getMinPrice(p)} data-rating={p.rating} data-partner={p.isPartner ? '1' : '0'} style={`transition-delay: ${Math.min(i * 60, 400)}ms;`}>
-            <ProviderCard provider={p} rank={i + 1} />
-          </div>
-        ))}
+      <div id="provider-list-container" style="display:none; animation: slideInUp 0.8s ease-out;">
+        <div id="results-header" style="margin-bottom: var(--space-lg); padding-bottom: var(--space-lg); border-bottom: 2px solid var(--border);">
+          <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-sm);">Available Providers</h2>
+          <p class="text-secondary">Select a provider to view detailed plans and pricing</p>
+        </div>
+        <div id="provider-list" class="flex flex-col gap-md">
+          {allProviders.map((p, i) => (
+            <div class="provider-item reveal" data-provider-id={p.id} data-types={p.types.join(',')} data-speed={getMaxSpeed(p)} data-price={getMinPrice(p)} data-rating={p.rating} data-partner={p.isPartner ? '1' : '0'} style={`transition-delay: ${Math.min(i * 60, 400)}ms;`}>
+              <ProviderCard provider={p} rank={i + 1} />
+            </div>
+          ))}
+        </div>
       </div>
 
       <div id="no-results" class="card text-center" style="display:none; padding: var(--space-3xl);">
@@ -173,6 +179,13 @@ const zip3ToState = {
         <p style="margin-top:var(--space-sm);">No providers matched your ZIP code. Showing all available providers instead.</p>
         <button id="show-all-btn" class="btn btn-primary" style="margin-top: var(--space-md);">Show All Providers</button>
       </div>
+
+      <!-- Floating results indicator button -->
+      <button id="scroll-to-results" class="scroll-btn" style="display:none; position:fixed; bottom:30px; right:30px; z-index:50; background:var(--brand-blue); color:white; border:none; border-radius:50%; width:56px; height:56px; font-size:24px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15); transition:all 0.3s ease; animation:pulse 2s infinite;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin:auto;">
+          <polyline points="6 15 12 9 18 15"></polyline>
+        </svg>
+      </button>
     </div>
   </section>
 
@@ -364,16 +377,35 @@ const zip3ToState = {
   // ========================================
 
   const providerList = document.getElementById('provider-list');
+  const providerListContainer = document.getElementById('provider-list-container');
   const locationBanner = document.getElementById('location-banner');
   const locationCity = document.getElementById('location-city');
   const locationCount = document.getElementById('location-count');
   const loadingState = document.getElementById('loading-state');
   const noResults = document.getElementById('no-results');
   const showAllBtn = document.getElementById('show-all-btn');
+  const scrollBtn = document.getElementById('scroll-to-results');
   const allItems = document.querySelectorAll('.provider-item');
 
-  function showLoading() { if (loadingState) loadingState.style.display = ''; if (providerList) providerList.style.display = 'none'; }
-  function hideLoading() { if (loadingState) loadingState.style.display = 'none'; if (providerList) providerList.style.display = ''; }
+  function showLoading() {
+    if (loadingState) loadingState.style.display = '';
+    if (providerListContainer) providerListContainer.style.display = 'none';
+    if (scrollBtn) scrollBtn.style.display = 'flex';
+  }
+
+  function hideLoading() {
+    if (loadingState) loadingState.style.display = 'none';
+    if (providerListContainer) providerListContainer.style.display = '';
+    if (scrollBtn) scrollBtn.style.display = 'none';
+    // Auto-scroll to results
+    setTimeout(() => {
+      if (locationBanner && locationBanner.style.display !== 'none') {
+        locationBanner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (providerListContainer) {
+        providerListContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 300);
+  }
 
   function showAllProviders() {
     allItems.forEach(function(el) { el.style.display = ''; });
@@ -677,6 +709,30 @@ const zip3ToState = {
   if (showAllBtn) {
     showAllBtn.addEventListener('click', () => {
       showAllProviders();
+    });
+  }
+
+  // Scroll to results button
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', () => {
+      if (locationBanner && locationBanner.style.display !== 'none') {
+        locationBanner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (providerListContainer) {
+        providerListContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    // Hide button when user scrolls down
+    window.addEventListener('scroll', () => {
+      if (scrollBtn.style.display !== 'none') {
+        const container = locationBanner && locationBanner.style.display !== 'none' ? locationBanner : providerListContainer;
+        if (container) {
+          const rect = container.getBoundingClientRect();
+          if (rect.top < window.innerHeight) {
+            scrollBtn.style.display = 'none';
+          }
+        }
+      }
     });
   }
 

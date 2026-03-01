@@ -487,6 +487,25 @@
         { "name": "Mediacom 200 Mbps", "speed": 200, "uploadSpeed": 15, "price": 59.99, "promoPrice": 49.99, "contract": "None", "dataCap": "1 TB", "features": ["Multiple devices", "4K streaming capable", "WiFi 5"] },
         { "name": "Mediacom 1 Gig", "speed": 1000, "uploadSpeed": 100, "price": 89.99, "promoPrice": 79.99, "contract": "None", "dataCap": "Unlimited", "features": ["Gigabit speeds", "Unlimited data", "Gaming optimized"] }
       ]
+    },
+    {
+      "id": "mintmobile",
+      "name": "Mint Mobile",
+      "slug": "mintmobile",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F5a9ff0e63b8d4eb98ed8f913d6d08124?format=webp&width=200",
+      "types": ["5g"],
+      "rating": 4.3,
+      "reviewCount": 28900,
+      "isPartner": true,
+      "description": "Mint Mobile delivers 5G home internet with affordably-priced plans, no annual contracts, and nationwide coverage using T-Mobile's network.",
+      "pros": ["Affordable pricing", "No annual contracts", "No equipment fees", "5G speeds", "Nationwide coverage", "Flexible plans"],
+      "cons": ["5G speeds vary by location", "Coverage dependent on T-Mobile network"],
+      "coverage": ["Nationwide"],
+      "phone": "1-888-555-0134",
+      "plans": [
+        { "name": "Mint Mobile 5G", "speed": 250, "uploadSpeed": 40, "price": 40.00, "promoPrice": 30.00, "contract": "None", "dataCap": "Unlimited", "features": ["Affordable 5G", "No contracts", "No equipment fees"] },
+        { "name": "Mint Mobile 5G Plus", "speed": 500, "uploadSpeed": 100, "price": 60.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "features": ["Faster 5G speeds", "Great for streaming", "Flexible data"] }
+      ]
     }
   ]
 }

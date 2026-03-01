@@ -15,68 +15,70 @@ const minPrice = getMinPrice(provider);
 const maxSpeed = getMaxSpeed(provider);
 ---
 
-<div class="provider-card" data-rank={rank}>
-  {badge && (
-    <div class={`pc-badge pc-badge-${badge}`}>
-      {badge === 'best-overall' ? '🏆 Best Overall' :
-       badge === 'best-speed' ? '⚡ Fastest' :
-       badge === 'best-value' ? '💰 Best Value' : badge}
-    </div>
-  )}
+<a href={`/provider/${provider.slug}`} class="provider-card-link">
+  <div class="provider-card" data-rank={rank}>
+    {badge && (
+      <div class={`pc-badge pc-badge-${badge}`}>
+        {badge === 'best-overall' ? '🏆 Best Overall' :
+         badge === 'best-speed' ? '⚡ Fastest' :
+         badge === 'best-value' ? '💰 Best Value' : badge}
+      </div>
+    )}
 
-  <!-- Left: Logo & Name -->
-  <div class="pc-left">
-    <div class="pc-logo-compact">
-      {provider.logo ? (
-        <img src={provider.logo} alt={`${provider.name} logo`} width="60" height="60" loading="lazy" />
-      ) : (
-        <span class="pc-logo-fallback">{provider.name.charAt(0)}</span>
-      )}
+    <!-- Left: Logo & Name -->
+    <div class="pc-left">
+      <div class="pc-logo-compact">
+        {provider.logo ? (
+          <img src={provider.logo} alt={`${provider.name} logo`} width="60" height="60" loading="lazy" />
+        ) : (
+          <span class="pc-logo-fallback">{provider.name.charAt(0)}</span>
+        )}
+      </div>
+      <div>
+        <div class="pc-name-compact">{provider.name}</div>
+        <div class="pc-tags-compact">
+          {provider.types.map(t => (
+            <span class={`tag tag-${t}`}>{getTypeLabel(t)}</span>
+          ))}
+        </div>
+      </div>
     </div>
-    <div>
-      <a href={`/provider/${provider.slug}`} class="pc-name-compact">{provider.name}</a>
-      <div class="pc-tags-compact">
-        {provider.types.map(t => (
-          <span class={`tag tag-${t}`}>{getTypeLabel(t)}</span>
-        ))}
+
+    <!-- Center: Speed & Price -->
+    <div class="pc-center">
+      <div class="metric-compact">
+        <div class="metric-label-compact">Speed</div>
+        <div class="metric-value-compact">
+          <span>{getSpeedValue(maxSpeed)}</span><span class="unit">{getSpeedUnit(maxSpeed)}</span>
+        </div>
+      </div>
+      <div class="metric-compact">
+        <div class="metric-label-compact">From</div>
+        <div class="metric-value-compact">
+          <span>{formatPrice(minPrice)}</span><span class="unit">/mo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Rating & Actions -->
+    <div class="pc-right">
+      <div class="pc-rating-compact">
+        <span class="stars">{'★'.repeat(Math.floor(provider.rating))}</span>
+        <span class="rating-num">{provider.rating.toFixed(1)}</span>
+      </div>
+      <div class="pc-actions-compact">
+        {provider.isPartner && (
+          <button type="button" onclick={`window.location.href='${formatPhoneForTel(provider.phone)}'`} class="btn btn-call">
+            Call Now
+          </button>
+        )}
+        <button type="button" onclick={`window.location.href='/provider/${provider.slug}'`} class="btn btn-secondary">
+          View Plans
+        </button>
       </div>
     </div>
   </div>
-
-  <!-- Center: Speed & Price -->
-  <div class="pc-center">
-    <div class="metric-compact">
-      <div class="metric-label-compact">Speed</div>
-      <div class="metric-value-compact">
-        <span>{getSpeedValue(maxSpeed)}</span><span class="unit">{getSpeedUnit(maxSpeed)}</span>
-      </div>
-    </div>
-    <div class="metric-compact">
-      <div class="metric-label-compact">From</div>
-      <div class="metric-value-compact">
-        <span>{formatPrice(minPrice)}</span><span class="unit">/mo</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Right: Rating & Actions -->
-  <div class="pc-right">
-    <div class="pc-rating-compact">
-      <span class="stars">{'★'.repeat(Math.floor(provider.rating))}</span>
-      <span class="rating-num">{provider.rating.toFixed(1)}</span>
-    </div>
-    <div class="pc-actions-compact">
-      {provider.isPartner && (
-        <a href={formatPhoneForTel(provider.phone)} class="btn btn-call">
-          Call Now
-        </a>
-      )}
-      <a href={`/provider/${provider.slug}`} class="btn btn-secondary">
-        View Plans
-      </a>
-    </div>
-  </div>
-</div>
+</a>
 
 {showPlans && (
   <div class="grid grid-3" style="margin-top: var(--space-md); margin-bottom: var(--space-lg);">

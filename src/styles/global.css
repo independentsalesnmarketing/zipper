@@ -678,6 +678,12 @@
      PROVIDER CARD — v2 Redesign
      Big speed, big price, prominent CTA, no "partner" label
      ================================================================ */
+  .provider-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
   .provider-card {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -692,6 +698,7 @@
     position: relative;
     overflow: hidden;
     min-height: 90px;
+    cursor: pointer;
   }
   .provider-card::before {
     content: '';
@@ -774,7 +781,7 @@
     display: block;
     margin-bottom: 4px;
   }
-  .pc-name-compact:hover {
+  .provider-card-link:hover .pc-name-compact {
     color: #0052ff;
   }
 

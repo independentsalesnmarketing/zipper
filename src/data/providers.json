@@ -408,6 +408,85 @@
         { "name": "Fidium Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 59.99, "promoPrice": 59.99, "contract": "None", "dataCap": "Unlimited", "features": ["Great for streaming", "Work from home ready", "Whole home coverage"] },
         { "name": "Fidium Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 79.99, "promoPrice": 79.99, "contract": "None", "dataCap": "Unlimited", "features": ["1 Gig symmetrical", "Premium WiFi 6E", "Gaming optimized"] }
       ]
+    },
+    {
+      "id": "google-fiber",
+      "name": "Google Fiber",
+      "slug": "google-fiber",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F19560187fac24080b8cd0fe51eac2697?format=webp&width=200",
+      "types": ["fiber"],
+      "rating": 4.6,
+      "reviewCount": 52000,
+      "isPartner": true,
+      "description": "Google Fiber delivers incredibly fast fiber internet with symmetrical speeds up to 5 Gbps, no data caps, and industry-leading customer service.",
+      "pros": ["Symmetrical upload/download", "No data caps", "Gigabit speeds standard", "Industry-best customer service", "Works with any device"],
+      "cons": ["Limited to specific cities and neighborhoods", "Premium pricing", "Installation required"],
+      "coverage": ["AL","AZ","CA","CO","GA","IL","IN","KS","MO","NC","OH","OK","OR","TN","TX","UT","VA","WA"],
+      "phone": "1-888-555-0130",
+      "plans": [
+        { "name": "Google Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 70.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "features": ["1 Gig symmetrical", "Excellent TV-like experience", "Superb for all activities"] },
+        { "name": "Google Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 100.00, "promoPrice": 100.00, "contract": "None", "dataCap": "Unlimited", "features": ["2 Gig speeds", "Maximum performance", "Perfect for large households"] },
+        { "name": "Google Fiber 5 Gig", "speed": 5000, "uploadSpeed": 5000, "price": 150.00, "promoPrice": 150.00, "contract": "None", "dataCap": "Unlimited", "features": ["Fastest available speeds", "Premium performance", "Future-proof"] }
+      ]
+    },
+    {
+      "id": "geolinks",
+      "name": "GeoLinks",
+      "slug": "geolinks",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F0977d0a891e548b9b8f6e76c1bdbb4af?format=webp&width=200",
+      "types": ["fiber"],
+      "rating": 4.2,
+      "reviewCount": 8900,
+      "isPartner": true,
+      "description": "GeoLinks provides fiber-to-the-home internet in rural and underserved areas, bringing high-speed connectivity to communities nationwide.",
+      "pros": ["Fiber to the home", "Focus on rural areas", "No data caps", "Competitive pricing", "Growing availability"],
+      "cons": ["Limited service areas", "Newer in some regions"],
+      "coverage": ["CA","TX","NV","UT","AZ","CO","WY","MT"],
+      "phone": "1-888-555-0131",
+      "plans": [
+        { "name": "GeoLinks 500 Fiber", "speed": 500, "uploadSpeed": 500, "price": 49.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical fiber", "No data caps", "Rural coverage"] },
+        { "name": "GeoLinks 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 64.99, "promoPrice": 59.99, "contract": "None", "dataCap": "Unlimited", "features": ["Gig symmetrical speeds", "Whole home WiFi", "Reliable service"] },
+        { "name": "GeoLinks 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 79.99, "promoPrice": 74.99, "contract": "None", "dataCap": "Unlimited", "features": ["Ultra-fast 2 Gig", "Premium WiFi 6", "Best available"] }
+      ]
+    },
+    {
+      "id": "uscellular",
+      "name": "U.S. Cellular",
+      "slug": "uscellular",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F6d26938a588b49089e10ead8d3710bed?format=webp&width=200",
+      "types": ["5g"],
+      "rating": 4.1,
+      "reviewCount": 21300,
+      "isPartner": true,
+      "description": "U.S. Cellular offers 5G home internet with no annual contracts, no equipment fees, and affordable pricing across rural and urban areas.",
+      "pros": ["No annual contracts", "No equipment fees", "Fast 5G speeds", "Nationwide coverage expansion", "Simple pricing"],
+      "cons": ["Speed varies by location", "5G coverage still expanding"],
+      "coverage": ["Nationwide"],
+      "phone": "1-888-555-0132",
+      "plans": [
+        { "name": "U.S. Cellular 5G Home", "speed": 300, "uploadSpeed": 50, "price": 60.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "features": ["No contracts", "No equipment fees", "5G speeds"] },
+        { "name": "U.S. Cellular 5G Home Premium", "speed": 500, "uploadSpeed": 100, "price": 80.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "features": ["Faster 5G speeds", "Premium gateway", "Enhanced coverage"] }
+      ]
+    },
+    {
+      "id": "mediacom",
+      "name": "Mediacom",
+      "slug": "mediacom",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F1ed248849bc245399021676bd25b2c29?format=webp&width=200",
+      "types": ["cable"],
+      "rating": 3.8,
+      "reviewCount": 35600,
+      "isPartner": true,
+      "description": "Mediacom delivers reliable cable internet with speeds up to 1 Gbps across the Midwest and Mountain regions with flexible plans.",
+      "pros": ["Wide coverage in Midwest", "Affordable pricing", "Flexible plans", "Bundle options", "Reliable service"],
+      "cons": ["Data caps on lower tiers", "Upload speeds limited on cable"],
+      "coverage": ["AL","AR","FL","GA","IA","IL","IN","KS","KY","LA","MO","MS","NC","OH","TN","TX","UT","WI"],
+      "phone": "1-888-555-0133",
+      "plans": [
+        { "name": "Mediacom 60 Mbps", "speed": 60, "uploadSpeed": 6, "price": 39.99, "promoPrice": 29.99, "contract": "None", "dataCap": "600 GB", "features": ["Good for basic use", "Streaming ready", "Affordable"] },
+        { "name": "Mediacom 200 Mbps", "speed": 200, "uploadSpeed": 15, "price": 59.99, "promoPrice": 49.99, "contract": "None", "dataCap": "1 TB", "features": ["Multiple devices", "4K streaming capable", "WiFi 5"] },
+        { "name": "Mediacom 1 Gig", "speed": 1000, "uploadSpeed": 100, "price": 89.99, "promoPrice": 79.99, "contract": "None", "dataCap": "Unlimited", "features": ["Gigabit speeds", "Unlimited data", "Gaming optimized"] }
+      ]
     }
   ]
 }

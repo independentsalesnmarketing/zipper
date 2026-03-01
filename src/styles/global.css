@@ -911,6 +911,8 @@
     border-radius: var(--radius-lg);
     transition: all var(--duration-normal) var(--ease-out);
     padding: var(--space-sm);
+    text-decoration: none;
+    cursor: pointer;
   }
 
   .logo-item:hover {

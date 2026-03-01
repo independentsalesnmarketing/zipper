@@ -102,13 +102,13 @@ const zip3ToState = {
           <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-lg);">Compare from 25+ providers</p>
           <div class="logos-grid">
             {allProviders.map((p) => (
-              <div class="logo-item">
+              <a href={`/provider/${p.slug}`} class="logo-item" title={p.name}>
                 {p.logo ? (
                   <img src={p.logo} alt={p.name} loading="lazy" />
                 ) : (
                   <span class="logo-fallback">{p.name.charAt(0)}</span>
                 )}
-              </div>
+              </a>
             ))}
           </div>
         </div>

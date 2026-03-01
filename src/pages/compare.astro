@@ -47,38 +47,38 @@ const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
               const isCheapest = minPrice <= 40;
               return (
                 <tr>
-                  <td>
-                    <div class="flex items-center gap-sm">
-                      <div style="width:36px;height:36px;border-radius:var(--radius-sm);background:var(--gray-800);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;">
-                        {p.logo ? (
-                          <img src={p.logo} alt={p.name} width="36" height="36" loading="lazy" style="padding:4px;object-fit:contain;" />
-                        ) : (
-                          <span style="font-size:var(--text-xs);font-weight:700;color:var(--text-tertiary);">{p.name.charAt(0)}</span>
-                        )}
+                    <td>
+                      <div class="flex items-center gap-sm">
+                        <div style="width:36px;height:36px;border-radius:var(--radius-sm);background:var(--gray-800);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;">
+                          {p.logo ? (
+                            <img src={p.logo} alt={p.name} width="36" height="36" loading="lazy" style="padding:4px;object-fit:contain;" />
+                          ) : (
+                            <span style="font-size:var(--text-xs);font-weight:700;color:var(--text-tertiary);">{p.name.charAt(0)}</span>
+                          )}
+                        </div>
+                        <a href={`/provider/${p.slug}`} style="font-weight:600;color:var(--text-primary);">{p.name}</a>
                       </div>
-                      <a href={`/provider/${p.slug}`} style="font-weight:600;color:var(--text-primary);">{p.name}</a>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex gap-xs flex-wrap">
-                      {p.types.map(t => <span class={`tag tag-${t}`} style="font-size:0.65rem;">{getTypeLabel(t)}</span>)}
-                    </div>
-                  </td>
-                  <td class={isFastest ? 'highlight' : ''}>{formatSpeed(maxSpeed)}</td>
-                  <td>{formatSpeed(maxUpload)}</td>
-                  <td class={isCheapest ? 'highlight' : ''}>{formatPrice(minPrice)}/mo</td>
-                  <td>{p.plans[0]?.dataCap || 'N/A'}</td>
-                  <td>{p.plans[0]?.contract || 'None'}</td>
-                  <td>
-                    <span class="rating" style="font-size: var(--text-xs);">
-                      <span class="star-filled">{'★'.repeat(Math.floor(p.rating))}</span>
-                      <span class="rating-value">{p.rating}</span>
-                    </span>
-                  </td>
-                  <td>
-                    <a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a>
-                  </td>
-                </tr>
+                    </td>
+                    <td>
+                      <div class="flex gap-xs flex-wrap">
+                        {p.types.map(t => <span class={`tag tag-${t}`} style="font-size:0.65rem;">{getTypeLabel(t)}</span>)}
+                      </div>
+                    </td>
+                    <td class={isFastest ? 'highlight' : ''}>{formatSpeed(maxSpeed)}</td>
+                    <td>{formatSpeed(maxUpload)}</td>
+                    <td class={isCheapest ? 'highlight' : ''}>{formatPrice(minPrice)}/mo</td>
+                    <td>{p.plans[0]?.dataCap || 'N/A'}</td>
+                    <td>{p.plans[0]?.contract || 'None'}</td>
+                    <td>
+                      <span class="rating" style="font-size: var(--text-xs);">
+                        <span class="star-filled">{'★'.repeat(Math.floor(p.rating))}</span>
+                        <span class="rating-value">{p.rating}</span>
+                      </span>
+                    </td>
+                    <td>
+                      <a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a>
+                    </td>
+                  </tr>
               );
             })}
           </tbody>

@@ -503,8 +503,7 @@
       "coverage": ["Nationwide"],
       "phone": "1-888-555-0134",
       "plans": [
-        { "name": "Mint Mobile 5G", "speed": 250, "uploadSpeed": 40, "price": 40.00, "promoPrice": 30.00, "contract": "None", "dataCap": "Unlimited", "features": ["Affordable 5G", "No contracts", "No equipment fees"] },
-        { "name": "Mint Mobile 5G Plus", "speed": 500, "uploadSpeed": 100, "price": 60.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "features": ["Faster 5G speeds", "Great for streaming", "Flexible data"] }
+        { "name": "Mint Mobile 5G Home", "speed": 100, "uploadSpeed": 20, "price": 30.00, "promoPrice": 25.00, "contract": "None", "dataCap": "Unlimited", "features": ["Affordable 5G", "No contracts", "No equipment fees"] }
       ]
     }
   ]

@@ -679,15 +679,18 @@
      Big speed, big price, prominent CTA, no "partner" label
      ================================================================ */
   .provider-card {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-md);
+    align-items: center;
     padding: var(--space-md) var(--space-lg);
     background: var(--white);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     transition: all var(--duration-normal) var(--ease-out);
     position: relative;
     overflow: hidden;
+    min-height: 90px;
   }
   .provider-card::before {
     content: '';
@@ -699,14 +702,17 @@
   }
   .provider-card:hover {
     border-color: #0052ff;
-    box-shadow: var(--shadow-lg), var(--glow-blue);
-    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,82,255,0.15);
+    transform: none;
   }
   .provider-card[data-rank="1"] {
     border-color: #0052ff;
-    box-shadow: var(--glow-blue);
     background: linear-gradient(135deg, rgba(0,82,255,0.03), rgba(0,82,255,0.08));
   }
+
+  .pc-left { display: flex; align-items: center; gap: var(--space-sm); position: relative; z-index: 1; }
+  .pc-center { display: flex; gap: var(--space-lg); position: relative; z-index: 1; }
+  .pc-right { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-xs); position: relative; z-index: 1; }
 
   .provider-card .pc-badge {
     position: absolute;
@@ -736,18 +742,10 @@
     color: #fff;
   }
 
-  .provider-card .pc-provider-info {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-md);
-    position: relative;
-    z-index: 1;
-  }
 
-  .provider-card .pc-logo {
-    width: 100px;
-    height: 100px;
+  .pc-logo-compact {
+    width: 60px;
+    height: 60px;
     border-radius: var(--radius-md);
     background: var(--gray-50);
     border: 1px solid var(--border);
@@ -757,108 +755,96 @@
     overflow: hidden;
     flex-shrink: 0;
   }
-  .provider-card .pc-logo img {
+  .pc-logo-compact img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: 6px;
+    padding: 4px;
   }
 
   .pc-logo-fallback {
     font-weight: 700;
-    font-size: var(--text-lg);
+    font-size: var(--text-base);
     color: var(--brand-blue);
   }
 
-  .provider-card .pc-name {
+  .pc-name-compact {
     font-family: var(--font-display);
     font-size: var(--text-lg);
-    font-weight: 800;
+    font-weight: 700;
     color: var(--text-primary);
-    transition: all var(--duration-fast);
+    transition: color var(--duration-fast);
     display: block;
+    margin-bottom: 4px;
   }
-  .provider-card .pc-name:hover {
+  .pc-name-compact:hover {
     color: #0052ff;
   }
 
-  .provider-card .pc-main-metrics {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-md);
-    margin-bottom: var(--space-md);
-    position: relative;
-    z-index: 1;
+  .pc-tags-compact {
+    display: flex;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
   }
 
-  .main-metric {
+  .metric-compact {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 2px;
   }
 
-  .metric-label {
+  .metric-label-compact {
     font-size: var(--text-xs);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     color: var(--text-tertiary);
     font-weight: 600;
-    margin-bottom: 0.5em;
   }
 
-  .metric-display {
+  .metric-value-compact {
     display: flex;
     align-items: baseline;
-    gap: 0.15em;
-  }
-
-  .metric-number {
+    gap: 0.25em;
     font-family: var(--font-display);
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
-    font-weight: 900;
-    line-height: 1;
-  }
-
-  .metric-unit {
-    font-size: var(--text-sm);
     font-weight: 700;
-    opacity: 0.9;
   }
 
-  .metric-speed .metric-number {
+  .metric-value-compact span:first-child {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
     background: linear-gradient(135deg, #0052ff, #00d9ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .metric-speed .metric-unit {
+  .metric-value-compact .unit {
+    font-size: var(--text-sm);
     color: #0052ff;
   }
 
-  .metric-price .metric-number {
-    background: linear-gradient(135deg, #00d584, #1aff9f);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .metric-price .metric-unit {
-    color: #00d584;
-  }
-
-  .provider-card .pc-secondary-info {
+  .pc-rating-compact {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    margin-bottom: var(--space-md);
-    padding-bottom: var(--space-md);
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    z-index: 1;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-sm);
   }
 
-  .provider-card .pc-tags {
+  .pc-rating-compact .stars {
+    font-size: 1rem;
+    color: var(--brand-amber);
+  }
+
+  .pc-rating-compact .rating-num {
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .pc-actions-compact {
+    display: flex;
+    gap: 6px;
+  }
+
+  .provider-card-old .pc-tags {
     display: flex;
     gap: var(--space-xs);
     flex-wrap: wrap;
@@ -884,19 +870,6 @@
     font-size: var(--text-xs);
   }
 
-  .provider-card .pc-actions {
-    display: flex;
-    gap: var(--space-xs);
-    position: relative;
-    z-index: 1;
-    margin-top: auto;
-  }
-
-  .provider-card .pc-actions .btn {
-    flex: 1;
-    padding: 0.55em 0.9em;
-    font-size: var(--text-xs);
-  }
 
   /* ---- Provider Logos Grid (Hero Section) ---- */
   .providers-logos {
@@ -947,16 +920,20 @@
     color: var(--brand-blue);
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
     .provider-card {
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
       padding: var(--space-md);
+      min-height: auto;
     }
-    .provider-card .pc-main-metrics {
-      gap: var(--space-md);
-    }
-    .metric-number {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-    }
+    .pc-left { width: 100%; }
+    .pc-center { width: 100%; justify-content: flex-start; gap: var(--space-md); }
+    .pc-right { width: 100%; align-items: flex-start; }
+    .pc-logo-compact { width: 50px; height: 50px; }
+  }
+
+  @media (max-width: 700px) {
     .logos-grid {
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 70px), 1fr));
       gap: var(--space-md);

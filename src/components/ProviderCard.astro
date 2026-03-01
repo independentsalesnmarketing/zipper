@@ -24,60 +24,55 @@ const maxSpeed = getMaxSpeed(provider);
     </div>
   )}
 
-  <div class="pc-header">
-    <div class="pc-header-left">
-      <div class="pc-logo">
-        {provider.logo ? (
-          <img src={provider.logo} alt={`${provider.name} logo`} width="56" height="56" loading="lazy" />
-        ) : (
-          <span class="pc-logo-fallback">{provider.name.charAt(0)}</span>
-        )}
-      </div>
-      <div>
-        <a href={`/provider/${provider.slug}`} class="pc-name">{provider.name}</a>
-        <div class="pc-tags">
-          {provider.types.map(t => (
-            <span class={`tag tag-${t}`}>{getTypeLabel(t)}</span>
-          ))}
-        </div>
+  <div class="pc-provider-info">
+    <div class="pc-logo">
+      {provider.logo ? (
+        <img src={provider.logo} alt={`${provider.name} logo`} width="48" height="48" loading="lazy" />
+      ) : (
+        <span class="pc-logo-fallback">{provider.name.charAt(0)}</span>
+      )}
+    </div>
+    <a href={`/provider/${provider.slug}`} class="pc-name">{provider.name}</a>
+  </div>
+
+  <div class="pc-main-metrics">
+    <div class="main-metric metric-speed">
+      <div class="metric-label">Speed</div>
+      <div class="metric-display">
+        <span class="metric-number">{getSpeedValue(maxSpeed)}</span>
+        <span class="metric-unit">{getSpeedUnit(maxSpeed)}</span>
       </div>
     </div>
-    <div class="pc-rating-badge">
-      <div class="stars-compact">{'★'.repeat(Math.floor(provider.rating))}</div>
-      <div class="rating-info">
-        <span class="rating-num">{provider.rating.toFixed(1)}</span>
-        <span class="rating-count">{provider.reviewCount.toLocaleString()}</span>
+    <div class="main-metric metric-price">
+      <div class="metric-label">From</div>
+      <div class="metric-display">
+        <span class="metric-number">{formatPrice(minPrice)}</span>
+        <span class="metric-unit">/mo</span>
       </div>
     </div>
   </div>
 
-  <div class="pc-divider"></div>
-
-  <div class="pc-key-metrics">
-    <div class="metric-item metric-speed">
-      <div class="metric-icon">⚡</div>
-      <div class="metric-content">
-        <span class="metric-label">Max Speed</span>
-        <span class="metric-value">{getSpeedValue(maxSpeed)}<span class="metric-unit">{getSpeedUnit(maxSpeed)}</span></span>
-      </div>
+  <div class="pc-secondary-info">
+    <div class="pc-tags">
+      {provider.types.map(t => (
+        <span class={`tag tag-${t}`}>{getTypeLabel(t)}</span>
+      ))}
     </div>
-    <div class="metric-item metric-price">
-      <div class="metric-icon">💵</div>
-      <div class="metric-content">
-        <span class="metric-label">Starting At</span>
-        <span class="metric-value">{formatPrice(minPrice)}<span class="metric-unit">/mo</span></span>
-      </div>
+    <div class="pc-rating">
+      <span class="stars">{'★'.repeat(Math.floor(provider.rating))}</span>
+      <span class="rating-num">{provider.rating.toFixed(1)}</span>
+      <span class="rating-count">({provider.reviewCount.toLocaleString()})</span>
     </div>
   </div>
 
-  <div class="pc-footer">
+  <div class="pc-actions">
     {provider.isPartner && (
-      <a href={formatPhoneForTel(provider.phone)} class="btn btn-call btn-compact">
+      <a href={formatPhoneForTel(provider.phone)} class="btn btn-call">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
         Call Now
       </a>
     )}
-    <a href={`/provider/${provider.slug}`} class="btn btn-secondary btn-compact">
+    <a href={`/provider/${provider.slug}`} class="btn btn-secondary">
       View Plans →
     </a>
   </div>

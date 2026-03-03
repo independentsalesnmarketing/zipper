@@ -28,6 +28,7 @@ export interface Provider {
   coverage: string[];
   phone: string;
   plans: Plan[];
+  promo?: string;
 }
 
 export const MAIN_PHONE = data.mainPhone;
@@ -102,6 +103,7 @@ export function getTypeLabel(type: string): string {
     dsl: 'DSL',
     '5g': '5G',
     satellite: 'Satellite',
+    'fixed-wireless': 'Fixed Wireless',
   };
   return labels[type] || type;
 }
@@ -113,6 +115,7 @@ export function getTypeColor(type: string): string {
     dsl: 'amber',
     '5g': 'cyan',
     satellite: 'purple',
+    'fixed-wireless': 'teal',
   };
   return colors[type] || 'blue';
 }
@@ -174,20 +177,21 @@ export const stateProviders: Record<string, string[]> = {
   IA: ['earthlink','tmobile','windstream','frontier'],
   NM: ['earthlink','tmobile','windstream','frontier'],
   WV: ['frontier','earthlink','tmobile','windstream'],
-  AZ: ['earthlink','tmobile','frontier'],
-  CO: ['earthlink','tmobile'],
+  AZ: ['att','earthlink','tmobile','frontier'],
+  CO: ['spectrum','att','earthlink','tmobile','frontier','brightspeed'],
   OR: ['spectrum','earthlink','tmobile','frontier'],
   WA: ['spectrum','earthlink','tmobile','frontier'],
   NV: ['att','spectrum','earthlink','tmobile'],
   HI: ['spectrum','tmobile'],
+  AK: ['earthlink','tmobile'],
   KS: ['att','earthlink','tmobile','brightspeed'],
   NH: ['earthlink','tmobile','spectrum'],
   ME: ['spectrum','earthlink','tmobile'],
-  VT: ['earthlink','tmobile'],
+  VT: ['earthlink','tmobile','spectrum','frontier'],
   SD: ['earthlink','tmobile'],
   ND: ['earthlink','tmobile'],
   MT: ['earthlink','tmobile'],
   WY: ['earthlink','tmobile'],
-  ID: ['earthlink','tmobile'],
-  UT: ['earthlink','tmobile'],
+  ID: ['earthlink','tmobile','frontier'],
+  UT: ['earthlink','tmobile','frontier'],
 };

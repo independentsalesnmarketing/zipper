@@ -123,3 +123,54 @@ export function generateProviderSchema(provider: {
     },
   };
 }
+
+export function generateLocalBusinessSchema(opts: {
+  city: string;
+  state: string;
+  zip?: string;
+  providerCount: number;
+  topSpeed: number;
+  minPrice: number;
+  providerNames: string[];
+  url: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `https://internet4all.com${opts.url}`,
+    name: `Internet Providers in ${opts.city}, ${opts.state}`,
+    description: `Compare ${opts.providerCount} internet providers in ${opts.city}, ${opts.state}. Speeds up to ${opts.topSpeed} Mbps, starting at $${opts.minPrice}/mo. Providers include ${opts.providerNames.slice(0, 5).join(', ')}.`,
+    url: `https://internet4all.com${opts.url}`,
+    telephone: '+1-888-555-0123',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: opts.city,
+      addressRegion: opts.state,
+      ...(opts.zip && { postalCode: opts.zip }),
+      addressCountry: 'US',
+    },
+    areaServed: {
+      '@type': 'City',
+      name: opts.city,
+      containedInPlace: {
+        '@type': 'State',
+        name: opts.state,
+      },
+    },
+    priceRange: `$${opts.minPrice}+/mo`,
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '22:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Saturday', 'Sunday'],
+        opens: '09:00',
+        closes: '20:00',
+      },
+    ],
+  };
+}

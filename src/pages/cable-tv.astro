@@ -1,0 +1,219 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getProvidersByType, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+const cableProviders = getProvidersByType('cable')
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return b.rating - a.rating;
+  });
+
+const streamingAlternatives = [
+  { name: 'YouTube TV', price: '$72.99/mo', channels: '100+', features: 'Live sports, unlimited cloud DVR, 6 accounts' },
+  { name: 'Hulu + Live TV', price: '$76.99/mo', channels: '95+', features: 'Disney+ & ESPN+ included, 50hr DVR' },
+  { name: 'Sling TV', price: '$40.00/mo', channels: '30-50', features: 'Cheapest live TV, customizable packages' },
+  { name: 'fuboTV', price: '$79.99/mo', channels: '180+', features: 'Best for sports, 4K available' },
+  { name: 'Philo', price: '$28.00/mo', channels: '70+', features: 'Entertainment focused, no sports, cheapest' },
+  { name: 'DirecTV Stream', price: '$79.99/mo', channels: '75-150+', features: 'Regional sports, multiple tiers' },
+];
+
+const faqs = [
+  { question: `What is the best cable TV provider in ${year}?`, answer: `The best cable TV providers in ${year} are Spectrum (no contracts, 125+ channels), Xfinity (X1 platform, wide availability), and Optimum (competitive pricing in the Northeast). However, streaming TV services are increasingly replacing traditional cable. Call ${phone} to compare options.` },
+  { question: 'Is cable TV still worth it?', answer: 'For live sports fans and those who want channel-surfing, cable TV still has value. But for most viewers, streaming services offer better value: more on-demand content, lower prices, no equipment fees, and no contracts. The average cable bill is $83/mo vs. $15-73/mo for streaming.' },
+  { question: 'What is a good alternative to cable TV?', answer: 'YouTube TV ($72.99/mo for 100+ channels), Sling TV ($40/mo for 30+ channels), and Philo ($28/mo for 70+ entertainment channels) are the top cable alternatives. Pair with Netflix, Disney+, or Hulu for a complete entertainment setup at a lower cost than cable.' },
+  { question: 'Can I get cable TV without cable internet?', answer: 'Yes, but it\'s not common. Most cable TV now comes bundled with internet, and standalone TV may actually cost more than a bundle. A better approach: get internet from any provider and use a streaming TV service for live channels.' },
+  { question: 'How much does cable TV cost per month?', answer: 'Cable TV averages $83/mo for a mid-tier package (100-200 channels). Add equipment fees ($10-15/mo), DVR ($5-15/mo), and regional sports fees ($5-10/mo), and the real cost is often $100-120/mo. Streaming alternatives range from $28-80/mo with fewer hidden fees.' },
+  { question: 'Should I bundle internet and cable TV?', answer: 'If you\'re keeping cable TV, bundling usually saves $15-30/mo. But the biggest savings come from replacing cable TV with streaming services and keeping internet-only. This typically saves $30-60/mo while still giving you live TV options.' },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Cable TV Providers', url: 'https://internet4all.com/cable-tv' },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`Cable TV Providers & Alternatives (${year}) — Compare Plans & Prices`}
+  description={`Compare cable TV providers and streaming alternatives in ${year}. See prices, channels, and features. Find out if cable or streaming is a better deal. Updated ${month}.`}
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Cable TV Providers' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">📺 Updated {month} {year}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Cable TV Providers & <span class="gradient-text">Alternatives</span>
+        </h1>
+        <p class="hero-subtitle" style="max-width: 680px; margin-inline: auto;">
+          Traditional cable TV or streaming? We compare {cableProviders.length} cable providers
+          and {streamingAlternatives.length} streaming alternatives to help you make the best choice and save money.
+        </p>
+        <a href={phoneHref} class="btn btn-call mt-xl" style="font-size: var(--text-lg);">
+          📞 Call {phone} for TV + Internet Deals
+        </a>
+      </div>
+
+      <!-- Cable Providers -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Cable TV & Internet Providers</h2>
+        <div class="provider-list">
+          {cableProviders.map((p, i) => (
+            <div class="card" style={`padding: var(--space-xl); margin-bottom: var(--space-md); ${!p.isPartner ? 'opacity:0.85;' : ''}`}>
+              <div class="flex items-center gap-lg flex-wrap">
+                <div style="width:56px;height:56px;border-radius:var(--radius-md);background:var(--gray-100);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;">
+                  {p.logo ? <img src={p.logo} alt={p.name} width="56" height="56" style="padding:6px;object-fit:contain;" /> : <span style="font-weight:800;color:var(--text-tertiary);">{p.name.charAt(0)}</span>}
+                </div>
+                <div style="flex:1;min-width:200px;">
+                  <div class="flex items-center gap-sm">
+                    <h3 style="font-size:var(--text-lg);margin-bottom:0;">{p.name}</h3>
+                    {p.isPartner && <span class="badge badge-green" style="font-size:0.65rem;">RECOMMENDED</span>}
+                  </div>
+                  <div class="text-secondary" style="font-size:var(--text-sm);margin-top:var(--space-xs);">
+                    Internet from {formatPrice(getMinPrice(p))}/mo • Up to {formatSpeed(getMaxSpeed(p))} • {p.rating}/5 rating
+                  </div>
+                  <div class="flex gap-sm mt-sm flex-wrap">
+                    {p.pros.slice(0, 3).map(pro => (
+                      <span style="font-size:0.7rem;color:var(--text-tertiary);">✓ {pro}</span>
+                    ))}
+                  </div>
+                </div>
+                <div class="flex gap-sm">
+                  <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size:var(--text-sm);">Plans</a>
+                  <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-sm);">📞 Call</a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Streaming Alternatives -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); overflow: hidden;">
+        <div style="padding: var(--space-xl) var(--space-xl) var(--space-md);">
+          <h2>Streaming TV Alternatives to Cable</h2>
+          <p class="text-secondary">Live TV streaming services that can replace traditional cable TV.</p>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="comparison-table" style="width:100%;">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Price</th>
+                <th>Channels</th>
+                <th>Key Features</th>
+              </tr>
+            </thead>
+            <tbody>
+              {streamingAlternatives.map(alt => (
+                <tr>
+                  <td style="font-weight:600;">{alt.name}</td>
+                  <td style="font-weight:700;color:var(--brand-green);">{alt.price}</td>
+                  <td>{alt.channels}</td>
+                  <td style="font-size:var(--text-sm);">{alt.features}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Cord Cutting Guide -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); padding: var(--space-2xl);">
+        <h2 style="margin-bottom: var(--space-xl);">✂️ How to Cut the Cord in 3 Steps</h2>
+        <div class="grid grid-3" style="gap: var(--space-xl);">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: var(--space-sm);">1️⃣</div>
+            <h3 style="font-size: var(--text-base);">Get Internet-Only Service</h3>
+            <p class="text-secondary" style="font-size:var(--text-sm);">
+              Call us at {phone} to switch to an internet-only plan. Most providers offer 100-300 Mbps for $40-60/mo — plenty for streaming.
+            </p>
+          </div>
+          <div>
+            <div style="font-size: 2rem; margin-bottom: var(--space-sm);">2️⃣</div>
+            <h3 style="font-size: var(--text-base);">Choose Your Streaming Services</h3>
+            <p class="text-secondary" style="font-size:var(--text-sm);">
+              Pick 1-3 services. Netflix + YouTube TV covers movies and live TV for ~$88/mo. Philo + Netflix = just $43/mo for entertainment without sports.
+            </p>
+          </div>
+          <div>
+            <div style="font-size: 2rem; margin-bottom: var(--space-sm);">3️⃣</div>
+            <h3 style="font-size: var(--text-base);">Get a Streaming Device</h3>
+            <p class="text-secondary" style="font-size:var(--text-sm);">
+              If your TV isn't smart, grab a Roku ($30), Fire TV Stick ($25), or Apple TV ($130). One-time purchase, no monthly fees.
+            </p>
+          </div>
+        </div>
+        <div class="text-center mt-xl">
+          <a href={phoneHref} class="btn btn-call" style="font-size:var(--text-lg);">📞 Call for Internet-Only Deals</a>
+        </div>
+      </div>
+
+      <!-- Monthly Cost Breakdown -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); padding: var(--space-2xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Average Monthly Costs: Cable vs. Streaming</h2>
+        <div class="grid grid-2" style="gap: var(--space-xl);">
+          <div>
+            <h3 style="margin-bottom:var(--space-md);color:var(--text-secondary);">📺 Traditional Cable</h3>
+            <div style="display:flex;flex-direction:column;gap:var(--space-xs);">
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);"><span>Cable TV package</span><strong>$83/mo</strong></div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);"><span>Equipment rental</span><strong>$12/mo</strong></div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);"><span>Regional sports fee</span><strong>$8/mo</strong></div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);"><span>Broadcast TV fee</span><strong>$18/mo</strong></div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);border-top:1px solid var(--border);padding-top:var(--space-sm);font-weight:700;"><span>Cable TV total</span><span style="color:var(--text-warning);">$121/mo</span></div>
+            </div>
+          </div>
+          <div>
+            <h3 style="margin-bottom:var(--space-md);color:var(--brand-green);">✂️ Streaming (with live TV)</h3>
+            <div style="display:flex;flex-direction:column;gap:var(--space-xs);">
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);"><span>YouTube TV</span><strong>$73/mo</strong></div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);"><span>Equipment</span><strong>$0/mo</strong></div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);"><span>Extra fees</span><strong>$0/mo</strong></div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);"><span>&nbsp;</span><strong>&nbsp;</strong></div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);border-top:1px solid var(--border);padding-top:var(--space-sm);font-weight:700;"><span>Streaming total</span><span style="color:var(--brand-green);">$73/mo</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="text-center mt-lg" style="font-weight:700;font-size:var(--text-lg);color:var(--brand-green);">
+          Switch to streaming and save ~$48/mo ($576/year)
+        </p>
+      </div>
+
+      <!-- Related -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Related Guides</h2>
+        <div class="grid grid-3" style="gap: var(--space-sm);">
+          <a href="/bundles" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">📦 Internet & TV Bundles</a>
+          <a href="/internet-for/streaming" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">📺 Best Internet for Streaming</a>
+          <a href="/cheap-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">💰 Cheapest Internet Plans</a>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Frequently Asked Questions</h2>
+        {faqs.map(faq => (
+          <details class="faq-item">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+  <StickyCallBar phone={phone} message="TV + Internet deals — call now" />
+</Base>

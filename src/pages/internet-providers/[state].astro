@@ -1,0 +1,848 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import SearchBar from '@components/SearchBar.astro';
+import ProviderCard from '@components/ProviderCard.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor, stateNames, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getStatePages, getCitiesInState, getStateSlug, type StatePageData } from '@data/locations';
+import { getStateCensus, getBroadbandGrade, getRankAmongStates, getStateComparison, getNationalAverage, formatPercent, formatPopulation, formatIncome } from '@data/census';
+import type { Provider, Plan } from '@lib/providers';
+
+export function getStaticPaths() {
+  return getStatePages().map(sp => ({
+    params: { state: sp.slug },
+    props: { stateData: sp },
+  }));
+}
+
+interface Props { stateData: StatePageData; }
+const { stateData } = Astro.props;
+
+const allProviders = getAllProviders();
+const providers = stateData.providers
+  .map(id => allProviders.find(p => p.id === id))
+  .filter((p): p is Provider => !!p)
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return b.rating - a.rating;
+  });
+
+const partners = providers.filter(p => p.isPartner);
+const nonPartners = providers.filter(p => !p.isPartner);
+const cities = stateData.cities.sort((a, b) => b.population - a.population);
+const metroCities = cities.filter(c => c.isMetro);
+const census = getStateCensus(stateData.abbr);
+
+// Stats
+const fiberProviders = providers.filter(p => p.types.includes('fiber'));
+const cableProviders = providers.filter(p => p.types.includes('cable'));
+const fiveGProviders = providers.filter(p => p.types.includes('5g'));
+const dslProviders = providers.filter(p => p.types.includes('dsl'));
+const satelliteProviders = providers.filter(p => p.types.includes('satellite'));
+const wirelessProviders = providers.filter(p => p.types.includes('fixed-wireless'));
+const cheapest = partners.length ? partners.reduce((a, b) => getMinPrice(a) < getMinPrice(b) ? a : b) : null;
+const fastest = partners.length ? partners.reduce((a, b) => getMaxSpeed(a) > getMaxSpeed(b) ? a : b) : null;
+const topRated = partners.length ? partners.reduce((a, b) => a.rating > b.rating ? a : b) : null;
+const maxSpd = fastest ? getMaxSpeed(fastest) : (providers.length ? Math.max(...providers.map(p => getMaxSpeed(p))) : 0);
+const minPrc = cheapest ? getMinPrice(cheapest) : (providers.length ? Math.min(...providers.map(p => getMinPrice(p))) : 0);
+const avgPrice = providers.length ? Math.round(providers.reduce((s, p) => s + getMinPrice(p), 0) / providers.length) : 0;
+const year = new Date().getFullYear();
+const lastUpdated = new Date().toISOString().split('T')[0];
+const lastUpdatedDisplay = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+// ── "Best For" awards — PARTNERS ONLY (Step 5) ──
+const bestGaming = partners.length ? partners.reduce((a, b) => {
+  const sA = getMaxSpeed(a) * 0.7 + getMaxUpload(a) * 0.3;
+  const sB = getMaxSpeed(b) * 0.7 + getMaxUpload(b) * 0.3;
+  return sA > sB ? a : b;
+}) : null;
+const bestStreaming = partners.length ? partners.reduce((a, b) => {
+  const sA = getMaxSpeed(a) * 0.5 + (a.plans.some(pl => pl.dataCap === 'Unlimited') ? 100 : 0) + a.rating * 10;
+  const sB = getMaxSpeed(b) * 0.5 + (b.plans.some(pl => pl.dataCap === 'Unlimited') ? 100 : 0) + b.rating * 10;
+  return sA > sB ? a : b;
+}) : null;
+const bestWFH = partners.length ? partners.reduce((a, b) => {
+  const sA = getMaxUpload(a) * 0.6 + a.rating * 20 + (a.types.includes('fiber') ? 50 : 0);
+  const sB = getMaxUpload(b) * 0.6 + b.rating * 20 + (b.types.includes('fiber') ? 50 : 0);
+  return sA > sB ? a : b;
+}) : null;
+const awards = [
+  { label: 'Best Overall', provider: topRated, reason: topRated ? `${topRated.rating}★ highest rated` : '' },
+  { label: 'Fastest', provider: fastest, reason: fastest ? `Up to ${formatSpeed(getMaxSpeed(fastest))}` : '' },
+  { label: 'Best Value', provider: cheapest, reason: cheapest ? `From ${formatPrice(getMinPrice(cheapest))}/mo` : '' },
+  { label: 'Best for Gaming', provider: bestGaming, reason: bestGaming ? `${formatSpeed(getMaxSpeed(bestGaming))} ↓ / ${formatSpeed(getMaxUpload(bestGaming))} ↑` : '' },
+  { label: 'Best for Streaming', provider: bestStreaming, reason: bestStreaming ? `${formatSpeed(getMaxSpeed(bestStreaming))}, unlimited data` : '' },
+  { label: 'Best for Home Office', provider: bestWFH, reason: bestWFH ? `${formatSpeed(getMaxUpload(bestWFH))} upload` : '' },
+].filter(a => a.provider);
+
+// ── Ranked lists (Step 9) — partners first ──
+const rankedBySpeed: Provider[] = [...providers].sort((a, b) => {
+  if (a.isPartner && !b.isPartner) return -1;
+  if (!a.isPartner && b.isPartner) return 1;
+  return getMaxSpeed(b) - getMaxSpeed(a);
+});
+const rankedByPrice: Provider[] = [...providers].sort((a, b) => {
+  if (a.isPartner && !b.isPartner) return -1;
+  if (!a.isPartner && b.isPartner) return 1;
+  return getMinPrice(a) - getMinPrice(b);
+});
+
+// ── Connection types (Step 11) ──
+const connectionTypes = [
+  { type: 'fiber', label: 'Fiber', icon: '', providers: fiberProviders, link: '/internet-types/fiber' },
+  { type: 'cable', label: 'Cable', icon: '', providers: cableProviders, link: '/internet-types/cable' },
+  { type: 'dsl', label: 'DSL', icon: '', providers: dslProviders, link: '/internet-types/dsl' },
+  { type: '5g', label: '5G Home', icon: '', providers: fiveGProviders, link: '/internet-types/5g' },
+  { type: 'satellite', label: 'Satellite', icon: '', providers: satelliteProviders, link: '/internet-types/satellite' },
+].filter(ct => ct.providers.length > 0);
+
+// Activity-based picks
+const streamingPick = partners.find(p => getMaxSpeed(p) >= 200) || providers.find(p => getMaxSpeed(p) >= 200);
+const gamingPick = [...partners].filter(p => p.types.includes('fiber')).sort((a, b) => getMaxSpeed(b) - getMaxSpeed(a))[0] || fastest;
+const wfhPick = [...partners].sort((a, b) => getMaxUpload(b) - getMaxUpload(a))[0] || [...providers].sort((a, b) => getMaxUpload(b) - getMaxUpload(a))[0];
+const budgetPick = cheapest?.isPartner ? cheapest : partners.length > 0 ? [...partners].sort((a, b) => getMinPrice(a) - getMinPrice(b))[0] : cheapest;
+
+const broadbandRank = census ? getRankAmongStates(stateData.abbr, 'broadbandPct') : 0;
+const comparison = census ? getStateComparison(stateData.abbr) : { betterThan: 0, totalStates: 51 };
+const grade = census ? getBroadbandGrade(census.broadbandPct) : 'N/A';
+const natAvgBroadband = getNationalAverage('broadbandPct');
+
+const typeGroups = new Map<string, Provider[]>();
+for (const p of providers) {
+  for (const t of p.types) {
+    if (!typeGroups.has(t)) typeGroups.set(t, []);
+    typeGroups.get(t)!.push(p);
+  }
+}
+
+// ── FAQs (city+state in every question — Step 2) ──
+const faqs = [
+  { question: `What are the best internet providers in ${stateData.name} in ${year}?`, answer: `The top internet providers in ${stateData.name} are ${providers.slice(0, 5).map(p => p.name).join(', ')}. ${topRated ? `${topRated.name} has the highest customer satisfaction rating at ${topRated.rating}/5 stars.` : ''} ${census ? `With ${formatPercent(census.broadbandPct)} of households connected, ${stateData.name} ranks #${broadbandRank} nationally for broadband adoption.` : ''}` },
+  { question: `What is the fastest internet available in ${stateData.name}?`, answer: `${fastest ? `${fastest.name} offers the fastest internet in ${stateData.name} with download speeds up to ${formatSpeed(maxSpd)}.` : 'Speeds vary by provider.'} ${fiberProviders.length > 0 ? `Fiber internet — the fastest technology — is available from ${fiberProviders.map(p => p.name).join(', ')}.` : ''} ${census ? `The average download speed across ${stateData.name} is ${census.avgDownload} Mbps.` : ''}` },
+  { question: `What is the cheapest internet in ${stateData.name}?`, answer: `${cheapest ? `${cheapest.name} offers the lowest starting price in ${stateData.name} at just ${formatPrice(minPrc)}/mo.` : 'Prices vary.'} The average starting price across all providers is about $${avgPrice}/mo. Call ${MAIN_PHONE} for exclusive promotions that can save you $20-50/mo off regular pricing.` },
+  { question: `Is fiber internet available in ${stateData.name}?`, answer: fiberProviders.length > 0 ? `Yes! Fiber internet is available in ${stateData.name} from ${fiberProviders.map(p => p.name).join(', ')}. ${census ? `Approximately ${formatPercent(census.fiberPct)} of ${stateData.name} households have access to fiber infrastructure.` : ''} Fiber delivers the fastest speeds with symmetrical upload and download — ideal for remote work, gaming, and streaming.` : `Fiber availability in ${stateData.name} is limited. Cable internet and 5G home internet are excellent alternatives with speeds suitable for most households.` },
+  { question: `How does ${stateData.name}'s internet compare to other states?`, answer: census ? `${stateData.name} ranks #${broadbandRank} out of 51 states/territories for broadband adoption at ${formatPercent(census.broadbandPct)} (national average: ${formatPercent(natAvgBroadband)}). The state earns a broadband grade of ${grade}. ${census.underservedPct > 15 ? `However, ${formatPercent(census.underservedPct)} of households still lack adequate 25/3 Mbps service.` : `Only ${formatPercent(census.underservedPct)} of households lack adequate broadband.`}` : `${stateData.name} has ${providers.length} internet providers serving the state, with options ranging from fiber to satellite.` },
+  { question: `How many internet providers serve ${stateData.name}?`, answer: `${providers.length} internet providers serve ${stateData.name}, including ${fiberProviders.length} fiber, ${cableProviders.length} cable, ${fiveGProviders.length > 0 ? `${fiveGProviders.length} 5G home internet, ` : ''}and ${satelliteProviders.length} satellite providers. Our experts can help you compare all available options at your address — just enter your ZIP code above or call ${MAIN_PHONE} for free help.` },
+  { question: `What internet speed do I need in ${stateData.name}?`, answer: `For basic browsing and email, 25-50 Mbps is sufficient. For streaming on 2-3 devices, aim for 100-200 Mbps. For gaming, video calls, and remote work, 200-500 Mbps is ideal. For large households with 5+ devices, 500 Mbps to 1 Gbps ensures everyone stays connected. ${census ? `The average household in ${stateData.name} uses about ${Math.round(census.avgDownload * 0.6)} Mbps during peak hours.` : ''}` },
+  { question: `What cities in ${stateData.name} have the best internet?`, answer: metroCities.length > 0 ? `The best internet coverage in ${stateData.name} is in ${metroCities.slice(0, 5).map(c => c.name).join(', ')}. ${census ? `${formatPercent(census.urbanPct)} of ${stateData.name}'s population lives in urban areas with better provider options.` : ''} Metro areas typically offer 5+ providers including fiber, while rural areas may have 2-3 options.` : `Coverage varies across ${stateData.name}. Enter your ZIP code to see exact availability at your address.` },
+];
+
+// ── Schemas: BreadcrumbList + FAQPage + WebPage + Product/Offer JSON-LD (Step 1) ──
+const productSchemas = providers.slice(0, 8).map(p => ({
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `${p.name} Internet in ${stateData.name}`,
+  image: p.logo || undefined,
+  description: p.description,
+  brand: { '@type': 'Brand', name: p.name },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: p.rating.toFixed(1),
+    reviewCount: p.reviewCount,
+    bestRating: '5',
+    worstRating: '1',
+  },
+  offers: {
+    '@type': 'AggregateOffer',
+    lowPrice: getMinPrice(p).toFixed(2),
+    highPrice: Math.max(...p.plans.map(pl => pl.price)).toFixed(2),
+    priceCurrency: 'USD',
+    offerCount: p.plans.length,
+    availability: 'https://schema.org/InStock',
+  },
+}));
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Internet Providers', url: 'https://internet4all.com/providers' },
+    { name: stateData.name, url: `https://internet4all.com/internet-providers/${stateData.slug}` },
+  ]),
+  generateFAQSchema(faqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: `Internet Providers in ${stateData.name}`,
+    dateModified: lastUpdated,
+    url: `https://internet4all.com/internet-providers/${stateData.slug}`,
+  },
+  ...productSchemas,
+];
+---
+<Base
+  title={`${providers.length} Best Internet Providers in ${stateData.name} (${year}) — Compare Plans & Prices`}
+  description={`Compare ${providers.length} internet providers in ${stateData.name}. ${census ? `${formatPercent(census.broadbandPct)} broadband adoption, avg ${census.avgDownload} Mbps.` : ''} Speeds to ${formatSpeed(maxSpd)}, from ${formatPrice(minPrc)}/mo. Fiber, cable, 5G & satellite.`}
+  schema={schemas}
+>
+<StickyCallBar text={`Find the best internet deal in ${stateData.name}`} />
+
+<section class="section" style="padding-top:var(--space-xl);">
+<div class="container">
+  <Breadcrumb items={[
+    { name: 'Internet Providers', url: '/providers' },
+    { name: stateData.name },
+  ]} />
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-lg);">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(0,213,132,0.12);border:1px solid rgba(0,213,132,0.3);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;">
+        <span style="color:var(--brand-green);">&#10003;</span> {providers.length} providers in {stateData.name}
+      </span>
+      {census && (
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:var(--surface-secondary);border:1px solid var(--border);border-radius:var(--radius-full);font-size:var(--text-sm);">
+          Grade: <strong>{grade}</strong> · Rank: <strong>#{broadbandRank}</strong>
+        </span>
+      )}
+      <span style="font-size:var(--text-xs);color:var(--text-tertiary);">Updated {lastUpdatedDisplay}</span>
+    </div>
+    <h1 style="font-size:var(--text-4xl);margin-bottom:var(--space-md);">
+      Best Internet Providers in <span class="gradient-text">{stateData.name}</span> ({year})
+    </h1>
+    {census ? (
+      <p style="font-size:var(--text-lg);color:var(--text-secondary);max-width:750px;line-height:1.7;">
+        {stateData.name} has <strong>{providers.length} internet providers</strong> serving
+        <strong>{formatPopulation(census.households)} households</strong>.
+        With a broadband adoption rate of <strong>{formatPercent(census.broadbandPct)}</strong>
+        (ranked <strong>#{broadbandRank} nationally</strong>) and average download speeds of
+        <strong>{census.avgDownload} Mbps</strong>, the state earns a broadband grade of <strong>{grade}</strong>.
+        {census.fiberPct > 50 ? ` Fiber internet reaches ${formatPercent(census.fiberPct)} of households, well above the national average.` : census.fiberPct > 35 ? ` Fiber internet is available to ${formatPercent(census.fiberPct)} of households and expanding.` : ` Fiber availability at ${formatPercent(census.fiberPct)} is below the national average, but deployment is accelerating.`}
+      </p>
+    ) : (
+      <p style="font-size:var(--text-lg);color:var(--text-secondary);max-width:700px;">
+        Compare {providers.length} internet providers in {stateData.name}. Find the best plans, speeds, and prices.
+      </p>
+    )}
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 3: SOCIAL PROOF TRUST BAR
+       ═══════════════════════════════════════════ -->
+  <div class="trust-bar reveal" style="margin-bottom:var(--space-lg);">
+    <div class="trust-item">
+      <svg class="trust-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span><strong>51</strong> States Covered</span>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span><strong>{cities.length}</strong> {stateData.name} Cities</span>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+      <span><strong>{partners.length}</strong> Recommended Providers</span>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.44 2.78.7 2.81.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.28.12 2.81.7 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <span><strong>Free</strong> Expert Advice</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 4: ZIP-ONLY SEARCH
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-xl);">
+    <div class="zip-search-box">
+      <h2 style="font-size:var(--text-xl);margin-bottom:var(--space-xs);">Check Internet Availability in {stateData.name}</h2>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-md);">Enter your ZIP code to see exact providers and plans at your address.</p>
+      <div style="max-width:440px;">
+        <SearchBar placeholder={`Enter your ${stateData.name} ZIP code`} />
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STATS BAR
+       ═══════════════════════════════════════════ -->
+  <div class="card reveal" style="margin-bottom:var(--space-2xl);padding:var(--space-xl);">
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-value">{partners.length}</div>
+        <div class="stat-label">Recommended</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">{formatSpeed(maxSpd)}</div>
+        <div class="stat-label">Max Speed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">{formatPrice(minPrc)}<span style="font-size:var(--text-sm)">/mo</span></div>
+        <div class="stat-label">Starting From</div>
+      </div>
+      {census && (
+        <div class="stat-item">
+          <div class="stat-value">{grade}</div>
+          <div class="stat-label">Broadband Grade</div>
+        </div>
+      )}
+      <div class="stat-item">
+        <div class="stat-value">{fiberProviders.length}</div>
+        <div class="stat-label">Fiber Options</div>
+      </div>
+      {census && (
+        <div class="stat-item">
+          <div class="stat-value">#{broadbandRank}</div>
+          <div class="stat-label">National Rank</div>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 5: "BEST FOR" AWARD GRID
+       ═══════════════════════════════════════════ -->
+  {awards.length > 0 && (
+    <div class="reveal" style="margin-bottom:var(--space-2xl);">
+      <h2 style="margin-bottom:var(--space-sm);">Best Internet Providers in {stateData.name} by Category</h2>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">Our picks for {year}, based on speed, price, ratings, and reliability across {stateData.name}.</p>
+      <div class="award-grid">
+        {awards.map(a => a.provider && (
+          <div class="award-card">
+            <div class="award-label">{a.label}</div>
+            <div class="award-provider">
+              {a.provider.logo && <img src={a.provider.logo} alt={a.provider.name} width="48" height="48" loading="lazy" class="award-logo" />}
+              <span class="award-name">{a.provider.name}</span>
+            </div>
+            <div class="award-reason">{a.reason}</div>
+            <a href={formatPhoneForTel(a.provider.isPartner ? a.provider.phone : MAIN_PHONE)} class="btn btn-cta btn-sm" style="margin-top:var(--space-sm);width:100%;">Call to Order</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- ═══════════════════════════════════════════
+       STEP 11: CONNECTION TYPE BADGE LINKS
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <h2 style="margin-bottom:var(--space-sm);">Internet Connection Types in {stateData.name}</h2>
+    <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-md);">
+      {stateData.name} residents can choose from {connectionTypes.length} connection technologies.
+      {census && census.fiberPct > 45 ? ` With ${formatPercent(census.fiberPct)} fiber availability, fiber internet is a strong option.` : census ? ` Fiber covers ${formatPercent(census.fiberPct)} of households, with cable and 5G filling the gap.` : ''}
+    </p>
+    <div class="connection-badges">
+      {connectionTypes.map(ct => (
+        <a href={ct.link} class={`connection-badge badge-${ct.type}`}>
+          <span class="cb-icon">{ct.icon}</span>
+          <span class="cb-label">{ct.label}</span>
+          <span class="cb-count">{ct.providers.length} provider{ct.providers.length !== 1 ? 's' : ''}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       UNIQUE BROADBAND LANDSCAPE
+       ═══════════════════════════════════════════ -->
+  {census && (
+    <div class="card reveal" style="margin-bottom:var(--space-2xl);padding:var(--space-xl);">
+      <h2 style="margin-bottom:var(--space-md);">Internet Landscape in {stateData.name}</h2>
+      <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:var(--space-lg);">{census.landscape}</p>
+      <div class="grid grid-3" style="gap:var(--space-md);">
+        <div style="text-align:center;padding:var(--space-md);background:var(--gray-900);border-radius:var(--radius-md);">
+          <div style="font-size:var(--text-2xl);font-weight:700;color:var(--brand-blue);">{formatPopulation(census.population)}</div>
+          <div style="font-size:var(--text-sm);color:var(--text-tertiary);">Population</div>
+        </div>
+        <div style="text-align:center;padding:var(--space-md);background:var(--gray-900);border-radius:var(--radius-md);">
+          <div style="font-size:var(--text-2xl);font-weight:700;color:var(--brand-green);">{formatIncome(census.medianIncome)}</div>
+          <div style="font-size:var(--text-sm);color:var(--text-tertiary);">Median Income</div>
+        </div>
+        <div style="text-align:center;padding:var(--space-md);background:var(--gray-900);border-radius:var(--radius-md);">
+          <div style="font-size:var(--text-2xl);font-weight:700;color:var(--brand-purple);">{formatPercent(census.urbanPct)}</div>
+          <div style="font-size:var(--text-sm);color:var(--text-tertiary);">Urban Population</div>
+        </div>
+      </div>
+      <p style="margin-top:var(--space-lg);padding:var(--space-md);background:var(--gray-900);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--text-secondary);border-left:3px solid var(--brand-blue);">
+        <strong>Did you know?</strong> {census.internetFact}
+      </p>
+    </div>
+  )}
+
+  <!-- ═══════════════════════════════════════════
+       STEP 8: ALL PROVIDERS (with badges)
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <h2 style="margin-bottom:var(--space-md);">All {providers.length} Internet Providers in {stateData.name}</h2>
+    <div class="providers-list flex flex-col gap-md">
+      {providers.map((p, i) => (
+        <ProviderCard provider={p} rank={i + 1} badge={p === fastest ? 'best-speed' : p === cheapest ? 'best-value' : p === topRated && i === 0 ? 'best-overall' : undefined} />
+      ))}
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 6: SPEED COMPARISON TABLE (with logos)
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <h2 style="margin-bottom:var(--space-xs);">{stateData.name} Internet Provider Comparison Table</h2>
+    <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">All {providers.length} providers sorted by rating. Availability varies by address.</p>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="compare-table" style="min-width:900px;">
+        <thead>
+          <tr>
+            <th style="min-width:180px;">Provider</th>
+            <th>Type</th>
+            <th>Max Speed</th>
+            <th>Upload</th>
+            <th>Starting Price</th>
+            <th>Data Cap</th>
+            <th>Rating</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {providers.map((p, i) => (
+            <tr class={p === fastest ? 'row-highlight-speed' : p === cheapest ? 'row-highlight-value' : ''}>
+              <td>
+                <div style="display:flex;align-items:center;gap:var(--space-sm);">
+                  {p.logo && <img src={p.logo} alt={p.name} width="36" height="36" style="border-radius:6px;object-fit:contain;background:var(--gray-50);border:1px solid var(--border);padding:2px;" loading="lazy" />}
+                  <a href={`/provider/${p.slug}`} style="font-weight:600;color:var(--text-primary);">{p.name}</a>
+                </div>
+              </td>
+              <td>
+                <div class="flex gap-xs flex-wrap">
+                  {p.types.map(t => <span class={`tag tag-${t}`} style="font-size:0.65rem;">{getTypeLabel(t)}</span>)}
+                </div>
+              </td>
+              <td style="font-weight:600;">{formatSpeed(getMaxSpeed(p))}</td>
+              <td style="color:var(--text-secondary);">{formatSpeed(getMaxUpload(p))}</td>
+              <td style="font-weight:600;">{formatPrice(getMinPrice(p))}/mo</td>
+              <td>{p.plans[0]?.dataCap || 'N/A'}</td>
+              <td>
+                <span style="color:var(--brand-amber);">{'★'.repeat(Math.floor(p.rating))}</span>
+                <span style="font-size:var(--text-xs);color:var(--text-tertiary);"> {p.rating}</span>
+                <span style="font-size:0.6rem;color:var(--text-tertiary);display:block;">({p.reviewCount.toLocaleString()} reviews)</span>
+              </td>
+              <td>
+                <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-cta btn-sm">Call</a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 7: COVERAGE & VALUE TABLE
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <h2 style="margin-bottom:var(--space-xs);">Internet Coverage &amp; Value in {stateData.name}</h2>
+    <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">Contract terms, data caps, and pricing for every provider in {stateData.name}.</p>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="compare-table" style="min-width:750px;">
+        <thead>
+          <tr>
+            <th style="min-width:150px;">Provider</th>
+            <th>Technology</th>
+            <th>Starting Price</th>
+            <th>Contract</th>
+            <th>Data Cap</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {providers.map(p => {
+            const cheapPlan = p.plans.reduce((a, b) => (a.promoPrice || a.price) < (b.promoPrice || b.price) ? a : b);
+            return (
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:var(--space-sm);">
+                    {p.logo && <img src={p.logo} alt={p.name} width="32" height="32" style="border-radius:6px;object-fit:contain;background:var(--gray-50);border:1px solid var(--border);padding:2px;" loading="lazy" />}
+                    <a href={`/provider/${p.slug}`} style="font-weight:600;color:var(--text-primary);">{p.name}</a>
+                  </div>
+                </td>
+                <td>
+                  <div class="flex gap-xs flex-wrap">{p.types.map(t => <span class={`tag tag-${t}`} style="font-size:0.65rem;">{getTypeLabel(t)}</span>)}</div>
+                </td>
+                <td style="font-weight:600;">{formatPrice(getMinPrice(p))}/mo</td>
+                <td>{cheapPlan.contract}</td>
+                <td>{cheapPlan.dataCap}</td>
+                <td><span style="color:var(--brand-amber);">★</span> {p.rating.toFixed(1)}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 9: FASTEST / CHEAPEST / BY-USAGE LISTS
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <div class="grid grid-3" style="gap:var(--space-lg);">
+      <div class="card" style="padding:var(--space-lg);">
+        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-md);">Fastest Internet in {stateData.name}</h3>
+        <ol class="ranked-list">
+          {rankedBySpeed.slice(0, 5).map((p, i) => (
+            <li class="ranked-item">
+              <span class="ranked-num">#{i + 1}</span>
+              {p.logo && <img src={p.logo} alt={p.name} width="28" height="28" class="ranked-logo" loading="lazy" />}
+              <div>
+                <a href={`/provider/${p.slug}`} class="ranked-name">{p.name}</a>
+                <span class="ranked-detail">{formatSpeed(getMaxSpeed(p))}</span>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="card" style="padding:var(--space-lg);">
+        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-md);">Cheapest Internet in {stateData.name}</h3>
+        <ol class="ranked-list">
+          {rankedByPrice.slice(0, 5).map((p, i) => (
+            <li class="ranked-item">
+              <span class="ranked-num">#{i + 1}</span>
+              {p.logo && <img src={p.logo} alt={p.name} width="28" height="28" class="ranked-logo" loading="lazy" />}
+              <div>
+                <a href={`/provider/${p.slug}`} class="ranked-name">{p.name}</a>
+                <span class="ranked-detail">From {formatPrice(getMinPrice(p))}/mo</span>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="card" style="padding:var(--space-lg);">
+        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-md);">Best by Activity in {stateData.name}</h3>
+        <div class="activity-list">
+          {bestGaming && (
+            <div class="activity-item">
+              <span class="activity-icon" style="width:28px;height:28px;border-radius:6px;background:rgba(0,82,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" stroke-width="2"><rect x="6" y="12" width="4" height="8" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></span>
+              <div>
+                <div class="activity-label">Gaming</div>
+                <a href={`/provider/${bestGaming.slug}`} class="ranked-name">{bestGaming.name}</a>
+                <span class="ranked-detail">Low latency, {formatSpeed(getMaxSpeed(bestGaming))}</span>
+              </div>
+            </div>
+          )}
+          {bestStreaming && (
+            <div class="activity-item">
+              <span class="activity-icon" style="width:28px;height:28px;border-radius:6px;background:rgba(0,82,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg></span>
+              <div>
+                <div class="activity-label">Streaming</div>
+                <a href={`/provider/${bestStreaming.slug}`} class="ranked-name">{bestStreaming.name}</a>
+                <span class="ranked-detail">Unlimited data, high speed</span>
+              </div>
+            </div>
+          )}
+          {bestWFH && (
+            <div class="activity-item">
+              <span class="activity-icon" style="width:28px;height:28px;border-radius:6px;background:rgba(0,82,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
+              <div>
+                <div class="activity-label">Work from Home</div>
+                <a href={`/provider/${bestWFH.slug}`} class="ranked-name">{bestWFH.name}</a>
+                <span class="ranked-detail">{formatSpeed(getMaxUpload(bestWFH))} upload</span>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 13: PLAN DETAIL ACCORDION
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <h2 style="margin-bottom:var(--space-xs);">All Internet Plans Available in {stateData.name}</h2>
+    <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">Detailed plan breakdowns for every provider. Click to expand.</p>
+    <div class="plan-accordion">
+      {rankedBySpeed.map(p => (
+        <div class="plan-acc-item">
+          <button class="plan-acc-header" type="button">
+            <div style="display:flex;align-items:center;gap:var(--space-sm);flex:1;">
+              {p.logo && <img src={p.logo} alt={p.name} width="32" height="32" style="border-radius:6px;object-fit:contain;background:var(--gray-50);border:1px solid var(--border);padding:2px;" loading="lazy" />}
+              <span style="font-weight:700;">{p.name}</span>
+              <span style="color:var(--text-tertiary);font-size:var(--text-sm);">— {p.plans.length} plans</span>
+            </div>
+            <span class="plan-acc-arrow">&#9660;</span>
+          </button>
+          <div class="plan-acc-content">
+            <div style="overflow-x:auto;">
+              <table class="compare-table" style="min-width:650px;margin:0;">
+                <thead>
+                  <tr>
+                    <th>Plan</th>
+                    <th>Download</th>
+                    <th>Upload</th>
+                    <th>Price</th>
+                    <th>Contract</th>
+                    <th>Data Cap</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {p.plans.map(plan => (
+                    <tr>
+                      <td style="font-weight:600;">{plan.name}</td>
+                      <td>{formatSpeed(plan.speed)}</td>
+                      <td>{formatSpeed(plan.uploadSpeed)}</td>
+                      <td>
+                        <span style="font-weight:700;">{formatPrice(plan.promoPrice)}/mo</span>
+                        {plan.promoPrice < plan.price && <span style="font-size:var(--text-xs);color:var(--text-tertiary);text-decoration:line-through;margin-left:4px;">{formatPrice(plan.price)}</span>}
+                      </td>
+                      <td>{plan.contract}</td>
+                      <td>{plan.dataCap}</td>
+                      <td><a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-cta btn-sm">Order</a></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       BROADBAND SCORECARD
+       ═══════════════════════════════════════════ -->
+  {census && (
+    <div class="reveal" style="margin-bottom:var(--space-2xl);">
+      <h2 style="margin-bottom:var(--space-lg);">{stateData.name} Broadband Report Card</h2>
+      <div class="grid grid-2" style="gap:var(--space-lg);">
+        <div class="card" style="padding:var(--space-xl);">
+          <h3 style="margin-bottom:var(--space-lg);">Connectivity Metrics</h3>
+          <div style="display:flex;flex-direction:column;gap:var(--space-md);">
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                <span style="font-size:var(--text-sm);">Broadband Adoption</span>
+                <span style="font-weight:600;">{formatPercent(census.broadbandPct)}</span>
+              </div>
+              <div style="height:8px;background:var(--gray-800);border-radius:var(--radius-full);overflow:hidden;">
+                <div style={`width:${census.broadbandPct}%;height:100%;background:var(--brand-blue);border-radius:var(--radius-full);`}></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                <span style="font-size:var(--text-sm);">Fiber Availability</span>
+                <span style="font-weight:600;">{formatPercent(census.fiberPct)}</span>
+              </div>
+              <div style="height:8px;background:var(--gray-800);border-radius:var(--radius-full);overflow:hidden;">
+                <div style={`width:${census.fiberPct}%;height:100%;background:var(--brand-green);border-radius:var(--radius-full);`}></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                <span style="font-size:var(--text-sm);">Underserved Households</span>
+                <span style="font-weight:600;">{formatPercent(census.underservedPct)}</span>
+              </div>
+              <div style="height:8px;background:var(--gray-800);border-radius:var(--radius-full);overflow:hidden;">
+                <div style={`width:${census.underservedPct}%;height:100%;background:var(--status-error);border-radius:var(--radius-full);`}></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding:var(--space-xl);">
+          <h3 style="margin-bottom:var(--space-lg);">Speed & Demographics</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);">
+            <div style="text-align:center;padding:var(--space-md);background:var(--gray-900);border-radius:var(--radius-md);">
+              <div style="font-size:var(--text-xl);font-weight:700;">{census.avgDownload}</div>
+              <div style="font-size:var(--text-xs);color:var(--text-tertiary);">Avg Download (Mbps)</div>
+            </div>
+            <div style="text-align:center;padding:var(--space-md);background:var(--gray-900);border-radius:var(--radius-md);">
+              <div style="font-size:var(--text-xl);font-weight:700;">{census.avgUpload}</div>
+              <div style="font-size:var(--text-xs);color:var(--text-tertiary);">Avg Upload (Mbps)</div>
+            </div>
+            <div style="text-align:center;padding:var(--space-md);background:var(--gray-900);border-radius:var(--radius-md);">
+              <div style="font-size:var(--text-xl);font-weight:700;">{census.providerCount}</div>
+              <div style="font-size:var(--text-xs);color:var(--text-tertiary);">Avg Providers/Area</div>
+            </div>
+            <div style="text-align:center;padding:var(--space-md);background:var(--gray-900);border-radius:var(--radius-md);">
+              <div style="font-size:var(--text-xl);font-weight:700;">{census.growthRate > 0 ? '+' : ''}{census.growthRate}%</div>
+              <div style="font-size:var(--text-xs);color:var(--text-tertiary);">Population Growth</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- ═══════════════════════════════════════════
+       STEP 12: EXPANDED EDITORIAL
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <div class="card editorial-content" style="padding:var(--space-xl);">
+      <h2 style="margin-bottom:var(--space-md);">Internet Service in {stateData.name}: What You Need to Know</h2>
+      <p>
+        {stateData.name} has {providers.length} internet providers offering {[fiberProviders.length > 0 && 'fiber', cableProviders.length > 0 && 'cable', dslProviders.length > 0 && 'DSL', fiveGProviders.length > 0 && '5G home internet', satelliteProviders.length > 0 && 'satellite'].filter(Boolean).join(', ')} connections.
+        {census ? ` With ${formatPercent(census.broadbandPct)} broadband adoption and average download speeds of ${census.avgDownload} Mbps, the state earns a grade of ${grade}.` : ''}
+        Plans start at <strong>{formatPrice(minPrc)}/mo</strong> with speeds up to <strong>{formatSpeed(maxSpd)}</strong>.
+      </p>
+
+      <h3 style="margin-top:var(--space-lg);">How to Choose Internet in {stateData.name}</h3>
+      <p>
+        <strong>Speed requirements:</strong> For 1–2 users doing email and browsing, 50–100 Mbps suffices. Streaming households need 200+ Mbps. Gamers and remote workers should target 300–500 Mbps. Large families (5+ devices) benefit from gigabit service.
+        {fastest ? ` The fastest option in ${stateData.name} is ${fastest.name} at ${formatSpeed(maxSpd)}.` : ''}
+      </p>
+      <p>
+        <strong>Budget considerations:</strong> Starting prices range from {formatPrice(minPrc)}/mo to premium gigabit plans. The average entry price is ${avgPrice}/mo.
+        {cheapest ? ` ${cheapest.name} has the most affordable starting plan.` : ''} Promotional pricing typically lasts 12–24 months.
+      </p>
+      <p>
+        <strong>Technology:</strong> {fiberProviders.length > 0 ? `Fiber internet from ${fiberProviders.slice(0, 2).map(p => p.name).join(' and ')} delivers symmetric speeds and minimal latency — ideal for video conferencing and gaming.` : 'Cable internet provides the fastest wired speeds in most areas.'}
+        {fiveGProviders.length > 0 ? ` 5G home internet from ${fiveGProviders.slice(0, 2).map(p => p.name).join(' and ')} requires no wiring and typically has no contracts.` : ''}
+      </p>
+
+      <h3 style="margin-top:var(--space-lg);">Internet Availability Across {stateData.name}</h3>
+      <p>
+        {census ? `${formatPercent(census.urbanPct)} of ${stateData.name}'s population lives in urban areas with the most provider competition. ` : ''}
+        Metro areas like {metroCities.slice(0, 3).map(c => c.name).join(', ')} typically offer 5+ providers including fiber.
+        Rural areas may have fewer wired options, though satellite and fixed wireless extend coverage statewide.
+      </p>
+      <p>
+        {census && census.underservedPct > 15
+          ? `Approximately ${formatPercent(census.underservedPct)} of ${stateData.name} households are underserved (below 25/3 Mbps). Federal and state broadband expansion programs are actively deploying new infrastructure.`
+          : census ? `${stateData.name} has relatively strong coverage — only ${formatPercent(census.underservedPct)} of households lack adequate broadband.` : 'Coverage continues to expand with ongoing infrastructure investment.'}
+      </p>
+
+      <h3 style="margin-top:var(--space-lg);">Saving Money on Internet in {stateData.name}</h3>
+      <p>
+        <strong>1. Compare all options.</strong> Use our free comparison tool or call {MAIN_PHONE} — we regularly find savings of $20–50/mo.
+        <strong>2. Watch for promo rates.</strong> Know the regular price before signing up.
+        <strong>3. Buy your own equipment.</strong> Skip the $10–15/mo rental fee.
+        <strong>4. Check low-income programs.</strong> The FCC's Affordable Connectivity Program, Spectrum Internet Assist, and AT&T Access can help qualifying households.
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 14: FREE WIFI / LOW-INCOME
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <div class="card" style="padding:var(--space-xl);border:1px solid rgba(0,213,132,0.3);background:linear-gradient(135deg,rgba(0,213,132,0.04),transparent);">
+      <h2 style="margin-bottom:var(--space-md);">Free &amp; Low-Cost Internet in {stateData.name}</h2>
+      <p style="color:var(--text-secondary);margin-bottom:var(--space-lg);">Programs to help {stateData.name} residents get connected at reduced rates.</p>
+      <div class="grid grid-2" style="gap:var(--space-lg);">
+        <div>
+          <h4 style="margin-bottom:var(--space-xs);">📋 FCC Affordable Connectivity Program</h4>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Up to $30/mo off internet ($75/mo on tribal lands). Participating {stateData.name} providers include {providers.slice(0, 3).map(p => p.name).join(', ')}.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:var(--space-xs);">Lifeline Program</h4>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">$9.25/mo discount on phone or internet for qualifying households in {stateData.name}.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:var(--space-xs);">🏠 Provider Low-Income Plans</h4>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Spectrum Internet Assist ($17.99/mo), AT&T Access ($5–10/mo), and similar programs. Call {MAIN_PHONE} to check eligibility.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:var(--space-xs);">🏫 Community WiFi</h4>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Libraries, community centers, and municipal WiFi programs across {stateData.name} offer free access.</p>
+        </div>
+      </div>
+      <div style="margin-top:var(--space-lg);text-align:center;">
+        <a href="/cheap-internet" class="btn btn-primary">View All Cheap Internet Options →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <div class="card" style="padding:var(--space-2xl);text-align:center;background:linear-gradient(135deg,rgba(0,82,255,0.08),rgba(0,213,132,0.08));border:1px solid var(--brand-blue);">
+      <h2 style="margin-bottom:var(--space-sm);">Find Your Perfect Internet Plan in {stateData.name}</h2>
+      <p style="color:var(--text-secondary);margin-bottom:var(--space-lg);max-width:550px;margin-inline:auto;">Our experts compare every provider so you don't have to. Call now for exclusive deals not available online.</p>
+      <a href={formatPhoneForTel(MAIN_PHONE)} class="btn btn-cta btn-lg">Call {MAIN_PHONE} — It's Free</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 10: CITIES (internal link density)
+       ═══════════════════════════════════════════ -->
+  {cities.length > 0 && (
+    <div class="reveal" style="margin-bottom:var(--space-2xl);">
+      <h2 style="margin-bottom:var(--space-md);">Internet Providers by City in {stateData.name}</h2>
+      <p style="color:var(--text-secondary);margin-bottom:var(--space-xl);">
+        Browse internet availability for {cities.length} cities in {stateData.name}.
+        {census ? ` ${formatPercent(census.urbanPct)} of the state's population lives in urban areas with the most options.` : ''}
+      </p>
+      {metroCities.length > 0 && (
+        <div style="margin-bottom:var(--space-lg);">
+          <h3 style="font-size:var(--text-md);margin-bottom:var(--space-sm);color:var(--text-tertiary);">Major Cities</h3>
+          <div class="nearby-pills">
+            {metroCities.map(city => (
+              <a href={`/internet-providers/${city.slug}`} class="nearby-pill">
+                <span class="np-name">{city.name}</span>
+                <span class="np-pop">{city.population.toLocaleString()} residents</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+      <div class="grid grid-3 gap-md" style="gap:var(--space-sm);">
+        {cities.filter(c => !c.isMetro).map(city => (
+          <a href={`/internet-providers/${city.slug}`} class="card" style="padding:var(--space-md);display:flex;justify-content:space-between;align-items:center;text-decoration:none;">
+            <span style="font-weight:600;color:var(--text-primary);">{city.name}</span>
+            <span style="font-size:var(--text-sm);color:var(--text-tertiary);">{city.population.toLocaleString()}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- OTHER STATES -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <h2 style="margin-bottom:var(--space-lg);">Internet Providers in Other States</h2>
+    <div style="column-count:4;column-gap:var(--space-lg);">
+      {Object.entries(stateNames)
+        .filter(([abbr]) => abbr !== stateData.abbr)
+        .sort((a, b) => a[1].localeCompare(b[1]))
+        .map(([abbr, name]) => (
+          <a href={`/internet-providers/${getStateSlug(abbr)}`} style="display:block;padding:var(--space-xs) 0;font-size:var(--text-sm);color:var(--text-secondary);">{name}</a>
+        ))}
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <h2 style="margin-bottom:var(--space-xl);">Frequently Asked Questions — {stateData.name} Internet</h2>
+    {faqs.map(faq => (
+      <div class="faq-item">
+        <button class="faq-question">{faq.question}</button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">{faq.answer}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 15: DISCLAIMER + METHODOLOGY
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <div style="padding:var(--space-lg);border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface-secondary);">
+      <p style="font-size:var(--text-xs);color:var(--text-tertiary);line-height:1.8;margin-bottom:var(--space-sm);">
+        <strong>Editorial Disclosure:</strong> Our rankings use FCC broadband data, independently verified speed tests, and customer reviews. We may earn a commission when you sign up through partner links — keeping our comparison service free. Recommendations are based on objective criteria. <a href="/methodology" style="color:var(--brand-blue);">Read our full methodology →</a>
+      </p>
+      <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin:0;">
+        Last updated: {lastUpdatedDisplay} · Data for {stateData.name} ({providers.length} providers, {cities.length} cities) · Coverage may vary by address
+      </p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Plan accordion
+    document.querySelectorAll('.plan-acc-header').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.plan-acc-item');
+        if (item) item.classList.toggle('open');
+      });
+    });
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        if (item) item.classList.toggle('open');
+      });
+    });
+  });
+</script>
+</Base>

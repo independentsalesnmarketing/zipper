@@ -6,19 +6,22 @@
       "name": "Spectrum",
       "slug": "spectrum",
       "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F7d5ab395a1f74bf7ada360ff15b5a626?format=webp&width=200",
-      "types": ["cable"],
+      "types": ["cable", "fiber"],
       "rating": 4.2,
       "reviewCount": 45230,
       "isPartner": true,
-      "description": "Spectrum is one of the largest cable internet providers in the US, offering reliable high-speed internet with no data caps or contracts required.",
-      "pros": ["No data caps", "No contracts required", "Free modem included", "Wide nationwide availability", "30-day money-back guarantee"],
-      "cons": ["Price increases after promo period", "Upload speeds slower than fiber"],
+      "description": "Spectrum offers high-speed cable and fiber internet across the US, with no data caps, no contracts, and a free modem on every plan.",
+      "pros": ["No data caps", "No contracts required", "Free modem included", "Fiber available in select areas", "Wide nationwide availability", "30-day money-back guarantee"],
+      "cons": ["Price increases after promo period", "Fiber not available everywhere yet"],
       "coverage": ["NY","TX","CA","FL","OH","NC","WI","MO","KY","SC","GA","TN","AL","IN","LA","MS","ME","MA","MN","NE","NV","NH","NJ","NM","OR","WA","WV","HI"],
       "phone": "1-888-555-0101",
+      "promo": "Free modem + No data caps",
       "plans": [
         { "name": "Spectrum Internet", "speed": 300, "uploadSpeed": 10, "price": 49.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "features": ["Free modem", "No data caps", "Free antivirus"] },
         { "name": "Spectrum Internet Ultra", "speed": 500, "uploadSpeed": 20, "price": 69.99, "promoPrice": 69.99, "contract": "None", "dataCap": "Unlimited", "features": ["Free modem", "Great for 4K streaming", "No data caps"] },
-        { "name": "Spectrum Internet Gig", "speed": 1000, "uploadSpeed": 35, "price": 89.99, "promoPrice": 89.99, "contract": "None", "dataCap": "Unlimited", "features": ["Free modem", "Perfect for large households", "Gaming optimized"] }
+        { "name": "Spectrum Internet Gig", "speed": 1000, "uploadSpeed": 35, "price": 89.99, "promoPrice": 89.99, "contract": "None", "dataCap": "Unlimited", "features": ["Free modem", "Perfect for large households", "Gaming optimized"] },
+        { "name": "Spectrum Internet Gig Fiber", "speed": 1000, "uploadSpeed": 1000, "price": 89.99, "promoPrice": 89.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical upload/download", "Fiber to the home", "No data caps"] },
+        { "name": "Spectrum Internet 2 Gig Fiber", "speed": 2000, "uploadSpeed": 2000, "price": 149.99, "promoPrice": 149.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["2 Gig symmetrical", "Multi-gig router included", "Best for power users"] }
       ]
     },
     {
@@ -35,6 +38,7 @@
       "cons": ["Fios availability limited to Northeast", "5G Home: Coverage still expanding"],
       "coverage": ["NY","NJ","CT","PA","MA","RI","VA","MD","DC","DE"],
       "phone": "1-888-555-0110",
+      "promo": "$200 Visa gift card + Free router",
       "plans": [
         { "name": "Verizon Fios 300", "speed": 300, "uploadSpeed": 300, "price": 49.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical upload/download", "No data caps", "Free router for 3 years"] },
         { "name": "Verizon Fios 500", "speed": 500, "uploadSpeed": 500, "price": 69.99, "promoPrice": 69.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Great for streaming + gaming", "Whole-home Wi-Fi", "No annual contract"] },
@@ -58,6 +62,7 @@
       "cons": ["Fiber not available in all areas", "Professional install required"],
       "coverage": ["TX","CA","FL","IL","GA","MI","OH","NC","TN","AL","AR","IN","KS","KY","LA","MO","MS","NV","OK","SC","WI"],
       "phone": "1-888-555-0102",
+      "promo": "Free installation + No annual contract",
       "plans": [
         { "name": "AT&T Fiber 300", "speed": 300, "uploadSpeed": 300, "price": 55.00, "promoPrice": 55.00, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical speeds", "No data caps", "Free installation"] },
         { "name": "AT&T Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 65.00, "promoPrice": 65.00, "contract": "None", "dataCap": "Unlimited", "features": ["Great for 4K streaming", "Work from home ready", "Gaming optimized"] },
@@ -80,6 +85,7 @@
       "cons": ["Fiber not available everywhere", "Limited bundle options"],
       "coverage": ["CA","TX","FL","CT","NY","WV","IN","OH","PA","AZ","AL","IL","SC","TN","NM","GA","NC","MN","WI","MS","NE","IA"],
       "phone": "1-888-555-0107",
+      "promo": "Free router rental for 12 months",
       "plans": [
         { "name": "Frontier Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 49.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "features": ["Price for life", "Free eero WiFi", "Symmetrical speeds"] },
         { "name": "Frontier Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 74.99, "promoPrice": 74.99, "contract": "None", "dataCap": "Unlimited", "features": ["1 Gig symmetrical", "Whole home WiFi", "No price increase"] },
@@ -101,6 +107,7 @@
       "cons": ["Speeds vary by location and congestion", "Requires compatible wireless coverage"],
       "coverage": ["Nationwide"],
       "phone": "1-888-555-0102",
+      "promo": "$100 off + No equipment fees",
       "plans": [
         { "name": "AT&T Air Internet", "speed": 200, "uploadSpeed": 30, "price": 55.00, "promoPrice": 55.00, "contract": "None", "dataCap": "Unlimited", "features": ["No annual contract", "No equipment fees", "Self-install", "AT&T All-Fi gateway"] },
         { "name": "AT&T Air (with phone bundle)", "speed": 200, "uploadSpeed": 30, "price": 35.00, "promoPrice": 35.00, "contract": "None", "dataCap": "Unlimited", "features": ["Bundle discount with wireless plan", "No annual contract", "No equipment fees", "Self-install"] }
@@ -114,12 +121,13 @@
       "types": ["fiber"],
       "rating": 4.3,
       "reviewCount": 12450,
-      "isPartner": true,
+      "isPartner": false,
       "description": "Ziply Fiber provides ultrafast fiber internet throughout the Pacific Northwest with no data caps and straightforward pricing.",
       "pros": ["Ultrafast fiber speeds", "No data caps", "Straightforward pricing", "Excellent uptime"],
       "cons": ["Limited to Pacific Northwest", "New to some areas"],
       "coverage": ["WA","OR","ID"],
       "phone": "1-888-555-0126",
+      "promo": "Price lock guarantee for 2 years",
       "plans": [
         { "name": "Ziply Fiber 300", "speed": 300, "uploadSpeed": 300, "price": 45.00, "promoPrice": 35.00, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical speeds", "No data caps", "Free tech support"] },
         { "name": "Ziply Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 60.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "features": ["1 Gig symmetrical", "Price lock guarantee", "Premium WiFi"] },
@@ -140,6 +148,7 @@
       "cons": ["Fiber availability limited to select markets", "New to some areas (expanding)"],
       "coverage": ["IN","OH","MI","WI","MN","TX","FL","NC","VA"],
       "phone": "1-888-555-0103",
+      "promo": "Free whole-home WiFi mesh system",
       "plans": [
         { "name": "T-Mobile Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 40.00, "promoPrice": 35.00, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical upload/download", "Wi-Fi 7 gateway included", "No data caps"] },
         { "name": "T-Mobile Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 60.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical upload/download", "Wi-Fi 7 gateway included", "No data caps", "Price lock guarantee"] },
@@ -154,12 +163,13 @@
       "types": ["cable"],
       "rating": 4.0,
       "reviewCount": 45600,
-      "isPartner": true,
+      "isPartner": false,
       "description": "Cox Communications offers cable internet with speeds up to 2 Gbps and competitive pricing across the Southwest and beyond.",
       "pros": ["Wide availability", "Fast cable speeds", "Bundle options", "Reliable service"],
       "cons": ["Data caps on lower tiers", "Price increases after promo period"],
       "coverage": ["AZ","CA","NM","OK","TX","LA","AR"],
       "phone": "1-888-555-0127",
+      "promo": "Free Panoramic WiFi + Stream Player",
       "plans": [
         { "name": "Cox Internet 100", "speed": 100, "uploadSpeed": 10, "price": 49.99, "promoPrice": 39.99, "contract": "None", "dataCap": "1 TB", "features": ["Good for streaming", "Self-install available"] },
         { "name": "Cox Internet 300", "speed": 300, "uploadSpeed": 30, "price": 69.99, "promoPrice": 59.99, "contract": "None", "dataCap": "1 TB", "features": ["Great for 4K streaming", "Multiple devices", "WiFi 6"] },
@@ -180,6 +190,7 @@
       "cons": ["Speed varies by location and congestion", "Requires 5G/LTE coverage at address"],
       "coverage": ["Nationwide"],
       "phone": "1-888-555-0103",
+      "promo": "$50/mo price lock + Free gateway",
       "plans": [
         { "name": "T-Mobile 5G Home Internet", "speed": 245, "uploadSpeed": 31, "price": 50.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "features": ["Price lock guarantee", "Free gateway device", "15-day test drive"] },
         { "name": "T-Mobile All Home Internet", "speed": 245, "uploadSpeed": 31, "price": 40.00, "promoPrice": 40.00, "contract": "None", "dataCap": "Unlimited", "features": ["Bundle with phone plan", "Price lock guarantee", "Free gateway"] }
@@ -199,6 +210,7 @@
       "cons": ["Limited fiber availability", "DSL speeds vary by distance"],
       "coverage": ["AR","GA","KY","NE","NM","NY","NC","OH","OK","PA","SC","TX","FL","IA","MN","AL","MS","WV"],
       "phone": "1-888-555-0104",
+      "promo": "Price for life guarantee",
       "plans": [
         { "name": "Kinetic Internet 200", "speed": 200, "uploadSpeed": 200, "price": 55.00, "promoPrice": 55.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical speeds", "Price for life", "Free WiFi modem"] },
         { "name": "Kinetic Internet 500", "speed": 500, "uploadSpeed": 500, "price": 65.00, "promoPrice": 65.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Work from home ready", "Multiple 4K streams", "Whole home WiFi"] },
@@ -219,6 +231,7 @@
       "cons": ["Limited to Northeast region", "Price increases after year 1"],
       "coverage": ["NY","NJ","CT","PA"],
       "phone": "1-888-555-0106",
+      "promo": "Free installation + First month free",
       "plans": [
         { "name": "Optimum 300", "speed": 300, "uploadSpeed": 20, "price": 60.00, "promoPrice": 40.00, "contract": "None", "dataCap": "Unlimited", "features": ["Smart WiFi 6", "Free installation", "Optimum app"] },
         { "name": "Optimum 500 Fiber", "speed": 500, "uploadSpeed": 500, "price": 80.00, "promoPrice": 60.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Fiber symmetrical", "Great for streaming", "WiFi 6 router"] },
@@ -240,6 +253,7 @@
       "cons": ["Uses partner networks", "Availability varies by area"],
       "coverage": ["Nationwide"],
       "phone": "1-888-555-0105",
+      "promo": "Free antivirus + No data caps",
       "plans": [
         { "name": "EarthLink Internet", "speed": 100, "uploadSpeed": 10, "price": 59.95, "promoPrice": 49.95, "contract": "None", "dataCap": "Unlimited", "features": ["No data caps", "24/7 support", "No contracts"] },
         { "name": "EarthLink Fiber 300", "speed": 300, "uploadSpeed": 300, "price": 69.95, "promoPrice": 69.95, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical speeds", "Price lock", "Free install"] },
@@ -260,6 +274,7 @@
       "cons": ["Fiber still limited in many areas", "DSL speeds on legacy network are slower"],
       "coverage": ["NC","SC","OH","PA","FL","TX","MN","WI","IL","IN","VA","TN","AL","MS","MO","KS","OK","AR","LA","NM"],
       "phone": "1-888-555-0108",
+      "promo": "Free professional installation",
       "plans": [
         { "name": "Brightspeed Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 55.00, "promoPrice": 55.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Fiber symmetrical", "Smart WiFi", "Work from home ready"] },
         { "name": "Brightspeed Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 65.00, "promoPrice": 65.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["1 Gig symmetrical", "Whole home coverage", "Gaming ready"] },
@@ -280,6 +295,7 @@
       "cons": ["Limited to Cincinnati metro area", "Smaller service footprint"],
       "coverage": ["OH","KY","IN"],
       "phone": "1-888-555-0109",
+      "promo": "$100 bill credit + Free WiFi 6 router",
       "plans": [
         { "name": "altafiber 250", "speed": 250, "uploadSpeed": 250, "price": 49.99, "promoPrice": 39.99, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical speeds", "No data caps", "Local support"] },
         { "name": "altafiber 500", "speed": 500, "uploadSpeed": 500, "price": 59.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "features": ["Great for streaming", "Work from home", "Multiple devices"] },
@@ -301,6 +317,7 @@
       "cons": ["Data cap of 1.2 TB on most plans", "Price increases after promo"],
       "coverage": ["Nationwide"],
       "phone": "1-888-555-0123",
+      "promo": "Free Peacock Premium for 12 months",
       "plans": [
         { "name": "Xfinity Connect", "speed": 75, "uploadSpeed": 5, "price": 49.99, "promoPrice": 30.00, "contract": "None", "dataCap": "1.2 TB", "features": ["Good for basic browsing", "Self-install available"] },
         { "name": "Xfinity Connect More", "speed": 200, "uploadSpeed": 10, "price": 60.00, "promoPrice": 50.00, "contract": "None", "dataCap": "1.2 TB", "features": ["Streaming-ready", "Multiple devices"] },
@@ -324,6 +341,7 @@
       "cons": ["$599 equipment cost", "Speeds vary with congestion", "Weather can affect signal"],
       "coverage": ["Nationwide"],
       "phone": "1-888-555-0123",
+      "promo": "$100 off Starlink kit",
       "plans": [
         { "name": "Starlink Standard", "speed": 150, "uploadSpeed": 15, "price": 120.00, "promoPrice": 120.00, "contract": "None", "dataCap": "Unlimited", "features": ["Low latency", "Self-install", "No contract"] },
         { "name": "Starlink Priority", "speed": 220, "uploadSpeed": 25, "price": 140.00, "promoPrice": 140.00, "contract": "None", "dataCap": "1 TB priority", "features": ["Faster speeds", "Priority network access", "Business-ready"] }
@@ -343,6 +361,7 @@
       "cons": ["High latency", "Data caps on all plans", "Speeds slow after cap"],
       "coverage": ["Nationwide"],
       "phone": "1-888-555-0123",
+      "promo": "First 3 months $20 off",
       "plans": [
         { "name": "Viasat Unleashed 25", "speed": 25, "uploadSpeed": 3, "price": 69.99, "promoPrice": 69.99, "contract": "2-year", "dataCap": "60 GB", "features": ["Basic browsing", "Email and social media"] },
         { "name": "Viasat Unleashed 50", "speed": 50, "uploadSpeed": 5, "price": 99.99, "promoPrice": 99.99, "contract": "2-year", "dataCap": "100 GB", "features": ["Streaming capable", "Multiple devices"] },
@@ -364,6 +383,7 @@
       "cons": ["High latency", "Speeds reduced after data threshold", "2-year contract required"],
       "coverage": ["Nationwide"],
       "phone": "1-888-555-0123",
+      "promo": "Free standard installation",
       "plans": [
         { "name": "HughesNet Select", "speed": 50, "uploadSpeed": 5, "price": 64.99, "promoPrice": 64.99, "contract": "2-year", "dataCap": "100 GB", "features": ["Basic satellite internet", "Built-in WiFi"] },
         { "name": "HughesNet Elite", "speed": 100, "uploadSpeed": 5, "price": 89.99, "promoPrice": 89.99, "contract": "2-year", "dataCap": "200 GB", "features": ["Faster speeds", "More data", "Video streaming"] }
@@ -377,12 +397,13 @@
       "types": ["cable"],
       "rating": 4.0,
       "reviewCount": 28300,
-      "isPartner": true,
+      "isPartner": false,
       "description": "WOW! offers reliable cable internet with no annual contracts, no equipment fees, and speeds up to 2 Gbps.",
       "pros": ["No annual contracts", "No equipment fees", "Affordable pricing", "Fast cable speeds", "Available nationwide"],
       "cons": ["Data caps on lower tiers", "Upload speeds slower than fiber"],
       "coverage": ["AR","FL","GA","IL","IN","KY","MI","MO","MS","OH","SC","TN"],
       "phone": "1-888-555-0128",
+      "promo": "No contracts + No data caps",
       "plans": [
         { "name": "WOW! Internet 100", "speed": 100, "uploadSpeed": 10, "price": 39.99, "promoPrice": 29.99, "contract": "None", "dataCap": "1 TB", "features": ["Basic cable internet", "Affordable pricing", "Self-install available"] },
         { "name": "WOW! Internet 300", "speed": 300, "uploadSpeed": 10, "price": 49.99, "promoPrice": 39.99, "contract": "None", "dataCap": "1 TB", "features": ["Great for streaming", "Multiple devices", "Standard WiFi"] },
@@ -397,12 +418,13 @@
       "types": ["fiber"],
       "rating": 4.4,
       "reviewCount": 16200,
-      "isPartner": true,
+      "isPartner": false,
       "description": "Fidium delivers ultrafast fiber internet with symmetrical speeds, no data caps, and no annual contracts.",
       "pros": ["True fiber to the home", "Symmetrical upload/download speeds", "No data caps", "No annual contracts", "Price lock guarantee"],
       "cons": ["Limited availability in select regions", "New provider (expanding)"],
       "coverage": ["ME","NH","VT","MA"],
       "phone": "1-888-555-0129",
+      "promo": "No contracts + Symmetrical speeds",
       "plans": [
         { "name": "Fidium Fiber 200", "speed": 200, "uploadSpeed": 200, "price": 49.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical fiber speeds", "No data caps", "Free WiFi 6 router"] },
         { "name": "Fidium Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 59.99, "promoPrice": 59.99, "contract": "None", "dataCap": "Unlimited", "features": ["Great for streaming", "Work from home ready", "Whole home coverage"] },
@@ -417,12 +439,13 @@
       "types": ["fiber"],
       "rating": 4.6,
       "reviewCount": 52000,
-      "isPartner": true,
+      "isPartner": false,
       "description": "Google Fiber delivers incredibly fast fiber internet with symmetrical speeds up to 5 Gbps, no data caps, and industry-leading customer service.",
       "pros": ["Symmetrical upload/download", "No data caps", "Gigabit speeds standard", "Industry-best customer service", "Works with any device"],
       "cons": ["Limited to specific cities and neighborhoods", "Premium pricing", "Installation required"],
       "coverage": ["AL","AZ","CA","CO","GA","IL","IN","KS","MO","NC","OH","OK","OR","TN","TX","UT","VA","WA"],
       "phone": "1-888-555-0130",
+      "promo": "No data caps + Free mesh extender",
       "plans": [
         { "name": "Google Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 70.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "features": ["1 Gig symmetrical", "Excellent TV-like experience", "Superb for all activities"] },
         { "name": "Google Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 100.00, "promoPrice": 100.00, "contract": "None", "dataCap": "Unlimited", "features": ["2 Gig speeds", "Maximum performance", "Perfect for large households"] },
@@ -437,12 +460,13 @@
       "types": ["fiber"],
       "rating": 4.2,
       "reviewCount": 8900,
-      "isPartner": true,
+      "isPartner": false,
       "description": "GeoLinks provides fiber-to-the-home internet in rural and underserved areas, bringing high-speed connectivity to communities nationwide.",
       "pros": ["Fiber to the home", "Focus on rural areas", "No data caps", "Competitive pricing", "Growing availability"],
       "cons": ["Limited service areas", "Newer in some regions"],
       "coverage": ["CA","TX","NV","UT","AZ","CO","WY","MT"],
       "phone": "1-888-555-0131",
+      "promo": "Free site survey + Custom pricing",
       "plans": [
         { "name": "GeoLinks 500 Fiber", "speed": 500, "uploadSpeed": 500, "price": 49.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical fiber", "No data caps", "Rural coverage"] },
         { "name": "GeoLinks 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 64.99, "promoPrice": 59.99, "contract": "None", "dataCap": "Unlimited", "features": ["Gig symmetrical speeds", "Whole home WiFi", "Reliable service"] },
@@ -457,12 +481,13 @@
       "types": ["5g"],
       "rating": 4.1,
       "reviewCount": 21300,
-      "isPartner": true,
+      "isPartner": false,
       "description": "U.S. Cellular offers 5G home internet with no annual contracts, no equipment fees, and affordable pricing across rural and urban areas.",
       "pros": ["No annual contracts", "No equipment fees", "Fast 5G speeds", "Nationwide coverage expansion", "Simple pricing"],
       "cons": ["Speed varies by location", "5G coverage still expanding"],
       "coverage": ["Nationwide"],
       "phone": "1-888-555-0132",
+      "promo": "$25/mo for first 3 months",
       "plans": [
         { "name": "U.S. Cellular 5G Home", "speed": 300, "uploadSpeed": 50, "price": 60.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "features": ["No contracts", "No equipment fees", "5G speeds"] },
         { "name": "U.S. Cellular 5G Home Premium", "speed": 500, "uploadSpeed": 100, "price": 80.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "features": ["Faster 5G speeds", "Premium gateway", "Enhanced coverage"] }
@@ -476,34 +501,17 @@
       "types": ["cable"],
       "rating": 3.8,
       "reviewCount": 35600,
-      "isPartner": true,
+      "isPartner": false,
       "description": "Mediacom delivers reliable cable internet with speeds up to 1 Gbps across the Midwest and Mountain regions with flexible plans.",
       "pros": ["Wide coverage in Midwest", "Affordable pricing", "Flexible plans", "Bundle options", "Reliable service"],
       "cons": ["Data caps on lower tiers", "Upload speeds limited on cable"],
       "coverage": ["AL","AR","FL","GA","IA","IL","IN","KS","KY","LA","MO","MS","NC","OH","TN","TX","UT","WI"],
       "phone": "1-888-555-0133",
+      "promo": "Free modem + 60-day money back",
       "plans": [
         { "name": "Mediacom 60 Mbps", "speed": 60, "uploadSpeed": 6, "price": 39.99, "promoPrice": 29.99, "contract": "None", "dataCap": "600 GB", "features": ["Good for basic use", "Streaming ready", "Affordable"] },
         { "name": "Mediacom 200 Mbps", "speed": 200, "uploadSpeed": 15, "price": 59.99, "promoPrice": 49.99, "contract": "None", "dataCap": "1 TB", "features": ["Multiple devices", "4K streaming capable", "WiFi 5"] },
         { "name": "Mediacom 1 Gig", "speed": 1000, "uploadSpeed": 100, "price": 89.99, "promoPrice": 79.99, "contract": "None", "dataCap": "Unlimited", "features": ["Gigabit speeds", "Unlimited data", "Gaming optimized"] }
-      ]
-    },
-    {
-      "id": "mintmobile",
-      "name": "Mint Mobile",
-      "slug": "mintmobile",
-      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F5a9ff0e63b8d4eb98ed8f913d6d08124?format=webp&width=200",
-      "types": ["5g"],
-      "rating": 4.3,
-      "reviewCount": 28900,
-      "isPartner": true,
-      "description": "Mint Mobile delivers 5G home internet with affordably-priced plans, no annual contracts, and nationwide coverage using T-Mobile's network.",
-      "pros": ["Affordable pricing", "No annual contracts", "No equipment fees", "5G speeds", "Nationwide coverage", "Flexible plans"],
-      "cons": ["5G speeds vary by location", "Coverage dependent on T-Mobile network"],
-      "coverage": ["Nationwide"],
-      "phone": "1-888-555-0134",
-      "plans": [
-        { "name": "Mint Mobile 5G Home", "speed": 100, "uploadSpeed": 20, "price": 30.00, "promoPrice": 25.00, "contract": "None", "dataCap": "Unlimited", "features": ["Affordable 5G", "No contracts", "No equipment fees"] }
       ]
     }
   ]

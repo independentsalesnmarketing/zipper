@@ -2,7 +2,6 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import SearchBar from '@components/SearchBar.astro';
-import CallbackForm from '@components/CallbackForm.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { getPartnerProviders, formatSpeed, formatPrice, MAIN_PHONE } from '@lib/providers';
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
@@ -24,7 +23,7 @@ const dealProviders = [...partners].sort((a, b) => {
 });
 ---
 <Base
-  title="Best Internet Deals — Lowest Prices on High-Speed Internet"
+  title="Best Internet Deals (2026) — Lowest Prices on High-Speed Internet"
   description="Your internet bill too high? Compare the lowest internet prices from top providers. Exclusive deals, promo rates, and price-lock guarantees. Save up to 50%."
   schema={[
     generateBreadcrumbSchema([
@@ -165,12 +164,56 @@ const dealProviders = [...partners].sort((a, b) => {
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- Related Pages -->
   <section class="section" style="background:var(--bg-secondary);">
-    <div class="container" style="max-width:650px;">
-      <CallbackForm providerName="Internet 4 ALL (Deals)" phone={MAIN_PHONE} />
+    <div class="container">
+      <h2 class="text-center reveal" style="margin-bottom:var(--space-xl);">More Ways to <span class="gradient-text">Save & Compare</span></h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-md);">
+        <a href="/providers" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">🔍</div>
+          <h4 style="font-size: var(--text-base);">All Providers</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Compare every provider at your address</p>
+        </a>
+        <a href="/compare" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">⚖️</div>
+          <h4 style="font-size: var(--text-base);">Compare Plans</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Side-by-side provider comparison</p>
+        </a>
+        <a href="/cheap-internet" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">🏷️</div>
+          <h4 style="font-size: var(--text-base);">Cheap Internet</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Plans under $30/month</p>
+        </a>
+        <a href="/fastest-internet" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">⚡</div>
+          <h4 style="font-size: var(--text-base);">Fastest Internet</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Gigabit and multi-gig speeds</p>
+        </a>
+        <a href="/no-contract-internet" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">🔓</div>
+          <h4 style="font-size: var(--text-base);">No-Contract Plans</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Cancel anytime, no early fees</p>
+        </a>
+        <a href="/bill-analyzer" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">🧾</div>
+          <h4 style="font-size: var(--text-base);">Bill Analyzer</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Find hidden fees in your bill</p>
+        </a>
+        <a href="/speed-test" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">📊</div>
+          <h4 style="font-size: var(--text-base);">Speed Test</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Are you getting what you pay for?</p>
+        </a>
+        <a href="/switch" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">🔄</div>
+          <h4 style="font-size: var(--text-base);">Switch Provider</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Hassle-free provider switching</p>
+        </a>
+      </div>
     </div>
   </section>
+
+
 
   <StickyCallBar text="Stop overpaying. Call for today's best deal." />
 </Base>

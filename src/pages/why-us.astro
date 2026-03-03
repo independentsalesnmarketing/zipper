@@ -2,7 +2,6 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import CallbackForm from '@components/CallbackForm.astro';
 import { generateBreadcrumbSchema } from '@lib/utils';
 ---
 <Base
@@ -187,15 +186,6 @@ import { generateBreadcrumbSchema } from '@lib/utils';
         <h3>Ready to Experience the Difference?</h3>
         <p style="margin-top:var(--space-md); margin-bottom:var(--space-lg); color:var(--text-secondary);">Enter your ZIP code and see why people choose us.</p>
         <a href="/providers" class="btn btn-primary btn-lg">Compare Providers Now</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Callback Form -->
-  <section class="section" style="background:var(--bg-secondary); margin-top:var(--space-4xl);">
-    <div class="container container--narrow">
-      <div class="reveal">
-        <CallbackForm />
       </div>
     </div>
   </section>

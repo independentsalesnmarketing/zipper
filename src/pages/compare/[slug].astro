@@ -1,0 +1,367 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getPartnerProviders, getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, stateNames } from '@lib/providers';
+import { formatPhoneForTel, slugify, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+export function getStaticPaths() {
+  const partners = getPartnerProviders();
+  const paths: { params: { slug: string }; props: { providerA: Provider; providerB: Provider } }[] = [];
+
+  for (let i = 0; i < partners.length; i++) {
+    for (let j = i + 1; j < partners.length; j++) {
+      const a = partners[i];
+      const b = partners[j];
+      // Alphabetical order for URL consistency
+      const [first, second] = [a, b].sort((x, y) => x.name.localeCompare(y.name));
+      paths.push({
+        params: { slug: `${first.slug}-vs-${second.slug}` },
+        props: { providerA: first, providerB: second },
+      });
+    }
+  }
+
+  return paths;
+}
+
+interface Props { providerA: Provider; providerB: Provider; }
+const { providerA, providerB } = Astro.props;
+
+const aMinPrice = getMinPrice(providerA);
+const bMinPrice = getMinPrice(providerB);
+const aMaxSpeed = getMaxSpeed(providerA);
+const bMaxSpeed = getMaxSpeed(providerB);
+const aMaxUpload = getMaxUpload(providerA);
+const bMaxUpload = getMaxUpload(providerB);
+
+const year = new Date().getFullYear();
+
+// Determine winners per category
+const speedWinner = aMaxSpeed > bMaxSpeed ? providerA : aMaxSpeed < bMaxSpeed ? providerB : null;
+const priceWinner = aMinPrice < bMinPrice ? providerA : aMinPrice > bMinPrice ? providerB : null;
+const ratingWinner = providerA.rating > providerB.rating ? providerA : providerA.rating < providerB.rating ? providerB : null;
+const uploadWinner = aMaxUpload > bMaxUpload ? providerA : aMaxUpload < bMaxUpload ? providerB : null;
+
+// Shared coverage
+const aCoverage = new Set(providerA.coverage.includes('Nationwide') ? Object.keys(stateNames) : providerA.coverage);
+const bCoverage = new Set(providerB.coverage.includes('Nationwide') ? Object.keys(stateNames) : providerB.coverage);
+const sharedStates = [...aCoverage].filter(s => bCoverage.has(s));
+const onlyA = [...aCoverage].filter(s => !bCoverage.has(s));
+const onlyB = [...bCoverage].filter(s => !aCoverage.has(s));
+
+// Overall recommendation
+const aScore = (speedWinner === providerA ? 1 : 0) + (priceWinner === providerA ? 1 : 0) + (ratingWinner === providerA ? 1 : 0) + (uploadWinner === providerA ? 1 : 0);
+const bScore = (speedWinner === providerB ? 1 : 0) + (priceWinner === providerB ? 1 : 0) + (ratingWinner === providerB ? 1 : 0) + (uploadWinner === providerB ? 1 : 0);
+const overallWinner = aScore > bScore ? providerA : bScore > aScore ? providerB : null;
+
+const faqs = [
+  { question: `Is ${providerA.name} or ${providerB.name} better?`, answer: `${overallWinner ? `Overall, ${overallWinner.name} edges ahead based on our analysis.` : `Both ${providerA.name} and ${providerB.name} are strong choices.`} ${speedWinner ? `${speedWinner.name} is faster (${formatSpeed(getMaxSpeed(speedWinner))}).` : 'They match on speed.'} ${priceWinner ? `${priceWinner.name} is cheaper (from ${formatPrice(getMinPrice(priceWinner))}/mo).` : 'They match on price.'} The best choice depends on what's available at your specific address.` },
+  { question: `Which is faster — ${providerA.name} or ${providerB.name}?`, answer: `${speedWinner ? `${speedWinner.name} offers faster maximum download speeds at ${formatSpeed(getMaxSpeed(speedWinner))} vs ${formatSpeed(getMaxSpeed(speedWinner === providerA ? providerB : providerA))}.` : `Both offer comparable speeds up to ${formatSpeed(aMaxSpeed)}.`}` },
+  { question: `Which is cheaper — ${providerA.name} or ${providerB.name}?`, answer: `${priceWinner ? `${priceWinner.name} has more affordable plans starting at ${formatPrice(getMinPrice(priceWinner))}/mo compared to ${formatPrice(getMinPrice(priceWinner === providerA ? providerB : providerA))}/mo for ${priceWinner === providerA ? providerB.name : providerA.name}.` : `Both start at similar prices around ${formatPrice(aMinPrice)}/mo.`} Call us for exclusive promotional pricing not listed online.` },
+  { question: `Can I get both ${providerA.name} and ${providerB.name} at my address?`, answer: `Both ${providerA.name} and ${providerB.name} are available in ${sharedStates.length > 10 ? 'many states' : sharedStates.length + ' states'}${sharedStates.length > 0 ? ', including ' + sharedStates.slice(0, 5).map(s => stateNames[s]).join(', ') : ''}. Enter your ZIP code at the top to check availability at your exact address.` },
+  { question: `What type of internet do ${providerA.name} and ${providerB.name} offer?`, answer: `${providerA.name} offers ${providerA.types.map(t => getTypeLabel(t)).join(', ')} internet. ${providerB.name} offers ${providerB.types.map(t => getTypeLabel(t)).join(', ')} internet. ${providerA.types.includes('fiber') || providerB.types.includes('fiber') ? 'Fiber internet provides the fastest and most reliable connection.' : ''}` },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Compare', url: 'https://internet4all.com/compare' },
+    { name: `${providerA.name} vs ${providerB.name}`, url: `https://internet4all.com/compare/${providerA.slug}-vs-${providerB.slug}` },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`${providerA.name} vs ${providerB.name} (${year}) — Speed, Price & Plans Compared`}
+  description={`${providerA.name} vs ${providerB.name}: which is better? Compare speeds (${formatSpeed(aMaxSpeed)} vs ${formatSpeed(bMaxSpeed)}), prices ($${aMinPrice} vs $${bMinPrice}/mo), ratings, coverage & plans side by side.`}
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[
+        { name: 'Compare', url: '/compare' },
+        { name: `${providerA.name} vs ${providerB.name}` },
+      ]} />
+
+      <!-- Hero -->
+      <div class="reveal text-center" style="margin-bottom: var(--space-2xl);">
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          <span class="gradient-text">{providerA.name}</span> vs <span class="gradient-text">{providerB.name}</span>
+        </h1>
+        <p style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 650px; margin-inline: auto;">
+          A detailed head-to-head comparison of {providerA.name} and {providerB.name} to help you choose the right provider.
+        </p>
+      </div>
+
+      <!-- VS Cards -->
+      <div class="grid grid-2 reveal" style="margin-bottom: var(--space-2xl); gap: var(--space-lg);">
+        <div class="card" style="padding: var(--space-xl); text-align: center; position: relative;">
+          {overallWinner === providerA && (
+            <div class="badge badge-blue" style="position:absolute;top:var(--space-md);right:var(--space-md);">🏆 Our Pick</div>
+          )}
+          <div style="width:64px;height:64px;border-radius:var(--radius-lg);background:var(--gray-50);border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:var(--space-md);">
+            {providerA.logo ? (
+              <img src={providerA.logo} alt={providerA.name} width="64" height="64" style="padding:8px;object-fit:contain;" />
+            ) : (
+              <span style="font-weight:800;font-size:var(--text-xl);color:var(--text-tertiary);">{providerA.name.charAt(0)}</span>
+            )}
+          </div>
+          <h2 style="font-size: var(--text-2xl);">{providerA.name}</h2>
+          <div class="flex justify-center gap-xs flex-wrap mt-sm">
+            {providerA.types.map(t => <span class={`tag tag-${t}`}>{getTypeLabel(t)}</span>)}
+          </div>
+          <div class="stats-bar" style="margin-top: var(--space-lg);">
+            <div class="stat-item">
+              <div class="stat-value" style={speedWinner === providerA ? 'color:var(--brand-green)' : ''}>{formatSpeed(aMaxSpeed)}</div>
+              <div class="stat-label">Max Speed</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" style={priceWinner === providerA ? 'color:var(--brand-green)' : ''}>{formatPrice(aMinPrice)}</div>
+              <div class="stat-label">Starting Price</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" style={ratingWinner === providerA ? 'color:var(--brand-green)' : ''}>{providerA.rating}★</div>
+              <div class="stat-label">Rating</div>
+            </div>
+          </div>
+          {providerA.isPartner && (
+            <a href={formatPhoneForTel(providerA.phone)} class="btn btn-cta" style="margin-top: var(--space-lg);">
+              Call {providerA.phone}
+            </a>
+          )}
+        </div>
+
+        <div class="card" style="padding: var(--space-xl); text-align: center; position: relative;">
+          {overallWinner === providerB && (
+            <div class="badge badge-blue" style="position:absolute;top:var(--space-md);right:var(--space-md);">🏆 Our Pick</div>
+          )}
+          <div style="width:64px;height:64px;border-radius:var(--radius-lg);background:var(--gray-50);border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:var(--space-md);">
+            {providerB.logo ? (
+              <img src={providerB.logo} alt={providerB.name} width="64" height="64" style="padding:8px;object-fit:contain;" />
+            ) : (
+              <span style="font-weight:800;font-size:var(--text-xl);color:var(--text-tertiary);">{providerB.name.charAt(0)}</span>
+            )}
+          </div>
+          <h2 style="font-size: var(--text-2xl);">{providerB.name}</h2>
+          <div class="flex justify-center gap-xs flex-wrap mt-sm">
+            {providerB.types.map(t => <span class={`tag tag-${t}`}>{getTypeLabel(t)}</span>)}
+          </div>
+          <div class="stats-bar" style="margin-top: var(--space-lg);">
+            <div class="stat-item">
+              <div class="stat-value" style={speedWinner === providerB ? 'color:var(--brand-green)' : ''}>{formatSpeed(bMaxSpeed)}</div>
+              <div class="stat-label">Max Speed</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" style={priceWinner === providerB ? 'color:var(--brand-green)' : ''}>{formatPrice(bMinPrice)}</div>
+              <div class="stat-label">Starting Price</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" style={ratingWinner === providerB ? 'color:var(--brand-green)' : ''}>{providerB.rating}★</div>
+              <div class="stat-label">Rating</div>
+            </div>
+          </div>
+          {providerB.isPartner && (
+            <a href={formatPhoneForTel(providerB.phone)} class="btn btn-cta" style="margin-top: var(--space-lg);">
+              Call {providerB.phone}
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Detailed Comparison Table -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Head-to-Head Comparison</h2>
+        <div style="overflow-x: auto;">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th style="width:30%">Feature</th>
+                <th style="width:35%">{providerA.name}</th>
+                <th style="width:35%">{providerB.name}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:600;">Internet Type</td>
+                <td>{providerA.types.map(t => getTypeLabel(t)).join(', ')}</td>
+                <td>{providerB.types.map(t => getTypeLabel(t)).join(', ')}</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Max Download Speed</td>
+                <td class={speedWinner === providerA ? 'highlight' : ''}>{formatSpeed(aMaxSpeed)}</td>
+                <td class={speedWinner === providerB ? 'highlight' : ''}>{formatSpeed(bMaxSpeed)}</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Max Upload Speed</td>
+                <td class={uploadWinner === providerA ? 'highlight' : ''}>{formatSpeed(aMaxUpload)}</td>
+                <td class={uploadWinner === providerB ? 'highlight' : ''}>{formatSpeed(bMaxUpload)}</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Starting Price</td>
+                <td class={priceWinner === providerA ? 'highlight' : ''}>{formatPrice(aMinPrice)}/mo</td>
+                <td class={priceWinner === providerB ? 'highlight' : ''}>{formatPrice(bMinPrice)}/mo</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Number of Plans</td>
+                <td>{providerA.plans.length} plans</td>
+                <td>{providerB.plans.length} plans</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Data Cap</td>
+                <td>{providerA.plans[0]?.dataCap || 'N/A'}</td>
+                <td>{providerB.plans[0]?.dataCap || 'N/A'}</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Contract</td>
+                <td>{providerA.plans[0]?.contract || 'None'}</td>
+                <td>{providerB.plans[0]?.contract || 'None'}</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Customer Rating</td>
+                <td class={ratingWinner === providerA ? 'highlight' : ''}>{'★'.repeat(Math.floor(providerA.rating))} {providerA.rating} ({providerA.reviewCount.toLocaleString()} reviews)</td>
+                <td class={ratingWinner === providerB ? 'highlight' : ''}>{'★'.repeat(Math.floor(providerB.rating))} {providerB.rating} ({providerB.reviewCount.toLocaleString()} reviews)</td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Coverage</td>
+                <td>{providerA.coverage.includes('Nationwide') ? '50 states' : `${providerA.coverage.length} states`}</td>
+                <td>{providerB.coverage.includes('Nationwide') ? '50 states' : `${providerB.coverage.length} states`}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Winner Summary -->
+      <div class="grid grid-2 reveal" style="margin-bottom: var(--space-3xl); gap: var(--space-lg);">
+        <div class="card" style="padding: var(--space-xl);">
+          <h3 style="margin-bottom: var(--space-lg);">Choose {providerA.name} If You Want:</h3>
+          <ul style="list-style:none;padding:0;margin:0;">
+            {speedWinner === providerA && <li style="padding:var(--space-xs) 0;">✅ <strong>Faster speeds</strong> — up to {formatSpeed(aMaxSpeed)}</li>}
+            {priceWinner === providerA && <li style="padding:var(--space-xs) 0;">✅ <strong>Lower prices</strong> — from {formatPrice(aMinPrice)}/mo</li>}
+            {ratingWinner === providerA && <li style="padding:var(--space-xs) 0;">✅ <strong>Higher customer satisfaction</strong> — {providerA.rating} stars</li>}
+            {uploadWinner === providerA && <li style="padding:var(--space-xs) 0;">✅ <strong>Better upload speeds</strong> — great for remote work</li>}
+            {providerA.plans[0]?.dataCap === 'Unlimited' && <li style="padding:var(--space-xs) 0;">✅ <strong>Unlimited data</strong> — no caps or throttling</li>}
+            {providerA.plans[0]?.contract === 'None' && <li style="padding:var(--space-xs) 0;">✅ <strong>No contract</strong> — cancel anytime</li>}
+            {providerA.types.includes('fiber') && <li style="padding:var(--space-xs) 0;">✅ <strong>Fiber internet</strong> — most reliable connection</li>}
+          </ul>
+          {providerA.isPartner && (
+            <a href={formatPhoneForTel(providerA.phone)} class="btn btn-cta" style="margin-top: var(--space-lg);">
+              Get {providerA.name} — Call {providerA.phone}
+            </a>
+          )}
+        </div>
+        <div class="card" style="padding: var(--space-xl);">
+          <h3 style="margin-bottom: var(--space-lg);">Choose {providerB.name} If You Want:</h3>
+          <ul style="list-style:none;padding:0;margin:0;">
+            {speedWinner === providerB && <li style="padding:var(--space-xs) 0;">✅ <strong>Faster speeds</strong> — up to {formatSpeed(bMaxSpeed)}</li>}
+            {priceWinner === providerB && <li style="padding:var(--space-xs) 0;">✅ <strong>Lower prices</strong> — from {formatPrice(bMinPrice)}/mo</li>}
+            {ratingWinner === providerB && <li style="padding:var(--space-xs) 0;">✅ <strong>Higher customer satisfaction</strong> — {providerB.rating} stars</li>}
+            {uploadWinner === providerB && <li style="padding:var(--space-xs) 0;">✅ <strong>Better upload speeds</strong> — great for remote work</li>}
+            {providerB.plans[0]?.dataCap === 'Unlimited' && <li style="padding:var(--space-xs) 0;">✅ <strong>Unlimited data</strong> — no caps or throttling</li>}
+            {providerB.plans[0]?.contract === 'None' && <li style="padding:var(--space-xs) 0;">✅ <strong>No contract</strong> — cancel anytime</li>}
+            {providerB.types.includes('fiber') && <li style="padding:var(--space-xs) 0;">✅ <strong>Fiber internet</strong> — most reliable connection</li>}
+          </ul>
+          {providerB.isPartner && (
+            <a href={formatPhoneForTel(providerB.phone)} class="btn btn-cta" style="margin-top: var(--space-lg);">
+              Get {providerB.name} — Call {providerB.phone}
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Plans Side by Side -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Plans Comparison</h2>
+        <div class="grid grid-2" style="gap: var(--space-xl);">
+          <div>
+            <h3 style="margin-bottom: var(--space-md);">{providerA.name} Plans</h3>
+            {providerA.plans.map(plan => (
+              <div class="card" style="padding: var(--space-md); margin-bottom: var(--space-sm);">
+                <div class="flex justify-between items-center">
+                  <div>
+                    <strong>{plan.name}</strong>
+                    <div style="font-size:var(--text-sm);color:var(--text-tertiary);">{formatSpeed(plan.speed)} · {plan.dataCap}</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div style="font-weight:700;font-size:var(--text-lg);">{formatPrice(plan.promoPrice)}<span style="font-size:var(--text-sm);font-weight:400;">/mo</span></div>
+                    {plan.promoPrice < plan.price && <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-decoration:line-through;">{formatPrice(plan.price)}/mo</div>}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div>
+            <h3 style="margin-bottom: var(--space-md);">{providerB.name} Plans</h3>
+            {providerB.plans.map(plan => (
+              <div class="card" style="padding: var(--space-md); margin-bottom: var(--space-sm);">
+                <div class="flex justify-between items-center">
+                  <div>
+                    <strong>{plan.name}</strong>
+                    <div style="font-size:var(--text-sm);color:var(--text-tertiary);">{formatSpeed(plan.speed)} · {plan.dataCap}</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div style="font-weight:700;font-size:var(--text-lg);">{formatPrice(plan.promoPrice)}<span style="font-size:var(--text-sm);font-weight:400;">/mo</span></div>
+                    {plan.promoPrice < plan.price && <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-decoration:line-through;">{formatPrice(plan.price)}/mo</div>}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Shared Coverage -->
+      {sharedStates.length > 0 && (
+        <div class="reveal" style="margin-bottom: var(--space-3xl);">
+          <h2 style="margin-bottom: var(--space-xl);">Where Both Are Available</h2>
+          <p style="color:var(--text-secondary);margin-bottom:var(--space-lg);">
+            Both {providerA.name} and {providerB.name} are available in {sharedStates.length} states. Enter your ZIP code to check if both serve your address.
+          </p>
+          <div class="flex flex-wrap gap-sm">
+            {sharedStates.sort().slice(0, 30).map(s => (
+              <span class="tag">{stateNames[s] || s}</span>
+            ))}
+            {sharedStates.length > 30 && <span class="tag" style="color:var(--text-tertiary);">+{sharedStates.length - 30} more</span>}
+          </div>
+        </div>
+      )}
+
+      <!-- Other Comparisons -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">More Provider Comparisons</h2>
+        <div class="grid grid-3 gap-md">
+          {getPartnerProviders()
+            .filter(p => p.id !== providerA.id && p.id !== providerB.id)
+            .slice(0, 6)
+            .map(p => {
+              const [first, second] = [providerA, p].sort((x, y) => x.name.localeCompare(y.name));
+              return (
+                <a href={`/compare/${first.slug}-vs-${second.slug}`} class="card" style="padding: var(--space-md); text-decoration: none;">
+                  <span style="font-weight:600;color:var(--text-primary);">{providerA.name} vs {p.name}</span>
+                  <span style="display:block;font-size:var(--text-sm);color:var(--text-tertiary);margin-top:var(--space-xs);">Compare plans & prices →</span>
+                </a>
+              );
+            })}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">{providerA.name} vs {providerB.name} FAQ</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <StickyCallBar text={`Compare ${providerA.name} vs ${providerB.name} — call for best deal`} />
+</Base>

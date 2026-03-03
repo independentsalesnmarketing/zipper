@@ -1,0 +1,84 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema } from '@lib/utils';
+
+const year = new Date().getFullYear();
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+const guides = [
+  { slug: 'seniors', icon: '👴', title: 'Best Internet for Seniors', description: 'Simple, affordable plans with reliable service and great customer support. No contracts required.', speed: '25–100 Mbps', budget: '$25–$55/mo' },
+  { slug: 'low-income', icon: '🏠', title: 'Internet for Low-Income Households', description: 'Free and discounted internet programs including ACP, Lifeline, and provider discounts.', speed: '25–100 Mbps', budget: '$0–$30/mo' },
+  { slug: 'rural', icon: '🌾', title: 'Best Internet for Rural Areas', description: 'Satellite, fixed wireless, 5G, and DSL options for remote and underserved areas.', speed: '25–300 Mbps', budget: '$30–$120/mo' },
+  { slug: 'gaming', icon: '🎮', title: 'Best Internet for Gaming', description: 'Low ping, fast download speeds, no data caps. Fiber, cable, and 5G plans for gamers.', speed: '100–1000 Mbps', budget: '$50–$100/mo' },
+  { slug: 'streaming', icon: '📺', title: 'Best Internet for Streaming', description: 'Enough speed for 4K, no data caps, and reliable WiFi for Netflix, Disney+, and more.', speed: '25–300 Mbps', budget: '$40–$80/mo' },
+  { slug: 'apartments', icon: '🏢', title: 'Best Internet for Apartments', description: 'No-install options, no-contract plans, and easy self-setup for renters.', speed: '100–500 Mbps', budget: '$30–$70/mo' },
+  { slug: 'students', icon: '🎓', title: 'Best Internet for Students', description: 'Budget-friendly, no-contract plans perfect for dorms and off-campus living.', speed: '50–300 Mbps', budget: '$25–$60/mo' },
+  { slug: 'work-from-home', icon: '💼', title: 'Best Internet for Working from Home', description: 'Fast upload speeds, low latency, and reliable connections for remote workers.', speed: '100–500 Mbps', budget: '$50–$90/mo' },
+  { slug: 'small-business', icon: '🏪', title: 'Best Internet for Small Business', description: 'SLA guarantees, static IPs, priority support, and business-grade reliability.', speed: '200–1000 Mbps', budget: '$60–$200/mo' },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Internet Guides by Need', url: 'https://internet4all.com/internet-for' },
+  ]),
+];
+---
+<Base
+  title={`Internet Guides by Need (${year}) — Find the Right Plan for You`}
+  description={`Find the best internet for your specific needs: gaming, streaming, work from home, seniors, students, rural areas, and more. Expert guides updated ${year}.`}
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Internet Guides' }]} />
+
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Find Internet for <span class="gradient-text">Your Needs</span>
+        </h1>
+        <p class="hero-subtitle" style="max-width: 660px; margin-inline: auto;">
+          Not all internet is created equal. Different lifestyles need different plans.
+          Choose your situation below for personalized recommendations.
+        </p>
+      </div>
+
+      <div class="grid grid-3" style="gap: var(--space-lg); margin-bottom: var(--space-3xl);">
+        {guides.map(guide => (
+          <a href={`/internet-for/${guide.slug}`} class="card reveal" style="padding: var(--space-xl); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+            <div style="font-size: 2.5rem; margin-bottom: var(--space-md);">{guide.icon}</div>
+            <h2 style="font-size: var(--text-lg); margin-bottom: var(--space-sm);">{guide.title}</h2>
+            <p class="text-secondary" style="font-size: var(--text-sm); margin-bottom: var(--space-md);">{guide.description}</p>
+            <div class="flex gap-lg" style="font-size: var(--text-xs); color: var(--text-tertiary);">
+              <span>⚡ {guide.speed}</span>
+              <span>💰 {guide.budget}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <p style="font-size: var(--text-lg); margin-bottom: var(--space-md);">Not sure what you need?</p>
+        <a href={phoneHref} class="btn btn-call" style="font-size: var(--text-lg);">
+          📞 Call {phone} — We'll Help You Choose
+        </a>
+      </div>
+
+      <!-- Related -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">More Guides</h2>
+        <div class="grid grid-4" style="gap: var(--space-sm);">
+          <a href="/best-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;font-size:var(--text-sm);">🏆 Best Providers</a>
+          <a href="/fastest-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;font-size:var(--text-sm);">⚡ Fastest Internet</a>
+          <a href="/cheap-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;font-size:var(--text-sm);">💰 Cheapest Plans</a>
+          <a href="/no-contract-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;font-size:var(--text-sm);">🔓 No-Contract</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <StickyCallBar phone={phone} message="Personalized advice — call now" />
+</Base>

@@ -2,7 +2,6 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import SearchBar from '@components/SearchBar.astro';
-import CallbackForm from '@components/CallbackForm.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { getPartnerProviders, formatSpeed, formatPrice, renderStars, MAIN_PHONE } from '@lib/providers';
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
@@ -137,13 +136,6 @@ const faqs = [
           </div>
         ))}
       </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section">
-    <div class="container" style="max-width:650px;">
-      <CallbackForm providerName="Internet 4 ALL (Movers)" phone={MAIN_PHONE} />
     </div>
   </section>
 

@@ -2,14 +2,24 @@
 import Base from '@layouts/Base.astro';
 import SearchBar from '@components/SearchBar.astro';
 import ProviderCard from '@components/ProviderCard.astro';
-import CallbackForm from '@components/CallbackForm.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed } from '@lib/providers';
 import { generateFAQSchema } from '@lib/utils';
+import { stateNames } from '@lib/providers';
 
 const allProviders = getAllProviders();
 const partners = getPartnerProviders();
 const topProviders = partners.slice(0, 6);
+const heroLogos = [...partners, ...allProviders.filter(p => !p.isPartner)].slice(0, 12);
+
+// All states for browse section
+const allStates = Object.entries(stateNames)
+  .map(([abbr, name]) => ({
+    abbr,
+    name,
+    slug: name.toLowerCase().replace(/\s+/g, '-'),
+  }))
+  .sort((a, b) => a.name.localeCompare(b.name));
 
 const faqs = [
   { question: 'How does Internet 4 ALL work?', answer: 'We compare internet providers available at your address. Enter your ZIP code and we show you every option — plans, prices, speeds, and ratings. When you\'re ready, call our experts and they\'ll set everything up for you.' },
@@ -37,35 +47,38 @@ const faqs = [
       <div class="hero-center reveal">
         <div class="hero-badge" title="Based on cumulative service transactions and customer feedback since 2023">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          Trusted by 500,000+ Americans <span style="font-size: 0.85em; margin-left: 0.5rem; cursor: help;" title="Verified customer interactions and successful connections">ℹ️</span>
+          Trusted by 500,000+ Americans
         </div>
         <h1 class="hero-title">
-          Find the Best <span class="gradient-text">Internet Providers</span> for Your Area
+          Find the Best <span class="gradient-text">Internet Providers</span> in Your Area
         </h1>
         <p class="hero-subtitle">
-          Stop overpaying for internet. See what providers are available at your address and switch to the best deal in your area.
+          Stop overpaying for internet. Compare every provider at your address and save up to $50/month.
         </p>
       </div>
 
-      <div class="hero-search reveal">
+      <!-- Search Bar (centered, prominent) -->
+      <div class="hero-search reveal" style="margin-bottom: var(--space-xl);">
         <SearchBar size="large" placeholder="Enter your ZIP code" />
-        <p class="hero-hint" style="text-align: center;">No signup required • See all options in 10 seconds</p>
+        <p class="hero-hint">No signup required &bull; See all options in 10 seconds</p>
       </div>
 
-      <!-- Provider Logos Section -->
-      <div class="providers-logos reveal" style="margin-top: var(--space-2xl);">
-        <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-lg);">Compare from 25+ providers</p>
-        <div class="logos-grid">
-          {allProviders.map((p) => (
-            <a href={`/provider/${p.slug}`} class="logo-item" title={p.name}>
-              {p.logo ? (
-                <img src={p.logo} alt={p.name} loading="lazy" />
-              ) : (
-                <span class="logo-fallback">{p.name.charAt(0)}</span>
-              )}
-            </a>
-          ))}
-        </div>
+      <!-- Provider logos row (no text, clean horizontal strip) -->
+      <div class="hero-logos-strip reveal">
+        {heroLogos.slice(0, 10).map((p) => (
+          <a href={`/provider/${p.slug}`} class="hero-logo-chip" title={p.name}>
+            {p.logo ? (
+              <img src={p.logo} alt={p.name} loading="lazy" width="64" height="64" />
+            ) : (
+              <span class="logo-fallback">{p.name.charAt(0)}</span>
+            )}
+          </a>
+        ))}
+      </div>
+
+      <div class="text-center reveal" style="margin-top: var(--space-lg);">
+        <p style="font-size: var(--text-sm); color: rgba(255,255,255,0.6); margin-bottom: var(--space-sm);">Compare from {allProviders.length}+ providers</p>
+        <a href="/providers" class="btn btn-secondary" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25);color:#fff;">See All Providers &rarr;</a>
       </div>
     </div>
   </section>
@@ -250,11 +263,77 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Callback Form -->
+  <!-- Explore More -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center reveal">
+        <h2>Explore Internet Options</h2>
+        <p class="section-subtitle">Everything you need to find, compare, and connect to the best internet</p>
+      </div>
+      <div style="margin-top: var(--space-2xl); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg);">
+        <div class="card reveal reveal-delay-1" style="padding: var(--space-lg);">
+          <h4 style="margin-bottom: var(--space-md);">🔍 Compare & Save</h4>
+          <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+            <a href="/compare" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Compare Providers Side-by-Side →</a>
+            <a href="/deals" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Today's Best Deals →</a>
+            <a href="/cheap-internet" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Cheapest Internet Plans →</a>
+            <a href="/fastest-internet" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Fastest Internet Providers →</a>
+            <a href="/best-internet" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Best Internet Providers →</a>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-2" style="padding: var(--space-lg);">
+          <h4 style="margin-bottom: var(--space-md);">🌐 Internet Types</h4>
+          <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+            <a href="/internet-types/fiber" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Fiber Internet →</a>
+            <a href="/internet-types/cable" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Cable Internet →</a>
+            <a href="/internet-types/5g" style="color: var(--brand-blue-light); font-size: var(--text-sm);">5G Home Internet →</a>
+            <a href="/internet-types/dsl" style="color: var(--brand-blue-light); font-size: var(--text-sm);">DSL Internet →</a>
+            <a href="/internet-types/satellite" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Satellite Internet →</a>
+            <a href="/home-internet" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Home Internet Guide →</a>
+            <a href="/wireless-internet" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Wireless Internet →</a>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-3" style="padding: var(--space-lg);">
+          <h4 style="margin-bottom: var(--space-md);">👥 Internet For You</h4>
+          <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+            <a href="/internet-for/gaming" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Best Internet for Gaming →</a>
+            <a href="/internet-for/streaming" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Best Internet for Streaming →</a>
+            <a href="/internet-for/work-from-home" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Internet for Working from Home →</a>
+            <a href="/internet-for/seniors" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Internet for Seniors →</a>
+            <a href="/internet-for/students" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Internet for Students →</a>
+            <a href="/internet-for/rural" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Internet for Rural Areas →</a>
+            <a href="/internet-for/large-households" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Internet for Large Households →</a>
+          </div>
+        </div>
+        <div class="card reveal reveal-delay-4" style="padding: var(--space-lg);">
+          <h4 style="margin-bottom: var(--space-md);">🛠️ Tools & Resources</h4>
+          <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+            <a href="/speed-test" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Speed Test →</a>
+            <a href="/quiz" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Internet Quiz →</a>
+            <a href="/bill-analyzer" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Bill Analyzer →</a>
+            <a href="/check-availability" style="color: var(--brand-blue-light); font-size: var(--text-sm);">Check Availability →</a>
+            <a href="/resources" style="color: var(--brand-blue-light); font-size: var(--text-sm);">All Resources & Guides →</a>
+            <a href="/about" style="color: var(--brand-blue-light); font-size: var(--text-sm);">About Internet 4 ALL →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Browse by State -->
   <section class="section" style="background: var(--bg-secondary);">
-    <div class="container container--narrow">
-      <div class="reveal">
-        <CallbackForm />
+    <div class="container">
+      <div class="text-center reveal">
+        <h2>Find Internet Providers in Your State</h2>
+        <p class="section-subtitle">Browse all 50 states plus DC to see what's available in your area</p>
+      </div>
+      <div class="states-grid" style="margin-top: var(--space-2xl);">
+        {allStates.map((s) => (
+          <a href={`/internet-providers/state/${s.slug}`} class="state-link reveal">
+            <span class="state-abbr">{s.abbr}</span>
+            <span class="state-name">{s.name}</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>

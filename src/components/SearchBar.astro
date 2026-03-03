@@ -1,12 +1,11 @@
 ---
 interface Props {
   placeholder?: string;
-  action?: string;
   size?: 'default' | 'large';
 }
-const { placeholder = 'Enter your ZIP code', action = '/providers', size = 'default' } = Astro.props;
+const { placeholder = 'Enter your ZIP code', size = 'default' } = Astro.props;
 ---
-<form class="search-bar" action={action} method="get" style={size === 'large' ? 'max-width: 580px;' : ''}>
+<form class="search-bar" style={size === 'large' ? 'max-width: 580px;' : ''}>
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; color: var(--text-tertiary);"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
   <input
     type="text"
@@ -24,3 +23,27 @@ const { placeholder = 'Enter your ZIP code', action = '/providers', size = 'defa
     Compare Plans Now
   </button>
 </form>
+
+<script>
+  document.querySelectorAll('.search-bar').forEach(form => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = form.querySelector('input[name="zip"]') as HTMLInputElement;
+      const zip = input?.value?.trim();
+      if (zip && /^[0-9]{5}$/.test(zip)) {
+        // Try the pre-generated ZIP page first; fall back to check-availability
+        fetch(`/internet-providers/zip/${zip}/`, { method: 'HEAD' })
+          .then(res => {
+            if (res.ok) {
+              window.location.href = `/internet-providers/zip/${zip}`;
+            } else {
+              window.location.href = `/check-availability?zip=${zip}`;
+            }
+          })
+          .catch(() => {
+            window.location.href = `/internet-providers/zip/${zip}`;
+          });
+      }
+    });
+  });
+</script>

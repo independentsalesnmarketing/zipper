@@ -1,0 +1,854 @@
+---
+/**
+ * LiveProviders — Real-time BroadbandMap API integration
+ *
+ * Two layers:
+ *   1. Auto-verification: On page load, fetches FCC-sourced provider data
+ *      for the city/ZIP and renders a "Verified Providers" panel.
+ *   2. Address search: User enters their street address → geocode → exact
+ *      BroadbandMap lookup → address-specific results + cell coverage.
+ *
+ * Static content (rendered at build time) is the SEO foundation.
+ * This component adds the live trust layer on top.
+ */
+interface Props {
+  cityName: string;
+  state: string;
+  zip?: string;
+  lat?: number;
+  lng?: number;
+}
+const { cityName, state, zip, lat, lng } = Astro.props;
+
+// Build partner phone lookup from providers.json at build time
+import { providers as allProviders, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel } from '@lib/utils';
+
+const partnerPhones: Record<string, { phone: string; name: string; id: string }> = {};
+for (const p of allProviders.filter(p => p.isPartner)) {
+  partnerPhones[p.id] = { phone: p.phone, name: p.name, id: p.id };
+}
+---
+
+<!-- Live Provider Verification Section -->
+<section
+  id="live-check"
+  class="reveal"
+  data-city={cityName}
+  data-state={state}
+  data-zip={zip || ''}
+  data-lat={lat?.toString() || ''}
+  data-lng={lng?.toString() || ''}
+  data-partners={JSON.stringify(partnerPhones)}
+  data-main-phone={MAIN_PHONE}
+  style="margin-bottom:var(--space-3xl);"
+>
+  <!-- Verified Provider Listing (primary) -->
+  <div id="live-verify" style="margin-bottom:var(--space-xl);">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-md);">
+      <h2 style="font-size:var(--text-2xl);margin:0;">Verified Providers in {zip ? `ZIP ${zip}` : `${cityName}, ${state}`}</h2>
+      <span id="live-badge" style="font-size:var(--text-xs);padding:3px 10px;border-radius:var(--radius-full);background:var(--surface-secondary);color:var(--text-tertiary);font-weight:600;">LOADING</span>
+    </div>
+    <p id="live-subtitle" style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-lg);">
+      Loading internet providers for {cityName}, {state}...
+    </p>
+    <div id="live-results" style="min-height:200px;">
+      <div id="live-spinner" style="display:grid;gap:var(--space-sm);">
+        <div style="height:72px;background:var(--surface-secondary);border-radius:var(--radius-md);animation:pulse 1.5s ease-in-out infinite;"></div>
+        <div style="height:72px;background:var(--surface-secondary);border-radius:var(--radius-md);animation:pulse 1.5s ease-in-out infinite;animation-delay:0.15s;"></div>
+        <div style="height:72px;background:var(--surface-secondary);border-radius:var(--radius-md);animation:pulse 1.5s ease-in-out infinite;animation-delay:0.3s;"></div>
+        <div style="height:72px;background:var(--surface-secondary);border-radius:var(--radius-md);animation:pulse 1.5s ease-in-out infinite;animation-delay:0.45s;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Address Search — Conversion Push -->
+  <div class="card" style="padding:var(--space-xl);margin-top:var(--space-lg);border:2px solid var(--brand-blue);background:linear-gradient(135deg,rgba(0,82,255,0.03),rgba(0,213,132,0.03));">
+    <div style="text-align:center;margin-bottom:var(--space-md);">
+      <h3 style="font-size:var(--text-xl);margin-bottom:var(--space-xs);">Check Your Exact Address</h3>
+      <p style="font-size:var(--text-sm);color:var(--text-secondary);">Availability varies by street &mdash; enter your address for the most accurate results.</p>
+    </div>
+    <form id="address-form" style="display:flex;gap:var(--space-sm);flex-wrap:wrap;">
+      <div style="flex:1;min-width:250px;position:relative;">
+        <input
+          type="text"
+          id="address-input"
+          placeholder={`e.g. 123 Main St, ${cityName}, ${state}`}
+          style="width:100%;padding:var(--space-sm) var(--space-md);border:1px solid var(--border);border-radius:var(--radius-md);font-size:var(--text-sm);background:var(--surface);color:var(--text-primary);"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <ul id="address-suggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:50;background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius-md) var(--radius-md);list-style:none;margin:0;padding:0;max-height:240px;overflow-y:auto;box-shadow:0 6px 20px rgba(0,0,0,0.2);"></ul>
+      </div>
+      <button type="submit" class="btn btn-primary" style="white-space:nowrap;">
+        Check Availability
+      </button>
+      <button type="button" id="geo-btn" class="btn btn-secondary" style="white-space:nowrap;" title="Detect my approximate location">
+        &#127758; Detect My Area
+      </button>
+    </form>
+    <div id="address-results" style="display:none;margin-top:var(--space-lg);">
+      <!-- JS populates -->
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.15; }
+  }
+  .live-provider-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--border);
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+  .live-provider-row:last-child { border-bottom: none; }
+  .live-provider-name {
+    font-weight: 600;
+    font-size: var(--text-sm);
+    min-width: 140px;
+  }
+  .live-provider-tech {
+    font-size: var(--text-xs);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .live-provider-speed {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    min-width: 120px;
+    text-align: right;
+  }
+  .live-partner-badge {
+    font-size: 0.6rem;
+    background: var(--brand-green);
+    color: var(--gray-950);
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    margin-left: var(--space-xs);
+  }
+  .live-cell-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--text-sm);
+  }
+  .signal-bar {
+    display: inline-block;
+    height: 8px;
+    border-radius: 4px;
+    min-width: 40px;
+  }
+  #address-input:focus {
+    outline: none;
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(0,82,255,0.1);
+  }
+  #address-suggestions li {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-primary);
+    transition: background 0.1s;
+  }
+  #address-suggestions li:last-child { border-bottom: none; }
+  #address-suggestions li:hover,
+  #address-suggestions li.active {
+    background: rgba(0,82,255,0.08);
+  }
+  #address-suggestions li .suggestion-main {
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  #address-suggestions li .suggestion-sub {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    margin-top: 2px;
+  }
+  .inline-form-card {
+    margin-top: var(--space-lg);
+    padding: var(--space-lg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+  }
+  .inline-form-card .form-row {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-sm);
+  }
+  .inline-form-card .form-row input,
+  .inline-form-card .form-row select {
+    flex: 1;
+    min-width: 140px;
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    background: var(--surface);
+    color: var(--text-primary);
+  }
+  .inline-form-card .form-row input:focus,
+  .inline-form-card .form-row select:focus {
+    outline: none;
+    border-color: var(--brand-blue);
+  }
+</style>
+
+<script>
+// ============================================================
+// LiveProviders — Client-side BroadbandMap API Integration
+// NO browser geolocation permissions used. IP-based location only.
+// ============================================================
+
+(function() {
+  'use strict';
+
+  // --- Partner name matching (API name → our partner ID) ---
+  const PARTNER_MAP: Record<string, string> = {
+    'spectrum': 'spectrum', 'charter': 'spectrum',
+    'verizon': 'verizon',
+    'at&t': 'att', 'att': 'att',
+    't-mobile': 'tmobile', 'tmobile': 'tmobile',
+    'metronet': 'tmobile',
+    'windstream': 'windstream', 'kinetic': 'windstream',
+    'optimum': 'optimum', 'altice': 'optimum', 'suddenlink': 'optimum',
+    'frontier': 'frontier',
+    'earthlink': 'earthlink',
+    'brightspeed': 'brightspeed', 'centurylink': 'brightspeed', 'lumen': 'brightspeed',
+    'altafiber': 'altafiber', 'cincinnati bell': 'altafiber',
+  };
+
+  // --- API name → display name overrides ---
+  // T-Mobile acquired Metronet; all Metronet results show as T-Mobile Fiber
+  const NAME_REMAP: Record<string, string> = {
+    'metronet': 'T-Mobile Fiber',
+  };
+
+  // --- Technology color map ---
+  const TECH_COLORS: Record<string, string> = {
+    'fiber': 'rgba(0,213,132,0.15)', 'cable': 'rgba(0,82,255,0.12)',
+    'dsl': 'rgba(255,170,0,0.12)', 'fixed wireless': 'rgba(0,200,255,0.12)',
+    '5g': 'rgba(0,200,255,0.15)', 'leo satellite': 'rgba(139,92,246,0.12)',
+    'gso satellite': 'rgba(139,92,246,0.1)', 'satellite': 'rgba(139,92,246,0.1)',
+  };
+
+  // --- Signal level colors ---
+  const SIGNAL_COLORS: Record<string, string> = {
+    'excellent': '#00d584', 'strong': '#00d584', 'good': '#0052ff',
+    'fair': '#ffaa00', 'weak': '#ff4444',
+  };
+
+  const CACHE_KEY = 'bbmap_cache';
+  const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
+
+  // --- Cache helpers (localStorage) ---
+  function getCache(key: string): any {
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      const cache = JSON.parse(raw);
+      const entry = cache[key];
+      if (!entry) return null;
+      if (Date.now() - entry.ts > CACHE_TTL) { delete cache[key]; localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); return null; }
+      return entry.data;
+    } catch { return null; }
+  }
+
+  function setCache(key: string, data: any): void {
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      const cache = raw ? JSON.parse(raw) : {};
+      const keys = Object.keys(cache);
+      if (keys.length > 50) { delete cache[keys[0]]; }
+      cache[key] = { data, ts: Date.now() };
+      localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
+    } catch { /* localStorage full or unavailable */ }
+  }
+
+  // --- Format speed ---
+  function fmtSpeed(mbps: number): string {
+    if (mbps >= 1000) return (mbps / 1000).toFixed(mbps % 1000 === 0 ? 0 : 1) + ' Gbps';
+    return mbps + ' Mbps';
+  }
+
+  // --- Match API name to partner ID ---
+  function matchPartner(apiName: string): string | null {
+    const lower = apiName.toLowerCase().trim();
+    for (const [key, id] of Object.entries(PARTNER_MAP)) {
+      if (lower.includes(key)) return id;
+    }
+    return null;
+  }
+
+  // ============================================================
+  // IP-based geolocation — NO permission popup. Uses visitor's IP.
+  // Returns approximate lat/lng/city/zip — cached for the session.
+  // ============================================================
+  async function getIpLocation(): Promise<{lat: number, lng: number, city: string, region: string, zip: string} | null> {
+    const cached = getCache('ip_location');
+    if (cached) return cached;
+
+    // Try primary service (ipapi.co — free 1k/day, no key needed, returns JSON with lat/lng/city)
+    try {
+      const resp = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) });
+      if (resp.ok) {
+        const d = await resp.json();
+        if (d.latitude && d.longitude) {
+          const result = { lat: d.latitude, lng: d.longitude, city: d.city || '', region: d.region_code || '', zip: d.postal || '' };
+          setCache('ip_location', result);
+          return result;
+        }
+      }
+    } catch { /* fallback */ }
+
+    // Fallback service (ip-api.com — free 45/min)
+    try {
+      const resp = await fetch('http://ip-api.com/json/?fields=lat,lon,city,regionName,zip', { signal: AbortSignal.timeout(5000) });
+      if (resp.ok) {
+        const d = await resp.json();
+        if (d.lat && d.lon) {
+          const result = { lat: d.lat, lng: d.lon, city: d.city || '', region: d.regionName || '', zip: d.zip || '' };
+          setCache('ip_location', result);
+          return result;
+        }
+      }
+    } catch { /* proceed without */ }
+
+    return null;
+  }
+
+  // --- BroadbandMap API calls ---
+  async function fetchProviders(lat: number, lng: number): Promise<any> {
+    const cacheKey = `inet_${lat.toFixed(3)}_${lng.toFixed(3)}`;
+    const cached = getCache(cacheKey);
+    if (cached) return cached;
+
+    const resp = await fetch(`https://broadbandmap.com/api/v1/location/internet?lat=${lat}&lng=${lng}`);
+    if (resp.status === 429) throw new Error('RATE_LIMITED');
+    if (!resp.ok) throw new Error(`HTTP_${resp.status}`);
+    const data = await resp.json();
+    setCache(cacheKey, data);
+    return data;
+  }
+
+  async function fetchCellCoverage(lat: number, lng: number): Promise<any> {
+    const cacheKey = `cell_${lat.toFixed(3)}_${lng.toFixed(3)}`;
+    const cached = getCache(cacheKey);
+    if (cached) return cached;
+
+    const resp = await fetch(`https://broadbandmap.com/api/v1/location/cell?lat=${lat}&lng=${lng}`);
+    if (resp.status === 429) return null;
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    setCache(cacheKey, data);
+    return data;
+  }
+
+  // --- Geocode via Nominatim (OpenStreetMap) ---
+  async function geocode(query: string): Promise<{lat: number, lng: number, display: string} | null> {
+    const cacheKey = `geo_${query.toLowerCase().replace(/\s+/g, '_')}`;
+    const cached = getCache(cacheKey);
+    if (cached) return cached;
+
+    const resp = await fetch(
+      `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&countrycodes=us`,
+      { headers: { 'User-Agent': 'Internet4ALL/1.0 (internet4all.com)' } }
+    );
+    if (!resp.ok) return null;
+    const results = await resp.json();
+    if (!results.length) return null;
+    const r = results[0];
+    const result = { lat: parseFloat(r.lat), lng: parseFloat(r.lon), display: r.display_name };
+    setCache(cacheKey, result);
+    return result;
+  }
+
+  // --- Address autocomplete via Nominatim ---
+  async function searchAddresses(query: string): Promise<Array<{display: string, short: string, detail: string, lat: number, lng: number}>> {
+    if (query.length < 4) return [];
+
+    const cacheKey = `ac_${query.toLowerCase().replace(/\s+/g, '_')}`;
+    const cached = getCache(cacheKey);
+    if (cached) return cached;
+
+    try {
+      const resp = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=5&countrycodes=us&addressdetails=1`,
+        { headers: { 'User-Agent': 'Internet4ALL/1.0 (internet4all.com)' } }
+      );
+      if (!resp.ok) return [];
+      const results = await resp.json();
+      const suggestions = results.map((r: any) => {
+        const parts = (r.display_name || '').split(',').map((s: string) => s.trim());
+        const short = parts.slice(0, 2).join(', ');
+        const detail = parts.slice(2, 4).join(', ');
+        return { display: r.display_name, short, detail, lat: parseFloat(r.lat), lng: parseFloat(r.lon) };
+      });
+      setCache(cacheKey, suggestions);
+      return suggestions;
+    } catch { return []; }
+  }
+
+  // --- Debounce utility ---
+  function debounce(fn: (...args: any[]) => void, delay: number): (...args: any[]) => void {
+    let timer: ReturnType<typeof setTimeout>;
+    return (...args: any[]) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), delay); };
+  }
+
+  // --- Remap API provider name to display name ---
+  function remapName(apiName: string): string {
+    const lower = apiName.toLowerCase().trim();
+    for (const [key, displayName] of Object.entries(NAME_REMAP)) {
+      if (lower.includes(key)) return displayName;
+    }
+    return apiName;
+  }
+
+  // --- Render provider list ---
+  function renderProviderList(providers: any[], partners: Record<string, any>, mainPhone: string): string {
+    if (!providers || !providers.length) {
+      return '<p style="color:var(--text-tertiary);font-size:var(--text-sm);padding:var(--space-md) 0;">No providers found at this exact location. Try a more specific address or call us for help.</p>';
+    }
+
+    const byName = new Map<string, any[]>();
+    for (const p of providers) {
+      const name = remapName(p.name || 'Unknown');
+      if (!byName.has(name)) byName.set(name, []);
+      byName.get(name)!.push(p);
+    }
+
+    const entries = Array.from(byName.entries()).map(([name, techs]) => {
+      const partnerId = matchPartner(name);
+      const maxDown = Math.max(...techs.map((t: any) => t.max_download_mbps || 0));
+      const maxUp = Math.max(...techs.map((t: any) => t.max_upload_mbps || 0));
+      const techTypes = [...new Set(techs.map((t: any) => t.technology || 'Unknown'))];
+      return { name, partnerId, maxDown, maxUp, techTypes, isPartner: !!partnerId && !!partners[partnerId] };
+    }).sort((a, b) => {
+      if (a.isPartner && !b.isPartner) return -1;
+      if (!a.isPartner && b.isPartner) return 1;
+      return b.maxDown - a.maxDown;
+    });
+
+    let html = '<div style="display:grid;gap:var(--space-sm);">';
+    for (const e of entries) {
+      const partner = e.partnerId ? partners[e.partnerId] : null;
+      const bg = e.isPartner ? 'background:rgba(0,82,255,0.04);border-color:rgba(0,82,255,0.2);' : '';
+      html += `<div class="live-provider-row" style="border:1px solid var(--border);border-radius:var(--radius-md);${bg}">`;
+      html += `<div style="display:flex;align-items:center;gap:var(--space-sm);flex-wrap:wrap;">`;
+      html += `<span class="live-provider-name">${e.name}</span>`;
+      for (const tech of e.techTypes) {
+        const color = TECH_COLORS[tech.toLowerCase()] || 'rgba(128,128,128,0.1)';
+        html += `<span class="live-provider-tech" style="background:${color};">${tech}</span>`;
+      }
+      html += `</div>`;
+      html += `<div style="display:flex;align-items:center;gap:var(--space-md);flex-wrap:wrap;">`;
+      html += `<span class="live-provider-speed">&#8595; ${fmtSpeed(e.maxDown)} / &#8593; ${fmtSpeed(e.maxUp)}</span>`;
+      if (partner) {
+        html += `<a href="tel:+1${partner.phone.replace(/\D/g, '')}" class="btn btn-cta btn-sm">Get This Plan</a>`;
+      }
+      html += `</div></div>`;
+    }
+    html += '</div>';
+
+    html += `<div style="margin-top:var(--space-lg);text-align:center;">`;
+    html += `<p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-sm);">Need help choosing? Our experts compare every option &mdash; free, no obligation.</p>`;
+    html += `<a href="tel:+1${mainPhone.replace(/\D/g, '')}" class="btn btn-cta">Call ${mainPhone}</a>`;
+    html += `</div>`;
+
+    return html;
+  }
+
+  // --- Render cell coverage ---
+  function renderCellCoverage(data: any): string {
+    if (!data || !data.coverage || !data.coverage.length) return '';
+
+    const byNetwork = new Map<string, any>();
+    for (const c of data.coverage) {
+      const net = c.network || 'Unknown';
+      const existing = byNetwork.get(net);
+      if (!existing || (c.technology === '5G' && existing.technology !== '5G')) {
+        byNetwork.set(net, c);
+      }
+    }
+
+    let html = `<div style="margin-top:var(--space-lg);padding:var(--space-md) var(--space-lg);border:1px solid var(--border);border-radius:var(--radius-md);">`;
+    html += `<div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-sm);">`;
+    html += `<span style="font-size:1rem;"></span>`;
+    html += `<strong style="font-size:var(--text-sm);">Cell Coverage at This Location</strong>`;
+    html += `</div>`;
+    html += `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--space-xs);">`;
+
+    for (const [network, c] of byNetwork) {
+      const level = (c.signal_level || 'unknown').toLowerCase();
+      const color = SIGNAL_COLORS[level] || 'var(--text-tertiary)';
+      const tech = c.technology || '';
+      html += `<div class="live-cell-row">`;
+      html += `<span style="font-weight:600;min-width:80px;">${network}</span>`;
+      html += `<span style="font-size:var(--text-xs);color:var(--text-tertiary);">${tech}</span>`;
+      html += `<span style="color:${color};font-weight:600;font-size:var(--text-sm);">${c.signal_level || 'N/A'}</span>`;
+      html += `</div>`;
+    }
+
+    html += `</div></div>`;
+    return html;
+  }
+
+  // --- Render inline callback/signup form ---
+  function renderInlineForm(mainPhone: string, context: string): string {
+    let html = `<div style="margin-top:var(--space-lg);display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-lg);align-items:start;">`;
+
+    // Left: Phone CTA
+    html += `<div style="padding:var(--space-lg);text-align:center;background:linear-gradient(135deg,rgba(0,82,255,0.06),rgba(0,213,132,0.06));border-radius:var(--radius-md);border:1px solid rgba(0,82,255,0.15);">`;
+    html += `<p style="font-weight:700;font-size:var(--text-md);margin-bottom:var(--space-xs);">Call for Instant Help</p>`;
+    html += `<p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-md);">Speak to an expert now — free, no obligation.</p>`;
+    html += `<a href="tel:+1${mainPhone.replace(/\D/g, '')}" class="btn btn-cta" style="width:100%;">Call ${mainPhone}</a>`;
+    html += `<p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Mon-Fri 8AM-10PM, Sat 9AM-7PM ET</p>`;
+    html += `</div>`;
+
+    // Right: Quick callback form
+    html += `<div class="inline-form-card">`;
+    html += `<p style="font-weight:700;font-size:var(--text-md);margin-bottom:var(--space-xs);text-align:center;">&#128231; Request a Callback</p>`;
+    html += `<p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-md);text-align:center;">We'll call you back — pick a time that works.</p>`;
+    html += `<form class="live-callback-form" data-context="${context}">`;
+    html += `<div class="form-row"><input type="text" name="name" placeholder="Your Name" required /><input type="tel" name="phone" placeholder="(555) 123-4567" required /></div>`;
+    html += `<div class="form-row"><input type="email" name="email" placeholder="Email Address" required /><input type="text" name="zip" placeholder="ZIP Code" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required /></div>`;
+    html += `<div class="form-row"><select name="time"><option value="morning">Morning (8AM-12PM)</option><option value="afternoon" selected>Afternoon (12PM-5PM)</option><option value="evening">Evening (5PM-8PM)</option></select></div>`;
+    html += `<button type="submit" class="btn btn-primary" style="width:100%;margin-top:var(--space-xs);">Get My Free Recommendation</button>`;
+    html += `</form>`;
+    html += `</div>`;
+
+    html += `</div>`;
+
+    // Responsive: stack on mobile
+    html += `<style>.live-callback-form .form-row{display:flex;gap:var(--space-sm);flex-wrap:wrap;margin-bottom:var(--space-sm)}.live-callback-form input,.live-callback-form select{flex:1;min-width:140px;padding:var(--space-xs) var(--space-sm);border:1px solid var(--border);border-radius:var(--radius-md);font-size:var(--text-sm);background:var(--surface);color:var(--text-primary)}.live-callback-form input:focus,.live-callback-form select:focus{outline:none;border-color:var(--brand-blue)}@media(max-width:640px){div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important}}</style>`;
+
+    return html;
+  }
+
+  // --- Auto-verify on page load ---
+  async function autoVerify(el: HTMLElement): Promise<void> {
+    const { city, state: st, zip, lat: latStr, lng: lngStr, partners: partnersStr, mainPhone } = el.dataset;
+    const partners = JSON.parse(partnersStr || '{}');
+    const resultsEl = el.querySelector('#live-results') as HTMLElement;
+    const badgeEl = el.querySelector('#live-badge') as HTMLElement;
+    const subtitleEl = el.querySelector('#live-subtitle') as HTMLElement;
+
+    let lat = latStr ? parseFloat(latStr) : NaN;
+    let lng = lngStr ? parseFloat(lngStr) : NaN;
+
+    // If no lat/lng, geocode the city/ZIP
+    if (isNaN(lat) || isNaN(lng)) {
+      const query = zip ? `${zip}, ${city}, ${st}` : `${city}, ${st}`;
+      const geo = await geocode(query);
+      if (!geo) {
+        badgeEl.textContent = 'OFFLINE';
+        badgeEl.style.background = 'rgba(255,68,68,0.1)';
+        badgeEl.style.color = '#ff4444';
+        subtitleEl.textContent = 'Could not determine location. Scroll down for available plans.';
+        resultsEl.innerHTML = '';
+        return;
+      }
+      lat = geo.lat;
+      lng = geo.lng;
+    }
+
+    try {
+      const data = await fetchProviders(lat, lng);
+      const providers = data?.providers || [];
+
+      badgeEl.textContent = `VERIFIED`;
+      badgeEl.style.background = 'rgba(0,213,132,0.15)';
+      badgeEl.style.color = '#00d584';
+
+      const loc = zip ? `ZIP ${zip}` : `${city}, ${st}`;
+      subtitleEl.innerHTML = `<span style="color:var(--brand-green);font-weight:700;">&#10003;</span> ${providers.length} provider${providers.length !== 1 ? 's' : ''} verified in ${loc}`;
+
+      resultsEl.innerHTML = renderProviderList(providers, partners, mainPhone || '');
+    } catch (e: any) {
+      if (e.message === 'RATE_LIMITED') {
+        badgeEl.textContent = 'BUSY';
+        badgeEl.style.background = 'rgba(255,170,0,0.15)';
+        badgeEl.style.color = '#ffaa00';
+        subtitleEl.textContent = 'Live data temporarily unavailable. Scroll down for available plans.';
+      } else {
+        badgeEl.textContent = 'OFFLINE';
+        badgeEl.style.background = 'rgba(255,68,68,0.1)';
+        badgeEl.style.color = '#ff4444';
+        subtitleEl.textContent = 'Live data temporarily unavailable. Scroll down for available plans.';
+      }
+      resultsEl.innerHTML = '';
+    }
+  }
+
+  // --- Address search handler ---
+  async function handleAddressSearch(el: HTMLElement, address: string, geoLat?: number, geoLng?: number): Promise<void> {
+    const partners = JSON.parse(el.dataset.partners || '{}');
+    const mainPhone = el.dataset.mainPhone || '';
+    const resultsEl = el.querySelector('#address-results') as HTMLElement;
+
+    resultsEl.style.display = 'block';
+    const searchLabel = (geoLat !== undefined) ? 'your detected area' : address;
+    resultsEl.innerHTML = `<div style="display:flex;align-items:center;gap:var(--space-sm);padding:var(--space-md) 0;">
+      <div style="width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--brand-blue);border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+      <span style="font-size:var(--text-sm);color:var(--text-tertiary);">Looking up providers at ${searchLabel}...</span>
+    </div>`;
+
+    let lat: number, lng: number, displayAddr: string;
+
+    if (geoLat !== undefined && geoLng !== undefined) {
+      lat = geoLat;
+      lng = geoLng;
+      displayAddr = 'Your Detected Area';
+    } else {
+      const geo = await geocode(address);
+      if (!geo) {
+        resultsEl.innerHTML = '<p style="color:#ff4444;font-size:var(--text-sm);padding:var(--space-sm) 0;">Could not find that address. Try including your city and state (e.g. "123 Main St, Dallas, TX").</p>';
+        return;
+      }
+      lat = geo.lat;
+      lng = geo.lng;
+      displayAddr = geo.display.split(',').slice(0, 3).join(',');
+    }
+
+    try {
+      const [inetData, cellData] = await Promise.all([
+        fetchProviders(lat, lng),
+        fetchCellCoverage(lat, lng),
+      ]);
+
+      const providers = inetData?.providers || [];
+
+      let html = `<div style="padding:var(--space-sm) var(--space-md);background:rgba(0,213,132,0.08);border-radius:var(--radius-md);margin-bottom:var(--space-md);display:flex;align-items:center;gap:var(--space-sm);flex-wrap:wrap;">`;
+      html += `<span style="color:var(--brand-green);font-weight:700;font-size:1.1rem;">&#128205;</span>`;
+      html += `<div>`;
+      html += `<strong style="font-size:var(--text-sm);">${providers.length} providers at ${displayAddr}</strong>`;
+      html += `<br/><span style="font-size:var(--text-xs);color:var(--text-tertiary);">Verified by FCC Broadband Data &bull; H3 hex: ${inetData?.h3_hex || 'N/A'}</span>`;
+      html += `</div></div>`;
+
+      html += renderProviderList(providers, partners, mainPhone);
+      html += renderCellCoverage(cellData);
+
+      // Dual CTA: phone + inline callback form
+      html += renderInlineForm(mainPhone, `address-search-${displayAddr}`);
+
+      resultsEl.innerHTML = html;
+
+      // Wire up inline callback form submission
+      const form = resultsEl.querySelector('.live-callback-form') as HTMLFormElement;
+      if (form) {
+        form.addEventListener('submit', (e: Event) => {
+          e.preventDefault();
+          const fd = new FormData(form);
+          const name = fd.get('name') as string;
+          form.innerHTML = `<div style="text-align:center;padding:var(--space-lg);"><span style="font-size:2rem;">&#10003;</span><p style="font-weight:700;margin-top:var(--space-sm);">Thanks, ${name}!</p><p style="font-size:var(--text-sm);color:var(--text-secondary);">We'll call you during your preferred time.</p></div>`;
+        });
+      }
+
+    } catch {
+      resultsEl.innerHTML = '<p style="color:#ff4444;font-size:var(--text-sm);padding:var(--space-sm) 0;">Unable to fetch provider data right now. Please call us and we\'ll check availability for you.</p>';
+    }
+  }
+
+  // ============================================================
+  // Autocomplete dropdown logic
+  // ============================================================
+  function initAutocomplete(el: HTMLElement): void {
+    const input = el.querySelector('#address-input') as HTMLInputElement;
+    const suggestions = el.querySelector('#address-suggestions') as HTMLUListElement;
+    if (!input || !suggestions) return;
+
+    let activeSuggestionIndex = -1;
+    let currentSuggestions: Array<{display: string, short: string, detail: string, lat: number, lng: number}> = [];
+
+    function showSuggestions(items: typeof currentSuggestions): void {
+      currentSuggestions = items;
+      activeSuggestionIndex = -1;
+      if (!items.length) {
+        suggestions.style.display = 'none';
+        return;
+      }
+      suggestions.innerHTML = items.map((s, i) => {
+        return `<li data-idx="${i}"><div class="suggestion-main">${s.short}</div><div class="suggestion-sub">${s.detail}</div></li>`;
+      }).join('');
+      suggestions.style.display = 'block';
+    }
+
+    function closeSuggestions(): void {
+      suggestions.style.display = 'none';
+      currentSuggestions = [];
+      activeSuggestionIndex = -1;
+    }
+
+    function selectSuggestion(idx: number): void {
+      const s = currentSuggestions[idx];
+      if (!s) return;
+      input.value = s.short + (s.detail ? ', ' + s.detail : '');
+      closeSuggestions();
+      // Trigger search with known lat/lng
+      handleAddressSearch(el, s.display, s.lat, s.lng);
+    }
+
+    // Debounced search
+    const doSearch = debounce(async (query: string) => {
+      if (query.length < 4) { closeSuggestions(); return; }
+      const results = await searchAddresses(query);
+      // Only show if input still focused and value matches
+      if (document.activeElement === input && input.value.trim().length >= 4) {
+        showSuggestions(results);
+      }
+    }, 350);
+
+    input.addEventListener('input', () => {
+      const val = input.value.trim();
+      if (val.length < 4) { closeSuggestions(); return; }
+      doSearch(val);
+    });
+
+    input.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (!currentSuggestions.length) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeSuggestionIndex = Math.min(activeSuggestionIndex + 1, currentSuggestions.length - 1);
+        updateActive();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeSuggestionIndex = Math.max(activeSuggestionIndex - 1, 0);
+        updateActive();
+      } else if (e.key === 'Enter' && activeSuggestionIndex >= 0) {
+        e.preventDefault();
+        selectSuggestion(activeSuggestionIndex);
+      } else if (e.key === 'Escape') {
+        closeSuggestions();
+      }
+    });
+
+    function updateActive(): void {
+      const items = suggestions.querySelectorAll('li');
+      items.forEach((li, i) => {
+        li.classList.toggle('active', i === activeSuggestionIndex);
+      });
+    }
+
+    // Click on suggestion
+    suggestions.addEventListener('mousedown', (e: MouseEvent) => {
+      const li = (e.target as HTMLElement).closest('li');
+      if (li) {
+        const idx = parseInt(li.getAttribute('data-idx') || '0', 10);
+        selectSuggestion(idx);
+      }
+    });
+
+    // Close on outside click (delayed to allow click on suggestion)
+    input.addEventListener('blur', () => {
+      setTimeout(() => closeSuggestions(), 200);
+    });
+  }
+
+  // ============================================================
+  // "Detect My Area" — IP-based, no permission needed
+  // ============================================================
+  async function handleDetectArea(el: HTMLElement): Promise<void> {
+    const geoBtn = el.querySelector('#geo-btn') as HTMLButtonElement;
+    const input = el.querySelector('#address-input') as HTMLInputElement;
+
+    geoBtn.disabled = true;
+    geoBtn.innerHTML = '&#8987; Detecting...';
+
+    const loc = await getIpLocation();
+
+    if (!loc) {
+      geoBtn.disabled = false;
+      geoBtn.innerHTML = '&#127758; Detect My Area';
+      // Show error in results
+      const resultsEl = el.querySelector('#address-results') as HTMLElement;
+      resultsEl.style.display = 'block';
+      resultsEl.innerHTML = '<p style="color:#ff4444;font-size:var(--text-sm);padding:var(--space-sm) 0;">Could not detect your location. Please enter your address manually.</p>';
+      return;
+    }
+
+    // Update the input with detected city
+    input.value = `${loc.city}, ${loc.region}`;
+    input.placeholder = `${loc.city}, ${loc.region} (detected)`;
+
+    geoBtn.disabled = false;
+    geoBtn.innerHTML = '&#127758; Detect My Area';
+
+    // Run provider search for detected location
+    handleAddressSearch(el, `${loc.city}, ${loc.region} ${loc.zip}`, loc.lat, loc.lng);
+  }
+
+  // --- Pre-populate placeholder from IP ---
+  async function prefillFromIP(el: HTMLElement): Promise<void> {
+    const input = el.querySelector('#address-input') as HTMLInputElement;
+    if (!input) return;
+
+    // Only prefill if not already on a page matching the user's location
+    const loc = await getIpLocation();
+    if (loc && loc.city) {
+      const pageCitySt = `${el.dataset.city || ''}, ${el.dataset.state || ''}`.toLowerCase();
+      const userCitySt = `${loc.city}, ${loc.region}`.toLowerCase();
+      if (pageCitySt !== userCitySt) {
+        input.placeholder = `Your area: ${loc.city}, ${loc.region} — or enter an address`;
+      }
+    }
+  }
+
+  // --- Initialize ---
+  function init(): void {
+    const el = document.getElementById('live-check');
+    if (!el) return;
+
+    // Auto-verify providers on page load
+    autoVerify(el);
+
+    // Initialize address autocomplete
+    initAutocomplete(el);
+
+    // Address search form
+    const form = el.querySelector('#address-form') as HTMLFormElement;
+    const input = el.querySelector('#address-input') as HTMLInputElement;
+    const geoBtn = el.querySelector('#geo-btn') as HTMLButtonElement;
+
+    if (form) {
+      form.addEventListener('submit', (e: Event) => {
+        e.preventDefault();
+        const addr = input.value.trim();
+        if (addr.length < 5) return;
+        handleAddressSearch(el, addr);
+      });
+    }
+
+    // "Detect My Area" button — IP-based, no permission needed
+    if (geoBtn) {
+      geoBtn.addEventListener('click', () => {
+        handleDetectArea(el);
+      });
+    }
+
+    // Silently prefill placeholder from IP location
+    prefillFromIP(el);
+  }
+
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

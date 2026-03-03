@@ -1,0 +1,121 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getCollection } from 'astro:content';
+import { generateBreadcrumbSchema } from '@lib/utils';
+
+export function getStaticPaths() {
+  const cats = ['guides', 'comparisons', 'news', 'tips', 'deals', 'technology', 'moving'];
+  return cats.map(cat => ({
+    params: { category: cat },
+    props: { category: cat },
+  }));
+}
+
+const categoryLabels: Record<string, string> = {
+  guides: 'Guides',
+  comparisons: 'Comparisons',
+  news: 'Industry News',
+  tips: 'Tips & Tricks',
+  deals: 'Deals & Offers',
+  technology: 'Technology',
+  moving: 'Moving',
+};
+
+const categoryDescriptions: Record<string, string> = {
+  guides: 'In-depth guides to help you choose, set up, and optimize your internet service.',
+  comparisons: 'Head-to-head provider and technology comparisons to find the best fit.',
+  news: 'The latest updates from the internet service industry.',
+  tips: 'Quick tips and tricks to get the most out of your internet connection.',
+  deals: 'Current promotions, discounts, and exclusive offers from top providers.',
+  technology: 'Deep dives into internet technologies — fiber, cable, DSL, 5G, and more.',
+  moving: 'Everything you need to know about internet service when relocating.',
+};
+
+const { category } = Astro.props;
+
+const allPosts = (await getCollection('blog'))
+  .filter(post => !post.data.draft && post.data.category === category)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const label = categoryLabels[category] || category;
+const description = categoryDescriptions[category] || `Articles about ${category}`;
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Blog', url: 'https://internet4all.com/blog' },
+    { name: label, url: `https://internet4all.com/blog/category/${category}` },
+  ]),
+];
+---
+<Base
+  title={`${label} — Internet Blog — Internet 4 ALL`}
+  description={description}
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[
+        { name: 'Blog', url: '/blog' },
+        { name: label },
+      ]} />
+
+      <header class="reveal" style="text-align: center; margin-bottom: var(--space-2xl);">
+        <span class="tag" style="margin-bottom: var(--space-sm); display: inline-block;">{label}</span>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-sm);">{label}</h1>
+        <p style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 600px; margin: 0 auto;">{description}</p>
+      </header>
+
+      <!-- Category Navigation -->
+      <div class="reveal" style="display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-xs); margin-bottom: var(--space-2xl);">
+        <a href="/blog" class="btn btn-secondary" style="font-size: var(--text-sm); padding: var(--space-xs) var(--space-md);">All</a>
+        {['guides','comparisons','news','tips','deals','technology','moving'].map(cat => (
+          <a
+            href={`/blog/category/${cat}`}
+            class={`btn ${cat === category ? 'btn-cta' : 'btn-secondary'}`}
+            style="font-size: var(--text-sm); padding: var(--space-xs) var(--space-md);"
+          >
+            {categoryLabels[cat]}
+          </a>
+        ))}
+      </div>
+
+      {allPosts.length > 0 ? (
+        <div class="grid grid-3" style="gap: var(--space-xl);">
+          {allPosts.map(post => (
+            <a href={`/blog/${post.slug}`} class="card reveal" style="padding: var(--space-xl); text-decoration: none; display: flex; flex-direction: column;">
+              {post.data.featured && (
+                <span style="font-size: var(--text-xs); color: var(--brand-blue); font-weight: 600; text-transform: uppercase; margin-bottom: var(--space-xs);">Featured</span>
+              )}
+              <h3 style="color: var(--text-primary); margin-bottom: var(--space-sm); font-size: var(--text-lg);">{post.data.title}</h3>
+              <p style="color: var(--text-secondary); font-size: var(--text-sm); flex: 1;">{post.data.description}</p>
+              <div style="display: flex; align-items: center; gap: var(--space-md); margin-top: var(--space-md); padding-top: var(--space-md); border-top: 1px solid var(--border);">
+                <span style="font-size: var(--text-xs); color: var(--text-tertiary);">{formatDate(post.data.date)}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="card" style="padding: var(--space-2xl); text-align: center;">
+          <p style="color: var(--text-secondary); font-size: var(--text-lg); margin-bottom: var(--space-md);">No articles in this category yet.</p>
+          <a href="/blog" class="btn btn-cta">Browse All Articles</a>
+        </div>
+      )}
+
+      <!-- Bottom CTA -->
+      <div class="card reveal" style="margin-top: var(--space-3xl); padding: var(--space-xl); background: linear-gradient(135deg, var(--gray-900), var(--gray-800)); text-align: center;">
+        <h3 style="margin-bottom: var(--space-sm);">Find the Best Internet Provider</h3>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">Compare plans, speeds, and prices — all in one place.</p>
+        <a href="/providers" class="btn btn-cta">Compare Providers</a>
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar />
+</Base>

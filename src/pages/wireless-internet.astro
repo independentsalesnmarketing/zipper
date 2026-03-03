@@ -1,0 +1,270 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getPartnerProviders, getProvidersByType, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+const allProviders = getAllProviders();
+const wirelessProviders = allProviders
+  .filter(p => p.types.includes('fixed-wireless') || p.types.includes('5g'))
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return b.rating - a.rating;
+  });
+const fiveGProviders = allProviders.filter(p => p.types.includes('5g'));
+const fixedWirelessProviders = allProviders.filter(p => p.types.includes('fixed-wireless'));
+const satelliteProviders = allProviders.filter(p => p.types.includes('satellite'));
+const mobileHotspotProviders = allProviders.filter(p => p.types.includes('5g') || p.types.includes('fixed-wireless'));
+
+const wirelessTypes = [
+  { name: '5G Home Internet', icon: '📱', desc: 'Uses 5G cellular towers to deliver home internet without wires. Speeds of 100–300+ Mbps in most areas, up to 1 Gbps with mmWave 5G. No installation needed — plug in and go.', providers: fiveGProviders, pros: ['No installation required', 'No contracts with most providers', 'Expanding rapidly'], cons: ['Speed varies by location', 'Performance depends on tower distance', 'May have deprioritization'] },
+  { name: 'Fixed Wireless', icon: '📶', desc: 'A radio antenna on your roof communicates with a nearby tower to deliver broadband without cables. Speeds of 25–1,000 Mbps. Popular in suburban and rural areas where cable and fiber aren\'t available.', providers: fixedWirelessProviders, pros: ['Available in underserved areas', 'Fast installation', 'Competitive speeds'], cons: ['Requires line-of-sight to tower', 'Weather can affect signal', 'May need outdoor equipment'] },
+  { name: 'Satellite Internet', icon: '🛰️', desc: 'Beams internet from satellites in orbit directly to a dish at your home. Available virtually anywhere in the continental US. LEO satellites (Starlink) offer dramatically better speeds and latency.', providers: satelliteProviders, pros: ['Available anywhere', 'No ground infrastructure needed', 'Starlink offers 50–200 Mbps'], cons: ['Higher latency than wired', 'Can be affected by weather', 'May have data limits'] },
+];
+
+const comparisonData = [
+  { type: 'Fiber', wireless: false, speed: 'Up to 8 Gbps', latency: '1–5 ms', reliability: '⭐⭐⭐⭐⭐', install: 'Professional required', contract: 'Often 1–2 years', best: 'Gamers, streamers, large households' },
+  { type: 'Cable', wireless: false, speed: 'Up to 1.2 Gbps', latency: '10–30 ms', reliability: '⭐⭐⭐⭐', install: 'Professional required', contract: 'Varies', best: 'Most households' },
+  { type: '5G Home', wireless: true, speed: 'Up to 1 Gbps', latency: '20–40 ms', reliability: '⭐⭐⭐⭐', install: 'Self-install (plug in)', contract: 'Usually none', best: 'Renters, no-contract seekers' },
+  { type: 'Fixed Wireless', wireless: true, speed: 'Up to 1 Gbps', latency: '15–50 ms', reliability: '⭐⭐⭐', install: 'Antenna installation', contract: 'Varies', best: 'Rural & suburban areas' },
+  { type: 'Satellite', wireless: true, speed: 'Up to 200 Mbps', latency: '20–600 ms', reliability: '⭐⭐⭐', install: 'Dish installation', contract: 'Usually none', best: 'Remote & rural areas' },
+  { type: 'DSL', wireless: false, speed: 'Up to 100 Mbps', latency: '25–50 ms', reliability: '⭐⭐⭐', install: 'Professional/self', contract: 'Varies', best: 'Budget-conscious users' },
+];
+
+const faqs = [
+  { question: 'What is wireless home internet?', answer: 'Wireless home internet delivers broadband without physical cables to your home. This includes 5G home internet (uses cellular towers), fixed wireless (uses radio towers), and satellite internet (uses orbiting satellites). These technologies are increasingly popular alternatives to traditional cable and fiber connections.' },
+  { question: 'Is wireless internet as fast as cable or fiber?', answer: '5G home internet can match cable speeds (100–1,000 Mbps) in many areas. Fixed wireless offers 25–1,000 Mbps. However, fiber still leads in raw speed (up to 8 Gbps) and latency. For most households, 5G and fixed wireless provide more than enough speed for streaming, gaming, and working from home.' },
+  { question: 'What is the best wireless internet provider?', answer: `T-Mobile 5G Home Internet is the most widely available wireless option, covering 300+ million people. Verizon 5G Home offers the fastest wireless speeds in select cities. For rural areas, Starlink satellite provides the best wireless option. Call ${phone} to check wireless availability at your address.` },
+  { question: 'Can I use wireless internet for gaming?', answer: '5G home internet has acceptable latency (20–40 ms) for most online games. Fixed wireless works for casual gaming. However, competitive gamers may prefer fiber (1–5 ms latency). Satellite internet has higher latency and is not recommended for real-time competitive gaming.' },
+  { question: 'Do I need a contract for wireless internet?', answer: 'Most wireless internet providers offer no-contract plans. T-Mobile 5G Home Internet, Verizon 5G Home, and Starlink all require no annual commitment. This makes wireless internet ideal if you want flexibility to switch or cancel without early termination fees.' },
+  { question: 'Is wireless internet good for working from home?', answer: `Yes! 5G and fixed wireless provide enough speed and reliability for video conferencing, cloud applications, and VPN connections. Speeds of 100+ Mbps are common. For reliable work-from-home internet, make sure you have good signal strength. Call ${phone} for a coverage check at your address.` },
+  { question: 'What is the difference between 5G home internet and mobile hotspot?', answer: '5G home internet uses a dedicated indoor gateway plugged into a wall outlet — it\'s designed for whole-home coverage with unlimited data. Mobile hotspots use a portable device with limited data. Home 5G offers much faster speeds and is meant to replace wired broadband.' },
+  { question: 'Can I get wireless internet in a rural area?', answer: `Yes! Fixed wireless providers serve many rural and suburban areas. Starlink satellite covers virtually every US address. T-Mobile 5G Home is rapidly expanding to rural communities. Call ${phone} to find the best wireless option for your rural address.` },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Wireless Internet', url: 'https://internet4all.com/wireless-internet' },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`Best Wireless Internet Providers — 5G, Fixed Wireless & Satellite (${year})`}
+  description={`Compare wireless internet providers for ${year}. Find the best 5G home internet, fixed wireless, and satellite plans. No cables needed — speeds up to 1 Gbps. ${wirelessProviders.length} wireless providers compared.`}
+  schema={schemas}
+>
+  <StickyCallBar text="Get wireless internet today — no installation needed" />
+
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Wireless Internet' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">📶 Updated {month} {year}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Best <span class="gradient-text">Wireless Internet</span> Providers
+        </h1>
+        <p class="hero-subtitle" style="max-width: 720px; margin-inline: auto;">
+          No cables, no drilling, no waiting. Compare {wirelessProviders.length} wireless internet providers offering
+          5G home internet, fixed wireless, and satellite — with speeds up to 1 Gbps. Many plans start under $50/mo with no contract.
+        </p>
+        <div style="margin-top: var(--space-xl);">
+          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Check Wireless Coverage</a>
+          <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check My Address</a>
+        </div>
+      </div>
+
+      <!-- Wireless Types -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 class="text-center" style="margin-bottom: var(--space-xl);">Types of Wireless Internet</h2>
+        {wirelessTypes.map(wt => (
+          <div class="card" style="padding: var(--space-xl); margin-bottom: var(--space-lg);">
+            <div class="flex items-center gap-sm" style="margin-bottom: var(--space-md);">
+              <span style="font-size: 2rem;">{wt.icon}</span>
+              <h3 style="margin: 0; font-size: var(--text-xl);">{wt.name}</h3>
+              <span class="badge badge-blue" style="margin-left: auto;">{wt.providers.length} providers</span>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">{wt.desc}</p>
+            <div class="grid grid-2" style="gap: var(--space-lg); margin-bottom: var(--space-lg);">
+              <div>
+                <h4 style="color: var(--brand-green); font-size: var(--text-sm); margin-bottom: var(--space-sm);">✅ Pros</h4>
+                <ul style="font-size: var(--text-sm); color: var(--text-secondary); padding-left: var(--space-md);">
+                  {wt.pros.map(pro => <li>{pro}</li>)}
+                </ul>
+              </div>
+              <div>
+                <h4 style="color: var(--danger); font-size: var(--text-sm); margin-bottom: var(--space-sm);">⚠️ Cons</h4>
+                <ul style="font-size: var(--text-sm); color: var(--text-secondary); padding-left: var(--space-md);">
+                  {wt.cons.map(con => <li>{con}</li>)}
+                </ul>
+              </div>
+            </div>
+            {wt.providers.length > 0 && (
+              <div style="border-top: 1px solid var(--border); padding-top: var(--space-md);">
+                <strong style="font-size: var(--text-sm);">Available from:</strong>
+                <span style="font-size: var(--text-sm); color: var(--text-secondary); margin-left: var(--space-xs);">
+                  {wt.providers.map(p => p.name).join(', ')}
+                </span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <!-- Rankings Table -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">All Wireless Internet Providers Ranked ({year})</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">Every wireless internet provider compared by speed, price, type, and rating.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Provider</th>
+                <th>Wireless Types</th>
+                <th>Max Speed</th>
+                <th>Starting Price</th>
+                <th>Rating</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {wirelessProviders.map((p, i) => (
+                <tr>
+                  <td><strong>{i + 1}</strong></td>
+                  <td>
+                    <a href={`/provider/${p.slug}`} style="font-weight: 600;">{p.name}</a>
+                    {p.isPartner && <span class="badge badge-green" style="font-size:0.5rem;margin-left:4px;">Partner</span>}
+                  </td>
+                  <td>{p.types.filter(t => ['5g', 'fixed-wireless', 'satellite'].includes(t)).map(t => getTypeLabel(t)).join(', ')}</td>
+                  <td>{formatSpeed(getMaxSpeed(p))}</td>
+                  <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
+                  <td>⭐ {p.rating.toFixed(1)}</td>
+                  <td><a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Wireless vs Wired Comparison -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Wireless vs. Wired Internet: Complete Comparison</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">Should you go wireless or stick with wired? Here's how every internet type compares head-to-head.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Connection</th>
+                <th>Wireless?</th>
+                <th>Max Speed</th>
+                <th>Latency</th>
+                <th>Reliability</th>
+                <th>Installation</th>
+                <th>Best For</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonData.map(cd => (
+                <tr style={cd.wireless ? 'background: rgba(0,213,132,0.04);' : ''}>
+                  <td style="font-weight: 600;">{cd.type}</td>
+                  <td>{cd.wireless ? '✅ Yes' : '❌ No'}</td>
+                  <td>{cd.speed}</td>
+                  <td>{cd.latency}</td>
+                  <td>{cd.reliability}</td>
+                  <td style="font-size: var(--text-xs);">{cd.install}</td>
+                  <td style="font-size: var(--text-xs); color: var(--text-secondary);">{cd.best}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Mid-page CTA -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="card" style="padding: var(--space-2xl); text-align: center; background: linear-gradient(135deg, rgba(0,82,255,0.08), rgba(0,213,132,0.08)); border: 1px solid var(--brand-blue);">
+          <h2 style="margin-bottom: var(--space-sm);">Want to Go Wireless?</h2>
+          <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); max-width: 550px; margin-inline: auto;">
+            Our wireless internet experts will check 5G, fixed wireless, and satellite coverage at your exact address — and find the fastest, cheapest option.
+          </p>
+          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Free Wireless Check</a>
+        </div>
+      </div>
+
+      <!-- Who Should Choose Wireless -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Who Should Choose Wireless Internet?</h2>
+        <div class="grid grid-2" style="gap: var(--space-md);">
+          <div class="card" style="padding: var(--space-lg);">
+            <h3 style="color: var(--brand-green); font-size: var(--text-md); margin-bottom: var(--space-sm);">✅ Great For</h3>
+            <ul style="font-size: var(--text-sm); color: var(--text-secondary); padding-left: var(--space-md);">
+              <li><strong>Renters</strong> — No drilling, easy to move, no installation damage</li>
+              <li><strong>Rural residents</strong> — Where cable and fiber aren't available</li>
+              <li><strong>Contract-averse</strong> — Most wireless plans have no annual commitment</li>
+              <li><strong>Quick setup needed</strong> — 5G home internet: plug in and go in minutes</li>
+              <li><strong>Budget-conscious</strong> — Plans starting at $25/mo with T-Mobile</li>
+              <li><strong>Temporary housing</strong> — Month-to-month with no cancellation fees</li>
+            </ul>
+          </div>
+          <div class="card" style="padding: var(--space-lg);">
+            <h3 style="color: var(--brand-blue); font-size: var(--text-md); margin-bottom: var(--space-sm);">🔌 Consider Wired Instead</h3>
+            <ul style="font-size: var(--text-sm); color: var(--text-secondary); padding-left: var(--space-md);">
+              <li><strong>Competitive gamers</strong> — Fiber's 1–5 ms latency can't be beat</li>
+              <li><strong>Ultra-heavy users</strong> — Need 2+ Gbps symmetrical speeds</li>
+              <li><strong>Content creators</strong> — Fiber upload speeds are much faster</li>
+              <li><strong>Large households (8+)</strong> — Wired handles heavy simultaneous use better</li>
+              <li><strong>Home offices with VPN</strong> — Wired consistency matters for business</li>
+              <li><strong>Live streamers</strong> — Upload speed and consistency is critical</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Pages -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Explore More</h2>
+        <div class="grid grid-3" style="gap: var(--space-sm);">
+          <a href="/providers" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🔍 All Providers</a>
+          <a href="/compare" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">⚖️ Compare Plans</a>
+          <a href="/deals" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">💰 Best Deals</a>
+          <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📊 Speed Test</a>
+          <a href="/internet-types/5g" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📱 5G Internet Guide</a>
+          <a href="/internet-types/satellite" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🛰️ Satellite Internet</a>
+          <a href="/internet-for/rural" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🌾 Internet for Rural Areas</a>
+          <a href="/internet-for/gaming" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🎮 Best for Gaming</a>
+          <a href="/internet-for/streaming" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📺 Best for Streaming</a>
+          <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">⚡ Fastest Internet</a>
+          <a href="/cheap-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏷️ Cheap Internet</a>
+          <a href="/check-availability" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📍 Check Availability</a>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Wireless Internet FAQ</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Base>

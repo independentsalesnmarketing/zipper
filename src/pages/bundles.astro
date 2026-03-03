@@ -1,0 +1,205 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+// Providers that offer bundle-eligible services
+const bundleProviders = getAllProviders()
+  .filter(p => p.types.some(t => ['cable', 'fiber'].includes(t)))
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return b.rating - a.rating;
+  });
+
+const bundleDeals = [
+  { provider: 'Spectrum', bundle: 'Internet + TV', price: '$109.98/mo', savings: '$20/mo', speed: '300 Mbps', channels: '125+', features: ['Free modem', 'No contracts', 'DVR included'] },
+  { provider: 'Verizon Fios', bundle: 'Internet + TV', price: '$99.99/mo', savings: '$30/mo', speed: '300 Mbps', channels: '125+', features: ['Symmetrical fiber', 'Mix & Match plans', 'No annual contract'] },
+  { provider: 'AT&T', bundle: 'Fiber + DirecTV Stream', price: '$104.99/mo', savings: '$25/mo', speed: '300 Mbps', channels: '75+', features: ['Symmetrical fiber', 'Streaming TV', 'No data caps'] },
+  { provider: 'Optimum', bundle: 'Internet + TV', price: '$89.99/mo', savings: '$30/mo', speed: '300 Mbps', channels: '220+', features: ['Smart WiFi 6', 'Free installation', 'Cloud DVR'] },
+  { provider: 'Frontier', bundle: 'Fiber + YouTube TV', price: '$114.98/mo', savings: '$15/mo', speed: '500 Mbps', channels: '100+', features: ['Symmetrical fiber', 'Streaming-based', 'No DVR needed'] },
+  { provider: 'Xfinity', bundle: 'Internet + TV', price: '$99.99/mo', savings: '$20/mo', speed: '200 Mbps', channels: '125+', features: ['X1 platform', 'Voice remote', 'Peacock included'] },
+];
+
+const faqs = [
+  { question: 'Are internet and TV bundles worth it?', answer: 'It depends. Bundles can save $10-30/mo compared to buying services separately from the same provider. However, internet + streaming services (Netflix, YouTube TV, Hulu Live) often costs less overall than a traditional cable bundle. For live sports fans, bundles may still offer the best value.' },
+  { question: 'What is the cheapest internet and TV bundle?', answer: `Current cheapest bundles start around $89.99/mo for 300 Mbps internet + 125+ channels. Optimum, Spectrum, and Verizon Fios offer competitive bundle pricing. Call ${phone} for the latest bundle deals at your address.` },
+  { question: 'Can I bundle internet with streaming TV?', answer: 'Yes! Many providers offer discounts when you add streaming services. AT&T includes HBO Max with some plans. Frontier partners with YouTube TV. Verizon Fios offers Disney+ bundles. These "streaming bundles" are often cheaper than traditional cable TV bundles.' },
+  { question: 'Should I cut the cord or get a bundle?', answer: 'For most people, cutting the cord saves money. Internet-only ($40-80/mo) + streaming services ($15-65/mo) typically costs $60-145/mo — often less than a $100-180/mo cable bundle. The exception: heavy live sports viewers may still benefit from traditional TV bundles.' },
+  { question: 'Do bundles require contracts?', answer: 'Not always. Spectrum bundles are contract-free. Verizon Fios allows Mix & Match without contracts. However, some providers offer deeper discounts with 1-2 year agreements. Always ask about contract terms before signing up — call us for details.' },
+  { question: 'Can I add TV later to my internet plan?', answer: 'Usually yes. Most providers let you add TV service to an existing internet plan. In fact, this can sometimes trigger bundle pricing retroactively. Call your provider (or call us at ' + phone + ') to explore adding TV to your current internet plan.' },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Internet & TV Bundles', url: 'https://internet4all.com/bundles' },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`Internet & TV Bundles (${year}) — Compare Bundle Deals & Save`}
+  description={`Compare internet and TV bundle deals from top providers in ${year}. Save up to $30/mo with cable, fiber, and streaming bundles. No contracts available.`}
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Internet & TV Bundles' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">📦 Updated {month} {year}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Internet & TV <span class="gradient-text">Bundle Deals</span>
+        </h1>
+        <p class="hero-subtitle" style="max-width: 680px; margin-inline: auto;">
+          Save up to $30/mo by bundling internet and TV. Compare {bundleDeals.length} top bundle deals from major providers.
+          We'll help you decide if bundling or cord-cutting saves you more.
+        </p>
+        <a href={phoneHref} class="btn btn-call mt-xl" style="font-size: var(--text-lg);">
+          📞 Call {phone} for Bundle Deals
+        </a>
+      </div>
+
+      <!-- Bundle Comparison Table -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); overflow: hidden;">
+        <div style="padding: var(--space-xl) var(--space-xl) var(--space-md);">
+          <h2>Best Internet & TV Bundles</h2>
+          <p class="text-secondary">Top bundle deals sorted by value. Pricing is promotional and may increase after the first year.</p>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="comparison-table" style="width:100%;">
+            <thead>
+              <tr>
+                <th>Provider</th>
+                <th>Bundle</th>
+                <th>Price</th>
+                <th>Savings</th>
+                <th>Speed</th>
+                <th>Channels</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {bundleDeals.map(deal => (
+                <tr>
+                  <td style="font-weight:600;">{deal.provider}</td>
+                  <td>{deal.bundle}</td>
+                  <td style="font-weight:700;color:var(--brand-green);">{deal.price}</td>
+                  <td style="color:var(--brand-green);">Save {deal.savings}</td>
+                  <td>{deal.speed}</td>
+                  <td>{deal.channels}</td>
+                  <td>
+                    <a href={phoneHref} class="btn btn-call" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);">Call</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Bundle vs Cord Cutting -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); padding: var(--space-2xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Bundle vs. Cord Cutting: Which Saves More?</h2>
+        <div class="grid grid-2" style="gap: var(--space-2xl);">
+          <div>
+            <h3 style="color: var(--brand-blue); margin-bottom: var(--space-md);">📦 Traditional Bundle</h3>
+            <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:var(--space-sm);">
+              <li style="display:flex;justify-content:space-between;padding:var(--space-sm);background:var(--gray-50);border-radius:var(--radius-sm);">
+                <span>Internet (300 Mbps)</span><span style="font-weight:600;">$50/mo</span>
+              </li>
+              <li style="display:flex;justify-content:space-between;padding:var(--space-sm);background:var(--gray-50);border-radius:var(--radius-sm);">
+                <span>Cable TV (125+ channels)</span><span style="font-weight:600;">$65/mo</span>
+              </li>
+              <li style="display:flex;justify-content:space-between;padding:var(--space-sm);background:var(--gray-50);border-radius:var(--radius-sm);">
+                <span>DVR + Equipment</span><span style="font-weight:600;">$15/mo</span>
+              </li>
+              <li style="display:flex;justify-content:space-between;padding:var(--space-sm);background:var(--gray-50);border-radius:var(--radius-sm);">
+                <span>Bundle discount</span><span style="font-weight:600;color:var(--brand-green);">-$20/mo</span>
+              </li>
+              <li style="display:flex;justify-content:space-between;padding:var(--space-md);background:var(--brand-blue);color:white;border-radius:var(--radius-sm);font-weight:700;">
+                <span>Total</span><span>$110/mo</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="color: var(--brand-green); margin-bottom: var(--space-md);">✂️ Cord Cutting</h3>
+            <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:var(--space-sm);">
+              <li style="display:flex;justify-content:space-between;padding:var(--space-sm);background:var(--gray-50);border-radius:var(--radius-sm);">
+                <span>Internet (300 Mbps)</span><span style="font-weight:600;">$50/mo</span>
+              </li>
+              <li style="display:flex;justify-content:space-between;padding:var(--space-sm);background:var(--gray-50);border-radius:var(--radius-sm);">
+                <span>Netflix (Standard)</span><span style="font-weight:600;">$15/mo</span>
+              </li>
+              <li style="display:flex;justify-content:space-between;padding:var(--space-sm);background:var(--gray-50);border-radius:var(--radius-sm);">
+                <span>YouTube TV (live sports)</span><span style="font-weight:600;">$73/mo</span>
+              </li>
+              <li style="display:flex;justify-content:space-between;padding:var(--space-sm);background:var(--gray-50);border-radius:var(--radius-sm);">
+                <span>No equipment fees</span><span style="font-weight:600;color:var(--brand-green);">$0</span>
+              </li>
+              <li style="display:flex;justify-content:space-between;padding:var(--space-md);background:var(--brand-green);color:white;border-radius:var(--radius-sm);font-weight:700;">
+                <span>Total (with live TV)</span><span>$138/mo</span>
+              </li>
+            </ul>
+            <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">Without YouTube TV (no live sports): $65/mo — save $45/mo</p>
+          </div>
+        </div>
+        <div class="text-center mt-xl">
+          <p style="font-weight:600;margin-bottom:var(--space-md);">Not sure which is right for you?</p>
+          <a href={phoneHref} class="btn btn-call">📞 Call for Personalized Bundle Advice</a>
+        </div>
+      </div>
+
+      <!-- Bundle Provider Details -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Bundle-Friendly Providers</h2>
+        <div class="grid grid-2">
+          {bundleProviders.slice(0, 8).map(p => (
+            <div class="card" style={`padding: var(--space-xl); ${!p.isPartner ? 'opacity:0.85;' : ''}`}>
+              <div class="flex items-center gap-md" style="margin-bottom: var(--space-md);">
+                <div style="width:48px;height:48px;border-radius:var(--radius-md);background:var(--gray-100);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                  {p.logo ? <img src={p.logo} alt={p.name} width="48" height="48" style="padding:4px;object-fit:contain;" /> : <span style="font-weight:800;color:var(--text-tertiary);">{p.name.charAt(0)}</span>}
+                </div>
+                <div style="flex:1;">
+                  <h3 style="margin-bottom:0;font-size:var(--text-lg);">
+                    {p.name}
+                    {p.isPartner && <span class="badge badge-green" style="font-size:0.65rem;margin-left:var(--space-xs);">RECOMMENDED</span>}
+                  </h3>
+                  <span class="text-secondary" style="font-size:var(--text-sm);">{p.types.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(', ')} • From {formatPrice(getMinPrice(p))}/mo</span>
+                </div>
+              </div>
+              <p class="text-secondary" style="font-size:var(--text-sm);margin-bottom:var(--space-md);">{p.description}</p>
+              <div class="flex gap-sm">
+                <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="flex:1;font-size:var(--text-sm);">📞 Ask About Bundles</a>
+                <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size:var(--text-sm);">Details</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Frequently Asked Questions</h2>
+        {faqs.map(faq => (
+          <details class="faq-item">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+  <StickyCallBar phone={phone} message="Ask about bundle savings — call now" />
+</Base>

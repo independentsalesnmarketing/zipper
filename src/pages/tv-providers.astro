@@ -1,0 +1,271 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+const allProviders = getAllProviders();
+const partners = getPartnerProviders();
+
+// TV-related providers: cable companies + satellite + fiber (many offer TV bundles)
+const tvProviders = allProviders
+  .filter(p => p.types.includes('cable') || p.types.includes('fiber') || p.types.includes('satellite'))
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return b.rating - a.rating;
+  });
+
+const tvTypes = [
+  { name: 'Cable TV', icon: '📺', desc: 'Traditional cable television with hundreds of channels. Usually bundled with cable internet for savings. Providers include Spectrum, Xfinity, Cox, and Optimum.', channels: '150–250+', price: '$50–120/mo', dvr: 'Yes (often included)', reliability: '⭐⭐⭐⭐⭐' },
+  { name: 'Fiber TV (IPTV)', icon: '⚡', desc: 'TV delivered over fiber optic lines. Superior picture quality with less compression. Available from AT&T, Verizon Fios, and Frontier.', channels: '100–300+', price: '$40–100/mo', dvr: 'Cloud DVR', reliability: '⭐⭐⭐⭐⭐' },
+  { name: 'Satellite TV', icon: '🛰️', desc: 'TV via satellite dish. Available everywhere in the US including rural areas. DIRECTV and DISH are the main providers.', channels: '200–330+', price: '$65–150/mo', dvr: 'Yes (included)', reliability: '⭐⭐⭐⭐' },
+  { name: 'Live TV Streaming', icon: '📱', desc: 'Cable replacement services streamed over internet. YouTube TV, Hulu + Live TV, Sling TV, fuboTV. No equipment needed.', channels: '30–100+', price: '$35–75/mo', dvr: 'Cloud DVR (unlimited)', reliability: '⭐⭐⭐⭐' },
+];
+
+const streamingServices = [
+  { name: 'YouTube TV', price: '$73/mo', channels: '100+', dvr: 'Unlimited cloud DVR', pros: 'Best DVR, great interface, reliable', link: '#' },
+  { name: 'Hulu + Live TV', price: '$77/mo', channels: '95+', dvr: 'Unlimited cloud DVR', pros: 'Includes Hulu, Disney+, ESPN+', link: '#' },
+  { name: 'Sling TV', price: '$40/mo', channels: '30–50', dvr: '50 hours free', pros: 'Cheapest live TV option, customizable', link: '#' },
+  { name: 'fuboTV', price: '$80/mo', channels: '180+', dvr: '1000 hours', pros: 'Best for sports, most channels', link: '#' },
+  { name: 'DIRECTV STREAM', price: '$80/mo', channels: '75–150+', dvr: 'Unlimited', pros: 'No dish needed, regional sports', link: '#' },
+];
+
+const bundleDeals = [
+  { provider: 'Spectrum', bundle: 'Internet + TV', internetSpeed: '300 Mbps', channels: '150+ channels', price: '$110/mo', highlight: 'No contract required' },
+  { provider: 'AT&T', bundle: 'Internet + DIRECTV', internetSpeed: '300 Mbps', channels: '160+ channels', price: '$100/mo', highlight: 'Save $20/mo with bundle' },
+  { provider: 'Xfinity', bundle: 'Internet + TV', internetSpeed: '400 Mbps', channels: '125+ channels', price: '$90/mo', highlight: 'Free Peacock Premium' },
+  { provider: 'Verizon Fios', bundle: 'Internet + TV', internetSpeed: '300 Mbps', channels: '125+ channels', price: '$95/mo', highlight: 'Fiber TV quality' },
+  { provider: 'Cox', bundle: 'Internet + TV', internetSpeed: '250 Mbps', channels: '140+ channels', price: '$105/mo', highlight: 'Contour TV with voice remote' },
+  { provider: 'Optimum', bundle: 'Internet + TV', internetSpeed: '300 Mbps', channels: '220+ channels', price: '$100/mo', highlight: 'Stream on the go' },
+];
+
+const faqs = [
+  { question: 'What are the best TV providers in my area?', answer: `TV availability depends on your address. Cable TV (Spectrum, Xfinity, Cox) is available in most urban and suburban areas. Satellite TV (DIRECTV, DISH) is available everywhere. Streaming TV works anywhere with internet. Call ${phone} to find out which TV providers serve your address.` },
+  { question: 'Is it cheaper to get a TV bundle or stream?', answer: 'It depends on your watching habits. Internet + cable TV bundles typically cost $90–130/mo. Streaming live TV costs $40–80/mo on top of your internet bill. If you watch lots of sports and local channels, cable bundles often offer better value. If you watch mostly on-demand content, streaming is cheaper.' },
+  { question: 'Can I still get cable TV?', answer: `Yes! Cable TV is still widely available and remains the most popular way to watch live TV. Spectrum, Xfinity, Cox, and Optimum all offer cable TV packages. Many people pair cable TV with internet for bundle savings. Call ${phone} to check cable TV availability at your address.` },
+  { question: 'What TV provider has the most channels?', answer: 'DIRECTV offers up to 330+ channels on its Premier tier — the most of any traditional provider. DISH offers up to 290+ channels. For cable, Spectrum offers 150–200+ channels. For streaming, fuboTV offers 180+ channels. The right choice depends on which channels you want, not just the total count.' },
+  { question: 'Should I bundle TV and internet together?', answer: `Bundling usually saves $10–30/mo compared to buying separately. Most cable and fiber providers offer internet + TV bundles. You also get one bill and one customer service number. Call ${phone} for the best bundle deals in your area — we often have exclusive pricing not available online.` },
+  { question: 'What do I need to watch TV without cable?', answer: 'You need: 1) A fast internet connection (25+ Mbps for HD, 50+ for 4K). 2) A streaming device (smart TV, Roku, Fire Stick, Apple TV, or Chromecast). 3) A streaming service subscription (YouTube TV, Hulu Live, Netflix, etc.). That\'s it — no cable box, no dish, no contract. Our experts can set you up with the best internet for streaming.' },
+  { question: 'Is satellite TV still worth it?', answer: 'Satellite TV makes sense if: you live in a rural area without cable, you want NFL Sunday Ticket or premium sports, or you want 200+ channels. DIRECTV has moved to streaming but still offers satellite in some areas. For most urban/suburban addresses, cable or streaming will be better value.' },
+  { question: 'What internet speed do I need for streaming TV?', answer: 'For SD streaming: 3–5 Mbps per stream. For HD: 5–10 Mbps. For 4K: 25 Mbps. Multiply by the number of simultaneous viewers. A household of 4 streaming in HD needs at least 40 Mbps. We recommend 100+ Mbps for comfortable streaming across multiple devices. Visit our speed test to check your current speed.' },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'TV Providers', url: 'https://internet4all.com/tv-providers' },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`Best TV Providers & Cable TV in Your Area (${month} ${year})`}
+  description={`Compare TV providers in your area: cable TV, satellite, fiber TV, and live streaming. Find the best TV + internet bundles. ${tvProviders.length}+ providers compared. Updated ${month} ${year}.`}
+  schema={schemas}
+>
+  <StickyCallBar text="Find TV providers in your area — call for bundle deals" />
+
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'TV Providers' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">📺 Updated {month} {year}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Best <span class="gradient-text">TV Providers</span> in Your Area
+        </h1>
+        <p class="hero-subtitle" style="max-width: 720px; margin-inline: auto;">
+          Find cable TV, satellite, fiber TV, and live streaming options at your address. Compare {tvProviders.length}+ providers,
+          channels lineups, and bundle deals. Save up to $30/mo when you pair TV with internet.
+        </p>
+        <div style="margin-top: var(--space-xl);">
+          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Get TV + Internet Deals</a>
+          <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check My Address</a>
+        </div>
+      </div>
+
+      <!-- TV Types Comparison -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Types of TV Service Available</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">Four ways to watch TV in {year} — each with unique benefits.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>TV Type</th>
+                <th>Channels</th>
+                <th>Monthly Cost</th>
+                <th>DVR</th>
+                <th>Reliability</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tvTypes.map(tt => (
+                <tr>
+                  <td>
+                    <span style="font-size: 1.2rem;">{tt.icon}</span>
+                    <strong style="margin-left: var(--space-xs);">{tt.name}</strong>
+                  </td>
+                  <td>{tt.channels}</td>
+                  <td style="color: var(--brand-green); font-weight: 600;">{tt.price}</td>
+                  <td>{tt.dvr}</td>
+                  <td>{tt.reliability}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TV + Internet Bundle Deals -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Best TV & Internet Bundle Deals ({year})</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">Save money by bundling TV with internet. These are the top bundle deals from major providers.</p>
+        <div class="grid grid-2" style="gap: var(--space-md);">
+          {bundleDeals.map(bd => (
+            <div class="card" style="padding: var(--space-lg);">
+              <div class="flex items-center gap-sm" style="margin-bottom: var(--space-md);">
+                <h3 style="margin: 0;">{bd.provider}</h3>
+                <span class="badge badge-green" style="font-size: 0.6rem;">{bd.bundle}</span>
+              </div>
+              <div class="grid grid-2" style="gap: var(--space-xs); margin-bottom: var(--space-md);">
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary);">
+                  Internet: <strong style="color: var(--text-primary);">{bd.internetSpeed}</strong>
+                </div>
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary);">
+                  TV: <strong style="color: var(--text-primary);">{bd.channels}</strong>
+                </div>
+              </div>
+              <div class="flex items-center gap-sm" style="margin-bottom: var(--space-md);">
+                <span style="font-size: var(--text-xl); font-weight: 800; color: var(--brand-green);">{bd.price}</span>
+                <span class="badge badge-blue" style="font-size: 0.55rem;">{bd.highlight}</span>
+              </div>
+              <a href={phoneHref} class="btn btn-cta btn-sm" style="width: 100%; text-align: center;">Get This Bundle</a>
+            </div>
+          ))}
+        </div>
+        <div class="text-center" style="margin-top: var(--space-lg);">
+          <p style="color: var(--text-tertiary); font-size: var(--text-xs);">Prices shown are typical promotional rates. Call for exact pricing at your address.</p>
+        </div>
+      </div>
+
+      <!-- Live Streaming TV Options -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Live TV Streaming Services — Replace Cable</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">These streaming services replace cable TV entirely. Watch live channels, sports, and local news over your internet connection.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Monthly Price</th>
+                <th>Channels</th>
+                <th>DVR</th>
+                <th>Best Feature</th>
+              </tr>
+            </thead>
+            <tbody>
+              {streamingServices.map(ss => (
+                <tr>
+                  <td style="font-weight: 600;">{ss.name}</td>
+                  <td style="color: var(--brand-green); font-weight: 600;">{ss.price}</td>
+                  <td>{ss.channels}</td>
+                  <td style="font-size: var(--text-xs);">{ss.dvr}</td>
+                  <td style="font-size: var(--text-xs); color: var(--text-secondary);">{ss.pros}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div class="card" style="padding: var(--space-lg); margin-top: var(--space-lg); text-align: center; background: var(--surface-2);">
+          <p style="margin-bottom: var(--space-sm);">Streaming TV requires fast internet. We'll help you find the perfect internet plan for buffer-free viewing.</p>
+          <a href={phoneHref} class="btn btn-cta">📞 Get Internet for Streaming</a>
+        </div>
+      </div>
+
+      <!-- Internet Providers for TV -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Internet Providers with TV Service</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">These providers offer both internet and TV — perfect for bundling.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Provider</th>
+                <th>Connection Type</th>
+                <th>Max Speed</th>
+                <th>Starting Price</th>
+                <th>Rating</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {tvProviders.slice(0, 12).map((p, i) => (
+                <tr>
+                  <td><strong>{i + 1}</strong></td>
+                  <td>
+                    <a href={`/provider/${p.slug}`} style="font-weight: 600;">{p.name}</a>
+                    {p.isPartner && <span class="badge badge-green" style="font-size:0.5rem;margin-left:4px;">Partner</span>}
+                  </td>
+                  <td>{p.types.map(t => getTypeLabel(t)).join(', ')}</td>
+                  <td>{formatSpeed(getMaxSpeed(p))}</td>
+                  <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
+                  <td>⭐ {p.rating.toFixed(1)}</td>
+                  <td><a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Mid-page CTA -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="card" style="padding: var(--space-2xl); text-align: center; background: linear-gradient(135deg, rgba(0,82,255,0.08), rgba(0,213,132,0.08)); border: 1px solid var(--brand-blue);">
+          <h2 style="margin-bottom: var(--space-sm);">Not Sure Which TV Option Is Right?</h2>
+          <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); max-width: 550px; margin-inline: auto;">
+            Our experts know every TV and internet deal in your area. We'll compare cable, satellite, and streaming options to find the best fit for your budget and viewing habits.
+          </p>
+          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Free TV Consultation</a>
+        </div>
+      </div>
+
+      <!-- Related Pages -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Related Resources</h2>
+        <div class="grid grid-3" style="gap: var(--space-sm);">
+          <a href="/bundles" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📦 Internet + TV Bundles</a>
+          <a href="/cable-tv" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🔌 Cable vs. Streaming</a>
+          <a href="/internet-and-phone" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📞 Internet + Phone</a>
+          <a href="/check-availability" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📍 Check Availability</a>
+          <a href="/home-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏠 Home Internet Plans</a>
+          <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏎️ Speed Test</a>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">TV Providers FAQ</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Base>

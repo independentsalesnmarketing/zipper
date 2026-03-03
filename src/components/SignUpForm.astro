@@ -1,0 +1,612 @@
+---
+/**
+ * SignUpForm — The primary conversion engine.
+ *
+ * A professional sign-up modal that is the PRIMARY conversion path.
+ * - Partner-specific branding when opened from a partner card/page
+ * - Comprehensive fields: plan, address, email, phone, DOB, install date
+ * - Contact consent disclaimer
+ * - Calling is secondary, sign-up is primary
+ *
+ * Triggers: data-signup-modal, data-signup-provider="slug"
+ */
+import { providers, MAIN_PHONE, getMinPrice, getMaxSpeed, formatSpeed, formatPrice } from '@lib/providers';
+import { formatPhoneForTel } from '@lib/utils';
+
+interface Props {
+  providerSlug?: string;
+}
+const { providerSlug } = Astro.props;
+
+// Serialize partner data for client-side use
+const partnerData = providers
+  .filter(p => p.isPartner)
+  .map(p => ({
+    slug: p.slug,
+    name: p.name,
+    logo: p.logo,
+    phone: p.phone,
+    plans: p.plans.map(pl => ({
+      name: pl.name,
+      speed: pl.speed,
+      price: pl.promoPrice || pl.price,
+    })),
+  }));
+---
+
+<!-- Sign-Up Modal Overlay -->
+<a id="get-connected" aria-hidden="true" style="position:absolute;visibility:hidden;"></a>
+<div class="su-overlay" id="signup-modal" data-partners={JSON.stringify(partnerData)}>
+  <div class="su-modal" id="su-modal-inner">
+    <button class="su-close" id="su-close" aria-label="Close">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <!-- Header (dynamic via JS for partner branding) -->
+    <div class="su-header" id="su-header">
+      <div class="su-logo-row" id="su-logo-row" style="display:none;">
+        <img id="su-provider-logo" src="" alt="" width="56" height="56" style="border-radius:var(--radius-md);object-fit:contain;border:2px solid var(--border);background:var(--gray-50);padding:4px;" />
+        <div>
+          <h3 id="su-title" class="su-title">Sign Up for Internet Service</h3>
+          <p id="su-subtitle" class="su-subtitle">Complete the form below — we'll handle the rest.</p>
+        </div>
+      </div>
+      <div id="su-default-header">
+        <h3 class="su-title">Get Connected Today — It's Free</h3>
+        <p class="su-subtitle">Fill in your details and we'll match you with the best internet deal at your address. No obligation.</p>
+      </div>
+    </div>
+
+    <!-- Step indicator -->
+    <div class="su-steps" id="su-steps">
+      <div class="su-step active" data-step="1"><span class="su-step-num">1</span><span class="su-step-label">Provider</span></div>
+      <div class="su-step-line"></div>
+      <div class="su-step" data-step="2"><span class="su-step-num">2</span><span class="su-step-label">Your Info</span></div>
+      <div class="su-step-line"></div>
+      <div class="su-step" data-step="3"><span class="su-step-num">3</span><span class="su-step-label">Confirm</span></div>
+    </div>
+
+    <!-- FORM -->
+    <form id="su-form" class="su-form" novalidate>
+      <!-- Step 1: Provider & Plan Selection -->
+      <div class="su-page" data-page="1">
+        <div class="su-field">
+          <label class="su-label" for="su-provider">Select Provider</label>
+          <select id="su-provider" name="provider" class="su-select" required>
+            <option value="">Choose a provider...</option>
+            {providers.filter(p => p.isPartner).map(p => (
+              <option value={p.slug} selected={providerSlug === p.slug}>{p.name} — from {formatPrice(getMinPrice(p))}/mo, up to {formatSpeed(getMaxSpeed(p))}</option>
+            ))}
+            <option value="other">Other / Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="su-field" id="su-plan-field" style="display:none;">
+          <label class="su-label" for="su-plan">Select Plan</label>
+          <select id="su-plan" name="plan" class="su-select">
+            <option value="">Choose a plan...</option>
+          </select>
+        </div>
+
+        <div class="su-field">
+          <label class="su-label" for="su-need">What's your situation?</label>
+          <select id="su-need" name="need" class="su-select" required>
+            <option value="new-service">I need internet service</option>
+            <option value="switching">Switching from another provider</option>
+            <option value="moving">Moving to a new address</option>
+            <option value="upgrading">Upgrading my current plan</option>
+            <option value="cheaper">Looking for a cheaper option</option>
+            <option value="no-service">I currently don't have internet</option>
+          </select>
+        </div>
+
+        <button type="button" class="su-btn su-btn-primary" id="su-next-1">
+          Next: Your Details
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <!-- Step 2: Personal Info -->
+      <div class="su-page" data-page="2" style="display:none;">
+        <div class="su-row">
+          <div class="su-field">
+            <label class="su-label" for="su-fname">First Name</label>
+            <input id="su-fname" name="first_name" type="text" class="su-input" required placeholder="John" autocomplete="given-name" />
+          </div>
+          <div class="su-field">
+            <label class="su-label" for="su-lname">Last Name</label>
+            <input id="su-lname" name="last_name" type="text" class="su-input" required placeholder="Smith" autocomplete="family-name" />
+          </div>
+        </div>
+
+        <div class="su-field">
+          <label class="su-label" for="su-address">Service Address</label>
+          <input id="su-address" name="address" type="text" class="su-input" required placeholder="123 Main St, City, State ZIP" autocomplete="street-address" />
+        </div>
+
+        <div class="su-row">
+          <div class="su-field">
+            <label class="su-label" for="su-email">Email Address</label>
+            <input id="su-email" name="email" type="email" class="su-input" required placeholder="john@example.com" autocomplete="email" />
+          </div>
+          <div class="su-field">
+            <label class="su-label" for="su-phone">Phone Number</label>
+            <input id="su-phone" name="phone" type="tel" class="su-input" required placeholder="(555) 123-4567" autocomplete="tel" />
+          </div>
+        </div>
+
+        <div class="su-row">
+          <div class="su-field">
+            <label class="su-label" for="su-dob">Date of Birth</label>
+            <input id="su-dob" name="dob" type="date" class="su-input" required autocomplete="bday" />
+          </div>
+          <div class="su-field">
+            <label class="su-label" for="su-install-date">Preferred Install Date</label>
+            <input id="su-install-date" name="install_date" type="date" class="su-input" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="su-nav-row">
+          <button type="button" class="su-btn su-btn-back" id="su-back-2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+          <button type="button" class="su-btn su-btn-primary" id="su-next-2">
+            Review &amp; Confirm
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Review & Submit -->
+      <div class="su-page" data-page="3" style="display:none;">
+        <div class="su-review-card" id="su-review">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="su-consent">
+          <label class="su-checkbox-wrap">
+            <input type="checkbox" id="su-consent" name="consent" required />
+            <span class="su-checkbox-label">
+              I agree to be contacted by Internet 4 ALL and its partners via phone, email, and SMS regarding internet service options. I understand I can opt out at any time. By submitting, I confirm I am 18 years or older and agree to the <a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.
+            </span>
+          </label>
+        </div>
+
+        <div class="su-nav-row">
+          <button type="button" class="su-btn su-btn-back" id="su-back-3">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+          <button type="submit" class="su-btn su-btn-submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Get Connected Now
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Success State -->
+    <div class="su-success" id="su-success" style="display:none;">
+      <div class="su-success-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h3 class="su-title">You're All Set!</h3>
+      <p class="su-subtitle" id="su-success-msg">Your sign-up request has been received. A specialist will reach out within 1 business day to finalize your service.</p>
+      <div class="su-success-alt">
+        <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-bottom:var(--space-sm);">Want to get connected even faster?</p>
+        <a href={formatPhoneForTel(MAIN_PHONE)} class="su-btn su-btn-secondary" style="display:inline-flex;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Call {MAIN_PHONE}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .su-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+  }
+  .su-overlay.open {
+    display: flex;
+  }
+  .su-modal {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+    max-width: 640px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: var(--space-2xl);
+    position: relative;
+    animation: su-slide-up 0.3s ease-out;
+  }
+  @keyframes su-slide-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .su-close {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-tertiary);
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+    z-index: 2;
+  }
+  .su-close:hover { color: var(--text-primary); background: var(--gray-100); }
+
+  .su-header { margin-bottom: var(--space-lg); }
+  .su-logo-row { display: flex; align-items: center; gap: var(--space-md); }
+  .su-title { font-size: var(--text-2xl); font-weight: 800; margin-bottom: var(--space-xs); color: var(--text-primary); }
+  .su-subtitle { font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.5; }
+
+  /* Steps indicator */
+  .su-steps {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: var(--space-xl);
+    padding: var(--space-md) 0;
+  }
+  .su-step {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+  .su-step-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: var(--text-sm);
+    background: var(--gray-100);
+    color: var(--text-tertiary);
+    transition: all 0.3s;
+  }
+  .su-step.active .su-step-num {
+    background: var(--brand-blue);
+    color: white;
+  }
+  .su-step.completed .su-step-num {
+    background: var(--brand-green);
+    color: white;
+  }
+  .su-step-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-tertiary);
+    transition: color 0.3s;
+  }
+  .su-step.active .su-step-label { color: var(--text-primary); }
+  .su-step.completed .su-step-label { color: var(--brand-green); }
+  .su-step-line {
+    flex: 1;
+    height: 2px;
+    background: var(--gray-200);
+    margin: 0 var(--space-sm);
+  }
+
+  /* Form fields */
+  .su-form { display: flex; flex-direction: column; }
+  .su-page { display: flex; flex-direction: column; gap: var(--space-md); }
+  .su-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+  .su-field { display: flex; flex-direction: column; gap: 4px; }
+  .su-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .su-input, .su-select {
+    padding: var(--space-sm) var(--space-md);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-height: 48px;
+  }
+  .su-input:focus, .su-select:focus {
+    outline: none;
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(0,82,255,0.1);
+  }
+  .su-input.su-error, .su-select.su-error {
+    border-color: var(--brand-red);
+  }
+
+  /* Buttons */
+  .su-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--text-base);
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-height: 52px;
+    white-space: nowrap;
+  }
+  .su-btn-primary {
+    background: var(--brand-blue);
+    color: white;
+    width: 100%;
+    font-size: var(--text-lg);
+  }
+  .su-btn-primary:hover { background: var(--brand-blue-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,82,255,0.3); }
+  .su-btn-submit {
+    background: var(--gradient-cta);
+    color: #000d2e;
+    flex: 1;
+    font-size: var(--text-xl);
+    min-height: 56px;
+    padding: var(--space-md) var(--space-lg);
+    letter-spacing: -0.01em;
+  }
+  .su-btn-submit:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,213,132,0.4); }
+  .su-btn-back {
+    background: var(--gray-100);
+    color: var(--text-secondary);
+    padding: var(--space-sm) var(--space-lg);
+  }
+  .su-btn-back:hover { background: var(--gray-200); }
+  .su-btn-secondary {
+    background: var(--white);
+    color: var(--text-primary);
+    border: 2px solid var(--border);
+    padding: var(--space-sm) var(--space-lg);
+  }
+  .su-btn-secondary:hover { border-color: var(--brand-blue); }
+
+  .su-nav-row {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+  }
+
+  /* Review card */
+  .su-review-card {
+    background: var(--gray-50);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+  .su-review-card .su-review-row {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-xs) 0;
+    font-size: var(--text-sm);
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .su-review-card .su-review-row:last-child { border-bottom: none; }
+  .su-review-card .su-review-label { color: var(--text-tertiary); font-weight: 500; }
+  .su-review-card .su-review-val { color: var(--text-primary); font-weight: 600; text-align: right; }
+
+  /* Consent */
+  .su-consent { margin-bottom: var(--space-md); }
+  .su-checkbox-wrap {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: flex-start;
+    cursor: pointer;
+  }
+  .su-checkbox-wrap input[type="checkbox"] {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    accent-color: var(--brand-blue);
+  }
+  .su-checkbox-label {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .su-checkbox-label a { color: var(--brand-blue); text-decoration: underline; }
+
+  /* Success */
+  .su-success {
+    text-align: center;
+    padding: var(--space-xl) 0;
+  }
+  .su-success-icon { margin-bottom: var(--space-lg); }
+  .su-success-alt { margin-top: var(--space-xl); }
+
+  /* Partner branding — dynamic via JS */
+  .su-modal.su-branded {
+    border-top: 4px solid var(--brand-blue);
+  }
+
+  @media (max-width: 600px) {
+    .su-modal { padding: var(--space-lg); max-height: 95vh; }
+    .su-row { grid-template-columns: 1fr; }
+    .su-step-label { display: none; }
+    .su-nav-row { flex-direction: column-reverse; }
+    .su-btn { white-space: normal; text-align: center; }
+    .su-btn-submit { font-size: var(--text-lg); padding: var(--space-md); }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('signup-modal') as HTMLElement;
+  const modalInner = document.getElementById('su-modal-inner') as HTMLElement;
+  const closeBtn = document.getElementById('su-close');
+  const form = document.getElementById('su-form') as HTMLFormElement;
+  const successEl = document.getElementById('su-success') as HTMLElement;
+  if (!modal || !form) return;
+
+  // Partner data from server
+  interface PartnerPlan { name: string; speed: number; price: number; }
+  interface PartnerInfo { slug: string; name: string; logo: string | null; phone: string; plans: PartnerPlan[]; }
+  const partners: PartnerInfo[] = JSON.parse(modal.dataset.partners || '[]');
+
+  let currentStep = 1;
+  const totalSteps = 3;
+
+  // DOM refs
+  const providerSelect = document.getElementById('su-provider') as HTMLSelectElement;
+  const planField = document.getElementById('su-plan-field') as HTMLElement;
+  const planSelect = document.getElementById('su-plan') as HTMLSelectElement;
+  const logoRow = document.getElementById('su-logo-row') as HTMLElement;
+  const providerLogo = document.getElementById('su-provider-logo') as HTMLImageElement;
+  const defaultHeader = document.getElementById('su-default-header') as HTMLElement;
+  const titleEl = document.getElementById('su-title') as HTMLElement;
+  const subtitleEl = document.getElementById('su-subtitle') as HTMLElement;
+  const reviewEl = document.getElementById('su-review') as HTMLElement;
+
+  function openModal(providerSlug?: string) {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (providerSlug) {
+      providerSelect.value = providerSlug;
+      updateProviderUI(providerSlug);
+    }
+    goToStep(1);
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function updateProviderUI(slug: string) {
+    const partner = partners.find(p => p.slug === slug);
+    if (partner && partner.logo) {
+      logoRow.style.display = 'flex';
+      defaultHeader.style.display = 'none';
+      providerLogo.src = partner.logo;
+      providerLogo.alt = partner.name;
+      titleEl.textContent = `Sign Up for ${partner.name}`;
+      subtitleEl.textContent = `Complete the form to get started with ${partner.name}. We'll handle the rest.`;
+      modalInner.classList.add('su-branded');
+
+      // Populate plans
+      planSelect.innerHTML = '<option value="">Choose a plan...</option>';
+      partner.plans.forEach(pl => {
+        const opt = document.createElement('option');
+        opt.value = pl.name;
+        opt.textContent = `${pl.name} — ${pl.speed >= 1000 ? (pl.speed/1000) + ' Gbps' : pl.speed + ' Mbps'} — $${pl.price.toFixed(2)}/mo`;
+        planSelect.appendChild(opt);
+      });
+      planField.style.display = '';
+    } else {
+      logoRow.style.display = 'none';
+      defaultHeader.style.display = '';
+      titleEl.textContent = 'Get Connected — Quick Sign Up';
+      subtitleEl.textContent = "Fill in your details and we'll get you the best internet deal. No obligation, 100% free.";
+      modalInner.classList.remove('su-branded');
+      planField.style.display = 'none';
+    }
+  }
+
+  function goToStep(step: number) {
+    currentStep = step;
+    // Toggle pages
+    form.querySelectorAll('.su-page').forEach(p => {
+      (p as HTMLElement).style.display = (p as HTMLElement).dataset.page === String(step) ? '' : 'none';
+    });
+    // Update step indicators
+    document.querySelectorAll('.su-step').forEach(s => {
+      const sNum = parseInt((s as HTMLElement).dataset.step || '0');
+      s.classList.toggle('active', sNum === step);
+      s.classList.toggle('completed', sNum < step);
+    });
+    // Show/hide form vs success
+    form.style.display = step <= totalSteps ? '' : 'none';
+    successEl.style.display = step > totalSteps ? '' : 'none';
+    document.getElementById('su-steps')!.style.display = step <= totalSteps ? '' : 'none';
+  }
+
+  function buildReview() {
+    const data = new FormData(form);
+    const rows = [
+      ['Provider', (providerSelect.options[providerSelect.selectedIndex]?.text || '').split(' — ')[0]],
+      ['Plan', data.get('plan') as string || 'Best available'],
+      ['Situation', (document.getElementById('su-need') as HTMLSelectElement).options[(document.getElementById('su-need') as HTMLSelectElement).selectedIndex]?.text || ''],
+      ['Name', `${data.get('first_name')} ${data.get('last_name')}`],
+      ['Address', data.get('address') as string],
+      ['Email', data.get('email') as string],
+      ['Phone', data.get('phone') as string],
+      ['Date of Birth', data.get('dob') as string || 'Not provided'],
+      ['Preferred Install', data.get('install_date') as string || 'As soon as possible'],
+    ].filter(r => r[1]);
+
+    reviewEl.innerHTML = rows.map(([label, val]) =>
+      `<div class="su-review-row"><span class="su-review-label">${label}</span><span class="su-review-val">${val}</span></div>`
+    ).join('');
+  }
+
+  // Event handlers
+  providerSelect.addEventListener('change', () => updateProviderUI(providerSelect.value));
+
+  document.getElementById('su-next-1')?.addEventListener('click', () => {
+    if (!providerSelect.value) { providerSelect.classList.add('su-error'); providerSelect.focus(); return; }
+    providerSelect.classList.remove('su-error');
+    goToStep(2);
+  });
+
+  document.getElementById('su-back-2')?.addEventListener('click', () => goToStep(1));
+
+  document.getElementById('su-next-2')?.addEventListener('click', () => {
+    // Validate required fields on step 2
+    let valid = true;
+    ['su-fname', 'su-lname', 'su-address', 'su-email', 'su-phone'].forEach(id => {
+      const el = document.getElementById(id) as HTMLInputElement;
+      if (!el.value.trim()) { el.classList.add('su-error'); valid = false; } else { el.classList.remove('su-error'); }
+    });
+    const emailEl = document.getElementById('su-email') as HTMLInputElement;
+    if (emailEl.value && !emailEl.value.includes('@')) { emailEl.classList.add('su-error'); valid = false; }
+    if (!valid) return;
+    buildReview();
+    goToStep(3);
+  });
+
+  document.getElementById('su-back-3')?.addEventListener('click', () => goToStep(2));
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const consent = document.getElementById('su-consent') as HTMLInputElement;
+    if (!consent.checked) { consent.focus(); return; }
+    // In production, submit to API. For now, show success.
+    goToStep(totalSteps + 1);
+  });
+
+  // Open triggers — use event delegation to handle dynamically created elements
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest('a[href="#get-connected"], [data-open-modal], [data-signup-modal], [data-signup-provider]') as HTMLElement | null;
+    if (!target) return;
+    e.preventDefault();
+    const slug = target.dataset.signupProvider || '';
+    openModal(slug || undefined);
+  });
+
+  // Close handlers
+  closeBtn?.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+});
+</script>

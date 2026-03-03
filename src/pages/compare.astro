@@ -9,8 +9,8 @@ const partners = getPartnerProviders();
 const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
 ---
 <Base
-  title="Compare Internet Providers Side-by-Side — Plans, Prices & Speeds"
-  description="Compare the top internet providers side by side. See speeds, prices, data caps, contract terms, and ratings all in one view."
+  title="Compare Internet Providers (2026) — Plans, Prices & Speeds"
+  description="Compare top internet providers side by side. See speeds, prices, contracts, and ratings in one view. Find the best plan — order online or call for expert help."
   schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Compare', url: 'https://internet4all.com/compare' }])]}
 >
   <section class="section" style="padding-top: var(--space-xl);">
@@ -43,8 +43,8 @@ const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
               const maxSpeed = getMaxSpeed(p);
               const maxUpload = getMaxUpload(p);
               const minPrice = getMinPrice(p);
-              const isFastest = maxSpeed >= 2000;
-              const isCheapest = minPrice <= 40;
+              const isFastest = maxSpeed > 1999;
+              const isCheapest = !(minPrice > 40);
               return (
                 <tr>
                     <td>
@@ -76,13 +76,31 @@ const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
                       </span>
                     </td>
                     <td>
-                      <a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a>
+                      <a href="#get-connected" class="btn btn-cta btn-sm" data-signup-provider={p.slug} style="font-size:var(--text-sm);padding:0.7em 1.4em;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Order Now
+                      </a>
                     </td>
                   </tr>
               );
             })}
           </tbody>
         </table>
+      </div>
+
+      <!-- Conversion CTA -->
+      <div class="reveal" style="margin-top: var(--space-2xl); text-align: center; background: var(--gradient-hero); padding: var(--space-2xl) var(--space-xl); border-radius: var(--radius-xl); position: relative; overflow: hidden;">
+        <div style="position: relative; z-index: 1;">
+          <h3 style="color: var(--white); margin-bottom: var(--space-sm);">Not Sure Which to Pick?</h3>
+          <p style="color: rgba(255,255,255,0.8); margin-bottom: var(--space-lg); max-width: 420px; margin-inline: auto;">Our experts will compare plans at your address and recommend the best option for your needs — 100% free.</p>
+          <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+            <a href="#get-connected" class="btn btn-cta" data-signup-provider="">Get My Recommendation</a>
+            <a href={formatPhoneForTel(partners[0]?.phone || '1-888-555-0123')} class="btn btn-secondary" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25);color:#fff;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              Call an Expert
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Key Insights -->
@@ -107,6 +125,44 @@ const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
           <p style="margin-top:var(--space-sm);">
             <strong>{partners.reduce((a, b) => a.rating > b.rating ? a : b).name}</strong> leads with a {partners.reduce((a, b) => a.rating > b.rating ? a : b).rating} star rating.
           </p>
+        </div>
+      </div>
+      <!-- Explore More -->
+      <div class="reveal" style="margin-top: var(--space-3xl);">
+        <h3 style="margin-bottom: var(--space-lg);">Keep Exploring</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
+          <a href="/providers" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
+            <h4 style="font-size: var(--text-sm);">🔍 All Providers</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">See every available provider</p>
+          </a>
+          <a href="/deals" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
+            <h4 style="font-size: var(--text-sm);">💰 Best Deals</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Today's lowest prices</p>
+          </a>
+          <a href="/cheap-internet" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
+            <h4 style="font-size: var(--text-sm);">🏷️ Cheap Internet</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Budget-friendly plans</p>
+          </a>
+          <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
+            <h4 style="font-size: var(--text-sm);">⚡ Fastest Internet</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Multi-gig speed options</p>
+          </a>
+          <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
+            <h4 style="font-size: var(--text-sm);">📊 Speed Test</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Check your current speed</p>
+          </a>
+          <a href="/internet-types" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
+            <h4 style="font-size: var(--text-sm);">🌐 Internet Types</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Fiber, Cable, DSL, 5G</p>
+          </a>
+          <a href="/internet-for/work-from-home" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
+            <h4 style="font-size: var(--text-sm);">💻 Work From Home</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Plans for remote workers</p>
+          </a>
+          <a href="/bundles" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
+            <h4 style="font-size: var(--text-sm);">📦 Bundles</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Internet + TV packages</p>
+          </a>
         </div>
       </div>
     </div>

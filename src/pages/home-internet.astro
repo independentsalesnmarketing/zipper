@@ -1,0 +1,249 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getPartnerProviders, getProvidersByType, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+const allProviders = getAllProviders();
+const partners = getPartnerProviders();
+const rankedProviders = allProviders
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return b.rating - a.rating;
+  });
+
+const topPicks = [
+  { label: 'Best Overall', provider: rankedProviders[0], reason: 'Top-rated for speed, reliability, and value across all categories.' },
+  { label: 'Best for Streaming', provider: allProviders.find(p => p.slug === 'att-fiber') || rankedProviders[1], reason: 'Symmetrical speeds and no data caps — perfect for 4K streaming on multiple devices.' },
+  { label: 'Best Value', provider: allProviders.find(p => p.slug === 'spectrum') || rankedProviders[2], reason: 'No contracts, no data caps, and affordable plans starting under $50/mo.' },
+  { label: 'Best for Gaming', provider: allProviders.find(p => p.types.includes('fiber')) || rankedProviders[3], reason: 'Ultra-low latency fiber connection for competitive online gaming.' },
+  { label: 'Best No-Contract', provider: allProviders.find(p => p.plans.some(pl => pl.contract === 'None') && p.isPartner) || rankedProviders[4], reason: 'No annual commitment — cancel anytime with zero early termination fees.' },
+];
+
+const speedTiers = [
+  { usage: 'Basic Browsing & Email', people: '1–2', speed: '25–50 Mbps', price: '$20–40/mo' },
+  { usage: 'Streaming & Social Media', people: '2–4', speed: '100–200 Mbps', price: '$40–60/mo' },
+  { usage: 'Remote Work & Video Calls', people: '3–5', speed: '200–500 Mbps', price: '$50–75/mo' },
+  { usage: 'Heavy Gaming & 4K TV', people: '4–8', speed: '500 Mbps–1 Gbps', price: '$60–100/mo' },
+  { usage: 'Smart Home & Multi-User', people: '5+', speed: '1–2 Gbps', price: '$80–120/mo' },
+];
+
+const faqs = [
+  { question: 'What is the best home internet provider in 2025?', answer: `The best home internet provider depends on your address and needs. ${rankedProviders[0]?.name} is our top-rated provider overall. For pure speed, fiber providers like AT&T Fiber and Google Fiber lead. For value, Spectrum offers no-contract plans with no data caps. Call ${phone} for a personalized recommendation based on your address.` },
+  { question: 'How much does home internet cost per month?', answer: 'Home internet costs $25–100/mo depending on speed and provider. Basic plans (25–100 Mbps) cost $25–50/mo. Mid-tier plans (200–500 Mbps) run $50–75/mo. Gigabit fiber costs $60–100/mo. Many providers offer promotional pricing for the first 12 months.' },
+  { question: 'What internet speed do I need for my home?', answer: 'For 1–2 people doing basic browsing, 50 Mbps is enough. Households with 3–5 people streaming and working from home need 200–500 Mbps. Large households with gamers and 4K TVs should get 500 Mbps–1 Gbps. We recommend at least 25 Mbps per person in your household.' },
+  { question: 'Is fiber internet better than cable for home use?', answer: 'Fiber provides symmetrical upload/download speeds, lower latency, and more reliable service. Cable is more widely available and still offers fast downloads (up to 1.2 Gbps). If fiber is available at your address, it\'s generally the better choice. If not, cable is an excellent alternative.' },
+  { question: 'Do I need a contract for home internet?', answer: `Many providers now offer no-contract plans. Spectrum, T-Mobile 5G Home Internet, and several others have no annual commitments. Contract plans sometimes offer lower monthly rates but include early termination fees ($100–200). Call ${phone} to find no-contract options at your address.` },
+  { question: 'Can I get home internet without a phone line?', answer: 'Yes! Cable, fiber, 5G, and satellite internet all work independently of phone lines. Only DSL uses phone infrastructure. Most modern internet plans are standalone — no phone line required. If you want a phone bundle, see our internet and phone packages page.' },
+  { question: 'How do I set up home internet?', answer: `1) Check availability at your address. 2) Choose a provider and plan. 3) Schedule installation (same-day sometimes available). 4) A technician installs equipment or you self-install. Most setups take 1–2 hours. Call ${phone} and we'll handle everything from ordering to scheduling.` },
+  { question: 'What equipment do I need for home internet?', answer: 'You need a modem (connects to your ISP) and a router (creates your WiFi network). Many providers include a combo modem/router for $10–15/mo or free. You can also buy your own to save money. Fiber plans may include an ONT (optical network terminal) installed by the provider.' },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Home Internet', url: 'https://internet4all.com/home-internet' },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`Best Home Internet Providers & Plans (${month} ${year})`}
+  description={`Compare the best home internet providers and plans for ${year}. Find residential internet starting at $25/mo with speeds up to 8 Gbps. Compare ${allProviders.length}+ providers by speed, price, and rating.`}
+  schema={schemas}
+>
+  <StickyCallBar text="Find the best home internet — call for exclusive deals" />
+
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Home Internet' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">🏠 Updated {month} {year}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Best <span class="gradient-text">Home Internet</span> Providers & Plans
+        </h1>
+        <p class="hero-subtitle" style="max-width: 720px; margin-inline: auto;">
+          Find the perfect residential internet plan for your household. We've compared speeds, prices, and coverage
+          from {allProviders.length}+ providers to help you choose the best home internet in {year}.
+        </p>
+        <div style="margin-top: var(--space-xl);">
+          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Talk to an Expert</a>
+          <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check My Address</a>
+        </div>
+      </div>
+
+      <!-- Category Winners -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 class="text-center" style="margin-bottom: var(--space-xl);">Our Top Home Internet Picks for {year}</h2>
+        <div class="grid grid-3" style="gap: var(--space-md);">
+          {topPicks.filter(tp => tp.provider).map(tp => (
+            <div class="card" style="padding: var(--space-lg); border-top: 3px solid var(--brand-blue);">
+              <div class="badge badge-blue" style="margin-bottom: var(--space-sm); font-size: 0.6rem;">{tp.label}</div>
+              <h3 style="margin-bottom: var(--space-xs);">{tp.provider?.name}</h3>
+              <div class="flex gap-sm" style="margin-bottom: var(--space-sm);">
+                {tp.provider?.types.map(t => <span class={`tag tag-${t}`} style="font-size:0.55rem;">{getTypeLabel(t)}</span>)}
+              </div>
+              <div class="grid grid-2" style="gap: var(--space-xs); margin-bottom: var(--space-sm);">
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary);">
+                  Speeds to <strong style="color: var(--text-primary);">{formatSpeed(getMaxSpeed(tp.provider!))}</strong>
+                </div>
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary);">
+                  From <strong style="color: var(--brand-green);">{formatPrice(getMinPrice(tp.provider!))}/mo</strong>
+                </div>
+              </div>
+              <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-bottom: var(--space-md);">{tp.reason}</p>
+              <a href={formatPhoneForTel(tp.provider!.phone)} class="btn btn-cta btn-sm" style="width: 100%; text-align: center;">
+                Get This Plan
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Full Rankings Table -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">All Home Internet Providers Ranked ({year})</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">Every residential internet provider ranked by speed, price, and customer rating. Partners listed first.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Provider</th>
+                <th>Types</th>
+                <th>Max Speed</th>
+                <th>Starting Price</th>
+                <th>Rating</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {rankedProviders.map((p, i) => (
+                <tr>
+                  <td><strong>{i + 1}</strong></td>
+                  <td>
+                    <a href={`/provider/${p.slug}`} style="font-weight: 600;">{p.name}</a>
+                    {p.isPartner && <span class="badge badge-green" style="font-size:0.5rem;margin-left:4px;">Partner</span>}
+                  </td>
+                  <td>{p.types.map(t => getTypeLabel(t)).join(', ')}</td>
+                  <td>{formatSpeed(getMaxSpeed(p))}</td>
+                  <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
+                  <td>⭐ {p.rating.toFixed(1)}</td>
+                  <td><a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Speed Guide -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Home Internet Speed Guide: How Much Do You Need?</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">
+          Use this chart to find the right speed tier for your household. Larger homes need faster plans.
+        </p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Usage Type</th>
+                <th>People</th>
+                <th>Recommended Speed</th>
+                <th>Typical Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              {speedTiers.map(tier => (
+                <tr>
+                  <td style="font-weight: 600;">{tier.usage}</td>
+                  <td>{tier.people}</td>
+                  <td style="color: var(--brand-blue); font-weight: 600;">{tier.speed}</td>
+                  <td>{tier.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div class="card" style="padding: var(--space-lg); margin-top: var(--space-lg); text-align: center; background: var(--surface-2);">
+          <p style="margin-bottom: var(--space-sm);">Not sure what speed you need? Our experts will analyze your household and recommend the perfect plan.</p>
+          <a href={phoneHref} class="btn btn-cta">📞 Get a Free Speed Recommendation</a>
+        </div>
+      </div>
+
+      <!-- Internet Types for Home -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Types of Home Internet Connections</h2>
+        <div class="grid grid-2" style="gap: var(--space-md);">
+          <a href="/internet-types/fiber" class="card" style="padding: var(--space-lg); text-decoration: none;">
+            <h3 style="margin-bottom: var(--space-xs);">⚡ Fiber Internet</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin: 0;">The gold standard. Symmetrical speeds up to 8 Gbps, lowest latency. Available from AT&T, Verizon Fios, Google Fiber, Frontier, and more.</p>
+          </a>
+          <a href="/internet-types/cable" class="card" style="padding: var(--space-lg); text-decoration: none;">
+            <h3 style="margin-bottom: var(--space-xs);">📡 Cable Internet</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin: 0;">The most widely available broadband. Speeds up to 1.2 Gbps download. Available from Spectrum, Xfinity, Cox, Optimum, and more.</p>
+          </a>
+          <a href="/internet-types/5g" class="card" style="padding: var(--space-lg); text-decoration: none;">
+            <h3 style="margin-bottom: var(--space-xs);">📱 5G Home Internet</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin: 0;">No wires, no installation hassle. Connects over 5G towers. T-Mobile and Verizon offer plans starting at $25/mo.</p>
+          </a>
+          <a href="/internet-types/dsl" class="card" style="padding: var(--space-lg); text-decoration: none;">
+            <h3 style="margin-bottom: var(--space-xs);">🔌 DSL Internet</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin: 0;">Affordable and widely available. Uses phone lines. Speeds up to 100 Mbps. Good for basic usage in areas without cable or fiber.</p>
+          </a>
+          <a href="/wireless-internet" class="card" style="padding: var(--space-lg); text-decoration: none;">
+            <h3 style="margin-bottom: var(--space-xs);">📶 Fixed Wireless</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin: 0;">No cables required. Uses radio towers to connect your home. Great for suburban and semi-rural areas. Speeds up to 1 Gbps.</p>
+          </a>
+          <a href="/internet-types/satellite" class="card" style="padding: var(--space-lg); text-decoration: none;">
+            <h3 style="margin-bottom: var(--space-xs);">🛰️ Satellite Internet</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin: 0;">Available everywhere in the US, including remote areas. Starlink, Viasat, and HughesNet serve rural America.</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Related Pages -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Explore More</h2>
+        <div class="grid grid-3" style="gap: var(--space-sm);">
+          <a href="/providers" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🔍 All Providers</a>
+          <a href="/compare" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">⚖️ Compare Plans</a>
+          <a href="/deals" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">💰 Best Deals</a>
+          <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">⚡ Fastest Internet</a>
+          <a href="/cheap-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏷️ Cheap Internet</a>
+          <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📊 Speed Test</a>
+          <a href="/internet-for/gaming" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🎮 Best for Gaming</a>
+          <a href="/internet-for/streaming" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📺 Best for Streaming</a>
+          <a href="/internet-for/work-from-home" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">💻 Work From Home</a>
+          <a href="/bundles" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📦 Internet + TV Bundles</a>
+          <a href="/no-contract-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🔓 No-Contract Plans</a>
+          <a href="/check-availability" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📍 Check Availability</a>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Home Internet FAQ</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Base>

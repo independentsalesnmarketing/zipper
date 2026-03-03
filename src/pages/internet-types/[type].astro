@@ -1,0 +1,272 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getPartnerProviders, getProvidersByType, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+const typeData: Record<string, { title: string; slug: string; h1: string; description: string; intro: string; howItWorks: string; speedRange: string; priceRange: string; bestFor: string; icon: string }> = {
+  fiber: {
+    title: 'Fiber Internet Providers',
+    slug: 'fiber',
+    h1: 'Fiber Internet',
+    description: 'Compare fiber optic internet providers, plans, speeds up to 8 Gbps, and availability. The fastest, most reliable internet technology available.',
+    intro: 'Fiber optic internet delivers data using light signals through ultra-thin glass strands, achieving the fastest speeds available to consumers — up to 8 Gbps symmetrical. With virtually zero latency and no signal degradation over distance, fiber is the gold standard for internet connectivity in 2025.',
+    howItWorks: 'Fiber optic cables transmit data as pulses of light through thin glass or plastic fibers. Unlike copper-based connections (cable, DSL), light signals don\'t degrade over distance, don\'t suffer from electromagnetic interference, and can carry far more data simultaneously. There are three delivery methods: FTTH (Fiber to the Home) brings fiber directly to your residence for maximum speed; FTTC (Fiber to the Curb) uses fiber to a nearby junction box then copper for the last stretch; and FTTN (Fiber to the Node) brings fiber to a neighborhood node.',
+    speedRange: '100 Mbps – 8 Gbps',
+    priceRange: '$30 – $300/mo',
+    bestFor: 'Gamers, remote workers, streamers, smart homes, large households, content creators, anyone who wants the best',
+    icon: '⚡',
+  },
+  cable: {
+    title: 'Cable Internet Providers',
+    slug: 'cable',
+    h1: 'Cable Internet',
+    description: 'Compare cable internet providers and plans. Fast speeds up to 1.2 Gbps using existing coaxial cable infrastructure. Widely available nationwide.',
+    intro: 'Cable internet uses the same coaxial cable network that delivers cable TV to provide high-speed internet access. It\'s the most widely available broadband technology in the US, reaching over 88% of households. With speeds up to 1.2 Gbps download, cable offers an excellent balance of speed, reliability, and availability.',
+    howItWorks: 'Cable internet transmits data over coaxial cables using DOCSIS (Data Over Cable Service Interface Specification) technology. The latest standard, DOCSIS 3.1, supports speeds up to 10 Gbps downstream and 1 Gbps upstream. Data travels from your ISP\'s head-end facility through neighborhood nodes to your home\'s coaxial connection, where a cable modem converts the signal for your router. Because cable is a shared medium, speeds can fluctuate during peak usage times in your neighborhood.',
+    speedRange: '25 Mbps – 1.2 Gbps',
+    priceRange: '$20 – $120/mo',
+    bestFor: 'Most households, streaming, work from home, families, moderate gaming',
+    icon: '📡',
+  },
+  dsl: {
+    title: 'DSL Internet Providers',
+    slug: 'dsl',
+    h1: 'DSL Internet',
+    description: 'Compare DSL internet providers and plans. Affordable internet using existing phone lines. Available in areas without cable or fiber.',
+    intro: 'DSL (Digital Subscriber Line) delivers internet through existing copper telephone lines. While not as fast as fiber or cable, DSL reaches rural and underserved areas where other broadband options don\'t exist. It\'s a reliable, affordable option for basic to moderate internet use.',
+    howItWorks: 'DSL uses the higher frequency bands of telephone copper wiring to transmit data while the lower bands carry voice calls — allowing internet and phone service simultaneously. ADSL (Asymmetric DSL) provides faster downloads than uploads, while VDSL (Very-high-bit-rate DSL) uses shorter copper runs from street-level cabinets for higher speeds. Speed depends heavily on your distance from the DSLAM (the provider\'s equipment): closer means faster. Typical range is within 3 miles for good speeds.',
+    speedRange: '1 Mbps – 100 Mbps',
+    priceRange: '$20 – $65/mo',
+    bestFor: 'Budget-conscious users, rural residents, light internet users, basic streaming',
+    icon: '📞',
+  },
+  satellite: {
+    title: 'Satellite Internet Providers',
+    slug: 'satellite',
+    h1: 'Satellite Internet',
+    description: 'Compare satellite internet providers including Starlink, Viasat, and HughesNet. Available everywhere — the solution for rural and remote areas.',
+    intro: 'Satellite internet beams your connection from space, making it available virtually anywhere in the US — including remote rural areas where no ground-based infrastructure exists. With Starlink\'s low-earth orbit constellation dramatically improving speeds and latency, satellite internet has evolved from a last resort into a competitive broadband option.',
+    howItWorks: 'Traditional satellite internet (Viasat, HughesNet) uses geostationary satellites orbiting 22,236 miles above Earth. Your dish sends signals to the satellite, which relays them to ground stations connected to the internet backbone. This high altitude creates ~600ms round-trip latency. Starlink uses low-earth orbit (LEO) satellites at just 340 miles altitude, with thousands of satellites forming a mesh network. LEO dramatically reduces latency to 20-50ms and enables much higher speeds, approaching ground-based broadband performance.',
+    speedRange: '25 Mbps – 500 Mbps',
+    priceRange: '$50 – $165/mo',
+    bestFor: 'Rural residents, remote areas, RV/boat users, traveling professionals, areas without cable or fiber',
+    icon: '🛰️',
+  },
+  '5g': {
+    title: '5G Home Internet Providers',
+    slug: '5g',
+    h1: '5G Home Internet',
+    description: 'Compare 5G home internet from T-Mobile, Verizon, and more. No wires, no installation, just plug in and connect. Speeds up to 1 Gbps.',
+    intro: '5G home internet uses cellular tower signals to deliver broadband to your home without any wires, cables, or professional installation. Simply plug in a 5G gateway device, and you\'re online. With T-Mobile and Verizon leading the space, 5G home internet offers a compelling cable alternative with competitive speeds and no contracts.',
+    howItWorks: '5G home internet works like a giant WiFi hotspot connected to the nearest 5G cell tower. Your provider sends a small indoor gateway device that receives the 5G signal and creates a WiFi network in your home. There are two types: 5G UC/UW (Ultra Capacity/Ultra Wideband) uses mmWave and mid-band spectrum for speeds up to 1+ Gbps; 5G (extended range) uses low-band spectrum for wider coverage at lower speeds. No installation appointment needed — it\'s literally plug-and-play.',
+    speedRange: '50 Mbps – 1 Gbps',
+    priceRange: '$25 – $80/mo',
+    bestFor: 'Renters, cord-cutters, people avoiding contracts, cable alternative seekers, apartments',
+    icon: '📱',
+  },
+  'fixed-wireless': {
+    title: 'Fixed Wireless Internet Providers',
+    slug: 'fixed-wireless',
+    h1: 'Fixed Wireless Internet',
+    description: 'Compare fixed wireless internet providers. A wireless alternative for rural and suburban areas. No cables needed — just line of sight to a tower.',
+    intro: 'Fixed wireless internet delivers broadband via radio signals from a nearby tower to an antenna on your home. It serves as a crucial bridge technology in areas where fiber and cable infrastructure hasn\'t been built. With speeds improving rapidly and more providers entering the market, fixed wireless is becoming a legitimate broadband option for millions of Americans.',
+    howItWorks: 'A fixed wireless provider installs a small antenna or receiver on your roof or exterior wall. This antenna communicates with the nearest wireless tower (usually within 10 miles) via radio waves. The signal is then routed to an indoor unit or router that provides WiFi throughout your home. Line of sight to the tower is important — trees, buildings, and terrain can affect signal quality. Newer technologies like CBRS and millimeter wave are improving speeds and reliability.',
+    speedRange: '10 Mbps – 500 Mbps',
+    priceRange: '$30 – $100/mo',
+    bestFor: 'Rural and suburban residents, areas without fiber or cable, people wanting an alternative to satellite',
+    icon: '📶',
+  },
+};
+
+const typeKeys = Object.keys(typeData);
+const typeMap = {
+  fiber: 'Fiber',
+  cable: 'Cable',
+  dsl: 'DSL',
+  satellite: 'Satellite',
+  '5g': '5G Home Internet',
+  'fixed-wireless': 'Fixed Wireless',
+};
+
+export function getStaticPaths() {
+  return ['fiber', 'cable', 'dsl', 'satellite', '5g', 'fixed-wireless'].map(t => ({
+    params: { type: t },
+    props: { typeSlug: t },
+  }));
+}
+
+interface Props { typeSlug: string; }
+const { typeSlug } = Astro.props;
+const td = typeData[typeSlug];
+
+const allProviders = getAllProviders();
+// Map type slugs to provider type strings
+const providerTypeMap: Record<string, string[]> = {
+  fiber: ['Fiber'],
+  cable: ['Cable'],
+  dsl: ['DSL'],
+  satellite: ['Satellite'],
+  '5g': ['5G Home Internet', '5G'],
+  'fixed-wireless': ['Fixed Wireless'],
+};
+const matchTypes = providerTypeMap[typeSlug] || [];
+const typeProviders = allProviders
+  .filter(p => p.types.some(t => matchTypes.some(mt => t.toLowerCase().includes(mt.toLowerCase()))))
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return getMaxSpeed(b) - getMaxSpeed(a);
+  });
+
+const year = new Date().getFullYear();
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+const faqs = [
+  { question: `What is ${td.h1.toLowerCase()}?`, answer: td.howItWorks },
+  { question: `How fast is ${td.h1.toLowerCase()}?`, answer: `${td.h1} typically offers speeds ranging from ${td.speedRange}. Actual speeds depend on your provider, plan, and location. ${typeSlug === 'fiber' ? 'Fiber offers the fastest speeds available, with many providers offering symmetrical upload and download speeds.' : typeSlug === 'cable' ? 'Cable speeds are typically fast for downloads but slower for uploads due to the asymmetric nature of DOCSIS technology.' : typeSlug === 'satellite' ? 'Satellite speeds have improved dramatically with Starlink, but can be affected by weather and network congestion.' : 'Speeds vary by provider and your specific location.'}` },
+  { question: `How much does ${td.h1.toLowerCase()} cost?`, answer: `${td.h1} plans typically range from ${td.priceRange}. Prices vary by provider, speed tier, and promotional periods. ${typeSlug === 'fiber' ? 'Fiber often provides the best value per Mbps, especially at higher speed tiers.' : typeSlug === 'dsl' ? 'DSL is generally the most affordable option, making it great for budget-conscious households.' : 'Contact us for the latest pricing and promotions available in your area.'}` },
+  { question: `Is ${td.h1.toLowerCase()} available in my area?`, answer: `${typeSlug === 'fiber' ? 'Fiber availability is expanding rapidly but currently reaches about 43% of US households. Use our ZIP code search to check if fiber is available at your address.' : typeSlug === 'cable' ? 'Cable internet is the most widely available broadband, reaching about 88% of US households.' : typeSlug === 'satellite' ? 'Satellite internet is available virtually everywhere in the US — it\'s the one technology that has no geographic limitations.' : typeSlug === '5g' ? '5G home internet is expanding but availability depends on your distance from a 5G tower. Coverage is best in urban and suburban areas.' : 'Availability varies by provider and location. Enter your ZIP code or call us to check availability at your address.'}` },
+  { question: `Who is ${td.h1.toLowerCase()} best for?`, answer: `${td.h1} is best for: ${td.bestFor}. ${typeSlug === 'fiber' ? 'If fiber is available at your address, it\'s almost always the best choice regardless of your usage.' : typeSlug === 'cable' ? 'Cable is an excellent all-around choice for most households.' : typeSlug === 'satellite' ? 'Satellite is the go-to option when ground-based broadband isn\'t available at your location.' : 'Consider your specific needs and check what\'s available at your address.'}` },
+  { question: `${td.h1} vs other internet types — which is better?`, answer: `Every internet type has trade-offs. ${typeSlug === 'fiber' ? 'Fiber is the fastest and most reliable but has limited availability. Cable is the most common alternative with good speeds. 5G is the easiest to set up.' : typeSlug === 'cable' ? 'Cable offers a great balance of speed, price, and availability. Fiber is faster but less available. 5G is easier to install but less consistent.' : typeSlug === '5g' ? '5G offers no-contract, no-installation simplicity. Cable and fiber are faster and more consistent. Satellite works everywhere but has higher latency.' : 'The best choice depends on what\'s available at your address, your speed needs, and your budget. Call us for personalized advice.'}` },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Internet Types', url: 'https://internet4all.com/internet-types' },
+    { name: td.title, url: `https://internet4all.com/internet-types/${td.slug}` },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`${td.title} — Plans, Speeds & Availability (${year})`}
+  description={td.description}
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[
+        { name: 'Internet Types', url: '/internet-types' },
+        { name: td.title },
+      ]} />
+
+      <div class="reveal" style="max-width: 800px;">
+        <span class="tag" style="margin-bottom: var(--space-sm); display: inline-block; font-size: var(--text-lg);">{td.icon}</span>
+        <h1 style="font-size: var(--text-4xl); line-height: 1.1; margin-bottom: var(--space-md);">{td.h1}: <span class="gradient-text">Providers, Plans & Availability</span></h1>
+        <p style="font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.7;">{td.intro}</p>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="grid grid-4 reveal" style="margin-top: var(--space-2xl); gap: var(--space-md);">
+        <div class="card" style="padding: var(--space-lg); text-align: center;">
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase;">Speed Range</div>
+          <div style="font-size: var(--text-xl); font-weight: 700; color: var(--brand-green); margin-top: var(--space-xs);">{td.speedRange}</div>
+        </div>
+        <div class="card" style="padding: var(--space-lg); text-align: center;">
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase;">Price Range</div>
+          <div style="font-size: var(--text-xl); font-weight: 700; color: var(--brand-blue); margin-top: var(--space-xs);">{td.priceRange}</div>
+        </div>
+        <div class="card" style="padding: var(--space-lg); text-align: center;">
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase;">Providers</div>
+          <div style="font-size: var(--text-xl); font-weight: 700; color: var(--brand-purple); margin-top: var(--space-xs);">{typeProviders.length}</div>
+        </div>
+        <div class="card" style="padding: var(--space-lg); text-align: center;">
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase;">Best For</div>
+          <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">{td.bestFor.split(',')[0]}</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="card reveal" style="margin-top: var(--space-xl); padding: var(--space-xl); text-align: center; background: linear-gradient(135deg, rgba(0, 82, 255, 0.05), rgba(0, 213, 132, 0.05)); border-color: rgba(0, 82, 255, 0.2);">
+        <h3>Find {td.h1} Providers in Your Area</h3>
+        <p style="color: var(--text-secondary); margin-top: var(--space-xs);">Call our experts to check availability and get exclusive deals on {td.h1.toLowerCase()} plans.</p>
+        <a href={`tel:${phoneHref}`} class="btn btn-cta mt-lg" style="font-size: var(--text-lg);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Call {phone}
+        </a>
+      </div>
+
+      <!-- How it works -->
+      <div class="reveal" style="margin-top: var(--space-3xl);">
+        <h2>How {td.h1} Works</h2>
+        <div class="card" style="margin-top: var(--space-lg); padding: var(--space-xl);">
+          <p style="color: var(--text-secondary); line-height: 1.8; font-size: var(--text-base);">{td.howItWorks}</p>
+        </div>
+      </div>
+
+      <!-- Provider listing -->
+      <div class="reveal" style="margin-top: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Top {td.h1} Providers ({year})</h2>
+        {typeProviders.length > 0 ? (
+          <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+            {typeProviders.map((p, i) => (
+              <div class="card" style={`padding: var(--space-xl); ${p.isPartner ? 'border-color: rgba(0, 213, 132, 0.3); background: rgba(0, 213, 132, 0.02);' : ''}`}>
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md);">
+                  <div>
+                    <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                      <span style="font-size: var(--text-lg); font-weight: 700;">{i + 1}. {p.name}</span>
+                      {p.isPartner && <span style="font-size: var(--text-xs); background: var(--brand-green); color: var(--gray-900); padding: 2px 8px; border-radius: 99px; font-weight: 700;">RECOMMENDED</span>}
+                    </div>
+                    <div style="display: flex; gap: var(--space-lg); margin-top: var(--space-sm); font-size: var(--text-sm); color: var(--text-secondary);">
+                      <span>Up to <strong style="color: var(--text-primary);">{formatSpeed(getMaxSpeed(p))}</strong></span>
+                      <span>From <strong style="color: var(--text-primary);">{formatPrice(getMinPrice(p))}/mo</strong></span>
+                      <span>Rating: <strong style="color: var(--text-primary);">{p.rating}/5</strong></span>
+                    </div>
+                    <p style="margin-top: var(--space-sm); color: var(--text-secondary); font-size: var(--text-sm);">{p.description}</p>
+                  </div>
+                  <div style="display: flex; gap: var(--space-sm);">
+                    {p.isPartner && (
+                      <a href={`tel:${formatPhoneForTel(p.phone)}`} class="btn btn-cta" style="font-size: var(--text-sm);">Call {p.phone}</a>
+                    )}
+                    <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size: var(--text-sm);">View Plans</a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="card" style="padding: var(--space-2xl); text-align: center;">
+            <p style="color: var(--text-secondary);">Provider data for this type is being updated. Call us for current options.</p>
+            <a href={`tel:${phoneHref}`} class="btn btn-cta mt-lg">Call {phone}</a>
+          </div>
+        )}
+      </div>
+
+      <!-- Compare types -->
+      <div class="reveal" style="margin-top: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Compare Internet Types</h2>
+        <div class="grid grid-3" style="gap: var(--space-md);">
+          {typeKeys.filter(k => k !== typeSlug).map(k => {
+            const t = typeData[k];
+            return (
+              <a href={`/internet-types/${t.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none;">
+                <span style="font-size: var(--text-2xl);">{t.icon}</span>
+                <h4 style="margin-top: var(--space-sm); color: var(--text-primary);">{t.h1}</h4>
+                <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">{t.speedRange}</p>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-top: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">{td.h1} FAQ</h2>
+        {faqs.map(faq => (
+          <details class="card" style="margin-bottom: var(--space-sm); padding: var(--space-lg);">
+            <summary style="cursor: pointer; font-weight: 600;">{faq.question}</summary>
+            <p style="margin-top: var(--space-md); color: var(--text-secondary); line-height: 1.7;">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <StickyCallBar text={`Looking for ${td.h1.toLowerCase()}? Our experts can help you find the best plan.`} />
+</Base>

@@ -1,0 +1,229 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getProvidersByState, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, stateNames, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+export function getStaticPaths() {
+  return Object.entries(stateNames).map(([abbr, name]) => ({
+    params: { state: abbr.toLowerCase() },
+    props: { stateAbbr: abbr, stateName: name },
+  }));
+}
+
+interface Props { stateAbbr: string; stateName: string; }
+const { stateAbbr, stateName } = Astro.props;
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+const stateProviders = getProvidersByState(stateAbbr)
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return getMinPrice(a) - getMinPrice(b);
+  });
+
+// Get cheap plans for this state
+const cheapPlans = stateProviders.flatMap(p =>
+  p.plans
+    .filter(plan => plan.promoPrice <= 55)
+    .map(plan => ({ provider: p, plan }))
+).sort((a, b) => a.plan.promoPrice - b.plan.promoPrice);
+
+const cheapestPrice = cheapPlans[0]?.plan.promoPrice || 30;
+const cheapestProvider = cheapPlans[0]?.provider.name || 'local providers';
+
+const faqs = [
+  { question: `What is the cheapest internet in ${stateName}?`, answer: `The cheapest internet in ${stateName} starts at ${formatPrice(cheapestPrice)}/mo from ${cheapestProvider}. Availability varies by address — call ${phone} to check exact pricing and plans at your location.` },
+  { question: `Can I get internet under $30/mo in ${stateName}?`, answer: `It depends on your location and the providers available. Some areas of ${stateName} have plans under $30/mo, especially from 5G home internet providers. Low-income households may also qualify for discounted programs. Call us to check what's available at your address.` },
+  { question: `What is the best cheap internet provider in ${stateName}?`, answer: `The best affordable provider depends on your specific address. In ${stateName}, top picks include ${stateProviders.slice(0, 3).map(p => p.name).join(', ')}. We recommend calling ${phone} to compare all options available at your location.` },
+  { question: `Is 5G home internet available in ${stateName}?`, answer: `Yes, 5G home internet from providers like T-Mobile and Verizon is available in many parts of ${stateName}. It's often one of the cheapest options with competitive speeds and no contracts. Check availability at your address by calling us.` },
+  { question: `How can I lower my internet bill in ${stateName}?`, answer: `1) Switch providers for new-customer deals. 2) Consider 5G home internet as a cable alternative. 3) Drop to a lower speed tier. 4) Call your provider's retention department. 5) Check if you qualify for low-income internet programs. 6) Call us at ${phone} — we'll find the best current deal.` },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Cheap Internet', url: 'https://internet4all.com/cheap-internet' },
+    { name: `Cheap Internet in ${stateName}`, url: `https://internet4all.com/cheap-internet/${stateAbbr.toLowerCase()}` },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`Cheap Internet in ${stateName} (${year}) — Plans from ${formatPrice(cheapestPrice)}/mo`}
+  description={`Find the cheapest internet plans in ${stateName}. ${cheapPlans.length}+ affordable plans from ${stateProviders.length} providers starting at ${formatPrice(cheapestPrice)}/mo. Compare prices and call for exclusive deals.`}
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[
+        { name: 'Cheap Internet', url: '/cheap-internet' },
+        { name: `${stateName}` },
+      ]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-green" style="margin-bottom: var(--space-md);">💰 Updated {month} {year}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Cheap Internet in <span class="gradient-text">{stateName}</span>
+        </h1>
+        <p class="hero-subtitle" style="max-width: 660px; margin-inline: auto;">
+          We found {cheapPlans.length}+ affordable internet plans in {stateName} from {stateProviders.length} providers.
+          Plans start at just {formatPrice(cheapestPrice)}/mo.
+        </p>
+        <a href={phoneHref} class="btn btn-call mt-lg" style="font-size: var(--text-lg);">
+          📞 Call {phone} for Best Deals
+        </a>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="grid grid-3 reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="card text-center" style="padding: var(--space-xl);">
+          <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-green);">{formatPrice(cheapestPrice)}</div>
+          <div class="text-secondary" style="font-size: var(--text-sm);">Cheapest Plan</div>
+        </div>
+        <div class="card text-center" style="padding: var(--space-xl);">
+          <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-green);">{stateProviders.length}</div>
+          <div class="text-secondary" style="font-size: var(--text-sm);">Providers in {stateAbbr}</div>
+        </div>
+        <div class="card text-center" style="padding: var(--space-xl);">
+          <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-green);">{cheapPlans.length}+</div>
+          <div class="text-secondary" style="font-size: var(--text-sm);">Affordable Plans</div>
+        </div>
+      </div>
+
+      <!-- Cheapest Plans Table -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); overflow: hidden;">
+        <div style="padding: var(--space-xl) var(--space-xl) var(--space-md);">
+          <h2>Cheapest Internet Plans in {stateName}</h2>
+          <p class="text-secondary">Affordable plans available in {stateName}, sorted by price.</p>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="comparison-table" style="width:100%;">
+            <thead>
+              <tr>
+                <th>Provider</th>
+                <th>Plan</th>
+                <th>Monthly Price</th>
+                <th>Speed</th>
+                <th>Data Cap</th>
+                <th>Contract</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {cheapPlans.map(({ provider: p, plan }) => (
+                <tr style={p.isPartner ? '' : 'opacity:0.85;'}>
+                  <td>
+                    <div class="flex items-center gap-sm">
+                      <span style="font-weight:600;">{p.name}</span>
+                      {p.isPartner && <span class="badge badge-green" style="font-size:0.6rem;">Partner</span>}
+                    </div>
+                  </td>
+                  <td>{plan.name}</td>
+                  <td style="font-weight:700;color:var(--brand-green);">{formatPrice(plan.promoPrice)}/mo</td>
+                  <td>{formatSpeed(plan.speed)}</td>
+                  <td>{plan.dataCap}</td>
+                  <td>{plan.contract}</td>
+                  <td>
+                    <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);">
+                      Call
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Provider Cards -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Affordable Internet Providers in {stateName}</h2>
+        <div class="provider-list">
+          {stateProviders.map((p, i) => {
+            const cheapest = p.plans.reduce((a, b) => a.promoPrice < b.promoPrice ? a : b);
+            return (
+              <div class="card" style={`padding: var(--space-xl); margin-bottom: var(--space-md); ${!p.isPartner ? 'opacity:0.85;' : ''}`}>
+                <div class="flex items-center gap-lg flex-wrap">
+                  <div style="width:56px;height:56px;border-radius:var(--radius-md);background:var(--gray-100);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;">
+                    {p.logo ? (
+                      <img src={p.logo} alt={p.name} width="56" height="56" style="padding:6px;object-fit:contain;" />
+                    ) : (
+                      <span style="font-weight:800;color:var(--text-tertiary);">{p.name.charAt(0)}</span>
+                    )}
+                  </div>
+                  <div style="flex:1;min-width:200px;">
+                    <div class="flex items-center gap-sm">
+                      <h3 style="font-size: var(--text-lg); margin-bottom: 0;">{p.name}</h3>
+                      {p.isPartner && <span class="badge badge-green" style="font-size:0.65rem;">RECOMMENDED</span>}
+                    </div>
+                    <div class="text-secondary" style="font-size:var(--text-sm);margin-top:var(--space-xs);">
+                      Starting at <strong style="color:var(--brand-green);">{formatPrice(cheapest.promoPrice)}/mo</strong> • Up to {formatSpeed(getMaxSpeed(p))} • {p.types.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(', ')}
+                    </div>
+                    <div class="flex gap-sm mt-sm flex-wrap">
+                      {p.pros.slice(0, 3).map(pro => (
+                        <span style="font-size:0.7rem;color:var(--text-tertiary);">✓ {pro}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div class="flex gap-sm">
+                    <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size:var(--text-sm);">View Plans</a>
+                    <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-sm);">
+                      📞 Call Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Budget Tips for State -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); padding: var(--space-2xl);">
+        <h2>How to Get Cheap Internet in {stateName}</h2>
+        <p class="text-secondary" style="margin-bottom: var(--space-lg);">Here's how {stateName} residents can lower their internet bills:</p>
+        <ol style="padding-left: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-md);">
+          <li><strong>Compare all available providers</strong> — {stateName} has {stateProviders.length} providers competing for your business. Use that competition to your advantage.</li>
+          <li><strong>Consider 5G home internet</strong> — T-Mobile and Verizon offer 5G home plans starting at $25-50/mo with no contracts in many parts of {stateName}.</li>
+          <li><strong>Ask about promotional pricing</strong> — Call {phone} to find exclusive deals not listed online.</li>
+          <li><strong>Check for assistance programs</strong> — {stateName} residents may qualify for the ACP, Lifeline, or provider-specific low-income programs.</li>
+          <li><strong>Buy your own equipment</strong> — Skip modem rental fees ($10-15/mo) by purchasing a compatible modem and router.</li>
+        </ol>
+      </div>
+
+      <!-- State Navigation -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Cheap Internet in Other States</h2>
+        <div class="flex gap-sm flex-wrap">
+          {Object.entries(stateNames).filter(([a]) => a !== stateAbbr).sort((a, b) => a[1].localeCompare(b[1])).slice(0, 20).map(([abbr, name]) => (
+            <a href={`/cheap-internet/${abbr.toLowerCase()}`} style="font-size:var(--text-sm);color:var(--brand-blue);text-decoration:none;">
+              {name}
+            </a>
+          ))}
+          <span class="text-tertiary" style="font-size:var(--text-sm);">and more...</span>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Frequently Asked Questions</h2>
+        {faqs.map(faq => (
+          <details class="faq-item">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+  <StickyCallBar phone={phone} message={`Cheapest ${stateName} deals — call now`} />
+</Base>

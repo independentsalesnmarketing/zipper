@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" fill="none" role="img" aria-label="Internet 4 ALL">
+  <defs>
+    <linearGradient id="pinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0052FF"/>
+      <stop offset="100%" style="stop-color:#00D584"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0052FF"/>
+      <stop offset="100%" style="stop-color:#00D584"/>
+    </linearGradient>
+  </defs>
+  <!-- Location pin shape -->
+  <g transform="translate(2, 1)">
+    <!-- Pin body -->
+    <path d="M24 3C16.3 3 10 9.3 10 17c0 10.5 14 28 14 28s14-17.5 14-28c0-7.7-6.3-14-14-14z" fill="url(#pinGrad)"/>
+    <!-- WiFi arcs inside pin -->
+    <circle cx="24" cy="17" r="2.5" fill="white"/>
+    <path d="M19.2 13.5a6.5 6.5 0 0 1 9.6 0" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M16.6 11a10 10 0 0 1 14.8 0" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+  </g>
+  <!-- "Internet 4 ALL" wordmark -->
+  <text x="60" y="20" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.5" fill="url(#textGrad)">INTERNET</text>
+  <text x="60" y="38" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="900" letter-spacing="-0.5" fill="#0A0E1E">4 ALL</text>
+</svg>

@@ -1,0 +1,266 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+const allProviders = getAllProviders();
+const partners = getPartnerProviders();
+
+// Providers that could offer phone service — fiber and cable providers typically bundle phone
+const phoneProviders = allProviders
+  .filter(p => p.types.includes('fiber') || p.types.includes('cable') || p.types.includes('dsl'))
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return b.rating - a.rating;
+  });
+
+const bundleOptions = [
+  { provider: 'Spectrum', bundle: 'Internet + Phone', speed: '300 Mbps', phone: 'Unlimited local & long distance', price: '$70/mo', contract: 'No contract', highlight: 'Free modem + phone adapter' },
+  { provider: 'AT&T Fiber', bundle: 'Internet + Phone', speed: '300 Mbps', phone: 'Unlimited nationwide calling', price: '$75/mo', contract: 'No contract', highlight: 'Symmetrical upload speeds' },
+  { provider: 'Verizon Fios', bundle: 'Internet + Phone', speed: '300 Mbps', phone: 'Unlimited US calling', price: '$70/mo', contract: 'No contract', highlight: 'Fiber reliability' },
+  { provider: 'Xfinity', bundle: 'Internet + Phone', speed: '400 Mbps', phone: 'Unlimited nationwide', price: '$65/mo', contract: '1 year', highlight: 'Most widely available' },
+  { provider: 'Cox', bundle: 'Internet + Phone', speed: '250 Mbps', phone: 'Unlimited local + long distance', price: '$80/mo', contract: 'Varies', highlight: 'Voicemail + caller ID included' },
+  { provider: 'Frontier', bundle: 'Internet + Phone', speed: '500 Mbps', phone: 'Unlimited calling', price: '$65/mo', contract: 'No contract', highlight: 'Fiber + digital phone' },
+];
+
+const triplePlayBundles = [
+  { provider: 'Spectrum', bundle: 'Internet + TV + Phone', speed: '300 Mbps', channels: '150+', phone: 'Unlimited', price: '$130/mo', contract: 'No contract' },
+  { provider: 'AT&T', bundle: 'Internet + DIRECTV + Phone', speed: '300 Mbps', channels: '160+', phone: 'Unlimited', price: '$120/mo', contract: '2 years' },
+  { provider: 'Xfinity', bundle: 'Internet + TV + Phone', speed: '400 Mbps', channels: '125+', phone: 'Unlimited', price: '$110/mo', contract: '1 year' },
+  { provider: 'Verizon Fios', bundle: 'Internet + TV + Phone', speed: '300 Mbps', channels: '125+', phone: 'Unlimited', price: '$115/mo', contract: 'No contract' },
+  { provider: 'Optimum', bundle: 'Internet + TV + Phone', speed: '300 Mbps', channels: '220+', phone: 'Unlimited', price: '$120/mo', contract: 'No contract' },
+];
+
+const phoneTypes = [
+  { type: 'VoIP (Voice over IP)', icon: '🌐', desc: 'Phone service delivered over your internet connection. Crystal-clear calls, advanced features, and much cheaper than traditional phone lines. This is what most providers now offer.', pros: ['Cheapest option', 'Advanced features (voicemail-to-email, call forwarding)', 'Works with existing phones', 'Portable — works from any internet connection'], cons: ['Requires internet connection', 'Goes down if internet goes down', 'Emergency 911 location may need manual setup'] },
+  { type: 'Traditional Landline', icon: '☎️', desc: 'Copper-wire phone service through the phone company. Being phased out but still available in many areas. Works during power outages (with corded phone).', pros: ['Works during power outages', 'Extremely reliable', 'Clear 911 location data', 'No internet needed'], cons: ['Most expensive option', 'Limited features', 'Being phased out', 'No video calling'] },
+  { type: 'Digital Phone (Fiber)', icon: '⚡', desc: 'Phone service over fiber optic lines. HD voice quality that\'s noticeably better than traditional or cable VoIP. Available from fiber providers like AT&T, Verizon Fios, and Frontier.', pros: ['Best call quality', 'HD voice', 'Lowest latency', 'Most reliable VoIP option'], cons: ['Requires fiber availability', 'Still depends on power/internet', 'Limited providers'] },
+  { type: 'Wireless Home Phone', icon: '📱', desc: 'Uses cellular network to create a home phone line. T-Mobile and AT&T offer wireless home phone devices that connect to your existing home phones.', pros: ['No internet or cable needed', 'Works in rural areas', 'Easy setup', 'Backup if internet fails'], cons: ['Depends on cell coverage', 'Limited features vs VoIP', 'Additional monthly cost'] },
+];
+
+const faqs = [
+  { question: 'Can I bundle internet and phone service together?', answer: `Yes! Most major internet providers offer internet + phone bundles. Cable providers (Spectrum, Xfinity, Cox) and fiber providers (AT&T, Verizon Fios, Frontier) all bundle phone service. Bundling typically saves $10–20/mo compared to buying separately. Call ${phone} for the best bundle deals in your area.` },
+  { question: 'Is VoIP better than a traditional landline?', answer: 'For most people, yes. VoIP is cheaper ($10–20/mo vs $30–50/mo for landline), offers more features (voicemail-to-email, call forwarding, video calling), and call quality is excellent on a good internet connection. Traditional landlines are only better if you need a phone that works during power outages.' },
+  { question: 'What internet speed do I need for VoIP phone service?', answer: 'Very little! A single VoIP call uses about 0.1 Mbps. Even a 25 Mbps internet plan can handle dozens of simultaneous VoIP calls. The key factor is reliability, not speed — look for a provider with consistent uptime. Fiber is best for VoIP due to its low latency and stability.' },
+  { question: 'Do I need a landline for internet?', answer: 'No! Cable, fiber, 5G, fixed wireless, and satellite internet all work without a phone line. Only DSL internet uses phone lines, and even then you can have DSL without a voice phone plan. The "internet requires a phone line" era ended long ago.' },
+  { question: 'What is a triple play bundle?', answer: `A triple play bundle combines internet + TV + phone in one package for one monthly bill. This is the best value for households that watch cable TV and want a home phone. Triple play bundles typically save $20–40/mo compared to buying all three services separately. Call ${phone} for triple play pricing at your address.` },
+  { question: 'Can I keep my phone number when I switch providers?', answer: 'Yes! Federal law allows you to port (transfer) your existing phone number to any new provider — landline, VoIP, or wireless. The process takes 1–3 business days. Your new provider handles the porting process. Just don\'t cancel your old service until the port is complete.' },
+  { question: 'Is internet phone reliable enough for emergencies?', answer: 'Modern VoIP and digital phone services support E911 (enhanced 911) which sends your registered address to emergency services. However, VoIP phones require power and internet to work. For maximum safety, consider keeping a charged cell phone as backup for 911 calls during outages.' },
+  { question: 'How much does internet and phone service cost together?', answer: `Internet + phone bundles typically gost $60–90/mo for a good plan. That includes 200–500 Mbps internet plus unlimited calling. Triple play (internet + TV + phone) runs $100–150/mo. VoIP-only services like Ooma or magicJack cost $5–15/mo added to your internet bill. Call ${phone} for exact pricing at your address.` },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Internet & Phone', url: 'https://internet4all.com/internet-and-phone' },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`Internet and Phone Bundles — Best Packages & Deals (${year})`}
+  description={`Compare internet and phone bundles for ${year}. Find VoIP + internet packages starting at $60/mo. Save up to $20/mo by bundling. ${phoneProviders.length} providers with phone service compared.`}
+  schema={schemas}
+>
+  <StickyCallBar text="Internet + Phone bundles — call for exclusive deals" />
+
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Internet & Phone' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">📞 Updated {month} {year}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Best <span class="gradient-text">Internet & Phone</span> Bundles
+        </h1>
+        <p class="hero-subtitle" style="max-width: 720px; margin-inline: auto;">
+          Bundle internet and phone service to save up to $20/mo. Compare VoIP phone packages, digital phone plans,
+          and triple play bundles from {phoneProviders.length} providers. One bill, unlimited calling, fast internet.
+        </p>
+        <div style="margin-top: var(--space-xl);">
+          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Get Bundle Deals</a>
+          <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check My Address</a>
+        </div>
+      </div>
+
+      <!-- Internet + Phone Bundle Deals -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Best Internet + Phone Bundles ({year})</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">Top double-play deals: fast internet paired with unlimited home phone service.</p>
+        <div class="grid grid-2" style="gap: var(--space-md);">
+          {bundleOptions.map(bo => (
+            <div class="card" style="padding: var(--space-lg);">
+              <div class="flex items-center gap-sm" style="margin-bottom: var(--space-md);">
+                <h3 style="margin: 0;">{bo.provider}</h3>
+                <span class="badge badge-green" style="font-size: 0.6rem;">{bo.bundle}</span>
+              </div>
+              <div class="grid grid-2" style="gap: var(--space-xs); margin-bottom: var(--space-md);">
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary);">
+                  Internet: <strong style="color: var(--text-primary);">{bo.speed}</strong>
+                </div>
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary);">
+                  Phone: <strong style="color: var(--text-primary);">{bo.phone}</strong>
+                </div>
+              </div>
+              <div class="flex items-center gap-sm" style="margin-bottom: var(--space-sm);">
+                <span style="font-size: var(--text-xl); font-weight: 800; color: var(--brand-green);">{bo.price}</span>
+                <span class="badge badge-blue" style="font-size: 0.55rem;">{bo.contract}</span>
+              </div>
+              <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin-bottom: var(--space-md);">💡 {bo.highlight}</p>
+              <a href={phoneHref} class="btn btn-cta btn-sm" style="width: 100%; text-align: center;">Get This Bundle</a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Triple Play Bundles -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Triple Play: Internet + TV + Phone Bundles</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">Get everything in one package. Maximum savings, one bill.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Provider</th>
+                <th>Internet Speed</th>
+                <th>TV Channels</th>
+                <th>Phone</th>
+                <th>Bundle Price</th>
+                <th>Contract</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {triplePlayBundles.map(tp => (
+                <tr>
+                  <td style="font-weight: 600;">{tp.provider}</td>
+                  <td>{tp.speed}</td>
+                  <td>{tp.channels}</td>
+                  <td>{tp.phone}</td>
+                  <td style="color: var(--brand-green); font-weight: 700;">{tp.price}</td>
+                  <td style="font-size: var(--text-xs);">{tp.contract}</td>
+                  <td><a href={phoneHref} class="btn btn-cta btn-sm">Get Quote</a></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin-top: var(--space-sm); text-align: center;">Prices are typical promotional rates. Exact pricing varies by location. Call for current offers.</p>
+      </div>
+
+      <!-- Phone Service Types -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Types of Home Phone Service</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">Understanding your options for home phone in {year}.</p>
+        {phoneTypes.map(pt => (
+          <div class="card" style="padding: var(--space-xl); margin-bottom: var(--space-lg);">
+            <div class="flex items-center gap-sm" style="margin-bottom: var(--space-md);">
+              <span style="font-size: 2rem;">{pt.icon}</span>
+              <h3 style="margin: 0; font-size: var(--text-xl);">{pt.type}</h3>
+            </div>
+            <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">{pt.desc}</p>
+            <div class="grid grid-2" style="gap: var(--space-lg);">
+              <div>
+                <h4 style="color: var(--brand-green); font-size: var(--text-sm); margin-bottom: var(--space-sm);">✅ Pros</h4>
+                <ul style="font-size: var(--text-sm); color: var(--text-secondary); padding-left: var(--space-md);">
+                  {pt.pros.map(pro => <li>{pro}</li>)}
+                </ul>
+              </div>
+              <div>
+                <h4 style="color: var(--danger); font-size: var(--text-sm); margin-bottom: var(--space-sm);">⚠️ Cons</h4>
+                <ul style="font-size: var(--text-sm); color: var(--text-secondary); padding-left: var(--space-md);">
+                  {pt.cons.map(con => <li>{con}</li>)}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Mid-page CTA -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="card" style="padding: var(--space-2xl); text-align: center; background: linear-gradient(135deg, rgba(0,82,255,0.08), rgba(0,213,132,0.08)); border: 1px solid var(--brand-blue);">
+          <h2 style="margin-bottom: var(--space-sm);">Want Internet + Phone Without the Hassle?</h2>
+          <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); max-width: 550px; margin-inline: auto;">
+            Our bundle experts will compare every internet and phone package available at your address, find the best deal, and handle the entire setup process — from ordering to number porting.
+          </p>
+          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Bundle Specialists</a>
+        </div>
+      </div>
+
+      <!-- Providers with Phone Service -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Internet Providers with Phone Service</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">These providers offer bundled internet and home phone packages.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Provider</th>
+                <th>Connection Type</th>
+                <th>Max Speed</th>
+                <th>Starting Price</th>
+                <th>Rating</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {phoneProviders.slice(0, 12).map((p, i) => (
+                <tr>
+                  <td><strong>{i + 1}</strong></td>
+                  <td>
+                    <a href={`/provider/${p.slug}`} style="font-weight: 600;">{p.name}</a>
+                    {p.isPartner && <span class="badge badge-green" style="font-size:0.5rem;margin-left:4px;">Partner</span>}
+                  </td>
+                  <td>{p.types.map(t => getTypeLabel(t)).join(', ')}</td>
+                  <td>{formatSpeed(getMaxSpeed(p))}</td>
+                  <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
+                  <td>⭐ {p.rating.toFixed(1)}</td>
+                  <td><a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Related Pages -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Related Resources</h2>
+        <div class="grid grid-3" style="gap: var(--space-sm);">
+          <a href="/bundles" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📦 Internet + TV Bundles</a>
+          <a href="/tv-providers" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📺 TV Providers</a>
+          <a href="/check-availability" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📍 Check Availability</a>
+          <a href="/home-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏠 Home Internet Plans</a>
+          <a href="/business-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">💼 Business Internet</a>
+          <a href="/best-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏆 Best Internet Providers</a>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Internet & Phone FAQ</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Base>

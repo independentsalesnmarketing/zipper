@@ -60,6 +60,45 @@ import { generateBreadcrumbSchema } from '@lib/utils';
         <p style="margin:var(--space-sm) 0 var(--space-md);">We'd love to hear from you.</p>
         <a href={`tel:${MAIN_PHONE.replace(/[^0-9]/g, '')}`} class="btn btn-call">📞 {MAIN_PHONE}</a>
       </div>
+
+      <!-- Explore the Site -->
+      <div class="reveal" style="margin-top:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-lg);">Explore Our Site</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
+          <a href="/providers" class="card" style="padding: var(--space-md); text-decoration: none;">
+            <h4 style="font-size: var(--text-sm);">🔍 Browse Providers</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">See all 25+ internet providers</p>
+          </a>
+          <a href="/compare" class="card" style="padding: var(--space-md); text-decoration: none;">
+            <h4 style="font-size: var(--text-sm);">⚖️ Compare Plans</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Side-by-side comparison</p>
+          </a>
+          <a href="/deals" class="card" style="padding: var(--space-md); text-decoration: none;">
+            <h4 style="font-size: var(--text-sm);">💰 Best Deals</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Today's lowest prices</p>
+          </a>
+          <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none;">
+            <h4 style="font-size: var(--text-sm);">📊 Speed Test</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Check your internet speed</p>
+          </a>
+          <a href="/check-availability" class="card" style="padding: var(--space-md); text-decoration: none;">
+            <h4 style="font-size: var(--text-sm);">📍 Check Availability</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">See what's at your address</p>
+          </a>
+          <a href="/resources" class="card" style="padding: var(--space-md); text-decoration: none;">
+            <h4 style="font-size: var(--text-sm);">📋 Guides & Resources</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Expert internet guides</p>
+          </a>
+          <a href="/internet-types" class="card" style="padding: var(--space-md); text-decoration: none;">
+            <h4 style="font-size: var(--text-sm);">🌐 Internet Types</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Fiber, Cable, DSL, 5G</p>
+          </a>
+          <a href="/methodology" class="card" style="padding: var(--space-md); text-decoration: none;">
+            <h4 style="font-size: var(--text-sm);">📐 Our Methodology</h4>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">How we rank providers</p>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
   <StickyCallBar />

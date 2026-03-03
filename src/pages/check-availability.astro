@@ -1,0 +1,220 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import SearchBar from '@components/SearchBar.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { stateNames } from '@lib/providers';
+import { getStateSlug } from '@data/locations';
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+const allProviders = getAllProviders();
+const partners = getPartnerProviders();
+const fiberProviders = allProviders.filter(p => p.types.includes('fiber'));
+const cableProviders = allProviders.filter(p => p.types.includes('cable'));
+
+const steps = [
+  { icon: '📍', title: 'Enter Your Address', desc: 'Type your ZIP code or full street address to begin your personalized search.' },
+  { icon: '📊', title: 'Compare Available Providers', desc: 'See every internet provider at your exact address — with speeds, prices, and ratings.' },
+  { icon: '📞', title: 'Connect with an Expert', desc: 'Call our team to get the best deal, schedule installation, and switch hassle-free.' },
+];
+
+const coverageTypes = [
+  { type: 'Fiber Optic', icon: '⚡', count: fiberProviders.length, desc: `The fastest technology available. Symmetrical upload/download speeds up to 8 Gbps. Available from ${fiberProviders.slice(0, 3).map(p => p.name).join(', ')} and more.`, link: '/internet-types/fiber' },
+  { type: 'Cable Internet', icon: '📡', count: cableProviders.length, desc: `Widely available with speeds up to 1.2 Gbps download. The most common broadband technology in America.`, link: '/internet-types/cable' },
+  { type: '5G Home Internet', icon: '📱', count: allProviders.filter(p => p.types.includes('5g')).length, desc: 'No wires needed. Uses cellular 5G towers for home internet. Fast expanding in urban and suburban areas.', link: '/internet-types/5g' },
+  { type: 'Fixed Wireless', icon: '📶', count: allProviders.filter(p => p.types.includes('fixed-wireless')).length, desc: 'Uses radio towers to deliver internet without cables. Popular in suburban and semi-rural areas.', link: '/internet-types/fixed-wireless' },
+  { type: 'DSL Internet', icon: '🔌', count: allProviders.filter(p => p.types.includes('dsl')).length, desc: 'Uses existing phone lines. Available almost everywhere, but slower than cable and fiber.', link: '/internet-types/dsl' },
+  { type: 'Satellite Internet', icon: '🛰️', count: allProviders.filter(p => p.types.includes('satellite')).length, desc: 'Available nationwide, even in the most remote areas. Best for rural locations with no other options.', link: '/internet-types/satellite' },
+];
+
+const faqs = [
+  { question: 'How do I check what internet providers are available at my address?', answer: `Enter your ZIP code in the search box above and we'll show you every provider available at your location. Our database uses real FCC broadband data covering ${allProviders.length}+ providers across all 50 states. For the most precise results, call ${phone} and our experts can look up your exact street address.` },
+  { question: 'Why does internet availability vary by address?', answer: 'Internet infrastructure is built street by street. Even neighbors across the road may have different options. Fiber lines, cable networks, and wireless towers each have specific coverage footprints. That\'s why checking your exact address — not just your ZIP code — matters for accurate results.' },
+  { question: 'What if no good internet providers serve my area?', answer: 'You still have options! Satellite internet (Starlink, Viasat, HughesNet) covers virtually every address in America. Fixed wireless and 5G home internet are expanding rapidly. T-Mobile 5G Home Internet is available to 300+ million people. Call us for the best option at your address.' },
+  { question: 'How accurate is your internet availability checker?', answer: `Our data comes from the FCC Broadband Map — the most comprehensive broadband database in America. We cross-reference provider service areas, coverage maps, and real customer data. For 100% accuracy, call ${phone} and we\'ll verify availability at your exact address in real-time.` },
+  { question: 'Can I check internet availability before I move?', answer: 'Absolutely! Enter the ZIP code of your new address to see what\'s available before you move. Our moving specialists can set up internet at your new home — often with same-day installation. Visit our movers page for a complete moving checklist.' },
+  { question: 'What internet speed is available at my address?', answer: `Available speeds depend on your address and provider. Fiber addresses get up to 8 Gbps. Cable addresses typically max at 1-1.2 Gbps. 5G home internet offers 100-300 Mbps in most areas. Enter your ZIP code above or call ${phone} for exact speeds at your address.` },
+  { question: 'Is fiber internet available at my address?', answer: `Fiber is available to roughly 43% of US addresses and growing fast. ${fiberProviders.map(p => p.name).join(', ')} are the major fiber providers. Enter your ZIP code to check fiber availability, or call us — we can tell you if fiber is coming to your area soon.` },
+  { question: 'How do I find cheap internet at my address?', answer: `Start by checking all available providers with our tool above. Then compare their lowest-tier plans. Many providers offer plans starting at $30-50/mo. Government programs like the ACP can reduce costs for eligible households. Call ${phone} for exclusive deals not listed online.` },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Check Availability', url: 'https://internet4all.com/check-availability' },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title="Check Internet Availability at Your Address (2026)"
+  description="Check internet availability at your address. Search by ZIP to find fiber, cable, 5G & satellite options. Compare 25+ providers free — instant results."
+  schema={schemas}
+>
+  <StickyCallBar text="Check internet at your address — call for instant results" />
+
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Check Availability' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">🔍 Powered by FCC Broadband Data</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Check Internet <span class="gradient-text">Availability</span> at Your Address
+        </h1>
+        <p class="hero-subtitle" style="max-width: 700px; margin-inline: auto;">
+          Find every internet provider, plan, and price available where you live. Our free tool searches {allProviders.length}+ providers
+          using real FCC broadband data — updated {month} {year}.
+        </p>
+
+        <div style="max-width: 580px; margin: var(--space-xl) auto 0;">
+          <SearchBar size="large" placeholder="Enter your ZIP code to check availability" />
+          <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin-top: var(--space-sm);">
+            No signup required • Works for any US address • Results in 10 seconds
+          </p>
+        </div>
+
+        <div style="margin-top: var(--space-xl);">
+          <p style="font-size: var(--text-sm); color: var(--text-tertiary); margin-bottom: var(--space-sm);">Or get instant results by phone:</p>
+          <a href={phoneHref} class="btn btn-cta btn-lg" style="font-size: var(--text-lg);">
+            📞 Call {phone} — Free Expert Help
+          </a>
+        </div>
+      </div>
+
+      <!-- How It Works -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 class="text-center" style="margin-bottom: var(--space-xl);">How the Internet Availability Checker Works</h2>
+        <div class="grid grid-3">
+          {steps.map((step, i) => (
+            <div class="card text-center" style="padding: var(--space-xl);">
+              <div style="font-size: 2.5rem; margin-bottom: var(--space-md);">{step.icon}</div>
+              <div style="font-size: var(--text-xs); color: var(--brand-blue); font-weight: 700; text-transform: uppercase; margin-bottom: var(--space-xs);">Step {i + 1}</div>
+              <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-sm);">{step.title}</h3>
+              <p style="font-size: var(--text-sm); color: var(--text-secondary);">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Internet Types at Your Address -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Types of Internet Available at Your Address</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl); max-width: 700px;">
+          Availability depends on your exact location. Here are the internet technologies you may find when you check your address.
+        </p>
+        <div class="grid grid-2" style="gap: var(--space-lg);">
+          {coverageTypes.map(ct => (
+            <a href={ct.link} class="card" style="padding: var(--space-xl); text-decoration: none;">
+              <div class="flex items-center gap-sm" style="margin-bottom: var(--space-md);">
+                <span style="font-size: 1.5rem;">{ct.icon}</span>
+                <h3 style="font-size: var(--text-lg); margin: 0;">{ct.type}</h3>
+                <span class="badge badge-blue" style="margin-left: auto; font-size: 0.65rem;">{ct.count} providers</span>
+              </div>
+              <p style="font-size: var(--text-sm); color: var(--text-secondary); margin: 0;">{ct.desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Top Providers -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Top Internet Providers to Check At Your Address</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">
+          These are the most popular providers. Enter your ZIP code above to see which ones serve your address.
+        </p>
+        <div class="grid grid-3" style="gap: var(--space-md);">
+          {partners.slice(0, 9).map(p => (
+            <div class="card" style="padding: var(--space-lg);">
+              <div class="flex items-center gap-sm" style="margin-bottom: var(--space-md);">
+                <span style="font-weight: 700;">{p.name}</span>
+                <span class="badge badge-green" style="font-size: 0.6rem;">Partner</span>
+              </div>
+              <div class="grid grid-2" style="gap: var(--space-xs); margin-bottom: var(--space-md);">
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary);">
+                  Speeds to <strong style="color: var(--text-primary);">{formatSpeed(getMaxSpeed(p))}</strong>
+                </div>
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary);">
+                  From <strong style="color: var(--brand-green);">{formatPrice(getMinPrice(p))}/mo</strong>
+                </div>
+              </div>
+              <div class="flex gap-xs" style="margin-bottom: var(--space-md);">
+                {p.types.map(t => <span class={`tag tag-${t}`} style="font-size:0.6rem;">{getTypeLabel(t)}</span>)}
+              </div>
+              <a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm" style="width: 100%; text-align: center;">
+                Check Availability — Call Now
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Mid-page CTA -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="card" style="padding: var(--space-2xl); text-align: center; background: linear-gradient(135deg, rgba(0,82,255,0.08), rgba(0,213,132,0.08)); border: 1px solid var(--brand-blue);">
+          <h2 style="margin-bottom: var(--space-sm);">Can't Find Your Address?</h2>
+          <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); max-width: 550px; margin-inline: auto;">
+            Our experts can look up internet availability at any US address — including new construction, rural properties, and recently serviced areas not yet in public databases.
+          </p>
+          <a href={phoneHref} class="btn btn-cta btn-lg">Call {phone} — Free Address Lookup</a>
+        </div>
+      </div>
+
+      <!-- Check by State -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Check Internet Availability by State</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">
+          Browse internet providers in your state to see coverage areas, average speeds, and pricing.
+        </p>
+        <div style="column-count: 4; column-gap: var(--space-lg);">
+          {Object.entries(stateNames)
+            .sort((a, b) => a[1].localeCompare(b[1]))
+            .map(([abbr, name]) => (
+              <a href={`/internet-providers/${getStateSlug(abbr)}`} style="display: block; padding: var(--space-xs) 0; font-size: var(--text-sm); color: var(--text-secondary);">{name}</a>
+            ))}
+        </div>
+      </div>
+
+      <!-- Related Resources -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Related Resources</h2>
+        <div class="grid grid-3" style="gap: var(--space-sm);">
+          <a href="/best-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏆 Best Internet Providers</a>
+          <a href="/cheap-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">💰 Cheapest Internet Plans</a>
+          <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">⚡ Fastest Internet Providers</a>
+          <a href="/internet-types" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📡 Internet Types Explained</a>
+          <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏎️ Internet Speed Test</a>
+          <a href="/movers" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏡 Internet for Movers</a>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Internet Availability FAQ</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // If redirected here with ?zip=XXXXX auto-forward to the ZIP page
+  const params = new URLSearchParams(window.location.search);
+  const zip = params.get('zip');
+  if (zip && /^[0-9]{5}$/.test(zip)) {
+    window.location.replace(`/internet-providers/zip/${zip}`);
+  }
+</script>

@@ -1,0 +1,423 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getProvidersByType, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+interface AudienceData {
+  slug: string;
+  title: string;
+  h1: string;
+  description: string;
+  intro: string;
+  icon: string;
+  speedNeeded: string;
+  budgetRange: string;
+  keyFeatures: string[];
+  providerFilter: (p: Provider) => boolean;
+  buyingTips: { title: string; text: string }[];
+  faqs: { question: string; answer: string }[];
+}
+
+const year = new Date().getFullYear();
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+const partners = getPartnerProviders();
+
+const audiences: Record<string, AudienceData> = {
+  seniors: {
+    slug: 'seniors',
+    title: `Best Internet for Seniors (${year})`,
+    h1: 'Best Internet for Seniors',
+    description: `Find the best internet plans for seniors in ${year}. Simple, affordable plans with reliable service and great customer support. No contracts required.`,
+    intro: `Finding the right internet plan as a senior shouldn't be complicated. You need reliable service, straightforward billing, and a plan that covers your actual usage — not a gigabit package you'll never fully use. We've identified the best internet options for seniors that deliver solid performance, great customer support, and honest pricing.`,
+    icon: '👴',
+    speedNeeded: '25–100 Mbps',
+    budgetRange: '$25–$55/mo',
+    keyFeatures: ['Simple setup', 'Reliable connection', 'Good customer support', 'No data caps', 'No contracts', 'Affordable pricing'],
+    providerFilter: (p) => p.plans.some(plan => plan.promoPrice <= 60) && p.plans.some(plan => plan.contract === 'None'),
+    buyingTips: [
+      { title: 'You probably don\'t need gigabit speed', text: 'For email, video calls, streaming, and browsing, 50-100 Mbps is more than enough. Don\'t let salespeople upsell you on speed you won\'t use.' },
+      { title: 'Look for no-contract plans', text: 'Avoid being locked into 1-2 year agreements. Most providers now offer month-to-month plans.' },
+      { title: 'Ask about senior discounts', text: 'Some providers offer AARP partnerships or senior-specific rates. Always ask — it could save you $5-15/mo.' },
+      { title: 'Consider 5G home internet', text: 'No technician visit, no complex setup. Just plug in the device and connect. T-Mobile and Verizon offer simple, affordable 5G plans.' },
+    ],
+    faqs: [
+      { question: 'What internet speed do seniors need?', answer: 'Most seniors do well with 25-100 Mbps. This handles email, web browsing, video calls with family, streaming Netflix/YouTube, and even online shopping comfortably. If you live with others or have multiple devices, consider 100-300 Mbps.' },
+      { question: 'What is the cheapest internet for seniors?', answer: 'Several providers offer affordable plans ideal for seniors: T-Mobile 5G Home ($50/mo), Mint Mobile ($25/mo), and Frontier ($49.99/mo). Some ISPs also offer low-income programs for qualifying seniors.' },
+      { question: 'Is there a senior discount for internet?', answer: 'While not all ISPs have explicit senior discounts, many offer low-income programs that seniors on fixed incomes may qualify for. AT&T Access, Spectrum Internet Assist, and the federal Lifeline program all serve qualifying households. Call us to check eligibility.' },
+      { question: 'What is the easiest internet to set up for seniors?', answer: '5G home internet is the simplest — just plug in the device and connect via WiFi. T-Mobile, Verizon, and AT&T Air all offer self-install 5G with excellent customer support. No drilling, no cables, no technician visits.' },
+      { question: 'Do seniors need WiFi?', answer: 'Yes, if you use a smartphone, tablet, laptop, or smart TV at home, you need WiFi. All internet plans include a WiFi router — you just connect your devices wirelessly. Many providers include the router at no extra cost.' },
+    ],
+  },
+  'low-income': {
+    slug: 'low-income',
+    title: `Internet for Low-Income Households (${year})`,
+    h1: 'Internet for Low-Income Households',
+    description: `Free and discounted internet programs for low-income families in ${year}. Government assistance, provider discounts, and affordable plans from $10/mo.`,
+    intro: `Everyone deserves internet access regardless of income. Multiple federal programs, state initiatives, and provider discounts make affordable internet available to qualifying households. From free internet through government programs to plans starting at $10/mo, we'll help you find the most affordable option.`,
+    icon: '🏠',
+    speedNeeded: '25–100 Mbps',
+    budgetRange: '$0–$30/mo',
+    keyFeatures: ['ACP eligibility', 'Lifeline program', 'No credit check', 'No contracts', 'Free equipment', 'Low deposit options'],
+    providerFilter: (p) => p.plans.some(plan => plan.promoPrice <= 45),
+    buyingTips: [
+      { title: 'Apply for the Affordable Connectivity Program (ACP)', text: 'The ACP provides up to $30/mo toward internet service ($75/mo on Tribal lands). Most providers accept ACP. Apply at getinternet.gov.' },
+      { title: 'Check Lifeline eligibility', text: 'The FCC Lifeline program provides $9.25/mo toward phone or internet for qualifying low-income households.' },
+      { title: 'Ask about provider-specific programs', text: 'Comcast Internet Essentials ($9.95/mo), AT&T Access ($10/mo), and Spectrum Internet Assist ($17.99/mo) all serve low-income households.' },
+      { title: 'No credit check plans', text: 'Many 5G and prepaid internet plans don\'t require credit checks. T-Mobile 5G Home and Mint Mobile are great options.' },
+    ],
+    faqs: [
+      { question: 'Can I get free internet?', answer: 'With the Affordable Connectivity Program (ACP), you can get up to $30/mo off internet service, which may cover the full cost of some plans. Combined with Lifeline ($9.25/mo discount), some households pay $0 for internet. Call us to check eligibility.' },
+      { question: 'What is the Affordable Connectivity Program?', answer: 'The ACP is a federal program providing up to $30/mo toward internet service for qualifying low-income households. You may qualify if your household income is at or below 200% of the Federal Poverty Guidelines, or if you participate in SNAP, Medicaid, WIC, SSI, or other assistance programs.' },
+      { question: 'What internet plans don\'t require a credit check?', answer: 'T-Mobile 5G Home Internet, Mint Mobile, and most prepaid/5G home internet plans don\'t require credit checks. These are excellent options for households with no credit or poor credit.' },
+      { question: 'What is the cheapest internet without compromise?', answer: 'T-Mobile 5G Home starts at $50/mo (often $40 with Magenta plan), Mint Mobile at $25/mo, and WOW! at $29.99/mo. With ACP subsidy, costs can drop well below $20/mo.' },
+      { question: 'How do I apply for low-income internet?', answer: 'Start at getinternet.gov for the ACP. For Lifeline, apply at lifelinesupport.org. For provider programs, call us at ' + phone + ' and we\'ll walk you through the application process for programs available at your address.' },
+    ],
+  },
+  rural: {
+    slug: 'rural',
+    title: `Best Internet for Rural Areas (${year})`,
+    h1: 'Best Internet for Rural Areas',
+    description: `Find internet in rural areas. Compare satellite, fixed wireless, 5G, and DSL options. Starlink, T-Mobile, Verizon available in remote regions.`,
+    intro: `Living in a rural area doesn't mean accepting slow, unreliable internet. The rural broadband landscape has transformed with Starlink's satellite constellation, 5G fixed wireless expansion, and new fiber buildouts from Brightspeed and Windstream. We'll help you compare every option available at your address — from modern satellite to emerging rural fiber.`,
+    icon: '🌾',
+    speedNeeded: '25–300 Mbps',
+    budgetRange: '$30–$120/mo',
+    keyFeatures: ['Available in remote areas', 'Satellite options', '5G fixed wireless', 'DSL fallback', 'No phone line required', 'Self-install available'],
+    providerFilter: (p) => p.types.some(t => ['satellite', '5g', 'dsl', 'fixed-wireless'].includes(t)) || p.coverage.includes('Nationwide'),
+    buyingTips: [
+      { title: 'Start with fixed wireless or fiber', text: 'If available, fixed wireless or fiber will give you the best rural experience. Check T-Mobile 5G, Verizon 5G, or local ISPs first.' },
+      { title: 'Starlink is a game-changer', text: 'Starlink\'s LEO satellite provides 50-200 Mbps with 20-40ms latency — a massive improvement over HughesNet/Viasat. The $599 equipment cost pays for itself vs. years of slow internet.' },
+      { title: 'Check for new fiber buildouts', text: 'Brightspeed, Windstream/Kinetic, and Frontier are aggressively building fiber in rural areas. Your address may have new options you didn\'t have 6 months ago.' },
+      { title: 'Use our tool to check your address', text: 'Rural availability changes rapidly. Call us to check the latest options at your specific address — you may have more choices than you think.' },
+    ],
+    faqs: [
+      { question: 'What is the best internet for rural areas?', answer: 'The best rural internet depends on availability at your address. Ranked: 1) Fiber from Frontier, Brightspeed, or Windstream if available. 2) 5G home internet from T-Mobile or Verizon. 3) Starlink satellite. 4) Fixed wireless from local ISPs. 5) Traditional satellite (Viasat, HughesNet). Call us to check what\'s available.' },
+      { question: 'Is Starlink worth it for rural internet?', answer: 'Yes, for most rural households. Starlink offers 50-200 Mbps with low latency — good enough for streaming, video calls, and gaming. The $599 equipment cost is a barrier, but there\'s no contract, and it\'s available virtually everywhere.' },
+      { question: 'Can I get 5G internet in rural areas?', answer: 'T-Mobile 5G Home Internet is available in many rural areas. Their network covers 98% of Americans. Speeds vary (typically 50-245 Mbps), but it\'s often the best value at $50/mo with no contracts. Check availability at tmobile.com or call us.' },
+      { question: 'Is DSL still a good option for rural areas?', answer: 'DSL can work for light internet use (email, browsing, standard streaming) but speeds are typically limited to 15-50 Mbps and degrade with distance from the provider\'s equipment. If DSL is your only wired option, consider supplementing with a 5G or satellite backup.' },
+      { question: 'What speed do I need for rural living?', answer: 'For a typical household: 25 Mbps for basic use (1-2 people), 50-100 Mbps for streaming and work from home, 200+ Mbps for multiple users and heavy streaming. Most rural options now offer at least 50 Mbps.' },
+    ],
+  },
+  gaming: {
+    slug: 'gaming',
+    title: `Best Internet for Gaming (${year})`,
+    h1: 'Best Internet for Gaming',
+    description: `Find the best internet for gaming in ${year}. Low ping, fast download speeds, no data caps. Compare fiber, cable, and 5G plans optimized for gamers.`,
+    intro: `For gamers, internet quality isn't just about download speed — it's about low latency (ping), minimal jitter, and consistent performance during peak hours. A fiber connection with symmetrical speeds is the gold standard, but modern cable and 5G options can also deliver excellent gaming experiences. We've ranked the best providers for gaming based on what actually matters.`,
+    icon: '🎮',
+    speedNeeded: '100–1000 Mbps',
+    budgetRange: '$50–$100/mo',
+    keyFeatures: ['Low ping/latency', 'No data caps', 'Fast upload speed', 'Consistent speeds', 'Gaming-optimized', 'Symmetrical fiber available'],
+    providerFilter: (p) => getMaxSpeed(p) >= 300 && p.plans.some(plan => plan.dataCap === 'Unlimited'),
+    buyingTips: [
+      { title: 'Fiber is king for gaming', text: 'Fiber delivers the lowest latency (3-10ms) and symmetrical speeds. If Verizon Fios, AT&T Fiber, or Frontier Fiber are available, they should be your first choice.' },
+      { title: 'Upload speed matters for streaming', text: 'If you stream on Twitch or YouTube, you need at least 10 Mbps upload (25+ recommended). Fiber\'s symmetrical speeds are ideal; cable upload is often limited to 10-35 Mbps.' },
+      { title: 'Avoid data caps', text: 'Modern games can be 100+ GB to download, and updates are frequent. Xfinity\'s 1.2 TB cap can be a problem. Choose providers with unlimited data.' },
+      { title: 'Use ethernet, not WiFi', text: 'The best internet plan in the world won\'t help if you\'re gaming on WiFi 3 rooms away. Always use a wired ethernet connection for competitive gaming.' },
+    ],
+    faqs: [
+      { question: 'What internet speed do I need for gaming?', answer: 'Minimum: 25 Mbps download, 5 Mbps upload, under 50ms ping. Recommended: 100+ Mbps download, 10+ Mbps upload, under 20ms ping. For competitive gaming + streaming: 300+ Mbps download, 25+ Mbps upload. More important than raw speed is consistency and low latency.' },
+      { question: 'Is fiber or cable better for gaming?', answer: 'Fiber is better. It offers lower latency (3-10ms vs 15-30ms for cable), symmetrical upload speeds, and no congestion during peak hours. However, modern cable with DOCSIS 3.1 is still very good for gaming if fiber isn\'t available.' },
+      { question: 'Can I game on 5G home internet?', answer: 'Yes, but with caveats. T-Mobile 5G typically delivers 20-40ms latency, which is acceptable for most games but not ideal for competitive FPS. Speeds can fluctuate with congestion. For casual gaming, it\'s fine. For competitive gaming, wired connections are better.' },
+      { question: 'What is a good ping for gaming?', answer: 'Under 20ms: Excellent (competitive gaming). 20-50ms: Good (most games). 50-100ms: Playable (casual gaming). Over 100ms: Problematic (noticeable lag). Fiber typically delivers 3-15ms, cable 15-30ms, 5G 20-40ms, satellite 20-600ms.' },
+      { question: 'Do data caps affect gaming?', answer: 'Game downloads (50-150 GB each), updates, streaming, and multiplayer sessions add up. A serious gamer can easily use 500 GB-1 TB per month. Xfinity\'s 1.2 TB cap may be tight. Choose unlimited data plans when possible — most fiber and 5G plans include unlimited data.' },
+    ],
+  },
+  streaming: {
+    slug: 'streaming',
+    title: `Best Internet for Streaming (${year})`,
+    h1: 'Best Internet for Streaming',
+    description: `Find the best internet for streaming Netflix, YouTube, Disney+, and more in ${year}. Compare speeds, data caps, and prices for the ultimate streaming experience.`,
+    intro: `Streaming is the #1 reason Americans use their internet connection. Whether you're binge-watching Netflix in 4K, streaming sports on YouTube TV, or running multiple streams simultaneously, having the right internet plan eliminates buffering and delivers the crisp picture quality you're paying for. Here's what you actually need.`,
+    icon: '📺',
+    speedNeeded: '25–300 Mbps',
+    budgetRange: '$40–$80/mo',
+    keyFeatures: ['No data caps', 'Fast enough for 4K', 'Multiple simultaneous streams', 'Low buffering', 'Consistent speeds', 'Good WiFi coverage'],
+    providerFilter: (p) => getMaxSpeed(p) >= 100 && p.plans.some(plan => plan.dataCap === 'Unlimited'),
+    buyingTips: [
+      { title: 'Know your speed needs', text: 'One 4K stream uses ~25 Mbps. Two simultaneous 4K streams need 50 Mbps. A household of 4 with multiple devices should target 100-200 Mbps.' },
+      { title: 'Data caps are the real enemy', text: 'A single 4K stream uses ~7 GB/hour. A family watching 4 hours/day uses ~840 GB/month just on video. With Xfinity\'s 1.2 TB cap, that leaves little room. Choose unlimited.' },
+      { title: 'WiFi range matters more than speed', text: 'Buffering usually isn\'t a speed problem — it\'s a WiFi signal problem. Make sure your router covers your streaming devices. Consider mesh WiFi systems.' },
+      { title: 'You don\'t need gigabit for streaming', text: '100-300 Mbps handles 5+ simultaneous 4K streams. Don\'t overpay for speed you won\'t use. Save money on a mid-tier plan.' },
+    ],
+    faqs: [
+      { question: 'What internet speed do I need for streaming?', answer: 'Netflix recommends: 5 Mbps for HD, 15 Mbps for 4K. YouTube TV: 13+ Mbps. Disney+ 4K: 25 Mbps. Per stream. For a household with 3-4 simultaneous streams, aim for 100-200 Mbps total. We recommend 100+ Mbps for a buffer-free experience.' },
+      { question: 'Is 100 Mbps enough for streaming?', answer: 'Yes, 100 Mbps handles 3-4 simultaneous 4K streams with bandwidth to spare for browsing and other activities. For most households, 100-200 Mbps is the sweet spot — fast enough for everything without paying for gigabit.' },
+      { question: 'Why does my streaming buffer?', answer: 'Common causes: 1) WiFi signal too weak — move router closer or get mesh WiFi. 2) Too many devices on the network. 3) ISP throttling during peak hours. 4) Outdated router. 5) Speed too slow for multiple 4K streams. Run a speed test to diagnose.' },
+      { question: 'Do I need unlimited data for streaming?', answer: 'Strongly recommended. 4K streaming uses 7 GB/hour. A household streaming 3-4 hours/day can use 600-800 GB/month or more. Add gaming, video calls, and downloads, and you can easily exceed 1 TB. Choose a plan with no data cap.' },
+      { question: 'Can I cut the cord and use internet only?', answer: 'Absolutely. Internet + streaming services (Netflix, Hulu, YouTube TV) typically costs $60-100/mo less than a traditional cable TV bundle. You need at least 50 Mbps (100+ recommended) and an unlimited data plan. Call us to find the best internet-only deal.' },
+    ],
+  },
+  apartments: {
+    slug: 'apartments',
+    title: `Best Internet for Apartments (${year})`,
+    h1: 'Best Internet for Apartments',
+    description: `Find the best internet for your apartment in ${year}. No-contract plans, easy self-install, and speeds up to 1 Gbps. Compare apartment-friendly providers.`,
+    intro: `Apartment internet comes with unique challenges: you may be limited to specific providers per building, need landlord approval for installations, and face congestion from neighboring units sharing the same cable node. The good news? 5G home internet and expanded fiber have given apartment dwellers more choices than ever — many with no installation required.`,
+    icon: '🏢',
+    speedNeeded: '100–500 Mbps',
+    budgetRange: '$30–$70/mo',
+    keyFeatures: ['No installation needed', 'No contracts', 'Self-setup', 'No drilling required', 'Portable', 'Month-to-month billing'],
+    providerFilter: (p) => p.plans.some(plan => plan.contract === 'None'),
+    buyingTips: [
+      { title: '5G is perfect for apartments', text: 'No installation, no drilling, no landlord permission needed. Just plug in and connect. T-Mobile and Verizon 5G are ideal for renters.' },
+      { title: 'Ask your building management', text: 'Some apartments have exclusive deals with specific providers or offer bulk-rate internet. Always check before signing up independently.' },
+      { title: 'Avoid long contracts', text: 'If you might move within a year, choose a no-contract plan. Early termination fees can be $150-300. Most modern providers offer month-to-month.' },
+      { title: 'Test before committing', text: 'T-Mobile offers a 15-day test drive. Verizon offers a 30-day guarantee. Take advantage of trial periods to ensure good performance in your specific unit.' },
+    ],
+    faqs: [
+      { question: 'Can I choose my own internet provider in an apartment?', answer: 'Usually yes, but some apartment complexes have exclusive agreements with one provider. Check with your management office first. Even if your building has a "preferred" provider, you can often use 5G home internet as an alternative without any building infrastructure.' },
+      { question: 'What is the best no-install internet for apartments?', answer: 'T-Mobile 5G Home Internet and Verizon 5G Home are the best no-install options. No cables, no drilling, no technician visit — just plug in the gateway device and connect. AT&T Air is another wireless option.' },
+      { question: 'How do I get internet in my apartment without cable?', answer: '5G home internet is the easiest option. T-Mobile ($50/mo), Verizon 5G ($50/mo), and AT&T Air ($55/mo) all deliver broadband wirelessly with no cable installation required. Just plug in and go.' },
+      { question: 'Is apartment internet slower than house internet?', answer: 'Cable internet can be slower in apartments due to shared infrastructure — many units use the same cable node, causing congestion during peak hours. Fiber is unaffected by this. 5G can vary by floor and window exposure. Upper floors with windows facing cell towers often get better 5G signal.' },
+      { question: 'Can I take my internet when I move apartments?', answer: 'With 5G home internet, absolutely — just unplug and replug at your new place (check service address eligibility). For wired internet, you\'ll need to set up new service at your next address. No-contract plans make this painless.' },
+    ],
+  },
+  students: {
+    slug: 'students',
+    title: `Best Internet for College Students (${year})`,
+    h1: 'Best Internet for College Students',
+    description: `Affordable internet for college students in ${year}. No-contract plans, budget-friendly prices, and speeds for online classes, streaming, and gaming.`,
+    intro: `College students need reliable internet for online classes, research, video calls with professors, streaming between study sessions, and yes — gaming. But student budgets are tight. The best student internet balances speed, reliability, and price, with no commitment contracts that match your semester schedule.`,
+    icon: '🎓',
+    speedNeeded: '50–300 Mbps',
+    budgetRange: '$25–$60/mo',
+    keyFeatures: ['Budget-friendly', 'No contracts', 'Good for video calls', 'Self-install', 'Portable for moves', 'Student discounts'],
+    providerFilter: (p) => p.plans.some(plan => plan.promoPrice <= 55 && plan.contract === 'None'),
+    buyingTips: [
+      { title: 'Check campus resources first', text: 'Many universities include internet in housing costs or offer discounted plans through partnerships with local ISPs. Check with your school\'s IT department.' },
+      { title: '5G home internet is ideal for students', text: 'No setup appointment, no contract, no installation — perfect when you move every year. Mint Mobile starts at $25/mo.' },
+      { title: 'Split the cost with roommates', text: 'A $70/mo plan split 2-3 ways becomes very affordable. Just make sure the plan has enough speed for everyone.' },
+      { title: 'Think about Zoom and video calls', text: 'Online classes require consistent 10+ Mbps upload speed. Fiber and 5G handle this well; DSL and satellite may struggle.' },
+    ],
+    faqs: [
+      { question: 'What is the cheapest internet for students?', answer: 'Mint Mobile 5G ($25/mo), T-Mobile All Home ($40/mo), WOW! Internet ($29.99/mo), and Altafiber ($39.99/mo) are among the cheapest options. Some providers offer student discounts — call to ask. Splitting a plan with roommates is also very cost-effective.' },
+      { question: 'Do internet companies offer student discounts?', answer: 'Some do. Spectrum offers Internet Assist for qualifying low-income students. AT&T Access is available to eligible students. T-Mobile occasionally runs student promotions. Your university may also have negotiated discounts with local providers.' },
+      { question: 'What speed do college students need?', answer: 'For one student: 50 Mbps handles video classes, streaming, and browsing easily. For 2-3 roommates: 100-300 Mbps ensures everyone can video call and stream simultaneously. For gamers: 200+ Mbps with low latency.' },
+      { question: 'Can I get internet in my dorm room?', answer: 'Most dorms include WiFi through the university. Off-campus, 5G home internet is the easiest setup — no installation, no contract, moves with you. If your dorm WiFi is slow, a personal 5G hotspot can supplement it.' },
+      { question: 'What about internet for off-campus apartments?', answer: 'For off-campus living, get your own plan rather than relying on included building internet (which is often slow). 5G home internet is perfect — no contracts, easy setup, competitive speeds. Split the cost with roommates.' },
+    ],
+  },
+  'work-from-home': {
+    slug: 'work-from-home',
+    title: `Best Internet for Working from Home (${year})`,
+    h1: 'Best Internet for Working from Home',
+    description: `Reliable internet for remote workers in ${year}. Fast upload speeds, low latency for video calls, and consistent performance. Compare WFH-optimized plans.`,
+    intro: `Remote work demands more from your internet than casual browsing ever did. Zoom calls, VPN connections, cloud file syncing, and collaborative tools all run simultaneously — and they need consistent bandwidth, especially upload speed. A dropped call or frozen screen in a client meeting isn't just annoying; it's unprofessional. Here's how to choose internet that works as hard as you do.`,
+    icon: '💼',
+    speedNeeded: '100–500 Mbps',
+    budgetRange: '$50–$90/mo',
+    keyFeatures: ['Fast upload speed', 'Low latency', 'Reliable connection', 'No data caps', 'Business-grade uptime', 'VPN-compatible'],
+    providerFilter: (p) => getMaxSpeed(p) >= 300 && p.plans.some(plan => plan.uploadSpeed >= 20),
+    buyingTips: [
+      { title: 'Upload speed is critical', text: 'Video calls, VPN, cloud syncing — they all depend on upload. Fiber offers symmetrical upload (300-1000 Mbps). Cable upload is often limited to 10-35 Mbps. Prioritize upload speed when choosing a plan.' },
+      { title: 'Get a backup connection', text: 'Consider a 5G hotspot as backup. T-Mobile or Verizon 5G can keep you online if your primary connection goes down during an important meeting.' },
+      { title: 'Invest in your home network', text: 'A WiFi 6 router and mesh system eliminate dead zones. Use ethernet for your primary work computer. This alone can fix most "slow internet" complaints.' },
+      { title: 'Check if your employer helps', text: 'Many companies offer internet stipends ($50-100/mo) for remote workers. Ask your HR department — it never hurts to check.' },
+    ],
+    faqs: [
+      { question: 'What internet speed do I need for working from home?', answer: 'Minimum: 50 Mbps download, 10 Mbps upload for basic WFH (email, browsing, occasional video calls). Recommended: 100-300 Mbps download, 20+ Mbps upload for regular video calls, VPN, and cloud tools. Ideal: 300+ Mbps symmetrical fiber for video-heavy roles, streaming, and shared households.' },
+      { question: 'Is fiber better than cable for working from home?', answer: 'Yes, significantly. Fiber offers symmetrical upload speeds (crucial for video calls), lower latency, and consistent performance without peak-hour congestion. If you\'re on video calls daily, fiber\'s symmetrical upload alone justifies the switch.' },
+      { question: 'Can I work from home on 5G internet?', answer: 'Yes, for most roles. T-Mobile 5G typically delivers 50-245 Mbps download and 20-30 Mbps upload, sufficient for video calls and cloud tools. However, speeds can fluctuate. If you need rock-solid consistency for client-facing video, wired fiber or cable is more reliable.' },
+      { question: 'How much upload speed do I need for Zoom?', answer: 'Zoom recommends: 3.8 Mbps upload for 1080p video, 1.5 Mbps for 720p. In practice, 10+ Mbps upload gives you a comfortable margin for screen sharing and multiple participants. Fiber\'s symmetrical speeds (300+ Mbps upload) are overkill but guarantee zero issues.' },
+      { question: 'Is my internet fast enough for VPN?', answer: 'VPN encryption reduces your effective speed by 10-30%. If you need 50 Mbps through VPN, your plan should deliver at least 65-70 Mbps. Fiber and fast cable handle VPN easily. DSL and slow cable may struggle with VPN + video simultaneously.' },
+    ],
+  },
+  'small-business': {
+    slug: 'small-business',
+    title: `Best Internet for Small Business (${year})`,
+    h1: 'Best Internet for Small Business',
+    description: `Business internet plans for small businesses in ${year}. Dedicated support, SLA guarantees, static IP options, and speeds up to 5 Gbps. Compare plans.`,
+    intro: `Small business internet isn't just fast home internet — it comes with service level agreements (SLAs), priority support, static IP addresses, and dedicated bandwidth that residential plans can't match. Whether you're running a retail shop, restaurant, or office, downtime costs money. We'll help you find business internet that keeps you connected with the reliability your business demands.`,
+    icon: '🏪',
+    speedNeeded: '200–1000 Mbps',
+    budgetRange: '$60–$200/mo',
+    keyFeatures: ['SLA guarantee', 'Static IP available', 'Priority support', 'No data caps', 'Business-class reliability', 'Symmetrical upload options'],
+    providerFilter: (p) => getMaxSpeed(p) >= 500,
+    buyingTips: [
+      { title: 'Consider business-class plans', text: 'Most major ISPs offer business tiers with SLAs, faster repair times, and dedicated support lines. The premium is worth it when downtime costs you revenue.' },
+      { title: 'Symmetrical fiber is ideal', text: 'If you process payments, host files, run a POS system, or do video conferencing, symmetrical fiber upload speeds prevent bottlenecks.' },
+      { title: 'Get redundancy', text: 'A second internet connection (5G failover, separate ISP) ensures you never go offline. Automatic failover routers can switch in seconds.' },
+      { title: 'Plan for growth', text: 'Choose a provider that offers easy upgrades. Starting with 200 Mbps but knowing you can upgrade to gig without changing providers saves hassle.' },
+    ],
+    faqs: [
+      { question: 'What internet speed does a small business need?', answer: '5-10 employees: 100-200 Mbps. 10-25 employees: 200-500 Mbps. 25+ employees: 500 Mbps to 1 Gbps. If you host servers, do video conferencing, or process online orders, lean toward the higher end. Symmetrical upload is important for businesses.' },
+      { question: 'Is business internet worth the extra cost?', answer: 'For most businesses, yes. Business plans include SLAs (guaranteed uptime), faster repair response (often same-day), static IP addresses, and priority technical support. If an hour of downtime costs you more than $50, business internet pays for itself.' },
+      { question: 'Do I need a static IP for my business?', answer: 'You need a static IP if you: host a website or email server, use certain VPN configurations, run security cameras viewable remotely, or use specific POS systems. Most business plans include at least one static IP. Residential plans don\'t offer them.' },
+      { question: 'Can I use residential internet for my small business?', answer: 'Technically yes, but you lose SLA guarantees, priority support, and may violate terms of service. For home-based businesses with 1-3 people, residential is usually fine. For retail/offices with employees, business internet\'s reliability justifies the premium.' },
+      { question: 'What is the best business internet provider?', answer: 'It depends on location. AT&T Business Fiber, Verizon Business Fios, and Spectrum Business are top choices nationally. For smaller markets, Frontier Business, Brightspeed, and Windstream/Kinetic serve well. Call us at ' + phone + ' to compare options at your business address.' },
+    ],
+  },
+};
+
+export function getStaticPaths() {
+  return ['seniors', 'low-income', 'rural', 'gaming', 'streaming', 'apartments', 'students', 'work-from-home', 'small-business'].map(slug => ({
+    params: { audience: slug },
+    props: { audienceSlug: slug },
+  }));
+}
+
+interface Props { audienceSlug: string; }
+const { audienceSlug } = Astro.props;
+const audience = audiences[audienceSlug];
+
+const allProviders = getAllProviders();
+
+// Filter and sort providers for this audience (partners first)
+const relevantProviders = allProviders
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return b.rating - a.rating;
+  })
+  .slice(0, 12);
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: audience.title, url: `https://internet4all.com/internet-for/${audience.slug}` },
+  ]),
+  generateFAQSchema(audience.faqs),
+];
+---
+<Base
+  title={audience.title}
+  description={audience.description}
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: audience.title }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div style="font-size: 3rem; margin-bottom: var(--space-md);">{audience.icon}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          {audience.h1.split(' ').slice(0, -1).join(' ')} <span class="gradient-text">{audience.h1.split(' ').slice(-1)[0]}</span>
+        </h1>
+        <p class="hero-subtitle" style="max-width: 700px; margin-inline: auto;">{audience.intro}</p>
+        <a href={phoneHref} class="btn btn-call mt-xl">
+          📞 Call {phone} for Personalized Recommendations
+        </a>
+      </div>
+
+      <!-- Quick Requirements -->
+      <div class="grid grid-3 reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="card text-center" style="padding: var(--space-xl);">
+          <div style="font-size: var(--text-sm); color: var(--text-tertiary); margin-bottom: var(--space-xs);">Recommended Speed</div>
+          <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--brand-blue);">{audience.speedNeeded}</div>
+        </div>
+        <div class="card text-center" style="padding: var(--space-xl);">
+          <div style="font-size: var(--text-sm); color: var(--text-tertiary); margin-bottom: var(--space-xs);">Budget Range</div>
+          <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--brand-green);">{audience.budgetRange}</div>
+        </div>
+        <div class="card text-center" style="padding: var(--space-xl);">
+          <div style="font-size: var(--text-sm); color: var(--text-tertiary); margin-bottom: var(--space-xs);">Key Features</div>
+          <div style="font-size: var(--text-sm); font-weight: 600;">{audience.keyFeatures.slice(0, 3).join(' • ')}</div>
+        </div>
+      </div>
+
+      <!-- What to Look For -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); padding: var(--space-2xl);">
+        <h2 style="margin-bottom: var(--space-xl);">What to Look For</h2>
+        <div class="grid grid-3" style="gap: var(--space-lg);">
+          {audience.keyFeatures.map(feature => (
+            <div class="flex items-center gap-sm">
+              <span style="color: var(--brand-green); font-weight: 800;">✓</span>
+              <span style="font-weight: 500;">{feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Recommended Providers -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Recommended Providers</h2>
+        <div class="provider-list">
+          {relevantProviders.map((p, i) => {
+            const minP = getMinPrice(p);
+            const maxS = getMaxSpeed(p);
+            return (
+              <div class="card" style={`padding: var(--space-xl); margin-bottom: var(--space-md); ${!p.isPartner ? 'opacity:0.85;' : ''}`}>
+                <div class="flex items-center gap-lg flex-wrap">
+                  <div class="flex items-center gap-sm" style="min-width:40px;">
+                    <span style="font-size:var(--text-2xl);font-weight:800;color:var(--text-tertiary);">#{i+1}</span>
+                  </div>
+                  <div style="width:48px;height:48px;border-radius:var(--radius-md);background:var(--gray-100);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;">
+                    {p.logo ? (
+                      <img src={p.logo} alt={p.name} width="48" height="48" style="padding:4px;object-fit:contain;" />
+                    ) : (
+                      <span style="font-weight:800;color:var(--text-tertiary);">{p.name.charAt(0)}</span>
+                    )}
+                  </div>
+                  <div style="flex:1;min-width:200px;">
+                    <div class="flex items-center gap-sm">
+                      <h3 style="font-size: var(--text-lg); margin-bottom: 0;">{p.name}</h3>
+                      {p.isPartner && <span class="badge badge-green" style="font-size:0.65rem;">RECOMMENDED</span>}
+                    </div>
+                    <div class="text-secondary" style="font-size:var(--text-sm);margin-top:var(--space-xs);">
+                      From {formatPrice(minP)}/mo • Up to {formatSpeed(maxS)} • {p.types.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join('/')}
+                    </div>
+                    <div class="flex gap-sm mt-sm flex-wrap">
+                      {p.pros.slice(0, 2).map(pro => (
+                        <span style="font-size:0.7rem;color:var(--text-tertiary);">✓ {pro}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div class="flex gap-sm">
+                    <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size:var(--text-sm);">Plans</a>
+                    <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-sm);">
+                      📞 Call
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Buying Tips -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); padding: var(--space-2xl);">
+        <h2 style="margin-bottom: var(--space-xl);">💡 Buying Tips</h2>
+        <div class="grid grid-2" style="gap: var(--space-xl);">
+          {audience.buyingTips.map(tip => (
+            <div>
+              <h3 style="font-size: var(--text-base); margin-bottom: var(--space-xs);">{tip.title}</h3>
+              <p class="text-secondary" style="font-size: var(--text-sm);">{tip.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Frequently Asked Questions</h2>
+        {audience.faqs.map(faq => (
+          <details class="faq-item">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+
+      <!-- Other Audiences -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Internet Guides by Need</h2>
+        <div class="grid grid-3" style="gap: var(--space-sm);">
+          {Object.values(audiences).filter(a => a.slug !== audience.slug).map(a => (
+            <a href={`/internet-for/${a.slug}`} class="card" style="padding: var(--space-md); text-decoration: none;">
+              <span style="margin-right: var(--space-xs);">{a.icon}</span>
+              <span style="font-weight: 500; font-size: var(--text-sm);">{a.h1}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  <StickyCallBar phone={phone} message={`Expert ${audience.h1.toLowerCase()} advice — call now`} />
+</Base>

@@ -1,6 +1,6 @@
 ---
 import type { Provider } from '@lib/providers';
-import { formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getSpeedValue, getSpeedUnit, getTypeLabel, getTypeColor, renderStars } from '@lib/providers';
+import { formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getSpeedValue, getSpeedUnit, getTypeLabel, getTypeColor, renderStars, MAIN_PHONE } from '@lib/providers';
 import { formatPhoneForTel } from '@lib/utils';
 
 interface Props {
@@ -13,34 +13,43 @@ interface Props {
 const { provider, rank, badge, showPlans = false } = Astro.props;
 const minPrice = getMinPrice(provider);
 const maxSpeed = getMaxSpeed(provider);
+const phoneNumber = provider.isPartner ? provider.phone : MAIN_PHONE;
 ---
 
-<a href={`/provider/${provider.slug}`} class="provider-card-link">
-  <div class="provider-card" data-rank={rank}>
+<div class={`provider-card${provider.isPartner ? ' provider-card--partner' : ''}`} data-rank={rank}>
     {badge && (
       <div class={`pc-badge pc-badge-${badge}`}>
-        {badge === 'best-overall' ? '🏆 Best Overall' :
-         badge === 'best-speed' ? '⚡ Fastest' :
-         badge === 'best-value' ? '💰 Best Value' : badge}
+        {badge === 'best-overall' ? 'Best Overall' :
+         badge === 'best-speed' ? 'Fastest' :
+         badge === 'best-value' ? 'Best Value' : badge}
       </div>
     )}
 
     <!-- Left: Logo & Name -->
     <div class="pc-left">
-      <div class="pc-logo-compact">
+      <a href={`/provider/${provider.slug}`} class="pc-logo-compact" style="text-decoration:none;">
         {provider.logo ? (
-          <img src={provider.logo} alt={`${provider.name} logo`} width="90" height="90" loading="lazy" />
+          <img src={provider.logo} alt={`${provider.name} logo`} width="140" height="140" loading="lazy" />
         ) : (
           <span class="pc-logo-fallback">{provider.name.charAt(0)}</span>
         )}
-      </div>
+      </a>
       <div>
-        <div class="pc-name-compact">{provider.name}</div>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+          <a href={`/provider/${provider.slug}`} class="pc-name-compact" style="text-decoration:none;color:inherit;">{provider.name}</a>
+          {provider.isPartner && <span class="pc-partner-label">Recommended</span>}
+        </div>
         <div class="pc-tags-compact">
           {provider.types.map(t => (
             <span class={`tag tag-${t}`}>{getTypeLabel(t)}</span>
           ))}
         </div>
+        {provider.promo && (
+          <div class="pc-promo">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+            {provider.promo}
+          </div>
+        )}
       </div>
     </div>
 
@@ -67,18 +76,16 @@ const maxSpeed = getMaxSpeed(provider);
         <span class="rating-num">{provider.rating.toFixed(1)}</span>
       </div>
       <div class="pc-actions-compact">
-        {provider.isPartner && (
-          <button type="button" onclick={`window.location.href='${formatPhoneForTel(provider.phone)}'`} class="btn btn-call">
-            Call Now
-          </button>
-        )}
-        <button type="button" onclick={`window.location.href='/provider/${provider.slug}'`} class="btn btn-secondary">
+        <a href="#get-connected" class="btn btn-cta pc-btn-order" data-signup-provider={provider.slug} data-event="provider-signup" data-event-category="conversion" data-event-label={`signup-${provider.slug}`}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Order Online
+        </a>
+        <a href={`/provider/${provider.slug}`} class="btn btn-secondary pc-btn-plans">
           View Plans
-        </button>
+        </a>
       </div>
     </div>
   </div>
-</a>
 
 {showPlans && (
   <div class="grid grid-3" style="margin-top: var(--space-md); margin-bottom: var(--space-lg);">
@@ -99,11 +106,9 @@ const maxSpeed = getMaxSpeed(provider);
         <ul class="plan-features">
           {plan.features.map(f => <li>{f}</li>)}
         </ul>
-        {provider.isPartner && (
-          <a href={formatPhoneForTel(provider.phone)} class="btn btn-cta w-full" style="margin-top: var(--space-lg);">
-            Call to Order
-          </a>
-        )}
+        <a href="#get-connected" class="btn btn-cta w-full" style="margin-top: var(--space-lg);" data-signup-provider={provider.slug}>
+          Sign Up for This Plan
+        </a>
       </div>
     ))}
   </div>

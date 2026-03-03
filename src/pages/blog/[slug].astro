@@ -1,0 +1,204 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getCollection } from 'astro:content';
+import { generateBreadcrumbSchema } from '@lib/utils';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts
+    .filter(post => !post.data.draft)
+    .map(post => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+const allPosts = (await getCollection('blog'))
+  .filter(p => !p.data.draft && p.slug !== post.slug)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Blog', url: 'https://internet4all.com/blog' },
+    { name: post.data.title, url: `https://internet4all.com/blog/${post.slug}` },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.date.toISOString(),
+    dateModified: (post.data.updated || post.data.date).toISOString(),
+    author: {
+      '@type': 'Person',
+      name: post.data.author,
+      url: 'https://internet4all.com/about',
+      jobTitle: 'Senior Broadband Analyst',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Internet 4 ALL',
+      url: 'https://internet4all.com',
+    },
+    mainEntityOfPage: `https://internet4all.com/blog/${post.slug}`,
+  },
+];
+---
+<Base
+  title={`${post.data.title} — Internet 4 ALL Blog`}
+  description={post.data.description}
+  schema={schemas}
+>
+  <article class="section" style="padding-top: var(--space-xl);">
+    <div class="container" style="max-width: 800px;">
+      <Breadcrumb items={[
+        { name: 'Blog', url: '/blog' },
+        { name: post.data.title },
+      ]} />
+
+      <!-- Article Header -->
+      <header class="reveal" style="margin-bottom: var(--space-2xl);">
+        <div class="flex items-center gap-sm flex-wrap" style="margin-bottom: var(--space-md);">
+          <span class="tag">{post.data.category}</span>
+          {post.data.tags.slice(0, 3).map(tag => (
+            <span style="font-size:var(--text-xs);color:var(--text-tertiary);">#{tag}</span>
+          ))}
+        </div>
+        <h1 style="font-size: var(--text-4xl); line-height: 1.2; margin-bottom: var(--space-md);">
+          {post.data.title}
+        </h1>
+        <p style="font-size: var(--text-lg); color: var(--text-secondary); margin-bottom: var(--space-lg);">{post.data.description}</p>
+        <div style="display: flex; align-items: center; gap: var(--space-lg); padding-bottom: var(--space-lg); border-bottom: 1px solid var(--border);">
+          <span style="font-size: var(--text-sm); color: var(--text-tertiary);">By {post.data.author}</span>
+          <span style="font-size: var(--text-sm); color: var(--text-tertiary);">{formatDate(post.data.date)}</span>
+          {post.data.updated && (
+            <span style="font-size: var(--text-sm); color: var(--text-tertiary);">Updated {formatDate(post.data.updated)}</span>
+          )}
+        </div>
+      </header>
+
+      <!-- Article Content -->
+      <div class="prose reveal">
+        <Content />
+      </div>
+
+      <!-- CTA inside article -->
+      <div class="card reveal" style="margin-top: var(--space-2xl); padding: var(--space-xl); background: linear-gradient(135deg, var(--gray-900), var(--gray-800)); text-align: center;">
+        <h3 style="margin-bottom: var(--space-sm);">Ready to Find Your Perfect Internet Plan?</h3>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">Compare providers at your address and get exclusive deals — 100% free.</p>
+        <div class="flex justify-center gap-md">
+          <a href="/providers" class="btn btn-cta">Compare Providers</a>
+          <a href="/quiz" class="btn btn-secondary">Take the Quiz</a>
+        </div>
+      </div>
+
+      <!-- Related Posts -->
+      {allPosts.length > 0 && (
+        <div class="reveal" style="margin-top: var(--space-3xl);">
+          <h2 style="margin-bottom: var(--space-xl);">Related Articles</h2>
+          <div class="grid grid-3" style="gap: var(--space-lg);">
+            {allPosts.map(related => (
+              <a href={`/blog/${related.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none;">
+                <h4 style="color: var(--text-primary); margin-bottom: var(--space-xs);">{related.data.title}</h4>
+                <p style="font-size: var(--text-sm); color: var(--text-secondary);">{related.data.description}</p>
+                <span style="display:block;margin-top:var(--space-sm);font-size:var(--text-xs);color:var(--text-tertiary);">{formatDate(related.data.date)}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+    </div>
+  </article>
+
+  <StickyCallBar />
+</Base>
+
+<style is:global>
+  /* Blog prose styles */
+  .prose h2 {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
+  }
+  .prose h3 {
+    font-size: var(--text-xl);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-sm);
+  }
+  .prose p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--space-md);
+  }
+  .prose ul, .prose ol {
+    color: var(--text-secondary);
+    padding-left: var(--space-xl);
+    margin-bottom: var(--space-md);
+    line-height: 1.8;
+  }
+  .prose li {
+    margin-bottom: var(--space-xs);
+  }
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--space-lg);
+    font-size: var(--text-sm);
+  }
+  .prose th,
+  .prose td {
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  .prose th {
+    background: var(--gray-800);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .prose td {
+    color: var(--text-secondary);
+  }
+  .prose strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .prose a {
+    color: var(--brand-blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose a:hover {
+    color: var(--brand-blue-light);
+  }
+  .prose blockquote {
+    border-left: 3px solid var(--brand-blue);
+    padding-left: var(--space-lg);
+    margin: var(--space-lg) 0;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+  .prose code {
+    background: var(--gray-800);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9em;
+  }
+  .prose hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: var(--space-2xl) 0;
+  }
+</style>

@@ -1,0 +1,820 @@
+---
+/**
+ * ProviderSearch — The conversion engine.
+ *
+ * Client-side BroadbandMap API search that fires from the VISITOR's browser
+ * (their IP, their 60/hr budget — no rate limit issue).
+ *
+ *   ZIP page:  <ProviderSearch ... autoSearch />  → fires immediately
+ *   City page: <ProviderSearch ... />              → fires when user searches
+ */
+import { providers as allProviders, MAIN_PHONE, getMaxSpeed, getMinPrice } from '@lib/providers';
+import { formatPhoneForTel } from '@lib/utils';
+
+interface Props {
+  cityName: string;
+  state: string;
+  stateName: string;
+  zip?: string;
+  lat?: number;
+  lng?: number;
+  autoSearch?: boolean;
+}
+
+const { cityName, state, stateName, zip, lat, lng, autoSearch = false } = Astro.props;
+
+const clientProviders = allProviders.map(p => ({
+  id: p.id,
+  name: p.name,
+  slug: p.slug,
+  types: p.types,
+  rating: p.rating,
+  pt: p.isPartner,
+  phone: p.phone,
+  logo: p.logo,
+  ms: getMaxSpeed(p),
+  mp: getMinPrice(p),
+}));
+---
+
+<section
+  id="ps-root"
+  data-providers={JSON.stringify(clientProviders)}
+  data-main-phone={MAIN_PHONE}
+  data-city={cityName}
+  data-state={state}
+  data-state-name={stateName}
+  data-zip={zip || ''}
+  data-lat={lat?.toString() || ''}
+  data-lng={lng?.toString() || ''}
+  data-auto={autoSearch ? '1' : ''}
+  style="margin-bottom:var(--space-2xl);"
+>
+  <!-- Search Box -->
+  <div class="ps-search" id="ps-search">
+    <form id="ps-form" class="ps-form">
+      <div class="ps-input-group">
+        <svg class="ps-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <input
+          id="ps-input"
+          type="text"
+          placeholder={autoSearch ? `Refine — enter your exact address` : `Enter your ZIP code or address in ${cityName}`}
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <ul id="ps-suggest" class="ps-suggest"></ul>
+      </div>
+      <button type="submit" class="btn btn-cta">Check Availability</button>
+    </form>
+    <div class="ps-phone-row">
+      <span>or call for instant help:</span>
+      <a href={formatPhoneForTel(MAIN_PHONE)} class="ps-phone-link">{MAIN_PHONE}</a>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="ps-results">
+    {autoSearch && (
+      <div id="ps-loading" class="ps-loading">
+        <div class="ps-loading-bar"><div class="ps-loading-fill"></div></div>
+        <p class="ps-loading-text">Verifying providers in {zip || cityName}...</p>
+        <div class="ps-skeletons">
+          {[1,2,3,4,5].map(() => (
+            <div class="ps-skel">
+              <div class="ps-skel-circle"></div>
+              <div class="ps-skel-lines"><div class="ps-skel-line w70"></div><div class="ps-skel-line w40"></div></div>
+              <div class="ps-skel-block"></div>
+              <div class="ps-skel-btn"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .ps-search { margin-bottom: var(--space-lg); }
+  .ps-form {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+  .ps-input-group {
+    flex: 1;
+    min-width: 260px;
+    position: relative;
+  }
+  .ps-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+    pointer-events: none;
+  }
+  #ps-input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md) var(--space-sm) 44px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: var(--text-md);
+    background: var(--surface);
+    color: var(--text-primary);
+    transition: border-color 0.2s;
+  }
+  #ps-input:focus {
+    outline: none;
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(0,82,255,0.15);
+  }
+  .ps-phone-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+  }
+  .ps-phone-link {
+    font-weight: 700;
+    color: var(--brand-green);
+    text-decoration: none;
+  }
+  .ps-phone-link:hover { text-decoration: underline; }
+  .ps-suggest {
+    display: none;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0; right: 0;
+    z-index: 50;
+    background: var(--white);
+    border: 2px solid var(--brand-blue);
+    border-radius: var(--radius-md);
+    list-style: none;
+    margin: 0; padding: 4px 0;
+    max-height: 280px;
+    overflow-y: auto;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  }
+  .ps-suggest li {
+    padding: var(--space-sm) var(--space-lg);
+    cursor: pointer;
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    transition: background 0.1s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ps-suggest li:hover, .ps-suggest li.active { background: rgba(0,82,255,0.06); color: var(--brand-blue); }
+  .ps-suggest .sg-main { font-weight: 500; }
+
+  /* Loading */
+  .ps-loading { padding: var(--space-lg) 0; }
+  .ps-loading-bar {
+    height: 3px;
+    background: var(--surface-secondary);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: var(--space-md);
+  }
+  .ps-loading-fill {
+    height: 100%;
+    width: 30%;
+    background: linear-gradient(90deg, var(--brand-blue), var(--brand-green));
+    border-radius: 2px;
+    animation: psSlide 1.5s ease-in-out infinite;
+  }
+  @keyframes psSlide {
+    0% { transform: translateX(-100%); width: 30%; }
+    50% { width: 60%; }
+    100% { transform: translateX(350%); width: 30%; }
+  }
+  .ps-loading-text {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-md);
+  }
+  .ps-skeletons { display: grid; gap: var(--space-sm); }
+  .ps-skel {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    animation: psPulse 1.5s ease-in-out infinite;
+  }
+  .ps-skel-circle { width: 44px; height: 44px; border-radius: 50%; background: var(--surface-secondary); flex-shrink: 0; }
+  .ps-skel-lines { flex: 1; }
+  .ps-skel-line { height: 12px; border-radius: 6px; background: var(--surface-secondary); margin-bottom: 6px; }
+  .ps-skel-line.w70 { width: 70%; }
+  .ps-skel-line.w40 { width: 40%; }
+  .ps-skel-block { width: 80px; height: 28px; border-radius: var(--radius-sm); background: var(--surface-secondary); }
+  .ps-skel-btn { width: 100px; height: 36px; border-radius: var(--radius-md); background: var(--surface-secondary); }
+  @keyframes psPulse { 0%,100%{opacity:0.5;} 50%{opacity:0.25;} }
+
+  /* Result rows (generated by JS — uses existing .provider-card classes where possible) */
+  :global(.ps-header) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-md);
+    border-bottom: 2px solid var(--border);
+  }
+  :global(.ps-header h3) { font-size: var(--text-xl); margin: 0; }
+  :global(.ps-badge) {
+    font-size: var(--text-xs);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+  }
+  :global(.ps-badge-live) {
+    background: rgba(0,213,132,0.15);
+    color: var(--brand-green);
+  }
+  :global(.ps-badge-fallback) {
+    background: var(--surface-secondary);
+    color: var(--text-tertiary);
+  }
+
+  :global(.ps-row) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    padding: var(--space-xl) var(--space-2xl);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-sm);
+    background: var(--surface);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  :global(.ps-row--partner) {
+    border-color: rgba(0,82,255,0.2);
+    background: linear-gradient(135deg, rgba(0,82,255,0.02), rgba(0,213,132,0.02));
+  }
+  :global(.ps-row:hover) {
+    border-color: rgba(0,82,255,0.3);
+    box-shadow: 0 2px 12px rgba(0,82,255,0.08);
+  }
+  :global(.ps-partner-badge) {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    background: rgba(0,82,255,0.1);
+    color: var(--brand-blue);
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  :global(.ps-rank) {
+    font-size: var(--text-lg);
+    font-weight: 800;
+    color: var(--text-tertiary);
+    min-width: 28px;
+    text-align: center;
+  }
+  :global(.ps-logo) {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-lg);
+    object-fit: contain;
+    background: var(--surface-secondary);
+    border: 2px solid var(--border);
+    padding: 6px;
+    flex-shrink: 0;
+  }
+  :global(.ps-logo-fallback) {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-lg);
+    background: var(--brand-blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: var(--text-2xl);
+    flex-shrink: 0;
+  }
+  :global(.ps-info) { flex: 1; min-width: 140px; }
+  :global(.ps-name) {
+    font-weight: 800;
+    font-size: var(--text-xl);
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  :global(.ps-name:hover) { color: var(--brand-blue); }
+  :global(.ps-tags) { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
+  :global(.ps-metrics) {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  :global(.ps-metric) { text-align: center; min-width: 70px; }
+  :global(.ps-metric-label) { font-size: var(--text-xs); text-transform: uppercase; color: var(--text-tertiary); letter-spacing: 0.05em; }
+  :global(.ps-metric-val) { font-weight: 800; font-size: var(--text-xl); }
+  :global(.ps-metric-val small) { font-weight: 400; font-size: var(--text-sm); color: var(--text-tertiary); }
+  :global(.ps-actions) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    flex-shrink: 0;
+  }
+
+  :global(.ps-cta-card) {
+    margin-top: var(--space-xl);
+    padding: var(--space-xl);
+    border: 2px solid rgba(0,82,255,0.2);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(0,82,255,0.04), rgba(0,213,132,0.04));
+    text-align: center;
+  }
+  :global(.ps-cta-card h4) { margin-bottom: var(--space-xs); }
+  :global(.ps-cta-card p) { color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-md); }
+
+  @media (max-width: 768px) {
+    :global(.ps-row) {
+      flex-wrap: wrap;
+      padding: var(--space-md);
+    }
+    :global(.ps-metrics) { width: 100%; justify-content: space-around; }
+    :global(.ps-actions) { width: 100%; flex-direction: row; }
+    :global(.ps-actions .btn) { flex: 1; text-align: center; }
+  }
+</style>
+
+<script>
+(function() {
+  'use strict';
+
+  // ===== NAME MAP: API provider names → our provider IDs =====
+  const NM: Record<string, string> = {
+    'charter':'spectrum','charter communications':'spectrum','spectrum':'spectrum',
+    'at&t':'att','att':'att','at&t services':'att','bellsouth':'att','at&t fiber':'att',
+    'at&t air':'att-air','att air':'att-air',
+    't-mobile fiber':'tmobile','metronet':'tmobile','metronet holdings':'tmobile','metronet inc':'tmobile',
+    't-mobile':'tmobile-5g','tmobile':'tmobile-5g','t-mobile usa':'tmobile-5g','t-mobile home internet':'tmobile-5g',
+    'verizon':'verizon','verizon communications':'verizon','verizon fios':'verizon','mci':'verizon',
+    'windstream':'windstream','windstream holdings':'windstream','kinetic':'windstream',
+    'altice':'optimum','altice usa':'optimum','optimum':'optimum','suddenlink':'optimum','cablevision':'optimum',
+    'frontier':'frontier','frontier communications':'frontier',
+    'earthlink':'earthlink',
+    'brightspeed':'brightspeed','lumen':'brightspeed','centurylink':'brightspeed','centurytel':'brightspeed',
+    'altafiber':'altafiber','cincinnati bell':'altafiber',
+    'xfinity':'xfinity','comcast':'xfinity','comcast cable':'xfinity',
+    'starlink':'starlink','spacex':'starlink',
+    'viasat':'viasat','exede':'viasat',
+    'hughesnet':'hughesnet','hughes':'hughesnet',
+    'ziply':'ziply','ziply fiber':'ziply',
+    'cox':'cox','cox communications':'cox',
+    'wow':'wow','wideopen':'wow',
+    'google fiber':'google-fiber',
+    'fidium':'fidium',
+    'minternet':'mintmobile','mint mobile':'mintmobile',
+    'mediacom':'mediacom',
+    'us cellular':'uscellular','u.s. cellular':'uscellular',
+    'geolinks':'geolinks',
+  };
+
+  const TECH_LABELS: Record<string,string> = {
+    fiber:'Fiber', cable:'Cable', dsl:'DSL', '5g':'5G Home',
+    satellite:'Satellite', 'fixed wireless':'Fixed Wireless',
+    'fixed_wireless':'Fixed Wireless', 'leo satellite':'Satellite',
+    'gso satellite':'Satellite',
+  };
+  const TECH_CLASS: Record<string,string> = {
+    fiber:'tag-fiber', cable:'tag-cable', dsl:'tag-dsl',
+    '5g':'tag-5g', satellite:'tag-satellite',
+    'fixed wireless':'tag-fixed-wireless', 'fixed_wireless':'tag-fixed-wireless',
+    'leo satellite':'tag-satellite', 'gso satellite':'tag-satellite',
+  };
+
+  function fmtSpeed(m: number): string {
+    if (m >= 1000) return (m/1000).toFixed(m%1000===0?0:1)+' Gbps';
+    return m+' Mbps';
+  }
+  function fmtPrice(p: number): string { return '$'+p.toFixed(2); }
+
+  function mapTech(t: string): string {
+    if (!t) return '';
+    const l = t.toLowerCase();
+    if (l.includes('fiber')||l==='fttp'||l==='ftth') return 'fiber';
+    if (l.includes('cable')||l.includes('docsis')||l==='hfc') return 'cable';
+    if (l.includes('dsl')||l.includes('adsl')||l.includes('vdsl')) return 'dsl';
+    if (l.includes('5g')||l.includes('fixed wireless')||l.includes('fixed_wireless')) return '5g';
+    if (l.includes('satellite')||l.includes('leo')||l.includes('gso')) return 'satellite';
+    if (l.includes('wireless')||l.includes('lte')) return '5g';
+    return '';
+  }
+
+  function matchName(raw: string): string|null {
+    const l = raw.toLowerCase().trim();
+    if (NM[l]) return NM[l];
+    for (const [k,v] of Object.entries(NM)) {
+      if (l.includes(k) || k.includes(l)) return v;
+    }
+    return null;
+  }
+
+  // ===== GEOCODING =====
+  async function geocodeZip(zip: string): Promise<{lat:number,lng:number,city:string,state:string}|null> {
+    try {
+      const r = await fetch(`https://api.zippopotam.us/us/${zip}`, {signal: AbortSignal.timeout(5000)});
+      if (r.ok) {
+        const d = await r.json();
+        if (d.places?.length) return {lat:+d.places[0].latitude,lng:+d.places[0].longitude,city:d.places[0]['place name']||'',state:d.places[0]['state abbreviation']||''};
+      }
+    } catch {}
+    try {
+      const r = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${zip}&country=US&format=json&limit=1`,{headers:{'User-Agent':'Internet4ALL/1.0'},signal:AbortSignal.timeout(6000)});
+      if (r.ok) { const d=await r.json(); if (d[0]) return {lat:+d[0].lat,lng:+d[0].lon,city:'',state:''}; }
+    } catch {}
+    return null;
+  }
+
+  async function geocodeAddr(q: string): Promise<{lat:number,lng:number,display:string}|null> {
+    try {
+      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1&countrycodes=us`,{headers:{'User-Agent':'Internet4ALL/1.0'},signal:AbortSignal.timeout(6000)});
+      if (r.ok) { const d=await r.json(); if (d[0]) return {lat:+d[0].lat,lng:+d[0].lon,display:d[0].display_name}; }
+    } catch {}
+    return null;
+  }
+
+  // ===== AUTOCOMPLETE =====
+  let acTimer: ReturnType<typeof setTimeout>;
+  let acItems: {display:string,zip:string,lat:number,lng:number}[] = [];
+  let acIdx = -1;
+  // IP-detected location for autocomplete bias (set by init)
+  let _biasCity = '';
+  let _biasState = '';
+
+  async function fetchSuggestions(q: string): Promise<typeof acItems> {
+    if (q.length<4) return [];
+    try {
+      // Append bias city/state to query when it looks like a street address without location context
+      const hasLocation = /\d{5}/.test(q) || /,/.test(q) || q.split(' ').length > 4;
+      const queryStr = hasLocation ? q : (_biasCity ? `${q}, ${_biasCity}, ${_biasState}` : q);
+      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(queryStr)}&format=json&limit=6&countrycodes=us&addressdetails=1`,{headers:{'User-Agent':'Internet4ALL/1.0'},signal:AbortSignal.timeout(5000)});
+      if (!r.ok) return [];
+      const d = await r.json();
+      return d.map((x:any)=>{
+        const addr = x.address || {};
+        const zip = addr.postcode || '';
+        // Build a clean single-line address
+        const parts: string[] = [];
+        if (addr.house_number && addr.road) parts.push(addr.house_number + ' ' + addr.road);
+        else if (addr.road) parts.push(addr.road);
+        else if (addr.neighbourhood) parts.push(addr.neighbourhood);
+        if (addr.city || addr.town || addr.village || addr.hamlet) parts.push(addr.city || addr.town || addr.village || addr.hamlet);
+        if (addr.state) parts.push(addr.state);
+        if (zip) parts.push(zip);
+        const display = parts.length ? parts.join(', ') : (x.display_name || '').split(',').slice(0,4).join(', ');
+        return {display, zip, lat:+x.lat, lng:+x.lon};
+      });
+    } catch { return []; }
+  }
+
+  // ===== API =====
+  async function fetchProviders(lat: number, lng: number): Promise<any[]> {
+    const r = await fetch(`https://broadbandmap.com/api/v1/location/internet?lat=${lat}&lng=${lng}`,{signal:AbortSignal.timeout(10000)});
+    if (r.status===429) throw new Error('RATE_LIMITED');
+    if (!r.ok) throw new Error('HTTP_'+r.status);
+    const d = await r.json();
+    return d?.providers || [];
+  }
+
+  // ===== MATCH & ENRICH =====
+  interface LocalP { id:string; name:string; slug:string; types:string[]; rating:number; pt:boolean; phone:string; logo:string|null; ms:number; mp:number; }
+  interface EnrichedP {
+    name:string; slug:string|null; types:string[]; maxDown:number; maxUp:number;
+    rating:number|null; phone:string; logo:string|null; minPrice:number;
+    score:number; apiConfirmed:boolean; isPartner:boolean;
+  }
+
+  function matchAndEnrich(apiProviders: any[], locals: LocalP[], mainPhone: string): EnrichedP[] {
+    const byName = new Map<string, {name:string,techs:string[],maxD:number,maxU:number}>();
+    for (const p of apiProviders) {
+      const n = p.name||'Unknown';
+      if (!byName.has(n.toLowerCase())) byName.set(n.toLowerCase(),{name:n,techs:[],maxD:0,maxU:0});
+      const e = byName.get(n.toLowerCase())!;
+      const t = mapTech(p.technology||'');
+      if (t && !e.techs.includes(t)) e.techs.push(t);
+      if ((p.max_download_mbps||0)>e.maxD) e.maxD=p.max_download_mbps;
+      if ((p.max_upload_mbps||0)>e.maxU) e.maxU=p.max_upload_mbps;
+    }
+
+    const result: EnrichedP[] = [];
+    const usedIds = new Set<string>();
+
+    for (const [,api] of byName) {
+      const id = matchName(api.name);
+      const local = id ? locals.find(l=>l.id===id) : null;
+      if (local && !usedIds.has(local.id)) {
+        usedIds.add(local.id);
+        result.push({
+          name: local.name,
+          slug: local.slug,
+          types: api.techs.length ? api.techs : local.types,
+          maxDown: api.maxD || local.ms,
+          maxUp: api.maxU,
+          rating: local.rating,
+          phone: local.pt ? local.phone : mainPhone,
+          logo: local.logo,
+          minPrice: local.mp,
+          score: 0,
+          apiConfirmed: true,
+          isPartner: local.pt,
+        });
+      } else if (!local) {
+        result.push({
+          name: api.name,
+          slug: null,
+          types: api.techs,
+          maxDown: api.maxD,
+          maxUp: api.maxU,
+          rating: null,
+          phone: mainPhone,
+          logo: null,
+          minPrice: 0,
+          score: 0,
+          apiConfirmed: true,
+          isPartner: false,
+        });
+      }
+    }
+
+    // Score — partners heavily prioritized
+    for (const p of result) {
+      let s = 0;
+      // Partner bonus — massive priority
+      const local = locals.find(l => l.slug === p.slug);
+      if (local && local.pt) s += 50;
+      // Nationwide partners (att-air, earthlink) always featured
+      if (p.slug === 'att-air' || p.slug === 'earthlink') s += 30;
+      // Tech bonus
+      if (p.types.includes('fiber')) s += 20;
+      else if (p.types.includes('cable')) s += 12;
+      else if (p.types.includes('5g')) s += 10;
+      s += Math.min(p.maxDown / 100, 30);
+      if (p.rating) s += p.rating * 2.5;
+      if (p.minPrice > 0) s += 4;
+      if (p.slug) s += 5; // enriched = more useful
+      p.score = s;
+    }
+
+    result.sort((a,b) => b.score - a.score);
+    return result;
+  }
+
+  // ===== RENDERING =====
+  function renderRow(p: EnrichedP, rank: number, mainPhone: string): string {
+    const logo = p.logo
+      ? `<img class="ps-logo" src="${p.logo}" alt="${p.name}" width="80" height="80" loading="lazy" />`
+      : `<div class="ps-logo-fallback">${p.name.charAt(0)}</div>`;
+    const nameLink = p.slug ? `<a href="/provider/${p.slug}" class="ps-name">${p.name}</a>` : `<span class="ps-name">${p.name}</span>`;
+    const partnerBadge = p.isPartner ? `<span class="ps-partner-badge">Recommended</span>` : '';
+    const tags = p.types.map(t => {
+      const cls = TECH_CLASS[t] || '';
+      const label = TECH_LABELS[t] || t;
+      return `<span class="tag ${cls}">${label}</span>`;
+    }).join('');
+    const rating = p.rating ? `<span style="color:var(--brand-amber);">${'★'.repeat(Math.floor(p.rating))}</span> <span style="font-size:var(--text-xs);color:var(--text-tertiary);">${p.rating.toFixed(1)}</span>` : '';
+    const price = p.minPrice > 0 ? fmtPrice(p.minPrice) : '—';
+    const tel = 'tel:+1' + (p.phone||mainPhone).replace(/\D/g,'');
+
+    return `<div class="ps-row${p.isPartner ? ' ps-row--partner' : ''}">
+      <div class="ps-rank">${rank}</div>
+      ${logo}
+      <div class="ps-info">
+        ${nameLink}${partnerBadge}
+        <div class="ps-tags">${tags}</div>
+      </div>
+      <div class="ps-metrics">
+        <div class="ps-metric"><div class="ps-metric-label">Download</div><div class="ps-metric-val">${fmtSpeed(p.maxDown)}</div></div>
+        <div class="ps-metric"><div class="ps-metric-label">Upload</div><div class="ps-metric-val">${fmtSpeed(p.maxUp)}</div></div>
+        <div class="ps-metric"><div class="ps-metric-label">From</div><div class="ps-metric-val">${price}<small>/mo</small></div></div>
+        ${rating ? `<div class="ps-metric"><div class="ps-metric-label">Rating</div><div class="ps-metric-val">${rating}</div></div>` : ''}
+      </div>
+      <div class="ps-actions">
+        ${p.slug ? `<a href="/provider/${p.slug}" class="btn btn-cta btn-sm">View Plans</a>` : ''}
+        <a href="#get-connected" class="btn btn-secondary btn-sm" data-signup-provider="${p.slug || ''}">Sign Up</a>
+      </div>
+    </div>`;
+  }
+
+  function renderResults(providers: EnrichedP[], container: HTMLElement, mainPhone: string, location: string): void {
+    let html = `<div class="ps-header">
+      <h3>${providers.length} Provider${providers.length!==1?'s':''} in ${location}</h3>
+      <span class="ps-badge ps-badge-live">&#10003; VERIFIED — FCC Data</span>
+    </div>`;
+    html += providers.map((p,i) => renderRow(p, i+1, mainPhone)).join('');
+    html += `<div class="ps-cta-card">
+      <h4>Need help choosing?</h4>
+      <p>Our internet experts compare every option at your address — free, no obligation.</p>
+      <a href="tel:+1${mainPhone.replace(/\D/g,'')}" class="btn btn-cta btn-lg">Call ${mainPhone}</a>
+      <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Mon–Fri 8AM–10PM | Sat 9AM–7PM ET</div>
+    </div>`;
+    container.innerHTML = html;
+  }
+
+  function renderError(container: HTMLElement, mainPhone: string): void {
+    container.innerHTML = `<div class="ps-cta-card">
+      <h4>We couldn't verify providers right now</h4>
+      <p>Our experts can check instantly — call for personalized results at your address.</p>
+      <a href="tel:+1${mainPhone.replace(/\D/g,'')}" class="btn btn-cta btn-lg">Call ${mainPhone}</a>
+      <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Mon–Fri 8AM–10PM | Sat 9AM–7PM ET</div>
+    </div>`;
+  }
+
+  function renderLoading(container: HTMLElement, location: string): void {
+    container.innerHTML = `<div class="ps-loading">
+      <div class="ps-loading-bar"><div class="ps-loading-fill"></div></div>
+      <p class="ps-loading-text">Verifying providers in ${location}...</p>
+      <div class="ps-skeletons">${[1,2,3,4,5].map(()=>`<div class="ps-skel"><div class="ps-skel-circle"></div><div class="ps-skel-lines"><div class="ps-skel-line w70"></div><div class="ps-skel-line w40"></div></div><div class="ps-skel-block"></div><div class="ps-skel-btn"></div></div>`).join('')}</div>
+    </div>`;
+  }
+
+  // ===== MAIN =====
+  async function runSearch(lat: number, lng: number, location: string, locals: LocalP[], mainPhone: string, container: HTMLElement): Promise<void> {
+    renderLoading(container, location);
+    try {
+      const raw = await fetchProviders(lat, lng);
+      const enriched = matchAndEnrich(raw, locals, mainPhone);
+      if (enriched.length > 0) {
+        renderResults(enriched, container, mainPhone, location);
+        // Hide static fallback
+        const fallback = document.getElementById('static-providers');
+        if (fallback) fallback.style.display = 'none';
+        // Dispatch event so parent page can update hero/state
+        window.dispatchEvent(new CustomEvent('ps:results', { detail: { count: enriched.length, location } }));
+      } else {
+        renderError(container, mainPhone);
+      }
+    } catch (e: any) {
+      if (e.message === 'RATE_LIMITED') {
+        container.innerHTML = `<div class="ps-cta-card">
+          <h4>High demand right now</h4>
+          <p>Call us for instant results — our experts check every provider at your address in real-time.</p>
+          <a href="tel:+1${mainPhone.replace(/\D/g,'')}" class="btn btn-cta btn-lg">Call ${mainPhone}</a>
+        </div>`;
+      } else {
+        renderError(container, mainPhone);
+      }
+    }
+  }
+
+  function init(): void {
+    const el = document.getElementById('ps-root');
+    if (!el) return;
+
+    const locals: LocalP[] = JSON.parse(el.dataset.providers || '[]');
+    const mainPhone = el.dataset.mainPhone || '';
+    const city = el.dataset.city || '';
+    const st = el.dataset.state || '';
+    const stName = el.dataset.stateName || '';
+    const zip = el.dataset.zip || '';
+    const latStr = el.dataset.lat || '';
+    const lngStr = el.dataset.lng || '';
+    const auto = el.dataset.auto === '1';
+    const container = document.getElementById('ps-results') as HTMLElement;
+    const input = document.getElementById('ps-input') as HTMLInputElement;
+    const form = document.getElementById('ps-form') as HTMLFormElement;
+    const suggestEl = document.getElementById('ps-suggest') as HTMLUListElement;
+
+    if (!container) return;
+
+    // ── IP geolocation for autocomplete bias (non-blocking, US only) ──
+    let ipDetectedCity = city;
+    let ipDetectedState = st;
+    _biasCity = city;
+    _biasState = st;
+    if (input && !auto) {
+      fetch('https://get.geojs.io/v1/ip/geo.json', { signal: AbortSignal.timeout(3000) })
+        .then(r => r.json())
+        .then((d: { city?: string; region?: string; country?: string }) => {
+          if (d.country === 'United States' && d.city && d.region) {
+            ipDetectedCity = d.city;
+            ipDetectedState = d.region;
+            _biasCity = d.city;
+            _biasState = d.region;
+            // Update placeholder with detected location if we're in a non-specific context
+            if (!zip && (!city || city.toLowerCase() !== d.city.toLowerCase())) {
+              input.placeholder = `Enter address — detected near ${d.city}, ${d.region}`;
+            }
+          }
+        })
+        .catch(() => {});
+    }
+
+    // Auto-search (ZIP pages)
+    if (auto) {
+      const lat = parseFloat(latStr);
+      const lng = parseFloat(lngStr);
+      const loc = zip ? `ZIP ${zip}` : `${city}, ${st}`;
+      if (!isNaN(lat) && !isNaN(lng)) {
+        runSearch(lat, lng, loc, locals, mainPhone, container);
+      } else if (zip) {
+        geocodeZip(zip).then(geo => {
+          if (geo) runSearch(geo.lat, geo.lng, loc, locals, mainPhone, container);
+          else renderError(container, mainPhone);
+        });
+      }
+    }
+
+    // Form submit
+    if (form && input) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const q = input.value.trim();
+        if (!q) return;
+        if (/^\d{5}$/.test(q)) {
+          geocodeZip(q).then(geo => {
+            if (geo) {
+              const loc = `ZIP ${q}` + (geo.city ? ` — ${geo.city}, ${geo.state}` : '');
+              runSearch(geo.lat, geo.lng, loc, locals, mainPhone, container);
+            } else {
+              renderError(container, mainPhone);
+            }
+          });
+        } else {
+          geocodeAddr(q).then(geo => {
+            if (geo) {
+              const loc = geo.display.split(',').slice(0,3).join(',');
+              runSearch(geo.lat, geo.lng, loc, locals, mainPhone, container);
+            } else {
+              container.innerHTML = `<p style="color:#ff4444;padding:var(--space-md) 0;font-size:var(--text-sm);">Couldn't find that address. Try entering your 5-digit ZIP code, or call us for help.</p>`;
+            }
+          });
+        }
+      });
+    }
+
+    // Autocomplete
+    if (input && suggestEl) {
+      function showSugs(items: typeof acItems) {
+        acItems = items; acIdx = -1;
+        if (!items.length) { suggestEl.style.display='none'; return; }
+        suggestEl.innerHTML = items.map((s,i)=>`<li data-i="${i}"><div class="sg-main">${s.display}</div></li>`).join('');
+        suggestEl.style.display = 'block';
+      }
+      function closeSugs() { suggestEl.style.display='none'; acItems=[]; acIdx=-1; }
+      function selectSug(i: number) {
+        const s = acItems[i]; if (!s) return;
+        input.value = s.display;
+        closeSugs();
+        // If we have a ZIP code, navigate to the ZIP page for best experience
+        if (s.zip && /^\d{5}$/.test(s.zip)) {
+          window.location.href = `/internet-providers/zip/${s.zip}`;
+          return;
+        }
+        // Otherwise run a search in place
+        const loc = s.display;
+        runSearch(s.lat, s.lng, loc, locals, mainPhone, container);
+      }
+
+      input.addEventListener('input', () => {
+        clearTimeout(acTimer);
+        const v = input.value.trim();
+        if (v.length<4 || /^\d{5}$/.test(v)) { closeSugs(); return; }
+        acTimer = setTimeout(async () => {
+          const items = await fetchSuggestions(v);
+          if (document.activeElement===input && input.value.trim().length>=4) showSugs(items);
+        }, 350);
+      });
+
+      input.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (!acItems.length) return;
+        if (e.key==='ArrowDown') { e.preventDefault(); acIdx=Math.min(acIdx+1,acItems.length-1); updActive(); }
+        else if (e.key==='ArrowUp') { e.preventDefault(); acIdx=Math.max(acIdx-1,0); updActive(); }
+        else if (e.key==='Enter'&&acIdx>=0) { e.preventDefault(); selectSug(acIdx); }
+        else if (e.key==='Escape') closeSugs();
+      });
+
+      function updActive() {
+        suggestEl.querySelectorAll('li').forEach((li,i)=>li.classList.toggle('active',i===acIdx));
+      }
+
+      suggestEl.addEventListener('mousedown', (e: MouseEvent) => {
+        const li = (e.target as HTMLElement).closest('li');
+        if (li) selectSug(parseInt(li.getAttribute('data-i')||'0'));
+      });
+
+      input.addEventListener('blur', ()=>setTimeout(closeSugs, 200));
+    }
+  }
+
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>

@@ -1,0 +1,616 @@
+---
+import { MAIN_PHONE, getPartnerProviders, formatSpeed, formatPrice } from '@lib/providers';
+import { formatPhoneForTel } from '@lib/utils';
+
+const partners = getPartnerProviders();
+---
+
+<!-- AI Chat Widget -->
+<div id="ai-chat" class="ai-chat">
+  <!-- Toggle Button -->
+  <button id="ai-chat-toggle" class="ai-chat-toggle" aria-label="Open chat assistant">
+    <svg id="chat-icon-open" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+    </svg>
+    <svg id="chat-icon-close" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+    <span class="ai-chat-badge" id="chat-badge">1</span>
+  </button>
+
+  <!-- Chat Window -->
+  <div id="ai-chat-window" class="ai-chat-window" style="display:none;">
+    <div class="ai-chat-header">
+      <div class="ai-chat-header-info">
+        <div class="ai-chat-avatar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </div>
+        <div>
+          <strong style="font-size:var(--text-sm);">Internet Advisor</strong>
+          <span style="display:block;font-size:var(--text-xs);color:var(--brand-green);">● Online</span>
+        </div>
+      </div>
+      <button id="ai-chat-close" class="ai-chat-close" aria-label="Close chat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div id="ai-chat-messages" class="ai-chat-messages"></div>
+
+    <div id="ai-chat-options" class="ai-chat-options"></div>
+
+    <div class="ai-chat-footer">
+      <input type="text" id="ai-chat-input" class="ai-chat-input" placeholder="Type a message..." autocomplete="off" />
+      <button id="ai-chat-send" class="ai-chat-send" aria-label="Send message">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Provider data for chat engine -->
+<script id="chat-provider-data" type="application/json" set:html={JSON.stringify(partners.map(p => ({
+  id: p.id, name: p.name, slug: p.slug,
+  types: p.types, rating: p.rating,
+  minPrice: Math.min(...p.plans.map(pl => pl.promoPrice || pl.price)),
+  maxSpeed: Math.max(...p.plans.map(pl => pl.speed)),
+  plans: p.plans.map(pl => ({ name: pl.name, speed: pl.speed, price: pl.promoPrice || pl.price })),
+  coverage: p.coverage, phone: p.phone,
+  pros: p.pros.slice(0, 3),
+})))} />
+
+<script define:vars={{ mainPhone: MAIN_PHONE }}>
+(function() {
+  const PHONE = mainPhone;
+  const providers = JSON.parse(document.getElementById('chat-provider-data').textContent);
+
+  // DOM elements
+  const toggle = document.getElementById('ai-chat-toggle');
+  const window_ = document.getElementById('ai-chat-window');
+  const closeBtn = document.getElementById('ai-chat-close');
+  const messages = document.getElementById('ai-chat-messages');
+  const options = document.getElementById('ai-chat-options');
+  const input = document.getElementById('ai-chat-input');
+  const sendBtn = document.getElementById('ai-chat-send');
+  const badge = document.getElementById('chat-badge');
+  const iconOpen = document.getElementById('chat-icon-open');
+  const iconClose = document.getElementById('chat-icon-close');
+
+  let isOpen = false;
+  let started = false;
+  let answers = {};
+
+  // Chat flow definition
+  const flow = {
+    start: {
+      messages: [
+        "Hey there! 👋 I'm your Internet Advisor.",
+        "I can help you find the best internet plan in under 60 seconds. What brings you here today?"
+      ],
+      options: [
+        { label: "🏠 Moving to a new place", next: "zip" },
+        { label: "💰 Looking for a better deal", next: "priority" },
+        { label: "⚡ Need faster internet", next: "speed" },
+        { label: "🤔 Not sure, help me decide", next: "zip" },
+      ]
+    },
+    zip: {
+      messages: ["Great! What's your ZIP code? This helps me find providers available in your area."],
+      input: true,
+      validate: (val) => /^\d{5}$/.test(val.trim()),
+      errorMsg: "Please enter a valid 5-digit ZIP code.",
+      process: (val) => { answers.zip = val.trim(); },
+      next: "household"
+    },
+    household: {
+      messages: ["Got it! How many people use the internet in your household?"],
+      options: [
+        { label: "👤 Just me", value: 1, next: "usage" },
+        { label: "👥 2 people", value: 2, next: "usage" },
+        { label: "👨‍👩‍👧 3-4 people", value: 3, next: "usage" },
+        { label: "👨‍👩‍👧‍👦 5+ people", value: 5, next: "usage" },
+      ]
+    },
+    usage: {
+      messages: ["What do you mainly use the internet for?"],
+      options: [
+        { label: "📧 Browsing & email", value: "basic", next: "budget" },
+        { label: "📺 Streaming (Netflix, etc.)", value: "streaming", next: "budget" },
+        { label: "🎮 Gaming", value: "gaming", next: "budget" },
+        { label: "💼 Working from home", value: "wfh", next: "budget" },
+        { label: "📹 Everything + video calls", value: "power", next: "budget" },
+      ]
+    },
+    priority: {
+      messages: ["What matters most to you in an internet provider?"],
+      options: [
+        { label: "💰 Lowest price", value: "price", next: "zip" },
+        { label: "⚡ Fastest speeds", value: "speed", next: "zip" },
+        { label: "⭐ Best reliability", value: "reliability", next: "zip" },
+        { label: "📜 No contracts", value: "nocontract", next: "zip" },
+      ]
+    },
+    speed: {
+      messages: ["What speed do you currently have, and what are you looking for?"],
+      options: [
+        { label: "I need 100-300 Mbps", value: 300, next: "zip" },
+        { label: "I need 500+ Mbps", value: 500, next: "zip" },
+        { label: "I need Gigabit (1000+)", value: 1000, next: "zip" },
+        { label: "Not sure, recommend for me", value: 0, next: "zip" },
+      ]
+    },
+    budget: {
+      messages: ["Last question — what's your monthly budget for internet?"],
+      options: [
+        { label: "Under $40/mo", value: 40, next: "results" },
+        { label: "$40-$60/mo", value: 60, next: "results" },
+        { label: "$60-$80/mo", value: 80, next: "results" },
+        { label: "$80+/mo (I want the best)", value: 999, next: "results" },
+      ]
+    },
+    results: {
+      messages: ["Analyzing your answers..."],
+      compute: true,
+    }
+  };
+
+  function toggleChat() {
+    isOpen = !isOpen;
+    window_.style.display = isOpen ? 'flex' : 'none';
+    iconOpen.style.display = isOpen ? 'none' : 'block';
+    iconClose.style.display = isOpen ? 'block' : 'none';
+    badge.style.display = 'none';
+
+    if (!started) {
+      started = true;
+      setTimeout(() => runStep('start'), 400);
+    }
+  }
+
+  function addMessage(text, isUser) {
+    const div = document.createElement('div');
+    div.className = `ai-msg ${isUser ? 'ai-msg-user' : 'ai-msg-bot'}`;
+    div.innerHTML = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function addTyping() {
+    const div = document.createElement('div');
+    div.className = 'ai-msg ai-msg-bot ai-typing';
+    div.innerHTML = '<span></span><span></span><span></span>';
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+    return div;
+  }
+
+  function removeTyping() {
+    const el = messages.querySelector('.ai-typing');
+    if (el) el.remove();
+  }
+
+  function showOptions(opts) {
+    options.innerHTML = '';
+    opts.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'ai-option-btn';
+      btn.textContent = opt.label;
+      btn.addEventListener('click', () => {
+        addMessage(opt.label, true);
+        options.innerHTML = '';
+        if (opt.value !== undefined) {
+          if (opt.value === 'price' || opt.value === 'speed' || opt.value === 'reliability' || opt.value === 'nocontract') {
+            answers.priority = opt.value;
+          } else if (typeof opt.value === 'number' && opt.next === 'usage') {
+            answers.household = opt.value;
+          } else if (typeof opt.value === 'number' && opt.next === 'budget') {
+            answers.usage = opt.value;
+          } else if (typeof opt.value === 'number' && opt.next === 'results') {
+            answers.budget = opt.value;
+          } else if (typeof opt.value === 'number' && opt.next === 'zip') {
+            answers.targetSpeed = opt.value;
+          }
+        }
+        if (opt.next) {
+          setTimeout(() => runStep(opt.next), 500);
+        }
+      });
+      options.appendChild(btn);
+    });
+  }
+
+  function getRecommendedSpeed() {
+    const h = answers.household || 1;
+    const u = answers.usage || 'basic';
+    const speeds = { basic: 50, streaming: 100, gaming: 200, wfh: 200, power: 300 };
+    let base = speeds[u] || 100;
+    return Math.min(base * Math.max(1, h * 0.7), 1000);
+  }
+
+  function computeResults() {
+    const budget = answers.budget || 80;
+    const recSpeed = answers.targetSpeed || getRecommendedSpeed();
+    const pri = answers.priority || 'reliability';
+
+    let scored = providers.map(p => {
+      let score = 0;
+      const bestPlan = p.plans.find(pl => pl.price <= budget) || p.plans[0];
+      if (bestPlan.price <= budget) score += 30;
+      if (bestPlan.speed >= recSpeed) score += 25;
+      score += (p.rating / 5) * 20;
+      if (pri === 'price') score += bestPlan.price <= 50 ? 15 : bestPlan.price <= 70 ? 10 : 0;
+      if (pri === 'speed') score += bestPlan.speed >= 500 ? 15 : bestPlan.speed >= 300 ? 10 : 0;
+      if (pri === 'reliability') score += p.rating >= 4.3 ? 15 : p.rating >= 4.0 ? 10 : 0;
+      if (p.types.includes('fiber')) score += 5;
+      return { ...p, score, bestPlan };
+    });
+
+    scored.sort((a, b) => b.score - a.score);
+    return scored.slice(0, 3);
+  }
+
+  async function runStep(stepId) {
+    const step = flow[stepId];
+    if (!step) return;
+
+    // Show typing then messages
+    for (let i = 0; i < step.messages.length; i++) {
+      const typing = addTyping();
+      await delay(600 + Math.random() * 400);
+      removeTyping();
+      addMessage(step.messages[i], false);
+    }
+
+    if (step.compute) {
+      // Show loading
+      const typing = addTyping();
+      await delay(1500);
+      removeTyping();
+
+      const results = computeResults();
+      showResults(results);
+      return;
+    }
+
+    if (step.options) {
+      showOptions(step.options);
+    }
+
+    if (step.input) {
+      input.disabled = false;
+      input.focus();
+      input.dataset.step = stepId;
+    } else {
+      input.disabled = true;
+    }
+  }
+
+  function showResults(results) {
+    addMessage("Based on your answers, here are my top picks:", false);
+
+    results.forEach((p, i) => {
+      const medal = ['🥇', '🥈', '🥉'][i];
+      const html = `
+        <div style="margin-bottom:8px;">
+          <strong>${medal} ${p.name}</strong><br/>
+          <span style="font-size:12px;color:var(--text-secondary);">
+            ${p.bestPlan.name} — ${p.bestPlan.speed} Mbps — $${p.bestPlan.price}/mo
+          </span><br/>
+          <span style="font-size:11px;color:var(--text-tertiary);">
+            ⭐ ${p.rating}/5 · ${p.types.join(', ')} · ${p.pros[0]}
+          </span>
+        </div>`;
+      addMessage(html, false);
+    });
+
+    addMessage(`Want to get connected? Call us and we'll set you up with the best deal in minutes! 📞`, false);
+
+    const top = results[0];
+    options.innerHTML = `
+      <a href="tel:${PHONE.replace(/[^0-9+]/g, '')}" class="ai-option-btn ai-option-call">📞 Call Now — Get ${top.name}</a>
+      <a href="/providers" class="ai-option-btn">🔍 Compare All Providers</a>
+      <button class="ai-option-btn" id="ai-restart">🔄 Start Over</button>
+    `;
+    const restart = document.getElementById('ai-restart');
+    if (restart) {
+      restart.addEventListener('click', () => {
+        messages.innerHTML = '';
+        options.innerHTML = '';
+        answers = {};
+        runStep('start');
+      });
+    }
+  }
+
+  function handleSend() {
+    const val = input.value.trim();
+    if (!val) return;
+
+    const stepId = input.dataset.step;
+    const step = flow[stepId];
+    if (!step) return;
+
+    if (step.validate && !step.validate(val)) {
+      addMessage(val, true);
+      addMessage(step.errorMsg, false);
+      input.value = '';
+      return;
+    }
+
+    addMessage(val, true);
+    input.value = '';
+    input.disabled = true;
+    input.dataset.step = '';
+
+    if (step.process) step.process(val);
+    if (step.next) {
+      setTimeout(() => runStep(step.next), 500);
+    }
+  }
+
+  function delay(ms) {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  // Event listeners
+  toggle.addEventListener('click', toggleChat);
+  closeBtn.addEventListener('click', toggleChat);
+  sendBtn.addEventListener('click', handleSend);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') handleSend();
+  });
+
+  // Auto-show badge after delay
+  setTimeout(() => {
+    if (!isOpen) badge.style.display = 'flex';
+  }, 3000);
+})();
+</script>
+
+<style>
+  .ai-chat {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 9999;
+    font-family: var(--font-sans);
+  }
+
+  .ai-chat-toggle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-purple));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 82, 255, 0.4);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .ai-chat-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(0, 82, 255, 0.5);
+  }
+
+  .ai-chat-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--brand-red);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-chat-window {
+    position: absolute;
+    bottom: 72px;
+    right: 0;
+    width: 380px;
+    max-height: 520px;
+    background: var(--gray-900, #111827);
+    border: 1px solid var(--border, #1f2937);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+    animation: chatSlideUp 0.3s ease-out;
+  }
+
+  @keyframes chatSlideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .ai-chat-header {
+    padding: 14px 16px;
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-purple));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .ai-chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+  }
+  .ai-chat-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ai-chat-close {
+    color: rgba(255,255,255,0.8);
+    cursor: pointer;
+    padding: 4px;
+  }
+  .ai-chat-close:hover { color: white; }
+
+  .ai-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 200px;
+    max-height: 320px;
+  }
+
+  .ai-msg {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    animation: msgFade 0.3s ease-out;
+  }
+
+  @keyframes msgFade {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .ai-msg-bot {
+    background: var(--gray-800, #1f2937);
+    color: var(--text-primary, #f3f4f6);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+  .ai-msg-user {
+    background: var(--brand-blue);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+
+  .ai-typing {
+    display: flex;
+    gap: 4px;
+    padding: 12px 18px;
+  }
+  .ai-typing span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gray-500);
+    animation: typingBounce 1.4s infinite;
+  }
+  .ai-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .ai-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
+  }
+
+  .ai-chat-options {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex-shrink: 0;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  .ai-chat-options:empty { padding: 0; }
+
+  .ai-option-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border, #374151);
+    border-radius: 10px;
+    background: var(--gray-800, #1f2937);
+    color: var(--text-primary, #f3f4f6);
+    font-size: 13px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s, border-color 0.15s;
+    text-decoration: none;
+  }
+  .ai-option-btn:hover {
+    background: var(--gray-700, #374151);
+    border-color: var(--brand-blue);
+  }
+  .ai-option-call {
+    background: linear-gradient(135deg, var(--brand-green, #00d584), #00b871) !important;
+    color: white !important;
+    font-weight: 600;
+    border: none !important;
+    text-align: center;
+  }
+  .ai-option-call:hover {
+    filter: brightness(1.1);
+  }
+
+  .ai-chat-footer {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border, #1f2937);
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .ai-chat-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--border, #374151);
+    border-radius: 10px;
+    background: var(--gray-800, #1f2937);
+    color: var(--text-primary, #f3f4f6);
+    font-size: 13px;
+    outline: none;
+  }
+  .ai-chat-input:focus {
+    border-color: var(--brand-blue);
+  }
+  .ai-chat-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .ai-chat-send {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--brand-blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .ai-chat-send:hover {
+    background: var(--brand-blue-dark);
+  }
+
+  @media (max-width: 480px) {
+    .ai-chat { bottom: 70px; right: 12px; }
+    .ai-chat-window {
+      width: calc(100vw - 24px);
+      right: -6px;
+      max-height: 70vh;
+    }
+    .ai-chat-toggle {
+      width: 52px;
+      height: 52px;
+    }
+  }
+</style>

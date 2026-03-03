@@ -1,0 +1,219 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+// Providers with NO contract on all plans
+const noContractProviders = getAllProviders()
+  .filter(p => p.plans.every(plan => plan.contract === 'None'))
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return b.rating - a.rating;
+  });
+
+// All no-contract plans
+const noContractPlans = getAllProviders()
+  .flatMap(p => p.plans.filter(plan => plan.contract === 'None').map(plan => ({ provider: p, plan })))
+  .sort((a, b) => {
+    if (a.provider.isPartner && !b.provider.isPartner) return -1;
+    if (!a.provider.isPartner && b.provider.isPartner) return 1;
+    return a.plan.promoPrice - b.plan.promoPrice;
+  });
+
+const faqs = [
+  { question: 'Which internet providers have no contracts?', answer: `Most modern providers now offer no-contract plans. ${noContractProviders.slice(0, 5).map(p => p.name).join(', ')}, and more all offer month-to-month service. Call ${phone} to find no-contract options at your address.` },
+  { question: 'Is no-contract internet more expensive?', answer: 'Not anymore. Most providers have moved away from contracts entirely. Spectrum, Verizon Fios, T-Mobile, and Frontier all offer their best prices without any contract requirement. Some providers like AT&T may offer an additional discount for price-lock commitments, but the base price is still competitive.' },
+  { question: 'What happens if I cancel no-contract internet?', answer: 'You can cancel anytime without early termination fees. You may need to return rented equipment (modem/router). Some providers bill for the final partial month; others offer prorated billing. There are no penalties for leaving a no-contract plan.' },
+  { question: 'Do no-contract plans have data caps?', answer: 'Data caps are independent of contract status. Fiber plans (Verizon, AT&T, Frontier) are typically unlimited regardless of contract. Cable plans (Xfinity) may have 1.2 TB caps. 5G plans (T-Mobile) are generally unlimited. Always check data cap policy separately from contract terms.' },
+  { question: 'Can I get a good deal without a contract?', answer: `Absolutely. Many of the best internet deals in ${year} are no-contract. Spectrum starts at $49.99/mo, T-Mobile 5G at $50/mo, Frontier Fiber at $49.99/mo — all without any commitment. Call us for the best no-contract deal at your address.` },
+  { question: 'Why do some providers still require contracts?', answer: 'Satellite providers (Viasat, HughesNet) often require 2-year contracts due to expensive equipment installation. Some cable providers offer contract-based discounts. However, the trend is strongly toward no-contract plans — especially from fiber and 5G providers.' },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'No-Contract Internet', url: 'https://internet4all.com/no-contract-internet' },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`No-Contract Internet Providers (${year}) — Month-to-Month Plans`}
+  description={`Find no-contract internet plans in ${year}. ${noContractProviders.length}+ providers with month-to-month service, no early termination fees. Cancel anytime. Plans from ${formatPrice(noContractPlans[0]?.plan.promoPrice || 25)}/mo.`}
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'No-Contract Internet' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-green" style="margin-bottom: var(--space-md);">🔓 Updated {month} {year}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          No-Contract <span class="gradient-text">Internet Providers</span>
+        </h1>
+        <p class="hero-subtitle" style="max-width: 680px; margin-inline: auto;">
+          Never get locked in again. {noContractProviders.length} providers offer month-to-month internet with no commitments,
+          no early termination fees, and full flexibility to cancel or switch anytime.
+        </p>
+        <a href={phoneHref} class="btn btn-call mt-xl" style="font-size: var(--text-lg);">
+          📞 Call {phone} for No-Contract Plans
+        </a>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="grid grid-3 reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="card text-center" style="padding: var(--space-xl);">
+          <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-green);">{noContractProviders.length}</div>
+          <div class="text-secondary" style="font-size: var(--text-sm);">No-Contract Providers</div>
+        </div>
+        <div class="card text-center" style="padding: var(--space-xl);">
+          <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-green);">{noContractPlans.length}+</div>
+          <div class="text-secondary" style="font-size: var(--text-sm);">Contract-Free Plans</div>
+        </div>
+        <div class="card text-center" style="padding: var(--space-xl);">
+          <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-green);">$0</div>
+          <div class="text-secondary" style="font-size: var(--text-sm);">Cancellation Fees</div>
+        </div>
+      </div>
+
+      <!-- Why No Contract -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); padding: var(--space-2xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Why Choose No-Contract Internet?</h2>
+        <div class="grid grid-3" style="gap: var(--space-lg);">
+          <div>
+            <h3 style="font-size: var(--text-base);">🔓 Freedom to Cancel</h3>
+            <p class="text-secondary" style="font-size:var(--text-sm);">Leave anytime without paying $150-300 in early termination fees. If service is bad, just switch.</p>
+          </div>
+          <div>
+            <h3 style="font-size: var(--text-base);">🏠 Perfect for Renters</h3>
+            <p class="text-secondary" style="font-size:var(--text-sm);">Moving? Cancel your plan at the end of the month. No hassle, no fees, no waiting out a contract.</p>
+          </div>
+          <div>
+            <h3 style="font-size: var(--text-base);">💰 Competitive Pricing</h3>
+            <p class="text-secondary" style="font-size:var(--text-sm);">No-contract plans are priced competitively with contract plans. You're not paying more for flexibility.</p>
+          </div>
+          <div>
+            <h3 style="font-size: var(--text-base);">🔄 Easy to Switch</h3>
+            <p class="text-secondary" style="font-size:var(--text-sm);">See a better deal? Switch providers at any time to take advantage of new-customer promotions.</p>
+          </div>
+          <div>
+            <h3 style="font-size: var(--text-base);">⚡ Same Speeds</h3>
+            <p class="text-secondary" style="font-size:var(--text-sm);">No-contract plans offer the same speeds, same equipment, and same service as contract plans.</p>
+          </div>
+          <div>
+            <h3 style="font-size: var(--text-base);">🛡️ No Hidden Obligations</h3>
+            <p class="text-secondary" style="font-size:var(--text-sm);">Month-to-month means exactly what it says. No auto-renewals, no fine print obligations.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- No-Contract Provider Rankings -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Best No-Contract Internet Providers</h2>
+        <div class="provider-list">
+          {noContractProviders.slice(0, 15).map((p, i) => {
+            const cheapest = p.plans.reduce((a, b) => a.promoPrice < b.promoPrice ? a : b);
+            return (
+              <div class="card" style={`padding: var(--space-xl); margin-bottom: var(--space-md); ${!p.isPartner ? 'opacity:0.85;' : ''}`}>
+                <div class="flex items-center gap-lg flex-wrap">
+                  <span style="font-size:var(--text-xl);font-weight:800;color:var(--text-tertiary);min-width:30px;">#{i+1}</span>
+                  <div style="width:48px;height:48px;border-radius:var(--radius-md);background:var(--gray-100);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;">
+                    {p.logo ? <img src={p.logo} alt={p.name} width="48" height="48" style="padding:4px;object-fit:contain;" /> : <span style="font-weight:800;color:var(--text-tertiary);">{p.name.charAt(0)}</span>}
+                  </div>
+                  <div style="flex:1;min-width:200px;">
+                    <div class="flex items-center gap-sm">
+                      <h3 style="font-size:var(--text-lg);margin-bottom:0;">{p.name}</h3>
+                      {p.isPartner && <span class="badge badge-green" style="font-size:0.65rem;">RECOMMENDED</span>}
+                    </div>
+                    <div class="text-secondary" style="font-size:var(--text-sm);margin-top:var(--space-xs);">
+                      From {formatPrice(cheapest.promoPrice)}/mo • Up to {formatSpeed(getMaxSpeed(p))} • {p.types.map(t => getTypeLabel(t)).join('/')} • <strong style="color:var(--brand-green);">No Contract</strong>
+                    </div>
+                  </div>
+                  <div class="flex gap-sm">
+                    <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size:var(--text-sm);">Plans</a>
+                    <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-sm);">📞 Call</a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Plans Table -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); overflow: hidden;">
+        <div style="padding: var(--space-xl) var(--space-xl) var(--space-md);">
+          <h2>All No-Contract Plans by Price</h2>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="comparison-table" style="width:100%;">
+            <thead>
+              <tr>
+                <th>Provider</th>
+                <th>Plan</th>
+                <th>Price</th>
+                <th>Speed</th>
+                <th>Data Cap</th>
+                <th>Type</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {noContractPlans.slice(0, 30).map(({ provider: p, plan }) => (
+                <tr style={p.isPartner ? '' : 'opacity:0.85;'}>
+                  <td>
+                    <div class="flex items-center gap-sm">
+                      <span style="font-weight:600;">{p.name}</span>
+                      {p.isPartner && <span class="badge badge-green" style="font-size:0.6rem;">Partner</span>}
+                    </div>
+                  </td>
+                  <td>{plan.name}</td>
+                  <td style="font-weight:700;color:var(--brand-green);">{formatPrice(plan.promoPrice)}/mo</td>
+                  <td>{formatSpeed(plan.speed)}</td>
+                  <td>{plan.dataCap}</td>
+                  <td>{p.types[0].charAt(0).toUpperCase() + p.types[0].slice(1)}</td>
+                  <td>
+                    <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);">Call</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Related -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Related Guides</h2>
+        <div class="grid grid-3" style="gap: var(--space-sm);">
+          <a href="/cheap-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">💰 Cheapest Internet Plans</a>
+          <a href="/best-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">🏆 Best Internet Providers</a>
+          <a href="/internet-for/apartments" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">🏢 Best for Apartments</a>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Frequently Asked Questions</h2>
+        {faqs.map(faq => (
+          <details class="faq-item">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+  <StickyCallBar phone={phone} message="No contracts, no hassle — call now" />
+</Base>

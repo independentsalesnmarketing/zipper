@@ -1,0 +1,203 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel, stateNames } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+export function getStaticPaths() {
+  const partners = getPartnerProviders();
+  return partners.map(p => ({
+    params: { slug: p.slug },
+    props: { provider: p },
+  }));
+}
+
+interface Props { provider: Provider; }
+const { provider } = Astro.props;
+
+const minPrice = getMinPrice(provider);
+const maxSpeed = getMaxSpeed(provider);
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const savingsEstimate = Math.round(minPrice * 0.3); // estimated savings
+
+const faqs = [
+  { question: `What ${provider.name} deals are available in ${month} ${year}?`, answer: `${provider.name} is currently offering exclusive promotions including plans starting at ${formatPrice(minPrice)}/mo with speeds up to ${formatSpeed(maxSpeed)}. Call us for the latest deals — some promotions save you up to $${savingsEstimate}/mo off regular pricing and include free installation or equipment.` },
+  { question: `How do I get the best ${provider.name} deal?`, answer: `Call our team at the number above. We have access to exclusive ${provider.name} promotions not available online or in stores. Our specialists can also bundle services or find additional discounts based on your location and needs.` },
+  { question: `Does ${provider.name} offer any free installation deals?`, answer: `Many ${provider.name} promotions include free or discounted installation. Current offers vary by location — call us to check what's available at your address.` },
+  { question: `Can I switch to ${provider.name} without a contract?`, answer: `${provider.plans[0]?.contract === 'None' ? `Yes! ${provider.name} offers no-contract plans so you can cancel anytime with no early termination fees.` : `${provider.name} offers both contract and no-contract options. Call us to discuss which arrangement offers you the best value.`}` },
+  { question: `Are these ${provider.name} deals available in my area?`, answer: `${provider.name} is available in ${provider.coverage.includes('Nationwide') ? 'all 50 states' : provider.coverage.length + ' states'}. However, specific deals and plans vary by location. Enter your ZIP code or call us to see exact offers for your address.` },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Deals', url: 'https://internet4all.com/deals' },
+    { name: `${provider.name} Deals`, url: `https://internet4all.com/deals/${provider.slug}` },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`${provider.name} Deals & Promotions (${month} ${year}) — Save Up to $${savingsEstimate}/mo`}
+  description={`Exclusive ${provider.name} deals for ${month} ${year}. Plans from ${formatPrice(minPrice)}/mo, speeds up to ${formatSpeed(maxSpeed)}. Free installation available. Call for promotions you won't find online.`}
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[
+        { name: 'Deals', url: '/deals' },
+        { name: `${provider.name} Deals` },
+      ]} />
+
+      <!-- Hero -->
+      <div class="card reveal" style="margin-bottom: var(--space-2xl); padding: var(--space-2xl); background: linear-gradient(135deg, var(--gray-900), var(--gray-800)); border: 1px solid var(--border);">
+        <div class="flex items-center gap-lg flex-wrap">
+          <div style="width:72px;height:72px;border-radius:var(--radius-lg);background:var(--gray-50);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+            {provider.logo ? (
+              <img src={provider.logo} alt={provider.name} width="72" height="72" style="padding:8px;object-fit:contain;" />
+            ) : (
+              <span style="font-weight:800;font-size:var(--text-2xl);color:var(--text-tertiary);">{provider.name.charAt(0)}</span>
+            )}
+          </div>
+          <div style="flex:1;">
+            <div class="badge badge-green" style="margin-bottom: var(--space-sm);">🔥 {month} {year} Exclusive</div>
+            <h1 style="font-size: var(--text-3xl); margin-bottom: var(--space-xs);">
+              {provider.name} Deals & Promotions
+            </h1>
+            <p style="color: var(--text-secondary); font-size: var(--text-lg);">
+              Save up to ${savingsEstimate}/mo with exclusive offers. Plans from {formatPrice(minPrice)}/mo.
+            </p>
+          </div>
+          <div>
+            <a href={formatPhoneForTel(provider.phone)} class="btn btn-call" style="font-size: var(--text-lg); padding: var(--space-md) var(--space-xl);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              {provider.phone}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Urgency Banner -->
+      <div class="reveal" style="background: var(--brand-green); color: white; border-radius: var(--radius-lg); padding: var(--space-md) var(--space-xl); margin-bottom: var(--space-2xl); text-align: center; font-weight: 600;">
+        ⏰ Limited Time: These {provider.name} deals expire at the end of {month}. Call now to lock in your rate.
+      </div>
+
+      <!-- Featured Deals / Plans -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">{provider.name} Plans & Current Pricing</h2>
+        <div class="grid grid-3">
+          {provider.plans.map((plan, i) => {
+            const savings = plan.price - plan.promoPrice;
+            return (
+              <div class={`plan-card ${i === Math.floor(provider.plans.length / 2) ? 'plan-card--featured gradient-border' : ''}`} style="position:relative;">
+                {i === Math.floor(provider.plans.length / 2) && (
+                  <div class="badge badge-blue" style="position:absolute;top:var(--space-md);right:var(--space-md);">Best Deal</div>
+                )}
+                {savings > 0 && (
+                  <div class="badge badge-green" style="position:absolute;top:var(--space-md);left:var(--space-md);">Save ${savings}/mo</div>
+                )}
+                <div class="plan-name">{plan.name}</div>
+                <div class="plan-speed">{formatSpeed(plan.speed)}</div>
+                <div class="plan-speed-unit">download speed</div>
+                <div class="plan-price" style="margin-top: var(--space-md);">
+                  {formatPrice(plan.promoPrice)} <span>/mo</span>
+                </div>
+                {savings > 0 && (
+                  <div class="plan-original-price">Regular price {formatPrice(plan.price)}/mo — save ${savings * 12}/yr</div>
+                )}
+                <div style="margin-top: var(--space-sm); font-size: var(--text-xs); color: var(--text-tertiary);">
+                  {plan.contract} contract · {plan.dataCap} data
+                </div>
+                <ul class="plan-features">
+                  {plan.features.map(f => <li>{f}</li>)}
+                </ul>
+                <a href={formatPhoneForTel(provider.phone)} class="btn btn-cta w-full" style="margin-top: var(--space-lg);">
+                  Call to Claim This Deal
+                </a>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Why Call Us -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Why Get {provider.name} Through Us?</h2>
+        <div class="grid grid-3">
+          <div class="card text-center" style="padding: var(--space-xl);">
+            <div style="font-size:2rem;margin-bottom:var(--space-sm);">💵</div>
+            <h4>Exclusive Pricing</h4>
+            <p style="margin-top:var(--space-sm);font-size:var(--text-sm);color:var(--text-secondary);">We negotiate promotional rates you can't find online or in stores. Save up to ${savingsEstimate}/mo off retail pricing.</p>
+          </div>
+          <div class="card text-center" style="padding: var(--space-xl);">
+            <div style="font-size:2rem;margin-bottom:var(--space-sm);">🎯</div>
+            <h4>Expert Guidance</h4>
+            <p style="margin-top:var(--space-sm);font-size:var(--text-sm);color:var(--text-secondary);">Our specialists know every {provider.name} plan inside out. We'll match you with the right plan for your household needs and budget.</p>
+          </div>
+          <div class="card text-center" style="padding: var(--space-xl);">
+            <div style="font-size:2rem;margin-bottom:var(--space-sm);">🚀</div>
+            <h4>Fast Setup</h4>
+            <p style="margin-top:var(--space-sm);font-size:var(--text-sm);color:var(--text-secondary);">We handle everything — from ordering to scheduling installation. Many customers get connected within 24-48 hours.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pros & Cons -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">{provider.name} Pros & Cons</h2>
+        <div class="pros-cons">
+          <div class="card">
+            <h4 style="color: var(--brand-green); margin-bottom: var(--space-md);">✓ Pros</h4>
+            <ul class="pros-list">
+              {provider.pros.map(p => <li>{p}</li>)}
+            </ul>
+          </div>
+          <div class="card">
+            <h4 style="color: var(--brand-red); margin-bottom: var(--space-md);">✕ Cons</h4>
+            <ul class="cons-list">
+              {provider.cons.map(c => <li>{c}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compare with Others -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Compare {provider.name} with Other Providers</h2>
+        <div class="grid grid-3 gap-md">
+          {getPartnerProviders()
+            .filter(p => p.id !== provider.id)
+            .slice(0, 6)
+            .map(p => {
+              const [first, second] = [provider, p].sort((x, y) => x.name.localeCompare(y.name));
+              return (
+                <a href={`/compare/${first.slug}-vs-${second.slug}`} class="card" style="padding: var(--space-md); text-decoration: none;">
+                  <span style="font-weight:600;color:var(--text-primary);">{provider.name} vs {p.name}</span>
+                  <span style="display:block;font-size:var(--text-sm);color:var(--text-tertiary);margin-top:var(--space-xs);">Compare plans →</span>
+                </a>
+              );
+            })}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">{provider.name} Deals FAQ</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <StickyCallBar text={`${provider.name} exclusive deals — save up to $${savingsEstimate}/mo`} phone={provider.phone} />
+</Base>

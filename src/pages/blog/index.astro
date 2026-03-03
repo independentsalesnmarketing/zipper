@@ -1,0 +1,117 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getCollection } from 'astro:content';
+import { generateBreadcrumbSchema } from '@lib/utils';
+
+const posts = (await getCollection('blog'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const featuredPosts = posts.filter(p => p.data.featured);
+const recentPosts = posts.filter(p => !p.data.featured);
+
+const categories = [
+  { slug: 'guides', label: 'Guides', icon: '📖' },
+  { slug: 'comparisons', label: 'Comparisons', icon: '⚖️' },
+  { slug: 'news', label: 'News', icon: '📰' },
+  { slug: 'tips', label: 'Tips & Tricks', icon: '💡' },
+  { slug: 'deals', label: 'Deals', icon: '🏷️' },
+  { slug: 'technology', label: 'Technology', icon: '🔬' },
+  { slug: 'moving', label: 'Moving', icon: '📦' },
+];
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Blog', url: 'https://internet4all.com/blog' },
+  ]),
+];
+---
+<Base
+  title="Internet 4 ALL Blog — Guides, Tips & News About Internet Service"
+  description="Expert guides on internet service: how to choose a provider, speed recommendations, technology comparisons, moving tips, and the latest deals."
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Blog' }]} />
+
+      <div class="reveal" style="margin-bottom: var(--space-2xl);">
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Internet <span class="gradient-text">Resource Center</span>
+        </h1>
+        <p style="font-size: var(--text-lg); color: var(--text-secondary); max-width: 650px;">
+          Expert guides, tips, and news to help you make smart decisions about your internet service.
+        </p>
+      </div>
+
+      <!-- Categories -->
+      <div class="reveal" style="margin-bottom: var(--space-2xl);">
+        <div class="flex flex-wrap gap-sm">
+          <a href="/blog" class="tag" style="text-decoration:none;font-weight:600;">All</a>
+          {categories.map(cat => {
+            const count = posts.filter(p => p.data.category === cat.slug).length;
+            return count > 0 ? (
+              <a href={`/blog/category/${cat.slug}`} class="tag" style="text-decoration:none;">
+                {cat.icon} {cat.label} ({count})
+              </a>
+            ) : null;
+          })}
+        </div>
+      </div>
+
+      <!-- Featured Posts -->
+      {featuredPosts.length > 0 && (
+        <div class="reveal" style="margin-bottom: var(--space-3xl);">
+          <h2 style="margin-bottom: var(--space-xl);">Featured Articles</h2>
+          <div class="grid grid-2" style="gap: var(--space-lg);">
+            {featuredPosts.map(post => (
+              <a href={`/blog/${post.slug}`} class="card" style="padding: var(--space-xl); text-decoration: none; display: flex; flex-direction: column;">
+                <div class="badge badge-blue" style="align-self: flex-start; margin-bottom: var(--space-md);">⭐ Featured</div>
+                <h3 style="color: var(--text-primary); margin-bottom: var(--space-sm); font-size: var(--text-xl);">{post.data.title}</h3>
+                <p style="color: var(--text-secondary); font-size: var(--text-sm); flex: 1;">{post.data.description}</p>
+                <div style="margin-top: var(--space-md); display: flex; align-items: center; gap: var(--space-md);">
+                  <span class={`tag tag-${post.data.category === 'guides' ? 'fiber' : post.data.category === 'moving' ? 'cable' : 'dsl'}`} style="font-size:0.65rem;">
+                    {categories.find(c => c.slug === post.data.category)?.label || post.data.category}
+                  </span>
+                  <span style="font-size: var(--text-xs); color: var(--text-tertiary);">{formatDate(post.data.date)}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- All Posts -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">All Articles</h2>
+        <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+          {posts.map(post => (
+            <a href={`/blog/${post.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none; display: flex; align-items: center; gap: var(--space-lg);">
+              <div style="flex: 1; min-width: 0;">
+                <h3 style="color: var(--text-primary); margin-bottom: var(--space-xs); font-size: var(--text-lg);">{post.data.title}</h3>
+                <p style="color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-sm);">{post.data.description}</p>
+                <div style="display: flex; align-items: center; gap: var(--space-md);">
+                  <span class="tag" style="font-size:0.65rem;">
+                    {categories.find(c => c.slug === post.data.category)?.label || post.data.category}
+                  </span>
+                  <span style="font-size: var(--text-xs); color: var(--text-tertiary);">{formatDate(post.data.date)}</span>
+                  <span style="font-size: var(--text-xs); color: var(--text-tertiary);">By {post.data.author}</span>
+                </div>
+              </div>
+              <span style="color: var(--brand-blue); font-weight: 600; white-space: nowrap;">Read →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar />
+</Base>

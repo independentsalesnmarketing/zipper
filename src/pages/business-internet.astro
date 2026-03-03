@@ -1,0 +1,264 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+const allProviders = getAllProviders();
+const partners = getPartnerProviders();
+
+// Business-oriented providers are those with fiber, cable, or fixed wireless — suitable for business
+const businessProviders = allProviders
+  .filter(p => p.types.includes('fiber') || p.types.includes('cable') || p.types.includes('fixed-wireless'))
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return b.rating - a.rating;
+  });
+
+const businessNeeds = [
+  { size: 'Solo / Home Office', employees: '1–3', speed: '100–200 Mbps', upload: '50+ Mbps', price: '$50–80/mo', features: 'Reliable connection, VPN capable, video conferencing', recommendation: 'Residential fiber or cable with good upload speeds' },
+  { size: 'Small Business', employees: '4–15', speed: '200–500 Mbps', upload: '100+ Mbps', price: '$80–200/mo', features: 'Static IP, SLA, priority support, cloud backups', recommendation: 'Business fiber or cable with SLA' },
+  { size: 'Medium Business', employees: '15–50', speed: '500 Mbps–1 Gbps', upload: '500+ Mbps', price: '$200–500/mo', features: 'Dedicated bandwidth, SLA, managed WiFi, VoIP', recommendation: 'Dedicated fiber with 99.99% uptime SLA' },
+  { size: 'Enterprise', employees: '50+', speed: '1–10 Gbps', upload: 'Symmetrical', price: '$500–2,000+/mo', features: 'Dedicated fiber, 99.999% uptime, 24/7 NOC, SD-WAN', recommendation: 'Enterprise fiber with dedicated account manager' },
+];
+
+const businessFeatures = [
+  { feature: 'Static IP Address', icon: '🔒', desc: 'Essential for hosting servers, VPNs, remote access, and security cameras. Most business plans include 1–5 static IPs.' },
+  { feature: 'Service Level Agreement (SLA)', icon: '📋', desc: 'Guaranteed uptime (typically 99.9–99.99%) with credit if the provider fails to meet it. Protects your business from outages.' },
+  { feature: 'Priority Support', icon: '⚡', desc: 'Skip the consumer queue. Business customers get dedicated support lines with faster response times — often under 4 hours.' },
+  { feature: 'Symmetrical Speeds', icon: '↕️', desc: 'Upload as fast as you download. Critical for cloud computing, video conferencing, file sharing, and VoIP phone systems.' },
+  { feature: 'Dedicated Bandwidth', icon: '🎯', desc: 'Your bandwidth isn\'t shared with neighbors. Consistent speeds even during peak hours. Available with business fiber plans.' },
+  { feature: 'Managed WiFi', icon: '📶', desc: 'Provider installs and manages your business WiFi network. Includes access points, guest networks, and remote monitoring.' },
+];
+
+const industries = [
+  { name: 'Retail & Restaurants', speed: '100–300 Mbps', needs: 'POS systems, WiFi for customers, security cameras, online ordering', icon: '🏪' },
+  { name: 'Healthcare & Medical', speed: '500 Mbps–1 Gbps', needs: 'HIPAA compliance, telehealth, electronic health records, imaging', icon: '🏥' },
+  { name: 'Legal & Financial', speed: '200–500 Mbps', needs: 'VPN security, large file transfers, video depositions, cloud storage', icon: '⚖️' },
+  { name: 'Creative & Tech', speed: '1–10 Gbps', needs: 'Large file uploads, cloud rendering, video streaming, remote dev', icon: '💻' },
+  { name: 'Warehouse & Logistics', speed: '100–300 Mbps', needs: 'Inventory systems, IoT devices, shipping integration, WiFi coverage', icon: '🏭' },
+  { name: 'Education', speed: '500 Mbps–1 Gbps', needs: 'Classroom devices, video learning, student WiFi, campus-wide coverage', icon: '🎓' },
+];
+
+const faqs = [
+  { question: 'What is the difference between business and residential internet?', answer: 'Business internet offers: higher upload speeds, static IP addresses, Service Level Agreements (SLA) guaranteeing uptime, priority customer support, and often dedicated (unshared) bandwidth. Residential plans are cheaper but may throttle during peak hours and lack SLAs. For mission-critical operations, business internet is worth the premium.' },
+  { question: 'How much does business internet cost?', answer: `Business internet costs $50–2,000+/mo depending on speed and service level. Small business plans (100–300 Mbps) typically cost $70–200/mo. Dedicated fiber with SLA for medium businesses runs $200–500/mo. Enterprise circuits (1–10 Gbps) cost $500–2,000+/mo. Call ${phone} for competitive quotes.` },
+  { question: 'What internet speed does my business need?', answer: `A general rule: 25 Mbps per employee for basic use, 50 Mbps per employee for heavy use. A 10-person office doing video calls and cloud computing needs 300–500 Mbps. Factor in: VoIP phones, security cameras, POS systems, and customer WiFi. Call ${phone} for a free business speed assessment.` },
+  { question: 'Do I need a static IP address for my business?', answer: 'You need a static IP if you: host a website or email server on-premises, use a VPN for remote employees, run security cameras accessible remotely, operate a point-of-sale system, or need consistent remote desktop access. Most business plans include at least one static IP.' },
+  { question: 'What is an SLA and why does it matter for business?', answer: 'An SLA (Service Level Agreement) is a contractual guarantee of uptime and performance. A 99.9% uptime SLA means max 8.7 hours of downtime per year. A 99.99% SLA allows only 52 minutes. If the provider fails, you get service credits. SLAs are critical for businesses where downtime means lost revenue.' },
+  { question: 'Can I use residential internet for my small business?', answer: `Yes, many home offices and micro-businesses use residential internet successfully. However, you miss out on SLAs, static IPs, and priority support. If internet downtime would cost you money or clients, upgrade to a business plan. Fiber plans like AT&T Fiber and Verizon Fios offer great residential speeds that work well for small businesses.` },
+  { question: 'What is dedicated internet access (DIA)?', answer: 'Dedicated Internet Access means your bandwidth is not shared with any other customers. You always get the full speed you pay for, unlike shared connections that slow down during peak usage. DIA is essential for businesses with consistent high-bandwidth needs and is typically delivered over fiber.' },
+  { question: 'How do I set up internet for a new business location?', answer: `1) Check availability at your business address. 2) Determine your speed and feature needs. 3) Compare business plans from available providers. 4) Schedule installation (typically 2–4 weeks for business fiber). 5) Plan your internal network setup. Call ${phone} — our business specialists handle everything from quote to installation.` },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Business Internet', url: 'https://internet4all.com/business-internet' },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`Business Internet Providers — Plans, Pricing & SLAs (${year})`}
+  description={`Compare business internet providers for ${year}. Find dedicated fiber, cable, and wireless plans with SLAs, static IPs, and priority support. ${businessProviders.length}+ providers. Get a free business quote.`}
+  schema={schemas}
+>
+  <StickyCallBar text="Business internet experts — call for a free quote" />
+
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Business Internet' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">💼 Updated {month} {year}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          <span class="gradient-text">Business Internet</span> Providers & Plans
+        </h1>
+        <p class="hero-subtitle" style="max-width: 720px; margin-inline: auto;">
+          Enterprise-grade internet for businesses of every size. Compare {businessProviders.length}+ providers offering dedicated fiber,
+          SLA-backed connections, static IPs, and priority support. Plans from $50/mo to multi-gigabit enterprise circuits.
+        </p>
+        <div style="margin-top: var(--space-xl);">
+          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Free Business Quote</a>
+          <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check Business Address</a>
+        </div>
+      </div>
+
+      <!-- Business Size Guide -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Business Internet by Company Size</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">Find the right speed, features, and budget for your business.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Business Size</th>
+                <th>Employees</th>
+                <th>Speed Needed</th>
+                <th>Upload Speed</th>
+                <th>Typical Cost</th>
+                <th>Recommended</th>
+              </tr>
+            </thead>
+            <tbody>
+              {businessNeeds.map(bn => (
+                <tr>
+                  <td style="font-weight: 600;">{bn.size}</td>
+                  <td>{bn.employees}</td>
+                  <td style="color: var(--brand-blue); font-weight: 600;">{bn.speed}</td>
+                  <td>{bn.upload}</td>
+                  <td style="color: var(--brand-green); font-weight: 600;">{bn.price}</td>
+                  <td style="font-size: var(--text-xs); color: var(--text-secondary);">{bn.recommendation}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Key Business Features -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">What Makes Business Internet Different</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">Business-grade features you won't find on residential plans.</p>
+        <div class="grid grid-3" style="gap: var(--space-md);">
+          {businessFeatures.map(bf => (
+            <div class="card" style="padding: var(--space-lg);">
+              <div style="font-size: 1.8rem; margin-bottom: var(--space-sm);">{bf.icon}</div>
+              <h3 style="font-size: var(--text-md); margin-bottom: var(--space-sm);">{bf.feature}</h3>
+              <p style="font-size: var(--text-sm); color: var(--text-secondary); margin: 0;">{bf.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Provider Rankings -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Business Internet Providers Ranked ({year})</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">Every provider offering business-grade connections, ranked by speed and reliability.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Provider</th>
+                <th>Connection Types</th>
+                <th>Max Speed</th>
+                <th>Starting Price</th>
+                <th>Rating</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {businessProviders.map((p, i) => (
+                <tr>
+                  <td><strong>{i + 1}</strong></td>
+                  <td>
+                    <a href={`/provider/${p.slug}`} style="font-weight: 600;">{p.name}</a>
+                    {p.isPartner && <span class="badge badge-green" style="font-size:0.5rem;margin-left:4px;">Partner</span>}
+                  </td>
+                  <td>{p.types.map(t => getTypeLabel(t)).join(', ')}</td>
+                  <td>{formatSpeed(getMaxSpeed(p))}</td>
+                  <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
+                  <td>⭐ {p.rating.toFixed(1)}</td>
+                  <td><a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Get Quote</a></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Industry Solutions -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Internet Solutions by Industry</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">Every industry has unique connectivity needs. Here's what we recommend.</p>
+        <div class="grid grid-3" style="gap: var(--space-md);">
+          {industries.map(ind => (
+            <div class="card" style="padding: var(--space-lg);">
+              <div style="font-size: 1.8rem; margin-bottom: var(--space-sm);">{ind.icon}</div>
+              <h3 style="font-size: var(--text-md); margin-bottom: var(--space-xs);">{ind.name}</h3>
+              <div style="font-size: var(--text-xs); color: var(--brand-blue); font-weight: 600; margin-bottom: var(--space-sm);">
+                Recommended: {ind.speed}
+              </div>
+              <p style="font-size: var(--text-xs); color: var(--text-secondary); margin: 0;">{ind.needs}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Mid-page CTA -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="card" style="padding: var(--space-2xl); text-align: center; background: linear-gradient(135deg, rgba(0,82,255,0.08), rgba(0,213,132,0.08)); border: 1px solid var(--brand-blue);">
+          <h2 style="margin-bottom: var(--space-sm);">Get a Free Business Internet Quote</h2>
+          <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); max-width: 550px; margin-inline: auto;">
+            Our business internet specialists will assess your needs, check availability at your business address, and provide a custom quote with the best available pricing. No obligation.
+          </p>
+          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Business Specialists</a>
+          <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin-top: var(--space-sm);">Average call time: 8 minutes • Custom quotes in 24 hours</p>
+        </div>
+      </div>
+
+      <!-- Business vs Residential Comparison -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Business vs. Residential Internet: What's the Difference?</h2>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Residential</th>
+                <th style="background: rgba(0,82,255,0.05);">Business</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="font-weight:600;">Upload Speeds</td><td>5–35 Mbps typical</td><td style="background: rgba(0,82,255,0.05); font-weight: 600;">Symmetrical (same as download)</td></tr>
+              <tr><td style="font-weight:600;">Uptime SLA</td><td>None</td><td style="background: rgba(0,82,255,0.05); font-weight: 600;">99.9–99.99% guaranteed</td></tr>
+              <tr><td style="font-weight:600;">Static IP</td><td>Not available</td><td style="background: rgba(0,82,255,0.05); font-weight: 600;">1–5 included</td></tr>
+              <tr><td style="font-weight:600;">Support Priority</td><td>Standard queue</td><td style="background: rgba(0,82,255,0.05); font-weight: 600;">Dedicated business line</td></tr>
+              <tr><td style="font-weight:600;">Bandwidth</td><td>Shared with neighbors</td><td style="background: rgba(0,82,255,0.05); font-weight: 600;">Dedicated (DIA available)</td></tr>
+              <tr><td style="font-weight:600;">Repair Response</td><td>24–72 hours</td><td style="background: rgba(0,82,255,0.05); font-weight: 600;">4–8 hours</td></tr>
+              <tr><td style="font-weight:600;">Price</td><td>$30–100/mo</td><td style="background: rgba(0,82,255,0.05);">$50–2,000+/mo</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Related Pages -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Related Resources</h2>
+        <div class="grid grid-3" style="gap: var(--space-sm);">
+          <a href="/check-availability" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📍 Check Business Address</a>
+          <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">⚡ Fastest Internet Providers</a>
+          <a href="/internet-and-phone" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📞 Internet + Phone Bundles</a>
+          <a href="/best-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏆 Best Internet Providers</a>
+          <a href="/home-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏠 Home Internet Plans</a>
+          <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏎️ Run Speed Test</a>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Business Internet FAQ</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Base>

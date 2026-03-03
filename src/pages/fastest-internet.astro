@@ -1,0 +1,229 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import type { Provider } from '@lib/providers';
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+// Rank by max download speed, partners first
+const speedRanked = getAllProviders()
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return getMaxSpeed(b) - getMaxSpeed(a);
+  });
+
+const fastest = speedRanked[0];
+const fastestSpeed = getMaxSpeed(fastest);
+
+// Also collect the fastest plans across all providers
+const fastestPlans = getAllProviders().flatMap(p =>
+  p.plans
+    .filter(plan => plan.speed >= 1000)
+    .map(plan => ({ provider: p, plan }))
+).sort((a, b) => {
+  if (a.provider.isPartner && !b.provider.isPartner) return -1;
+  if (!a.provider.isPartner && b.provider.isPartner) return 1;
+  return b.plan.speed - a.plan.speed;
+});
+
+const faqs = [
+  { question: `What is the fastest internet available in ${year}?`, answer: `The fastest widely available internet is ${formatSpeed(fastestSpeed)} from ${fastest.name}. AT&T Fiber offers up to 5 Gbps, Google Fiber up to 5 Gbps, and Frontier up to 5 Gbps in select areas. Actual availability depends on your address — call ${phone} to check.` },
+  { question: 'Do I actually need gigabit internet?', answer: 'Most households don\'t need full gigabit (1000 Mbps). A family of 4 streaming 4K, gaming, and working from home typically uses 200-400 Mbps. However, gigabit offers future-proofing, faster large downloads, and headroom for growth. If pricing is similar to 500 Mbps, gigabit is worth it.' },
+  { question: 'Is upload speed important?', answer: 'Yes, increasingly so. Video calls, cloud backups, uploading content, live streaming, and working from home all depend on upload speed. Fiber offers symmetrical upload (as fast as download). Cable upload is typically 10-35 Mbps. If you work from home or create content, prioritize upload speed.' },
+  { question: 'What is the fastest type of internet?', answer: 'Fiber optic is the fastest, with speeds up to 10 Gbps (consumer plans up to 5 Gbps). Cable maxes out at ~2 Gbps. 5G reaches up to 1 Gbps. DSL tops out at ~100 Mbps. Satellite (Starlink) reaches ~500 Mbps. For the absolute fastest connection, fiber is the answer.' },
+  { question: 'Why is my internet slower than advertised?', answer: 'Common reasons: 1) WiFi vs wired — WiFi is always slower. 2) Network congestion during peak hours (cable). 3) Outdated equipment. 4) Distance from router. 5) ISP throttling. 6) Too many devices. Run a speed test wired directly to your modem for the most accurate result.' },
+  { question: `What is the fastest internet for gaming?`, answer: `For gaming, latency matters more than raw speed. Fiber provides the best gaming experience: 3-10ms latency, symmetrical speeds, and no congestion. For the fastest gaming internet, choose Verizon Fios, AT&T Fiber, or Frontier Fiber. Gigabit plans aren't necessary for gaming — 100-300 Mbps is plenty — but low latency is critical.` },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Fastest Internet', url: 'https://internet4all.com/fastest-internet' },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`Fastest Internet Providers in ${year} — Speeds Up to ${formatSpeed(fastestSpeed)}`}
+  description={`Compare the fastest internet providers in ${year}. Speeds up to ${formatSpeed(fastestSpeed)} from top providers. See gigabit, multi-gig, and fiber plans ranked by speed.`}
+  schema={schemas}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Fastest Internet' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">⚡ Updated {month} {year}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Fastest <span class="gradient-text">Internet Providers</span> in {year}
+        </h1>
+        <p class="hero-subtitle" style="max-width: 680px; margin-inline: auto;">
+          We ranked all {speedRanked.length} providers by maximum download speed. From gigabit to multi-gig — find the fastest internet at your address.
+        </p>
+        <a href={phoneHref} class="btn btn-call mt-xl" style="font-size: var(--text-lg);">
+          📞 Call {phone} for Fastest Plans
+        </a>
+      </div>
+
+      <!-- Speed Podium -->
+      <div class="grid grid-3 reveal" style="margin-bottom: var(--space-3xl);">
+        {speedRanked.slice(0, 3).map((p, i) => (
+          <div class="card text-center" style={`padding: var(--space-xl); ${i === 0 ? 'border-color: var(--brand-gold); box-shadow: 0 0 20px rgba(255,193,7,0.15);' : ''}`}>
+            <div style={`font-size: 2.5rem; margin-bottom: var(--space-sm);`}>{i === 0 ? '🥇' : i === 1 ? '🥈' : '🥉'}</div>
+            <div style="font-size: var(--text-sm); color: var(--text-tertiary); font-weight: 600;">#{i+1} Fastest</div>
+            <h3 style="font-size: var(--text-xl); margin: var(--space-sm) 0;">{p.name}</h3>
+            <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-blue);">{formatSpeed(getMaxSpeed(p))}</div>
+            <div class="text-secondary" style="font-size: var(--text-sm); margin-top: var(--space-xs);">
+              Upload: {formatSpeed(getMaxUpload(p))} • From {formatPrice(getMinPrice(p))}/mo
+            </div>
+            {p.isPartner && <span class="badge badge-green mt-sm" style="font-size:0.65rem;">RECOMMENDED</span>}
+          </div>
+        ))}
+      </div>
+
+      <!-- Fastest Plans Table -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); overflow: hidden;">
+        <div style="padding: var(--space-xl) var(--space-xl) var(--space-md);">
+          <h2>Gigabit & Multi-Gig Plans</h2>
+          <p class="text-secondary">All plans with 1 Gbps or faster download speeds.</p>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="comparison-table" style="width:100%;">
+            <thead>
+              <tr>
+                <th>Provider</th>
+                <th>Plan</th>
+                <th>Download</th>
+                <th>Upload</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Data Cap</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {fastestPlans.slice(0, 30).map(({ provider: p, plan }) => (
+                <tr style={p.isPartner ? '' : 'opacity:0.85;'}>
+                  <td>
+                    <div class="flex items-center gap-sm">
+                      <span style="font-weight:600;">{p.name}</span>
+                      {p.isPartner && <span class="badge badge-green" style="font-size:0.6rem;">Partner</span>}
+                    </div>
+                  </td>
+                  <td>{plan.name}</td>
+                  <td style="font-weight:700;color:var(--brand-blue);">{formatSpeed(plan.speed)}</td>
+                  <td>{formatSpeed(plan.uploadSpeed)}</td>
+                  <td style="font-weight:600;">{formatPrice(plan.promoPrice)}/mo</td>
+                  <td>{plan.type ? plan.type.charAt(0).toUpperCase() + plan.type.slice(1) : p.types[0].charAt(0).toUpperCase() + p.types[0].slice(1)}</td>
+                  <td>{plan.dataCap}</td>
+                  <td>
+                    <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);">Call</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Full Speed Rankings -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); overflow: hidden;">
+        <div style="padding: var(--space-xl) var(--space-xl) var(--space-md);">
+          <h2>All Providers Ranked by Speed</h2>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="comparison-table" style="width:100%;">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Provider</th>
+                <th>Max Download</th>
+                <th>Max Upload</th>
+                <th>Type</th>
+                <th>Starting Price</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {speedRanked.map((p, i) => (
+                <tr style={p.isPartner ? '' : 'opacity:0.85;'}>
+                  <td style="font-weight:800;">#{i+1}</td>
+                  <td>
+                    <div class="flex items-center gap-sm">
+                      <span style="font-weight:600;">{p.name}</span>
+                      {p.isPartner && <span class="badge badge-green" style="font-size:0.6rem;">Partner</span>}
+                    </div>
+                  </td>
+                  <td style="font-weight:700;color:var(--brand-blue);">{formatSpeed(getMaxSpeed(p))}</td>
+                  <td>{formatSpeed(getMaxUpload(p))}</td>
+                  <td>{p.types.map(t => getTypeLabel(t)).join(', ')}</td>
+                  <td>{formatPrice(getMinPrice(p))}/mo</td>
+                  <td>
+                    <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);">Call</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Speed Guide -->
+      <div class="card reveal" style="margin-bottom: var(--space-3xl); padding: var(--space-2xl);">
+        <h2 style="margin-bottom: var(--space-xl);">How Much Speed Do You Actually Need?</h2>
+        <div style="overflow-x:auto;">
+          <table class="comparison-table" style="width:100%;">
+            <thead>
+              <tr><th>Activity</th><th>Speed Needed</th><th>Recommended Plan</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Email & Browsing</td><td>5-15 Mbps</td><td>Any basic plan</td></tr>
+              <tr><td>HD Streaming (one device)</td><td>15-25 Mbps</td><td>25-50 Mbps plan</td></tr>
+              <tr><td>4K Streaming (one device)</td><td>25-35 Mbps</td><td>50-100 Mbps plan</td></tr>
+              <tr><td>Video Calls (Zoom/Teams)</td><td>5-10 Mbps up & down</td><td>50+ Mbps, fiber preferred</td></tr>
+              <tr><td>Online Gaming</td><td>25-50 Mbps + low ping</td><td>100+ Mbps fiber</td></tr>
+              <tr><td>Multiple 4K Streams + Gaming</td><td>100-200 Mbps</td><td>200-300 Mbps plan</td></tr>
+              <tr><td>Large Family (6+ devices)</td><td>200-500 Mbps</td><td>500 Mbps plan</td></tr>
+              <tr><td>Content Creation / Streaming</td><td>300+ Mbps symmetrical</td><td>Gigabit fiber</td></tr>
+              <tr><td>Smart Home (20+ devices)</td><td>300-500 Mbps</td><td>500 Mbps - 1 Gig plan</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Related -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Related Guides</h2>
+        <div class="grid grid-3" style="gap: var(--space-sm);">
+          <a href="/best-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">🏆 Best Internet Providers</a>
+          <a href="/cheap-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">💰 Cheapest Internet Plans</a>
+          <a href="/internet-types/fiber" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">⚡ Fiber Internet Guide</a>
+          <a href="/internet-for/gaming" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">🎮 Best for Gaming</a>
+          <a href="/speed-test" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">🚀 Speed Test</a>
+          <a href="/internet-for/work-from-home" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">💼 Best for WFH</a>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Frequently Asked Questions</h2>
+        {faqs.map(faq => (
+          <details class="faq-item">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+  <StickyCallBar phone={phone} message="Get the fastest speeds — call now" />
+</Base>

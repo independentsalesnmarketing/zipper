@@ -2,7 +2,6 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import CallbackForm from '@components/CallbackForm.astro';
 import { getPartnerProviders, formatSpeed, formatPrice, MAIN_PHONE } from '@lib/providers';
 import { generateBreadcrumbSchema } from '@lib/utils';
 
@@ -79,10 +78,6 @@ const partners = getPartnerProviders();
       <!-- Results -->
       <div id="bill-results" style="display:none;margin-top:var(--space-xl);"></div>
 
-      <!-- CTA -->
-      <div style="margin-top:var(--space-3xl);">
-        <CallbackForm providerName="Internet 4 ALL (Bill Analyzer)" phone={MAIN_PHONE} />
-      </div>
     </div>
   </section>
 

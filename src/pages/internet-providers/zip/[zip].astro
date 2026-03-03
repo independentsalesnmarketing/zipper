@@ -255,11 +255,11 @@ const schemas = [
               placeholder="Enter ZIP code or address"
               autocomplete="off"
               spellcheck="false"
-              style="width:100%;padding:var(--space-sm) var(--space-md) var(--space-sm) 36px;border:2px solid var(--border);border-radius:var(--radius-md);font-size:var(--text-base);background:var(--surface);color:var(--text-primary);transition:border-color 0.2s;"
+              style="width:100%;padding:var(--space-sm) var(--space-md) var(--space-sm) 36px;border:2px solid var(--border);border-radius:var(--radius-md);font-size:var(--text-base);background:white;color:var(--text-primary);transition:border-color 0.2s;"
             />
             <ul id="hero-refine-suggest" class="ps-suggest" style="display:none;"></ul>
           </div>
-          <button type="submit" class="btn btn-cta" style="width:100%;padding:10px 16px;font-size:var(--text-base);font-weight:800;">Search</button>
+          <button type="submit" class="btn btn-cta" style="width:100%;padding:10px 16px;font-size:var(--text-base);font-weight:800;background:#000000;border-color:#000000;color:white;">Search</button>
         </form>
       </div>
     </div>
@@ -801,10 +801,26 @@ const schemas = [
     height: 16px;
   }
 
+  #hero-refine-input {
+    background: white !important;
+  }
+
   #hero-refine-input:focus {
     outline: none;
-    border-color: var(--brand-blue) !important;
-    box-shadow: 0 0 0 3px rgba(0,82,255,0.15) !important;
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.1) !important;
+  }
+
+  #hero-refine-form button {
+    background: #000000 !important;
+    border-color: #000000 !important;
+    color: white !important;
+  }
+
+  #hero-refine-form button:hover {
+    background: #1a1a1a !important;
+    border-color: #1a1a1a !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
   }
 
   #hero-refine-suggest {

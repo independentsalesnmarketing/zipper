@@ -577,11 +577,18 @@ const clientProviders = allProviders.map(p => ({
 
   // ===== API =====
   async function fetchProviders(lat: number, lng: number): Promise<any[]> {
-    const r = await fetch(`https://broadbandmap.com/api/v1/location/internet?lat=${lat}&lng=${lng}`,{signal:AbortSignal.timeout(10000)});
-    if (r.status===429) throw new Error('RATE_LIMITED');
-    if (!r.ok) throw new Error('HTTP_'+r.status);
-    const d = await r.json();
-    return d?.providers || [];
+    try {
+      const r = await fetch(`https://broadbandmap.com/api/v1/location/internet?lat=${lat}&lng=${lng}`,{signal:AbortSignal.timeout(10000)});
+      if (r.status===429) throw new Error('RATE_LIMITED');
+      if (!r.ok) throw new Error('HTTP_'+r.status);
+      const d = await r.json();
+      return d?.providers || [];
+    } catch (e: any) {
+      if (e.message === 'RATE_LIMITED') throw e;
+      if (e.name === 'AbortError' || e.message.includes('timeout')) throw new Error('TIMEOUT');
+      if (e instanceof TypeError && e.message.includes('fetch')) throw new Error('NETWORK_ERROR');
+      throw e;
+    }
   }
 
   // ===== MATCH & ENRICH =====
@@ -753,6 +760,7 @@ const clientProviders = allProviders.map(p => ({
         renderError(container, mainPhone);
       }
     } catch (e: any) {
+      // Suppress error logging, show user-friendly message instead
       if (e.message === 'RATE_LIMITED') {
         container.innerHTML = `<div class="ps-cta-card">
           <h4>High demand right now</h4>
@@ -760,6 +768,7 @@ const clientProviders = allProviders.map(p => ({
           <a href="tel:+1${mainPhone.replace(/\D/g,'')}" class="btn btn-cta btn-lg">Call ${mainPhone}</a>
         </div>`;
       } else {
+        // Handle network errors, timeouts, and other errors gracefully
         renderError(container, mainPhone);
       }
     }
@@ -792,9 +801,12 @@ const clientProviders = allProviders.map(p => ({
     _biasState = st;
     if (input && !auto) {
       fetch('https://get.geojs.io/v1/ip/geo.json', { signal: AbortSignal.timeout(3000) })
-        .then(r => r.json())
-        .then((d: { city?: string; region?: string; country?: string }) => {
-          if (d.country === 'United States' && d.city && d.region) {
+        .then(r => {
+          if (!r.ok) return null;
+          return r.json();
+        })
+        .then((d: { city?: string; region?: string; country?: string } | null) => {
+          if (d && d.country === 'United States' && d.city && d.region) {
             ipDetectedCity = d.city;
             ipDetectedState = d.region;
             _biasCity = d.city;
@@ -805,7 +817,9 @@ const clientProviders = allProviders.map(p => ({
             }
           }
         })
-        .catch(() => {});
+        .catch(() => {
+          // Silently fail - geolocation is optional for autocomplete bias
+        });
     }
 
     // Auto-search (ZIP pages)

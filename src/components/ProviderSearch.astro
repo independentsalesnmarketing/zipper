@@ -72,27 +72,6 @@ const clientProviders = allProviders.map(p => ({
     </div>
   </div>
 
-  <!-- Refinement search bar shown after results load on ZIP pages -->
-  <div class="ps-refine-search" id="ps-refine-search" style={autoSearch ? "margin-bottom:var(--space-lg);" : "display:none;"}>
-    <div style="margin-bottom:var(--space-md);">
-      <p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-xs);">Refine your search:</p>
-    </div>
-    <form id="ps-form-refine" class="ps-form" style="gap:var(--space-xs);">
-      <div class="ps-input-group" style="min-width:300px;">
-        <svg class="ps-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <input
-          id="ps-input-refine"
-          type="text"
-          placeholder="Enter a different address or ZIP code"
-          autocomplete="off"
-          spellcheck="false"
-        />
-        <ul id="ps-suggest-refine" class="ps-suggest"></ul>
-      </div>
-      <button type="submit" class="btn btn-cta" style="padding:10px 20px;font-size:var(--text-sm);">Search</button>
-    </form>
-  </div>
-
   <!-- Results -->
   <div id="ps-results">
     {autoSearch && (
@@ -892,90 +871,8 @@ const clientProviders = allProviders.map(p => ({
       });
     }
 
-    // Refinement form submit (ZIP page refine search)
-    const refineForm = document.getElementById('ps-form-refine') as HTMLFormElement;
-    const refineInput = document.getElementById('ps-input-refine') as HTMLInputElement;
-    const refineSuggestEl = document.getElementById('ps-suggest-refine') as HTMLUListElement;
-
-    if (refineForm && refineInput) {
-      refineForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const q = refineInput.value.trim();
-        if (!q) return;
-        if (/^\d{5}$/.test(q)) {
-          geocodeZip(q).then(geo => {
-            if (geo) {
-              const loc = `ZIP ${q}` + (geo.city ? ` — ${geo.city}, ${geo.state}` : '');
-              runSearch(geo.lat, geo.lng, loc, locals, mainPhone, container);
-            } else {
-              renderError(container, mainPhone);
-            }
-          });
-        } else {
-          geocodeAddr(q).then(geo => {
-            if (geo) {
-              const loc = geo.display.split(',').slice(0,3).join(',');
-              runSearch(geo.lat, geo.lng, loc, locals, mainPhone, container);
-            } else {
-              container.innerHTML = `<p style="color:#ff4444;padding:var(--space-md) 0;font-size:var(--text-sm);">Couldn't find that address. Try entering your 5-digit ZIP code, or call us for help.</p>`;
-            }
-          });
-        }
-      });
-
-      // Autocomplete for refine input
-      refineInput.addEventListener('input', () => {
-        clearTimeout(acTimer);
-        const v = refineInput.value.trim();
-        if (v.length<4 || /^\d{5}$/.test(v)) { refineSuggestEl.style.display='none'; return; }
-        acTimer = setTimeout(async () => {
-          const items = await fetchSuggestions(v);
-          if (document.activeElement===refineInput && refineInput.value.trim().length>=4) {
-            if (!items.length) { refineSuggestEl.style.display='none'; return; }
-            refineSuggestEl.innerHTML = items.map((s,i)=>`<li data-i="${i}"><div class="sg-main">${s.display}</div></li>`).join('');
-            refineSuggestEl.style.display = 'block';
-          }
-        }, 350);
-      });
-
-      refineInput.addEventListener('keydown', (e: KeyboardEvent) => {
-        const items = Array.from(refineSuggestEl.querySelectorAll('li'));
-        if (!items.length) return;
-        if (e.key==='ArrowDown') { e.preventDefault(); acIdx=Math.min(acIdx+1,items.length-1); items.forEach((li,i)=>li.classList.toggle('active',i===acIdx)); }
-        else if (e.key==='ArrowUp') { e.preventDefault(); acIdx=Math.max(acIdx-1,0); items.forEach((li,i)=>li.classList.toggle('active',i===acIdx)); }
-        else if (e.key==='Enter'&&acIdx>=0) {
-          e.preventDefault();
-          const item = items[acIdx];
-          if (item) {
-            const i = parseInt(item.getAttribute('data-i')||'0');
-            const s = acItems[i];
-            if (s) {
-              refineInput.value = s.display;
-              refineSuggestEl.style.display='none';
-              const loc = s.display;
-              runSearch(s.lat, s.lng, loc, locals, mainPhone, container);
-            }
-          }
-        }
-        else if (e.key==='Escape') refineSuggestEl.style.display='none';
-      });
-
-      refineSuggestEl.addEventListener('mousedown', (e: MouseEvent) => {
-        const li = (e.target as HTMLElement).closest('li');
-        if (li) {
-          const i = parseInt(li.getAttribute('data-i')||'0');
-          const s = acItems[i];
-          if (s) {
-            refineInput.value = s.display;
-            refineSuggestEl.style.display='none';
-            const loc = s.display;
-            runSearch(s.lat, s.lng, loc, locals, mainPhone, container);
-          }
-        }
-      });
-
-      refineInput.addEventListener('blur', ()=>setTimeout(()=>refineSuggestEl.style.display='none', 200));
-    }
+    // Expose search functions globally so ZIP page can use them
+    (window as any).psGeocode = { geocodeZip, geocodeAddr, fetchSuggestions, runSearch, mainPhone, locals, container };
 
     // Autocomplete
     if (input && suggestEl) {

@@ -345,20 +345,36 @@ const clientProviders = allProviders.map(p => ({
     flex-shrink: 0;
   }
   :global(.ps-btn-order) {
-    font-weight: 700 !important;
-  }
-  :global(.ps-btn-call) {
-    font-size: var(--text-base) !important;
+    font-weight: 800 !important;
     background: var(--brand-green) !important;
     border-color: var(--brand-green) !important;
     color: white !important;
   }
-  :global(.ps-btn-call:hover) {
+  :global(.ps-btn-order:hover) {
     background: var(--brand-green-light) !important;
     box-shadow: 0 4px 12px rgba(0,213,132,0.4) !important;
   }
+  :global(.ps-btn-call) {
+    font-size: var(--text-base) !important;
+    font-weight: 800 !important;
+    background: var(--brand-purple) !important;
+    border-color: var(--brand-purple) !important;
+    color: white !important;
+  }
+  :global(.ps-btn-call:hover) {
+    background: var(--brand-purple-light) !important;
+    box-shadow: 0 4px 12px rgba(183,0,255,0.4) !important;
+  }
   :global(.ps-btn-plans) {
     font-size: var(--text-sm) !important;
+    font-weight: 700 !important;
+    background: white !important;
+    border: 2px solid var(--gray-200) !important;
+    color: var(--text-primary) !important;
+  }
+  :global(.ps-btn-plans:hover) {
+    border-color: var(--brand-blue) !important;
+    background: var(--gray-50) !important;
   }
 
   :global(.ps-cta-card) {

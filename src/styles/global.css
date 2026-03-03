@@ -923,19 +923,27 @@
     font-size: var(--text-lg) !important;
     min-height: 52px !important;
     letter-spacing: -0.01em;
+    font-weight: 800;
+    background: var(--white);
+    color: var(--text-primary);
+    border: 2px solid var(--gray-200);
+  }
+  .pc-btn-order:hover {
+    border-color: var(--brand-blue);
+    background: var(--gray-50);
   }
 
   .pc-btn-plans {
-    font-size: var(--text-sm) !important;
-    min-height: 44px !important;
-    background: transparent;
-    color: var(--brand-blue);
-    border: 2px solid var(--border);
+    font-size: var(--text-lg) !important;
+    min-height: 52px !important;
+    font-weight: 800;
+    background: var(--white);
+    color: var(--text-primary);
+    border: 2px solid var(--gray-200);
   }
   .pc-btn-plans:hover {
-    background: var(--bg-secondary);
     border-color: var(--brand-blue);
-    color: var(--brand-blue);
+    background: var(--gray-50);
   }
 
   /* ---- Provider Card Promo Badge ---- */

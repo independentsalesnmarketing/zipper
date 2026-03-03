@@ -915,11 +915,18 @@ const schemas = [
     }) as EventListener);
 
     // Hero refinement search (for ZIP pages)
-    const heroRefineForm = document.getElementById('hero-refine-form') as HTMLFormElement;
-    const heroRefineInput = document.getElementById('hero-refine-input') as HTMLInputElement;
-    const heroRefineSuggest = document.getElementById('hero-refine-suggest') as HTMLUListElement;
+    function initHeroRefine() {
+      const heroRefineForm = document.getElementById('hero-refine-form') as HTMLFormElement;
+      const heroRefineInput = document.getElementById('hero-refine-input') as HTMLInputElement;
+      const heroRefineSuggest = document.getElementById('hero-refine-suggest') as HTMLUListElement;
 
-    if (heroRefineForm && heroRefineInput && (window as any).psGeocode) {
+      if (!heroRefineForm || !heroRefineInput || !heroRefineSuggest) return;
+      if (!(window as any).psGeocode) {
+        // Retry if psGeocode not ready yet
+        setTimeout(initHeroRefine, 100);
+        return;
+      }
+
       const { geocodeZip, geocodeAddr, runSearch, mainPhone, locals, container } = (window as any).psGeocode;
       let heroAcTimer: ReturnType<typeof setTimeout>;
       let heroAcItems: {display:string,zip:string,lat:number,lng:number}[] = [];
@@ -929,7 +936,13 @@ const schemas = [
       async function fetchHeroSuggestions(q: string) {
         if (q.length<4) return [];
         try {
-          const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=6&countrycodes=us&addressdetails=1`,{headers:{'User-Agent':'Internet4ALL/1.0'},signal:AbortSignal.timeout(5000)});
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 5000);
+          const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=6&countrycodes=us&addressdetails=1`,{
+            headers:{'User-Agent':'Internet4ALL/1.0'},
+            signal: controller.signal
+          });
+          clearTimeout(timeoutId);
           if (!r.ok) return [];
           const d = await r.json();
           return d.map((x:any)=>{
@@ -945,7 +958,10 @@ const schemas = [
             const display = parts.length ? parts.join(', ') : (x.display_name || '').split(',').slice(0,4).join(', ');
             return {display, zip, lat:+x.lat, lng:+x.lon};
           });
-        } catch { return []; }
+        } catch (e) {
+          console.debug('Suggestion fetch error (non-critical):', e);
+          return [];
+        }
       }
 
       // Show/hide suggestions
@@ -1019,6 +1035,9 @@ const schemas = [
 
       heroRefineInput.addEventListener('blur', ()=>setTimeout(closeHeroSugs, 200));
     }
+
+    // Initialize hero refine search
+    initHeroRefine();
   });
 </script>
 </Base>

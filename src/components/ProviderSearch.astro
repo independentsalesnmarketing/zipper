@@ -526,14 +526,23 @@ const clientProviders = allProviders.map(p => ({
   // ===== GEOCODING =====
   async function geocodeZip(zip: string): Promise<{lat:number,lng:number,city:string,state:string}|null> {
     try {
-      const r = await fetch(`https://api.zippopotam.us/us/${zip}`, {signal: AbortSignal.timeout(5000)});
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      const r = await fetch(`https://api.zippopotam.us/us/${zip}`, {signal: controller.signal});
+      clearTimeout(timeoutId);
       if (r.ok) {
         const d = await r.json();
         if (d.places?.length) return {lat:+d.places[0].latitude,lng:+d.places[0].longitude,city:d.places[0]['place name']||'',state:d.places[0]['state abbreviation']||''};
       }
     } catch {}
     try {
-      const r = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${zip}&country=US&format=json&limit=1`,{headers:{'User-Agent':'Internet4ALL/1.0'},signal:AbortSignal.timeout(6000)});
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
+      const r = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${zip}&country=US&format=json&limit=1`,{
+        headers:{'User-Agent':'Internet4ALL/1.0'},
+        signal:controller.signal
+      });
+      clearTimeout(timeoutId);
       if (r.ok) { const d=await r.json(); if (d[0]) return {lat:+d[0].lat,lng:+d[0].lon,city:'',state:''}; }
     } catch {}
     return null;
@@ -541,7 +550,13 @@ const clientProviders = allProviders.map(p => ({
 
   async function geocodeAddr(q: string): Promise<{lat:number,lng:number,display:string}|null> {
     try {
-      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1&countrycodes=us`,{headers:{'User-Agent':'Internet4ALL/1.0'},signal:AbortSignal.timeout(6000)});
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
+      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1&countrycodes=us`,{
+        headers:{'User-Agent':'Internet4ALL/1.0'},
+        signal:controller.signal
+      });
+      clearTimeout(timeoutId);
       if (r.ok) { const d=await r.json(); if (d[0]) return {lat:+d[0].lat,lng:+d[0].lon,display:d[0].display_name}; }
     } catch {}
     return null;
@@ -561,7 +576,13 @@ const clientProviders = allProviders.map(p => ({
       // Append bias city/state to query when it looks like a street address without location context
       const hasLocation = /\d{5}/.test(q) || /,/.test(q) || q.split(' ').length > 4;
       const queryStr = hasLocation ? q : (_biasCity ? `${q}, ${_biasCity}, ${_biasState}` : q);
-      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(queryStr)}&format=json&limit=6&countrycodes=us&addressdetails=1`,{headers:{'User-Agent':'Internet4ALL/1.0'},signal:AbortSignal.timeout(5000)});
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(queryStr)}&format=json&limit=6&countrycodes=us&addressdetails=1`,{
+        headers:{'User-Agent':'Internet4ALL/1.0'},
+        signal:controller.signal
+      });
+      clearTimeout(timeoutId);
       if (!r.ok) return [];
       const d = await r.json();
       return d.map((x:any)=>{
@@ -578,13 +599,18 @@ const clientProviders = allProviders.map(p => ({
         const display = parts.length ? parts.join(', ') : (x.display_name || '').split(',').slice(0,4).join(', ');
         return {display, zip, lat:+x.lat, lng:+x.lon};
       });
-    } catch { return []; }
+    } catch (e) {
+      return [];
+    }
   }
 
   // ===== API =====
   async function fetchProviders(lat: number, lng: number): Promise<any[]> {
     try {
-      const r = await fetch(`https://broadbandmap.com/api/v1/location/internet?lat=${lat}&lng=${lng}`,{signal:AbortSignal.timeout(10000)});
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      const r = await fetch(`https://broadbandmap.com/api/v1/location/internet?lat=${lat}&lng=${lng}`,{signal:controller.signal});
+      clearTimeout(timeoutId);
       if (r.status===429) throw new Error('RATE_LIMITED');
       if (!r.ok) throw new Error('HTTP_'+r.status);
       const d = await r.json();
@@ -806,8 +832,11 @@ const clientProviders = allProviders.map(p => ({
     _biasCity = city;
     _biasState = st;
     if (input && !auto) {
-      fetch('https://get.geojs.io/v1/ip/geo.json', { signal: AbortSignal.timeout(3000) })
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3000);
+      fetch('https://get.geojs.io/v1/ip/geo.json', { signal: controller.signal })
         .then(r => {
+          clearTimeout(timeoutId);
           if (!r.ok) return null;
           return r.json();
         })
@@ -872,7 +901,16 @@ const clientProviders = allProviders.map(p => ({
     }
 
     // Expose search functions globally so ZIP page can use them
-    (window as any).psGeocode = { geocodeZip, geocodeAddr, fetchSuggestions, runSearch, mainPhone, locals, container };
+    if (!window.psGeocode) {
+      (window as any).psGeocode = {};
+    }
+    (window as any).psGeocode.geocodeZip = geocodeZip;
+    (window as any).psGeocode.geocodeAddr = geocodeAddr;
+    (window as any).psGeocode.fetchSuggestions = fetchSuggestions;
+    (window as any).psGeocode.runSearch = runSearch;
+    (window as any).psGeocode.mainPhone = mainPhone;
+    (window as any).psGeocode.locals = locals;
+    (window as any).psGeocode.container = container;
 
     // Autocomplete
     if (input && suggestEl) {

@@ -178,13 +178,13 @@ const phoneNumber = provider.isPartner ? provider.phone : MAIN_PHONE;
   }
 
   .pc-logo-compact {
-    width: 100px;
-    height: 100px;
-    border-radius: var(--radius-md);
+    width: 180px;
+    height: 180px;
+    border-radius: var(--radius-lg);
     object-fit: contain;
     background: var(--surface-secondary);
     border: 2px solid var(--border);
-    padding: 8px;
+    padding: 12px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -200,16 +200,16 @@ const phoneNumber = provider.isPartner ? provider.phone : MAIN_PHONE;
   }
 
   .pc-logo-fallback {
-    width: 100px;
-    height: 100px;
-    border-radius: var(--radius-md);
+    width: 180px;
+    height: 180px;
+    border-radius: var(--radius-lg);
     background: var(--brand-blue);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    font-size: var(--text-4xl);
+    font-size: var(--text-5xl);
     flex-shrink: 0;
     aspect-ratio: 1;
   }
@@ -456,11 +456,25 @@ const phoneNumber = provider.isPartner ? provider.phone : MAIN_PHONE;
       gap: var(--space-lg);
       padding: var(--space-md) var(--space-lg);
     }
+
+    .pc-logo-compact,
+    .pc-logo-fallback {
+      width: 160px;
+      height: 160px;
+      padding: 10px;
+    }
   }
 
   @media (max-width: 900px) {
     .provider-card {
       flex-wrap: wrap;
+    }
+
+    .pc-logo-compact,
+    .pc-logo-fallback {
+      width: 140px;
+      height: 140px;
+      padding: 10px;
     }
 
     .pc-center {
@@ -488,11 +502,26 @@ const phoneNumber = provider.isPartner ? provider.phone : MAIN_PHONE;
     }
   }
 
+  @media (max-width: 768px) {
+    .pc-logo-compact,
+    .pc-logo-fallback {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
   @media (max-width: 600px) {
     .provider-card {
       flex-direction: column;
       gap: var(--space-md);
       text-align: center;
+    }
+
+    .pc-logo-compact,
+    .pc-logo-fallback {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto;
     }
 
     .pc-left {

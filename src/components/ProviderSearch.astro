@@ -246,20 +246,31 @@ const clientProviders = allProviders.map(p => ({
     display: flex;
     align-items: center;
     gap: var(--space-xl);
-    padding: var(--space-xl) var(--space-2xl);
+    padding: var(--space-lg) var(--space-2xl);
     border: 2px solid var(--border);
     border-radius: var(--radius-lg);
     margin-bottom: var(--space-sm);
     background: var(--surface);
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: all 0.2s ease;
+    min-height: 160px;
   }
   :global(.ps-row--partner) {
-    border-color: rgba(0,82,255,0.2);
-    background: linear-gradient(135deg, rgba(0,82,255,0.02), rgba(0,213,132,0.02));
+    border-color: rgba(0,82,255,0.25);
+    background: linear-gradient(135deg, rgba(0,82,255,0.04), rgba(0,213,132,0.03));
   }
   :global(.ps-row:hover) {
-    border-color: rgba(0,82,255,0.3);
-    box-shadow: 0 2px 12px rgba(0,82,255,0.08);
+    border-color: var(--brand-blue);
+    box-shadow: 0 4px 16px rgba(0,82,255,0.15);
+    transform: translateY(-1px);
+  }
+  :global(.ps-logo),
+  :global(.ps-logo-fallback) {
+    transition: all 0.2s ease;
+  }
+  :global(.ps-row:hover .ps-logo),
+  :global(.ps-row:hover .ps-logo-fallback) {
+    transform: scale(1.04);
+    box-shadow: 0 4px 12px rgba(0,82,255,0.15);
   }
   :global(.ps-partner-badge) {
     display: inline-flex;
@@ -284,18 +295,19 @@ const clientProviders = allProviders.map(p => ({
     text-align: center;
   }
   :global(.ps-logo) {
-    width: 80px;
-    height: 80px;
+    width: 140px;
+    height: 140px;
     border-radius: var(--radius-lg);
     object-fit: contain;
     background: var(--surface-secondary);
     border: 2px solid var(--border);
-    padding: 6px;
+    padding: 10px;
     flex-shrink: 0;
+    aspect-ratio: 1;
   }
   :global(.ps-logo-fallback) {
-    width: 80px;
-    height: 80px;
+    width: 140px;
+    height: 140px;
     border-radius: var(--radius-lg);
     background: var(--brand-blue);
     color: white;
@@ -303,8 +315,9 @@ const clientProviders = allProviders.map(p => ({
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    font-size: var(--text-2xl);
+    font-size: var(--text-3xl);
     flex-shrink: 0;
+    aspect-ratio: 1;
   }
   :global(.ps-info) { flex: 1; min-width: 140px; }
   :global(.ps-name) {
@@ -331,6 +344,22 @@ const clientProviders = allProviders.map(p => ({
     gap: var(--space-xs);
     flex-shrink: 0;
   }
+  :global(.ps-btn-order) {
+    font-weight: 700 !important;
+  }
+  :global(.ps-btn-call) {
+    font-size: var(--text-base) !important;
+    background: var(--brand-green) !important;
+    border-color: var(--brand-green) !important;
+    color: white !important;
+  }
+  :global(.ps-btn-call:hover) {
+    background: var(--brand-green-light) !important;
+    box-shadow: 0 4px 12px rgba(0,213,132,0.4) !important;
+  }
+  :global(.ps-btn-plans) {
+    font-size: var(--text-sm) !important;
+  }
 
   :global(.ps-cta-card) {
     margin-top: var(--space-xl);
@@ -343,14 +372,59 @@ const clientProviders = allProviders.map(p => ({
   :global(.ps-cta-card h4) { margin-bottom: var(--space-xs); }
   :global(.ps-cta-card p) { color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-md); }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
+    :global(.ps-row) {
+      gap: var(--space-lg);
+    }
+    :global(.ps-logo),
+    :global(.ps-logo-fallback) {
+      width: 120px;
+      height: 120px;
+      padding: 8px;
+    }
+  }
+  @media (max-width: 900px) {
     :global(.ps-row) {
       flex-wrap: wrap;
       padding: var(--space-md);
     }
+    :global(.ps-logo),
+    :global(.ps-logo-fallback) {
+      width: 100px;
+      height: 100px;
+    }
     :global(.ps-metrics) { width: 100%; justify-content: space-around; }
     :global(.ps-actions) { width: 100%; flex-direction: row; }
-    :global(.ps-actions .btn) { flex: 1; text-align: center; }
+    :global(.ps-actions .btn) { flex: 1; text-align: center; font-size: var(--text-sm) !important; }
+  }
+  @media (max-width: 768px) {
+    :global(.ps-row) {
+      padding: var(--space-md);
+    }
+    :global(.ps-logo),
+    :global(.ps-logo-fallback) {
+      width: 90px;
+      height: 90px;
+    }
+    :global(.ps-metrics) { width: 100%; justify-content: space-between; gap: var(--space-sm); }
+    :global(.ps-metric) { min-width: auto; }
+  }
+  @media (max-width: 600px) {
+    :global(.ps-row) {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    :global(.ps-rank) { display: none; }
+    :global(.ps-logo),
+    :global(.ps-logo-fallback) {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+    }
+    :global(.ps-info) { text-align: center; }
+    :global(.ps-metrics) { width: 100%; justify-content: space-around; flex-wrap: wrap; }
+    :global(.ps-actions) { width: 100%; }
+    :global(.ps-actions .btn) { width: 100%; }
   }
 </style>
 
@@ -607,8 +681,9 @@ const clientProviders = allProviders.map(p => ({
         ${rating ? `<div class="ps-metric"><div class="ps-metric-label">Rating</div><div class="ps-metric-val">${rating}</div></div>` : ''}
       </div>
       <div class="ps-actions">
-        ${p.slug ? `<a href="/provider/${p.slug}" class="btn btn-cta btn-sm">View Plans</a>` : ''}
-        <a href="#get-connected" class="btn btn-secondary btn-sm" data-signup-provider="${p.slug || ''}">Sign Up</a>
+        <a href="#get-connected" class="btn btn-secondary btn-sm ps-btn-order" data-signup-provider="${p.slug || ''}">Order Online</a>
+        <a href="tel:+1${p.phone.replace(/\\D/g,'') || mainPhone.replace(/\\D/g,'')}" class="btn btn-cta ps-btn-call" style="font-weight:800;">📞 ${p.phone || mainPhone}</a>
+        ${p.slug ? `<a href="/provider/${p.slug}" class="btn btn-secondary btn-sm ps-btn-plans">View Plans</a>` : ''}
       </div>
     </div>`;
   }

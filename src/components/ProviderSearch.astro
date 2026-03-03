@@ -654,7 +654,7 @@ const clientProviders = allProviders.map(p => ({
   // ===== RENDERING =====
   function renderRow(p: EnrichedP, rank: number, mainPhone: string): string {
     const logo = p.logo
-      ? `<img class="ps-logo" src="${p.logo}" alt="${p.name}" width="80" height="80" loading="lazy" />`
+      ? `<img class="ps-logo" src="${p.logo}" alt="${p.name}" width="140" height="140" loading="lazy" />`
       : `<div class="ps-logo-fallback">${p.name.charAt(0)}</div>`;
     const nameLink = p.slug ? `<a href="/provider/${p.slug}" class="ps-name">${p.name}</a>` : `<span class="ps-name">${p.name}</span>`;
     const partnerBadge = p.isPartner ? `<span class="ps-partner-badge">Recommended</span>` : '';

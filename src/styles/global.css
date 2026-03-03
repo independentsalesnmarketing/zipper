@@ -2818,6 +2818,10 @@
       gap: var(--space-md);
       padding: var(--space-lg);
     }
+    .pc-logo-compact {
+      width: 160px;
+      height: 160px;
+    }
     .pc-right {
       grid-column: 1 / -1;
       flex-direction: row;
@@ -2827,9 +2831,14 @@
     .pc-actions-compact {
       flex-direction: row;
       max-width: none;
+      width: 100%;
+      gap: 6px;
     }
     .pc-actions-compact .btn {
-      min-width: 160px;
+      flex: 1;
+      min-width: 0;
+      padding: 0.7em 0.8em;
+      font-size: var(--text-base);
     }
     .hero-logos-strip {
       max-width: 550px;

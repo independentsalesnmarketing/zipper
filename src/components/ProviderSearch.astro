@@ -50,8 +50,8 @@ const clientProviders = allProviders.map(p => ({
   data-auto={autoSearch ? '1' : ''}
   style="margin-bottom:var(--space-2xl);"
 >
-  <!-- Search Box -->
-  <div class="ps-search" id="ps-search">
+  <!-- Search Box (hidden on ZIP pages where results auto-load) -->
+  <div class="ps-search" id="ps-search" style={autoSearch ? "display:none;" : ""}>
     <form id="ps-form" class="ps-form">
       <div class="ps-input-group">
         <svg class="ps-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -246,20 +246,31 @@ const clientProviders = allProviders.map(p => ({
     display: flex;
     align-items: center;
     gap: var(--space-xl);
-    padding: var(--space-xl) var(--space-2xl);
+    padding: var(--space-lg) var(--space-2xl);
     border: 2px solid var(--border);
     border-radius: var(--radius-lg);
     margin-bottom: var(--space-sm);
     background: var(--surface);
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: all 0.2s ease;
+    min-height: 160px;
   }
   :global(.ps-row--partner) {
-    border-color: rgba(0,82,255,0.2);
-    background: linear-gradient(135deg, rgba(0,82,255,0.02), rgba(0,213,132,0.02));
+    border-color: rgba(0,82,255,0.25);
+    background: linear-gradient(135deg, rgba(0,82,255,0.04), rgba(0,213,132,0.03));
   }
   :global(.ps-row:hover) {
-    border-color: rgba(0,82,255,0.3);
-    box-shadow: 0 2px 12px rgba(0,82,255,0.08);
+    border-color: var(--brand-blue);
+    box-shadow: 0 4px 16px rgba(0,82,255,0.15);
+    transform: translateY(-1px);
+  }
+  :global(.ps-logo),
+  :global(.ps-logo-fallback) {
+    transition: all 0.2s ease;
+  }
+  :global(.ps-row:hover .ps-logo),
+  :global(.ps-row:hover .ps-logo-fallback) {
+    transform: scale(1.04);
+    box-shadow: 0 4px 12px rgba(0,82,255,0.15);
   }
   :global(.ps-partner-badge) {
     display: inline-flex;
@@ -284,18 +295,19 @@ const clientProviders = allProviders.map(p => ({
     text-align: center;
   }
   :global(.ps-logo) {
-    width: 80px;
-    height: 80px;
+    width: 180px;
+    height: 180px;
     border-radius: var(--radius-lg);
     object-fit: contain;
     background: var(--surface-secondary);
     border: 2px solid var(--border);
-    padding: 6px;
+    padding: 12px;
     flex-shrink: 0;
+    aspect-ratio: 1;
   }
   :global(.ps-logo-fallback) {
-    width: 80px;
-    height: 80px;
+    width: 180px;
+    height: 180px;
     border-radius: var(--radius-lg);
     background: var(--brand-blue);
     color: white;
@@ -303,8 +315,9 @@ const clientProviders = allProviders.map(p => ({
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    font-size: var(--text-2xl);
+    font-size: var(--text-4xl);
     flex-shrink: 0;
+    aspect-ratio: 1;
   }
   :global(.ps-info) { flex: 1; min-width: 140px; }
   :global(.ps-name) {
@@ -331,6 +344,44 @@ const clientProviders = allProviders.map(p => ({
     gap: var(--space-xs);
     flex-shrink: 0;
   }
+  :global(.ps-btn-order) {
+    font-weight: 800 !important;
+    font-size: var(--text-base) !important;
+    background: linear-gradient(135deg, #0052ff, #00d9ff) !important;
+    border-color: #0052ff !important;
+    color: white !important;
+    min-height: 48px !important;
+  }
+  :global(.ps-btn-order:hover) {
+    background: linear-gradient(135deg, #0040d9, #00b8d9) !important;
+    box-shadow: 0 6px 16px rgba(0,82,255,0.5) !important;
+    transform: translateY(-2px) !important;
+  }
+  :global(.ps-btn-call) {
+    font-size: var(--text-base) !important;
+    font-weight: 800 !important;
+    background: var(--brand-green) !important;
+    border-color: var(--brand-green) !important;
+    color: white !important;
+    min-height: 44px !important;
+  }
+  :global(.ps-btn-call:hover) {
+    background: var(--brand-green-light) !important;
+    box-shadow: 0 6px 16px rgba(0,213,132,0.5) !important;
+    transform: translateY(-2px) !important;
+  }
+  :global(.ps-btn-plans) {
+    font-size: var(--text-base) !important;
+    font-weight: 700 !important;
+    background: white !important;
+    border: 2px solid var(--gray-200) !important;
+    color: var(--text-primary) !important;
+    min-height: 44px !important;
+  }
+  :global(.ps-btn-plans:hover) {
+    border-color: var(--brand-blue) !important;
+    background: var(--gray-50) !important;
+  }
 
   :global(.ps-cta-card) {
     margin-top: var(--space-xl);
@@ -343,14 +394,59 @@ const clientProviders = allProviders.map(p => ({
   :global(.ps-cta-card h4) { margin-bottom: var(--space-xs); }
   :global(.ps-cta-card p) { color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-md); }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
+    :global(.ps-row) {
+      gap: var(--space-lg);
+    }
+    :global(.ps-logo),
+    :global(.ps-logo-fallback) {
+      width: 160px;
+      height: 160px;
+      padding: 10px;
+    }
+  }
+  @media (max-width: 900px) {
     :global(.ps-row) {
       flex-wrap: wrap;
       padding: var(--space-md);
     }
+    :global(.ps-logo),
+    :global(.ps-logo-fallback) {
+      width: 130px;
+      height: 130px;
+    }
     :global(.ps-metrics) { width: 100%; justify-content: space-around; }
     :global(.ps-actions) { width: 100%; flex-direction: row; }
-    :global(.ps-actions .btn) { flex: 1; text-align: center; }
+    :global(.ps-actions .btn) { flex: 1; text-align: center; font-size: var(--text-sm) !important; }
+  }
+  @media (max-width: 768px) {
+    :global(.ps-row) {
+      padding: var(--space-md);
+    }
+    :global(.ps-logo),
+    :global(.ps-logo-fallback) {
+      width: 110px;
+      height: 110px;
+    }
+    :global(.ps-metrics) { width: 100%; justify-content: space-between; gap: var(--space-sm); }
+    :global(.ps-metric) { min-width: auto; }
+  }
+  @media (max-width: 600px) {
+    :global(.ps-row) {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    :global(.ps-rank) { display: none; }
+    :global(.ps-logo),
+    :global(.ps-logo-fallback) {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+    }
+    :global(.ps-info) { text-align: center; }
+    :global(.ps-metrics) { width: 100%; justify-content: space-around; flex-wrap: wrap; }
+    :global(.ps-actions) { width: 100%; }
+    :global(.ps-actions .btn) { width: 100%; }
   }
 </style>
 
@@ -430,14 +526,23 @@ const clientProviders = allProviders.map(p => ({
   // ===== GEOCODING =====
   async function geocodeZip(zip: string): Promise<{lat:number,lng:number,city:string,state:string}|null> {
     try {
-      const r = await fetch(`https://api.zippopotam.us/us/${zip}`, {signal: AbortSignal.timeout(5000)});
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      const r = await fetch(`https://api.zippopotam.us/us/${zip}`, {signal: controller.signal});
+      clearTimeout(timeoutId);
       if (r.ok) {
         const d = await r.json();
         if (d.places?.length) return {lat:+d.places[0].latitude,lng:+d.places[0].longitude,city:d.places[0]['place name']||'',state:d.places[0]['state abbreviation']||''};
       }
     } catch {}
     try {
-      const r = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${zip}&country=US&format=json&limit=1`,{headers:{'User-Agent':'Internet4ALL/1.0'},signal:AbortSignal.timeout(6000)});
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
+      const r = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${zip}&country=US&format=json&limit=1`,{
+        headers:{'User-Agent':'Internet4ALL/1.0'},
+        signal:controller.signal
+      });
+      clearTimeout(timeoutId);
       if (r.ok) { const d=await r.json(); if (d[0]) return {lat:+d[0].lat,lng:+d[0].lon,city:'',state:''}; }
     } catch {}
     return null;
@@ -445,7 +550,13 @@ const clientProviders = allProviders.map(p => ({
 
   async function geocodeAddr(q: string): Promise<{lat:number,lng:number,display:string}|null> {
     try {
-      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1&countrycodes=us`,{headers:{'User-Agent':'Internet4ALL/1.0'},signal:AbortSignal.timeout(6000)});
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
+      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1&countrycodes=us`,{
+        headers:{'User-Agent':'Internet4ALL/1.0'},
+        signal:controller.signal
+      });
+      clearTimeout(timeoutId);
       if (r.ok) { const d=await r.json(); if (d[0]) return {lat:+d[0].lat,lng:+d[0].lon,display:d[0].display_name}; }
     } catch {}
     return null;
@@ -465,7 +576,13 @@ const clientProviders = allProviders.map(p => ({
       // Append bias city/state to query when it looks like a street address without location context
       const hasLocation = /\d{5}/.test(q) || /,/.test(q) || q.split(' ').length > 4;
       const queryStr = hasLocation ? q : (_biasCity ? `${q}, ${_biasCity}, ${_biasState}` : q);
-      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(queryStr)}&format=json&limit=6&countrycodes=us&addressdetails=1`,{headers:{'User-Agent':'Internet4ALL/1.0'},signal:AbortSignal.timeout(5000)});
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(queryStr)}&format=json&limit=6&countrycodes=us&addressdetails=1`,{
+        headers:{'User-Agent':'Internet4ALL/1.0'},
+        signal:controller.signal
+      });
+      clearTimeout(timeoutId);
       if (!r.ok) return [];
       const d = await r.json();
       return d.map((x:any)=>{
@@ -482,16 +599,28 @@ const clientProviders = allProviders.map(p => ({
         const display = parts.length ? parts.join(', ') : (x.display_name || '').split(',').slice(0,4).join(', ');
         return {display, zip, lat:+x.lat, lng:+x.lon};
       });
-    } catch { return []; }
+    } catch (e) {
+      return [];
+    }
   }
 
   // ===== API =====
   async function fetchProviders(lat: number, lng: number): Promise<any[]> {
-    const r = await fetch(`https://broadbandmap.com/api/v1/location/internet?lat=${lat}&lng=${lng}`,{signal:AbortSignal.timeout(10000)});
-    if (r.status===429) throw new Error('RATE_LIMITED');
-    if (!r.ok) throw new Error('HTTP_'+r.status);
-    const d = await r.json();
-    return d?.providers || [];
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      const r = await fetch(`https://broadbandmap.com/api/v1/location/internet?lat=${lat}&lng=${lng}`,{signal:controller.signal});
+      clearTimeout(timeoutId);
+      if (r.status===429) throw new Error('RATE_LIMITED');
+      if (!r.ok) throw new Error('HTTP_'+r.status);
+      const d = await r.json();
+      return d?.providers || [];
+    } catch (e: any) {
+      if (e.message === 'RATE_LIMITED') throw e;
+      if (e.name === 'AbortError' || e.message.includes('timeout')) throw new Error('TIMEOUT');
+      if (e instanceof TypeError && e.message.includes('fetch')) throw new Error('NETWORK_ERROR');
+      throw e;
+    }
   }
 
   // ===== MATCH & ENRICH =====
@@ -580,7 +709,7 @@ const clientProviders = allProviders.map(p => ({
   // ===== RENDERING =====
   function renderRow(p: EnrichedP, rank: number, mainPhone: string): string {
     const logo = p.logo
-      ? `<img class="ps-logo" src="${p.logo}" alt="${p.name}" width="80" height="80" loading="lazy" />`
+      ? `<img class="ps-logo" src="${p.logo}" alt="${p.name}" width="140" height="140" loading="lazy" />`
       : `<div class="ps-logo-fallback">${p.name.charAt(0)}</div>`;
     const nameLink = p.slug ? `<a href="/provider/${p.slug}" class="ps-name">${p.name}</a>` : `<span class="ps-name">${p.name}</span>`;
     const partnerBadge = p.isPartner ? `<span class="ps-partner-badge">Recommended</span>` : '';
@@ -607,8 +736,9 @@ const clientProviders = allProviders.map(p => ({
         ${rating ? `<div class="ps-metric"><div class="ps-metric-label">Rating</div><div class="ps-metric-val">${rating}</div></div>` : ''}
       </div>
       <div class="ps-actions">
-        ${p.slug ? `<a href="/provider/${p.slug}" class="btn btn-cta btn-sm">View Plans</a>` : ''}
-        <a href="#get-connected" class="btn btn-secondary btn-sm" data-signup-provider="${p.slug || ''}">Sign Up</a>
+        <a href="#get-connected" class="btn btn-secondary btn-sm ps-btn-order" data-signup-provider="${p.slug || ''}">Order Online</a>
+        <a href="tel:+1${p.phone.replace(/\\D/g,'') || mainPhone.replace(/\\D/g,'')}" class="btn btn-cta ps-btn-call">📞 ${p.phone || mainPhone}</a>
+        ${p.slug ? `<a href="/provider/${p.slug}" class="btn btn-secondary btn-sm ps-btn-plans">View Plans</a>` : ''}
       </div>
     </div>`;
   }
@@ -662,6 +792,7 @@ const clientProviders = allProviders.map(p => ({
         renderError(container, mainPhone);
       }
     } catch (e: any) {
+      // Suppress error logging, show user-friendly message instead
       if (e.message === 'RATE_LIMITED') {
         container.innerHTML = `<div class="ps-cta-card">
           <h4>High demand right now</h4>
@@ -669,6 +800,7 @@ const clientProviders = allProviders.map(p => ({
           <a href="tel:+1${mainPhone.replace(/\D/g,'')}" class="btn btn-cta btn-lg">Call ${mainPhone}</a>
         </div>`;
       } else {
+        // Handle network errors, timeouts, and other errors gracefully
         renderError(container, mainPhone);
       }
     }
@@ -700,10 +832,16 @@ const clientProviders = allProviders.map(p => ({
     _biasCity = city;
     _biasState = st;
     if (input && !auto) {
-      fetch('https://get.geojs.io/v1/ip/geo.json', { signal: AbortSignal.timeout(3000) })
-        .then(r => r.json())
-        .then((d: { city?: string; region?: string; country?: string }) => {
-          if (d.country === 'United States' && d.city && d.region) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3000);
+      fetch('https://get.geojs.io/v1/ip/geo.json', { signal: controller.signal })
+        .then(r => {
+          clearTimeout(timeoutId);
+          if (!r.ok) return null;
+          return r.json();
+        })
+        .then((d: { city?: string; region?: string; country?: string } | null) => {
+          if (d && d.country === 'United States' && d.city && d.region) {
             ipDetectedCity = d.city;
             ipDetectedState = d.region;
             _biasCity = d.city;
@@ -714,7 +852,9 @@ const clientProviders = allProviders.map(p => ({
             }
           }
         })
-        .catch(() => {});
+        .catch(() => {
+          // Silently fail - geolocation is optional for autocomplete bias
+        });
     }
 
     // Auto-search (ZIP pages)
@@ -732,7 +872,7 @@ const clientProviders = allProviders.map(p => ({
       }
     }
 
-    // Form submit
+    // Form submit (main search)
     if (form && input) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -759,6 +899,18 @@ const clientProviders = allProviders.map(p => ({
         }
       });
     }
+
+    // Expose search functions globally so ZIP page can use them
+    if (!window.psGeocode) {
+      (window as any).psGeocode = {};
+    }
+    (window as any).psGeocode.geocodeZip = geocodeZip;
+    (window as any).psGeocode.geocodeAddr = geocodeAddr;
+    (window as any).psGeocode.fetchSuggestions = fetchSuggestions;
+    (window as any).psGeocode.runSearch = runSearch;
+    (window as any).psGeocode.mainPhone = mainPhone;
+    (window as any).psGeocode.locals = locals;
+    (window as any).psGeocode.container = container;
 
     // Autocomplete
     if (input && suggestEl) {

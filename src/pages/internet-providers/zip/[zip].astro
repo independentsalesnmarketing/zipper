@@ -219,22 +219,50 @@ const schemas = [
   ]} />
 
   <!-- ═══════════════════════════════════════════
-       HERO
+       HERO — with refinement search on right
        ═══════════════════════════════════════════ -->
-  <div class="reveal" style="margin-bottom:var(--space-lg);">
-    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
-      <span id="hero-badge" style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(0,213,132,0.12);border:1px solid rgba(0,213,132,0.3);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;">
-        <span style="color:var(--brand-green);">&#10003;</span> <span id="hero-badge-text">{partners.length} recommended providers near {zipData.zip}</span>
-      </span>
-      <span style="font-size:var(--text-xs);color:var(--text-tertiary);">Updated {lastUpdatedDisplay}</span>
+  <div class="reveal zip-hero" style="margin-bottom:var(--space-lg);display:flex;gap:var(--space-2xl);align-items:flex-start;">
+    <!-- Left: Hero content -->
+    <div style="flex:1;min-width:0;">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+        <span id="hero-badge" style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(0,213,132,0.12);border:1px solid rgba(0,213,132,0.3);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;">
+          <span style="color:var(--brand-green);">&#10003;</span> <span id="hero-badge-text">{partners.length} recommended providers near {zipData.zip}</span>
+        </span>
+        <span style="font-size:var(--text-xs);color:var(--text-tertiary);">Updated {lastUpdatedDisplay}</span>
+      </div>
+      <h1 id="hero-title" style="font-size:var(--text-4xl);margin-bottom:var(--space-sm);">
+        Internet Providers in <span class="gradient-text" id="hero-location">{zipData.zip}</span> — <span id="hero-city">{zipData.city}, {stateName}</span>
+      </h1>
+      <p style="font-size:var(--text-lg);color:var(--text-secondary);max-width:680px;line-height:1.7;">
+        Verified coverage for {zipData.city}, {stateName} ({zipData.zip}). {techSummary}
+        Plans start at <strong>{formatPrice(minPrc)}/mo</strong> with speeds up to <strong>{formatSpeed(maxSpd)}</strong>.
+      </p>
     </div>
-    <h1 id="hero-title" style="font-size:var(--text-4xl);margin-bottom:var(--space-sm);">
-      Internet Providers in <span class="gradient-text" id="hero-location">{zipData.zip}</span> — <span id="hero-city">{zipData.city}, {stateName}</span>
-    </h1>
-    <p style="font-size:var(--text-lg);color:var(--text-secondary);max-width:680px;line-height:1.7;">
-      Verified coverage for {zipData.city}, {stateName} ({zipData.zip}). {techSummary}
-      Plans start at <strong>{formatPrice(minPrc)}/mo</strong> with speeds up to <strong>{formatSpeed(maxSpd)}</strong>.
-    </p>
+
+    <!-- Right: Refinement search (ZIP page only) -->
+    <div id="hero-refine" style="flex-shrink:0;min-width:300px;">
+      <div style="padding:var(--space-lg);background:linear-gradient(135deg,rgba(0,82,255,0.05),rgba(0,213,132,0.05));border:2px solid rgba(0,82,255,0.15);border-radius:var(--radius-lg);">
+        <div style="margin-bottom:var(--space-md);">
+          <p style="font-size:var(--text-sm);font-weight:600;color:var(--text-primary);margin-bottom:var(--space-xs);">Try Different Address</p>
+          <p style="font-size:var(--text-xs);color:var(--text-tertiary);">Search another ZIP or address</p>
+        </div>
+        <form id="hero-refine-form" class="ps-form" style="gap:var(--space-xs);">
+          <div class="ps-input-group" style="position:relative;">
+            <svg class="ps-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <input
+              id="hero-refine-input"
+              type="text"
+              placeholder="Enter ZIP code or address"
+              autocomplete="off"
+              spellcheck="false"
+              style="width:100%;padding:var(--space-sm) var(--space-md) var(--space-sm) 36px;border:2px solid var(--border);border-radius:var(--radius-md);font-size:var(--text-base);background:white;color:var(--text-primary);transition:border-color 0.2s;"
+            />
+            <ul id="hero-refine-suggest" class="ps-suggest" style="display:none;"></ul>
+          </div>
+          <button type="submit" class="btn btn-cta" style="width:100%;padding:10px 16px;font-size:var(--text-base);font-weight:800;background:#000000;border-color:#000000;color:white;">Search</button>
+        </form>
+      </div>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════
@@ -757,6 +785,119 @@ const schemas = [
 </div>
 </section>
 
+<style>
+  #hero-refine {
+    position: relative;
+  }
+
+  #hero-refine .ps-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+    pointer-events: none;
+    width: 16px;
+    height: 16px;
+  }
+
+  #hero-refine-input {
+    background: white !important;
+  }
+
+  #hero-refine-input:focus {
+    outline: none;
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.1) !important;
+  }
+
+  #hero-refine-form button {
+    background: #000000 !important;
+    border-color: #000000 !important;
+    color: white !important;
+  }
+
+  #hero-refine-form button:hover {
+    background: #1a1a1a !important;
+    border-color: #1a1a1a !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+  }
+
+  #hero-refine-suggest {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--white);
+    border: 2px solid var(--brand-blue);
+    border-radius: var(--radius-md);
+    max-height: 280px;
+    overflow-y: auto;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  }
+
+  #hero-refine-suggest li {
+    padding: var(--space-sm) var(--space-lg);
+    cursor: pointer;
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    transition: background 0.1s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #hero-refine-suggest li:hover,
+  #hero-refine-suggest li.active {
+    background: rgba(0,82,255,0.06);
+    color: var(--brand-blue);
+  }
+
+  #hero-refine-suggest .sg-main {
+    font-weight: 500;
+  }
+
+  @media (max-width: 1100px) {
+    #hero-refine {
+      min-width: 280px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .zip-hero {
+      flex-direction: column;
+      gap: var(--space-lg) !important;
+    }
+
+    #hero-refine {
+      min-width: auto;
+      width: 100%;
+      max-width: 350px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #hero-refine {
+      min-width: auto;
+      width: 100%;
+    }
+
+    #hero-refine > div {
+      padding: var(--space-md) !important;
+    }
+
+    #hero-refine input,
+    #hero-refine button {
+      font-size: var(--text-sm) !important;
+    }
+  }
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     // Plan accordion
@@ -788,6 +929,131 @@ const schemas = [
       if (zipMatch && heroLoc) heroLoc.textContent = zipMatch[1];
       if (cityMatch && heroCity) heroCity.textContent = cityMatch[1].trim();
     }) as EventListener);
+
+    // Hero refinement search (for ZIP pages)
+    function initHeroRefine() {
+      const heroRefineForm = document.getElementById('hero-refine-form') as HTMLFormElement;
+      const heroRefineInput = document.getElementById('hero-refine-input') as HTMLInputElement;
+      const heroRefineSuggest = document.getElementById('hero-refine-suggest') as HTMLUListElement;
+
+      if (!heroRefineForm || !heroRefineInput || !heroRefineSuggest) return;
+      if (!(window as any).psGeocode) {
+        // Retry if psGeocode not ready yet
+        setTimeout(initHeroRefine, 100);
+        return;
+      }
+
+      const { geocodeZip, geocodeAddr, runSearch, mainPhone, locals, container } = (window as any).psGeocode;
+      let heroAcTimer: ReturnType<typeof setTimeout>;
+      let heroAcItems: {display:string,zip:string,lat:number,lng:number}[] = [];
+      let heroAcIdx = -1;
+
+      // Fetch suggestions
+      async function fetchHeroSuggestions(q: string) {
+        if (q.length<4) return [];
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 5000);
+          const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=6&countrycodes=us&addressdetails=1`,{
+            headers:{'User-Agent':'Internet4ALL/1.0'},
+            signal: controller.signal
+          });
+          clearTimeout(timeoutId);
+          if (!r.ok) return [];
+          const d = await r.json();
+          return d.map((x:any)=>{
+            const addr = x.address || {};
+            const zip = addr.postcode || '';
+            const parts: string[] = [];
+            if (addr.house_number && addr.road) parts.push(addr.house_number + ' ' + addr.road);
+            else if (addr.road) parts.push(addr.road);
+            else if (addr.neighbourhood) parts.push(addr.neighbourhood);
+            if (addr.city || addr.town || addr.village || addr.hamlet) parts.push(addr.city || addr.town || addr.village || addr.hamlet);
+            if (addr.state) parts.push(addr.state);
+            if (zip) parts.push(zip);
+            const display = parts.length ? parts.join(', ') : (x.display_name || '').split(',').slice(0,4).join(', ');
+            return {display, zip, lat:+x.lat, lng:+x.lon};
+          });
+        } catch (e) {
+          console.debug('Suggestion fetch error (non-critical):', e);
+          return [];
+        }
+      }
+
+      // Show/hide suggestions
+      function showHeroSugs(items: typeof heroAcItems) {
+        heroAcItems = items; heroAcIdx = -1;
+        if (!items.length) { heroRefineSuggest.style.display='none'; return; }
+        heroRefineSuggest.innerHTML = items.map((s,i)=>`<li data-i="${i}"><div class="sg-main">${s.display}</div></li>`).join('');
+        heroRefineSuggest.style.display = 'block';
+      }
+
+      function closeHeroSugs() { heroRefineSuggest.style.display='none'; heroAcItems=[]; heroAcIdx=-1; }
+
+      function selectHeroSug(i: number) {
+        const s = heroAcItems[i]; if (!s) return;
+        heroRefineInput.value = s.display;
+        closeHeroSugs();
+        // Run search
+        const loc = s.display;
+        runSearch(s.lat, s.lng, loc, locals, mainPhone, container);
+      }
+
+      // Form submit
+      heroRefineForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const q = heroRefineInput.value.trim();
+        if (!q) return;
+        if (/^\d{5}$/.test(q)) {
+          geocodeZip(q).then((geo: any) => {
+            if (geo) {
+              const loc = `ZIP ${q}` + (geo.city ? ` — ${geo.city}, ${geo.state}` : '');
+              runSearch(geo.lat, geo.lng, loc, locals, mainPhone, container);
+            }
+          });
+        } else {
+          geocodeAddr(q).then((geo: any) => {
+            if (geo) {
+              const loc = geo.display.split(',').slice(0,3).join(',');
+              runSearch(geo.lat, geo.lng, loc, locals, mainPhone, container);
+            }
+          });
+        }
+      });
+
+      // Autocomplete
+      heroRefineInput.addEventListener('input', () => {
+        clearTimeout(heroAcTimer);
+        const v = heroRefineInput.value.trim();
+        if (v.length<4 || /^\d{5}$/.test(v)) { closeHeroSugs(); return; }
+        heroAcTimer = setTimeout(async () => {
+          const items = await fetchHeroSuggestions(v);
+          if (document.activeElement===heroRefineInput && heroRefineInput.value.trim().length>=4) showHeroSugs(items);
+        }, 350);
+      });
+
+      heroRefineInput.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (!heroAcItems.length) return;
+        if (e.key==='ArrowDown') { e.preventDefault(); heroAcIdx=Math.min(heroAcIdx+1,heroAcItems.length-1); updHeroActive(); }
+        else if (e.key==='ArrowUp') { e.preventDefault(); heroAcIdx=Math.max(heroAcIdx-1,0); updHeroActive(); }
+        else if (e.key==='Enter'&&heroAcIdx>=0) { e.preventDefault(); selectHeroSug(heroAcIdx); }
+        else if (e.key==='Escape') closeHeroSugs();
+      });
+
+      function updHeroActive() {
+        heroRefineSuggest.querySelectorAll('li').forEach((li,i)=>li.classList.toggle('active',i===heroAcIdx));
+      }
+
+      heroRefineSuggest.addEventListener('mousedown', (e: MouseEvent) => {
+        const li = (e.target as HTMLElement).closest('li');
+        if (li) selectHeroSug(parseInt(li.getAttribute('data-i')||'0'));
+      });
+
+      heroRefineInput.addEventListener('blur', ()=>setTimeout(closeHeroSugs, 200));
+    }
+
+    // Initialize hero refine search
+    initHeroRefine();
   });
 </script>
 </Base>

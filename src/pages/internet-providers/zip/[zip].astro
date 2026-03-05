@@ -917,17 +917,29 @@ const schemas = [
 
     // Update hero when ProviderSearch returns results for a different location
     window.addEventListener('ps:results', ((e: CustomEvent) => {
-      const { count, location } = e.detail;
+      const { count, location, zip, lat, lng } = e.detail;
       const badgeText = document.getElementById('hero-badge-text');
       const heroLoc = document.getElementById('hero-location');
       const heroCity = document.getElementById('hero-city');
+      const stickyBar = document.querySelector('.sticky-cta-text');
+
       if (badgeText) badgeText.textContent = `${count} verified providers in ${location}`;
-      // Parse location to update headline
-      // location is like "ZIP 10001 — New York, NY" or "ZIP 10001"
-      const zipMatch = location.match(/ZIP\s+(\d{5})/);
+
+      // Update heading with ZIP and city/state
+      // location format: "ZIP 10001 — New York, NY" or just "ZIP 10001"
+      if (zip && heroLoc) {
+        heroLoc.textContent = zip;
+      }
+
       const cityMatch = location.match(/—\s*(.+)/);
-      if (zipMatch && heroLoc) heroLoc.textContent = zipMatch[1];
-      if (cityMatch && heroCity) heroCity.textContent = cityMatch[1].trim();
+      if (cityMatch && heroCity) {
+        heroCity.textContent = cityMatch[1].trim();
+      }
+
+      // Update sticky call bar text if ZIP changed
+      if (zip && stickyBar) {
+        stickyBar.innerHTML = `<strong>Find your best internet deal in ${zip}</strong> — Get expert help`;
+      }
     }) as EventListener);
 
     // Hero refinement search (for ZIP pages)

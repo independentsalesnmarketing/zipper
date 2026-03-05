@@ -323,7 +323,7 @@ const schemas = [
             {a.provider.isPartner && (
               <a href={`/deals/${a.provider.slug}`} style="display:block;text-align:center;font-size:var(--text-xs);color:var(--brand-green);margin-top:var(--space-xs);margin-bottom:var(--space-xs);">See {a.provider.name} Deals →</a>
             )}
-            <a href={formatPhoneForTel(a.provider.isPartner ? a.provider.phone : MAIN_PHONE)} class="btn btn-cta btn-sm" style="margin-top:var(--space-sm);width:100%;">Call to Order</a>
+            <a href="#get-connected" class="btn btn-cta btn-sm" style="margin-top:var(--space-sm);width:100%;" data-signup-provider={a.provider.slug}>Sign Up</a>
           </div>
         ))}
       </div>
@@ -433,7 +433,7 @@ const schemas = [
                 <span style="font-size:0.6rem;color:var(--text-tertiary);display:block;">({p.reviewCount.toLocaleString()} reviews)</span>
               </td>
               <td>
-                <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-cta btn-sm">Call</a>
+                <a href="#get-connected" class="btn btn-cta btn-sm" data-signup-provider={p.slug}>Sign Up</a>
               </td>
             </tr>
           ))}
@@ -602,7 +602,7 @@ const schemas = [
                       </td>
                       <td>{plan.contract}</td>
                       <td>{plan.dataCap}</td>
-                      <td><a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-cta btn-sm">Order</a></td>
+                      <td><a href="#get-connected" class="btn btn-cta btn-sm" data-signup-provider={p.slug}>Sign Up</a></td>
                     </tr>
                   ))}
                 </tbody>
@@ -761,8 +761,11 @@ const schemas = [
   <div class="reveal" style="margin-bottom:var(--space-2xl);">
     <div class="card" style="padding:var(--space-2xl);text-align:center;background:linear-gradient(135deg,rgba(0,82,255,0.08),rgba(0,213,132,0.08));border:1px solid var(--brand-blue);">
       <h2 style="margin-bottom:var(--space-sm);">Find Your Perfect Internet Plan in {stateData.name}</h2>
-      <p style="color:var(--text-secondary);margin-bottom:var(--space-lg);max-width:550px;margin-inline:auto;">Our experts compare every provider so you don't have to. Call now for exclusive deals not available online.</p>
-      <a href={formatPhoneForTel(MAIN_PHONE)} class="btn btn-cta btn-lg">Call {MAIN_PHONE} — It's Free</a>
+      <p style="color:var(--text-secondary);margin-bottom:var(--space-lg);max-width:550px;margin-inline:auto;">Our experts compare every provider so you don't have to. Free expert help — no obligation.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-md);align-items:center;">
+        <a href="#get-connected" class="btn btn-primary btn-lg">Sign Up Now</a>
+        <a href={formatPhoneForTel(MAIN_PHONE)} class="btn btn-secondary btn-lg">Call {MAIN_PHONE}</a>
+      </div>
     </div>
   </div>
 

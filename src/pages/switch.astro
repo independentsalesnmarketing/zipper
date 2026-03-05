@@ -8,10 +8,10 @@ import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 
 const partners = getPartnerProviders().slice(0, 6);
 const faqs = [
-  { q: 'How do I switch internet providers without losing service?', a: 'Schedule your new service install first. Keep your old service active until the new one is working. Once confirmed, cancel the old provider and return their equipment. The whole process typically takes less than a week.' },
-  { q: 'Will I have to pay an early termination fee?', a: 'If you\'re under contract, possibly. However, many providers offer to buy out your contract when you switch. Call us and we\'ll check if your new provider offers a buyout — potentially saving you hundreds.' },
-  { q: 'Can I keep my email address if I switch?', a: 'Provider-issued emails (like @comcast.net) may be affected. We recommend switching to a free service like Gmail before canceling. Your personal email addresses won\'t be affected.' },
-  { q: 'Will I get a better deal by switching?', a: 'Almost always, yes. New customer promotions typically save 30-50% compared to the rate your current provider charges after your promo period ends. Our average caller saves $360/year by switching.' },
+  { q: 'How do I switch internet providers without losing service?', a: 'Schedule your new service install first. Keep your old service active until the new one is working. Once confirmed, cancel the old provider and return their equipment. The whole process typically takes less than a week. Our team will walk you through each step—chat with us if you have questions.' },
+  { q: 'Will I have to pay an early termination fee?', a: 'If you\'re under contract, possibly. However, many providers offer to buy out your contract when you switch. We\'ll check if your new provider offers a buyout when you sign up — potentially saving you hundreds.' },
+  { q: 'Can I keep my email address if I switch?', a: 'Provider-issued emails (like @comcast.net) may be affected. We recommend switching to a free service like Gmail or Outlook before canceling. Your personal email addresses won\'t be affected.' },
+  { q: 'Will I get a better deal by switching?', a: 'Almost always, yes. New customer promotions typically save 30-50% compared to the rate your current provider charges after your promo period ends. Our customers average $30/month in savings after switching.' },
   { q: 'What about my equipment?', a: 'Return your old provider\'s equipment (modem/router) within 30 days to avoid charges. Your new provider will supply their own equipment — or you can buy your own compatible modem/router to avoid rental fees.' },
 ];
 
@@ -77,13 +77,14 @@ const painPoints = [
   <!-- How Switching Works -->
   <section class="section">
     <div class="container">
-      <h2 class="text-center reveal">Switching is <span class="gradient-text">Easier Than You Think</span></h2>
+      <h2 class="text-center reveal">Switching is <span class="gradient-text">Faster Than You Think</span></h2>
+      <p class="text-center reveal" style="color:var(--text-secondary);margin-bottom:var(--space-xl);max-width:600px;margin-inline:auto;">We make it dead simple. Start online, finish in minutes. No hold times, no hassle.</p>
       <div class="grid grid-4" style="margin-top:var(--space-xl);">
         {[
-          { step: '1', title: 'Call Us', desc: 'Tell us what\'s wrong with your current service and what you need.' },
-          { step: '2', title: 'We Compare', desc: 'We check every provider at your address and find the best upgrade.' },
-          { step: '3', title: 'Schedule Install', desc: 'We help you pick a plan and schedule installation — often same week.' },
-          { step: '4', title: 'Cancel Old Service', desc: 'Once your new service works, cancel the old one and return equipment.' },
+          { step: '1', title: 'Check Availability', desc: 'Enter your address or ZIP. We\'ll show every available provider and plan instantly.' },
+          { step: '2', title: 'Compare & Choose', desc: 'Side-by-side pricing, speeds, and reviews. Pick the plan that works for you.' },
+          { step: '3', title: 'Sign Up Online', desc: 'Complete setup in minutes. No phone call needed. New service scheduled immediately.' },
+          { step: '4', title: 'We Handled the Switching', desc: 'We guide you through canceling your old service. Your new internet just works.' },
         ].map((s, i) => (
           <div class={`card text-center reveal`} style={`transition-delay:${i * 80}ms;`}>
             <div style="width:48px;height:48px;border-radius:50%;background:var(--gradient-primary);display:grid;place-items:center;font-weight:800;margin:0 auto var(--space-md);">{s.step}</div>
@@ -179,5 +180,5 @@ const painPoints = [
 
 
 
-  <StickyCallBar text="Ready to switch? One call, better internet." />
+  <StickyCallBar text="Ready to switch? Get started now and save." />
 </Base>

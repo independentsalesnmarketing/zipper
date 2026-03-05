@@ -236,7 +236,7 @@
       "id": "windstream",
       "name": "Kinetic by Windstream",
       "slug": "windstream",
-      "logo": "https://logo.clearbit.com/windstream.com",
+      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F0e2f8c3a9d4c4e5f6a7b8c9d0e1f2a3b?format=webp&width=200",
       "types": ["fiber","dsl"],
       "rating": 3.9,
       "reviewCount": 15680,

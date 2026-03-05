@@ -144,8 +144,8 @@ const schemas = [
                 {plan.features.map(f => <li>{f}</li>)}
               </ul>
               {provider.isPartner && (
-                <a href="#get-connected" class="btn btn-cta w-full" style="margin-top: var(--space-lg);" data-signup-provider={provider.slug}>
-                  Sign Up for This Plan
+                <a href="#get-connected" class="btn btn-cta w-full" style="margin-top: var(--space-lg);word-break:break-word;white-space:normal;padding:var(--space-sm) var(--space-md);min-height:44px;display:flex;align-items:center;justify-content:center;overflow:hidden;text-overflow:ellipsis;" data-signup-provider={provider.slug}>
+                  Sign Up
                 </a>
               )}
             </div>

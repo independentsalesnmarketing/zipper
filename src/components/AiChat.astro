@@ -261,8 +261,8 @@ const partners = getPartnerProviders();
         await delay(300);
         addMessage(
           `<div style="background:rgba(0,213,132,0.12);border:1px solid rgba(0,213,132,0.35);border-radius:10px;padding:10px 14px;text-align:center;">
-            <div style="font-size:22px;font-weight:800;color:var(--brand-green);">Save ~$${est}/mo</div>
-            <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">Estimated based on your current bill</div>
+            <div style="font-size:22px;font-weight:800;color:#00d584;">Save ~$${est}/mo</div>
+            <div style="font-size:12px;color:#9ca3af;margin-top:2px;">Estimated based on your current bill</div>
           </div>`,
           false
         );
@@ -303,7 +303,7 @@ const partners = getPartnerProviders();
     if (savings > 0) {
       addMessage(
         `<div style="background:rgba(0,213,132,0.12);border:1px solid rgba(0,213,132,0.35);border-radius:10px;padding:10px 14px;text-align:center;margin-bottom:4px;">
-          <div style="font-size:13px;font-weight:700;color:var(--brand-green);">Potential savings: ~$${savings}/mo ($${savings * 12}/yr)</div>
+          <div style="font-size:13px;font-weight:700;color:#00d584;">Potential savings: ~$${savings}/mo ($${savings * 12}/yr)</div>
         </div>`,
         false
       );
@@ -315,14 +315,14 @@ const partners = getPartnerProviders();
       const medal = ['#1', '#2', '#3'][i];
       const telHref = `tel:${p.phone.replace(/[^0-9+]/g, '')}`;
       addMessage(
-        `<div style="border:1px solid var(--border-subtle);border-radius:10px;padding:12px;margin-bottom:4px;">
-          <div style="font-weight:800;font-size:14px;margin-bottom:4px;">${medal} ${p.name}</div>
-          <div style="font-size:12px;color:var(--text-secondary);margin-bottom:6px;">
-            Up to ${p.bestPlan.speed} Mbps · <strong>$${p.bestPlan.price}/mo</strong> · ${p.rating}/5
+        `<div style="border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px;margin-bottom:4px;background:#1a2336;">
+          <div style="font-weight:800;font-size:14px;margin-bottom:4px;color:#e8eaf0;">${medal} ${p.name}</div>
+          <div style="font-size:12px;color:#9ca3af;margin-bottom:8px;">
+            Up to ${p.bestPlan.speed} Mbps &middot; <strong style="color:#e8eaf0;">$${p.bestPlan.price}/mo</strong> &middot; ⭐ ${p.rating}/5
           </div>
-          <div style="display:flex;gap:6px;">
-            <a href="${telHref}" style="flex:1;display:block;background:var(--brand-green);color:white;text-align:center;padding:7px 4px;border-radius:7px;font-size:12px;font-weight:700;text-decoration:none;">Call for ${p.name}</a>
-            <a href="/provider/${p.slug}" style="flex:1;display:block;background:var(--surface-secondary);color:var(--brand-blue);text-align:center;padding:7px 4px;border-radius:7px;font-size:12px;font-weight:600;text-decoration:none;">See plans →</a>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <a href="#get-connected" data-signup-provider="${p.slug}" class="ai-order-cta" style="display:block;background:linear-gradient(135deg,#00d584,#1aff9f);color:#003d1a;text-align:center;padding:9px 4px;border-radius:8px;font-size:13px;font-weight:800;text-decoration:none;">Order Online — ${p.name} →</a>
+            <a href="${telHref}" style="display:block;text-align:center;padding:5px 4px;font-size:11px;color:#6b7280;text-decoration:none;">📞 Or call: ${p.phone}</a>
           </div>
         </div>`,
         false
@@ -332,7 +332,7 @@ const partners = getPartnerProviders();
     addMessage("These rates are time-sensitive. Locking in now can save you more.", false);
 
     options.innerHTML = `
-      <button class="ai-option-btn" id="ai-restart" style="font-size:12px;">Start over</button>
+      <button class="ai-option-btn" id="ai-restart" style="font-size:12px;color:#9ca3af;background:#111827;border-color:rgba(255,255,255,0.06);">Start over</button>
     `;
     document.getElementById('ai-restart')?.addEventListener('click', () => {
       messages.innerHTML = '';
@@ -340,7 +340,111 @@ const partners = getPartnerProviders();
       answers = {};
       runStep('start');
     });
+
+    // Wire up "Order Online" links inside chat to trigger SignUpForm
+    messages.querySelectorAll('.ai-order-cta').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const slug = link.dataset.signupProvider;
+        // Close chat
+        isOpen = false;
+        window_.style.display = 'none';
+        iconOpen.style.display = '';
+        iconClose.style.display = 'none';
+        // Trigger signup modal
+        const modal = document.getElementById('signup-modal');
+        if (modal) {
+          modal.classList.add('open');
+          document.body.style.overflow = 'hidden';
+          if (slug) {
+            const sel = document.getElementById('su-provider');
+            if (sel) {
+              sel.value = slug;
+              sel.dispatchEvent(new Event('change'));
+            }
+          }
+        } else {
+          // Fallback: scroll to anchor
+          window.location.href = '#get-connected';
+        }
+      });
+    });
   }
+
+  // ── NLP-lite intent detection ──────────────────────────────────────
+  function detectIntent(text) {
+    const t = text.toLowerCase().trim();
+    const zipMatch = t.match(/\b(\d{5})\b/);
+    if (zipMatch) return { type: 'zip', zip: zipMatch[1] };
+    // Provider name mentions
+    for (const p of providers) {
+      if (t.includes(p.name.toLowerCase())) return { type: 'provider', name: p.name };
+    }
+    if (/cheap|affordable|low.?cost|budget|inexpensive|discount|save/.test(t)) return { type: 'cheap' };
+    if (/fast|fiber|gig|gigabit|1000\s?mbps|high.?speed/.test(t)) return { type: 'speed' };
+    if (/gaming|game|ps5|xbox|twitch|lag|ping/.test(t)) return { type: 'gaming' };
+    if (/streaming|netflix|hulu|youtube|4k|disney/.test(t)) return { type: 'streaming' };
+    if (/work.?from.?home|wfh|zoom|video.?call|remote/.test(t)) return { type: 'wfh' };
+    if (/cancel|switch|change provider|leave|drop|alternative/.test(t)) return { type: 'switch' };
+    if (/rural|satellite|wireless|5g|no.?cable/.test(t)) return { type: 'rural' };
+    if (/compare|vs\.?|versus|difference|better|which is/.test(t)) return { type: 'compare' };
+    if (/price|cost|how much|pay|bill|monthly|rate|fee/.test(t)) return { type: 'price' };
+    if (/no.?contract|month.?to.?month|commitment|lock.*in/.test(t)) return { type: 'contract' };
+    if (/bundle|tv|cable|phone|package|combo/.test(t)) return { type: 'bundle' };
+    if (/order|sign.?up|get started|enroll|apply/.test(t)) return { type: 'order' };
+    if (/hi\b|hello|hey\b|good morning|good afternoon|sup\b/.test(t)) return { type: 'greeting' };
+    return { type: 'question' };
+  }
+
+  function respondToIntent(intent) {
+    const fastest = [...providers].sort((a, b) => b.maxSpeed - a.maxSpeed).slice(0, 3);
+    const cheapest = [...providers].sort((a, b) => a.minPrice - b.minPrice).slice(0, 3);
+    switch (intent.type) {
+      case 'greeting':
+        return "Hey! I'm your internet advisor. I can help you find the best plan in your area, compare providers, check pricing, and get you signed up in minutes. What are you looking for today?";
+      case 'price':
+        return `Here are our lowest starting prices right now:<br><br>${cheapest.map(p => `<strong>${p.name}</strong> — from $${p.minPrice}/mo`).join('<br>')}<br><br>Enter your ZIP code and I'll confirm exact pricing at your address.`;
+      case 'speed':
+        return `Top picks for speed:<br><br>${fastest.map(p => `<strong>${p.name}</strong> — up to ${p.maxSpeed} Mbps`).join('<br>')}<br><br>Fiber plans offer the fastest, most reliable speeds. Want to check availability at your address?`;
+      case 'cheap':
+        return `Most affordable options right now:<br><br>${cheapest.map(p => `<strong>${p.name}</strong> — from $${p.minPrice}/mo`).join('<br>')}<br><br>Pricing varies by location. What's your ZIP code?`;
+      case 'gaming':
+        const gamingPs = providers.filter(p => p.maxSpeed >= 300 || p.types.includes('fiber')).slice(0, 3);
+        return `For gaming you need low latency and 300+ Mbps. Best options:<br><br>${(gamingPs.length ? gamingPs : fastest).map(p => `<strong>${p.name}</strong> — up to ${p.maxSpeed} Mbps`).join('<br>')}<br><br>Fiber is ideal — near-zero lag ping. Enter your ZIP to check fiber availability.`;
+      case 'streaming':
+        const streamPs = providers.filter(p => p.maxSpeed >= 100).slice(0, 3);
+        return `For 4K streaming, 100+ Mbps is ideal. Top picks:<br><br>${(streamPs.length ? streamPs : fastest).map(p => `<strong>${p.name}</strong> — from $${p.minPrice}/mo`).join('<br>')}<br><br>What's your ZIP code? I'll find the best plan for your area.`;
+      case 'wfh':
+        const wfhPs = providers.filter(p => p.maxSpeed >= 200 || p.types.includes('fiber')).slice(0, 3);
+        return `Working from home needs reliable upload speeds. Best picks:<br><br>${(wfhPs.length ? wfhPs : fastest).map(p => `<strong>${p.name}</strong> — up to ${p.maxSpeed} Mbps`).join('<br>')}<br><br>Fiber gives you symmetrical upload/download — crucial for video calls. Enter your ZIP to check availability.`;
+      case 'switch':
+        return `Switching is easier than you think! We check all providers at your address, compare side by side, and help you order in minutes. Most providers offer <strong>no-contract plans</strong> now. What's your current bill? I can check if you're overpaying.`;
+      case 'rural':
+        const ruralPs = providers.filter(p => p.types.includes('satellite') || p.types.includes('fixed-wireless')).slice(0, 2);
+        return ruralPs.length
+          ? `For rural areas, top options include:<br><br>${ruralPs.map(p => `<strong>${p.name}</strong> — ${p.types.join(', ')}`).join('<br>')}<br><br>Some rural areas now have fiber or fixed wireless. Enter your ZIP to check.`
+          : `Coverage in rural areas depends on your exact address. Enter your ZIP and I'll check every available option — including satellite and fixed wireless.`;
+      case 'compare':
+        return `I can compare any providers you're considering! Enter your ZIP code and I'll show a side-by-side breakdown of everything available at your address — speeds, pricing, and ratings.`;
+      case 'contract':
+        return `Great news — most major providers now offer month-to-month plans with no early termination fees. Enter your ZIP and I'll highlight the no-contract options available in your area.`;
+      case 'bundle':
+        return `Bundles can save you $20–50/mo vs. separate services. Most major providers offer internet + TV + phone combos. Enter your ZIP and I'll show bundle pricing in your area.`;
+      case 'order':
+        return `Ready to get started? It only takes about 3 minutes:<br><br>1. Tell me your ZIP code<br>2. Pick your speed & provider<br>3. Fill out the short order form<br><br>What's your ZIP code?`;
+      case 'zip':
+        answers.zip = intent.zip;
+        return `Got it — checking providers for <strong>${intent.zip}</strong>. What's your main use for the internet?`;
+      case 'provider': {
+        const prov = providers.find(p => p.name.toLowerCase() === intent.name.toLowerCase());
+        if (prov) return `<strong>${prov.name}</strong> is one of our recommended providers!<br><br>Starting from $${prov.minPrice}/mo · Up to ${prov.maxSpeed} Mbps · ⭐ ${prov.rating}/5<br><br>What's your ZIP code? I'll confirm ${prov.name} availability at your address.`;
+        return "I can check all available providers at your address. What's your ZIP code?";
+      }
+      default:
+        return "I'm here to help you find the perfect internet plan! I can check providers at your address, compare speeds and prices, or answer questions. What would you like to know?";
+    }
+  }
+  // ─────────────────────────────────────────────────────────────────────
 
   function handleSend() {
     const val = input.value.trim();
@@ -348,24 +452,64 @@ const partners = getPartnerProviders();
 
     const stepId = input.dataset.step;
     const step = flow[stepId];
-    if (!step) return;
 
-    if (step.validate && !step.validate(val)) {
+    // Active guided input step — validate and process through flow
+    if (step) {
+      if (step.validate && !step.validate(val)) {
+        addMessage(val, true);
+        addMessage(step.errorMsg, false);
+        input.value = '';
+        return;
+      }
       addMessage(val, true);
-      addMessage(step.errorMsg, false);
       input.value = '';
+      input.disabled = true;
+      input.dataset.step = '';
+      if (step.process) step.process(val);
+      if (step.next) setTimeout(() => runStep(step.next), 500);
       return;
     }
 
+    // Free-form text — use NLP intent detection
     addMessage(val, true);
     input.value = '';
-    input.disabled = true;
-    input.dataset.step = '';
+    const intent = detectIntent(val);
 
-    if (step.process) step.process(val);
-    if (step.next) {
-      setTimeout(() => runStep(step.next), 500);
+    // If a ZIP was entered as free text, pre-fill and continue flow
+    if (intent.type === 'zip' && !answers.zip) {
+      answers.zip = intent.zip;
+      (async () => {
+        const t = addTyping();
+        await delay(700);
+        removeTyping();
+        addMessage(`Got it — <strong>${intent.zip}</strong>! Last question:`, false);
+        await delay(300);
+        runStep('usage');
+      })();
+      return;
     }
+
+    (async () => {
+      const t = addTyping();
+      await delay(750 + Math.random() * 400);
+      removeTyping();
+      addMessage(respondToIntent(intent), false);
+
+      // Offer a ZIP prompt after helpful responses
+      const needsZip = ['price','speed','cheap','gaming','streaming','wfh','switch','rural','compare','contract','bundle','order','zip','question'];
+      if (needsZip.includes(intent.type) && !answers.zip) {
+        await delay(350);
+        options.innerHTML = '';
+        const btn = document.createElement('button');
+        btn.className = 'ai-option-btn';
+        btn.textContent = 'Check plans at my address →';
+        btn.addEventListener('click', () => { options.innerHTML = ''; runStep('start'); });
+        options.appendChild(btn);
+      } else if (intent.type === 'zip' && answers.zip) {
+        await delay(350);
+        runStep('usage');
+      }
+    })();
   }
 
   function delay(ms) {
@@ -510,11 +654,11 @@ const partners = getPartnerProviders();
   }
 
   .ai-msg-bot {
-    background: var(--gray-800, #1f2937);
-    color: var(--text-primary, #f3f4f6);
+    background: #1f2937;
+    color: #e8eaf0;
     align-self: flex-start;
     border-bottom-left-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.07);
   }
   .ai-msg-user {
     background: linear-gradient(135deg, var(--brand-blue), #0040d9);
@@ -561,8 +705,8 @@ const partners = getPartnerProviders();
     padding: 12px 16px;
     border: 2px solid rgba(255,255,255,0.1);
     border-radius: 12px;
-    background: var(--gray-800, #1f2937);
-    color: var(--text-primary, #f3f4f6);
+    background: #1f2937;
+    color: #e8eaf0;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -600,13 +744,14 @@ const partners = getPartnerProviders();
   .ai-chat-input {
     flex: 1;
     padding: 10px 14px;
-    border: 1px solid var(--border, #374151);
+    border: 1px solid #374151;
     border-radius: 10px;
-    background: var(--gray-800, #1f2937);
-    color: var(--text-primary, #f3f4f6);
+    background: #1f2937;
+    color: #e8eaf0;
     font-size: 13px;
     outline: none;
   }
+  .ai-chat-input::placeholder { color: #6b7280; }
   .ai-chat-input:focus {
     border-color: var(--brand-blue);
   }

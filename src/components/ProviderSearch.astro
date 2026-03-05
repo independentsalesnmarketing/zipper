@@ -347,26 +347,13 @@ const clientProviders = allProviders.map(p => ({
   :global(.ps-btn-order) {
     font-weight: 800 !important;
     font-size: var(--text-base) !important;
-    background: linear-gradient(135deg, #0052ff, #00d9ff) !important;
-    border-color: #0052ff !important;
-    color: white !important;
+    background: linear-gradient(135deg, var(--brand-green), #1aff9f) !important;
+    border-color: var(--brand-green) !important;
+    color: #003d1a !important;
     min-height: 48px !important;
   }
   :global(.ps-btn-order:hover) {
-    background: linear-gradient(135deg, #0040d9, #00b8d9) !important;
-    box-shadow: 0 6px 16px rgba(0,82,255,0.5) !important;
-    transform: translateY(-2px) !important;
-  }
-  :global(.ps-btn-call) {
-    font-size: var(--text-base) !important;
-    font-weight: 800 !important;
-    background: var(--brand-green) !important;
-    border-color: var(--brand-green) !important;
-    color: white !important;
-    min-height: 44px !important;
-  }
-  :global(.ps-btn-call:hover) {
-    background: var(--brand-green-light) !important;
+    filter: brightness(1.08) !important;
     box-shadow: 0 6px 16px rgba(0,213,132,0.5) !important;
     transform: translateY(-2px) !important;
   }
@@ -575,11 +562,15 @@ const clientProviders = allProviders.map(p => ({
   // Photon by Komoot — OSM-backed, designed for typeahead, no API key required.
   async function fetchSuggestions(q: string, biasLat?: number, biasLon?: number): Promise<typeof acItems> {
     if (q.length < 3) return [];
+    // Don't search pure house numbers — wait until user adds a street name
+    if (/^\d+\s*$/.test(q.trim())) return [];
+    // Require at least 2 letters after the number for "123 Ma" style queries
+    if (/^\d+\s+\w$/.test(q.trim())) return [];
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000);
       let url = `https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=6&lang=en`;
-      if (biasLat && biasLon) url += `&lat=${biasLat}&lon=${biasLon}`;
+      if (biasLat && biasLon) url += `&lat=${biasLat}&lon=${biasLon}&zoom=14`;
       const r = await fetch(url, { signal: controller.signal });
       clearTimeout(timeoutId);
       if (!r.ok) return [];
@@ -737,8 +728,7 @@ const clientProviders = allProviders.map(p => ({
         ${rating ? `<div class="ps-metric"><div class="ps-metric-label">Rating</div><div class="ps-metric-val">${rating}</div></div>` : ''}
       </div>
       <div class="ps-actions">
-        <a href="#get-connected" class="btn btn-secondary btn-sm ps-btn-order" data-signup-provider="${p.slug || ''}">Order Online</a>
-        <a href="tel:+1${p.phone.replace(/\D/g,'') || mainPhone.replace(/\D/g,'')}" class="btn btn-cta ps-btn-call">${p.phone || mainPhone}</a>
+        <a href="#get-connected" class="btn btn-cta ps-btn-order" data-signup-provider="${p.slug || ''}">Check Availability</a>
         ${p.slug ? `<a href="/provider/${p.slug}" class="btn btn-secondary btn-sm ps-btn-plans">View Plans</a>` : ''}
       </div>
     </div>`;
@@ -751,10 +741,10 @@ const clientProviders = allProviders.map(p => ({
     </div>`;
     html += providers.map((p,i) => renderRow(p, i+1, mainPhone)).join('');
     html += `<div class="ps-cta-card">
-      <h4>Need help choosing?</h4>
-      <p>Our internet experts compare every option at your address — free, no obligation.</p>
-      <a href="tel:+1${mainPhone.replace(/\D/g,'')}" class="btn btn-cta btn-lg">Call ${mainPhone}</a>
-      <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Mon–Fri 8AM–10PM | Sat 9AM–7PM ET</div>
+      <h4>Not sure which plan is right for you?</h4>
+      <p>Our free comparison tool checks every provider at your address — no obligation, no spam.</p>
+      <a href="#get-connected" class="btn btn-cta btn-lg">Check Availability</a>
+      <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Takes less than 2 minutes · No commitment required</div>
     </div>`;
     container.innerHTML = html;
   }
@@ -762,10 +752,10 @@ const clientProviders = allProviders.map(p => ({
   function renderError(container: HTMLElement, mainPhone: string): void {
     container.innerHTML = `<div class="ps-cta-card">
       <h4>We couldn't verify providers right now</h4>
-      <p>Our experts can check instantly — call for personalized results at your address.</p>
-      <a href="tel:+1${mainPhone.replace(/\D/g,'')}" class="btn btn-cta btn-lg">Call ${mainPhone}</a>
-      <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Mon–Fri 8AM–10PM | Sat 9AM–7PM ET</div>
-    </div>`;
+      <p>Check availability at your address using our instant comparison tool — free, no commitment.</p>
+      <a href="#get-connected" class="btn btn-cta btn-lg">Check Availability</a>
+      <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Takes less than 2 minutes · No commitment required</div>
+    </div>`; 
   }
 
   function renderLoading(container: HTMLElement, location: string): void {
@@ -941,11 +931,12 @@ const clientProviders = allProviders.map(p => ({
       input.addEventListener('input', () => {
         clearTimeout(acTimer);
         const v = input.value.trim();
-        if (v.length < 3 || /^\d{5}$/.test(v)) { closeSugs(); return; }
+        // Skip: too short, exact ZIP, or purely numeric (just a house number)
+        if (v.length < 3 || /^\d{5}$/.test(v) || /^\d+\s*$/.test(v)) { closeSugs(); return; }
         acTimer = setTimeout(async () => {
           const items = await fetchSuggestions(v, _biasLat || undefined, _biasLon || undefined);
           if (document.activeElement === input && input.value.trim().length >= 3) showSugs(items);
-        }, 350);
+        }, 400);
       });
 
       input.addEventListener('keydown', (e: KeyboardEvent) => {

@@ -5,7 +5,7 @@ import SearchBar from '@components/SearchBar.astro';
 import ProviderCard from '@components/ProviderCard.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed } from '@lib/providers';
-import { generateBreadcrumbSchema } from '@lib/utils';
+import { generateBreadcrumbSchema, generateItemListSchema } from '@lib/utils';
 
 const allProviders = getAllProviders();
 const breadcrumbs = [{ name: 'Providers', url: '/providers' }];
@@ -83,7 +83,14 @@ const zip3ToState = {
 <Base
   title="Internet Providers in Your Area — Compare Plans & Prices (2026)"
   description="Find and compare all internet providers at your address. See plans, speeds, prices, and ratings for 25+ providers. Order online or call for exclusive deals."
-  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Providers', url: 'https://internet4all.com/providers' }])]}
+  schema={[
+    generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Providers', url: 'https://internet4all.com/providers' }]),
+    generateItemListSchema(allProviders.map(p => ({
+      name: p.name,
+      url: `https://internet4all.com/provider/${p.slug}`,
+      description: p.description,
+    }))),
+  ]}
 >
   <section class="section" style="padding-top: var(--space-xl);">
     <div class="container">
@@ -213,42 +220,34 @@ const zip3ToState = {
       </div>
       <div style="margin-top: var(--space-xl); display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-md);">
         <a href="/compare" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
-          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">⚖️</div>
           <h4 style="font-size: var(--text-base);">Compare Side-by-Side</h4>
           <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">See plans in a clear comparison table</p>
         </a>
         <a href="/deals" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
-          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">💰</div>
           <h4 style="font-size: var(--text-base);">Best Deals</h4>
           <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Today's lowest prices and promos</p>
         </a>
         <a href="/cheap-internet" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
-          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">🏷️</div>
           <h4 style="font-size: var(--text-base);">Cheap Internet</h4>
           <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Plans starting under $30/mo</p>
         </a>
         <a href="/fastest-internet" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
-          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">⚡</div>
           <h4 style="font-size: var(--text-base);">Fastest Internet</h4>
           <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Gigabit and multi-gig options</p>
         </a>
         <a href="/speed-test" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
-          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">📊</div>
           <h4 style="font-size: var(--text-base);">Speed Test</h4>
           <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Test your current connection</p>
         </a>
         <a href="/internet-types" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
-          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">🌐</div>
           <h4 style="font-size: var(--text-base);">Internet Types</h4>
           <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Fiber vs Cable vs DSL vs 5G</p>
         </a>
         <a href="/internet-for/gaming" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
-          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">🎮</div>
           <h4 style="font-size: var(--text-base);">Best for Gaming</h4>
           <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Low latency, high speed picks</p>
         </a>
         <a href="/internet-for/streaming" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
-          <div style="font-size:1.5rem;margin-bottom:var(--space-sm);">📺</div>
           <h4 style="font-size: var(--text-base);">Best for Streaming</h4>
           <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Buffer-free 4K streaming plans</p>
         </a>

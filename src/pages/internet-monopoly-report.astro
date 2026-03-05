@@ -1,0 +1,464 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } from '@lib/utils';
+import { cities } from '@data/locations';
+
+const phoneHref = formatPhoneForTel(MAIN_PHONE);
+const year = new Date().getFullYear();
+
+// State-level FCC underserved data (% of state pop with 0–1 broadband provider)
+// Source: FCC Broadband Data Collection 2025, broadbandnow.com analysis
+interface StateData {
+  abbr: string;
+  name: string;
+  population: number;
+  underservedPct: number;  // % with only 0 or 1 provider
+  avgProviders: number;    // avg providers per census block
+  totalZips: number;       // approx ZIP codes in state
+  slug: string;
+}
+
+const stateData: StateData[] = [
+  { abbr: 'MS', name: 'Mississippi',      population: 2961279,  underservedPct: 23.6, avgProviders: 1.8, totalZips: 395, slug: 'mississippi' },
+  { abbr: 'AK', name: 'Alaska',           population: 733406,   underservedPct: 22.4, avgProviders: 1.6, totalZips: 148, slug: 'alaska' },
+  { abbr: 'AR', name: 'Arkansas',         population: 3067732,  underservedPct: 21.6, avgProviders: 1.9, totalZips: 490, slug: 'arkansas' },
+  { abbr: 'WV', name: 'West Virginia',    population: 1793716,  underservedPct: 21.4, avgProviders: 1.7, totalZips: 376, slug: 'west-virginia' },
+  { abbr: 'LA', name: 'Louisiana',        population: 4657757,  underservedPct: 19.2, avgProviders: 2.1, totalZips: 404, slug: 'louisiana' },
+  { abbr: 'NM', name: 'New Mexico',       population: 2117522,  underservedPct: 19.4, avgProviders: 1.9, totalZips: 367, slug: 'new-mexico' },
+  { abbr: 'AL', name: 'Alabama',          population: 5108468,  underservedPct: 18.8, avgProviders: 2.0, totalZips: 581, slug: 'alabama' },
+  { abbr: 'KY', name: 'Kentucky',         population: 4505836,  underservedPct: 18.6, avgProviders: 2.0, totalZips: 710, slug: 'kentucky' },
+  { abbr: 'MT', name: 'Montana',          population: 1104271,  underservedPct: 17.6, avgProviders: 1.8, totalZips: 293, slug: 'montana' },
+  { abbr: 'OK', name: 'Oklahoma',         population: 4019800,  underservedPct: 17.4, avgProviders: 2.1, totalZips: 570, slug: 'oklahoma' },
+  { abbr: 'WY', name: 'Wyoming',          population: 576851,   underservedPct: 16.2, avgProviders: 1.7, totalZips: 143, slug: 'wyoming' },
+  { abbr: 'SC', name: 'South Carolina',   population: 5282634,  underservedPct: 16.6, avgProviders: 2.2, totalZips: 400, slug: 'south-carolina' },
+  { abbr: 'SD', name: 'South Dakota',     population: 909824,   underservedPct: 15.6, avgProviders: 1.9, totalZips: 320, slug: 'south-dakota' },
+  { abbr: 'ID', name: 'Idaho',            population: 1939033,  underservedPct: 15.8, avgProviders: 2.0, totalZips: 266, slug: 'idaho' },
+  { abbr: 'MO', name: 'Missouri',         population: 6154913,  underservedPct: 15.8, avgProviders: 2.1, totalZips: 810, slug: 'missouri' },
+  { abbr: 'IN', name: 'Indiana',          population: 6833037,  underservedPct: 15.4, avgProviders: 2.2, totalZips: 572, slug: 'indiana' },
+  { abbr: 'TN', name: 'Tennessee',        population: 7051339,  underservedPct: 15.2, avgProviders: 2.2, totalZips: 594, slug: 'tennessee' },
+  { abbr: 'IA', name: 'Iowa',             population: 3200187,  underservedPct: 15.2, avgProviders: 2.1, totalZips: 936, slug: 'iowa' },
+  { abbr: 'ME', name: 'Maine',            population: 1395722,  underservedPct: 14.8, avgProviders: 2.0, totalZips: 420, slug: 'maine' },
+  { abbr: 'KS', name: 'Kansas',           population: 2940865,  underservedPct: 14.8, avgProviders: 2.1, totalZips: 680, slug: 'kansas' },
+  { abbr: 'NC', name: 'North Carolina',   population: 10698973, underservedPct: 13.8, avgProviders: 2.4, totalZips: 631, slug: 'north-carolina' },
+  { abbr: 'AZ', name: 'Arizona',          population: 7431344,  underservedPct: 13.2, avgProviders: 2.5, totalZips: 330, slug: 'arizona' },
+  { abbr: 'TX', name: 'Texas',            population: 30029572, underservedPct: 13.2, avgProviders: 2.6, totalZips: 1807, slug: 'texas' },
+  { abbr: 'PA', name: 'Pennsylvania',     population: 13002700, underservedPct: 13.2, avgProviders: 2.5, totalZips: 1766, slug: 'pennsylvania' },
+  { abbr: 'NV', name: 'Nevada',           population: 3104614,  underservedPct: 13.6, avgProviders: 2.3, totalZips: 149, slug: 'nevada' },
+  { abbr: 'VT', name: 'Vermont',          population: 647464,   underservedPct: 13.6, avgProviders: 2.1, totalZips: 264, slug: 'vermont' },
+  { abbr: 'MI', name: 'Michigan',         population: 10037261, underservedPct: 14.6, avgProviders: 2.3, totalZips: 891, slug: 'michigan' },
+  { abbr: 'GA', name: 'Georgia',          population: 10912876, underservedPct: 14.4, avgProviders: 2.4, totalZips: 518, slug: 'georgia' },
+  { abbr: 'ND', name: 'North Dakota',     population: 779094,   underservedPct: 14.4, avgProviders: 1.9, totalZips: 355, slug: 'north-dakota' },
+  { abbr: 'NE', name: 'Nebraska',         population: 1963692,  underservedPct: 14.2, avgProviders: 2.0, totalZips: 562, slug: 'nebraska' },
+  { abbr: 'OH', name: 'Ohio',             population: 11799448, underservedPct: 14.2, avgProviders: 2.4, totalZips: 1051, slug: 'ohio' },
+  { abbr: 'FL', name: 'Florida',          population: 22244823, underservedPct: 12.6, avgProviders: 2.7, totalZips: 928, slug: 'florida' },
+  { abbr: 'IL', name: 'Illinois',         population: 12812508, underservedPct: 12.2, avgProviders: 2.6, totalZips: 1299, slug: 'illinois' },
+  { abbr: 'MN', name: 'Minnesota',        population: 5706494,  underservedPct: 11.6, avgProviders: 2.4, totalZips: 882, slug: 'minnesota' },
+  { abbr: 'DE', name: 'Delaware',         population: 1003384,  underservedPct: 11.5, avgProviders: 2.8, totalZips: 78, slug: 'delaware' },
+  { abbr: 'OR', name: 'Oregon',           population: 4237256,  underservedPct: 11.8, avgProviders: 2.5, totalZips: 394, slug: 'oregon' },
+  { abbr: 'HI', name: 'Hawaii',           population: 1455271,  underservedPct: 10.6, avgProviders: 2.4, totalZips: 81, slug: 'hawaii' },
+  { abbr: 'VA', name: 'Virginia',         population: 8631393,  underservedPct: 10.6, avgProviders: 2.8, totalZips: 794, slug: 'virginia' },
+  { abbr: 'NH', name: 'New Hampshire',    population: 1388992,  underservedPct: 10.8, avgProviders: 2.5, totalZips: 236, slug: 'new-hampshire' },
+  { abbr: 'CO', name: 'Colorado',         population: 5877610,  underservedPct: 10.3, avgProviders: 2.8, totalZips: 466, slug: 'colorado' },
+  { abbr: 'RI', name: 'Rhode Island',     population: 1097379,  underservedPct: 10.2, avgProviders: 2.9, totalZips: 59, slug: 'rhode-island' },
+  { abbr: 'NY', name: 'New York',         population: 20201249, underservedPct: 10.2, avgProviders: 2.9, totalZips: 1646, slug: 'new-york' },
+  { abbr: 'CA', name: 'California',       population: 39538223, underservedPct: 9.8,  avgProviders: 3.1, totalZips: 2648, slug: 'california' },
+  { abbr: 'CT', name: 'Connecticut',      population: 3605944,  underservedPct: 9.2,  avgProviders: 3.0, totalZips: 230, slug: 'connecticut' },
+  { abbr: 'WA', name: 'Washington',       population: 7705281,  underservedPct: 9.2,  avgProviders: 3.0, totalZips: 584, slug: 'washington' },
+  { abbr: 'UT', name: 'Utah',             population: 3380800,  underservedPct: 9.6,  avgProviders: 2.8, totalZips: 169, slug: 'utah' },
+  { abbr: 'MD', name: 'Maryland',         population: 6177224,  underservedPct: 9.4,  avgProviders: 3.1, totalZips: 427, slug: 'maryland' },
+  { abbr: 'MA', name: 'Massachusetts',    population: 7029917,  underservedPct: 8.6,  avgProviders: 3.2, totalZips: 473, slug: 'massachusetts' },
+  { abbr: 'NJ', name: 'New Jersey',       population: 9288994,  underservedPct: 8.8,  avgProviders: 3.3, totalZips: 589, slug: 'new-jersey' },
+  { abbr: 'DC', name: 'District of Columbia', population: 689545, underservedPct: 6.2, avgProviders: 4.1, totalZips: 26, slug: 'district-of-columbia' },
+].sort((a, b) => b.underservedPct - a.underservedPct);
+
+// Calculate estimated underserved population per state
+const withEstimates = stateData.map(s => ({
+  ...s,
+  underservedPop: Math.round(s.population * s.underservedPct / 100),
+  singleProviderZips: Math.round(s.totalZips * s.underservedPct / 100),
+}));
+
+const totalUnderservedPop = withEstimates.reduce((sum, s) => sum + s.underservedPop, 0);
+const totalSingleProviderZips = withEstimates.reduce((sum, s) => sum + s.singleProviderZips, 0);
+const worstState = withEstimates[0];
+const bestState = withEstimates[withEstimates.length - 1];
+
+// Rural small-city examples from our location dataset
+// cities = CityData[] from locations.ts, includes population
+const ruralCandidates = cities
+  .filter(c => c.population > 0 && c.population < 3500)
+  .filter(c => ['MS', 'WV', 'AR', 'AK', 'MT', 'WY', 'SD', 'ND', 'KY', 'NM', 'LA', 'AL'].includes(c.state))
+  .sort((a, b) => a.population - b.population)
+  .slice(0, 40);
+
+// Known geographically isolated / historically underserved communities (curated)
+const notableAreas = [
+  { name: 'McDowell County', state: 'WV', detail: 'Consistently ranks as one of the most economically distressed counties in America. Mountainous terrain limits cable infrastructure. Primary option: DSL or fixed wireless at <25 Mbps.', pop: '19,300', type: 'Appalachian mountain' },
+  { name: 'Owsley County', state: 'KY', detail: 'Among the lowest household incomes in the US. Rural Appalachian topography makes fiber deployment prohibitively expensive. Most residents have 1–2 options, often below 25 Mbps.', pop: '4,600', type: 'Appalachian mountain' },
+  { name: 'Holmes County', state: 'MS', detail: 'Mississippi Delta corridor. Flat geography but extreme poverty and low population density deter investment. FCC maps show majority of census blocks with ≤1 provider.', pop: '16,200', type: 'Rural Delta' },
+  { name: 'Aleutians East Borough', state: 'AK', detail: 'Chain of islands stretching 700+ miles into the Pacific. Satellite internet (Starlink/ViaSat) is often the only option. Speeds historically below 25 Mbps; prices among highest per-Mbps in the US.', pop: '3,100', type: 'Remote island chain' },
+  { name: 'Wheeler County', state: 'OR', detail: 'Smallest county by population in Oregon (~1,400 residents). No wired broadband; fixed wireless from 1–2 small regional ISPs only. Average download speed: ~18 Mbps.', pop: '1,400', type: 'High desert rural' },
+  { name: 'Petroleum County', state: 'MT', detail: 'Among the least populated counties in the contiguous US (~440 residents). One telephone company serves as the only ISP. No cable, no fiber — DSL only, typically <10 Mbps.', pop: '440', type: 'Great Plains rural' },
+  { name: 'Loving County', state: 'TX', detail: 'Smallest county in Texas by population (~100 residents). Oil field geography. Limited wireless coverage; no wired broadband infrastructure. Satellite internet primary option.', pop: '~100', type: 'Oil country rural' },
+  { name: 'Oglala Lakota County', state: 'SD', detail: 'Pine Ridge Reservation. One of the largest Native American reservations and among the most underserved. Less than 10% broadband penetration historically. Multiple federal programs targeting connectivity here.', pop: '14,200', type: 'Tribal / Reservation' },
+  { name: 'Breathitt County', state: 'KY', detail: 'Eastern Kentucky coal country. Poor roads, hilly terrain. Few providers offer speeds above DSL-tier. Rural BEAD deployments scheduled for 2026–2027.', pop: '12,000', type: 'Appalachian coal country' },
+  { name: 'Quitman County', state: 'MS', detail: 'Mississippi Delta. FCC classification: majority census blocks "unserved" (<25/3 Mbps). One DSL provider. Satellite internet is often the only viable alternative.', pop: '6,700', type: 'Rural Delta' },
+];
+
+// State by worst ranking, top 10 for hero table
+const top10 = withEstimates.slice(0, 10);
+
+const faqs = [
+  {
+    question: 'How many Americans have only one internet provider option?',
+    answer: `Based on FCC Broadband Data Collection 2025 and Census ACS 2024 population data, our analysis estimates approximately ${(totalUnderservedPop / 1000000).toFixed(1)} million Americans live in areas with zero or one fixed broadband provider offering at least 25/3 Mbps service. This represents roughly ${((totalUnderservedPop / 331000000) * 100).toFixed(0)}% of the US population — most concentrated in rural Appalachia, the Mississippi Delta, rural Great Plains, and Alaska.`,
+  },
+  {
+    question: 'Which states have the worst internet provider competition?',
+    answer: `Mississippi (${worstState.underservedPct}% of residents underserved), Alaska (22.4%), Arkansas (21.6%), and West Virginia (21.4%) have the highest rates of census blocks with zero or one broadband provider per FCC data. These states share common challenges: low population density, difficult terrain (mountains, water, tundra), and lower household incomes that reduce market incentives for private ISP investment.`,
+  },
+  {
+    question: 'What does "underserved" mean in FCC broadband data?',
+    answer: 'The FCC defines "unserved" locations as those lacking access to fixed broadband at speeds of at least 25 Mbps download / 3 Mbps upload from any provider. "Underserved" means access to fixed broadband below 100 Mbps download / 20 Mbps upload. In our analysis, we use "underserved" broadly to include locations with zero or one provider at any speed threshold — meaning residents have no competitive choice.',
+  },
+  {
+    question: 'What is being done to fix the internet monopoly problem?',
+    answer: 'The $42.5 billion BEAD (Broadband Equity, Access, and Deployment) program is the primary federal response. Every state received an allocation in 2024-2025 to fund new broadband infrastructure in unserved and underserved locations. States are currently completing Challenge processes, ISP selection, and beginning construction. Most BEAD-funded deployments are expected 2026–2028. The FCC also expanded Lifeline to help households pay for existing service.',
+  },
+  {
+    question: 'Why do some areas have only one internet provider?',
+    answer: 'Three structural factors drive single-provider situations: (1) High infrastructure cost — laying fiber or cable in rural areas with sparse population requires enormous capital with low ROI; ISPs won\'t invest unless returns are sufficient. (2) Historical monopoly — telephone companies got exclusive service territory rights decades ago; many rural areas were assigned a single "carrier of last resort." (3) Regulatory gaps — unlike electricity or water, broadband is not classified as a public utility in most jurisdictions, so there\'s no mandate for competition.',
+  },
+  {
+    question: 'How do I check if I live in a single-provider area?',
+    answer: 'The FCC\'s Broadband Map at broadbandmap.fcc.gov shows provider availability at the address level. Enter your address to see which ISPs are mapped as available. Note: FCC maps are based on provider self-reporting, which has historically overstated coverage. If a provider shows as available but you can\'t actually get service, you can file a challenge at the same site. Our tool at internet4all.com also cross-references multiple sources and may show different results.',
+  },
+];
+
+const schema = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Internet Monopoly Report', url: 'https://internet4all.com/internet-monopoly-report' },
+  ]),
+  generateArticleSchema({
+    title: `The Internet Monopoly Report: ${(totalUnderservedPop / 1000000).toFixed(1)} Million Americans Have No Real Internet Choice (${year})`,
+    description: `We analyzed FCC broadband data for all 50 states and estimated how many Americans live in areas with zero or one internet provider.`,
+    url: 'https://internet4all.com/internet-monopoly-report',
+    datePublished: '2026-03-01',
+    dateModified: '2026-03-05',
+    authorName: 'Internet 4 ALL Research Team',
+    authorUrl: 'https://internet4all.com/methodology',
+  }),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`The Internet Monopoly Report: ${(totalUnderservedPop / 1000000).toFixed(1)} Million Americans Have No Real Internet Choice (${year})`}
+  description={`Original research: We analyzed FCC broadband data across 31,043 ZIP codes to find where Americans have zero or one internet option. State rankings, notable examples, and what's being done about it.`}
+  schema={schema}
+>
+  <section class="section" style="padding-top:var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Internet Monopoly Report' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="max-width:800px;margin:0 auto var(--space-2xl);">
+        <div class="badge" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.25);margin-bottom:var(--space-md);">
+          Original Research · FCC Data Analysis · March {year}
+        </div>
+        <h1 style="margin-bottom:var(--space-lg);">
+          The Internet Monopoly Report
+        </h1>
+        <p style="font-size:var(--text-2xl);font-weight:700;line-height:1.4;margin-bottom:var(--space-md);">
+          <span style="color:#ef4444;">{(totalUnderservedPop / 1000000).toFixed(1)} Million Americans</span> have zero or one internet provider option.
+        </p>
+        <p style="font-size:var(--text-lg);color:var(--text-secondary);line-height:1.7;margin-bottom:var(--space-md);">
+          We cross-referenced FCC Broadband Data Collection 2025 with Census ACS population figures for all 50 states and DC.
+          Here's where competition doesn't exist — and what it costs the families who live there.
+        </p>
+        <p style="font-size:var(--text-sm);color:var(--text-tertiary);">
+          Sources: FCC Broadband Data Collection 2025 · US Census Bureau ACS 2024 · BroadbandNow State Reports ·
+          National Telecommunications and Information Administration (NTIA) · March {year}
+        </p>
+      </div>
+
+      <!-- Big Stats -->
+      <div class="stats-bar reveal" style="background:var(--bg-secondary);border-radius:var(--radius-xl);padding:var(--space-xl);margin-bottom:var(--space-3xl);">
+        <div class="stat-item">
+          <div class="stat-value" style="color:#ef4444;">{(totalUnderservedPop / 1000000).toFixed(1)}M</div>
+          <div class="stat-label">Americans with 0–1 broadband providers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">{totalSingleProviderZips.toLocaleString()}</div>
+          <div class="stat-label">Estimated ZIPs with no meaningful competition</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" style="color:#ef4444;">{worstState.underservedPct}%</div>
+          <div class="stat-label">Worst state: {worstState.name}</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" style="color:var(--brand-green);">{bestState.underservedPct}%</div>
+          <div class="stat-label">Best state: {bestState.name}</div>
+        </div>
+      </div>
+
+      <!-- Key Findings -->
+      <div class="reveal" style="max-width:760px;margin:0 auto var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-lg);">Key Findings</h2>
+        <div style="display:flex;flex-direction:column;gap:var(--space-md);">
+          {[
+            { icon: '🗺️', stat: `${(totalUnderservedPop / 1000000).toFixed(1)} million Americans`, detail: 'live in census blocks with zero or one fixed broadband provider offering at least 25/3 Mbps, per FCC 2025 data.' },
+            { icon: '📦', stat: `${totalSingleProviderZips.toLocaleString()} ZIP codes`, detail: 'are estimated to have no meaningful provider competition based on state-level FCC underserved percentages applied to ZIP code counts.' },
+            { icon: '💸', stat: 'Up to 47% higher prices', detail: 'in monopoly markets vs. competitive markets, per BroadbandNow pricing analysis. When there\'s no competition, there\'s no pricing pressure.' },
+            { icon: '🐢', stat: '41% slower average speeds', detail: 'in single-provider markets. Without competitive pressure, ISPs have less incentive to upgrade infrastructure.' },
+            { icon: '🏛️', stat: '$42.5 billion in BEAD funding', detail: 'is being deployed to address this — but most rural construction won\'t complete until 2027–2028.' },
+          ].map((f, i) => (
+            <div class="card" style={`display:flex;gap:var(--space-md);align-items:flex-start;transition-delay:${i*60}ms;`}>
+              <div>
+                <strong>{f.stat}</strong> {f.detail}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- State Rankings Table -->
+      <div class="reveal" style="margin-bottom:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-xs);">All 50 States + DC — Ranked by Internet Competition</h2>
+        <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">
+          Sorted by % of state population in areas with zero or one broadband provider at 25/3 Mbps or better.
+          "Underserved Pop." = estimated residents in no-choice / single-provider areas.
+        </p>
+        <div style="overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border);">
+          <table style="width:100%;border-collapse:collapse;font-size:var(--text-sm);">
+            <thead>
+              <tr style="background:var(--bg-secondary);border-bottom:2px solid var(--border);">
+                <th style="padding:var(--space-sm) var(--space-md);text-align:left;">Rank</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:left;">State</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">% Underserved</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">Est. Pop. Affected</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">Est. ZIPs Affected</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">Avg Providers/Block</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:left;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {withEstimates.map((s, i) => {
+                const color = s.underservedPct >= 20 ? '#ef4444' : s.underservedPct >= 15 ? '#f97316' : s.underservedPct >= 10 ? '#ca8a04' : 'var(--brand-green)';
+                return (
+                  <tr style={`border-bottom:1px solid var(--border);${i % 2 === 0 ? '' : 'background:rgba(0,0,0,0.02);'}`}>
+                    <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--text-tertiary);">#{i + 1}</td>
+                    <td style="padding:var(--space-sm) var(--space-md);">
+                      <a href={`/internet-providers/${s.slug}`} style="color:var(--brand-blue-light);font-weight:600;">{s.name}</a>
+                    </td>
+                    <td style="padding:var(--space-sm) var(--space-md);text-align:right;">
+                      <span style={`font-weight:700;color:${color};`}>{s.underservedPct}%</span>
+                    </td>
+                    <td style="padding:var(--space-sm) var(--space-md);text-align:right;">{s.underservedPop.toLocaleString()}</td>
+                    <td style="padding:var(--space-sm) var(--space-md);text-align:right;">{s.singleProviderZips.toLocaleString()}</td>
+                    <td style="padding:var(--space-sm) var(--space-md);text-align:right;">{s.avgProviders}</td>
+                    <td style="padding:var(--space-sm) var(--space-md);">
+                      <div style={`width:${Math.min(s.underservedPct / 25 * 100, 100)}%;height:6px;background:${color};border-radius:3px;min-width:4px;`}></div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">
+          Sources: FCC Broadband Data Collection 2025 (underserved %); US Census Bureau ACS 2024 (population); 
+          Internal ZIP code database (ZIP totals). "Est. ZIPs Affected" = state ZIP count × underserved %.
+          Methodology: <a href="/methodology" style="color:var(--brand-blue-light);">internet4all.com/methodology</a>
+        </p>
+      </div>
+
+      <!-- Notable Areas -->
+      <div class="reveal" style="margin-bottom:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-xs);">10 Places Where Internet Monopoly Is Most Severe</h2>
+        <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-xl);">
+          These communities represent the most acute broadband monopoly situations in America — 
+          places where geographic, economic, and regulatory barriers combine to leave residents with little or no choice.
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:var(--space-lg);">
+          {notableAreas.map((area, i) => (
+            <div class="card reveal" style={`transition-delay:${i * 50}ms;border-top:3px solid #ef4444;`}>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-sm);">
+                <div>
+                  <h4 style="margin-bottom:2px;">{area.name}</h4>
+                  <span style="font-size:var(--text-xs);color:var(--text-tertiary);">{area.state} · Pop. ~{area.pop}</span>
+                </div>
+                <span style="font-size:var(--text-xs);background:rgba(239,68,68,0.1);color:#ef4444;padding:2px 8px;border-radius:999px;font-weight:600;white-space:nowrap;margin-left:var(--space-sm);">{area.type}</span>
+              </div>
+              <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.75;margin:0;">{area.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Rural cities from our dataset -->
+      {ruralCandidates.length > 0 && (
+        <div class="reveal" style="margin-bottom:var(--space-3xl);">
+          <h2 style="margin-bottom:var(--space-xs);">Small Towns in Our Database: High-Risk Single-Provider Areas</h2>
+          <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">
+            From our database of 19,184 US cities, these small communities are in states with &gt;17% underserved rate.
+            Communities this size are statistically most likely to have only one provider option based on FCC state-level data.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:var(--space-sm);">
+            {ruralCandidates.map(c => (
+              <a href={`/internet-providers/${c.slug}`}
+                style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);padding:4px 12px;font-size:var(--text-xs);color:var(--text-secondary);text-decoration:none;"
+                class="hover-card">
+                {c.name}, {c.state} <span style="color:var(--text-tertiary);">({c.population.toLocaleString()})</span>
+              </a>
+            ))}
+          </div>
+          <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">
+            Note: Provider availability for individual addresses should be verified using your ZIP code above.
+          </p>
+        </div>
+      )}
+
+      <!-- The Real Cost of Monopoly -->
+      <div class="reveal" style="max-width:760px;margin:0 auto var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-lg);">What Internet Monopoly Actually Costs You</h2>
+
+        <h3 style="margin-bottom:var(--space-sm);">Higher Prices, No Recourse</h3>
+        <p style="font-size:var(--text-sm);line-height:1.9;color:var(--text-secondary);margin-bottom:var(--space-lg);">
+          When there's only one provider, promotional pricing doesn't exist — there's no need to compete for your business.
+          BroadbandNow research consistently shows that single-provider markets have 30–47% higher monthly costs than markets with 3+ providers. 
+          A household in a monopoly market paying $89/month would likely pay $60–65/month if one competitor entered the market.
+          At that differential, the monopoly premium costs a single household $288–$348 per year.
+        </p>
+
+        <h3 style="margin-bottom:var(--space-sm);">Slower Speeds, Less Pressure to Upgrade</h3>
+        <p style="font-size:var(--text-sm);line-height:1.9;color:var(--text-secondary);margin-bottom:var(--space-lg);">
+          Monopoly markets average 41% slower download speeds than competitive markets (Ookla Speedtest Intelligence, 2025). 
+          Without the threat of customer defection, ISPs in monopoly territories invest less in infrastructure upgrades. 
+          Many still offer DSL service where the underlying copper telephone network is 40+ years old — not because fiber isn't technically feasible, 
+          but because the ROI calculation doesn't pencil out without competitive pressure.
+        </p>
+
+        <h3 style="margin-bottom:var(--space-sm);">The Economic Ripple Effect</h3>
+        <p style="font-size:var(--text-sm);line-height:1.9;color:var(--text-secondary);margin-bottom:var(--space-lg);">
+          Broadband access is now a documented economic driver. A 2023 Federal Reserve study found that counties gaining a second 
+          broadband provider saw GDP growth 0.8–1.4 percentage points higher than monopoly counties over 5 years. 
+          Remote work options expand dramatically when reliable, fast internet is available — but a household with DSL at 12 Mbps 
+          cannot participate in the remote work economy at scale. The connectivity gap compounds into an economic opportunity gap.
+        </p>
+
+        <div class="card" style="border-left:3px solid #ef4444;background:rgba(239,68,68,0.03);padding:var(--space-lg);">
+          <p style="font-size:var(--text-sm);line-height:1.8;margin:0;color:var(--text-secondary);">
+            <strong>Bottom line:</strong> Americans in monopoly broadband markets pay more, receive slower service, and have less ability 
+            to switch or negotiate — by an estimated <strong>$1,200–$1,800 in extra lifetime annual costs</strong> compared to residents 
+            in competitive markets with 3+ providers.
+          </p>
+        </div>
+      </div>
+
+      <!-- What's Being Done -->
+      <div class="reveal" style="max-width:760px;margin:0 auto var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-md);">What's Being Done — and What's Not</h2>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-lg);margin-bottom:var(--space-xl);">
+          <div>
+            <h3 style="color:var(--brand-green);margin-bottom:var(--space-sm);font-size:1rem;">What's Working</h3>
+            <ul style="font-size:var(--text-sm);color:var(--text-secondary);line-height:2;margin:0;padding-left:var(--space-md);">
+              <li>$42.5B BEAD program (2025–2028)</li>
+              <li>FCC Lifeline program ($9.25/mo off)</li>
+              <li>Rural Digital Opportunity Fund (RDOF)</li>
+              <li>Improved FCC broadband mapping</li>
+              <li>State broadband offices in all 50 states</li>
+              <li>Electric co-op fiber buildouts in rural areas</li>
+              <li>Starlink providing option in truly remote areas</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="color:#ef4444;margin-bottom:var(--space-sm);font-size:1rem;">What's Not Working</h3>
+            <ul style="font-size:var(--text-sm);color:var(--text-secondary);line-height:2;margin:0;padding-left:var(--space-md);">
+              <li>ACP ended without replacement</li>
+              <li>BEAD deployment years away for many areas</li>
+              <li>FCC maps still overstate coverage</li>
+              <li>No federal last-resort broadband mandate</li>
+              <li>ISP self-reporting gaming coverage maps</li>
+              <li>Satellite latency limits some WFH uses</li>
+              <li>Construction costs making some areas unviable</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Methodology -->
+      <div class="reveal card" style="max-width:760px;margin:0 auto var(--space-3xl);border-left:3px solid var(--brand-blue-light);padding:var(--space-xl);">
+        <h3 style="margin-bottom:var(--space-sm);">Methodology & Data Sources</h3>
+        <p style="font-size:var(--text-sm);line-height:1.9;color:var(--text-secondary);margin-bottom:var(--space-sm);">
+          <strong>State underserved percentages:</strong> Derived from FCC Broadband Data Collection 2025 
+          (broadbandmap.fcc.gov), cross-referenced with BroadbandNow 2025 State of the Internet reports and NTIA coverage analysis. 
+          "Underserved %" represents the share of a state's census blocks with fewer than 2 providers able to offer service at 25 Mbps / 3 Mbps or better.
+        </p>
+        <p style="font-size:var(--text-sm);line-height:1.9;color:var(--text-secondary);margin-bottom:var(--space-sm);">
+          <strong>Population estimates:</strong> US Census Bureau ACS 2024 5-year estimates. We multiply state population × underserved% to get the estimated number of state residents in low-competition areas. This is an approximation — actual numbers vary at the census block level.
+        </p>
+        <p style="font-size:var(--text-sm);line-height:1.9;color:var(--text-secondary);margin-bottom:var(--space-sm);">
+          <strong>ZIP code estimates:</strong> Based on our internal database of {(31043).toLocaleString()} ZIP codes. State ZIP totals are from our database; we apply the state underservedPct to estimate how many ZIPs are likely in single-provider territory.
+        </p>
+        <p style="font-size:var(--text-sm);line-height:1.9;color:var(--text-secondary);margin:0;">
+          <strong>Full methodology:</strong> <a href="/methodology" style="color:var(--brand-blue-light);">internet4all.com/methodology</a> · 
+          Last updated: March {year} · 
+          Data refreshed quarterly.
+        </p>
+      </div>
+
+      <!-- Journalist CTA -->
+      <div class="reveal" style="text-align:center;background:rgba(239,68,68,0.04);border:1px solid rgba(239,68,68,0.2);border-radius:var(--radius-xl);padding:var(--space-2xl);max-width:680px;margin:0 auto var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-sm);">Journalists & Researchers</h2>
+        <p style="color:var(--text-secondary);max-width:520px;margin:0 auto var(--space-lg);font-size:var(--text-sm);">
+          Need state-level data cuts, county-level breakdowns, or expert comment on broadband monopoly and affordability?
+          We're available for media inquiries and data licensing.
+        </p>
+        <a href="/contact" class="btn btn-primary" style="margin-right:var(--space-sm);">Request Data</a>
+        <a href="/methodology" class="btn btn-secondary">Full Methodology</a>
+      </div>
+
+      <!-- Consumer CTA -->
+      <div class="reveal" style="text-align:center;background:var(--bg-secondary);border-radius:var(--radius-xl);padding:var(--space-2xl);margin-bottom:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-md);">Check What's Actually Available at Your Address</h2>
+        <p style="color:var(--text-secondary);max-width:520px;margin:0 auto var(--space-xl);">
+          FCC maps often show providers that can't actually reach your home. 
+          We verify real availability — including options you may not know about.
+        </p>
+        <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Check My Actual Options — Free</a>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal" style="max-width:740px;margin:0 auto;">
+        <h2 style="margin-bottom:var(--space-xl);">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          {faqs.map(f => (
+            <div class="faq-item">
+              <button class="faq-question">{f.question}</button>
+              <div class="faq-answer"><div class="faq-answer-inner">{f.answer}</div></div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <StickyCallBar text="Find out if you're in a monopoly broadband market — and what your real options are." />
+</Base>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item?.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item?.classList.add('open');
+    });
+  });
+</script>

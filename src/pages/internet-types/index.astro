@@ -58,7 +58,7 @@ const schemas = [
               <tr style="border-bottom: 1px solid var(--border);">
                 <td style="padding: var(--space-sm) var(--space-md);">
                   <a href={`/internet-types/${t.slug}`} style={`text-decoration: none; font-weight: 700; color: ${t.color};`}>
-                    {t.icon} {t.name}
+                    {t.name}
                   </a>
                 </td>
                 <td style="padding: var(--space-sm) var(--space-md);">{t.speed}</td>
@@ -88,7 +88,6 @@ const schemas = [
         <div class="grid grid-2" style="gap: var(--space-lg);">
           {types.map(t => (
             <a href={`/internet-types/${t.slug}`} class="card" style="padding: var(--space-xl); text-decoration: none;">
-              <span style="font-size: var(--text-3xl);">{t.icon}</span>
               <h3 style={`margin-top: var(--space-sm); color: ${t.color};`}>{t.name}</h3>
               <div style="margin-top: var(--space-md); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xs); font-size: var(--text-sm);">
                 <div><span style="color: var(--text-tertiary);">Speed:</span> <strong>{t.speed}</strong></div>

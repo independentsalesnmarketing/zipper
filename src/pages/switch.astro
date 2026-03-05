@@ -45,7 +45,8 @@ const painPoints = [
       </div>
       <div class="reveal" style="margin-top:var(--space-md);">
         <a href={`tel:${MAIN_PHONE.replace(/[^0-9]/g, '')}`} class="btn btn-call" style="font-size:var(--text-lg);">
-          📞 {MAIN_PHONE} — Switch Now
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          {MAIN_PHONE} — Switch Now
         </a>
         <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:var(--space-xs);">Free expert help. Average call: 8 minutes.</p>
       </div>
@@ -60,7 +61,6 @@ const painPoints = [
         {painPoints.map((p, i) => (
           <div class={`card reveal`} style={`transition-delay:${i * 80}ms;border-left:3px solid var(--brand-red);`}>
             <div class="flex items-center" style="gap:var(--space-md);margin-bottom:var(--space-sm);">
-              <span style="font-size:1.6rem;">{p.icon}</span>
               <h4>{p.title}</h4>
             </div>
             <p style="font-size:var(--text-sm);">{p.desc}</p>
@@ -121,7 +121,8 @@ const painPoints = [
                 </div>
               </div>
               <a href={`tel:${p.phone.replace(/[^0-9]/g, '')}`} class="btn btn-call" style="width:100%;text-align:center;font-size:var(--text-sm);">
-                📞 Switch to {p.name}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                Switch to {p.name}
               </a>
             </div>
           );

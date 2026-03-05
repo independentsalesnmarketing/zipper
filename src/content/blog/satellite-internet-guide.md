@@ -89,7 +89,7 @@ Traditional satellite still exists, and in some very remote areas, it might be t
 | Option | Speed | Latency | Price | Data | Best For |
 |--------|-------|---------|-------|------|---------|
 | **Starlink** | 50-200 Mbps | 25-60ms | $120/mo | Priority limits | Remote areas |
-| **[T-Mobile 5G](/provider/tmobile)** | 72-245 Mbps | 25-50ms | $50/mo | Unlimited | Areas with tower coverage |
+| **[T-Mobile 5G](/provider/tmobile-5g)** | 72-245 Mbps | 25-50ms | $50/mo | Unlimited | Areas with tower coverage |
 | **[Frontier Fiber](/provider/frontier)** | 500+ Mbps | 5-10ms | $49.99/mo | Unlimited | Where fiber reaches |
 | **Windstream** | 25-100 Mbps | 15-40ms | $39.99/mo | Unlimited | Rural fiber/DSL areas |
 | **HughesNet** | 25-100 Mbps | 600ms+ | $50/mo | Hard caps | Last resort |

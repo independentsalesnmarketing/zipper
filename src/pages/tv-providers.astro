@@ -24,10 +24,10 @@ const tvProviders = allProviders
   });
 
 const tvTypes = [
-  { name: 'Cable TV', icon: '📺', desc: 'Traditional cable television with hundreds of channels. Usually bundled with cable internet for savings. Providers include Spectrum, Xfinity, Cox, and Optimum.', channels: '150–250+', price: '$50–120/mo', dvr: 'Yes (often included)', reliability: '⭐⭐⭐⭐⭐' },
-  { name: 'Fiber TV (IPTV)', icon: '⚡', desc: 'TV delivered over fiber optic lines. Superior picture quality with less compression. Available from AT&T, Verizon Fios, and Frontier.', channels: '100–300+', price: '$40–100/mo', dvr: 'Cloud DVR', reliability: '⭐⭐⭐⭐⭐' },
-  { name: 'Satellite TV', icon: '🛰️', desc: 'TV via satellite dish. Available everywhere in the US including rural areas. DIRECTV and DISH are the main providers.', channels: '200–330+', price: '$65–150/mo', dvr: 'Yes (included)', reliability: '⭐⭐⭐⭐' },
-  { name: 'Live TV Streaming', icon: '📱', desc: 'Cable replacement services streamed over internet. YouTube TV, Hulu + Live TV, Sling TV, fuboTV. No equipment needed.', channels: '30–100+', price: '$35–75/mo', dvr: 'Cloud DVR (unlimited)', reliability: '⭐⭐⭐⭐' },
+  { name: 'Cable TV', desc: 'Traditional cable television with hundreds of channels. Usually bundled with cable internet for savings. Providers include Spectrum, Xfinity, Cox, and Optimum.', channels: '150–250+', price: '$50–120/mo', dvr: 'Yes (often included)', reliability: '5/5' },
+  { name: 'Fiber TV (IPTV)', desc: 'TV delivered over fiber optic lines. Superior picture quality with less compression. Available from AT&T, Verizon Fios, and Frontier.', channels: '100–300+', price: '$40–100/mo', dvr: 'Cloud DVR', reliability: '5/5' },
+  { name: 'Satellite TV', desc: 'TV via satellite dish. Available everywhere in the US including rural areas. DIRECTV and DISH are the main providers.', channels: '200–330+', price: '$65–150/mo', dvr: 'Yes (included)', reliability: '4/5' },
+  { name: 'Live TV Streaming', desc: 'Cable replacement services streamed over internet. YouTube TV, Hulu + Live TV, Sling TV, fuboTV. No equipment needed.', channels: '30–100+', price: '$35–75/mo', dvr: 'Cloud DVR (unlimited)', reliability: '4/5' },
 ];
 
 const streamingServices = [
@@ -67,8 +67,8 @@ const schemas = [
 ];
 ---
 <Base
-  title={`Best TV Providers & Cable TV in Your Area (${month} ${year})`}
-  description={`Compare TV providers in your area: cable TV, satellite, fiber TV, and live streaming. Find the best TV + internet bundles. ${tvProviders.length}+ providers compared. Updated ${month} ${year}.`}
+  title={`Cable TV Providers in Your Area — Find Cable & TV Near You (${month} ${year})`}
+  description={`Find cable TV providers in your area for ${month} ${year}. Compare cable, satellite, fiber TV, and streaming options near you. Cable and internet bundles starting at $50/mo. ${tvProviders.length}+ cable TV providers compared.`}
   schema={schemas}
 >
   <StickyCallBar text="Find TV providers in your area — call for bundle deals" />
@@ -79,7 +79,7 @@ const schemas = [
 
       <!-- Hero -->
       <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
-        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">📺 Updated {month} {year}</div>
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">Updated {month} {year}</div>
         <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
           Best <span class="gradient-text">TV Providers</span> in Your Area
         </h1>
@@ -88,7 +88,7 @@ const schemas = [
           channels lineups, and bundle deals. Save up to $30/mo when you pair TV with internet.
         </p>
         <div style="margin-top: var(--space-xl);">
-          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Get TV + Internet Deals</a>
+          <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Get TV + Internet Deals</a>
           <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check My Address</a>
         </div>
       </div>
@@ -112,8 +112,7 @@ const schemas = [
               {tvTypes.map(tt => (
                 <tr>
                   <td>
-                    <span style="font-size: 1.2rem;">{tt.icon}</span>
-                    <strong style="margin-left: var(--space-xs);">{tt.name}</strong>
+                    <strong>{tt.name}</strong>
                   </td>
                   <td>{tt.channels}</td>
                   <td style="color: var(--brand-green); font-weight: 600;">{tt.price}</td>
@@ -188,7 +187,7 @@ const schemas = [
         </div>
         <div class="card" style="padding: var(--space-lg); margin-top: var(--space-lg); text-align: center; background: var(--surface-2);">
           <p style="margin-bottom: var(--space-sm);">Streaming TV requires fast internet. We'll help you find the perfect internet plan for buffer-free viewing.</p>
-          <a href={phoneHref} class="btn btn-cta">📞 Get Internet for Streaming</a>
+          <a href={phoneHref} class="btn btn-cta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Get Internet for Streaming</a>
         </div>
       </div>
 
@@ -220,7 +219,7 @@ const schemas = [
                   <td>{p.types.map(t => getTypeLabel(t)).join(', ')}</td>
                   <td>{formatSpeed(getMaxSpeed(p))}</td>
                   <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
-                  <td>⭐ {p.rating.toFixed(1)}</td>
+                  <td>{p.rating.toFixed(1)}</td>
                   <td><a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a></td>
                 </tr>
               ))}
@@ -236,7 +235,7 @@ const schemas = [
           <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); max-width: 550px; margin-inline: auto;">
             Our experts know every TV and internet deal in your area. We'll compare cable, satellite, and streaming options to find the best fit for your budget and viewing habits.
           </p>
-          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Free TV Consultation</a>
+          <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Free TV Consultation</a>
         </div>
       </div>
 
@@ -244,11 +243,11 @@ const schemas = [
       <div class="reveal" style="margin-bottom: var(--space-3xl);">
         <h2 style="margin-bottom: var(--space-lg);">Related Resources</h2>
         <div class="grid grid-3" style="gap: var(--space-sm);">
-          <a href="/bundles" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📦 Internet + TV Bundles</a>
-          <a href="/cable-tv" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🔌 Cable vs. Streaming</a>
-          <a href="/internet-and-phone" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📞 Internet + Phone</a>
+          <a href="/bundles" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Internet + TV Bundles</a>
+          <a href="/cable-tv" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Cable vs. Streaming</a>
+          <a href="/internet-and-phone" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Internet + Phone</a>
           <a href="/check-availability" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📍 Check Availability</a>
-          <a href="/home-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏠 Home Internet Plans</a>
+          <a href="/home-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Home Internet Plans</a>
           <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏎️ Speed Test</a>
         </div>
       </div>

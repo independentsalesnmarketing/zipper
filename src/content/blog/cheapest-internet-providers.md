@@ -28,7 +28,7 @@ You don't need to spend $80/mo for fast internet. Several major providers offer 
 | 9 | AltaFiber | $39.99/mo | 250 Mbps | Fiber |
 | 10 | Windstream Kinetic | $39.99/mo | 200 Mbps | Fiber/DSL |
 
-## 1. [T-Mobile 5G Home Internet](/provider/tmobile) — Best Overall Value
+## 1. [T-Mobile 5G Home Internet](/provider/tmobile-5g) — Best Overall Value
 
 **$50/mo** | 72-245 Mbps | No contract, no hidden fees
 

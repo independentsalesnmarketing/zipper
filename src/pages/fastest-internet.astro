@@ -61,7 +61,7 @@ const schemas = [
 
       <!-- Hero -->
       <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
-        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">⚡ Updated {month} {year}</div>
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">Updated {month} {year}</div>
         <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
           Fastest <span class="gradient-text">Internet Providers</span> in {year}
         </h1>
@@ -69,7 +69,8 @@ const schemas = [
           We ranked all {speedRanked.length} providers by maximum download speed. From gigabit to multi-gig — find the fastest internet at your address.
         </p>
         <a href={phoneHref} class="btn btn-call mt-xl" style="font-size: var(--text-lg);">
-          📞 Call {phone} for Fastest Plans
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Call {phone} for Fastest Plans
         </a>
       </div>
 
@@ -77,7 +78,6 @@ const schemas = [
       <div class="grid grid-3 reveal" style="margin-bottom: var(--space-3xl);">
         {speedRanked.slice(0, 3).map((p, i) => (
           <div class="card text-center" style={`padding: var(--space-xl); ${i === 0 ? 'border-color: var(--brand-gold); box-shadow: 0 0 20px rgba(255,193,7,0.15);' : ''}`}>
-            <div style={`font-size: 2.5rem; margin-bottom: var(--space-sm);`}>{i === 0 ? '🥇' : i === 1 ? '🥈' : '🥉'}</div>
             <div style="font-size: var(--text-sm); color: var(--text-tertiary); font-weight: 600;">#{i+1} Fastest</div>
             <h3 style="font-size: var(--text-xl); margin: var(--space-sm) 0;">{p.name}</h3>
             <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-blue);">{formatSpeed(getMaxSpeed(p))}</div>
@@ -203,12 +203,12 @@ const schemas = [
       <div class="reveal" style="margin-bottom: var(--space-3xl);">
         <h2 style="margin-bottom: var(--space-lg);">Related Guides</h2>
         <div class="grid grid-3" style="gap: var(--space-sm);">
-          <a href="/best-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">🏆 Best Internet Providers</a>
-          <a href="/cheap-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">💰 Cheapest Internet Plans</a>
-          <a href="/internet-types/fiber" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">⚡ Fiber Internet Guide</a>
-          <a href="/internet-for/gaming" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">🎮 Best for Gaming</a>
-          <a href="/speed-test" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">🚀 Speed Test</a>
-          <a href="/internet-for/work-from-home" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">💼 Best for WFH</a>
+          <a href="/best-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">Best Internet Providers</a>
+          <a href="/cheap-internet" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">Cheapest Internet Plans</a>
+          <a href="/internet-types/fiber" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">Fiber Internet Guide</a>
+          <a href="/internet-for/gaming" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">Best for Gaming</a>
+          <a href="/speed-test" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">Speed Test</a>
+          <a href="/internet-for/work-from-home" class="card" style="padding:var(--space-md);text-decoration:none;font-weight:500;">Best for WFH</a>
         </div>
       </div>
 

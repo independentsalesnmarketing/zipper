@@ -9,15 +9,17 @@ import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 const partners = getPartnerProviders().slice(0, 6);
 const faqs = [
   { q: 'How far in advance should I set up internet before moving?', a: 'We recommend scheduling your new internet install 2-3 weeks before your move date. This ensures a technician can come on or near move-in day so you\'re never without service.' },
-  { q: 'Can I transfer my current internet to my new address?', a: 'Many providers allow you to transfer service. However, your current provider may not serve your new area. Call us and we\'ll check availability at your new address and help you transfer or find a better option.' },
-  { q: 'What if my current provider doesn\'t serve my new address?', a: 'No worries — that\'s exactly what we\'re here for! Enter your new ZIP code above and we\'ll show you every provider available at your new home, with exclusive deals for new customers.' },
+  { q: 'Can I transfer my current internet to my new address?', a: 'Many providers allow you to transfer internet service to your new address. However, your current provider may not serve your new area. Call us and we\'ll check availability at your new address and help you transfer or find a better option.' },
+  { q: 'What if my current provider doesn\'t serve my new address?', a: 'No worries — that\'s exactly what we\'re here for! Enter your new ZIP code above and we\'ll show you every provider available at your new home, with exclusive deals for new customers. New customers almost always get the best pricing.' },
   { q: 'Do I need to cancel my old service myself?', a: 'Yes. Contact your current provider to cancel once your new service is active. Return any equipment to avoid charges. We recommend keeping old service active until your new connection is confirmed working.' },
   { q: 'Are there special deals for people who just moved?', a: 'Absolutely! New customers almost always get the best promotional pricing. Many of our partner providers offer exclusive move-in deals with discounted rates for 12-24 months. Call us to hear about current offers.' },
+  { q: 'Will a new provider pay my ETF if I\'m stuck in a contract?', a: 'Some providers run contract buyout programs that cover up to $500 of your early termination fee when you switch. Call us and we\'ll check which providers at your new address are currently running buyout promotions.' },
+  { q: 'How quickly can I get internet set up at my new address?', a: '5G home internet (T-Mobile, Verizon) ships directly to your new address and can be activated same-day or next-day. Cable self-install kits arrive in 2-3 days. Professional installation for fiber or cable is typically 3-5 business days. Call us as soon as your move date is confirmed.' },
 ];
 ---
 <Base
-  title="Moving? Set Up Internet at Your New Home — Best Moving Deals"
-  description="Moving to a new home? Set up internet before you arrive. Compare providers at your new address and get exclusive move-in deals. Free setup assistance."
+  title="Moving? Set Up Internet at Your New Home — Best Move-In Internet Deals"
+  description="Moving to a new home? Set up internet at your new address before you arrive. Exclusive move-in deals, same-week install, and help with early termination fees. Transfer internet service or start fresh with a new provider."
   schema={[
     generateBreadcrumbSchema([
       { name: 'Home', url: 'https://internet4all.com' },
@@ -30,11 +32,24 @@ const faqs = [
   <section class="hero" style="padding-bottom:var(--space-xl);">
     <div class="container text-center">
       <Breadcrumb items={[{ name: 'Moving' }]} />
-      <div class="badge reveal" style="margin-bottom:var(--space-md);">🏠 Moving Made Easy</div>
-      <h1 class="reveal">Moving? Get Internet <span class="gradient-text">Ready Before You Arrive</span></h1>
-      <p class="hero-subtitle reveal">Don't spend your first night in a new home without WiFi. We'll find the best provider at your new address — and get you connected fast.</p>
+      <div class="badge reveal" style="margin-bottom:var(--space-md);">Moving Made Easy</div>
+      <h1 class="reveal">Moving? Get Internet <span class="gradient-text">Ready at Your New Address</span></h1>
+      <p class="hero-subtitle reveal">Don't spend your first night without WiFi. We'll find the best provider at your new address — with exclusive move-in deals, same-week installation, and help covering early termination fees.</p>
       <div class="flex justify-center reveal" style="margin-top:var(--space-xl);">
         <SearchBar placeholder="Enter your NEW ZIP code" size="large" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Contract Buyout Callout -->
+  <section class="section" style="background:rgba(0,213,132,0.04);border-top:1px solid rgba(0,213,132,0.15);border-bottom:1px solid rgba(0,213,132,0.15);padding:var(--space-xl) 0;">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-xl);flex-wrap:wrap;">
+        <div style="flex:1;">
+          <h3 style="margin-bottom:var(--space-xs);color:var(--brand-green);">Stuck in a Contract? Some Providers Will Pay Your ETF</h3>
+          <p style="color:var(--text-secondary);margin:0;">Spectrum and other providers run contract buyout programs that cover up to <strong>$500 of your early termination fee</strong> when you switch to them. Don't let a contract trap you at your old address — call us to check which providers at your new address are running buyout promos right now.</p>
+        </div>
+        <a href="/switch" class="btn btn-primary" style="flex-shrink:0;white-space:nowrap;">Check ETF Buyout Options →</a>
       </div>
     </div>
   </section>
@@ -92,7 +107,7 @@ const faqs = [
                 </div>
               </div>
               <a href={`tel:${p.phone.replace(/[^0-9]/g, '')}`} class="btn btn-call" style="width:100%;text-align:center;">
-                📞 Call for Move-In Deal
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> Call for Move-In Deal
               </a>
             </div>
           );
@@ -108,15 +123,15 @@ const faqs = [
         <h2 class="reveal" style="margin-bottom:var(--space-md);">Why Call <span class="gradient-text">Internet 4 ALL</span> When Moving?</h2>
         <div class="grid grid-3" style="margin-top:var(--space-xl);text-align:left;">
           <div class="reveal reveal-delay-1">
-            <h5 style="color:var(--brand-green);margin-bottom:var(--space-xs);">✅ One call, all providers</h5>
+            <h5 style="color:var(--brand-green);margin-bottom:var(--space-xs);">One call, all providers</h5>
             <p style="font-size:var(--text-sm);">Instead of calling 5 different companies, call us once. We'll compare every option at your new address.</p>
           </div>
           <div class="reveal reveal-delay-2">
-            <h5 style="color:var(--brand-blue-light);margin-bottom:var(--space-xs);">✅ Exclusive move-in prices</h5>
+            <h5 style="color:var(--brand-blue-light);margin-bottom:var(--space-xs);">Exclusive move-in prices</h5>
             <p style="font-size:var(--text-sm);">Our partner rates are often lower than what you'll find on provider websites. New customers get the best deals.</p>
           </div>
           <div class="reveal reveal-delay-3">
-            <h5 style="color:var(--brand-purple);margin-bottom:var(--space-xs);">✅ Same-week installation</h5>
+            <h5 style="color:var(--brand-purple);margin-bottom:var(--space-xs);">Same-week installation</h5>
             <p style="font-size:var(--text-sm);">We prioritize movers. Most installations can be scheduled within 3-5 business days of your call.</p>
           </div>
         </div>

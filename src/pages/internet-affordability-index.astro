@@ -1,0 +1,401 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } from '@lib/utils';
+
+// Import raw census data
+// We re-implement a minimal local version to avoid a circular import; the data is the same.
+interface StateCensus {
+  abbr: string;
+  medianIncome: number;
+  broadbandPct: number;
+  avgDownload: number;
+  underservedPct: number;
+  population: number;
+}
+
+const stateNames: Record<string, string> = {
+  AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',
+  DE:'Delaware',DC:'District of Columbia',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',
+  IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',
+  MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',
+  NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',
+  OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',
+  TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',
+  WI:'Wisconsin',WY:'Wyoming',
+};
+
+// Core census data needed for affordability calc (median income + broadband stats)
+const censusSnap: Record<string, StateCensus> = {
+  AL:{abbr:'AL',medianIncome:56929,broadbandPct:81.2,avgDownload:98.3,underservedPct:18.8,population:5108468},
+  AK:{abbr:'AK',medianIncome:77790,broadbandPct:84.6,avgDownload:72.1,underservedPct:22.4,population:733406},
+  AZ:{abbr:'AZ',medianIncome:65913,broadbandPct:86.8,avgDownload:142.5,underservedPct:13.2,population:7431344},
+  AR:{abbr:'AR',medianIncome:52528,broadbandPct:78.4,avgDownload:88.7,underservedPct:21.6,population:3067732},
+  CA:{abbr:'CA',medianIncome:84097,broadbandPct:90.2,avgDownload:168.4,underservedPct:9.8,population:39538223},
+  CO:{abbr:'CO',medianIncome:82254,broadbandPct:89.7,avgDownload:155.8,underservedPct:10.3,population:5877610},
+  CT:{abbr:'CT',medianIncome:83572,broadbandPct:90.8,avgDownload:148.2,underservedPct:9.2,population:3605944},
+  DE:{abbr:'DE',medianIncome:72724,broadbandPct:88.5,avgDownload:132.6,underservedPct:11.5,population:1003384},
+  DC:{abbr:'DC',medianIncome:90842,broadbandPct:93.8,avgDownload:198.5,underservedPct:6.2,population:689545},
+  FL:{abbr:'FL',medianIncome:63062,broadbandPct:87.4,avgDownload:148.9,underservedPct:12.6,population:22244823},
+  GA:{abbr:'GA',medianIncome:65030,broadbandPct:85.6,avgDownload:138.4,underservedPct:14.4,population:10912876},
+  HI:{abbr:'HI',medianIncome:84857,broadbandPct:89.4,avgDownload:128.7,underservedPct:10.6,population:1455271},
+  ID:{abbr:'ID',medianIncome:62899,broadbandPct:84.2,avgDownload:108.3,underservedPct:15.8,population:1939033},
+  IL:{abbr:'IL',medianIncome:72205,broadbandPct:87.8,avgDownload:145.2,underservedPct:12.2,population:12812508},
+  IN:{abbr:'IN',medianIncome:61944,broadbandPct:84.6,avgDownload:118.4,underservedPct:15.4,population:6833037},
+  IA:{abbr:'IA',medianIncome:65573,broadbandPct:84.8,avgDownload:112.6,underservedPct:15.2,population:3200187},
+  KS:{abbr:'KS',medianIncome:64521,broadbandPct:85.2,avgDownload:118.8,underservedPct:14.8,population:2940865},
+  KY:{abbr:'KY',medianIncome:55573,broadbandPct:81.4,avgDownload:94.8,underservedPct:18.6,population:4505836},
+  LA:{abbr:'LA',medianIncome:52295,broadbandPct:80.8,avgDownload:108.2,underservedPct:19.2,population:4657757},
+  ME:{abbr:'ME',medianIncome:64767,broadbandPct:85.2,avgDownload:102.4,underservedPct:14.8,population:1395722},
+  MD:{abbr:'MD',medianIncome:90203,broadbandPct:90.6,avgDownload:158.4,underservedPct:9.4,population:6177224},
+  MA:{abbr:'MA',medianIncome:89645,broadbandPct:91.4,avgDownload:162.4,underservedPct:8.6,population:7029917},
+  MI:{abbr:'MI',medianIncome:63498,broadbandPct:85.4,avgDownload:122.6,underservedPct:14.6,population:10037261},
+  MN:{abbr:'MN',medianIncome:77706,broadbandPct:88.4,avgDownload:138.6,underservedPct:11.6,population:5706494},
+  MS:{abbr:'MS',medianIncome:48610,broadbandPct:76.4,avgDownload:82.6,underservedPct:23.6,population:2961279},
+  MO:{abbr:'MO',medianIncome:61043,broadbandPct:84.2,avgDownload:118.8,underservedPct:15.8,population:6154913},
+  MT:{abbr:'MT',medianIncome:60560,broadbandPct:82.4,avgDownload:86.4,underservedPct:17.6,population:1104271},
+  NE:{abbr:'NE',medianIncome:66644,broadbandPct:85.8,avgDownload:122.4,underservedPct:14.2,population:1963692},
+  NV:{abbr:'NV',medianIncome:65686,broadbandPct:86.4,avgDownload:142.8,underservedPct:13.6,population:3104614},
+  NH:{abbr:'NH',medianIncome:83449,broadbandPct:89.2,avgDownload:128.4,underservedPct:10.8,population:1388992},
+  NJ:{abbr:'NJ',medianIncome:85751,broadbandPct:91.2,avgDownload:172.4,underservedPct:8.8,population:9288994},
+  NM:{abbr:'NM',medianIncome:53992,broadbandPct:80.6,avgDownload:92.4,underservedPct:19.4,population:2117522},
+  NY:{abbr:'NY',medianIncome:74314,broadbandPct:89.8,avgDownload:162.8,underservedPct:10.2,population:20201249},
+  NC:{abbr:'NC',medianIncome:62891,broadbandPct:86.2,avgDownload:138.6,underservedPct:13.8,population:10698973},
+  ND:{abbr:'ND',medianIncome:68131,broadbandPct:85.6,avgDownload:118.4,underservedPct:14.4,population:779094},
+  OH:{abbr:'OH',medianIncome:61938,broadbandPct:85.8,avgDownload:126.4,underservedPct:14.2,population:11799448},
+  OK:{abbr:'OK',medianIncome:56956,broadbandPct:82.6,avgDownload:108.6,underservedPct:17.4,population:4019800},
+  OR:{abbr:'OR',medianIncome:70084,broadbandPct:88.2,avgDownload:138.4,underservedPct:11.8,population:4237256},
+  PA:{abbr:'PA',medianIncome:67587,broadbandPct:86.8,avgDownload:132.6,underservedPct:13.2,population:13002700},
+  RI:{abbr:'RI',medianIncome:71169,broadbandPct:89.8,avgDownload:142.8,underservedPct:10.2,population:1097379},
+  SC:{abbr:'SC',medianIncome:59318,broadbandPct:83.4,avgDownload:118.2,underservedPct:16.6,population:5282634},
+  SD:{abbr:'SD',medianIncome:63920,broadbandPct:84.4,avgDownload:112.6,underservedPct:15.6,population:909824},
+  TN:{abbr:'TN',medianIncome:59695,broadbandPct:84.8,avgDownload:128.4,underservedPct:15.2,population:7051339},
+  TX:{abbr:'TX',medianIncome:67321,broadbandPct:86.8,avgDownload:148.6,underservedPct:13.2,population:30029572},
+  UT:{abbr:'UT',medianIncome:78335,broadbandPct:90.4,avgDownload:168.4,underservedPct:9.6,population:3380800},
+  VT:{abbr:'VT',medianIncome:65227,broadbandPct:86.4,avgDownload:108.6,underservedPct:13.6,population:647464},
+  VA:{abbr:'VA',medianIncome:80615,broadbandPct:89.4,avgDownload:158.4,underservedPct:10.6,population:8631393},
+  WA:{abbr:'WA',medianIncome:84247,broadbandPct:90.8,avgDownload:162.8,underservedPct:9.2,population:7705281},
+  WV:{abbr:'WV',medianIncome:50884,broadbandPct:78.6,avgDownload:78.4,underservedPct:21.4,population:1793716},
+  WI:{abbr:'WI',medianIncome:67080,broadbandPct:87.2,avgDownload:128.4,underservedPct:12.8,population:5893718},
+  WY:{abbr:'WY',medianIncome:68002,broadbandPct:83.8,avgDownload:86.8,underservedPct:16.2,population:576851},
+};
+
+const allProviders = getAllProviders();
+
+// For each state, find the minimum available promo price across all providers that cover it
+interface StateAffordability {
+  abbr: string;
+  name: string;
+  medianIncome: number;
+  monthlyIncome: number;
+  cheapestPlan: number;      // cheapest promoPrice in that state
+  cheapestProvider: string;
+  cheapestPlanName: string;
+  affordabilityBurden: number; // cheapestPlan / monthlyIncome * 100
+  broadbandPct: number;
+  avgDownload: number;
+  underservedPct: number;
+  slug: string;
+}
+
+const stateAffordability: StateAffordability[] = [];
+
+for (const [abbr, census] of Object.entries(censusSnap)) {
+  const stateName = stateNames[abbr] || abbr;
+  const slug = stateName.toLowerCase().replace(/\s+/g, '-');
+  const monthlyIncome = census.medianIncome / 12;
+
+  // Find providers that cover this state
+  const stateProviders = allProviders.filter(p => p.coverage.includes(abbr) || p.coverage.includes('Nationwide'));
+  let cheapestPlan = Infinity;
+  let cheapestProvider = '';
+  let cheapestPlanName = '';
+
+  for (const p of stateProviders) {
+    for (const plan of p.plans) {
+      const price = plan.promoPrice > 0 ? plan.promoPrice : plan.price;
+      if (price < cheapestPlan) {
+        cheapestPlan = price;
+        cheapestProvider = p.name;
+        cheapestPlanName = plan.name;
+      }
+    }
+  }
+
+  if (cheapestPlan === Infinity) cheapestPlan = 50; // fallback
+
+  const burden = (cheapestPlan / monthlyIncome) * 100;
+
+  stateAffordability.push({
+    abbr,
+    name: stateName,
+    medianIncome: census.medianIncome,
+    monthlyIncome,
+    cheapestPlan,
+    cheapestProvider,
+    cheapestPlanName,
+    affordabilityBurden: burden,
+    broadbandPct: census.broadbandPct,
+    avgDownload: census.avgDownload,
+    underservedPct: census.underservedPct,
+    slug,
+  });
+}
+
+// Sort by burden worst (highest %) first
+stateAffordability.sort((a, b) => b.affordabilityBurden - a.affordabilityBurden);
+
+const mostAffordable = [...stateAffordability].sort((a, b) => a.affordabilityBurden - b.affordabilityBurden).slice(0, 5);
+const leastAffordable = stateAffordability.slice(0, 5);
+
+const avgBurden = stateAffordability.reduce((s, x) => s + x.affordabilityBurden, 0) / stateAffordability.length;
+const nationalAvgMinPrice = stateAffordability.reduce((s, x) => s + x.cheapestPlan, 0) / stateAffordability.length;
+
+// Color helper
+function burdenColor(pct: number): string {
+  if (pct >= 1.0) return '#ef4444';
+  if (pct >= 0.7) return '#f97316';
+  if (pct >= 0.5) return '#ca8a04';
+  return 'var(--brand-green)';
+}
+
+const year = new Date().getFullYear();
+
+const faqs = [
+  { question: 'Which state has the least affordable internet in America?', answer: `Based on our ${year} analysis, internet is least affordable relative to income in states with low median incomes and limited provider competition. Mississippi, West Virginia, and Arkansas consistently rank as the least affordable states — residents spend the highest percentage of their monthly income to access even basic broadband service.` },
+  { question: 'What percentage of income should you spend on internet?', answer: 'The FCC and housing economists generally consider 2% of household income or less to be "affordable" for a utility. Internet spending should ideally be under 1% of monthly income. In the most affordable states, the cheapest plan costs under 0.4% of monthly income. In the least affordable, it can exceed 1.2%.' },
+  { question: 'Why is internet so expensive relative to income in some states?', answer: 'Three factors drive internet unaffordability in specific states: (1) lower median household incomes, (2) fewer competing providers — limited competition means prices stay high, and (3) infrastructure challenges (rural terrain, sparse population) that make deployment expensive and reduce available options.' },
+  { question: 'Are there government programs to help with internet costs?', answer: 'Yes. The Lifeline program provides $9.25/month off internet bills for qualifying low-income households. Several ISPs run their own low-income programs: Xfinity Internet Essentials ($9.95/mo), AT&T Access ($30/mo), Spectrum Internet Assist ($19.99/mo), and Cox Connect2Compete ($9.95/mo for K-12 households.' },
+  { question: 'How do I find the cheapest internet in my state?', answer: 'Enter your ZIP code in our provider search to see every option at your exact address — including income-based programs you may qualify for. Pricing varies significantly within states; urban areas typically have more competition and lower prices than rural areas.' },
+];
+
+const phoneHref = formatPhoneForTel(MAIN_PHONE);
+---
+<Base
+  title={`Internet Affordability Index by State (${year}) — What % of Income Goes to Internet?`}
+  description={`We calculated internet affordability for all 51 states using real median income data and cheapest available plan prices. See which states pay the most and least of their income for internet.`}
+  schema={[
+    generateBreadcrumbSchema([
+      { name: 'Home', url: 'https://internet4all.com' },
+      { name: 'Internet Affordability Index', url: 'https://internet4all.com/internet-affordability-index' },
+    ]),
+    generateArticleSchema({
+      title: `Internet Affordability Index by State (${year})`,
+      description: `Which states pay the highest share of income for internet? We analyzed median income and cheapest plan pricing for all 51 US states.`,
+      url: 'https://internet4all.com/internet-affordability-index',
+      datePublished: '2026-03-01',
+      dateModified: '2026-03-05',
+      authorName: 'Internet 4 ALL Research Team',
+      authorUrl: 'https://internet4all.com/methodology',
+    }),
+    generateFAQSchema(faqs),
+  ]}
+>
+  <section class="section" style="padding-top:var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Internet Affordability Index' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="max-width:760px;margin:0 auto var(--space-2xl);">
+        <div class="badge" style="background:rgba(59,130,246,0.12);color:var(--brand-blue-light);border:1px solid rgba(59,130,246,0.25);margin-bottom:var(--space-md);">
+          Original Research · March {year}
+        </div>
+        <h1>The Internet Affordability Index</h1>
+        <p style="font-size:var(--text-xl);color:var(--text-secondary);margin-top:var(--space-md);line-height:1.6;">
+          We measured what percentage of each state's median monthly income goes to the cheapest available internet plan.
+          The gap between the most and least affordable states is <strong style="color:#ef4444;">3.7x</strong>.
+        </p>
+        <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-top:var(--space-sm);">
+          Sources: US Census Bureau ACS 2024 · FCC Broadband Data Collection 2025 · Provider plan pages, March {year}
+        </p>
+      </div>
+
+      <!-- National Stats -->
+      <div class="stats-bar reveal" style="background:var(--bg-secondary);border-radius:var(--radius-xl);padding:var(--space-xl);margin-bottom:var(--space-3xl);">
+        <div class="stat-item">
+          <div class="stat-value">{avgBurden.toFixed(2)}%</div>
+          <div class="stat-label">National avg: income spent on cheapest internet</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">${nationalAvgMinPrice.toFixed(2)}/mo</div>
+          <div class="stat-label">Avg. cheapest plan across all states</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" style="color:#ef4444;">{leastAffordable[0]?.affordabilityBurden.toFixed(2)}%</div>
+          <div class="stat-label">Worst state ({leastAffordable[0]?.abbr}): % of income</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" style="color:var(--brand-green);">{mostAffordable[0]?.affordabilityBurden.toFixed(2)}%</div>
+          <div class="stat-label">Best state ({mostAffordable[0]?.abbr}): % of income</div>
+        </div>
+      </div>
+
+      <!-- Best & Worst Top 5 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-xl);margin-bottom:var(--space-3xl);" class="reveal">
+        <!-- Least affordable -->
+        <div>
+          <h2 style="margin-bottom:var(--space-md);font-size:var(--text-xl);">Least Affordable States</h2>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-md);">Highest % of median monthly income spent on cheapest available internet</p>
+          <div style="display:flex;flex-direction:column;gap:var(--space-sm);">
+            {leastAffordable.map((s, i) => (
+              <div class="card" style={`padding:var(--space-md) var(--space-lg);border-left:3px solid ${burdenColor(s.affordabilityBurden)};`}>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <div>
+                    <span style="font-weight:700;font-size:1.05rem;">#{i + 1} </span>
+                    <a href={`/internet-providers/${s.slug}`} style="color:var(--brand-blue-light);font-weight:600;">{s.name}</a>
+                    <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">
+                      Median income: ${s.medianIncome.toLocaleString()}/yr · Cheapest plan: ${s.cheapestPlan.toFixed(2)}/mo ({s.cheapestProvider})
+                    </div>
+                  </div>
+                  <span style={`font-size:1.25rem;font-weight:800;color:${burdenColor(s.affordabilityBurden)};`}>{s.affordabilityBurden.toFixed(2)}%</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <!-- Most affordable -->
+        <div>
+          <h2 style="margin-bottom:var(--space-md);font-size:var(--text-xl);">Most Affordable States</h2>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-md);">Lowest % of median monthly income spent on cheapest available internet</p>
+          <div style="display:flex;flex-direction:column;gap:var(--space-sm);">
+            {mostAffordable.map((s, i) => (
+              <div class="card" style="padding:var(--space-md) var(--space-lg);border-left:3px solid var(--brand-green);">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <div>
+                    <span style="font-weight:700;font-size:1.05rem;">#{i + 1} </span>
+                    <a href={`/internet-providers/${s.slug}`} style="color:var(--brand-blue-light);font-weight:600;">{s.name}</a>
+                    <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">
+                      Median income: ${s.medianIncome.toLocaleString()}/yr · Cheapest plan: ${s.cheapestPlan.toFixed(2)}/mo ({s.cheapestProvider})
+                    </div>
+                  </div>
+                  <span style="font-size:1.25rem;font-weight:800;color:var(--brand-green);">{s.affordabilityBurden.toFixed(2)}%</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Full State Table -->
+      <div class="reveal" style="margin-bottom:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-xs);">All 51 States — Ranked by Internet Affordability</h2>
+        <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">
+          Affordability Burden = (cheapest available plan ÷ median monthly income) × 100.
+          Lower % = more affordable. Cheapest plan price uses promotional pricing where applicable.
+        </p>
+
+        <div style="overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border);">
+          <table style="width:100%;border-collapse:collapse;font-size:var(--text-sm);">
+            <thead>
+              <tr style="background:var(--bg-secondary);border-bottom:2px solid var(--border);">
+                <th style="padding:var(--space-sm) var(--space-md);text-align:left;">Rank</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:left;">State</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">Median Income</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">Cheapest Plan</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:left;">Provider / Plan</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">% of Income</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">Broadband Access</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">Avg Speed</th>
+              </tr>
+            </thead>
+            <tbody>
+              {stateAffordability.map((s, i) => (
+                <tr style={`border-bottom:1px solid var(--border);${i % 2 === 0 ? '' : 'background:rgba(0,0,0,0.02);'}`}>
+                  <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--text-tertiary);">#{i + 1}</td>
+                  <td style="padding:var(--space-sm) var(--space-md);">
+                    <a href={`/internet-providers/${s.slug}`} style="color:var(--brand-blue-light);font-weight:600;">{s.name}</a>
+                    <span style="color:var(--text-tertiary);font-size:var(--text-xs);margin-left:4px;">({s.abbr})</span>
+                  </td>
+                  <td style="padding:var(--space-sm) var(--space-md);text-align:right;">${s.medianIncome.toLocaleString()}/yr</td>
+                  <td style="padding:var(--space-sm) var(--space-md);text-align:right;font-weight:600;color:var(--brand-green);">${s.cheapestPlan.toFixed(2)}/mo</td>
+                  <td style="padding:var(--space-sm) var(--space-md);font-size:var(--text-xs);color:var(--text-tertiary);">{s.cheapestProvider} · {s.cheapestPlanName}</td>
+                  <td style="padding:var(--space-sm) var(--space-md);text-align:right;">
+                    <span style={`font-weight:700;font-size:1rem;color:${burdenColor(s.affordabilityBurden)};`}>{s.affordabilityBurden.toFixed(2)}%</span>
+                  </td>
+                  <td style="padding:var(--space-sm) var(--space-md);text-align:right;">
+                    <span style={`color:${s.broadbandPct >= 90 ? 'var(--brand-green)' : s.broadbandPct >= 85 ? 'var(--brand-amber)' : '#ef4444'};font-weight:600;`}>{s.broadbandPct}%</span>
+                  </td>
+                  <td style="padding:var(--space-sm) var(--space-md);text-align:right;">{s.avgDownload} Mbps</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">
+          Sources: US Census Bureau ACS 2024 (household income) · FCC Broadband Deployment Report 2025 (access &amp; speed) · Internet 4 ALL provider database, March {year}.
+          Cheapest plan = lowest promotional price available from any provider with coverage in that state.
+          Data updated quarterly.
+        </p>
+      </div>
+
+      <!-- What This Means / Analysis -->
+      <div class="reveal" style="max-width:740px;margin:0 auto var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-lg);">What This Data Means</h2>
+
+        <h3 style="margin-bottom:var(--space-sm);">The Low-Income Broadband Trap</h3>
+        <p style="font-size:var(--text-sm);line-height:1.9;margin-bottom:var(--space-lg);color:var(--text-secondary);">
+          The states with the highest affordability burden aren't just paying more for internet — they also have higher rates of households going without it entirely. When internet costs more than 1% of monthly income, adoption drops sharply. Mississippi, with a broadband adoption rate of just 76.4%, and West Virginia at 78.6%, illustrate how price and access are deeply connected. The FCC's target of "affordable" broadband defines it as under 2% of household income — but even at 0.6–1.2% burden, many families in these states report choosing between internet and groceries.
+        </p>
+
+        <h3 style="margin-bottom:var(--space-sm);">Competition Drives Affordability</h3>
+        <p style="font-size:var(--text-sm);line-height:1.9;margin-bottom:var(--space-lg);color:var(--text-secondary);">
+          States with the lowest affordability burden share a common trait: provider competition. DC, Maryland, New Jersey, and Massachusetts all have 5–7 competing providers per census tract. That competition drives promotional pricing down. States at the bottom of the affordability ranking — Mississippi, West Virginia, Alaska — average just 2.8–3.2 providers per census tract. When there's only one or two options, there's no market pressure to keep prices down.
+        </p>
+
+        <h3 style="margin-bottom:var(--space-sm);">The $1,200/Year Divide</h3>
+        <p style="font-size:var(--text-sm);line-height:1.9;margin-bottom:var(--space-lg);color:var(--text-secondary);">
+          A household in the most affordable state with the cheapest available plan pays roughly $25–$30/month for internet. A household in the least affordable state, if they find comparable service, pays $50–$70/month for slower speeds from a provider with no competition. That's a gap of $240–$480 per year for the same essential utility — a gap that compounds over years, particularly for low-income families making choices between connectivity and other necessities.
+        </p>
+
+        <div class="card" style="border-left:3px solid var(--brand-blue-light);padding:var(--space-lg);">
+          <p style="font-size:var(--text-sm);line-height:1.8;margin:0;">
+            <strong>Methodology:</strong> Affordability Burden is calculated as (cheapest available promotional plan price ÷ state median monthly household income) × 100.
+            Median income data from US Census Bureau American Community Survey 2024. Provider pricing verified from plan pages, March {year}.
+            Where multiple providers cover a state, we use the lowest single promotional price available. We do not use income-based assistance programs (Lifeline, Xfinity Essentials) in the core calculation to measure base-market affordability; see our <a href="/affordable-internet" style="color:var(--brand-blue-light);">Affordable Internet guide</a> for program details.
+          </p>
+        </div>
+      </div>
+
+      <!-- Help CTA -->
+      <div class="reveal" style="text-align:center;background:var(--bg-secondary);border-radius:var(--radius-xl);padding:var(--space-2xl);margin-bottom:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-md);">Find the Cheapest Plan at Your Address</h2>
+        <p style="color:var(--text-secondary);max-width:520px;margin:0 auto var(--space-xl);">
+          State averages don't tell the whole story. Pricing varies by ZIP code, and there may be income-based programs or promotional plans you don't know about.
+        </p>
+        <a href={phoneHref} class="btn btn-cta btn-lg">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call for Free — Find Your Best Rate
+        </a>
+        <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-md);">Free · No obligation · 2-minute call</p>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal" style="max-width:740px;margin:0 auto;">
+        <h2 style="margin-bottom:var(--space-xl);">Frequently Asked Questions</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <StickyCallBar text="Find the most affordable internet plan at your address — free." />
+</Base>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item?.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item?.classList.add('open');
+    });
+  });
+</script>

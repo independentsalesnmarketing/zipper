@@ -1,0 +1,380 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } from '@lib/utils';
+
+const phoneHref = formatPhoneForTel(MAIN_PHONE);
+
+const allProviders = getAllProviders();
+
+// Build the bill shock dataset: every plan with a promo/regular gap
+interface ShockEntry {
+  providerName: string;
+  providerSlug: string;
+  planName: string;
+  promoPrice: number;
+  regularPrice: number;
+  monthlyIncrease: number;
+  pctIncrease: number;
+  annualExtraCost: number;
+  priceLockNote: string;
+}
+
+const shockData: ShockEntry[] = [];
+
+const priceLockNotes: Record<string, string> = {
+  'spectrum':    '1-year price guarantee',
+  'verizon':     '3–5 year Fios price lock; 4-year 5G lock',
+  'att-fiber':   'No price lock — rates can increase after promo',
+  'frontier':    'No formal price lock',
+  'xfinity':     'Price may increase after 24-month promo',
+  'cox':         'Price increases after promo period',
+  'optimum':     '12-month rate guarantee',
+  'wow':         'No-contract, rates can change',
+  'mediacom':    'Rates increase after promo period',
+  'tmobile-5g':  'Price lock for life (All-In plan)',
+  'tmobile-fiber':'Price lock 2 years',
+  'verizon-5g':  '4–5 year price lock',
+  'att-air':     'No annual contract, rate can vary',
+  'starlink':    'No price lock',
+  'viasat':      'Rate may increase after 3-month promo',
+  'hughesnet':   'Price increases after 12-month promo',
+  'earthlink':   'No formal price lock',
+  'ziply':       'No price lock',
+  'google-fiber':'No price lock stated',
+  'frontier-fiber':'No formal price lock',
+  'kinetic':     'Rates may change',
+  'wow':         'No-contract, rates can change',
+  'altafiber':   '2-year price lock on select plans',
+  'us-cellular': '24-month rate guarantee',
+  'brightspeed': 'Rates may change after promo',
+  'fidium':      'No price lock stated',
+  'geolinks':    'Month-to-month, no lock',
+};
+
+for (const p of allProviders) {
+  const lockNote = priceLockNotes[p.slug] || priceLockNotes[p.id] || 'No stated price lock';
+  for (const plan of p.plans) {
+    const diff = plan.price - plan.promoPrice;
+    if (diff > 0.01) {
+      const pct = (diff / plan.promoPrice) * 100;
+      shockData.push({
+        providerName: p.name,
+        providerSlug: p.slug,
+        planName: plan.name,
+        promoPrice: plan.promoPrice,
+        regularPrice: plan.price,
+        monthlyIncrease: diff,
+        pctIncrease: pct,
+        annualExtraCost: diff * 12,
+        priceLockNote: lockNote,
+      });
+    }
+  }
+}
+
+// Sort worst to best by % increase
+shockData.sort((a, b) => b.pctIncrease - a.pctIncrease);
+
+// Aggregate stats
+const totalIncrease = shockData.reduce((s, e) => s + e.monthlyIncrease, 0);
+const avgIncrease = shockData.length ? totalIncrease / shockData.length : 0;
+const avgPct = shockData.length ? shockData.reduce((s, e) => s + e.pctIncrease, 0) / shockData.length : 0;
+const worstEntry = shockData[0];
+const totalPlansAnalyzed = allProviders.reduce((s, p) => s + p.plans.length, 0);
+const plansWithIncrease = shockData.length;
+
+// Best price locks (no increase plans)
+const noIncreasePlans: { providerName: string; providerSlug: string; planName: string; price: number; priceLockNote: string }[] = [];
+for (const p of allProviders) {
+  const lockNote = priceLockNotes[p.slug] || priceLockNotes[p.id] || '';
+  for (const plan of p.plans) {
+    if (Math.abs(plan.price - plan.promoPrice) < 0.01 && lockNote.toLowerCase().includes('lock')) {
+      noIncreasePlans.push({
+        providerName: p.name,
+        providerSlug: p.slug,
+        planName: plan.name,
+        price: plan.price,
+        priceLockNote: lockNote,
+      });
+    }
+  }
+}
+
+// Per-provider summary: worst plan + total annual exposure
+interface ProviderSummary {
+  name: string;
+  slug: string;
+  worstPlanName: string;
+  worstPromo: number;
+  worstRegular: number;
+  worstPct: number;
+  worstAnnualExtra: number;
+  priceLockNote: string;
+}
+const providerMap: Record<string, ProviderSummary> = {};
+for (const e of shockData) {
+  if (!providerMap[e.providerSlug] || e.pctIncrease > providerMap[e.providerSlug].worstPct) {
+    providerMap[e.providerSlug] = {
+      name: e.providerName,
+      slug: e.providerSlug,
+      worstPlanName: e.planName,
+      worstPromo: e.promoPrice,
+      worstRegular: e.regularPrice,
+      worstPct: e.pctIncrease,
+      worstAnnualExtra: e.annualExtraCost,
+      priceLockNote: e.priceLockNote,
+    };
+  }
+}
+const providerSummaries = Object.values(providerMap).sort((a, b) => b.worstPct - a.worstPct);
+
+const faqs = [
+  { question: 'Why does my internet bill go up after the first year?', answer: 'ISPs advertise promotional rates that expire after 12 or 24 months. Once the promo ends, your bill automatically increases to the standard rate — often without a warning beyond fine print. This practice is legal but heavily criticized. Always read the standard price, not just the promotional price, before signing up.' },
+  { question: 'How much does the average internet bill increase after the promo?', answer: `Our analysis of ${totalPlansAnalyzed} plans from ${allProviders.length} providers found that ${plansWithIncrease} plans carry a price increase after the promotional period. The average monthly increase is $${avgIncrease.toFixed(2)} — or $${(avgIncrease * 12).toFixed(2)} per year in extra costs that customers don't expect.` },
+  { question: 'Which internet provider has the best price lock?', answer: 'Verizon Fios offers the strongest price protection — 3-year lock on 300 Mbps plans, 5-year lock on Gig and 2 Gig plans. T-Mobile 5G Home Internet offers a lifetime price lock on their All-In plan. Spectrum guarantees prices for 1 year. Most other providers offer no formal price lock.' },
+  { question: 'Can I negotiate my internet bill after the promo ends?', answer: 'Yes, and it works more often than people expect. Call your provider\'s retention department (not general customer service) and mention that you\'ve seen better rates from competitors. ISPs typically have unpublished "save" offers worth $10–$30/month. Threatening to cancel triggers the best offers.' },
+  { question: 'What is the FCC broadband label price increase rule?', answer: 'As of 2024, the FCC requires ISPs to disclose promotional vs. standard pricing on standardized broadband labels at point of sale. Providers must display the monthly price after the promo period ends. If your bill increases and you were not shown a broadband label, you may have grounds for an FCC complaint.' },
+  { question: 'Should I switch providers every year to keep the promo rate?', answer: 'This is called "ISP churning" and it works — if competing providers are available at your address. Many customers save $300–$600/year by switching when their promo expires. The downside is installation hassle and equipment return. Services like Internet 4 ALL make this easy by finding current promos at your address instantly.' },
+];
+
+const year = new Date().getFullYear();
+---
+<Base
+  title={`The Bill Shock Report (${year}) — What Your Internet Bill Becomes in Year 2`}
+  description={`We analyzed ${totalPlansAnalyzed} internet plans from ${allProviders.length} providers. The average bill jumps $${avgIncrease.toFixed(0)}/mo after the promo ends. See every provider's price increase — ranked worst to best.`}
+  schema={[
+    generateBreadcrumbSchema([
+      { name: 'Home', url: 'https://internet4all.com' },
+      { name: 'Bill Shock Report', url: 'https://internet4all.com/bill-shock' },
+    ]),
+    generateArticleSchema({
+      title: `The Bill Shock Report (${year}) — What Your Internet Bill Becomes in Year 2`,
+      description: `We analyzed ${totalPlansAnalyzed} internet plans from ${allProviders.length} providers. See every provider's price increase after the promotional period — ranked worst to best.`,
+      url: 'https://internet4all.com/bill-shock',
+      datePublished: '2026-03-01',
+      dateModified: '2026-03-05',
+      authorName: 'Internet 4 ALL Research Team',
+      authorUrl: 'https://internet4all.com/methodology',
+    }),
+    generateFAQSchema(faqs),
+  ]}
+>
+  <section class="section" style="padding-top:var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Bill Shock Report' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="max-width:740px;margin:0 auto var(--space-2xl);">
+        <div class="badge" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.25);margin-bottom:var(--space-md);">
+          Original Research · March {year}
+        </div>
+        <h1>The Bill Shock Report</h1>
+        <p style="font-size:var(--text-xl);color:var(--text-secondary);margin-top:var(--space-md);line-height:1.6;">
+          We analyzed <strong>{totalPlansAnalyzed} internet plans</strong> from <strong>{allProviders.length} providers</strong>.
+          Here's exactly what happens to your bill after the promotional period ends — and who's the worst offender.
+        </p>
+      </div>
+
+      <!-- Key Stats Bar -->
+      <div class="stats-bar reveal" style="margin-bottom:var(--space-3xl);background:var(--bg-secondary);border-radius:var(--radius-xl);padding:var(--space-xl);">
+        <div class="stat-item">
+          <div class="stat-value" style="color:#ef4444;">${avgIncrease.toFixed(2)}/mo</div>
+          <div class="stat-label">Avg. monthly increase after promo</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" style="color:#ef4444;">{avgPct.toFixed(0)}%</div>
+          <div class="stat-label">Avg. percentage bill jump</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" style="color:#ef4444;">${(avgIncrease * 12).toFixed(0)}/yr</div>
+          <div class="stat-label">Average extra annual cost</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">{plansWithIncrease}/{totalPlansAnalyzed}</div>
+          <div class="stat-label">Plans with a price increase built in</div>
+        </div>
+      </div>
+
+      <!-- Worst Offender Callout -->
+      {worstEntry && (
+        <div class="card reveal" style="border-left:4px solid #ef4444;background:rgba(239,68,68,0.04);margin-bottom:var(--space-2xl);padding:var(--space-xl);">
+          <div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-sm);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span style="font-size:var(--text-xs);letter-spacing:0.08em;text-transform:uppercase;color:#ef4444;font-weight:700;">Biggest Price Jump</span>
+          </div>
+          <h3 style="margin-bottom:var(--space-xs);">{worstEntry.providerName} — {worstEntry.planName}</h3>
+          <p style="font-size:var(--text-lg);color:var(--text-secondary);">
+            Promotional price: <strong>${worstEntry.promoPrice.toFixed(2)}/mo</strong> &rarr; Standard price: <strong style="color:#ef4444;">${worstEntry.regularPrice.toFixed(2)}/mo</strong>
+            <br />That's a <strong style="color:#ef4444;">{worstEntry.pctIncrease.toFixed(0)}% increase</strong> — an extra <strong>${worstEntry.annualExtraCost.toFixed(0)}</strong> per year you weren't told to budget for.
+          </p>
+        </div>
+      )}
+
+      <!-- Provider Summary Table -->
+      <div class="reveal" style="margin-bottom:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-xs);">Price Increase by Provider — Ranked Worst to Best</h2>
+        <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">Showing the worst plan for each provider. Standard price is what you pay starting in Year 2.</p>
+
+        <div style="overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border);">
+          <table style="width:100%;border-collapse:collapse;font-size:var(--text-sm);">
+            <thead>
+              <tr style="background:var(--bg-secondary);border-bottom:2px solid var(--border);">
+                <th style="padding:var(--space-md);text-align:left;">Provider</th>
+                <th style="padding:var(--space-md);text-align:left;">Worst Plan</th>
+                <th style="padding:var(--space-md);text-align:right;">Promo Price</th>
+                <th style="padding:var(--space-md);text-align:right;">Year 2 Price</th>
+                <th style="padding:var(--space-md);text-align:right;">% Jump</th>
+                <th style="padding:var(--space-md);text-align:right;">Extra/Year</th>
+                <th style="padding:var(--space-md);text-align:left;">Price Lock?</th>
+              </tr>
+            </thead>
+            <tbody>
+              {providerSummaries.map((p, i) => (
+                <tr style={`border-bottom:1px solid var(--border);${i % 2 === 0 ? '' : 'background:var(--bg-secondary);'}`}>
+                  <td style="padding:var(--space-md);">
+                    <a href={`/provider/${p.slug}`} style="color:var(--brand-blue-light);font-weight:600;">{p.name}</a>
+                  </td>
+                  <td style="padding:var(--space-md);color:var(--text-secondary);">{p.worstPlanName}</td>
+                  <td style="padding:var(--space-md);text-align:right;color:var(--brand-green);font-weight:600;">${p.worstPromo.toFixed(2)}</td>
+                  <td style="padding:var(--space-md);text-align:right;color:#ef4444;font-weight:600;">${p.worstRegular.toFixed(2)}</td>
+                  <td style="padding:var(--space-md);text-align:right;">
+                    <span style={`font-weight:700;color:${p.worstPct > 50 ? '#ef4444' : p.worstPct > 25 ? '#f97316' : '#ca8a04'};`}>
+                      +{p.worstPct.toFixed(0)}%
+                    </span>
+                  </td>
+                  <td style="padding:var(--space-md);text-align:right;color:#ef4444;font-weight:600;">+${p.worstAnnualExtra.toFixed(0)}</td>
+                  <td style="padding:var(--space-md);font-size:var(--text-xs);color:var(--text-tertiary);">{p.priceLockNote}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">Source: Internet 4 ALL analysis of provider plan pages, March {year}. Promo prices represent introductory offers; standard prices apply after promotional period. Data updated monthly.</p>
+      </div>
+
+      <!-- Full Plan-Level Table -->
+      <div class="reveal" style="margin-bottom:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-xs);">Every Plan With a Price Increase — Full Data</h2>
+        <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">{plansWithIncrease} plans analyzed with a promotional vs. standard price gap.</p>
+
+        <div style="overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border);">
+          <table style="width:100%;border-collapse:collapse;font-size:var(--text-sm);">
+            <thead>
+              <tr style="background:var(--bg-secondary);border-bottom:2px solid var(--border);">
+                <th style="padding:var(--space-sm) var(--space-md);text-align:left;">Provider</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:left;">Plan</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">Promo</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">Standard</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">+$/mo</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">+%</th>
+                <th style="padding:var(--space-sm) var(--space-md);text-align:right;">Extra/yr</th>
+              </tr>
+            </thead>
+            <tbody>
+              {shockData.map((e, i) => (
+                <tr style={`border-bottom:1px solid var(--border);${i % 2 === 0 ? '' : 'background:var(--bg-secondary);'}`}>
+                  <td style="padding:var(--space-sm) var(--space-md);">
+                    <a href={`/provider/${e.providerSlug}`} style="color:var(--brand-blue-light);">{e.providerName}</a>
+                  </td>
+                  <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary);">{e.planName}</td>
+                  <td style="padding:var(--space-sm) var(--space-md);text-align:right;color:var(--brand-green);font-weight:600;">${e.promoPrice.toFixed(2)}</td>
+                  <td style="padding:var(--space-sm) var(--space-md);text-align:right;color:#ef4444;font-weight:600;">${e.regularPrice.toFixed(2)}</td>
+                  <td style="padding:var(--space-sm) var(--space-md);text-align:right;color:#ef4444;">+${e.monthlyIncrease.toFixed(2)}</td>
+                  <td style="padding:var(--space-sm) var(--space-md);text-align:right;">
+                    <span style={`font-weight:700;color:${e.pctIncrease > 50 ? '#ef4444' : e.pctIncrease > 25 ? '#f97316' : '#ca8a04'};`}>
+                      +{e.pctIncrease.toFixed(0)}%
+                    </span>
+                  </td>
+                  <td style="padding:var(--space-sm) var(--space-md);text-align:right;color:#ef4444;">+${e.annualExtraCost.toFixed(0)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Price Lock Hall of Fame -->
+      {noIncreasePlans.length > 0 && (
+        <div class="reveal" style="margin-bottom:var(--space-3xl);">
+          <h2 style="margin-bottom:var(--space-xs);">Price Lock Hall of Fame</h2>
+          <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">These plans have no price increase AND a formal price lock guarantee.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-md);">
+            {noIncreasePlans.slice(0, 12).map(p => (
+              <a href={`/provider/${p.providerSlug}`} class="card" style="padding:var(--space-lg);text-decoration:none;border-color:rgba(0,213,132,0.3);">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-xs);">
+                  <strong style="color:var(--text-primary);">{p.providerName}</strong>
+                  <span style="color:var(--brand-green);font-weight:700;">${p.price.toFixed(2)}/mo</span>
+                </div>
+                <div style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-xs);">{p.planName}</div>
+                <div style="font-size:var(--text-xs);color:var(--brand-green);">{p.priceLockNote}</div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- How to Protect Yourself -->
+      <div class="reveal" style="margin-bottom:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-lg);">How to Protect Yourself From Bill Shock</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-lg);">
+          {[
+            { title: 'Always look at the standard price', body: 'Before signing up, ask: "What will I pay in month 13?" If the rep can\'t give a clear answer, find it in the broadband label — now legally required at point of sale.' },
+            { title: 'Choose providers with price locks', body: 'Verizon Fios (up to 5 years), T-Mobile 5G All-In, and Spectrum (1 year) offer the strongest price protection. Prioritize these when available at your address.' },
+            { title: 'Set a calendar reminder 60 days out', body: 'Mark your promo expiration date and set a reminder 60 days before. That gives you time to negotiate, switch, or at minimum threaten to switch before the rate hike hits.' },
+            { title: 'Call retention before the promo expires', body: 'ISPs have unpublished "save" offers for customers threatening to cancel. Call and say: "My promo ends in 60 days and I\'ve seen better rates elsewhere." Works in ~60% of cases.' },
+            { title: 'Switch providers to keep promo pricing', body: 'If a competing provider is available, switching every 1–2 years keeps you on promo rates permanently. Our experts can find the best current deal at your address in 60 seconds.' },
+            { title: 'Read the broadband label before you sign', body: 'FCC-mandated broadband labels (required since 2024) show the promo price, standard price, contract terms, and data caps. If you weren\'t shown one, ask for it in writing.' },
+          ].map(tip => (
+            <div class="card" style="padding:var(--space-lg);">
+              <h4 style="margin-bottom:var(--space-xs);">{tip.title}</h4>
+              <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">{tip.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="reveal" style="text-align:center;background:var(--bg-secondary);border-radius:var(--radius-xl);padding:var(--space-2xl);margin-bottom:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-md);">Your Promo Ending Soon?</h2>
+        <p style="color:var(--text-secondary);max-width:520px;margin:0 auto var(--space-xl);">
+          Our experts compare every current promotion at your address — including options with the strongest price locks — and find you the best deal before your bill jumps.
+        </p>
+        <a href={phoneHref} class="btn btn-cta btn-lg" style="font-size:var(--text-lg);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call Now — Find a Better Deal
+        </a>
+        <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-md);">Free • No obligation • 2-minute call</p>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal" style="max-width:740px;margin:0 auto;">
+        <h2 style="margin-bottom:var(--space-xl);">Frequently Asked Questions</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <StickyCallBar text="Your promo ending? We'll find you a better deal." />
+</Base>
+
+<script>
+  // FAQ accordion (matches site-wide pattern)
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item?.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item?.classList.add('open');
+    });
+  });
+</script>

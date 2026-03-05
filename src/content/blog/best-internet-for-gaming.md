@@ -45,7 +45,7 @@ Speed beyond 100 Mbps doesn't improve gaming performance. A 50 Mbps fiber connec
 - **Why**: In areas without fiber, Spectrum cable is the best alternative. Upload is limited (10-35 Mbps), but download consistency is above average for cable.
 - **For gamers who**: Don't have fiber available at their address
 
-### 5. [T-Mobile 5G Home Internet](/provider/tmobile) — Best Budget Gaming Option
+### 5. [T-Mobile 5G Home Internet](/provider/tmobile-5g) — Best Budget Gaming Option
 - **Latency**: 25-60ms (acceptable for casual gaming)
 - **Plans**: $50/mo flat
 - **Why**: At $50/mo with no extras, T-Mobile works for casual and even some competitive gaming. Not ideal for twitch-reflex games, but fine for Fortnite, Warzone, RPGs, and most multiplayer titles.

@@ -80,76 +80,67 @@ const partners = getPartnerProviders();
   let started = false;
   let answers = {};
 
-  // Chat flow definition
+  // ── Conversion-first chat flow ──────────────────────────────────────
+  // Principle: Bill interrogation first → savings hook → ZIP → use-case → result
+  // 3 questions max before a strong CTA. Short path, high urgency.
+  // ────────────────────────────────────────────────────────────────────
+
   const flow = {
     start: {
       messages: [
-        "Hey there! 👋 I'm your Internet Advisor.",
-        "I can help you find the best internet plan in under 60 seconds. What brings you here today?"
+        "Quick question — what are you paying for internet each month?",
+        "I'll tell you right away if you're overpaying."
       ],
       options: [
-        { label: "🏠 Moving to a new place", next: "zip" },
-        { label: "💰 Looking for a better deal", next: "priority" },
-        { label: "⚡ Need faster internet", next: "speed" },
-        { label: "🤔 Not sure, help me decide", next: "zip" },
-      ]
+        { label: "Under $40/mo", value: 40, next: "bill_low" },
+        { label: "$40–$65/mo", value: 65, next: "bill_mid" },
+        { label: "$66–$85/mo", value: 85, next: "bill_high" },
+        { label: "$86+ — I think I'm overpaying", value: 120, next: "bill_very_high" },
+      ],
+      extra: `<a href="tel:${PHONE.replace(/[^0-9+]/g,'')}" style="display:block;text-align:center;margin-top:8px;font-size:12px;color:var(--brand-green);">Skip — talk to a live expert now →</a>`
     },
-    zip: {
-      messages: ["Great! What's your ZIP code? This helps me find providers available in your area."],
+    bill_low: {
+      messages: ["That's actually decent! Still, plans keep changing — let's see if there's something better in your area. What's your ZIP?"],
       input: true,
-      validate: (val) => /^\d{5}$/.test(val.trim()),
-      errorMsg: "Please enter a valid 5-digit ZIP code.",
-      process: (val) => { answers.zip = val.trim(); },
-      next: "household"
+      validate: (v) => /^\d{5}$/.test(v.trim()),
+      errorMsg: "Please enter your 5-digit ZIP code.",
+      process: (v) => { answers.zip = v.trim(); answers.bill = 40; },
+      next: "usage"
     },
-    household: {
-      messages: ["Got it! How many people use the internet in your household?"],
-      options: [
-        { label: "👤 Just me", value: 1, next: "usage" },
-        { label: "👥 2 people", value: 2, next: "usage" },
-        { label: "👨‍👩‍👧 3-4 people", value: 3, next: "usage" },
-        { label: "👨‍👩‍👧‍👦 5+ people", value: 5, next: "usage" },
-      ]
+    bill_mid: {
+      messages: ["You might be overpaying by $10–20/mo. We've helped thousands of customers find lower rates. What's your ZIP code?"],
+      input: true,
+      validate: (v) => /^\d{5}$/.test(v.trim()),
+      errorMsg: "Please enter your 5-digit ZIP code.",
+      process: (v) => { answers.zip = v.trim(); answers.bill = 65; },
+      next: "usage"
+    },
+    bill_high: {
+      messages: ["$66–85/mo is above average. Most people in similar areas pay $35–55/mo for better speeds. Enter your ZIP — I'll show you what you qualify for:"],
+      input: true,
+      validate: (v) => /^\d{5}$/.test(v.trim()),
+      errorMsg: "Please enter your 5-digit ZIP code.",
+      process: (v) => { answers.zip = v.trim(); answers.bill = 85; },
+      next: "usage"
+    },
+    bill_very_high: {
+      messages: ["$86+/mo is significantly above average. We typically save people in that range $30–50/mo by switching. What's your ZIP code?"],
+      input: true,
+      validate: (v) => /^\d{5}$/.test(v.trim()),
+      errorMsg: "Please enter your 5-digit ZIP code.",
+      process: (v) => { answers.zip = v.trim(); answers.bill = 120; },
+      next: "usage"
     },
     usage: {
-      messages: ["What do you mainly use the internet for?"],
+      messages: ["Last one — what's internet mainly used for at your place?"],
       options: [
-        { label: "📧 Browsing & email", value: "basic", next: "budget" },
-        { label: "📺 Streaming (Netflix, etc.)", value: "streaming", next: "budget" },
-        { label: "🎮 Gaming", value: "gaming", next: "budget" },
-        { label: "💼 Working from home", value: "wfh", next: "budget" },
-        { label: "📹 Everything + video calls", value: "power", next: "budget" },
-      ]
-    },
-    priority: {
-      messages: ["What matters most to you in an internet provider?"],
-      options: [
-        { label: "💰 Lowest price", value: "price", next: "zip" },
-        { label: "⚡ Fastest speeds", value: "speed", next: "zip" },
-        { label: "⭐ Best reliability", value: "reliability", next: "zip" },
-        { label: "📜 No contracts", value: "nocontract", next: "zip" },
-      ]
-    },
-    speed: {
-      messages: ["What speed do you currently have, and what are you looking for?"],
-      options: [
-        { label: "I need 100-300 Mbps", value: 300, next: "zip" },
-        { label: "I need 500+ Mbps", value: 500, next: "zip" },
-        { label: "I need Gigabit (1000+)", value: 1000, next: "zip" },
-        { label: "Not sure, recommend for me", value: 0, next: "zip" },
-      ]
-    },
-    budget: {
-      messages: ["Last question — what's your monthly budget for internet?"],
-      options: [
-        { label: "Under $40/mo", value: 40, next: "results" },
-        { label: "$40-$60/mo", value: 60, next: "results" },
-        { label: "$60-$80/mo", value: 80, next: "results" },
-        { label: "$80+/mo (I want the best)", value: 999, next: "results" },
+        { label: "Streaming & casual browsing", value: "streaming", next: "results" },
+        { label: "Gaming or working from home", value: "gaming", next: "results" },
+        { label: "Everything — smart home, multiple people", value: "power", next: "results" },
       ]
     },
     results: {
-      messages: ["Analyzing your answers..."],
+      messages: ["Analyzing your area..."],
       compute: true,
     }
   };
@@ -221,30 +212,32 @@ const partners = getPartnerProviders();
 
   function getRecommendedSpeed() {
     const h = answers.household || 1;
-    const u = answers.usage || 'basic';
-    const speeds = { basic: 50, streaming: 100, gaming: 200, wfh: 200, power: 300 };
-    let base = speeds[u] || 100;
-    return Math.min(base * Math.max(1, h * 0.7), 1000);
+    const u = answers.usage || 'streaming';
+    const speeds = { streaming: 100, gaming: 300, power: 500 };
+    return speeds[u] || 100;
+  }
+
+  function getSavingsEstimate() {
+    const bill = answers.bill || 0;
+    if (bill <= 40) return 0;
+    const avg = 45; // avg competitive price
+    return Math.max(0, bill - avg);
   }
 
   function computeResults() {
-    const budget = answers.budget || 80;
-    const recSpeed = answers.targetSpeed || getRecommendedSpeed();
-    const pri = answers.priority || 'reliability';
-
+    const recSpeed = getRecommendedSpeed();
+    // Score based on speed match + rating + price (no hard budget filter)
     let scored = providers.map(p => {
       let score = 0;
-      const bestPlan = p.plans.find(pl => pl.price <= budget) || p.plans[0];
-      if (bestPlan.price <= budget) score += 30;
-      if (bestPlan.speed >= recSpeed) score += 25;
-      score += (p.rating / 5) * 20;
-      if (pri === 'price') score += bestPlan.price <= 50 ? 15 : bestPlan.price <= 70 ? 10 : 0;
-      if (pri === 'speed') score += bestPlan.speed >= 500 ? 15 : bestPlan.speed >= 300 ? 10 : 0;
-      if (pri === 'reliability') score += p.rating >= 4.3 ? 15 : p.rating >= 4.0 ? 10 : 0;
-      if (p.types.includes('fiber')) score += 5;
-      return { ...p, score, bestPlan };
+      const cheapest = [...p.plans].sort((a, b) => a.price - b.price)[0];
+      if (cheapest.speed >= recSpeed) score += 30;
+      else if (cheapest.speed >= recSpeed * 0.5) score += 15;
+      score += (p.rating / 5) * 25;
+      if (cheapest.price <= 55) score += 20;
+      else if (cheapest.price <= 70) score += 10;
+      if (p.types.includes('fiber')) score += 8;
+      return { ...p, score, bestPlan: cheapest };
     });
-
     scored.sort((a, b) => b.score - a.score);
     return scored.slice(0, 3);
   }
@@ -253,23 +246,43 @@ const partners = getPartnerProviders();
     const step = flow[stepId];
     if (!step) return;
 
-    // Show typing then messages
     for (let i = 0; i < step.messages.length; i++) {
-      const typing = addTyping();
-      await delay(600 + Math.random() * 400);
+      addTyping();
+      await delay(650 + Math.random() * 350);
       removeTyping();
       addMessage(step.messages[i], false);
     }
 
-    if (step.compute) {
-      // Show loading
-      const typing = addTyping();
-      await delay(1500);
-      removeTyping();
+    // Show savings badge inline after bill steps
+    const savingsSteps = ['bill_mid', 'bill_high', 'bill_very_high'];
+    if (savingsSteps.includes(stepId)) {
+      const est = getSavingsEstimate();
+      if (est > 0) {
+        await delay(300);
+        addMessage(
+          `<div style="background:rgba(0,213,132,0.12);border:1px solid rgba(0,213,132,0.35);border-radius:10px;padding:10px 14px;text-align:center;">
+            <div style="font-size:22px;font-weight:800;color:var(--brand-green);">Save ~$${est}/mo</div>
+            <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">Estimated based on your current bill</div>
+          </div>`,
+          false
+        );
+      }
+    }
 
+    if (step.compute) {
+      addTyping();
+      await delay(1400);
+      removeTyping();
       const results = computeResults();
       showResults(results);
       return;
+    }
+
+    if (step.extra) {
+      const el = document.createElement('div');
+      el.innerHTML = step.extra;
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
     }
 
     if (step.options) {
@@ -286,40 +299,47 @@ const partners = getPartnerProviders();
   }
 
   function showResults(results) {
-    addMessage("Based on your answers, here are my top picks:", false);
+    const savings = getSavingsEstimate();
+    if (savings > 0) {
+      addMessage(
+        `<div style="background:rgba(0,213,132,0.12);border:1px solid rgba(0,213,132,0.35);border-radius:10px;padding:10px 14px;text-align:center;margin-bottom:4px;">
+          <div style="font-size:13px;font-weight:700;color:var(--brand-green);">Potential savings: ~$${savings}/mo ($${savings * 12}/yr)</div>
+        </div>`,
+        false
+      );
+    }
+
+    addMessage("Here are the best options in your area:", false);
 
     results.forEach((p, i) => {
-      const medal = ['🥇', '🥈', '🥉'][i];
-      const html = `
-        <div style="margin-bottom:8px;">
-          <strong>${medal} ${p.name}</strong><br/>
-          <span style="font-size:12px;color:var(--text-secondary);">
-            ${p.bestPlan.name} — ${p.bestPlan.speed} Mbps — $${p.bestPlan.price}/mo
-          </span><br/>
-          <span style="font-size:11px;color:var(--text-tertiary);">
-            ⭐ ${p.rating}/5 · ${p.types.join(', ')} · ${p.pros[0]}
-          </span>
-        </div>`;
-      addMessage(html, false);
+      const medal = ['#1', '#2', '#3'][i];
+      const telHref = `tel:${p.phone.replace(/[^0-9+]/g, '')}`;
+      addMessage(
+        `<div style="border:1px solid var(--border-subtle);border-radius:10px;padding:12px;margin-bottom:4px;">
+          <div style="font-weight:800;font-size:14px;margin-bottom:4px;">${medal} ${p.name}</div>
+          <div style="font-size:12px;color:var(--text-secondary);margin-bottom:6px;">
+            Up to ${p.bestPlan.speed} Mbps · <strong>$${p.bestPlan.price}/mo</strong> · ${p.rating}/5
+          </div>
+          <div style="display:flex;gap:6px;">
+            <a href="${telHref}" style="flex:1;display:block;background:var(--brand-green);color:white;text-align:center;padding:7px 4px;border-radius:7px;font-size:12px;font-weight:700;text-decoration:none;">Call for ${p.name}</a>
+            <a href="/provider/${p.slug}" style="flex:1;display:block;background:var(--surface-secondary);color:var(--brand-blue);text-align:center;padding:7px 4px;border-radius:7px;font-size:12px;font-weight:600;text-decoration:none;">See plans →</a>
+          </div>
+        </div>`,
+        false
+      );
     });
 
-    addMessage(`Want to get connected? Call us and we'll set you up with the best deal in minutes! 📞`, false);
+    addMessage("These rates are time-sensitive. Locking in now can save you more.", false);
 
-    const top = results[0];
     options.innerHTML = `
-      <a href="tel:${PHONE.replace(/[^0-9+]/g, '')}" class="ai-option-btn ai-option-call">📞 Call Now — Get ${top.name}</a>
-      <a href="/providers" class="ai-option-btn">🔍 Compare All Providers</a>
-      <button class="ai-option-btn" id="ai-restart">🔄 Start Over</button>
+      <button class="ai-option-btn" id="ai-restart" style="font-size:12px;">Start over</button>
     `;
-    const restart = document.getElementById('ai-restart');
-    if (restart) {
-      restart.addEventListener('click', () => {
-        messages.innerHTML = '';
-        options.innerHTML = '';
-        answers = {};
-        runStep('start');
-      });
-    }
+    document.getElementById('ai-restart')?.addEventListener('click', () => {
+      messages.innerHTML = '';
+      options.innerHTML = '';
+      answers = {};
+      runStep('start');
+    });
   }
 
   function handleSend() {

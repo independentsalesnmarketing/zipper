@@ -59,7 +59,7 @@ Based on our analysis of upload speeds, reliability, and latency:
 2. **[Verizon Fios](/provider/verizon)** — Symmetrical fiber, excellent reliability
 3. **[Frontier Fiber](/provider/frontier)** — Affordable fiber with great upload speeds
 4. **[Spectrum](/provider/spectrum)** — Widely available cable with 35 Mbps upload on higher tiers
-5. **[T-Mobile 5G Home](/provider/tmobile)** — Good option where fiber isn't available
+5. **[T-Mobile 5G Home](/provider/tmobile-5g)** — Good option where fiber isn't available
 
 ## Home Office Setup Tips
 

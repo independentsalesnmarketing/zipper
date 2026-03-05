@@ -1,0 +1,191 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import SearchBar from '@components/SearchBar.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getPartnerProviders, formatSpeed, formatPrice, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+
+const partners = getPartnerProviders();
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+const year = new Date().getFullYear();
+
+const faqs = [
+  { q: 'What counts as "affordable" internet?', a: 'Affordable internet typically means plans under $50/month that still deliver enough speed (25+ Mbps) for everyday use. With inflation driving up prices in 2025-2026, finding genuinely affordable plans means looking beyond standard advertised rates — including promotional pricing, assistance programs, and 5G options without long-term contracts.' },
+  { q: 'What is the most affordable home internet available?', a: 'The most affordable home internet options in 2026 are: Mint Mobile 5G ($25/mo), T-Mobile 5G Home Internet ($40-$50/mo with Magenta plan), WOW! Internet (starting $29.99/mo), Xfinity Internet Essentials ($9.95/mo w/ qualifying assistance), and AT&T Access ($30/mo for SNAP/SSI recipients). Plans vary by location.' },
+  { q: 'Is affordable internet the same as cheap internet?', a: 'Not exactly. "Cheap" internet focuses on the lowest possible upfront price, sometimes sacrificing speed or reliability. "Affordable" internet means the best value — reasonable price for reliable service. $40/mo for 300 Mbps fiber is more affordable than $30/mo for 10 Mbps DSL, even though the DSL is cheaper.' },
+  { q: 'How can I lower my current internet bill?', a: 'Call your provider and ask for their retention department. Mention that competitors offer lower prices. Request a loyalty discount or promotional rate. If they won\'t budge, threaten to cancel — this often unlocks unpublished discounts. If you qualify, apply for Lifeline ($9.25/mo off) or a provider low-income program.' },
+  { q: 'Are there affordable internet plans with no credit check?', a: 'Yes. T-Mobile 5G Home Internet, Verizon 5G Home, AT&T Air, and most prepaid internet plans require no credit checks. These are some of the most affordable options available, typically $25-$50/mo with no contracts.' },
+  { q: 'What is the FCC 30-day cancellation right?', a: 'Under FCC broadband label rules, if your internet price increases significantly after the promotional period, you may have the right to cancel within 30 days of receiving notice of the rate change without an early termination fee. Always check your provider\'s terms and contact us if your rate has increased unexpectedly.' },
+];
+
+const plans = [
+  { name: 'Mint Mobile 5G', price: '$25', speed: 'Up to 245 Mbps', contract: 'No Contract', color: 'var(--brand-green)', note: 'Best for budget' },
+  { name: 'T-Mobile 5G Home', price: '$40–$50', speed: 'Up to 245 Mbps', contract: 'No Contract', color: 'var(--brand-blue)', note: 'Best value overall' },
+  { name: 'WOW! Internet', price: '$29.99', speed: 'Up to 200 Mbps', contract: 'No Contract', color: 'var(--brand-purple)', note: 'Regional cable value' },
+  { name: 'Xfinity Essentials', price: '$9.95', speed: '50 Mbps', contract: 'No Contract', color: 'var(--brand-amber)', note: 'Income-based only' },
+  { name: 'AT&T Access', price: '$30', speed: '10–25 Mbps', contract: 'No Contract', color: 'var(--brand-blue-light)', note: 'SNAP/SSI qualifying' },
+  { name: 'Spectrum Internet Assist', price: '$19.99', speed: '30 Mbps', contract: 'No Contract', color: 'var(--brand-green)', note: 'Income-based, stackable' },
+];
+---
+<Base
+  title={`Affordable Internet Plans (${year}) — Affordable Home Internet Providers`}
+  description={`Find affordable internet plans in ${year}. Compare affordable internet providers from $9.95/mo. No contract options, 5G home internet, and income-based programs for affordable home internet.`}
+  schema={[
+    generateBreadcrumbSchema([
+      { name: 'Home', url: 'https://internet4all.com' },
+      { name: 'Affordable Internet', url: 'https://internet4all.com/affordable-internet' }
+    ]),
+    generateFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })))
+  ]}
+>
+  <!-- Hero -->
+  <section class="hero" style="padding-bottom:var(--space-xl);">
+    <div class="container text-center">
+      <Breadcrumb items={[{ name: 'Affordable Internet' }]} />
+      <div class="badge reveal" style="margin-bottom:var(--space-md);">Save on Internet</div>
+      <h1 class="reveal">Affordable Internet Plans <span class="gradient-text">That Don't Sacrifice Speed</span></h1>
+      <p class="hero-subtitle reveal" style="max-width:640px;margin-inline:auto;">
+        With internet prices rising every year, finding a genuinely <strong>affordable internet plan</strong> takes more than just picking the cheapest option. 
+        We compare every available <strong>affordable internet provider</strong> at your address — including assistance programs, 5G home internet, and hidden promotional rates.
+      </p>
+      <div class="flex justify-center reveal" style="margin-top:var(--space-xl);">
+        <SearchBar placeholder="Enter your ZIP — find affordable plans near you" size="large" />
+      </div>
+      <div class="reveal" style="margin-top:var(--space-md);">
+        <a href={phoneHref} class="btn btn-cta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — We'll Find Your Lowest Rate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Price shock stat -->
+  <section class="section" style="background:rgba(0,82,255,0.04);border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);padding:var(--space-xl) 0;">
+    <div class="container">
+      <div class="grid grid-3 text-center reveal">
+        <div>
+          <div style="font-size:var(--text-3xl);font-weight:800;color:var(--brand-red);">+23%</div>
+          <div style="font-size:var(--text-sm);color:var(--text-secondary);">Average internet price increase since 2022</div>
+        </div>
+        <div>
+          <div style="font-size:var(--text-3xl);font-weight:800;color:var(--brand-green);">$9.95/mo</div>
+          <div style="font-size:var(--text-sm);color:var(--text-secondary);">Lowest available through assistance programs</div>
+        </div>
+        <div>
+          <div style="font-size:var(--text-3xl);font-weight:800;color:var(--brand-blue);">900%</div>
+          <div style="font-size:var(--text-sm);color:var(--text-secondary);">YoY search increase for "affordable internet"</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Affordable Plan Comparison -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center reveal">Most Affordable Internet Plans <span class="gradient-text">in {year}</span></h2>
+      <p class="text-center reveal" style="max-width:560px;margin:var(--space-sm) auto var(--space-2xl);">
+        Ranked by value — not just lowest price. Affordable home internet means the best speed-per-dollar at your address.
+      </p>
+      <div class="grid grid-2" style="gap:var(--space-lg);">
+        {plans.map((plan, i) => (
+          <div class="card reveal" style={`transition-delay:${i * 50}ms;border-left:3px solid ${plan.color};`}>
+            <div class="flex items-start" style="justify-content:space-between;gap:var(--space-sm);">
+              <div>
+                <h4 style="margin-bottom:4px;">{plan.name}</h4>
+                <span class="badge" style={`font-size:var(--text-xs);background:${plan.color}20;color:${plan.color};`}>{plan.note}</span>
+              </div>
+              <div style="text-align:right;flex-shrink:0;">
+                <div style="font-size:var(--text-2xl);font-weight:800;color:var(--brand-green);">{plan.price}</div>
+                <div style="font-size:var(--text-xs);color:var(--text-muted);">per month</div>
+              </div>
+            </div>
+            <div class="flex" style="gap:var(--space-sm);flex-wrap:wrap;margin-top:var(--space-md);">
+              <span class="badge">{plan.speed}</span>
+              <span class="badge">{plan.contract}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="text-center reveal" style="margin-top:var(--space-2xl);">
+        <a href={phoneHref} class="btn btn-primary btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Check Availability at Your Address</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Get Affordable Internet -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <h2 class="text-center reveal">5 Ways to Get <span class="gradient-text">More Affordable Internet</span></h2>
+      <div class="grid grid-1" style="gap:var(--space-md);max-width:700px;margin:var(--space-xl) auto 0;">
+        {[
+          { n: '1', title: 'Apply for Lifeline ($9.25/mo off)', body: 'If your household income is at or below 135% of the Federal Poverty Level — or you receive SNAP, Medicaid, or SSI — you qualify for the FCC Lifeline discount. It permanently reduces your bill by $9.25/month. Apply at lifelinesupport.org or call us for help.', link: '/provider-programs', cta: 'Learn About Lifeline' },
+          { n: '2', title: 'Switch to 5G Home Internet', body: 'T-Mobile 5G Home ($40-50/mo) and Verizon 5G Home ($50/mo) are genuinely affordable internet options with no contract, no credit check, and up to 245 Mbps. Often cheaper than cable after promo periods end.', link: '/wireless-internet', cta: 'Compare 5G Plans' },
+          { n: '3', title: 'Negotiate With Your Current Provider', body: 'Call and ask for the retention department. Say you\'ve seen lower rates elsewhere and are considering switching. Most providers have unpublished loyalty discounts — but you have to ask. The worst they can say is no.' },
+          { n: '4', title: 'Look for New Customer Promotions', body: 'New customers always get the best deal. If you haven\'t switched providers in 2+ years, you\'re almost certainly paying above-promotional-period rates. A fresh signup with a new provider resets your promotional pricing.', link: '/deals', cta: 'See Current Deals' },
+          { n: '5', title: 'Check Provider-Specific Income Programs', body: 'Spectrum Internet Assist ($19.99/mo), Xfinity Internet Essentials ($9.95/mo), and AT&T Access ($30/mo) serve qualifying low-income households regardless of ACP status. Enrollment is open year-round.', link: '/provider-programs', cta: 'See All Programs' },
+        ].map((tip, i) => (
+          <div class="card reveal" style={`transition-delay:${i * 60}ms;display:flex;gap:var(--space-lg);`}>
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--gradient-primary);display:grid;place-items:center;font-weight:800;font-size:var(--text-lg);flex-shrink:0;">{tip.n}</div>
+            <div style="flex:1;">
+              <h4 style="margin-bottom:var(--space-xs);">{tip.title}</h4>
+              <p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:tip.link ? 'var(--space-sm)' : '0';">{tip.body}</p>
+              {tip.link && <a href={tip.link} class="btn btn-secondary" style="font-size:var(--text-xs);margin-top:var(--space-sm);">{tip.cta} →</a>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Provider Cards -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center reveal">Compare Affordable Plans <span class="gradient-text">at Your Address</span></h2>
+      <p class="text-center reveal" style="max-width:500px;margin:var(--space-sm) auto var(--space-xl);">Partner providers with affordable internet plans and fast setup. Call for current pricing and availability.</p>
+      <div class="grid grid-2">
+        {partners.slice(0, 6).map((p, i) => {
+          const cheapest = p.plans.reduce((a, b) => (a.promoPrice || a.price) < (b.promoPrice || b.price) ? a : b);
+          return (
+            <div class={`card reveal`} style={`transition-delay:${i * 60}ms;`}>
+              <div class="flex items-center" style="justify-content:space-between;margin-bottom:var(--space-md);">
+                <div>
+                  <h4>{p.name}</h4>
+                  <span style="font-size:var(--text-xs);color:var(--text-muted);">{p.types.join(' · ')}</span>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:var(--text-xs);color:var(--text-muted);">Starting at</div>
+                  <div style="font-size:var(--text-xl);font-weight:800;color:var(--brand-green);">{formatPrice(cheapest.promoPrice || cheapest.price)}<span style="font-size:var(--text-xs);font-weight:400;">/mo</span></div>
+                </div>
+              </div>
+              <div class="flex" style="gap:var(--space-xs);flex-wrap:wrap;margin-bottom:var(--space-md);">
+                <span class="badge">{formatSpeed(p.plans[p.plans.length - 1].speed)} max</span>
+                <span class="badge">{cheapest.contract}</span>
+                <span class="badge">{cheapest.dataCap}</span>
+              </div>
+              <a href={`tel:${p.phone.replace(/[^0-9]/g, '')}`} class="btn btn-call" style="width:100%;text-align:center;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> Get Affordable {p.name} Rates
+              </a>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container" style="max-width:740px;">
+      <h2 class="text-center reveal" style="margin-bottom:var(--space-xl);">Affordable Internet <span class="gradient-text">FAQ</span></h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <div class="faq-item reveal">
+            <button class="faq-question">{f.q}</button>
+            <div class="faq-answer"><div class="faq-answer-inner">{f.a}</div></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar text="Looking for affordable internet? We'll find the best rate at your address — free." />
+</Base>

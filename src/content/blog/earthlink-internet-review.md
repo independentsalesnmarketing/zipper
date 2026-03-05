@@ -88,7 +88,7 @@ The infrastructure quality depends on which provider serves your address. EarthL
 | [AT&T Fiber](/provider/att) | $55 | 300 Mbps | Fiber | None |
 | [Spectrum](/provider/spectrum) | $49.99 | 300 Mbps | Cable | None |
 | [Frontier Fiber](/provider/frontier) | $49.99 | 500 Mbps | Fiber | None |
-| [T-Mobile 5G](/provider/tmobile) | $50 | 72-245 Mbps | Fixed Wireless | None |
+| [T-Mobile 5G](/provider/tmobile-5g) | $50 | 72-245 Mbps | Fixed Wireless | None |
 
 ## Who Should Choose EarthLink?
 

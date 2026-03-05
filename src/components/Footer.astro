@@ -1,8 +1,10 @@
 ---
-import { MAIN_PHONE, getPartnerProviders } from '@lib/providers';
+import { MAIN_PHONE, getPartnerProviders, stateNames } from '@lib/providers';
 import { formatPhoneForTel } from '@lib/utils';
+import { getStateSlug } from '@data/locations';
 const partners = getPartnerProviders();
 const year = new Date().getFullYear();
+const sortedStates = Object.entries(stateNames).sort((a, b) => a[1].localeCompare(b[1]));
 ---
 <footer class="site-footer">
   <div class="container">
@@ -12,6 +14,11 @@ const year = new Date().getFullYear();
           <img src="/logo.svg" alt="Internet 4 ALL" width="360" height="96" style="height:96px;width:auto;display:block;filter:brightness(0) invert(1);" />
         </a>
         <p>Helping Americans find the best internet service since 2024. Compare providers, plans, and prices — all for free.</p>
+        <a href={formatPhoneForTel(MAIN_PHONE)} class="footer-phone-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          {MAIN_PHONE}
+        </a>
+        <p class="footer-hours">Mon–Fri 8am–9pm EST · Sat–Sun 9am–6pm EST</p>
       </div>
 
       <div class="footer-col">
@@ -22,6 +29,11 @@ const year = new Date().getFullYear();
         <a href="/wireless-internet">Wireless Internet</a>
         <a href="/business-internet">Business Internet</a>
         <a href="/internet-types">Internet Types</a>
+        <a href="/internet-types/fiber">Fiber Internet</a>
+        <a href="/internet-types/cable">Cable Internet</a>
+        <a href="/internet-types/dsl">DSL Internet</a>
+        <a href="/internet-types/satellite">Satellite Internet</a>
+        <a href="/internet-types/5g">5G Home Internet</a>
       </div>
 
       <div class="footer-col">
@@ -29,6 +41,8 @@ const year = new Date().getFullYear();
         <a href="/best-internet">Best Internet</a>
         <a href="/fastest-internet">Fastest Internet</a>
         <a href="/cheap-internet">Cheap Internet</a>
+        <a href="/affordable-internet">Affordable Internet</a>
+        <a href="/low-income-internet">Low Income Programs</a>
         <a href="/no-contract-internet">No-Contract Plans</a>
         <a href="/compare">Compare Plans</a>
         <a href="/deals">Best Deals</a>
@@ -50,25 +64,68 @@ const year = new Date().getFullYear();
         <a href="/internet-for/seniors">Seniors</a>
         <a href="/internet-for/students">Students</a>
         <a href="/internet-for/rural">Rural Areas</a>
+        <a href="/provider-programs">Income Assistance</a>
       </div>
 
       <div class="footer-col">
-        <h4>Tools</h4>
+        <h4>Tools &amp; Guides</h4>
         <a href="/speed-test">Speed Test</a>
         <a href="/quiz">Internet Quiz</a>
         <a href="/bill-analyzer">Bill Analyzer</a>
         <a href="/movers">Moving Guide</a>
         <a href="/switch">Switch Provider</a>
+        <a href="/switch/spectrum-alternatives">Leave Spectrum</a>
+        <a href="/switch/xfinity-alternatives">Leave Xfinity</a>
+        <a href="/disconnected-internet">After Disconnection</a>
         <a href="/resources">Resources</a>
+        <a href="/blog/best-internet-for-gaming">Gaming Internet Guide</a>
+        <a href="/blog/cheapest-internet-providers">Cheapest Providers</a>
+        <a href="/blog/att-internet-review">AT&amp;T Review</a>
+        <a href="/blog/best-internet-for-streaming">Streaming Guide</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Research &amp; Data</h4>
+        <a href="/bill-shock">Bill Shock Report</a>
+        <a href="/internet-affordability-index">Affordability Index</a>
+        <a href="/internet-monopoly-report">Monopoly Report</a>
+        <a href="/low-income-internet">Income Programs Guide</a>
+        <a href="/methodology">Our Methodology</a>
       </div>
 
       <div class="footer-col">
         <h4>Company</h4>
         <a href="/about">About Us</a>
+        <a href="/why-us">Why Choose Us</a>
         <a href="/methodology">Our Methodology</a>
+        <a href="/contact">Contact Us</a>
         <a href="/privacy">Privacy Policy</a>
         <a href="/terms">Terms of Service</a>
-        <a href="/contact">Contact Us</a>
+        <a href="/privacy#do-not-sell">Do Not Sell My Info</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Top Providers</h4>
+        <a href="/provider/spectrum">Spectrum Internet</a>
+        <a href="/provider/xfinity">Xfinity Internet</a>
+        <a href="/provider/att-fiber">AT&amp;T Internet</a>
+        <a href="/provider/verizon">Verizon Fios</a>
+        <a href="/provider/cox">Cox Internet</a>
+        <a href="/provider/frontier">Frontier Internet</a>
+        <a href="/provider/tmobile-5g">T-Mobile Internet</a>
+        <a href="/provider/starlink">Starlink Internet</a>
+        <a href="/provider/hughesnet">HughesNet Internet</a>
+        <a href="/provider/optimum">Optimum Internet</a>
+        <a href="/provider/google-fiber">Google Fiber</a>
+      </div>
+    </div>
+
+    <div class="footer-states">
+      <h4>Internet Providers by State</h4>
+      <div class="footer-states-grid">
+        {sortedStates.map(([abbr, name]) => (
+          <a href={`/internet-providers/${getStateSlug(abbr)}`}>{name}</a>
+        ))}
       </div>
     </div>
 

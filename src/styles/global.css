@@ -1381,7 +1381,7 @@
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 2fr repeat(3, 1fr);
+    grid-template-columns: 1.5fr repeat(4, 1fr);
     gap: var(--space-2xl);
   }
   .footer-brand .logo {
@@ -1394,6 +1394,23 @@
     margin-top: var(--space-md);
     font-size: var(--text-sm);
     max-width: 280px;
+  }
+  .footer-phone-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--space-md);
+    color: var(--brand-green);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .footer-phone-link:hover { color: #fff; }
+  .footer-hours {
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,0.45);
+    margin-top: 4px;
   }
   .footer-col h4 {
     font-size: var(--text-sm);
@@ -1418,6 +1435,34 @@
     padding-top: var(--space-xl);
     border-top: 1px solid rgba(255,255,255,0.1);
     font-size: var(--text-xs);
+  }
+  .footer-states {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-states h4 {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-on-dark-muted);
+    margin-bottom: var(--space-md);
+  }
+  .footer-states-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 2px 0;
+  }
+  .footer-states-grid a {
+    font-size: var(--text-xs);
+    padding: 3px 0;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .footer-states-grid a:hover {
+    color: var(--brand-green);
   }
   @media (max-width: 768px) {
     .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -2524,6 +2569,119 @@
     background: var(--brand-blue);
     color: #fff;
     border-color: var(--brand-blue);
+  }
+
+  /* ════════════════════════════════════════════
+     AVAILABILITY SECTION (Enhanced Search — City & State pages)
+     ════════════════════════════════════════════ */
+  .availability-section {
+    padding: var(--space-2xl);
+    background: linear-gradient(135deg, rgba(0,82,255,0.04), rgba(0,213,132,0.04));
+    border: 2px solid rgba(0,82,255,0.15);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xl);
+  }
+  .availability-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    background: rgba(0,82,255,0.08);
+    border: 1px solid rgba(0,82,255,0.2);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--brand-blue);
+    margin-bottom: var(--space-md);
+  }
+  .availability-info h2 {
+    font-size: var(--text-2xl);
+    line-height: 1.3;
+    margin-bottom: var(--space-sm);
+  }
+  .availability-info > p {
+    color: var(--text-secondary);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    max-width: 540px;
+  }
+  .availability-search-card {
+    flex-shrink: 0;
+    width: 380px;
+    padding: var(--space-xl);
+    background: var(--surface-primary);
+    border: 2px solid rgba(0,82,255,0.12);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+  .availability-search-label {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .availability-search-sublabel {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-md);
+  }
+  .availability-input-group {
+    position: relative;
+    margin-bottom: var(--space-sm);
+  }
+  .availability-input-group svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--brand-blue);
+    pointer-events: none;
+  }
+  .availability-input-group input {
+    width: 100%;
+    padding: 14px 16px 14px 42px;
+    font-size: var(--text-lg);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface-primary);
+    color: var(--text-primary);
+    letter-spacing: 0.12em;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .availability-input-group input:focus {
+    outline: none;
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 4px rgba(0,82,255,0.12);
+  }
+  .availability-cta-btn {
+    width: 100%;
+    padding: 14px 20px !important;
+    font-size: var(--text-base) !important;
+    font-weight: 800 !important;
+    border-radius: var(--radius-md) !important;
+  }
+  .availability-search-card .zip-quick-links {
+    margin-top: var(--space-md);
+    justify-content: center;
+  }
+  @media (max-width: 768px) {
+    .availability-section {
+      flex-direction: column;
+      padding: var(--space-lg);
+      gap: var(--space-lg);
+    }
+    .availability-search-card {
+      width: 100%;
+    }
+    .availability-info h2 {
+      font-size: var(--text-xl);
+    }
   }
 
   /* ════════════════════════════════════════════

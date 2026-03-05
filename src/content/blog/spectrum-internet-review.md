@@ -79,7 +79,7 @@ Upload speeds are Spectrum's weak point. The 10-35 Mbps upload range is adequate
 | **[Spectrum](/provider/spectrum)** | $49.99/mo | 1 Gbps | No | None |
 | [AT&T Fiber](/provider/att) | $55/mo | 5 Gbps | No | None |
 | [Verizon Fios](/provider/verizon) | $49.99/mo | 2 Gbps | No | None |
-| [T-Mobile 5G Home](/provider/tmobile) | $50/mo | 245 Mbps | No | None |
+| [T-Mobile 5G Home](/provider/tmobile-5g) | $50/mo | 245 Mbps | No | None |
 | [Frontier Fiber](/provider/frontier) | $49.99/mo | 5 Gbps | No | None |
 
 Spectrum competes well on simplicity and availability, but falls short against [fiber providers](/internet-types/fiber) on upload speed and latency. If fiber is available at your address, it's generally the better choice.

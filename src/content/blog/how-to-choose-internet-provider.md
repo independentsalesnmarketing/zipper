@@ -114,14 +114,14 @@ Before signing up, verify:
 
 | If You Value… | Choose… | Why |
 |--------------|---------|-----|
-| Lowest price | [Optimum](/provider/optimum) ($40) or [T-Mobile](/provider/tmobile) ($50) | Best starting prices |
+| Lowest price | [Optimum](/provider/optimum) ($40) or [T-Mobile](/provider/tmobile-5g) ($50) | Best starting prices |
 | Fastest speeds | [AT&T Fiber](/provider/att) or [Frontier Fiber](/provider/frontier) | Up to 5 Gbps |
 | Best reliability | [Verizon Fios](/provider/verizon) | Consistently top-rated |
 | Widest availability | [Spectrum](/provider/spectrum) | 41 states |
-| Easiest setup | [T-Mobile Home Internet](/provider/tmobile) | Plug in and go |
+| Easiest setup | [T-Mobile Home Internet](/provider/tmobile-5g) | Plug in and go |
 | Best value (speed/dollar) | [Frontier Fiber](/provider/frontier) | 500 Mbps for $49.99 |
 | Privacy focus | [EarthLink](/provider/earthlink) | Doesn't sell your data |
-| Rural coverage | [T-Mobile](/provider/tmobile) or Windstream | Best rural reach |
+| Rural coverage | [T-Mobile](/provider/tmobile-5g) or Windstream | Best rural reach |
 
 ## Red Flags to Avoid
 

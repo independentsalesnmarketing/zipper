@@ -22,8 +22,8 @@ const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
         <p class="hero-subtitle" style="max-width:550px;margin-inline:auto;">All the details you need to make the right choice — in one clear table.</p>
       </div>
 
-      <!-- Comparison Table -->
-      <div class="reveal" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+      <!-- Comparison Table (desktop) -->
+      <div class="reveal compare-table-wrap" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
         <table class="compare-table" style="min-width: 900px;">
           <thead>
             <tr>
@@ -88,6 +88,61 @@ const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
         </table>
       </div>
 
+      <!-- Mobile Card Carousel (shown <768px, hidden on desktop) -->
+      <div class="compare-mobile-wrap reveal" id="compare-carousel">
+        <div class="cmw-track" id="cmw-track">
+          {partners.map((p, idx) => {
+            const mxSpeed = getMaxSpeed(p);
+            const mnPrice = getMinPrice(p);
+            return (
+              <div class="cmw-card" data-idx={idx}>
+                <div class="cmw-card-header">
+                  <div style="display:flex;align-items:center;gap:var(--space-sm);">
+                    {p.logo ? (
+                      <img src={p.logo} alt={p.name} width="52" height="52" loading="lazy" style="border-radius:8px;object-fit:contain;background:white;padding:4px;border:2px solid var(--border);" />
+                    ) : (
+                      <div style="width:52px;height:52px;border-radius:8px;background:var(--brand-blue);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:var(--text-xl);">{p.name.charAt(0)}</div>
+                    )}
+                    <div>
+                      <a href={`/provider/${p.slug}`} style="font-weight:800;font-size:var(--text-lg);color:var(--text-primary);text-decoration:none;display:block;">{p.name}</a>
+                      {p.isPartner && <span class="badge badge-green" style="font-size:0.6rem;">Recommended</span>}
+                      <div style="display:flex;gap:4px;margin-top:4px;flex-wrap:wrap;">
+                        {p.types.map(t => <span class={`tag tag-${t}`} style="font-size:0.6rem;">{getTypeLabel(t)}</span>)}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="cmw-stats">
+                  <div class="cmw-stat"><div class="cmw-stat-label">Max Speed</div><div class="cmw-stat-val">{formatSpeed(mxSpeed)}</div></div>
+                  <div class="cmw-stat"><div class="cmw-stat-label">Starting</div><div class="cmw-stat-val">{formatPrice(mnPrice)}/mo</div></div>
+                  <div class="cmw-stat"><div class="cmw-stat-label">Contract</div><div class="cmw-stat-val">{p.plans[0]?.contract || 'None'}</div></div>
+                  <div class="cmw-stat">
+                    <div class="cmw-stat-label">Rating</div>
+                    <div class="cmw-stat-val" style="color:var(--brand-amber);">{'★'.repeat(Math.floor(p.rating))} <span style="color:var(--text-primary);font-size:var(--text-sm);">{p.rating}</span></div>
+                  </div>
+                </div>
+                {p.promo && (
+                  <div class="cmw-promo">{p.promo}</div>
+                )}
+                <div class="cmw-actions">
+                  <a href={formatPhoneForTel(p.phone)} class="btn btn-cta" style="flex:1;font-size:var(--text-sm);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call Now</a>
+                  <a href="#get-connected" class="btn btn-secondary" data-signup-provider={p.slug} style="flex:1;font-size:var(--text-sm);">Order Online</a>
+                </div>
+                <a href={`/provider/${p.slug}`} style="display:block;text-align:center;font-size:var(--text-sm);color:var(--brand-blue);margin-top:var(--space-sm);padding-bottom:var(--space-xs);">Full {p.name} review →</a>
+              </div>
+            );
+          })}
+        </div>
+        <div class="cmw-nav">
+          <button class="cmw-prev" id="cmw-prev" aria-label="Previous">‹</button>
+          <div class="cmw-dots" id="cmw-dots">
+            {partners.map((_, i) => <button class={`cmw-dot${i === 0 ? ' active' : ''}`} data-i={i} aria-label={`Provider ${i+1}`}></button>)}
+          </div>
+          <button class="cmw-next" id="cmw-next" aria-label="Next">›</button>
+        </div>
+        <p class="cmw-hint">Swipe or tap arrows · {partners.length} providers total</p>
+      </div>
+
       <!-- Conversion CTA -->
       <div class="reveal" style="margin-top: var(--space-2xl); text-align: center; background: var(--gradient-hero); padding: var(--space-2xl) var(--space-xl); border-radius: var(--radius-xl); position: relative; overflow: hidden;">
         <div style="position: relative; z-index: 1;">
@@ -106,61 +161,76 @@ const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
       <!-- Key Insights -->
       <div class="grid grid-3 reveal" style="margin-top: var(--space-3xl);">
         <div class="card text-center">
-          <div style="font-size:2rem;margin-bottom:var(--space-sm);">⚡</div>
           <h4>Fastest Provider</h4>
           <p style="margin-top:var(--space-sm);">
             <strong>{partners.reduce((a, b) => getMaxSpeed(a) > getMaxSpeed(b) ? a : b).name}</strong> offers the fastest max speed at {formatSpeed(Math.max(...partners.map(p => getMaxSpeed(p))))}.
           </p>
         </div>
         <div class="card text-center">
-          <div style="font-size:2rem;margin-bottom:var(--space-sm);">💰</div>
           <h4>Best Value</h4>
           <p style="margin-top:var(--space-sm);">
             <strong>{partners.reduce((a, b) => getMinPrice(a) < getMinPrice(b) ? a : b).name}</strong> has the lowest starting price at {formatPrice(Math.min(...partners.map(p => getMinPrice(p))))}/mo.
           </p>
         </div>
         <div class="card text-center">
-          <div style="font-size:2rem;margin-bottom:var(--space-sm);">⭐</div>
           <h4>Highest Rated</h4>
           <p style="margin-top:var(--space-sm);">
             <strong>{partners.reduce((a, b) => a.rating > b.rating ? a : b).name}</strong> leads with a {partners.reduce((a, b) => a.rating > b.rating ? a : b).rating} star rating.
           </p>
         </div>
       </div>
+      <!-- Popular Head-to-Head Comparisons -->
+      <div class="reveal" style="margin-top: var(--space-3xl);">
+        <h3 style="margin-bottom: var(--space-lg);">Popular Provider Comparisons</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-md);">
+          {partners.slice(0, 6).flatMap((a, i) =>
+            partners.slice(i + 1, Math.min(i + 3, partners.length)).map(b => {
+              const [first, second] = [a, b].sort((x, y) => x.name.localeCompare(y.name));
+              return (
+                <a href={`/compare/${first.slug}-vs-${second.slug}`} class="card" style="padding:var(--space-md);text-decoration:none;display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-weight:600;font-size:var(--text-sm);">{first.name} vs {second.name}</span>
+                  <span style="font-size:var(--text-xs);color:var(--brand-blue);">Compare →</span>
+                </a>
+              );
+            })
+          )}
+        </div>
+      </div>
+
       <!-- Explore More -->
       <div class="reveal" style="margin-top: var(--space-3xl);">
         <h3 style="margin-bottom: var(--space-lg);">Keep Exploring</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
           <a href="/providers" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">🔍 All Providers</h4>
+            <h4 style="font-size: var(--text-sm);">All Providers</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">See every available provider</p>
           </a>
           <a href="/deals" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">💰 Best Deals</h4>
+            <h4 style="font-size: var(--text-sm);">Best Deals</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Today's lowest prices</p>
           </a>
           <a href="/cheap-internet" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">🏷️ Cheap Internet</h4>
+            <h4 style="font-size: var(--text-sm);">Cheap Internet</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Budget-friendly plans</p>
           </a>
           <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">⚡ Fastest Internet</h4>
+            <h4 style="font-size: var(--text-sm);">Fastest Internet</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Multi-gig speed options</p>
           </a>
           <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">📊 Speed Test</h4>
+            <h4 style="font-size: var(--text-sm);">Speed Test</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Check your current speed</p>
           </a>
           <a href="/internet-types" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">🌐 Internet Types</h4>
+            <h4 style="font-size: var(--text-sm);">Internet Types</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Fiber, Cable, DSL, 5G</p>
           </a>
           <a href="/internet-for/work-from-home" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">💻 Work From Home</h4>
+            <h4 style="font-size: var(--text-sm);">Work From Home</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Plans for remote workers</p>
           </a>
           <a href="/bundles" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">📦 Bundles</h4>
+            <h4 style="font-size: var(--text-sm);">Bundles</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Internet + TV packages</p>
           </a>
         </div>
@@ -170,3 +240,152 @@ const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
 
   <StickyCallBar />
 </Base>
+
+<style>
+  /* Desktop: show table, hide carousel */
+  .compare-table-wrap { display: block; }
+  .compare-mobile-wrap { display: none; }
+
+  @media (max-width: 768px) {
+    .compare-table-wrap { display: none !important; }
+    .compare-mobile-wrap { display: block; }
+  }
+
+  /* Carousel track */
+  .cmw-track {
+    display: flex;
+    transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+    touch-action: pan-y;
+  }
+  .cmw-card {
+    min-width: 100%;
+    padding: var(--space-lg);
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  .cmw-card-header { margin-bottom: var(--space-lg); }
+  .cmw-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+  .cmw-stat {
+    background: var(--bg-secondary, var(--surface-secondary));
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    text-align: center;
+  }
+  .cmw-stat-label {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .cmw-stat-val { font-weight: 800; font-size: var(--text-base); }
+  .cmw-promo {
+    background: rgba(0,213,132,0.1);
+    border: 1px solid rgba(0,213,132,0.25);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--text-sm);
+    color: var(--brand-green);
+    font-weight: 500;
+    margin-bottom: var(--space-lg);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .cmw-actions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  /* Navigation */
+  .cmw-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+  .cmw-prev, .cmw-next {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .cmw-prev:hover, .cmw-next:hover {
+    border-color: var(--brand-blue);
+    color: var(--brand-blue);
+  }
+  .cmw-dots { display: flex; gap: 6px; align-items: center; }
+  .cmw-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+  }
+  .cmw-dot.active {
+    width: 20px;
+    border-radius: 4px;
+    background: var(--brand-blue);
+  }
+  .cmw-hint {
+    text-align: center;
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    margin-top: var(--space-sm);
+  }
+  .compare-mobile-wrap { overflow: hidden; }
+</style>
+
+<script>
+(function() {
+  const track = document.getElementById('cmw-track') as HTMLElement;
+  const prevBtn = document.getElementById('cmw-prev') as HTMLButtonElement;
+  const nextBtn = document.getElementById('cmw-next') as HTMLButtonElement;
+  const dotsEl = document.getElementById('cmw-dots') as HTMLElement;
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const cards = track.querySelectorAll<HTMLElement>('.cmw-card');
+  const total = cards.length;
+  let current = 0;
+
+  function goTo(idx: number) {
+    current = (idx + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dotsEl?.querySelectorAll('.cmw-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+  dotsEl?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.cmw-dot');
+    if (btn) goTo(parseInt(btn.dataset.i || '0'));
+  });
+
+  // Swipe support
+  let startX = 0;
+  track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+  }, { passive: true });
+})();
+</script>

@@ -8,8 +8,10 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "postbuild": "node scripts/generate-sitemap.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sitemap": "node scripts/generate-sitemap.mjs"
   },
   "dependencies": {
     "astro": "^4.16.0",

@@ -124,6 +124,90 @@ export function generateProviderSchema(provider: {
   };
 }
 
+export function generateProductSchema(provider: {
+  name: string;
+  description: string;
+  rating: number;
+  reviewCount: number;
+  slug: string;
+  plans: Array<{ name: string; price: number; promoPrice: number; speed: number }>;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: `${provider.name} Internet Service`,
+    description: provider.description,
+    url: `https://internet4all.com/provider/${provider.slug}`,
+    brand: {
+      '@type': 'Brand',
+      name: provider.name,
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: provider.rating.toFixed(1),
+      bestRating: '5',
+      worstRating: '1',
+      ratingCount: provider.reviewCount,
+    },
+    offers: provider.plans.map(plan => ({
+      '@type': 'Offer',
+      name: plan.name,
+      price: (plan.promoPrice < plan.price ? plan.promoPrice : plan.price).toFixed(2),
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: `https://internet4all.com/provider/${provider.slug}`,
+    })),
+  };
+}
+
+export function generateItemListSchema(items: Array<{ name: string; url: string; description?: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      url: item.url,
+      ...(item.description && { description: item.description }),
+    })),
+  };
+}
+
+export function generateArticleSchema(opts: {
+  title: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  dateModified: string;
+  authorName: string;
+  authorUrl?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: opts.title,
+    description: opts.description,
+    url: opts.url,
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    author: {
+      '@type': 'Person',
+      name: opts.authorName,
+      ...(opts.authorUrl && { url: opts.authorUrl }),
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Internet 4 ALL',
+      url: 'https://internet4all.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://internet4all.com/logo.png',
+      },
+    },
+  };
+}
+
 export function generateLocalBusinessSchema(opts: {
   city: string;
   state: string;

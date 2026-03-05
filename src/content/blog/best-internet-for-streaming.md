@@ -54,7 +54,7 @@ Here's the honest answer that ISPs don't want you to hear: **you don't need giga
 - Wide availability in 41 states
 - Reliable enough for multiple HD/4K streams
 
-### 4. [T-Mobile 5G Home](/provider/tmobile) — Budget Streaming
+### 4. [T-Mobile 5G Home](/provider/tmobile-5g) — Budget Streaming
 - **$50/mo** flat
 - Speeds typically support multiple HD streams
 - No data caps

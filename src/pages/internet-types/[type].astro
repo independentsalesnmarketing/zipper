@@ -156,7 +156,6 @@ const schemas = [
       ]} />
 
       <div class="reveal" style="max-width: 800px;">
-        <span class="tag" style="margin-bottom: var(--space-sm); display: inline-block; font-size: var(--text-lg);">{td.icon}</span>
         <h1 style="font-size: var(--text-4xl); line-height: 1.1; margin-bottom: var(--space-md);">{td.h1}: <span class="gradient-text">Providers, Plans & Availability</span></h1>
         <p style="font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.7;">{td.intro}</p>
       </div>
@@ -245,7 +244,6 @@ const schemas = [
             const t = typeData[k];
             return (
               <a href={`/internet-types/${t.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none;">
-                <span style="font-size: var(--text-2xl);">{t.icon}</span>
                 <h4 style="margin-top: var(--space-sm); color: var(--text-primary);">{t.h1}</h4>
                 <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">{t.speedRange}</p>
               </a>
@@ -253,6 +251,60 @@ const schemas = [
           })}
         </div>
       </div>
+
+      <!-- Best For: Audience Links -->
+      {(() => {
+        const audienceMap: Record<string, { slug: string; label: string; icon: string }[]> = {
+          fiber: [
+            { slug: 'gaming', label: 'Internet for Gaming', icon: '🎮' },
+            { slug: 'work-from-home', label: 'Internet for Remote Work', icon: '💼' },
+            { slug: 'streaming', label: 'Internet for Streaming', icon: '📺' },
+            { slug: 'small-business', label: 'Small Business Internet', icon: '🏢' },
+          ],
+          cable: [
+            { slug: 'streaming', label: 'Internet for Streaming', icon: '📺' },
+            { slug: 'work-from-home', label: 'Internet for Remote Work', icon: '💼' },
+            { slug: 'gaming', label: 'Internet for Gaming', icon: '🎮' },
+          ],
+          dsl: [
+            { slug: 'seniors', label: 'Internet for Seniors', icon: '👴' },
+            { slug: 'rural', label: 'Rural Internet', icon: '🌾' },
+            { slug: 'low-income', label: 'Low-Income Internet', icon: '💚' },
+          ],
+          satellite: [
+            { slug: 'rural', label: 'Rural Internet', icon: '🌾' },
+            { slug: 'low-income', label: 'Low-Income Internet', icon: '💚' },
+          ],
+          '5g': [
+            { slug: 'apartments', label: 'Internet for Apartments', icon: '🏠' },
+            { slug: 'students', label: 'Internet for Students', icon: '🎓' },
+            { slug: 'work-from-home', label: 'Internet for Remote Work', icon: '💼' },
+          ],
+          'fixed-wireless': [
+            { slug: 'rural', label: 'Rural Internet', icon: '🌾' },
+            { slug: 'low-income', label: 'Low-Income Internet', icon: '💚' },
+            { slug: 'seniors', label: 'Internet for Seniors', icon: '👴' },
+          ],
+        };
+        const links = audienceMap[typeSlug] || [];
+        if (!links.length) return null;
+        return (
+          <div class="reveal" style="margin-top: var(--space-3xl);">
+            <h2 style="margin-bottom: var(--space-sm);">{td.h1} — Who Is It Best For?</h2>
+            <p style="color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-xl);">See our expert guides tailored to specific internet needs.</p>
+            <div class="grid grid-3" style="gap: var(--space-md);">
+              {links.map(a => (
+                <a href={`/internet-for/${a.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none; display: flex; gap: var(--space-sm); align-items: flex-start;">
+                  <div>
+                    <div style="font-weight: 600; color: var(--text-primary);">{a.label}</div>
+                    <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Expert picks & tips →</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
 
       <!-- FAQs -->
       <div class="reveal" style="margin-top: var(--space-3xl);">

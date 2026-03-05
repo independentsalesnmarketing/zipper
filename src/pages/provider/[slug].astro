@@ -3,7 +3,7 @@ import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor, renderStars, stateNames } from '@lib/providers';
-import { formatPhoneForTel, generateProviderSchema, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { formatPhoneForTel, generateProductSchema, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
 export function getStaticPaths() {
@@ -29,7 +29,7 @@ const faqs = [
 ];
 
 const schemas = [
-  generateProviderSchema(provider),
+  generateProductSchema(provider),
   generateBreadcrumbSchema([
     { name: 'Home', url: 'https://internet4all.com' },
     { name: 'Providers', url: 'https://internet4all.com/providers' },
@@ -198,6 +198,44 @@ const schemas = [
             </div>
           </div>
         ))}
+      </div>
+
+      <!-- Related Resources -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">More {provider.name} Resources</h2>
+        <div class="grid grid-3" style="gap: var(--space-md);">
+          <a href={`/deals/${provider.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none; border-color: rgba(0,213,132,0.3);">
+            <div style="font-size: 1.5rem; margin-bottom: var(--space-xs);">🔥</div>
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-xs);">{provider.name} Deals</h4>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">Exclusive promos & limited-time offers — save up to ${Math.round(getMinPrice(provider) * 0.3)}/mo →</p>
+          </a>
+          <a href="/speed-test" class="card" style="padding: var(--space-lg); text-decoration: none;">
+            <div style="font-size: 1.5rem; margin-bottom: var(--space-xs);">⚡</div>
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-xs);">Speed Test</h4>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">Test your current {provider.name} speed and see if you're getting what you pay for →</p>
+          </a>
+          <a href="/compare" class="card" style="padding: var(--space-lg); text-decoration: none;">
+            <div style="font-size: 1.5rem; margin-bottom: var(--space-xs);">📊</div>
+            <h4 style="color: var(--text-primary); margin-bottom: var(--space-xs);">Compare Providers</h4>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">See how {provider.name} stacks up against Spectrum, Xfinity, AT&T, and more →</p>
+          </a>
+          {getAllProviders().filter(p => p.isPartner && p.id !== provider.id).slice(0, 3).map(p => {
+            const [first, second] = [provider, p].sort((x, y) => x.name.localeCompare(y.name));
+            return (
+              <a href={`/compare/${first.slug}-vs-${second.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none;">
+                <div style="font-size: 1.5rem; margin-bottom: var(--space-xs);">⚖️</div>
+                <h4 style="color: var(--text-primary); margin-bottom: var(--space-xs);">{provider.name} vs {p.name}</h4>
+                <p style="font-size: var(--text-sm); color: var(--text-secondary);">Side-by-side: speed, price, plans, ratings →</p>
+              </a>
+            );
+          })}
+          {provider.types.map(t => (
+            <a href={`/internet-types/${t}`} class="card" style="padding: var(--space-lg); text-decoration: none;">
+              <h4 style="color: var(--text-primary); margin-bottom: var(--space-xs);">{t === 'fiber' ? 'Fiber' : t === 'cable' ? 'Cable' : t === '5g' ? '5G Home' : t === 'satellite' ? 'Satellite' : t === 'dsl' ? 'DSL' : 'Fixed Wireless'} Internet Guide</h4>
+              <p style="font-size: var(--text-sm); color: var(--text-secondary);">How {provider.name}'s {t} technology works, speeds, and what to expect →</p>
+            </a>
+          ))}
+        </div>
       </div>
 
     </div>

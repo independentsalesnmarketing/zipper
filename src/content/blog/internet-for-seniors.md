@@ -20,7 +20,7 @@ The best internet for seniors isn't about having the fastest speeds — it's abo
 
 ## Best Internet Plans for Seniors
 
-### 1. [T-Mobile 5G Home Internet](/provider/tmobile) — Best Overall for Seniors
+### 1. [T-Mobile 5G Home Internet](/provider/tmobile-5g) — Best Overall for Seniors
 
 | Feature | Details |
 |---------|---------|

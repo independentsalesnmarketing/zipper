@@ -12,7 +12,6 @@ interface AudienceData {
   h1: string;
   description: string;
   intro: string;
-  icon: string;
   speedNeeded: string;
   budgetRange: string;
   keyFeatures: string[];
@@ -29,27 +28,27 @@ const partners = getPartnerProviders();
 const audiences: Record<string, AudienceData> = {
   seniors: {
     slug: 'seniors',
-    title: `Best Internet for Seniors (${year})`,
-    h1: 'Best Internet for Seniors',
-    description: `Find the best internet plans for seniors in ${year}. Simple, affordable plans with reliable service and great customer support. No contracts required.`,
-    intro: `Finding the right internet plan as a senior shouldn't be complicated. You need reliable service, straightforward billing, and a plan that covers your actual usage — not a gigabit package you'll never fully use. We've identified the best internet options for seniors that deliver solid performance, great customer support, and honest pricing.`,
-    icon: '👴',
+    title: `Cheaper Internet for Seniors (${year}) — Affordable Plans from $10/mo`,
+    h1: 'Affordable Internet for Seniors',
+    description: `Find cheaper internet for seniors in ${year}. Affordable internet plans from $10/mo, Lifeline discounts, no-contract options, and simplified setup. We help seniors on fixed incomes find the best internet deal.`,
+    intro: `Internet prices keep going up — but seniors on fixed incomes shouldn't have to pay full price. Whether you want to video call the grandkids, stream your favorite shows, or just browse the news, you don't need a complicated or expensive plan. We specialize in finding the most affordable internet for seniors, including federal Lifeline discounts, provider assistance programs, and simple no-contract plans with easy setup.`,
+
     speedNeeded: '25–100 Mbps',
-    budgetRange: '$25–$55/mo',
-    keyFeatures: ['Simple setup', 'Reliable connection', 'Good customer support', 'No data caps', 'No contracts', 'Affordable pricing'],
+    budgetRange: '$10–$50/mo',
+    keyFeatures: ['Affordable pricing', 'No contracts required', 'Simple phone-based setup', 'Lifeline program eligible', 'Easy self-install', 'Reliable customer support'],
     providerFilter: (p) => p.plans.some(plan => plan.promoPrice <= 60) && p.plans.some(plan => plan.contract === 'None'),
     buyingTips: [
-      { title: 'You probably don\'t need gigabit speed', text: 'For email, video calls, streaming, and browsing, 50-100 Mbps is more than enough. Don\'t let salespeople upsell you on speed you won\'t use.' },
-      { title: 'Look for no-contract plans', text: 'Avoid being locked into 1-2 year agreements. Most providers now offer month-to-month plans.' },
-      { title: 'Ask about senior discounts', text: 'Some providers offer AARP partnerships or senior-specific rates. Always ask — it could save you $5-15/mo.' },
-      { title: 'Consider 5G home internet', text: 'No technician visit, no complex setup. Just plug in the device and connect. T-Mobile and Verizon offer simple, affordable 5G plans.' },
+      { title: 'You may qualify for Lifeline — $9.25 off every month', text: 'The FCC Lifeline program is still active and provides a permanent $9.25/month discount on internet for qualifying seniors. If you receive SNAP, Medicaid, or SSI — or your household income is at or below 135% of the Federal Poverty Level — you qualify. Call us and we\'ll check your eligibility instantly.' },
+      { title: '50 Mbps is plenty for video calls and streaming', text: 'You don\'t need a gigabit plan. For video calls with family, streaming Netflix or YouTube, and browsing, 25–100 Mbps handles everything comfortably. Don\'t pay for speed you won\'t use.' },
+      { title: 'No-contract plans give you flexibility', text: 'Avoid being locked into 1–2 year contracts. Most providers now offer month-to-month plans. If your needs change or a better deal appears, you can switch without penalty.' },
+      { title: '5G home internet is the easiest setup', text: 'T-Mobile and Verizon 5G ship a small gateway device to your door. Just plug it in, follow three simple steps, and you\'re online. No technician visit, no drilling, no complicated installation.' },
     ],
     faqs: [
-      { question: 'What internet speed do seniors need?', answer: 'Most seniors do well with 25-100 Mbps. This handles email, web browsing, video calls with family, streaming Netflix/YouTube, and even online shopping comfortably. If you live with others or have multiple devices, consider 100-300 Mbps.' },
-      { question: 'What is the cheapest internet for seniors?', answer: 'Several providers offer affordable plans ideal for seniors: T-Mobile 5G Home ($50/mo), Mint Mobile ($25/mo), and Frontier ($49.99/mo). Some ISPs also offer low-income programs for qualifying seniors.' },
-      { question: 'Is there a senior discount for internet?', answer: 'While not all ISPs have explicit senior discounts, many offer low-income programs that seniors on fixed incomes may qualify for. AT&T Access, Spectrum Internet Assist, and the federal Lifeline program all serve qualifying households. Call us to check eligibility.' },
-      { question: 'What is the easiest internet to set up for seniors?', answer: '5G home internet is the simplest — just plug in the device and connect via WiFi. T-Mobile, Verizon, and AT&T Air all offer self-install 5G with excellent customer support. No drilling, no cables, no technician visits.' },
-      { question: 'Do seniors need WiFi?', answer: 'Yes, if you use a smartphone, tablet, laptop, or smart TV at home, you need WiFi. All internet plans include a WiFi router — you just connect your devices wirelessly. Many providers include the router at no extra cost.' },
+      { question: 'What is the cheapest internet for seniors?', answer: 'The most affordable internet options for seniors in 2026: Xfinity Internet Essentials ($9.95/mo for qualifying households), Spectrum Internet Assist ($19.99/mo — SNAP/SSI), AT&T Access ($30/mo — SNAP/SSI), T-Mobile 5G Home ($40–50/mo, no contract), and Mint Mobile ($25/mo). With the Lifeline discount ($9.25/mo off), qualifying seniors can pay as little as $10.74/mo.' },
+      { question: 'Is there a senior discount for internet?', answer: 'While not all ISPs offer explicit "senior discounts," qualifying seniors often pay far less through Lifeline ($9.25/mo off), Spectrum Internet Assist ($19.99/mo), Xfinity Internet Essentials ($9.95/mo), and AT&T Access ($30/mo). Call us and we\'ll check which programs you qualify for based on your income or benefit status.' },
+      { question: 'What is the Lifeline internet program for seniors?', answer: 'Lifeline is a permanent FCC program giving eligible households $9.25/month off internet or phone service. You qualify if you receive SNAP, Medicaid, SSI, Veterans Pension/Survivors Benefit, or if your household income is at or below 135% of the Federal Poverty Guidelines. It never expires and can be stacked with provider discount programs.' },
+      { question: 'What is the easiest internet to set up for seniors?', answer: '5G home internet is the simplest. T-Mobile sends a small device to your door. Plug it into a power outlet, wait a few minutes, and connect your phone or tablet to it like any WiFi. No technician, no cables, no difficult setup. T-Mobile\'s customer support is available 24/7 if you need help.' },
+      { question: 'How fast does internet need to be for seniors?', answer: '25 Mbps is the minimum for comfortable use. 50–100 Mbps handles video calls with family, streaming shows on Netflix or YouTube, and online shopping without any issues. Even in a busy household, 100 Mbps is more than enough. Don\'t pay for faster speeds than you need.' },
     ],
   },
   'low-income': {
@@ -58,7 +57,6 @@ const audiences: Record<string, AudienceData> = {
     h1: 'Internet for Low-Income Households',
     description: `Free and discounted internet programs for low-income families in ${year}. Government assistance, provider discounts, and affordable plans from $10/mo.`,
     intro: `Everyone deserves internet access regardless of income. Multiple federal programs, state initiatives, and provider discounts make affordable internet available to qualifying households. From free internet through government programs to plans starting at $10/mo, we'll help you find the most affordable option.`,
-    icon: '🏠',
     speedNeeded: '25–100 Mbps',
     budgetRange: '$0–$30/mo',
     keyFeatures: ['ACP eligibility', 'Lifeline program', 'No credit check', 'No contracts', 'Free equipment', 'Low deposit options'],
@@ -83,7 +81,6 @@ const audiences: Record<string, AudienceData> = {
     h1: 'Best Internet for Rural Areas',
     description: `Find internet in rural areas. Compare satellite, fixed wireless, 5G, and DSL options. Starlink, T-Mobile, Verizon available in remote regions.`,
     intro: `Living in a rural area doesn't mean accepting slow, unreliable internet. The rural broadband landscape has transformed with Starlink's satellite constellation, 5G fixed wireless expansion, and new fiber buildouts from Brightspeed and Windstream. We'll help you compare every option available at your address — from modern satellite to emerging rural fiber.`,
-    icon: '🌾',
     speedNeeded: '25–300 Mbps',
     budgetRange: '$30–$120/mo',
     keyFeatures: ['Available in remote areas', 'Satellite options', '5G fixed wireless', 'DSL fallback', 'No phone line required', 'Self-install available'],
@@ -108,7 +105,6 @@ const audiences: Record<string, AudienceData> = {
     h1: 'Best Internet for Gaming',
     description: `Find the best internet for gaming in ${year}. Low ping, fast download speeds, no data caps. Compare fiber, cable, and 5G plans optimized for gamers.`,
     intro: `For gamers, internet quality isn't just about download speed — it's about low latency (ping), minimal jitter, and consistent performance during peak hours. A fiber connection with symmetrical speeds is the gold standard, but modern cable and 5G options can also deliver excellent gaming experiences. We've ranked the best providers for gaming based on what actually matters.`,
-    icon: '🎮',
     speedNeeded: '100–1000 Mbps',
     budgetRange: '$50–$100/mo',
     keyFeatures: ['Low ping/latency', 'No data caps', 'Fast upload speed', 'Consistent speeds', 'Gaming-optimized', 'Symmetrical fiber available'],
@@ -133,7 +129,6 @@ const audiences: Record<string, AudienceData> = {
     h1: 'Best Internet for Streaming',
     description: `Find the best internet for streaming Netflix, YouTube, Disney+, and more in ${year}. Compare speeds, data caps, and prices for the ultimate streaming experience.`,
     intro: `Streaming is the #1 reason Americans use their internet connection. Whether you're binge-watching Netflix in 4K, streaming sports on YouTube TV, or running multiple streams simultaneously, having the right internet plan eliminates buffering and delivers the crisp picture quality you're paying for. Here's what you actually need.`,
-    icon: '📺',
     speedNeeded: '25–300 Mbps',
     budgetRange: '$40–$80/mo',
     keyFeatures: ['No data caps', 'Fast enough for 4K', 'Multiple simultaneous streams', 'Low buffering', 'Consistent speeds', 'Good WiFi coverage'],
@@ -158,7 +153,6 @@ const audiences: Record<string, AudienceData> = {
     h1: 'Best Internet for Apartments',
     description: `Find the best internet for your apartment in ${year}. No-contract plans, easy self-install, and speeds up to 1 Gbps. Compare apartment-friendly providers.`,
     intro: `Apartment internet comes with unique challenges: you may be limited to specific providers per building, need landlord approval for installations, and face congestion from neighboring units sharing the same cable node. The good news? 5G home internet and expanded fiber have given apartment dwellers more choices than ever — many with no installation required.`,
-    icon: '🏢',
     speedNeeded: '100–500 Mbps',
     budgetRange: '$30–$70/mo',
     keyFeatures: ['No installation needed', 'No contracts', 'Self-setup', 'No drilling required', 'Portable', 'Month-to-month billing'],
@@ -183,7 +177,6 @@ const audiences: Record<string, AudienceData> = {
     h1: 'Best Internet for College Students',
     description: `Affordable internet for college students in ${year}. No-contract plans, budget-friendly prices, and speeds for online classes, streaming, and gaming.`,
     intro: `College students need reliable internet for online classes, research, video calls with professors, streaming between study sessions, and yes — gaming. But student budgets are tight. The best student internet balances speed, reliability, and price, with no commitment contracts that match your semester schedule.`,
-    icon: '🎓',
     speedNeeded: '50–300 Mbps',
     budgetRange: '$25–$60/mo',
     keyFeatures: ['Budget-friendly', 'No contracts', 'Good for video calls', 'Self-install', 'Portable for moves', 'Student discounts'],
@@ -208,7 +201,6 @@ const audiences: Record<string, AudienceData> = {
     h1: 'Best Internet for Working from Home',
     description: `Reliable internet for remote workers in ${year}. Fast upload speeds, low latency for video calls, and consistent performance. Compare WFH-optimized plans.`,
     intro: `Remote work demands more from your internet than casual browsing ever did. Zoom calls, VPN connections, cloud file syncing, and collaborative tools all run simultaneously — and they need consistent bandwidth, especially upload speed. A dropped call or frozen screen in a client meeting isn't just annoying; it's unprofessional. Here's how to choose internet that works as hard as you do.`,
-    icon: '💼',
     speedNeeded: '100–500 Mbps',
     budgetRange: '$50–$90/mo',
     keyFeatures: ['Fast upload speed', 'Low latency', 'Reliable connection', 'No data caps', 'Business-grade uptime', 'VPN-compatible'],
@@ -233,7 +225,6 @@ const audiences: Record<string, AudienceData> = {
     h1: 'Best Internet for Small Business',
     description: `Business internet plans for small businesses in ${year}. Dedicated support, SLA guarantees, static IP options, and speeds up to 5 Gbps. Compare plans.`,
     intro: `Small business internet isn't just fast home internet — it comes with service level agreements (SLAs), priority support, static IP addresses, and dedicated bandwidth that residential plans can't match. Whether you're running a retail shop, restaurant, or office, downtime costs money. We'll help you find business internet that keeps you connected with the reliability your business demands.`,
-    icon: '🏪',
     speedNeeded: '200–1000 Mbps',
     budgetRange: '$60–$200/mo',
     keyFeatures: ['SLA guarantee', 'Static IP available', 'Priority support', 'No data caps', 'Business-class reliability', 'Symmetrical upload options'],
@@ -295,17 +286,29 @@ const schemas = [
 
       <!-- Hero -->
       <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
-        <div style="font-size: 3rem; margin-bottom: var(--space-md);">{audience.icon}</div>
         <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
           {audience.h1.split(' ').slice(0, -1).join(' ')} <span class="gradient-text">{audience.h1.split(' ').slice(-1)[0]}</span>
         </h1>
         <p class="hero-subtitle" style="max-width: 700px; margin-inline: auto;">{audience.intro}</p>
         <a href={phoneHref} class="btn btn-call mt-xl">
-          📞 Call {phone} for Personalized Recommendations
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Call {phone} for Personalized Recommendations
         </a>
       </div>
 
       <!-- Quick Requirements -->
+      {audienceSlug === 'seniors' && (
+        <div class="card reveal" style="margin-bottom: var(--space-2xl); background: rgba(0,213,132,0.04); border: 1px solid rgba(0,213,132,0.25); text-align: center; padding: var(--space-xl);">
+          <div style="font-size: 1.8rem; margin-bottom: var(--space-sm);">💰</div>
+          <h3 style="margin-bottom: var(--space-xs);">Seniors: You May Qualify for $9.25/mo Off — Every Month</h3>
+          <p style="color: var(--text-secondary); max-width: 560px; margin: 0 auto var(--space-lg);">The federal <strong>Lifeline program</strong> is permanently active and actively enrolling. If you receive SNAP, Medicaid, SSI, or Veterans benefits — or your income is below 135% of the Federal Poverty Level — you qualify. Call us and we'll verify eligibility instantly and walk you through enrollment.</p>
+          <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+            <a href={phoneHref} class="btn btn-call" style="font-size: var(--text-lg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call to Check Your Eligibility</a>
+            <a href="/provider-programs" class="btn btn-secondary">See All Programs</a>
+          </div>
+        </div>
+      )}
+
       <div class="grid grid-3 reveal" style="margin-bottom: var(--space-3xl);">
         <div class="card text-center" style="padding: var(--space-xl);">
           <div style="font-size: var(--text-sm); color: var(--text-tertiary); margin-bottom: var(--space-xs);">Recommended Speed</div>
@@ -371,7 +374,8 @@ const schemas = [
                   <div class="flex gap-sm">
                     <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size:var(--text-sm);">Plans</a>
                     <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-sm);">
-                      📞 Call
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                      Call
                     </a>
                   </div>
                 </div>
@@ -383,7 +387,7 @@ const schemas = [
 
       <!-- Buying Tips -->
       <div class="card reveal" style="margin-bottom: var(--space-3xl); padding: var(--space-2xl);">
-        <h2 style="margin-bottom: var(--space-xl);">💡 Buying Tips</h2>
+        <h2 style="margin-bottom: var(--space-xl);">Buying Tips</h2>
         <div class="grid grid-2" style="gap: var(--space-xl);">
           {audience.buyingTips.map(tip => (
             <div>
@@ -411,10 +415,99 @@ const schemas = [
         <div class="grid grid-3" style="gap: var(--space-sm);">
           {Object.values(audiences).filter(a => a.slug !== audience.slug).map(a => (
             <a href={`/internet-for/${a.slug}`} class="card" style="padding: var(--space-md); text-decoration: none;">
-              <span style="margin-right: var(--space-xs);">{a.icon}</span>
               <span style="font-weight: 500; font-size: var(--text-sm);">{a.h1}</span>
             </a>
           ))}
+        </div>
+      </div>
+
+      <!-- Relevant Connection Types -->
+      {(() => {
+        const typeMap: Record<string, { slug: string; label: string; icon: string }[]> = {
+          seniors: [
+            { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
+            { slug: '5g', label: '5G Home Internet', icon: '📱' },
+            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+          ],
+          'low-income': [
+            { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
+            { slug: 'fixed-wireless', label: 'Fixed Wireless', icon: '📶' },
+            { slug: '5g', label: '5G Home Internet', icon: '📱' },
+          ],
+          rural: [
+            { slug: 'satellite', label: 'Satellite Internet', icon: '🛰️' },
+            { slug: 'fixed-wireless', label: 'Fixed Wireless', icon: '📶' },
+            { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
+          ],
+          gaming: [
+            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+            { slug: '5g', label: '5G Home Internet', icon: '📱' },
+          ],
+          streaming: [
+            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+            { slug: '5g', label: '5G Home Internet', icon: '📱' },
+          ],
+          apartments: [
+            { slug: '5g', label: '5G Home Internet', icon: '📱' },
+            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+          ],
+          students: [
+            { slug: '5g', label: '5G Home Internet', icon: '📱' },
+            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+            { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
+          ],
+          'work-from-home': [
+            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+            { slug: '5g', label: '5G Home Internet', icon: '📱' },
+          ],
+          'small-business': [
+            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+            { slug: '5g', label: '5G Home Internet', icon: '📱' },
+          ],
+        };
+        const typeLinks = typeMap[audience.slug] || [];
+        if (!typeLinks.length) return null;
+        return (
+          <div class="reveal" style="margin-bottom: var(--space-3xl);">
+            <h2 style="margin-bottom: var(--space-sm);">Best Connection Types for {audience.h1}</h2>
+            <p style="color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-xl);">Compare technologies and find the right fit for your needs.</p>
+            <div class="grid grid-3" style="gap: var(--space-md);">
+              {typeLinks.map(t => (
+                <a href={`/internet-types/${t.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none; display: flex; gap: var(--space-sm); align-items: flex-start;">
+                  <span style="font-size: var(--text-2xl);">{t.icon}</span>
+                  <div>
+                    <div style="font-weight: 600; color: var(--text-primary);">{t.label}</div>
+                    <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Compare plans →</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
+      <!-- Top Provider Deals -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Today's Best Deals for {audience.h1}</h2>
+        <p style="color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-xl);">Save more with provider-specific promotions — updated monthly.</p>
+        <div class="grid grid-3" style="gap: var(--space-md);">
+          {relevantProviders.filter(p => p.isPartner).slice(0, 3).map(p => {
+            const minP = getMinPrice(p);
+            return (
+              <a href={`/deals/${p.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none; border: 1px solid var(--brand-green); display: flex; gap: var(--space-sm); align-items: flex-start;">
+                <span style="font-size: var(--text-2xl);">🔥</span>
+                <div>
+                  <div style="font-weight: 700; color: var(--text-primary);">{p.name} Deals</div>
+                  <div style="font-size: var(--text-sm); color: var(--brand-green); margin-top: var(--space-xs);">From {formatPrice(minP)}/mo — See offers →</div>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </div>

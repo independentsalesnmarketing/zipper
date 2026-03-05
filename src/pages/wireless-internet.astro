@@ -31,12 +31,12 @@ const wirelessTypes = [
 ];
 
 const comparisonData = [
-  { type: 'Fiber', wireless: false, speed: 'Up to 8 Gbps', latency: '1–5 ms', reliability: '⭐⭐⭐⭐⭐', install: 'Professional required', contract: 'Often 1–2 years', best: 'Gamers, streamers, large households' },
-  { type: 'Cable', wireless: false, speed: 'Up to 1.2 Gbps', latency: '10–30 ms', reliability: '⭐⭐⭐⭐', install: 'Professional required', contract: 'Varies', best: 'Most households' },
-  { type: '5G Home', wireless: true, speed: 'Up to 1 Gbps', latency: '20–40 ms', reliability: '⭐⭐⭐⭐', install: 'Self-install (plug in)', contract: 'Usually none', best: 'Renters, no-contract seekers' },
-  { type: 'Fixed Wireless', wireless: true, speed: 'Up to 1 Gbps', latency: '15–50 ms', reliability: '⭐⭐⭐', install: 'Antenna installation', contract: 'Varies', best: 'Rural & suburban areas' },
-  { type: 'Satellite', wireless: true, speed: 'Up to 200 Mbps', latency: '20–600 ms', reliability: '⭐⭐⭐', install: 'Dish installation', contract: 'Usually none', best: 'Remote & rural areas' },
-  { type: 'DSL', wireless: false, speed: 'Up to 100 Mbps', latency: '25–50 ms', reliability: '⭐⭐⭐', install: 'Professional/self', contract: 'Varies', best: 'Budget-conscious users' },
+  { type: 'Fiber', wireless: false, speed: 'Up to 8 Gbps', latency: '1–5 ms', reliability: 'Excellent (5/5)', install: 'Professional required', contract: 'Often 1–2 years', best: 'Gamers, streamers, large households' },
+  { type: 'Cable', wireless: false, speed: 'Up to 1.2 Gbps', latency: '10–30 ms', reliability: 'Very Good (4/5)', install: 'Professional required', contract: 'Varies', best: 'Most households' },
+  { type: '5G Home', wireless: true, speed: 'Up to 1 Gbps', latency: '20–40 ms', reliability: 'Very Good (4/5)', install: 'Self-install (plug in)', contract: 'Usually none', best: 'Renters, no-contract seekers' },
+  { type: 'Fixed Wireless', wireless: true, speed: 'Up to 1 Gbps', latency: '15–50 ms', reliability: 'Good (3/5)', install: 'Antenna installation', contract: 'Varies', best: 'Rural & suburban areas' },
+  { type: 'Satellite', wireless: true, speed: 'Up to 200 Mbps', latency: '20–600 ms', reliability: 'Good (3/5)', install: 'Dish installation', contract: 'Usually none', best: 'Remote & rural areas' },
+  { type: 'DSL', wireless: false, speed: 'Up to 100 Mbps', latency: '25–50 ms', reliability: 'Good (3/5)', install: 'Professional/self', contract: 'Varies', best: 'Budget-conscious users' },
 ];
 
 const faqs = [
@@ -59,8 +59,8 @@ const schemas = [
 ];
 ---
 <Base
-  title={`Best Wireless Internet Providers — 5G, Fixed Wireless & Satellite (${year})`}
-  description={`Compare wireless internet providers for ${year}. Find the best 5G home internet, fixed wireless, and satellite plans. No cables needed — speeds up to 1 Gbps. ${wirelessProviders.length} wireless providers compared.`}
+  title={`Best Wireless & WiFi Internet Providers Near You — 5G, Fixed Wireless & Satellite (${year})`}
+  description={`Compare WiFi providers near you for ${year}. Find the best wireless internet, 5G home internet, fixed wireless, and satellite plans. No cables needed — speeds up to 1 Gbps. WiFi for home from ${wirelessProviders.length} providers compared.`}
   schema={schemas}
 >
   <StickyCallBar text="Get wireless internet today — no installation needed" />
@@ -71,7 +71,7 @@ const schemas = [
 
       <!-- Hero -->
       <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
-        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">📶 Updated {month} {year}</div>
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">Updated {month} {year}</div>
         <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
           Best <span class="gradient-text">Wireless Internet</span> Providers
         </h1>
@@ -80,7 +80,7 @@ const schemas = [
           5G home internet, fixed wireless, and satellite — with speeds up to 1 Gbps. Many plans start under $50/mo with no contract.
         </p>
         <div style="margin-top: var(--space-xl);">
-          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Check Wireless Coverage</a>
+              <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Check Wireless Coverage</a>
           <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check My Address</a>
         </div>
       </div>
@@ -91,20 +91,19 @@ const schemas = [
         {wirelessTypes.map(wt => (
           <div class="card" style="padding: var(--space-xl); margin-bottom: var(--space-lg);">
             <div class="flex items-center gap-sm" style="margin-bottom: var(--space-md);">
-              <span style="font-size: 2rem;">{wt.icon}</span>
               <h3 style="margin: 0; font-size: var(--text-xl);">{wt.name}</h3>
               <span class="badge badge-blue" style="margin-left: auto;">{wt.providers.length} providers</span>
             </div>
             <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">{wt.desc}</p>
             <div class="grid grid-2" style="gap: var(--space-lg); margin-bottom: var(--space-lg);">
               <div>
-                <h4 style="color: var(--brand-green); font-size: var(--text-sm); margin-bottom: var(--space-sm);">✅ Pros</h4>
+                <h4 style="color: var(--brand-green); font-size: var(--text-sm); margin-bottom: var(--space-sm);">Pros</h4>
                 <ul style="font-size: var(--text-sm); color: var(--text-secondary); padding-left: var(--space-md);">
                   {wt.pros.map(pro => <li>{pro}</li>)}
                 </ul>
               </div>
               <div>
-                <h4 style="color: var(--danger); font-size: var(--text-sm); margin-bottom: var(--space-sm);">⚠️ Cons</h4>
+                <h4 style="color: var(--danger); font-size: var(--text-sm); margin-bottom: var(--space-sm);">Cons</h4>
                 <ul style="font-size: var(--text-sm); color: var(--text-secondary); padding-left: var(--space-md);">
                   {wt.cons.map(con => <li>{con}</li>)}
                 </ul>
@@ -150,7 +149,7 @@ const schemas = [
                   <td>{p.types.filter(t => ['5g', 'fixed-wireless', 'satellite'].includes(t)).map(t => getTypeLabel(t)).join(', ')}</td>
                   <td>{formatSpeed(getMaxSpeed(p))}</td>
                   <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
-                  <td>⭐ {p.rating.toFixed(1)}</td>
+                  <td>{p.rating.toFixed(1)}/5</td>
                   <td><a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a></td>
                 </tr>
               ))}
@@ -180,7 +179,7 @@ const schemas = [
               {comparisonData.map(cd => (
                 <tr style={cd.wireless ? 'background: rgba(0,213,132,0.04);' : ''}>
                   <td style="font-weight: 600;">{cd.type}</td>
-                  <td>{cd.wireless ? '✅ Yes' : '❌ No'}</td>
+                  <td>{cd.wireless ? 'Yes' : 'No'}</td>
                   <td>{cd.speed}</td>
                   <td>{cd.latency}</td>
                   <td>{cd.reliability}</td>
@@ -200,7 +199,7 @@ const schemas = [
           <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); max-width: 550px; margin-inline: auto;">
             Our wireless internet experts will check 5G, fixed wireless, and satellite coverage at your exact address — and find the fastest, cheapest option.
           </p>
-          <a href={phoneHref} class="btn btn-cta btn-lg">📞 Call {phone} — Free Wireless Check</a>
+          <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Free Wireless Check</a>
         </div>
       </div>
 
@@ -209,7 +208,7 @@ const schemas = [
         <h2 style="margin-bottom: var(--space-lg);">Who Should Choose Wireless Internet?</h2>
         <div class="grid grid-2" style="gap: var(--space-md);">
           <div class="card" style="padding: var(--space-lg);">
-            <h3 style="color: var(--brand-green); font-size: var(--text-md); margin-bottom: var(--space-sm);">✅ Great For</h3>
+            <h3 style="color: var(--brand-green); font-size: var(--text-md); margin-bottom: var(--space-sm);">Great For</h3>
             <ul style="font-size: var(--text-sm); color: var(--text-secondary); padding-left: var(--space-md);">
               <li><strong>Renters</strong> — No drilling, easy to move, no installation damage</li>
               <li><strong>Rural residents</strong> — Where cable and fiber aren't available</li>
@@ -220,7 +219,7 @@ const schemas = [
             </ul>
           </div>
           <div class="card" style="padding: var(--space-lg);">
-            <h3 style="color: var(--brand-blue); font-size: var(--text-md); margin-bottom: var(--space-sm);">🔌 Consider Wired Instead</h3>
+            <h3 style="color: var(--brand-blue); font-size: var(--text-md); margin-bottom: var(--space-sm);">Consider Wired Instead</h3>
             <ul style="font-size: var(--text-sm); color: var(--text-secondary); padding-left: var(--space-md);">
               <li><strong>Competitive gamers</strong> — Fiber's 1–5 ms latency can't be beat</li>
               <li><strong>Ultra-heavy users</strong> — Need 2+ Gbps symmetrical speeds</li>
@@ -237,17 +236,17 @@ const schemas = [
       <div class="reveal" style="margin-bottom: var(--space-3xl);">
         <h2 style="margin-bottom: var(--space-lg);">Explore More</h2>
         <div class="grid grid-3" style="gap: var(--space-sm);">
-          <a href="/providers" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🔍 All Providers</a>
-          <a href="/compare" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">⚖️ Compare Plans</a>
-          <a href="/deals" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">💰 Best Deals</a>
-          <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📊 Speed Test</a>
-          <a href="/internet-types/5g" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📱 5G Internet Guide</a>
-          <a href="/internet-types/satellite" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🛰️ Satellite Internet</a>
-          <a href="/internet-for/rural" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🌾 Internet for Rural Areas</a>
-          <a href="/internet-for/gaming" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🎮 Best for Gaming</a>
-          <a href="/internet-for/streaming" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📺 Best for Streaming</a>
-          <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">⚡ Fastest Internet</a>
-          <a href="/cheap-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">🏷️ Cheap Internet</a>
+          <a href="/providers" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">All Providers</a>
+          <a href="/compare" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Compare Plans</a>
+          <a href="/deals" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Best Deals</a>
+          <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Speed Test</a>
+          <a href="/internet-types/5g" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">5G Internet Guide</a>
+          <a href="/internet-types/satellite" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Satellite Internet</a>
+          <a href="/internet-for/rural" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Internet for Rural Areas</a>
+          <a href="/internet-for/gaming" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Best for Gaming</a>
+          <a href="/internet-for/streaming" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Best for Streaming</a>
+          <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Fastest Internet</a>
+          <a href="/cheap-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Cheap Internet</a>
           <a href="/check-availability" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">📍 Check Availability</a>
         </div>
       </div>

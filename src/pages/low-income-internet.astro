@@ -1,0 +1,503 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { MAIN_PHONE, getPartnerProviders, formatPrice, formatSpeed } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } from '@lib/utils';
+
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+const partners = getPartnerProviders();
+const year = new Date().getFullYear();
+
+// All income-based internet programs — curated March 2026
+const federalPrograms = [
+  {
+    name: 'FCC Lifeline Program',
+    discount: '$9.25/mo off',
+    eligibility: 'Income ≤135% Federal Poverty Level, or participation in SNAP, Medicaid, SSI, Federal Public Housing, Veterans Pension/Survivors Benefit',
+    notes: 'Maximum 1 benefit per household. Available nationwide through participating carriers. Enhanced benefit ($25/mo) available for Tribal lands residents.',
+    apply: 'lifelinesupport.org or call 888-641-8722',
+    badge: 'Federal Program',
+    color: 'var(--brand-blue)',
+    active: true,
+  },
+  {
+    name: 'Enhanced Lifeline (Tribal Lands)',
+    discount: '$25/mo off',
+    eligibility: 'Same as Lifeline, but must reside on qualifying Tribal lands. Additional eligibility: Bureau of Indian Affairs (BIA) General Assistance, Tribally Administered TANF, Head Start (income-based)',
+    notes: 'Higher benefit amount replaces standard $9.25 for Tribal land residents. Some states supplement further.',
+    apply: 'lifelinesupport.org — select Tribal Lands option',
+    badge: 'Federal Program – Tribal',
+    color: 'var(--brand-purple)',
+    active: true,
+  },
+  {
+    name: 'ACP (Affordable Connectivity Program)',
+    discount: 'ENDED April 2024',
+    eligibility: 'Previously: income ≤200% FPL or SNAP/Medicaid participation',
+    notes: 'The ACP ended April 23, 2024 due to Congress not renewing funding. It provided $30/mo off ($75/mo on Tribal lands). The best current alternatives are Lifeline + provider-specific programs below. Several providers maintained reduced rates post-ACP for previous enrollees.',
+    apply: 'Program ended — see alternatives below',
+    badge: 'Ended April 2024',
+    color: '#ef4444',
+    active: false,
+  },
+];
+
+const providerPrograms = [
+  {
+    provider: 'Xfinity Internet Essentials',
+    price: '$9.95/mo',
+    speed: '50 Mbps',
+    dataCap: 'No cap',
+    contract: 'No contract',
+    eligibility: 'K–12 student qualifying for Free/Reduced Lunch Program; 62+ (long-time Xfinity customer); Habitat for Humanity resident; veterans with qualifying income; foster youth aging out of care',
+    notes: 'Also stackable with Lifeline for additional discount. Free WiFi equipment included. Upgrade available at $29.95/mo for 100 Mbps.',
+    slug: 'xfinity',
+    color: '#e11d48',
+  },
+  {
+    provider: 'AT&T Access',
+    price: '$30/mo',
+    speed: '10–100 Mbps (fiber)',
+    dataCap: 'No cap',
+    contract: 'No contract',
+    eligibility: 'Household participates in SNAP or SSI. Income verification required.',
+    notes: 'Fiber version (100 Mbps) available where AT&T Fiber is deployed. DSL version provides 10+ Mbps. Includes free modem.',
+    slug: 'att-fiber',
+    color: '#0057b8',
+  },
+  {
+    provider: 'Spectrum Internet Assist',
+    price: '$19.99/mo',
+    speed: '30 Mbps',
+    dataCap: 'No cap',
+    contract: 'No contract',
+    eligibility: 'K–12 student enrolled in National School Lunch Program (NSLP) OR household member 65+ receiving SSI',
+    notes: 'Stackable with Lifeline program. Free modem included. Available in Spectrum service areas only.',
+    slug: 'spectrum',
+    color: '#3b82f6',
+  },
+  {
+    provider: 'Cox Connect2Compete',
+    price: '$9.95/mo',
+    speed: '100 Mbps',
+    dataCap: 'No cap',
+    contract: 'No contract',
+    eligibility: 'K–12 student receiving free/reduced-price school lunch AND household has no other Cox Internet subscription in past 90 days',
+    notes: 'Cox service areas only. Includes free modem. One of the best value income-based programs for families with school-age children.',
+    slug: 'cox',
+    color: '#16a34a',
+  },
+  {
+    provider: 'T-Mobile Project 10Million',
+    price: 'Free (5 years)',
+    speed: 'Up to 100 Mbps',
+    dataCap: '100 GB/yr',
+    contract: 'No contract',
+    eligibility: 'K–12 students qualifying for NSLP. Applied through school districts. Households must not already have broadband.',
+    notes: 'Provides free hotspot device + 100GB annual data for 5 years. Participating school districts apply on behalf of families.',
+    slug: 'tmobile-5g',
+    color: '#e11d48',
+  },
+  {
+    provider: 'Mediacom Connect2Compete',
+    price: '$9.95/mo',
+    speed: '100 Mbps',
+    dataCap: 'No cap',
+    contract: 'No contract',
+    eligibility: 'K–12 student receiving free/reduced-price school meals. Mediacom service areas only.',
+    notes: 'Mediacom footprint concentrated in Midwest and Southeast rural areas where few alternatives exist.',
+    slug: '',
+    color: '#7c3aed',
+  },
+];
+
+const lifelineSteps = [
+  { n: '1', title: 'Check your eligibility', body: 'You qualify if your household income is at or below 135% of the Federal Poverty Level (approximately $19,683/year for a family of 4 in 2026), OR if anyone in your household participates in SNAP, Medicaid, SSI, Federal Public Housing / Section 8, Veterans and Survivors Pension Benefit, or Tribal programs.' },
+  { n: '2', title: 'Gather documentation', body: 'Depending on your qualifying reason: proof of income (tax returns, pay stubs, benefits letter) or proof of program participation (SNAP letter, Medicaid card, SSI award letter). You\'ll need your name, address, and date of birth.' },
+  { n: '3', title: 'Apply at lifelinesupport.org', body: 'Go to lifelinesupport.org or click "Get Started with Lifeline." Complete the National Verifier application online. Approval typically takes 1–3 business days for program-based eligibility, or 7–10 days for income-based verification.' },
+  { n: '4', title: 'Choose a participating provider', body: 'Once approved, select a Lifeline-participating internet provider in your area. Many major ISPs accept Lifeline, including Xfinity, Spectrum, AT&T, Cox, and regional carriers. Use your benefit code when signing up.' },
+  { n: '5', title: 'Re-certify annually', body: 'You must re-certify your eligibility once per year to keep your Lifeline benefit. USAC (the program administrator) will send a notice. Missing re-certification removes your benefit — set a calendar reminder for your anniversary date.' },
+];
+
+const statePrograms = [
+  { state: 'California', program: 'California LifeLine', detail: 'Additional $10–$20/mo off on top of federal Lifeline for landline and broadband. Administered by CPUC. Apply at cpuc.ca.gov/lifeline' },
+  { state: 'New York', program: 'ConnectALL Initiative', detail: '$1 billion statewide broadband expansion. Plus NY State Supplement to Lifeline. Check eligibility at dos.ny.gov/connectall' },
+  { state: 'Texas', program: 'Texas Broadband Development Office', detail: '$1.5B in BEAD funding. Focus on unserved rural areas. Residential programs vary by provider. puc.texas.gov/lifeline' },
+  { state: 'Illinois', program: 'Illinois Affordable Connectivity Program Support', detail: 'State supplements federal programs. Income-based broadband assistance through IDES. illinois.gov/services/broadband' },
+  { state: 'Pennsylvania', program: 'PA Broadband Development Authority', detail: '$279M in BEAD allocation. Targeted deployment plus income-based program support. pa.gov/broadband' },
+  { state: 'Florida', program: 'Florida Broadband Opportunity Program', detail: 'BEAD implementation underway. Lifeline available statewide. floridajobs.org/broadband' },
+  { state: 'Michigan', program: 'Michigan High-Speed Internet Office', detail: '$1.56B in federal broadband funding. MHIO helps low-income residents navigate available programs. michigan.gov/mhio' },
+  { state: 'North Carolina', program: 'North Carolina Broadband Infrastructure Office', detail: '$1.5B+ BEAD allocation. NC HOME program for low-income housing connectivity. ncbroadband.gov' },
+];
+
+const faqs = [
+  {
+    question: 'What replaced the Affordable Connectivity Program (ACP) after it ended in 2024?',
+    answer: 'Congress did not create a direct replacement for the ACP, which ended April 23, 2024. The best current alternatives are: (1) FCC Lifeline ($9.25/mo off your bill, nationwide), (2) Enhanced Lifeline if you live on Tribal lands ($25/mo off), (3) provider-specific income programs like Xfinity Internet Essentials ($9.95/mo), AT&T Access ($30/mo), Spectrum Internet Assist ($19.99/mo), and Cox Connect2Compete ($9.95/mo). Several of these can be stacked with Lifeline for deeper savings.',
+  },
+  {
+    question: 'How much is the Lifeline discount in 2026?',
+    answer: 'The standard Lifeline discount is $9.25 per month off your broadband or phone bill. For households on qualifying Tribal lands, the Enhanced Lifeline benefit is $25.00 per month. You can apply this to any Lifeline-participating internet provider. The discount applies as long as you remain eligible and re-certify annually.',
+  },
+  {
+    question: 'Can I stack Lifeline with a provider\'s low-income program?',
+    answer: 'Yes — in many cases. Xfinity Internet Essentials explicitly accepts Lifeline stacking, meaning a qualifying household could pay $9.95/mo (Essentials base) minus $9.25 (Lifeline) = approximately $0.70/mo for 50 Mbps internet. Spectrum Internet Assist and Cox Connect2Compete also allow Lifeline stacking. Always confirm stacking with your specific provider when enrolling.',
+  },
+  {
+    question: 'What income level qualifies for Lifeline in 2026?',
+    answer: 'Income-based Lifeline eligibility is set at 135% of the Federal Poverty Level. In 2026, that\'s approximately: $19,683/year for a family of 4 ($1,640/month), $16,037/year for a family of 2 ($1,336/month), $13,325/year for an individual ($1,110/month). You also qualify automatically if anyone in your household participates in SNAP, Medicaid, SSI, Federal Public Housing, Veterans Pension, or qualifying Tribal programs — regardless of income.',
+  },
+  {
+    question: 'What is the BEAD program and how does it help me get internet?',
+    answer: 'BEAD (Broadband Equity, Access, and Deployment) is a $42.5 billion federal program that funds broadband infrastructure in unserved and underserved areas. Each state received a BEAD allocation and is currently selecting ISPs to build new fiber and wireless networks in areas with inadequate service. If you\'re in a BEAD-targeted area (typically rural areas with <25 Mbps or <100 Mbps download), you may soon have a new provider option or new fiber service. Check your state broadband office website to see BEAD deployment maps.',
+  },
+  {
+    question: 'Do I need perfect credit to get low-income internet programs?',
+    answer: 'No. All income-based internet assistance programs — Lifeline, Xfinity Essentials, AT&T Access, Spectrum Internet Assist, Cox Connect2Compete — do not run credit checks. T-Mobile 5G Home Internet, Verizon 5G Home, and AT&T Air also have no credit check requirements as standard policy. Credit scores are irrelevant for these programs.',
+  },
+  {
+    question: 'Can seniors qualify for free or reduced-price internet?',
+    answer: 'Yes. Seniors 65+ who receive SSI qualify for Spectrum Internet Assist ($19.99/mo). SSI receipt also qualifies for Lifeline ($9.25/mo off) and AT&T Access ($30/mo). Long-term Xfinity customers 62+ may qualify for Internet Essentials. Stacking Lifeline with a provider program can reduce monthly costs to under $15/mo for qualifying seniors.',
+  },
+  {
+    question: 'My child qualifies for free school lunch — does that get me cheaper internet?',
+    answer: 'Yes, in most cases. Free or Reduced Price School Lunch Program (NSLP) eligibility for a K-12 student in your household qualifies you for: Spectrum Internet Assist ($19.99/mo), Cox Connect2Compete ($9.95/mo), Xfinity Internet Essentials ($9.95/mo), Mediacom Connect2Compete ($9.95/mo), and potentially T-Mobile Project 10Million (free, through the school). Which programs are available depends on which ISP serves your address.',
+  },
+];
+
+const schema = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet4all.com' },
+    { name: 'Low Income Internet', url: 'https://internet4all.com/low-income-internet' },
+  ]),
+  generateArticleSchema({
+    title: 'Low Income Internet Providers & Programs — Complete Guide (2026)',
+    description: 'Every government and provider low-income internet program in one place: Lifeline, ACP history, Xfinity Essentials, AT&T Access, Spectrum Assist, and more.',
+    url: 'https://internet4all.com/low-income-internet',
+    datePublished: '2026-03-01',
+    dateModified: '2026-03-05',
+    authorName: 'Internet 4 ALL Research Team',
+    authorUrl: 'https://internet4all.com/methodology',
+  }),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title={`Low Income Internet Programs — Complete Guide to Free & Discounted Internet (${year})`}
+  description={`Every low income internet provider program in one place: FCC Lifeline, ACP alternatives, Xfinity Essentials, AT&T Access, Spectrum Assist, Cox Connect2Compete, BEAD, and state programs. Apply today.`}
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="hero" style="padding-bottom:var(--space-xl);">
+    <div class="container text-center">
+      <Breadcrumb items={[{ name: 'Low Income Internet Programs' }]} />
+      <div class="badge reveal" style="background:rgba(16,185,129,0.12);color:#10b981;border:1px solid rgba(16,185,129,0.25);margin-bottom:var(--space-md);">
+        Updated March {year} — All Programs Verified
+      </div>
+      <h1 class="reveal">
+        Low Income Internet Programs — <span class="gradient-text">Every Discount Available in {year}</span>
+      </h1>
+      <p class="hero-subtitle reveal" style="max-width:660px;margin-inline:auto;">
+        The ACP ended in 2024. Here's what replaced it: a complete guide to every <strong>federal Lifeline benefit</strong>, 
+        every <strong>provider low-income program</strong>, state assistance, and qualifying criteria — all in one place. 
+        Many households can get internet for <strong>under $10/month</strong> by stacking programs.
+      </p>
+      <div class="reveal" style="margin-top:var(--space-xl);display:flex;gap:var(--space-md);justify-content:center;flex-wrap:wrap;">
+        <a href="#programs" class="btn btn-primary btn-lg">See All Programs ↓</a>
+        <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Get Help Applying — Free</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick stats -->
+  <section style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:var(--space-xl) 0;">
+    <div class="container">
+      <div class="grid grid-4 text-center reveal">
+        <div>
+          <div style="font-size:2rem;font-weight:800;color:var(--brand-green);">$9.25</div>
+          <div style="font-size:var(--text-sm);color:var(--text-secondary);">Federal Lifeline discount/month</div>
+        </div>
+        <div>
+          <div style="font-size:2rem;font-weight:800;color:var(--brand-green);">$0.70</div>
+          <div style="font-size:var(--text-sm);color:var(--text-secondary);">Min. monthly cost (Lifeline + Xfinity stacked)</div>
+        </div>
+        <div>
+          <div style="font-size:2rem;font-weight:800;color:var(--brand-blue-light);">7</div>
+          <div style="font-size:var(--text-sm);color:var(--text-secondary);">Major provider programs available</div>
+        </div>
+        <div>
+          <div style="font-size:2rem;font-weight:800;color:#ef4444;">ACP ended</div>
+          <div style="font-size:var(--text-sm);color:var(--text-secondary);">April 2024 — see current alternatives below</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACP sunset callout -->
+  <section class="section" style="padding-bottom:0;">
+    <div class="container">
+      <div class="card reveal" style="border:2px solid rgba(239,68,68,0.35);background:rgba(239,68,68,0.04);max-width:760px;margin:0 auto;">
+        <div style="display:flex;gap:var(--space-md);align-items:flex-start;">
+          <div style="flex-shrink:0;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div>
+            <h3 style="margin-bottom:var(--space-xs);color:#ef4444;">The Affordable Connectivity Program (ACP) Ended April 23, 2024</h3>
+            <p style="font-size:var(--text-sm);line-height:1.8;color:var(--text-secondary);margin-bottom:var(--space-md);">
+              Congress did not renew ACP funding. The $30/month benefit (and $75/month for Tribal lands) is no longer available.
+              Approximately 23 million households lost this benefit. However, better alternatives exist for many qualifying families — 
+              some costing less than ACP ever did.
+            </p>
+            <div style="display:flex;gap:var(--space-sm);flex-wrap:wrap;">
+              <a href="#federal-programs" class="btn btn-secondary" style="font-size:var(--text-xs);">See Lifeline (Still Active) →</a>
+              <a href="#provider-programs" class="btn btn-secondary" style="font-size:var(--text-xs);">See Provider Programs →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Federal Programs -->
+  <section class="section" id="federal-programs">
+    <div class="container">
+      <h2 class="text-center reveal" style="margin-bottom:var(--space-xs);">Federal Internet Assistance Programs</h2>
+      <p class="text-center reveal" style="color:var(--text-secondary);max-width:560px;margin:0 auto var(--space-2xl);">
+        Funded and administered by the FCC. Available to qualifying households nationwide, regardless of which provider you use.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:var(--space-xl);max-width:800px;margin:0 auto;">
+        {federalPrograms.map((prog, i) => (
+          <div class="card reveal" style={`transition-delay:${i * 80}ms;border-left:4px solid ${prog.color};opacity:${prog.active ? 1 : 0.75};`}>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-md);flex-wrap:wrap;margin-bottom:var(--space-md);">
+              <div>
+                <h3 style="margin-bottom:4px;">{prog.name}</h3>
+                <span style={`font-size:var(--text-xs);padding:2px 8px;border-radius:999px;background:${prog.color}20;color:${prog.color};font-weight:600;`}>{prog.badge}</span>
+              </div>
+              <div style={`font-size:1.5rem;font-weight:800;color:${prog.active ? 'var(--brand-green)' : '#ef4444'};white-space:nowrap;`}>{prog.discount}</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);margin-bottom:var(--space-md);">
+              <div>
+                <div style="font-size:var(--text-xs);font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Eligibility</div>
+                <p style="font-size:var(--text-sm);line-height:1.7;color:var(--text-secondary);margin:0;">{prog.eligibility}</p>
+              </div>
+              <div>
+                <div style="font-size:var(--text-xs);font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Notes</div>
+                <p style="font-size:var(--text-sm);line-height:1.7;color:var(--text-secondary);margin:0;">{prog.notes}</p>
+              </div>
+            </div>
+            {prog.active && (
+              <div style="background:var(--bg-secondary);border-radius:var(--radius-md);padding:var(--space-sm) var(--space-md);font-size:var(--text-xs);color:var(--text-secondary);">
+                <strong>How to apply:</strong> {prog.apply}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Lifeline Step-by-Step -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <h2 class="text-center reveal" style="margin-bottom:var(--space-xs);">How to Apply for Lifeline — Step by Step</h2>
+      <p class="text-center reveal" style="color:var(--text-secondary);max-width:520px;margin:0 auto var(--space-2xl);">
+        The application takes about 10 minutes. Approval is typically within 1–3 business days for program-based enrollment.
+      </p>
+      <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:var(--space-md);">
+        {lifelineSteps.map((step, i) => (
+          <div class="card reveal" style={`transition-delay:${i * 70}ms;display:flex;gap:var(--space-lg);align-items:flex-start;`}>
+            <div style="width:44px;height:44px;border-radius:50%;background:var(--gradient-primary);display:grid;place-items:center;font-weight:800;font-size:1.1rem;flex-shrink:0;color:#fff;">{step.n}</div>
+            <div>
+              <h4 style="margin-bottom:var(--space-xs);">{step.title}</h4>
+              <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.8;margin:0;">{step.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="text-center reveal" style="margin-top:var(--space-2xl);">
+        <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Need Help? Call Us — We'll Walk You Through It</a>
+        <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">Free · No obligation · Available Mon–Fri 8am–9pm ET</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Provider Programs -->
+  <section class="section" id="provider-programs">
+    <div class="container">
+      <h2 class="text-center reveal" style="margin-bottom:var(--space-xs);">Provider Low-Income Internet Programs</h2>
+      <p class="text-center reveal" style="color:var(--text-secondary);max-width:600px;margin:0 auto var(--space-2xl);">
+        Seven major ISPs maintain income-based plans at dramatically below-market prices. 
+        Several can be stacked with Lifeline for additional savings.
+        <strong>Availability depends on which providers serve your address.</strong>
+      </p>
+
+      <div style="overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border);margin-bottom:var(--space-xl);">
+        <table style="width:100%;border-collapse:collapse;font-size:var(--text-sm);">
+          <thead>
+            <tr style="background:var(--bg-secondary);border-bottom:2px solid var(--border);">
+              <th style="padding:var(--space-sm) var(--space-md);text-align:left;">Program</th>
+              <th style="padding:var(--space-sm) var(--space-md);text-align:center;">Price</th>
+              <th style="padding:var(--space-sm) var(--space-md);text-align:center;">Speed</th>
+              <th style="padding:var(--space-sm) var(--space-md);text-align:left;">Who Qualifies</th>
+              <th style="padding:var(--space-sm) var(--space-md);text-align:center;">Lifeline Stackable</th>
+            </tr>
+          </thead>
+          <tbody>
+            {providerPrograms.map((p, i) => (
+              <tr style={`border-bottom:1px solid var(--border);${i % 2 === 0 ? '' : 'background:rgba(0,0,0,0.02);'}`}>
+                <td style="padding:var(--space-sm) var(--space-md);">
+                  <div style={`font-weight:700;color:${p.color};`}>{p.provider}</div>
+                  <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">{p.notes.slice(0, 50)}…</div>
+                </td>
+                <td style="padding:var(--space-sm) var(--space-md);text-align:center;font-weight:700;color:var(--brand-green);font-size:1rem;">{p.price}</td>
+                <td style="padding:var(--space-sm) var(--space-md);text-align:center;">{p.speed}</td>
+                <td style="padding:var(--space-sm) var(--space-md);font-size:var(--text-xs);color:var(--text-secondary);max-width:280px;">{p.eligibility.slice(0, 100)}{p.eligibility.length > 100 ? '…' : ''}</td>
+                <td style="padding:var(--space-sm) var(--space-md);text-align:center;font-size:1.1rem;">
+                  {['xfinity','spectrum','cox'].includes(p.slug) ? 'Yes' : '—'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Expanded cards for each program -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:var(--space-lg);">
+        {providerPrograms.map((prog, i) => (
+          <div class="card reveal" style={`transition-delay:${i * 60}ms;border-top:3px solid ${prog.color};`}>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-sm);">
+              <h4 style={`color:${prog.color};margin-bottom:2px;`}>{prog.provider}</h4>
+              <div style="text-align:right;flex-shrink:0;margin-left:var(--space-sm);">
+                <div style="font-size:1.3rem;font-weight:800;color:var(--brand-green);">{prog.price}</div>
+                <div style="font-size:var(--text-xs);color:var(--text-tertiary);">{prog.speed}</div>
+              </div>
+            </div>
+            <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Eligibility</div>
+            <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;margin-bottom:var(--space-sm);">{prog.eligibility}</p>
+            <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Key Details</div>
+            <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;margin-bottom:var(--space-md);">{prog.notes}</p>
+            {prog.slug ? (
+              <a href={`/provider/${prog.slug}`} class="btn btn-secondary" style="width:100%;text-align:center;font-size:var(--text-xs);">
+                Check {prog.provider.split(' ')[0]} Availability →
+              </a>
+            ) : (
+              <a href={phoneHref} class="btn btn-secondary" style="width:100%;text-align:center;font-size:var(--text-xs);">
+                Check Availability by Phone
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- State Programs -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <h2 class="text-center reveal" style="margin-bottom:var(--space-xs);">State-Level Internet Assistance Programs</h2>
+      <p class="text-center reveal" style="color:var(--text-secondary);max-width:560px;margin:0 auto var(--space-2xl);">
+        Many states have additional programs layered on top of federal Lifeline. These are the largest:
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:var(--space-md);max-width:900px;margin:0 auto;">
+        {statePrograms.map((sp, i) => (
+          <div class="card reveal" style={`transition-delay:${i * 50}ms;padding:var(--space-md) var(--space-lg);`}>
+            <div style="font-weight:700;font-size:1rem;margin-bottom:2px;">{sp.state}</div>
+            <div style="font-size:var(--text-xs);color:var(--brand-blue-light);font-weight:600;margin-bottom:var(--space-sm);">{sp.program}</div>
+            <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;margin:0;">{sp.detail}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-center reveal" style="font-size:var(--text-sm);color:var(--text-tertiary);margin-top:var(--space-lg);">
+        All 50 states received BEAD allocations in 2025. Contact your state broadband office for deployment timelines in your area.
+      </p>
+    </div>
+  </section>
+
+  <!-- BEAD Section -->
+  <section class="section">
+    <div class="container">
+      <div style="max-width:760px;margin:0 auto;" class="reveal">
+        <h2 style="margin-bottom:var(--space-md);">The $42.5 Billion BEAD Program: What It Means for You</h2>
+        <p style="font-size:var(--text-sm);line-height:1.95;color:var(--text-secondary);margin-bottom:var(--space-lg);">
+          The Broadband Equity, Access, and Deployment (BEAD) program is the largest federal broadband investment in US history. 
+          Congress allocated $42.5 billion through the Infrastructure Investment and Jobs Act. Every state received a BEAD allocation 
+          based on the number of unserved locations (below 25/3 Mbps) and underserved locations (below 100/20 Mbps).
+        </p>
+        <div class="grid grid-3 reveal" style="gap:var(--space-md);margin-bottom:var(--space-lg);">
+          <div class="card" style="text-align:center;padding:var(--space-lg);">
+            <div style="font-size:1.5rem;font-weight:800;color:var(--brand-blue-light);">$42.5B</div>
+            <div style="font-size:var(--text-xs);color:var(--text-secondary);">Total BEAD allocation</div>
+          </div>
+          <div class="card" style="text-align:center;padding:var(--space-lg);">
+            <div style="font-size:1.5rem;font-weight:800;color:var(--brand-green);">8.5M</div>
+            <div style="font-size:var(--text-xs);color:var(--text-secondary);">Unserved locations targeted</div>
+          </div>
+          <div class="card" style="text-align:center;padding:var(--space-lg);">
+            <div style="font-size:1.5rem;font-weight:800;color:var(--brand-amber);">2026–2028</div>
+            <div style="font-size:var(--text-xs);color:var(--text-secondary);">Expected deployment window</div>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm);line-height:1.95;color:var(--text-secondary);margin-bottom:var(--space-md);">
+          <strong>What this means for low-income households in underserved areas:</strong> ISPs deploying BEAD infrastructure are
+          required to offer low-cost plans to qualifying households. States may require additional affordability conditions as part 
+          of BEAD grant agreements. If you're in a rural or tribal area with poor connectivity, check your state broadband office's 
+          BEAD challenge maps to see if your location is targeted.
+        </p>
+        <div class="card" style="border-left:3px solid var(--brand-blue-light);padding:var(--space-lg);">
+          <p style="font-size:var(--text-sm);line-height:1.8;margin:0;color:var(--text-secondary);">
+            <strong>Tip:</strong> If you live in an area that is "unserved" (below 25/3 Mbps) or "underserved" (below 100/20 Mbps) 
+            per FCC data and your current plan is below those thresholds, you are likely in a BEAD-targeted area. 
+            <a href="/speed-test" style="color:var(--brand-blue-light);">Run our speed test</a> to get your documented speed, 
+            then <a href="/contact" style="color:var(--brand-blue-light);">contact us</a> — we can help you file a challenge to 
+            ensure your location is properly counted in BEAD mapping.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container text-center reveal">
+      <h2 style="margin-bottom:var(--space-md);">Not Sure Which Program You Qualify For?</h2>
+      <p style="color:var(--text-secondary);max-width:520px;margin:0 auto var(--space-xl);">
+        We'll help you figure out which federal, state, and provider programs apply to your household — and help you apply. 
+        The call is free, takes about 5 minutes, and there's no obligation.
+      </p>
+      <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Enrollment Help, Free</a>
+      <div style="margin-top:var(--space-lg);display:flex;gap:var(--space-xl);justify-content:center;flex-wrap:wrap;font-size:var(--text-sm);color:var(--text-secondary);">
+        <span>✓ No credit check required</span>
+        <span>✓ No obligation</span>
+        <span>✓ All programs explained in plain English</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container" style="max-width:740px;">
+      <h2 class="text-center reveal" style="margin-bottom:var(--space-xl);">Low Income Internet — Frequently Asked Questions</h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <div class="faq-item reveal">
+            <button class="faq-question">{f.question}</button>
+            <div class="faq-answer"><div class="faq-answer-inner">{f.answer}</div></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar text="Get help finding the right low-income internet program — free call, no obligation." />
+</Base>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item?.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item?.classList.add('open');
+    });
+  });
+</script>

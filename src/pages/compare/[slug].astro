@@ -99,7 +99,7 @@ const schemas = [
       <div class="grid grid-2 reveal" style="margin-bottom: var(--space-2xl); gap: var(--space-lg);">
         <div class="card" style="padding: var(--space-xl); text-align: center; position: relative;">
           {overallWinner === providerA && (
-            <div class="badge badge-blue" style="position:absolute;top:var(--space-md);right:var(--space-md);">🏆 Our Pick</div>
+            <div class="badge badge-blue" style="position:absolute;top:var(--space-md);right:var(--space-md);">Our Pick</div>
           )}
           <div style="width:64px;height:64px;border-radius:var(--radius-lg);background:var(--gray-50);border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:var(--space-md);">
             {providerA.logo ? (
@@ -135,7 +135,7 @@ const schemas = [
 
         <div class="card" style="padding: var(--space-xl); text-align: center; position: relative;">
           {overallWinner === providerB && (
-            <div class="badge badge-blue" style="position:absolute;top:var(--space-md);right:var(--space-md);">🏆 Our Pick</div>
+            <div class="badge badge-blue" style="position:absolute;top:var(--space-md);right:var(--space-md);">Our Pick</div>
           )}
           <div style="width:64px;height:64px;border-radius:var(--radius-lg);background:var(--gray-50);border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:var(--space-md);">
             {providerB.logo ? (
@@ -238,13 +238,13 @@ const schemas = [
         <div class="card" style="padding: var(--space-xl);">
           <h3 style="margin-bottom: var(--space-lg);">Choose {providerA.name} If You Want:</h3>
           <ul style="list-style:none;padding:0;margin:0;">
-            {speedWinner === providerA && <li style="padding:var(--space-xs) 0;">✅ <strong>Faster speeds</strong> — up to {formatSpeed(aMaxSpeed)}</li>}
-            {priceWinner === providerA && <li style="padding:var(--space-xs) 0;">✅ <strong>Lower prices</strong> — from {formatPrice(aMinPrice)}/mo</li>}
-            {ratingWinner === providerA && <li style="padding:var(--space-xs) 0;">✅ <strong>Higher customer satisfaction</strong> — {providerA.rating} stars</li>}
-            {uploadWinner === providerA && <li style="padding:var(--space-xs) 0;">✅ <strong>Better upload speeds</strong> — great for remote work</li>}
-            {providerA.plans[0]?.dataCap === 'Unlimited' && <li style="padding:var(--space-xs) 0;">✅ <strong>Unlimited data</strong> — no caps or throttling</li>}
-            {providerA.plans[0]?.contract === 'None' && <li style="padding:var(--space-xs) 0;">✅ <strong>No contract</strong> — cancel anytime</li>}
-            {providerA.types.includes('fiber') && <li style="padding:var(--space-xs) 0;">✅ <strong>Fiber internet</strong> — most reliable connection</li>}
+            {speedWinner === providerA && <li style="padding:var(--space-xs) 0;">✓ <strong>Faster speeds</strong> — up to {formatSpeed(aMaxSpeed)}</li>}
+            {priceWinner === providerA && <li style="padding:var(--space-xs) 0;">✓ <strong>Lower prices</strong> — from {formatPrice(aMinPrice)}/mo</li>}
+            {ratingWinner === providerA && <li style="padding:var(--space-xs) 0;">✓ <strong>Higher customer satisfaction</strong> — {providerA.rating} stars</li>}
+            {uploadWinner === providerA && <li style="padding:var(--space-xs) 0;">✓ <strong>Better upload speeds</strong> — great for remote work</li>}
+            {providerA.plans[0]?.dataCap === 'Unlimited' && <li style="padding:var(--space-xs) 0;">✓ <strong>Unlimited data</strong> — no caps or throttling</li>}
+            {providerA.plans[0]?.contract === 'None' && <li style="padding:var(--space-xs) 0;">✓ <strong>No contract</strong> — cancel anytime</li>}
+            {providerA.types.includes('fiber') && <li style="padding:var(--space-xs) 0;">✓ <strong>Fiber internet</strong> — most reliable connection</li>}
           </ul>
           {providerA.isPartner && (
             <a href={formatPhoneForTel(providerA.phone)} class="btn btn-cta" style="margin-top: var(--space-lg);">
@@ -255,13 +255,13 @@ const schemas = [
         <div class="card" style="padding: var(--space-xl);">
           <h3 style="margin-bottom: var(--space-lg);">Choose {providerB.name} If You Want:</h3>
           <ul style="list-style:none;padding:0;margin:0;">
-            {speedWinner === providerB && <li style="padding:var(--space-xs) 0;">✅ <strong>Faster speeds</strong> — up to {formatSpeed(bMaxSpeed)}</li>}
-            {priceWinner === providerB && <li style="padding:var(--space-xs) 0;">✅ <strong>Lower prices</strong> — from {formatPrice(bMinPrice)}/mo</li>}
-            {ratingWinner === providerB && <li style="padding:var(--space-xs) 0;">✅ <strong>Higher customer satisfaction</strong> — {providerB.rating} stars</li>}
-            {uploadWinner === providerB && <li style="padding:var(--space-xs) 0;">✅ <strong>Better upload speeds</strong> — great for remote work</li>}
-            {providerB.plans[0]?.dataCap === 'Unlimited' && <li style="padding:var(--space-xs) 0;">✅ <strong>Unlimited data</strong> — no caps or throttling</li>}
-            {providerB.plans[0]?.contract === 'None' && <li style="padding:var(--space-xs) 0;">✅ <strong>No contract</strong> — cancel anytime</li>}
-            {providerB.types.includes('fiber') && <li style="padding:var(--space-xs) 0;">✅ <strong>Fiber internet</strong> — most reliable connection</li>}
+            {speedWinner === providerB && <li style="padding:var(--space-xs) 0;">✓ <strong>Faster speeds</strong> — up to {formatSpeed(bMaxSpeed)}</li>}
+            {priceWinner === providerB && <li style="padding:var(--space-xs) 0;">✓ <strong>Lower prices</strong> — from {formatPrice(bMinPrice)}/mo</li>}
+            {ratingWinner === providerB && <li style="padding:var(--space-xs) 0;">✓ <strong>Higher customer satisfaction</strong> — {providerB.rating} stars</li>}
+            {uploadWinner === providerB && <li style="padding:var(--space-xs) 0;">✓ <strong>Better upload speeds</strong> — great for remote work</li>}
+            {providerB.plans[0]?.dataCap === 'Unlimited' && <li style="padding:var(--space-xs) 0;">✓ <strong>Unlimited data</strong> — no caps or throttling</li>}
+            {providerB.plans[0]?.contract === 'None' && <li style="padding:var(--space-xs) 0;">✓ <strong>No contract</strong> — cancel anytime</li>}
+            {providerB.types.includes('fiber') && <li style="padding:var(--space-xs) 0;">✓ <strong>Fiber internet</strong> — most reliable connection</li>}
           </ul>
           {providerB.isPartner && (
             <a href={formatPhoneForTel(providerB.phone)} class="btn btn-cta" style="margin-top: var(--space-lg);">
@@ -344,6 +344,23 @@ const schemas = [
                 </a>
               );
             })}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Verify Your Actual Speeds</h2>
+        <div class="grid grid-2" style="gap: var(--space-md);">
+          <a href="/speed-test" class="card" style="padding: var(--space-xl); text-decoration: none; text-align: center;">
+            <h3 style="margin-bottom: var(--space-xs);">Test {providerA.name} Speed</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">Check your actual {providerA.name} download & upload speeds vs. advertised rates.</p>
+            <span style="display: inline-block; margin-top: var(--space-md); color: var(--brand-blue); font-weight: 600;">Run Speed Test →</span>
+          </a>
+          <a href="/speed-test" class="card" style="padding: var(--space-xl); text-decoration: none; text-align: center;">
+            <h3 style="margin-bottom: var(--space-xs);">Test {providerB.name} Speed</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary);">Check your actual {providerB.name} download & upload speeds vs. advertised rates.</p>
+            <span style="display: inline-block; margin-top: var(--space-md); color: var(--brand-blue); font-weight: 600;">Run Speed Test →</span>
+          </a>
         </div>
       </div>
 

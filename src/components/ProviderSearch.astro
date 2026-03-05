@@ -569,36 +569,37 @@ const clientProviders = allProviders.map(p => ({
   // IP-detected location for autocomplete bias (set by init)
   let _biasCity = '';
   let _biasState = '';
+  let _biasLat = 0;
+  let _biasLon = 0;
 
-  async function fetchSuggestions(q: string): Promise<typeof acItems> {
-    if (q.length<4) return [];
+  // Photon by Komoot — OSM-backed, designed for typeahead, no API key required.
+  async function fetchSuggestions(q: string, biasLat?: number, biasLon?: number): Promise<typeof acItems> {
+    if (q.length < 3) return [];
     try {
-      // Append bias city/state to query when it looks like a street address without location context
-      const hasLocation = /\d{5}/.test(q) || /,/.test(q) || q.split(' ').length > 4;
-      const queryStr = hasLocation ? q : (_biasCity ? `${q}, ${_biasCity}, ${_biasState}` : q);
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000);
-      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(queryStr)}&format=json&limit=6&countrycodes=us&addressdetails=1`,{
-        headers:{'User-Agent':'Internet4ALL/1.0'},
-        signal:controller.signal
-      });
+      let url = `https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=6&lang=en`;
+      if (biasLat && biasLon) url += `&lat=${biasLat}&lon=${biasLon}`;
+      const r = await fetch(url, { signal: controller.signal });
       clearTimeout(timeoutId);
       if (!r.ok) return [];
-      const d = await r.json();
-      return d.map((x:any)=>{
-        const addr = x.address || {};
-        const zip = addr.postcode || '';
-        // Build a clean single-line address
-        const parts: string[] = [];
-        if (addr.house_number && addr.road) parts.push(addr.house_number + ' ' + addr.road);
-        else if (addr.road) parts.push(addr.road);
-        else if (addr.neighbourhood) parts.push(addr.neighbourhood);
-        if (addr.city || addr.town || addr.village || addr.hamlet) parts.push(addr.city || addr.town || addr.village || addr.hamlet);
-        if (addr.state) parts.push(addr.state);
-        if (zip) parts.push(zip);
-        const display = parts.length ? parts.join(', ') : (x.display_name || '').split(',').slice(0,4).join(', ');
-        return {display, zip, lat:+x.lat, lng:+x.lon};
-      });
+      const data = await r.json();
+      return (data.features as any[])
+        .filter((f: any) => f.properties?.countrycode === 'US')
+        .map((f: any) => {
+          const p = f.properties;
+          const [lon, lat] = f.geometry.coordinates as [number, number];
+          const parts: string[] = [];
+          if (p.housenumber && p.street) parts.push(p.housenumber + ' ' + p.street);
+          else if (p.street) parts.push(p.street);
+          else if (p.name) parts.push(p.name);
+          const locality = p.city || p.town || p.village || p.hamlet || '';
+          if (locality) parts.push(locality);
+          if (p.state) parts.push(p.state);
+          if (p.postcode) parts.push(p.postcode);
+          return { display: parts.join(', '), zip: p.postcode || '', lat, lng: lon };
+        })
+        .filter((s: any) => s.display);
     } catch (e) {
       return [];
     }
@@ -737,7 +738,7 @@ const clientProviders = allProviders.map(p => ({
       </div>
       <div class="ps-actions">
         <a href="#get-connected" class="btn btn-secondary btn-sm ps-btn-order" data-signup-provider="${p.slug || ''}">Order Online</a>
-        <a href="tel:+1${p.phone.replace(/\\D/g,'') || mainPhone.replace(/\\D/g,'')}" class="btn btn-cta ps-btn-call">📞 ${p.phone || mainPhone}</a>
+        <a href="tel:+1${p.phone.replace(/\D/g,'') || mainPhone.replace(/\D/g,'')}" class="btn btn-cta ps-btn-call">${p.phone || mainPhone}</a>
         ${p.slug ? `<a href="/provider/${p.slug}" class="btn btn-secondary btn-sm ps-btn-plans">View Plans</a>` : ''}
       </div>
     </div>`;
@@ -840,12 +841,14 @@ const clientProviders = allProviders.map(p => ({
           if (!r.ok) return null;
           return r.json();
         })
-        .then((d: { city?: string; region?: string; country?: string } | null) => {
+        .then((d: { city?: string; region?: string; country?: string; latitude?: string; longitude?: string } | null) => {
           if (d && d.country === 'United States' && d.city && d.region) {
             ipDetectedCity = d.city;
             ipDetectedState = d.region;
             _biasCity = d.city;
             _biasState = d.region;
+            _biasLat = parseFloat(d.latitude || '0');
+            _biasLon = parseFloat(d.longitude || '0');
             // Update placeholder with detected location if we're in a non-specific context
             if (!zip && (!city || city.toLowerCase() !== d.city.toLowerCase())) {
               input.placeholder = `Enter address — detected near ${d.city}, ${d.region}`;
@@ -938,10 +941,10 @@ const clientProviders = allProviders.map(p => ({
       input.addEventListener('input', () => {
         clearTimeout(acTimer);
         const v = input.value.trim();
-        if (v.length<4 || /^\d{5}$/.test(v)) { closeSugs(); return; }
+        if (v.length < 3 || /^\d{5}$/.test(v)) { closeSugs(); return; }
         acTimer = setTimeout(async () => {
-          const items = await fetchSuggestions(v);
-          if (document.activeElement===input && input.value.trim().length>=4) showSugs(items);
+          const items = await fetchSuggestions(v, _biasLat || undefined, _biasLon || undefined);
+          if (document.activeElement === input && input.value.trim().length >= 3) showSugs(items);
         }, 350);
       });
 

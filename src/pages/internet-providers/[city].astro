@@ -261,26 +261,37 @@ const schemas = [
   </div>
 
   <!-- ═══════════════════════════════════════════
-       STEP 4: ZIP-ONLY SEARCH (simplified)
+       STEP 4: CHECK AVAILABILITY (enhanced layout)
        ═══════════════════════════════════════════ -->
   <div class="reveal" style="margin-bottom:var(--space-xl);">
-    <div class="zip-search-box">
-      <h2 style="font-size:var(--text-xl);margin-bottom:var(--space-xs);">Check Internet Availability in {cityData.name}, {stateName}</h2>
-      <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-md);">Enter your ZIP code to see exact providers and plans at your address.</p>
-      <form id="zip-search-form" class="zip-search-form" action="/internet-providers/zip/" method="get">
-        <div class="zip-input-wrap">
-          <input type="text" id="zip-input" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="Enter ZIP code" autocomplete="postal-code" list="zip-suggestions" required />
-          <datalist id="zip-suggestions">
-            {cityData.zipCodes.map(z => <option value={z} />)}
-          </datalist>
-          <button type="submit" class="btn btn-cta">Check Availability</button>
+    <div class="availability-section">
+      <div class="availability-info">
+        <div class="availability-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Check Availability
         </div>
+        <h2>Find Internet Providers at Your Exact Address in {cityData.name}, {stateName}</h2>
+        <p>Enter your ZIP code for verified coverage, real speeds, and exclusive deals available at your address. {cityData.name} spans {cityData.zipCodes.length} ZIP codes — results are tailored to your location.</p>
+      </div>
+      <div class="availability-search-card">
+        <p class="availability-search-label">Your ZIP Code</p>
+        <p class="availability-search-sublabel">See providers at your exact address</p>
+        <form id="zip-search-form">
+          <div class="availability-input-group">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <input type="text" id="zip-input" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="Enter ZIP code" autocomplete="postal-code" list="zip-suggestions" required />
+            <datalist id="zip-suggestions">
+              {cityData.zipCodes.map(z => <option value={z} />)}
+            </datalist>
+          </div>
+          <button type="submit" class="btn btn-cta availability-cta-btn">Check Availability</button>
+        </form>
         <div class="zip-quick-links">
           {cityData.zipCodes.slice(0, 6).map(z => (
             <a href={`/internet-providers/zip/${z}`} class="zip-quick-link">{z}</a>
           ))}
         </div>
-      </form>
+      </div>
     </div>
   </div>
 
@@ -780,8 +791,8 @@ const schemas = [
           {cityData.zipCodes.length > 60 && <span style="padding:8px 16px;font-size:var(--text-sm);color:var(--text-tertiary);font-weight:500;">+{cityData.zipCodes.length - 60} more</span>}
         </div>
         <div style="margin-top:var(--space-lg);">
-          <form id="zip-search-form" style="display:flex;gap:var(--space-sm);max-width:360px;">
-            <input id="zip-input" type="text" maxlength="5" pattern="[0-9]{5}" placeholder="Enter your ZIP code" style="flex:1;padding:var(--space-sm) var(--space-md);border:2px solid var(--border);border-radius:var(--radius-md);font-size:var(--text-base);" />
+          <form id="zip-search-form-bottom" style="display:flex;gap:var(--space-sm);max-width:360px;">
+            <input id="zip-input-bottom" type="text" maxlength="5" pattern="[0-9]{5}" placeholder="Enter your ZIP code" style="flex:1;padding:var(--space-sm) var(--space-md);border:2px solid var(--border);border-radius:var(--radius-md);font-size:var(--text-base);" />
             <button type="submit" class="btn btn-primary">Go</button>
           </form>
         </div>
@@ -847,12 +858,26 @@ const schemas = [
 <script>
   // ZIP search form handler
   document.addEventListener('DOMContentLoaded', () => {
+    // ZIP search form handler (top availability section)
     const form = document.getElementById('zip-search-form') as HTMLFormElement;
     const input = document.getElementById('zip-input') as HTMLInputElement;
     if (form && input) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         const zip = input.value.trim();
+        if (/^\d{5}$/.test(zip)) {
+          window.location.href = `/internet-providers/zip/${zip}`;
+        }
+      });
+    }
+
+    // ZIP search form handler (bottom ZIP codes section)
+    const formBottom = document.getElementById('zip-search-form-bottom') as HTMLFormElement;
+    const inputBottom = document.getElementById('zip-input-bottom') as HTMLInputElement;
+    if (formBottom && inputBottom) {
+      formBottom.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const zip = inputBottom.value.trim();
         if (/^\d{5}$/.test(zip)) {
           window.location.href = `/internet-providers/zip/${zip}`;
         }

@@ -30,7 +30,6 @@ import { generateBreadcrumbSchema } from '@lib/utils';
             { icon: '🛠️', title: 'Free Tools', desc: 'Speed tests, bill analyzers, internet quizzes — all free, no signup required. Built to help you make smarter decisions.' },
           ].map(item => (
             <div class="card flex items-center" style="gap:var(--space-lg);">
-              <span style="font-size:1.8rem;min-width:40px;">{item.icon}</span>
               <div>
                 <h4 style="margin-bottom:var(--space-xs);">{item.title}</h4>
                 <p style="font-size:var(--text-sm);">{item.desc}</p>
@@ -58,7 +57,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
       <div class="text-center reveal" style="margin-top:var(--space-2xl);">
         <h3>Questions?</h3>
         <p style="margin:var(--space-sm) 0 var(--space-md);">We'd love to hear from you.</p>
-        <a href={`tel:${MAIN_PHONE.replace(/[^0-9]/g, '')}`} class="btn btn-call">📞 {MAIN_PHONE}</a>
+        <a href={`tel:${MAIN_PHONE.replace(/[^0-9]/g, '')}`} class="btn btn-call"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>{MAIN_PHONE}</a>
       </div>
 
       <!-- Explore the Site -->
@@ -66,35 +65,35 @@ import { generateBreadcrumbSchema } from '@lib/utils';
         <h2 style="margin-bottom:var(--space-lg);">Explore Our Site</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
           <a href="/providers" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">🔍 Browse Providers</h4>
+            <h4 style="font-size: var(--text-sm);">Browse Providers</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">See all 25+ internet providers</p>
           </a>
           <a href="/compare" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">⚖️ Compare Plans</h4>
+            <h4 style="font-size: var(--text-sm);">Compare Plans</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Side-by-side comparison</p>
           </a>
           <a href="/deals" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">💰 Best Deals</h4>
+            <h4 style="font-size: var(--text-sm);">Best Deals</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Today's lowest prices</p>
           </a>
           <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">📊 Speed Test</h4>
+            <h4 style="font-size: var(--text-sm);">Speed Test</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Check your internet speed</p>
           </a>
           <a href="/check-availability" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">📍 Check Availability</h4>
+            <h4 style="font-size: var(--text-sm);">Check Availability</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">See what's at your address</p>
           </a>
           <a href="/resources" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">📋 Guides & Resources</h4>
+            <h4 style="font-size: var(--text-sm);">Guides & Resources</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Expert internet guides</p>
           </a>
           <a href="/internet-types" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">🌐 Internet Types</h4>
+            <h4 style="font-size: var(--text-sm);">Internet Types</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Fiber, Cable, DSL, 5G</p>
           </a>
           <a href="/methodology" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">📐 Our Methodology</h4>
+            <h4 style="font-size: var(--text-sm);">Our Methodology</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">How we rank providers</p>
           </a>
         </div>

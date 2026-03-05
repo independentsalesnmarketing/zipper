@@ -76,7 +76,7 @@ New customer promotions are real money. If your rate has increased post-promo an
 3. Return old equipment
 4. Enjoy lower pricing for 12+ months
 
-With no-contract plans from [Spectrum](/provider/spectrum), [Frontier](/provider/frontier), [Verizon](/provider/verizon), [AT&T](/provider/att), and [T-Mobile](/provider/tmobile), switching is painless.
+With no-contract plans from [Spectrum](/provider/spectrum), [Frontier](/provider/frontier), [Verizon](/provider/verizon), [AT&T](/provider/att), and [T-Mobile](/provider/tmobile-5g), switching is painless.
 
 ## 6. Set Up Autopay (Savings: $5-10/mo)
 

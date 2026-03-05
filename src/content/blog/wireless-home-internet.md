@@ -117,6 +117,6 @@ Check your speeds at different times of day using our [speed test](/speed-test).
 
 ## Is Wireless Home Internet Available at Your Address?
 
-Coverage varies dramatically by address — even between neighbors. Check our [availability tool](/check-availability) to see if [T-Mobile](/provider/tmobile), [Verizon](/provider/verizon), or other wireless home internet providers serve your specific home. Or [compare all providers](/check-availability) in your area to weigh wireless vs wired options.
+Coverage varies dramatically by address — even between neighbors. Check our [availability tool](/check-availability) to see if [T-Mobile](/provider/tmobile-5g), [Verizon](/provider/verizon), or other wireless home internet providers serve your specific home. Or [compare all providers](/check-availability) in your area to weigh wireless vs wired options.
 
 **Related guides:** [T-Mobile Home Internet Review](/blog/t-mobile-home-internet-review) · [Internet for Rural Areas](/blog/internet-for-rural-areas) · [Satellite Internet Guide](/blog/satellite-internet-guide)

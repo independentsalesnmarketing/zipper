@@ -13,13 +13,13 @@ const featuredPosts = posts.filter(p => p.data.featured);
 const recentPosts = posts.filter(p => !p.data.featured);
 
 const categories = [
-  { slug: 'guides', label: 'Guides', icon: '📖' },
-  { slug: 'comparisons', label: 'Comparisons', icon: '⚖️' },
-  { slug: 'news', label: 'News', icon: '📰' },
-  { slug: 'tips', label: 'Tips & Tricks', icon: '💡' },
-  { slug: 'deals', label: 'Deals', icon: '🏷️' },
-  { slug: 'technology', label: 'Technology', icon: '🔬' },
-  { slug: 'moving', label: 'Moving', icon: '📦' },
+  { slug: 'guides', label: 'Guides', icon: '' },
+  { slug: 'comparisons', label: 'Comparisons', icon: '' },
+  { slug: 'news', label: 'News', icon: '' },
+  { slug: 'tips', label: 'Tips & Tricks', icon: '' },
+  { slug: 'deals', label: 'Deals', icon: '' },
+  { slug: 'technology', label: 'Technology', icon: '' },
+  { slug: 'moving', label: 'Moving', icon: '' },
 ];
 
 function formatDate(date: Date): string {
@@ -59,7 +59,7 @@ const schemas = [
             const count = posts.filter(p => p.data.category === cat.slug).length;
             return count > 0 ? (
               <a href={`/blog/category/${cat.slug}`} class="tag" style="text-decoration:none;">
-                {cat.icon} {cat.label} ({count})
+                {cat.label} ({count})
               </a>
             ) : null;
           })}
@@ -73,7 +73,7 @@ const schemas = [
           <div class="grid grid-2" style="gap: var(--space-lg);">
             {featuredPosts.map(post => (
               <a href={`/blog/${post.slug}`} class="card" style="padding: var(--space-xl); text-decoration: none; display: flex; flex-direction: column;">
-                <div class="badge badge-blue" style="align-self: flex-start; margin-bottom: var(--space-md);">⭐ Featured</div>
+                <div class="badge badge-blue" style="align-self: flex-start; margin-bottom: var(--space-md);">Featured</div>
                 <h3 style="color: var(--text-primary); margin-bottom: var(--space-sm); font-size: var(--text-xl);">{post.data.title}</h3>
                 <p style="color: var(--text-secondary); font-size: var(--text-sm); flex: 1;">{post.data.description}</p>
                 <div style="margin-top: var(--space-md); display: flex; align-items: center; gap: var(--space-md);">

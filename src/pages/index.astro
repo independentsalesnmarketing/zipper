@@ -22,21 +22,51 @@ const allStates = Object.entries(stateNames)
   .sort((a, b) => a.name.localeCompare(b.name));
 
 const faqs = [
-  { question: 'How does Internet 4 ALL work?', answer: 'We compare internet providers available at your address. Enter your ZIP code and we show you every option — plans, prices, speeds, and ratings. When you\'re ready, call our experts and they\'ll set everything up for you.' },
-  { question: 'Is this service really free?', answer: 'Yes, 100% free for you. We partner with top internet providers who compensate us for connecting you with their service. You pay the same price (or less with our exclusive deals) as going direct.' },
-  { question: 'How do you rank internet providers?', answer: 'Our ranking algorithm considers speed, price, technology type (fiber > cable > DSL), customer ratings, data caps, contract terms, and real-time availability at your address via the FCC Broadband Map.' },
-  { question: 'What\'s the difference between fiber, cable, and DSL?', answer: 'Fiber offers the fastest speeds with symmetrical upload/download (best for streaming and gaming). Cable is widely available with good speeds but slower uploads. DSL uses phone lines with slower speeds. We help you find which technology is available at your address and which offers the best value.' },
-  { question: 'How much internet speed do I actually need?', answer: 'For casual browsing: 10-25 Mbps. For streaming 4K video and multiple devices: 50-100 Mbps. For heavy use (gaming, video conferencing, large file uploads): 200+ Mbps. Our experts can recommend based on your specific needs.' },
-  { question: 'Can I keep my current phone number when switching?', answer: 'In most cases, yes. When you call us, our specialists will handle the entire switching process including number porting if applicable.' },
-  { question: 'What if I\'m moving to a new address?', answer: 'Perfect timing! Enter your new ZIP code and we\'ll show you all available providers at your new address. Our moving specialists can have internet ready the day you arrive.' },
-  { question: 'Do you offer customer support?', answer: 'Absolutely. Call our team at 1-888-555-0123 Mon-Fri 8AM-10PM EST, Sat-Sun 9AM-8PM EST. We\'re real people who know internet service inside and out.' },
-  { question: 'How do I compare providers fairly?', answer: 'We show you the same information for every provider: actual available speeds at your address, starting prices, contract terms, data caps, and verified customer ratings. You can sort by price, speed, or rating to find what matters most to you.' },
-  { question: 'What are these exclusive deals you mention?', answer: 'We\'ve negotiated special promotions with our partner providers that you won\'t find anywhere else — typically $10-50/month off the regular price, often with free equipment or installation included. Our experts can explain what\'s available for your address.' },
+  {
+    question: 'What is the cheapest internet provider available?',
+    answer: 'The cheapest internet plans start at $20–$30/mo: Xfinity Connect ($19.99/mo for seniors via ACP), Optimum Fiber 300 ($25/mo for 12 months), and T-Mobile 5G (~$25/mo with wireless bundle). Prices vary by location — enter your ZIP to see which low-cost plans are available at your exact address.',
+  },
+  {
+    question: 'Which internet provider has the fastest speeds?',
+    answer: 'Fiber providers offer the fastest speeds. AT&T Fiber, Verizon Fios, and Ziply Fiber reach up to 5–8 Gbps in top markets. For cable, Xfinity and Spectrum offer up to 2 Gbps. Fiber also delivers symmetrical upload speeds — critical for video conferencing, uploading large files, and gaming.',
+  },
+  {
+    question: 'Which internet providers have no data caps?',
+    answer: 'All major fiber providers offer unlimited data: AT&T Fiber, Verizon Fios, Google Fiber, Frontier Fiber, Optimum Fiber, EarthLink Fiber, and Ziply Fiber. Spectrum and Xfinity have no data caps on most plans. Starlink and HughesNet satellite plans apply soft caps or deprioritization after a monthly threshold.',
+  },
+  {
+    question: 'How do I switch internet providers without downtime?',
+    answer: 'Schedule your new provider\'s installation 1–2 days before canceling your current service. Both can run simultaneously for a brief overlap period. Our specialists handle the full transition — coordinating installation, equipment return, and cancellation — so most customers experience zero downtime during the switch.',
+  },
+  {
+    question: 'How much internet speed do I need for streaming and gaming?',
+    answer: 'Netflix 4K requires 25 Mbps; streaming on multiple devices needs 50–100 Mbps. Online gaming needs at least 25 Mbps with low latency, but 100–300 Mbps is recommended for multi-device households. Upload speed matters for gaming: aim for 10 Mbps minimum. Fiber is the best choice for both use cases.',
+  },
+  {
+    question: 'What is the difference between fiber and cable internet?',
+    answer: 'Fiber uses light-transmitting glass cables for symmetrical speeds up to 8 Gbps with near-zero latency. Cable uses coaxial lines for faster downloads (up to 2 Gbps) but slower uploads (typically 50 Mbps). Fiber is more reliable and future-proof; cable is more widely available and sufficient for most households.',
+  },
+  {
+    question: 'Can I get internet service without a contract?',
+    answer: 'Yes — Spectrum, T-Mobile 5G, and Starlink are all contract-free. Xfinity, AT&T Fiber, and most fiber providers offer no-contract options at a small monthly premium. Satellite providers are generally contract-free as well. Call our team to identify which no-contract plans are available at your address today.',
+  },
+  {
+    question: 'Do internet providers charge installation fees?',
+    answer: 'Installation fees range from $0 to $100 depending on the provider and plan. Xfinity self-install kits are free. AT&T Fiber waives the $99 installation fee on select plans. Many providers run promotions with free professional installation. Our agents can identify which current offers eliminate setup costs for your area.',
+  },
+  {
+    question: 'How does Internet 4 ALL work — is it really free?',
+    answer: 'Yes, 100% free. We compare every internet provider at your address using real FCC Broadband Map data, then connect you with the best option via our expert team. We earn a referral fee from providers when you sign up — you pay the same price (or less with exclusive deals) as going direct.',
+  },
+  {
+    question: 'How do you rank internet providers?',
+    answer: 'Our algorithm weights five factors: Speed & Performance (25%), Value for Money (25%), Reliability (20%), Customer Satisfaction (15%), and Coverage (15%). Ratings draw from FCC Broadband data, ACSI scores, BBB complaint data, and independent speed test results. Partnerships never influence ratings. Read our full methodology →',
+  },
 ];
 ---
 <Base
   title="Internet 4 ALL — Find the Best Internet Providers in Your Area | Free Comparison"
-  description="Compare 25+ internet providers at your address using real FCC data. See fiber, cable, 5G, and satellite options. Free service with exclusive deals. Save up to $50/month—same-day installation available."
+  description="Find internet providers near you — compare 25+ ISPs at your address using real FCC data. See fiber, cable, 5G, WiFi, and satellite options. Free comparison service with exclusive deals. Save up to $50/month."
   ogImage="/og-home.png"
   schema={[generateFAQSchema(faqs)]}
 >
@@ -92,25 +122,33 @@ const faqs = [
       </div>
       <div class="trigger-grid" style="margin-top: var(--space-2xl);">
         <a href="/movers" class="trigger-card trigger-card--moving reveal reveal-delay-1">
-          <div class="trigger-icon">🏠</div>
+          <div class="trigger-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
           <h4>I'm Moving</h4>
           <p>Get internet set up at your new place before you arrive</p>
           <div class="card-meta">Save time • Same-day setup options</div>
         </a>
         <a href="/switch" class="trigger-card trigger-card--switch reveal reveal-delay-2">
-          <div class="trigger-icon">⚡</div>
+          <div class="trigger-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
           <h4>I Need Faster Internet</h4>
           <p>Upgrade to blazing speeds — or switch away from your current provider</p>
           <div class="card-meta">Compare speeds instantly • No contracts</div>
         </a>
         <a href="/deals" class="trigger-card trigger-card--price reveal reveal-delay-3">
-          <div class="trigger-icon">💰</div>
+          <div class="trigger-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
           <h4>My Bill Is Too High</h4>
           <p>Slash your monthly bill without losing quality or speed</p>
           <div class="card-meta">Save up to $50/month • See deals now</div>
         </a>
         <a href="/get-connected" class="trigger-card trigger-card--disconnected reveal reveal-delay-4">
-          <div class="trigger-icon">📡</div>
+          <div class="trigger-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M10.54 15.1a6 6 0 012.92 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
+          </div>
           <h4>I Need Internet ASAP</h4>
           <p>Get connected today with emergency & same-day installation options</p>
           <div class="card-meta">Priority support • Fastest available</div>

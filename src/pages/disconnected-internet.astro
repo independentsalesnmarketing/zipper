@@ -1,0 +1,268 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getPartnerProviders, formatSpeed, formatPrice, MAIN_PHONE } from '@lib/providers';
+import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+
+const partners = getPartnerProviders().slice(0, 6);
+const phone = MAIN_PHONE;
+const phoneHref = formatPhoneForTel(phone);
+
+const faqs = [
+  { q: 'Can I get new internet service after being disconnected?', a: 'Yes. When you sign up with a new ISP, your history with your previous provider does not automatically transfer. Most new providers run a standard credit check but do not check your payment history with other ISPs. You can start fresh with a new company today.' },
+  { q: 'Can I get internet without paying my old balance first?', a: 'Often yes — if you switch to a completely new provider. You may still technically owe the old balance, but a new company will not require you to clear it before starting service. 5G home internet providers especially do not check prior ISP history and can have you connected within 1-2 days.' },
+  { q: 'What is the fastest way to get WiFi today after being disconnected?', a: 'T-Mobile 5G Home Internet and Verizon 5G Home ship a gateway device overnight or within 1-2 days. Once it arrives, plug it in and you\'re online instantly — no installation appointment, no technician, no waiting. Same-day service is also available in many cities through 5G activation.' },
+  { q: 'Do internet providers share disconnection records with each other?', a: 'Most standard ISPs run a credit check but do not pull ISP-specific payment history. A small number use services like the National Consumer Telecom & Utilities Exchange (NCTUE). The safest way to avoid any history lookup is to go with a no-credit-check 5G provider like T-Mobile or a prepaid service.' },
+  { q: 'Can I get internet with bad credit or no credit check?', a: 'Yes. T-Mobile 5G Home Internet, Verizon 5G Home, AT&T Air, and most prepaid internet services do not run credit checks at all. You can sign up online today and have your device in 1-2 business days.' },
+  { q: 'What if I want to reconnect with my original provider after being disconnected?', a: 'Your original provider will typically require you to pay the outstanding balance in full before restoring service. If that\'s not possible right now, switching to a new provider is the fastest path back online. Once you\'re back on your feet, you can always address the old balance separately.' },
+  { q: 'Is there same-day internet service available?', a: 'Yes. In many cities, T-Mobile and Verizon 5G Home can be activated the same day you order online — the device ships immediately and activates automatically. Additionally, our agents can sometimes expedite installation for cable and fiber providers to get you online within 24-48 hours.' },
+];
+---
+<Base
+  title="Get Internet Today After Being Disconnected — No Credit Check Options"
+  description="Disconnected from Spectrum, Xfinity, or AT&T? Get WiFi today with a new provider. No credit check options, same-day 5G service, clean slate with a fresh start."
+  schema={[
+    generateBreadcrumbSchema([
+      { name: 'Home', url: 'https://internet4all.com' },
+      { name: 'Get Internet After Disconnection', url: 'https://internet4all.com/disconnected-internet' }
+    ]),
+    generateFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })))
+  ]}
+>
+  <!-- Urgent Hero -->
+  <section class="hero" style="padding-bottom:var(--space-2xl);">
+    <div class="container text-center">
+      <Breadcrumb items={[{ name: 'Disconnected Internet Help' }]} />
+      <div class="badge reveal" style="margin-bottom:var(--space-md);background:rgba(255,45,74,0.15);color:var(--brand-red);">Get Back Online Today</div>
+      <h1 class="reveal">Disconnected From Your <span class="gradient-text">Internet Provider?</span></h1>
+      <p class="hero-subtitle reveal" style="max-width:620px;margin-inline:auto;">
+        Disconnected from Spectrum, Xfinity, AT&T, or another ISP? You don't have to wait to get back online. 
+        Switch to a new provider today — no history check, no judgment, no hassle.
+      </p>
+
+      <!-- Urgency CTA block -->
+      <div class="reveal" style="margin-top:var(--space-xl);display:flex;flex-direction:column;align-items:center;gap:var(--space-md);">
+        <a href={phoneHref} class="btn btn-cta" style="font-size:var(--text-xl);padding:var(--space-md) var(--space-2xl);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> Call {phone} — Get Online Today
+        </a>
+        <p style="font-size:var(--text-sm);color:var(--text-muted);">Free. No pressure. We find you the fastest option at your address.</p>
+      </div>
+
+      <!-- Trust signals -->
+      <div class="reveal" style="margin-top:var(--space-2xl);display:flex;justify-content:center;gap:var(--space-xl);flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div style="font-size:var(--text-2xl);font-weight:800;color:var(--brand-green);">Same Day</div>
+          <div style="font-size:var(--text-xs);color:var(--text-muted);">5G activation available</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:var(--text-2xl);font-weight:800;color:var(--brand-blue);">No Credit</div>
+          <div style="font-size:var(--text-xs);color:var(--text-muted);">Check required on 5G plans</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:var(--text-2xl);font-weight:800;color:var(--brand-purple);">Fresh Start</div>
+          <div style="font-size:var(--text-xs);color:var(--text-muted);">New provider, clean slate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Message: Clean Slate -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <h2 class="text-center reveal">The Good News: <span class="gradient-text">New Provider, Fresh Start</span></h2>
+      <p class="text-center reveal" style="max-width:620px;margin:var(--space-sm) auto var(--space-xl);">
+        Internet providers do not share payment records with each other. When you sign up with a new ISP, 
+        they only see your credit history — not what happened with your old provider. 
+        That means you can get connected today.
+      </p>
+      <div class="grid grid-3">
+        <div class="card reveal reveal-delay-1" style="border-top:3px solid var(--brand-green);">
+          <div style="margin-bottom:var(--space-sm);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg></div>
+          <h4 style="margin-bottom:var(--space-xs);">Switch Providers Fast</h4>
+          <p style="font-size:var(--text-sm);">Your old ISP history stays with your old ISP. A new provider starts you from scratch. Most can activate service within 1-3 days.</p>
+        </div>
+        <div class="card reveal reveal-delay-2" style="border-top:3px solid var(--brand-blue);">
+          <div style="margin-bottom:var(--space-sm);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M10.71 17.4a3.5 3.5 0 012.62 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
+          <h4 style="margin-bottom:var(--space-xs);">5G: No Credit Check</h4>
+          <p style="font-size:var(--text-sm);">T-Mobile, Verizon, and AT&T 5G home internet plans require no credit check whatsoever. Order online, receive device, plug in — done.</p>
+        </div>
+        <div class="card reveal reveal-delay-3" style="border-top:3px solid var(--brand-purple);">
+          <div style="margin-bottom:var(--space-sm);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <h4 style="margin-bottom:var(--space-xs);">Same-Day Options</h4>
+          <p style="font-size:var(--text-sm);">In most areas, 5G home internet can be activated same-day or next-day. No technician required. Plug in and connect immediately.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Options After Disconnection -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center reveal">Best Options to <span class="gradient-text">Get Back Online Now</span></h2>
+      <p class="text-center reveal" style="max-width:560px;margin:var(--space-sm) auto var(--space-xl);">
+        These providers are the fastest path back online — most with no credit check, no installation wait, and plans from $25/mo.
+      </p>
+
+      <div class="grid grid-1" style="gap:var(--space-md);max-width:720px;margin-inline:auto;">
+        <!-- Option 1: T-Mobile 5G -->
+        <div class="card reveal" style="padding:var(--space-xl);">
+          <div class="flex items-center" style="justify-content:space-between;flex-wrap:wrap;gap:var(--space-md);">
+            <div>
+              <div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-xs);">
+                <h3 style="margin:0;">T-Mobile 5G Home Internet</h3>
+                <span class="badge" style="background:rgba(255,45,74,0.15);color:var(--brand-red);font-size:var(--text-xs);">Best for Speed</span>
+              </div>
+              <p style="font-size:var(--text-sm);color:var(--text-secondary);margin:0;">No credit check. No contract. Ships same or next day. Plug in, connect instantly.</p>
+            </div>
+            <div style="text-align:right;flex-shrink:0;">
+              <div style="font-size:var(--text-xs);color:var(--text-muted);">Starting at</div>
+              <div style="font-size:var(--text-2xl);font-weight:800;color:var(--brand-green);">$50<span style="font-size:var(--text-sm);font-weight:400;">/mo</span></div>
+            </div>
+          </div>
+          <div class="flex" style="gap:var(--space-sm);flex-wrap:wrap;margin:var(--space-md) 0;">
+            <span class="badge badge-green">✓ No credit check</span>
+            <span class="badge badge-blue">✓ Same-day capable</span>
+            <span class="badge">✓ Up to 245 Mbps</span>
+            <span class="badge">✓ No contract</span>
+          </div>
+          <a href={phoneHref} class="btn btn-call" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call to Sign Up for T-Mobile 5G</a>
+        </div>
+
+        <!-- Option 2: Verizon 5G -->
+        <div class="card reveal" style="padding:var(--space-xl);">
+          <div class="flex items-center" style="justify-content:space-between;flex-wrap:wrap;gap:var(--space-md);">
+            <div>
+              <div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-xs);">
+                <h3 style="margin:0;">Verizon 5G Home Internet</h3>
+                <span class="badge" style="background:rgba(0,213,132,0.15);color:var(--brand-green);font-size:var(--text-xs);">30-Day Trial</span>
+              </div>
+              <p style="font-size:var(--text-sm);color:var(--text-secondary);margin:0;">No credit check. 30-day money-back guarantee. Speeds up to 1 Gbps with 5G Ultra Wideband.</p>
+            </div>
+            <div style="text-align:right;flex-shrink:0;">
+              <div style="font-size:var(--text-xs);color:var(--text-muted);">Starting at</div>
+              <div style="font-size:var(--text-2xl);font-weight:800;color:var(--brand-green);">$50<span style="font-size:var(--text-sm);font-weight:400;">/mo</span></div>
+            </div>
+          </div>
+          <div class="flex" style="gap:var(--space-sm);flex-wrap:wrap;margin:var(--space-md) 0;">
+            <span class="badge badge-green">✓ No credit check</span>
+            <span class="badge badge-blue">✓ 30-day guarantee</span>
+            <span class="badge">✓ Up to 1 Gbps</span>
+            <span class="badge">✓ No contract</span>
+          </div>
+          <a href={phoneHref} class="btn btn-call" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call to Sign Up for Verizon 5G</a>
+        </div>
+
+        <!-- Option 3: Partner providers -->
+        {partners.slice(0, 3).map((p, i) => {
+          const best = p.plans[0];
+          return (
+            <div class="card reveal" style={`padding:var(--space-xl);transition-delay:${i * 60}ms;`}>
+              <div class="flex items-center" style="justify-content:space-between;flex-wrap:wrap;gap:var(--space-md);">
+                <div>
+                  <h3 style="margin:0 0 var(--space-xs);">{p.name}</h3>
+                  <p style="font-size:var(--text-sm);color:var(--text-secondary);margin:0;">{p.types.join(' / ')} · Available in {p.coverage}</p>
+                </div>
+                <div style="text-align:right;flex-shrink:0;">
+                  <div style="font-size:var(--text-xs);color:var(--text-muted);">Starting at</div>
+                  <div style="font-size:var(--text-2xl);font-weight:800;color:var(--brand-green);">{formatPrice(best.promoPrice || best.price)}<span style="font-size:var(--text-sm);font-weight:400;">/mo</span></div>
+                </div>
+              </div>
+              <div class="flex" style="gap:var(--space-sm);flex-wrap:wrap;margin:var(--space-md) 0;">
+                <span class="badge">Up to {formatSpeed(p.plans[p.plans.length - 1].speed)}</span>
+                <span class="badge">{best.contract}</span>
+                <span class="badge">{best.dataCap}</span>
+              </div>
+              <a href={`tel:${p.phone.replace(/[^0-9]/g, '')}`} class="btn btn-call" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Get {p.name} Today</a>
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="text-center reveal" style="margin-top:var(--space-xl);">
+        <p style="color:var(--text-secondary);margin-bottom:var(--space-md);">Not sure which provider serves your area?</p>
+        <a href={phoneHref} class="btn btn-primary btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — We'll Check Instantly</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Was Your Old Provider? -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <h2 class="text-center reveal">Disconnected From <span class="gradient-text">a Specific Provider?</span></h2>
+      <p class="text-center reveal" style="max-width:560px;margin:var(--space-sm) auto var(--space-xl);">Here's what you need to know about switching away from the major ISPs after disconnection.</p>
+      <div class="grid grid-2">
+        {[
+          { provider: 'Spectrum', fact: 'Spectrum typically charges unpaid balances to collections. Switching to a new ISP means starting fresh — no balance required with the new company.', slug: 'spectrum-alternatives' },
+          { provider: 'Xfinity / Comcast', fact: 'Xfinity reports to NCTUE. To avoid any history check, use a 5G provider (T-Mobile, Verizon) which bypasses NCTUE entirely.', slug: 'xfinity-alternatives' },
+          { provider: 'AT&T Internet', fact: 'AT&T may hold equipment return fees. Ensure you return any AT&T equipment to avoid additional charges. Your new provider requires no AT&T clearance.', slug: 'att-alternatives' },
+          { provider: 'Cox Communications', fact: 'Cox reports to NCTUE. If you have a balance, switching providers rather than reconnecting with Cox is the fastest path back online.', slug: 'cox-alternatives' },
+        ].map((item, i) => (
+          <div class="card reveal" style={`transition-delay:${i * 60}ms;`}>
+            <h4 style="margin-bottom:var(--space-sm);">Leaving {item.provider}</h4>
+            <p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-md);">{item.fact}</p>
+            <a href={`/switch/${item.slug}`} class="btn btn-secondary" style="font-size:var(--text-sm);">See {item.provider} Alternatives →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Expect Timeline -->
+  <section class="section">
+    <div class="container container--narrow">
+      <h2 class="text-center reveal">How Fast Can You <span class="gradient-text">Get Back Online?</span></h2>
+      <div class="grid grid-3" style="margin-top:var(--space-xl);">
+        <div class="card text-center reveal reveal-delay-1" style="border-top:3px solid var(--brand-green);">
+          <div style="font-size:var(--text-3xl);font-weight:900;color:var(--brand-green);">Today</div>
+          <h4 style="margin:var(--space-sm) 0 var(--space-xs);">5G Home Internet</h4>
+          <p style="font-size:var(--text-sm);">Order T-Mobile or Verizon 5G online. Device ships same or next business day. Activate and connect instantly upon arrival.</p>
+        </div>
+        <div class="card text-center reveal reveal-delay-2" style="border-top:3px solid var(--brand-blue);">
+          <div style="font-size:var(--text-3xl);font-weight:900;color:var(--brand-blue-light);">2-3 Days</div>
+          <h4 style="margin:var(--space-sm) 0 var(--space-xs);">Self-Install Cable</h4>
+          <p style="font-size:var(--text-sm);">Many cable providers ship self-install kits. You can be online within 2-3 days with no technician visit needed.</p>
+        </div>
+        <div class="card text-center reveal reveal-delay-3" style="border-top:3px solid var(--brand-purple);">
+          <div style="font-size:var(--text-3xl);font-weight:900;color:var(--brand-purple);">3-5 Days</div>
+          <h4 style="margin:var(--space-sm) 0 var(--space-xs);">Pro Install</h4>
+          <p style="font-size:var(--text-sm);">Fiber and some cable plans require a tech visit. We book the earliest slot available — often within a week.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Big CTA -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="card gradient-border text-center" style="padding:var(--space-2xl);">
+        <h2 class="reveal">Don't Wait. <span class="gradient-text">Get Online Today.</span></h2>
+        <p class="reveal" style="font-size:var(--text-lg);max-width:560px;margin:var(--space-md) auto 0;">
+          Our agents will check every provider available at your address, find the fastest option with no credit check, 
+          and get you signed up in minutes. Free help — no pressure.
+        </p>
+        <div class="reveal" style="margin-top:var(--space-xl);display:flex;flex-direction:column;align-items:center;gap:var(--space-md);">
+          <a href={phoneHref} class="btn btn-cta btn-lg">{phone}</a>
+          <p style="font-size:var(--text-xs);color:var(--text-muted);">Available 7 days a week · No credit check options available · Same-day in many areas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container" style="max-width:740px;">
+      <h2 class="text-center reveal" style="margin-bottom:var(--space-xl);">Getting Reconnected <span class="gradient-text">FAQ</span></h2>
+      <div class="faq-list">
+        {faqs.map(f => (
+          <div class="faq-item reveal">
+            <button class="faq-question">{f.q}</button>
+            <div class="faq-answer"><div class="faq-answer-inner">{f.a}</div></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <StickyCallBar text="Disconnected? We'll get you back online today — no credit check options available." />
+</Base>

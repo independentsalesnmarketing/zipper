@@ -127,35 +127,35 @@ import { generateBreadcrumbSchema } from '@lib/utils';
         <h3 style="margin-bottom: var(--space-lg);">Related Resources</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
           <a href="/compare" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">⚖️ Compare Plans</h4>
+            <h4 style="font-size: var(--text-sm);">Compare Plans</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Side-by-side comparison</p>
           </a>
           <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">⚡ Fastest Internet</h4>
+            <h4 style="font-size: var(--text-sm);">Fastest Internet</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Multi-gig providers</p>
           </a>
           <a href="/deals" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">💰 Best Deals</h4>
+            <h4 style="font-size: var(--text-sm);">Best Deals</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Today's lowest prices</p>
           </a>
           <a href="/cheap-internet" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">🏷️ Cheap Internet</h4>
+            <h4 style="font-size: var(--text-sm);">Cheap Internet</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Budget-friendly plans</p>
           </a>
           <a href="/internet-types/fiber" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">⚡ Fiber Internet</h4>
+            <h4 style="font-size: var(--text-sm);">Fiber Internet</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Fastest technology</p>
           </a>
           <a href="/internet-for/gaming" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">🎮 Best for Gaming</h4>
+            <h4 style="font-size: var(--text-sm);">Best for Gaming</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Low ping, zero lag</p>
           </a>
           <a href="/internet-for/streaming" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">📺 Best for Streaming</h4>
+            <h4 style="font-size: var(--text-sm);">Best for Streaming</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Buffer-free 4K</p>
           </a>
           <a href="/bill-analyzer" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">🧾 Bill Analyzer</h4>
+            <h4 style="font-size: var(--text-sm);">Bill Analyzer</h4>
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Find hidden charges</p>
           </a>
         </div>
@@ -481,28 +481,28 @@ import { generateBreadcrumbSchema } from '@lib/utils';
       <h4 style="margin-bottom:var(--space-sm);">What can you do with ${dl.toFixed(0)} Mbps?</h4>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-sm);margin-bottom:var(--space-lg);">
         <div style="padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${dl >= 5 ? 'rgba(0,213,132,0.1)' : 'rgba(239,68,68,0.1)'};">
-          <span style="font-size:var(--text-sm);">${dl >= 5 ? '✅' : '❌'} Email & browsing</span>
+          <span style="font-size:var(--text-sm);">${dl >= 5 ? '\u2713' : '\u2717'} Email & browsing</span>
         </div>
         <div style="padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${dl >= 25 ? 'rgba(0,213,132,0.1)' : 'rgba(239,68,68,0.1)'};">
-          <span style="font-size:var(--text-sm);">${dl >= 25 ? '✅' : '❌'} HD streaming</span>
+          <span style="font-size:var(--text-sm);">${dl >= 25 ? '\u2713' : '\u2717'} HD streaming</span>
         </div>
         <div style="padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${dl >= 50 ? 'rgba(0,213,132,0.1)' : 'rgba(239,68,68,0.1)'};">
-          <span style="font-size:var(--text-sm);">${dl >= 50 ? '✅' : '❌'} 4K streaming</span>
+          <span style="font-size:var(--text-sm);">${dl >= 50 ? '\u2713' : '\u2717'} 4K streaming</span>
         </div>
         <div style="padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${dl >= 50 ? 'rgba(0,213,132,0.1)' : 'rgba(239,68,68,0.1)'};">
-          <span style="font-size:var(--text-sm);">${dl >= 50 ? '✅' : '❌'} Online gaming</span>
+          <span style="font-size:var(--text-sm);">${dl >= 50 ? '\u2713' : '\u2717'} Online gaming</span>
         </div>
         <div style="padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${dl >= 100 ? 'rgba(0,213,132,0.1)' : 'rgba(239,68,68,0.1)'};">
-          <span style="font-size:var(--text-sm);">${dl >= 100 ? '✅' : '❌'} Multi-device 4K</span>
+          <span style="font-size:var(--text-sm);">${dl >= 100 ? '\u2713' : '\u2717'} Multi-device 4K</span>
         </div>
         <div style="padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${dl >= 200 ? 'rgba(0,213,132,0.1)' : 'rgba(239,68,68,0.1)'};">
-          <span style="font-size:var(--text-sm);">${dl >= 200 ? '✅' : '❌'} Large file downloads</span>
+          <span style="font-size:var(--text-sm);">${dl >= 200 ? '\u2713' : '\u2717'} Large file downloads</span>
         </div>
       </div>
 
       ${dl < 100 ? `
         <div style="padding:var(--space-lg);background:linear-gradient(135deg,rgba(0,82,255,0.08),rgba(183,0,255,0.08));border:1px solid rgba(0,82,255,0.2);border-radius:var(--radius-md);">
-          <p style="color:var(--text-primary);font-weight:600;">🚀 Upgrade your speed</p>
+          <p style="color:var(--text-primary);font-weight:600;">Upgrade your speed</p>
           <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">Our partner providers offer plans up to 5 Gbps — that's ${Math.round(5000 / dl)}× faster than your current speed.</p>
           <div style="display:flex;gap:var(--space-sm);margin-top:var(--space-md);">
             <a href="/providers" class="btn btn-primary" style="font-size:var(--text-sm);">Compare Faster Plans</a>
@@ -511,12 +511,97 @@ import { generateBreadcrumbSchema } from '@lib/utils';
         </div>
       ` : `
         <div style="padding:var(--space-lg);background:rgba(0,213,132,0.05);border:1px solid rgba(0,213,132,0.15);border-radius:var(--radius-md);">
-          <p style="color:var(--text-primary);font-weight:600;">✅ Your speed is solid!</p>
+          <p style="color:var(--text-primary);font-weight:600;">Your speed is solid!</p>
           <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">Want to make sure you're getting the best deal? Compare prices from top providers.</p>
           <a href="/providers" class="btn btn-secondary" style="font-size:var(--text-sm);margin-top:var(--space-md);">Compare Provider Prices</a>
         </div>
       `}
+
+      <!-- Convict & Convert: Am I Getting What I Pay For? -->
+      <div style="margin-top:var(--space-xl);padding:var(--space-xl);background:var(--gray-800);border-radius:var(--radius-lg);border:1px solid var(--border-color);">
+        <h4 style="margin-bottom:var(--space-xs);">Are You Getting What You're Paying For?</h4>
+        <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">Select your advertised plan speed and we'll show you if your provider is delivering what you paid for.</p>
+        <div style="display:flex;gap:var(--space-md);flex-wrap:wrap;align-items:flex-end;">
+          <div style="flex:1;min-width:180px;">
+            <label for="plan-speed" style="display:block;font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;margin-bottom:var(--space-xs);">My Plan Says I Get</label>
+            <select id="plan-speed" style="width:100%;padding:var(--space-sm) var(--space-md);background:var(--gray-900);border:1px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:var(--text-sm);">
+              <option value="">Select your plan speed…</option>
+              <option value="25">25 Mbps</option>
+              <option value="50">50 Mbps</option>
+              <option value="100">100 Mbps</option>
+              <option value="200">200 Mbps</option>
+              <option value="300">300 Mbps</option>
+              <option value="400">400 Mbps</option>
+              <option value="500">500 Mbps</option>
+              <option value="600">600 Mbps</option>
+              <option value="750">750 Mbps</option>
+              <option value="1000">1 Gbps (1000 Mbps)</option>
+              <option value="2000">2 Gbps</option>
+              <option value="5000">5 Gbps</option>
+            </select>
+          </div>
+          <button id="check-gap" class="btn btn-primary" style="flex-shrink:0;white-space:nowrap;">Check My Plan</button>
+        </div>
+        <div id="plan-gap-result" style="margin-top:var(--space-lg);display:none;"></div>
+      </div>
     `;
+
+    // Wire up the plan gap checker
+    const planSelect = document.getElementById('plan-speed') as HTMLSelectElement;
+    const checkGapBtn = document.getElementById('check-gap') as HTMLButtonElement;
+    const gapResult = document.getElementById('plan-gap-result') as HTMLElement;
+
+    function checkPlanGap(dl: number) {
+      const planMbps = parseInt(planSelect.value);
+      if (!planMbps) { gapResult.style.display = 'none'; return; }
+
+      const pct = Math.round((dl / planMbps) * 100);
+      const gap = planMbps - dl;
+      const shortfall = 100 - pct;
+      gapResult.style.display = 'block';
+
+      if (pct >= 80) {
+        gapResult.innerHTML = `
+          <div style="padding:var(--space-lg);background:rgba(0,213,132,0.08);border:1px solid rgba(0,213,132,0.2);border-radius:var(--radius-md);">
+            <p style="color:var(--brand-green);font-weight:700;font-size:var(--text-lg);">You're Getting ${pct}% of Your Plan Speed</p>
+            <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">That's within normal range. WiFi interference, device limitations, and network routing can account for up to 20% variance.</p>
+            <div style="margin-top:var(--space-md);display:flex;gap:var(--space-sm);flex-wrap:wrap;">
+              <a href="/deals" class="btn btn-secondary" style="font-size:var(--text-sm);">See Better Deals</a>
+              <a href="/compare" class="btn btn-secondary" style="font-size:var(--text-sm);">Compare All Plans</a>
+            </div>
+          </div>`;
+      } else if (pct >= 50) {
+        gapResult.innerHTML = `
+          <div style="padding:var(--space-lg);background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:var(--radius-md);">
+            <p style="color:var(--brand-amber);font-weight:700;font-size:var(--text-lg);">⚠️ You're Only Getting ${pct}% of Your Paid Speed</p>
+            <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">You're paying for <strong>${planMbps} Mbps</strong> but getting <strong>${dl.toFixed(0)} Mbps</strong> — a shortfall of <strong>${gap.toFixed(0)} Mbps (${shortfall}%)</strong>. This may indicate network congestion, equipment issues, or overselling by your provider.</p>
+            <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-sm);">Options: restart your router, run a wired test, or compare providers who actually deliver their advertised speeds.</p>
+            <div style="margin-top:var(--space-md);display:flex;gap:var(--space-sm);flex-wrap:wrap;">
+              <a href="/switch" class="btn btn-primary" style="font-size:var(--text-sm);">Compare Alternatives</a>
+              <a href="/bill-analyzer" class="btn btn-secondary" style="font-size:var(--text-sm);">Analyze My Bill</a>
+            </div>
+          </div>`;
+      } else {
+        gapResult.innerHTML = `
+          <div style="padding:var(--space-xl);background:rgba(255,45,74,0.06);border:2px solid rgba(255,45,74,0.3);border-radius:var(--radius-lg);">
+            <p style="color:var(--brand-red);font-weight:800;font-size:var(--text-xl);">🚨 You're Getting Only ${pct}% of What You Pay For</p>
+            <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-sm);">You're paying for <strong>${planMbps} Mbps</strong> but only receiving <strong>${dl.toFixed(0)} Mbps</strong>. That's a <strong>${shortfall}% shortfall</strong> — equivalent to throwing away $${Math.round((shortfall/100) * 60)}/month in wasted service costs.</p>
+            <p style="color:var(--text-primary);font-weight:600;margin-top:var(--space-md);">You have options:</p>
+            <ul style="color:var(--text-secondary);font-size:var(--text-sm);padding-left:var(--space-lg);margin-top:var(--space-xs);">
+              <li>Call your provider and request a credit or service check</li>
+              <li>Under FCC broadband rules, significant speed underdelivery is grounds for plan dispute</li>
+              <li>Switch to a provider that delivers — many offer guaranteed speeds</li>
+            </ul>
+            <div style="margin-top:var(--space-lg);display:flex;gap:var(--space-md);flex-wrap:wrap;">
+              <a href="/switch" class="btn btn-call btn-lg">Call to Find a Better Provider</a>
+              <a href="/switch" class="btn btn-secondary">Compare All Alternatives</a>
+            </div>
+            <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:var(--space-sm);">Our advisors compare every provider at your address and can switch you as early as this week.</p>
+          </div>`;
+      }
+    }
+
+    checkGapBtn?.addEventListener('click', () => checkPlanGap(dl));
   }
 
   startBtn?.addEventListener('click', runTest);

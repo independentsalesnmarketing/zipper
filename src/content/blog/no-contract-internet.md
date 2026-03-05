@@ -16,7 +16,7 @@ The good news: most major providers have moved away from contracts. Here are the
 
 ## Best No-Contract Internet Plans
 
-### 1. [T-Mobile 5G Home Internet](/provider/tmobile)
+### 1. [T-Mobile 5G Home Internet](/provider/tmobile-5g)
 | Price | Speed | Technology | Data Cap |
 |-------|-------|-----------|----------|
 | $50/mo | 72-245 Mbps | Fixed Wireless | None |

@@ -18,7 +18,7 @@ We track promotions from every major ISP to find the best deals for new and exis
 | Provider | Deal | Effective Price | Speed |
 |----------|------|----------------|-------|
 | [Optimum](/provider/optimum) | New customer pricing | **$40/mo** | 300 Mbps |
-| [T-Mobile](/provider/tmobile) | $10 off with phone plan | **$40/mo** | 72-245 Mbps |
+| [T-Mobile](/provider/tmobile-5g) | $10 off with phone plan | **$40/mo** | 72-245 Mbps |
 | [Frontier Fiber](/provider/frontier) | New customer rate | **$49.99/mo** | 500/500 Mbps |
 | [Spectrum](/provider/spectrum) | New customer pricing | **$49.99/mo** | 300 Mbps |
 | [Verizon Fios](/provider/verizon) | Mix & Match pricing | **$49.99/mo** | 300/300 Mbps |
@@ -118,7 +118,7 @@ These programs are available to qualifying low-income households receiving SNAP,
 
 ## This Month's Best Overall Value
 
-**Our March 2026 pick**: [Frontier Fiber](/provider/frontier) at $49.99/mo for 500/500 Mbps offers the best combination of speed, price, and reliability for anyone in their service area. For areas without Frontier, [T-Mobile](/provider/tmobile) at $50/mo flat delivers the most honest pricing with zero surprises.
+**Our March 2026 pick**: [Frontier Fiber](/provider/frontier) at $49.99/mo for 500/500 Mbps offers the best combination of speed, price, and reliability for anyone in their service area. For areas without Frontier, [T-Mobile](/provider/tmobile-5g) at $50/mo flat delivers the most honest pricing with zero surprises.
 
 Check what's available at your address with our [availability checker](/check-availability) and lock in today's rates before they change.
 

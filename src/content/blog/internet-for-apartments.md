@@ -21,7 +21,7 @@ Here's how to navigate these challenges and get the best internet in your apartm
 
 ## Best Internet Providers for Apartments
 
-### 1. [T-Mobile 5G Home Internet](/provider/tmobile) — Best for Renters
+### 1. [T-Mobile 5G Home Internet](/provider/tmobile-5g) — Best for Renters
 | Feature | Details |
 |---------|---------|
 | Price | $50/mo flat |

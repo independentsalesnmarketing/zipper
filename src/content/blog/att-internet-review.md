@@ -104,7 +104,7 @@ Fiber consistently delivers **95%+ of advertised speeds** regardless of time of 
 | [Verizon Fios](/provider/verizon) | $49.99/mo | 2 Gbps | Symmetrical | None |
 | [Spectrum](/provider/spectrum) | $49.99/mo | 1 Gbps | 35 Mbps | None |
 | [Frontier Fiber](/provider/frontier) | $49.99/mo | 5 Gbps | Symmetrical | None |
-| [T-Mobile 5G Home](/provider/tmobile) | $50/mo | 245 Mbps | 23 Mbps | None |
+| [T-Mobile 5G Home](/provider/tmobile-5g) | $50/mo | 245 Mbps | 23 Mbps | None |
 
 ## Who Should Choose AT&T?
 

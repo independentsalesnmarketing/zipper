@@ -69,7 +69,7 @@ const schemas = [
 
       <!-- Hero -->
       <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
-        <div class="badge badge-green" style="margin-bottom: var(--space-md);">💰 Updated {month} {year}</div>
+        <div class="badge badge-green" style="margin-bottom: var(--space-md);">Updated {month} {year}</div>
         <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
           Cheap Internet in <span class="gradient-text">{stateName}</span>
         </h1>
@@ -78,7 +78,8 @@ const schemas = [
           Plans start at just {formatPrice(cheapestPrice)}/mo.
         </p>
         <a href={phoneHref} class="btn btn-call mt-lg" style="font-size: var(--text-lg);">
-          📞 Call {phone} for Best Deals
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Call {phone} for Best Deals
         </a>
       </div>
 
@@ -176,7 +177,7 @@ const schemas = [
                   <div class="flex gap-sm">
                     <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size:var(--text-sm);">View Plans</a>
                     <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-sm);">
-                      📞 Call Now
+                      Call Now
                     </a>
                   </div>
                 </div>

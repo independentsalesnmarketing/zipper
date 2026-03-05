@@ -17,7 +17,7 @@ const partners = getPartnerProviders();
       <Breadcrumb items={[{ name: 'Bill Analyzer' }]} />
 
       <div class="text-center reveal">
-        <div class="badge" style="margin-bottom:var(--space-md);background:rgba(34,197,94,0.15);color:var(--brand-green);">🧾 Free Analysis</div>
+        <div class="badge" style="margin-bottom:var(--space-md);background:rgba(34,197,94,0.15);color:var(--brand-green);">Free Analysis</div>
         <h1>Are You <span class="gradient-text">Overpaying</span> for Internet?</h1>
         <p class="hero-subtitle" style="max-width:480px;margin:var(--space-sm) auto 0;">Tell us what you pay and what you get. We'll find out if there's a better deal — in under 30 seconds.</p>
       </div>
@@ -136,23 +136,19 @@ const partners = getPartnerProviders();
     betterDeals.sort((a, b) => b.annualSavings - a.annualSavings);
 
     // Calculate verdict
-    let verdict, verdictColor, verdictIcon;
+    let verdict, verdictColor;
     if (costPerMbps > avgCostPerMbps * 2) {
       verdict = 'Significantly Overpaying';
       verdictColor = 'var(--brand-red)';
-      verdictIcon = '🔴';
     } else if (costPerMbps > avgCostPerMbps * 1.3) {
       verdict = 'Paying Above Average';
       verdictColor = '#f59e0b';
-      verdictIcon = '🟡';
     } else if (costPerMbps > avgCostPerMbps * 0.8) {
       verdict = 'Fair Price';
       verdictColor = 'var(--brand-blue-light)';
-      verdictIcon = '🔵';
     } else {
       verdict = 'Great Deal!';
       verdictColor = 'var(--brand-green)';
-      verdictIcon = '🟢';
     }
 
     const topDeal = betterDeals[0];
@@ -160,7 +156,6 @@ const partners = getPartnerProviders();
 
     let html = `
       <div class="card" style="text-align:center;padding:var(--space-2xl);border-top:3px solid ${verdictColor};">
-        <div style="font-size:2rem;">${verdictIcon}</div>
         <h2 style="margin:var(--space-sm) 0;color:${verdictColor};">${verdict}</h2>
         <div style="display:flex;justify-content:center;gap:var(--space-xl);flex-wrap:wrap;margin:var(--space-lg) 0;">
           <div>
@@ -199,7 +194,7 @@ const partners = getPartnerProviders();
               <div style="text-align:right;">
                 <div style="font-size:var(--text-xl);font-weight:900;color:var(--brand-green);">$${d.price.toFixed(2)}<span style="font-size:var(--text-xs);font-weight:400;">/mo</span></div>
                 <div style="font-size:var(--text-sm);color:var(--brand-green);">Save $${d.savings.toFixed(2)}/mo ($${d.annualSavings.toFixed(0)}/yr)</div>
-                <a href="tel:${d.phone.replace(/[^0-9]/g, '')}" class="btn btn-call" style="margin-top:var(--space-xs);font-size:var(--text-sm);">📞 Switch Now</a>
+                <a href="tel:${d.phone.replace(/[^0-9]/g, '')}" class="btn btn-call" style="margin-top:var(--space-xs);font-size:var(--text-sm);">Switch Now</a>
               </div>
             </div>
           </div>
@@ -209,13 +204,13 @@ const partners = getPartnerProviders();
       html += `
         <div class="card text-center" style="margin-top:var(--space-lg);padding:var(--space-xl);">
           <p>We didn't find a plan that beats your current price for the same speed tier. But you might still save by switching — call for a personalized quote.</p>
-          <a href="tel:${mainPhone.replace(/[^0-9]/g, '')}" class="btn btn-call" style="margin-top:var(--space-md);">📞 ${mainPhone}</a>
+          <a href="tel:${mainPhone.replace(/[^0-9]/g, '')}" class="btn btn-call" style="margin-top:var(--space-md);">${mainPhone}</a>
         </div>
       `;
     }
 
     html += `
-      ${contract === 'yes' ? '<div class="card" style="margin-top:var(--space-lg);background:rgba(245,158,11,0.08);border-left:3px solid #f59e0b;"><p style="font-size:var(--text-sm);"><strong>⚠️ You mentioned you\'re under contract.</strong> Check your early termination fee. Some new providers will buy out your contract — ask when you call.</p></div>' : ''}
+      ${contract === 'yes' ? '<div class="card" style="margin-top:var(--space-lg);background:rgba(245,158,11,0.08);border-left:3px solid #f59e0b;"><p style="font-size:var(--text-sm);"><strong>You mentioned you\'re under contract.</strong> Check your early termination fee. Some new providers will buy out your contract — ask when you call.</p></div>' : ''}
       <div class="text-center" style="margin-top:var(--space-xl);">
         <button id="analyze-again" class="btn btn-secondary">↩ Analyze Another Bill</button>
       </div>

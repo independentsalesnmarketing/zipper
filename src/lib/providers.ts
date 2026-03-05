@@ -29,6 +29,8 @@ export interface Provider {
   phone: string;
   plans: Plan[];
   promo?: string;
+  reviewSource?: string;
+  reviewUrl?: string;
 }
 
 export const MAIN_PHONE = data.mainPhone;

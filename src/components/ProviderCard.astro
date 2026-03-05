@@ -74,6 +74,12 @@ const phoneNumber = provider.isPartner ? provider.phone : MAIN_PHONE;
       <div class="pc-rating-compact">
         <span class="stars">{'★'.repeat(Math.floor(provider.rating))}</span>
         <span class="rating-num">{provider.rating.toFixed(1)}</span>
+        {provider.reviewSource && provider.reviewUrl && (
+          <a href={provider.reviewUrl} target="_blank" rel="noopener noreferrer" class="rating-source" title={`Rating from ${provider.reviewSource}`}>{provider.reviewSource}</a>
+        )}
+        {provider.reviewCount && (
+          <span class="rating-count">{provider.reviewCount.toLocaleString()} reviews</span>
+        )}
       </div>
       <div class="pc-actions-compact">
         <a href={formatPhoneForTel(phoneNumber)} class="btn btn-cta pc-btn-call" data-event="provider-call" data-event-category="conversion" data-event-label={`call-${provider.slug}`}>
@@ -318,6 +324,21 @@ const phoneNumber = provider.isPartner ? provider.phone : MAIN_PHONE;
   .pc-rating-compact .rating-num {
     font-weight: 700;
     color: var(--text-primary);
+  }
+
+  .pc-rating-compact .rating-source {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--brand-blue);
+    text-decoration: none;
+    margin-top: 2px;
+  }
+  .pc-rating-compact .rating-source:hover { text-decoration: underline; }
+
+  .pc-rating-compact .rating-count {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
   }
 
   .pc-actions-compact {

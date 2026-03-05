@@ -11,13 +11,9 @@ const month = new Date().toLocaleString('en-US', { month: 'long' });
 const phone = MAIN_PHONE;
 const phoneHref = formatPhoneForTel(phone);
 
-// Rank providers: partners first, then by rating
-const rankedProviders = getAllProviders()
-  .sort((a, b) => {
-    if (a.isPartner && !b.isPartner) return -1;
-    if (!a.isPartner && b.isPartner) return 1;
-    return b.rating - a.rating;
-  });
+// Rank partners by rating
+const rankedProviders = getPartnerProviders()
+  .sort((a, b) => b.rating - a.rating);
 
 const topPick = rankedProviders[0];
 
@@ -31,7 +27,7 @@ const categories = [
 ];
 
 const faqs = [
-  { question: `What is the best internet provider in ${year}?`, answer: `Based on our analysis of speed, price, reliability, coverage, and customer satisfaction, ${topPick.name} ranks as the best overall internet provider in ${year}. However, the best provider for you depends on your address, budget, and needs. Call ${phone} for a personalized recommendation.` },
+  { question: `What is the best internet provider in ${year}?`, answer: `Based on our analysis of speed, price, reliability, coverage, and customer satisfaction, ${topPick.name} ranks as the best overall internet provider in ${year}. However, the best provider for you depends on your address, budget, and needs. Chat with us for a personalized recommendation.` },
   { question: 'How do you rank internet providers?', answer: 'We evaluate providers on 6 criteria: 1) Speed offerings and consistency. 2) Pricing and value. 3) Contract terms and transparency. 4) Coverage and availability. 5) Customer satisfaction ratings. 6) Technology type (fiber scores highest). Our rankings are updated monthly.' },
   { question: 'Is fiber internet always better?', answer: 'For most users, yes. Fiber offers the fastest speeds, lowest latency, symmetrical upload/download, no data caps, and no congestion during peak hours. The main limitation is availability — fiber is only in ~43% of US addresses. Cable is an excellent alternative where fiber isn\'t available.' },
   { question: 'What internet speed do I actually need?', answer: '1-2 people, basic use: 25-50 Mbps. Small family, streaming + WFH: 100-200 Mbps. Large family, gaming + 4K: 300-500 Mbps. Power users, content creators: 500-1000 Mbps. Most households are well-served by 100-300 Mbps.' },
@@ -66,9 +62,8 @@ const schemas = [
           We analyzed {rankedProviders.length} internet providers across speed, price, reliability, coverage, and customer satisfaction.
           Here are our expert rankings.
         </p>
-        <a href={phoneHref} class="btn btn-call mt-xl" style="font-size: var(--text-lg);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          Call {phone} for Expert Advice
+        <a href="#get-connected" class="btn btn-cta mt-xl" style="font-size: var(--text-lg);" data-open-chat="true">
+          Chat with Us for Personalized Recommendations
         </a>
       </div>
 
@@ -86,8 +81,8 @@ const schemas = [
       <!-- Full Rankings Table -->
       <div class="card reveal" style="margin-bottom: var(--space-3xl); overflow: hidden;">
         <div style="padding: var(--space-xl) var(--space-xl) var(--space-md);">
-          <h2>Complete Provider Rankings</h2>
-          <p class="text-secondary">All {rankedProviders.length} providers ranked. Partner providers are verified and recommended.</p>
+          <h2>Our Top Partner Providers</h2>
+          <p class="text-secondary">Our {rankedProviders.length} partner providers ranked by speed, price, reliability, and customer satisfaction.</p>
         </div>
         <div style="overflow-x: auto;">
           <table class="comparison-table" style="width:100%;">
@@ -123,8 +118,8 @@ const schemas = [
                     <td>{cheapest.contract}</td>
                     <td>{p.plans.some(plan => plan.dataCap === 'Unlimited') ? 'Unlimited available' : cheapest.dataCap}</td>
                     <td>
-                      <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);">
-                        Call
+                      <a href="#get-connected" class="btn btn-cta" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);" data-signup-provider={p.slug}>
+                        Choose
                       </a>
                     </td>
                   </tr>
@@ -143,7 +138,7 @@ const schemas = [
           const maxU = getMaxUpload(p);
           const minP = getMinPrice(p);
           return (
-            <div class="card" style={`padding: var(--space-2xl); margin-bottom: var(--space-lg); ${!p.isPartner ? 'opacity:0.85;' : ''}`}>
+            <div class="card" style="padding: var(--space-2xl); margin-bottom: var(--space-lg);">
               <div class="flex items-center gap-lg flex-wrap" style="margin-bottom: var(--space-lg);">
                 <span style="font-size:var(--text-3xl);font-weight:800;color:var(--text-tertiary);">#{i+1}</span>
                 <div style="width:56px;height:56px;border-radius:var(--radius-md);background:var(--gray-100);display:flex;align-items:center;justify-content:center;overflow:hidden;">
@@ -152,13 +147,12 @@ const schemas = [
                 <div style="flex:1;">
                   <h3 style="font-size: var(--text-xl); margin-bottom: 0;">
                     {p.name}
-                    {p.isPartner && <span class="badge badge-green" style="margin-left:var(--space-xs);font-size:0.65rem;">RECOMMENDED</span>}
+                    <span class="badge badge-green" style="margin-left:var(--space-xs);font-size:0.65rem;">VERIFIED PARTNER</span>
                   </h3>
                   <span class="text-secondary">{p.rating}/5 • {p.reviewCount.toLocaleString()} reviews • {p.types.map(t => getTypeLabel(t)).join(', ')}</span>
                 </div>
-                <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-                  {p.isPartner ? p.phone : phone}
+                <a href="#get-connected" class="btn btn-cta" data-signup-provider={p.slug}>
+                  Check Availability
                 </a>
               </div>
 
@@ -228,5 +222,5 @@ const schemas = [
 
     </div>
   </section>
-  <StickyCallBar phone={phone} message="Expert advice — call now" />
+  <StickyCallBar text="Find the perfect provider for your needs — compare our top picks" />
 </Base>

@@ -83,10 +83,23 @@ const partners = getPartnerProviders();
 
   <StickyCallBar text="Overpaying? Let's fix that." />
 
-<script define:vars={{ partners: partners.map(p => ({ name: p.name, slug: p.slug, phone: p.phone, types: p.types, plans: p.plans })), mainPhone: MAIN_PHONE }}>
+  <style>
+    .form-input.error {
+      border-color: #ef4444 !important;
+      background-color: rgba(239, 68, 68, 0.05);
+    }
+  </style>
+
+<script define:vars={{ partners: partners.map(p => ({ name: p.name, slug: p.slug, phone: p.phone, types: p.types, plans: p.plans })) }}>
 (function() {
+  // Ensure partners data is available
+  if (typeof partners === 'undefined' || !Array.isArray(partners)) {
+    console.error('Partners data not loaded');
+    return;
+  }
+
   let contract = 'unsure';
-  
+
   document.querySelectorAll('.contract-opt').forEach(btn => {
     btn.addEventListener('click', function() {
       document.querySelectorAll('.contract-opt').forEach(b => { b.classList.remove('btn-primary'); b.classList.add('btn-secondary'); });
@@ -107,15 +120,19 @@ const partners = getPartnerProviders();
     // Clear previous validation states
     speedInput.style.borderColor = '';
     priceInput.style.borderColor = '';
+    speedInput.classList.remove('error');
+    priceInput.classList.remove('error');
 
     if (!speed || speed <= 0) {
-      speedInput.style.borderColor = 'var(--status-error)';
+      speedInput.classList.add('error');
+      speedInput.focus();
       alert('Please enter your current download speed (Mbps).');
       return;
     }
 
     if (!price || price <= 0) {
-      priceInput.style.borderColor = 'var(--status-error)';
+      priceInput.classList.add('error');
+      priceInput.focus();
       alert('Please enter your monthly bill ($).');
       return;
     }

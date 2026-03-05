@@ -20,7 +20,7 @@ const cableProviders = allProviders.filter(p => p.types.includes('cable'));
 const steps = [
   { icon: '📍', title: 'Enter Your Address', desc: 'Type your ZIP code or full street address to begin your personalized search.' },
   { icon: '📊', title: 'Compare Available Providers', desc: 'See every internet provider at your exact address — with speeds, prices, and ratings.' },
-  { icon: '📞', title: 'Connect with an Expert', desc: 'Call our team to get the best deal, schedule installation, and switch hassle-free.' },
+  { icon: '💬', title: 'Get Expert Help', desc: 'Chat with our specialists to answer questions and get help choosing the best plan for your needs.' },
 ];
 
 const coverageTypes = [
@@ -33,14 +33,14 @@ const coverageTypes = [
 ];
 
 const faqs = [
-  { question: 'How do I check what internet providers are available at my address?', answer: `Enter your ZIP code in the search box above and we'll show you every provider available at your location. Our database uses real FCC broadband data covering ${allProviders.length}+ providers across all 50 states. For the most precise results, call ${phone} and our experts can look up your exact street address.` },
+  { question: 'How do I check what internet providers are available at my address?', answer: `Enter your ZIP code in the search box above and we'll show you every provider available at your location. Our database uses real FCC broadband data covering ${allProviders.length}+ providers across all 50 states. For the most precise results, enter your full street address or chat with our experts.` },
   { question: 'Why does internet availability vary by address?', answer: 'Internet infrastructure is built street by street. Even neighbors across the road may have different options. Fiber lines, cable networks, and wireless towers each have specific coverage footprints. That\'s why checking your exact address — not just your ZIP code — matters for accurate results.' },
-  { question: 'What if no good internet providers serve my area?', answer: 'You still have options! Satellite internet (Starlink, Viasat, HughesNet) covers virtually every address in America. Fixed wireless and 5G home internet are expanding rapidly. T-Mobile 5G Home Internet is available to 300+ million people. Call us for the best option at your address.' },
-  { question: 'How accurate is your internet availability checker?', answer: `Our data comes from the FCC Broadband Map — the most comprehensive broadband database in America. We cross-reference provider service areas, coverage maps, and real customer data. For 100% accuracy, call ${phone} and we\'ll verify availability at your exact address in real-time.` },
+  { question: 'What if no good internet providers serve my area?', answer: 'You still have options! Satellite internet (Starlink, Viasat, HughesNet) covers virtually every address in America. Fixed wireless and 5G home internet are expanding rapidly. T-Mobile 5G Home Internet is available to 300+ million people. Chat with us for the best option at your address.' },
+  { question: 'How accurate is your internet availability checker?', answer: `Our data comes from the FCC Broadband Map — the most comprehensive broadband database in America. We cross-reference provider service areas, coverage maps, and real customer data. For 100% accuracy, enter your full street address in the search above or chat with our experts.` },
   { question: 'Can I check internet availability before I move?', answer: 'Absolutely! Enter the ZIP code of your new address to see what\'s available before you move. Our moving specialists can set up internet at your new home — often with same-day installation. Visit our movers page for a complete moving checklist.' },
-  { question: 'What internet speed is available at my address?', answer: `Available speeds depend on your address and provider. Fiber addresses get up to 8 Gbps. Cable addresses typically max at 1-1.2 Gbps. 5G home internet offers 100-300 Mbps in most areas. Enter your ZIP code above or call ${phone} for exact speeds at your address.` },
-  { question: 'Is fiber internet available at my address?', answer: `Fiber is available to roughly 43% of US addresses and growing fast. ${fiberProviders.map(p => p.name).join(', ')} are the major fiber providers. Enter your ZIP code to check fiber availability, or call us — we can tell you if fiber is coming to your area soon.` },
-  { question: 'How do I find cheap internet at my address?', answer: `Start by checking all available providers with our tool above. Then compare their lowest-tier plans. Many providers offer plans starting at $30-50/mo. Government programs like the ACP can reduce costs for eligible households. Call ${phone} for exclusive deals not listed online.` },
+  { question: 'What internet speed is available at my address?', answer: `Available speeds depend on your address and provider. Fiber addresses get up to 8 Gbps. Cable addresses typically max at 1-1.2 Gbps. 5G home internet offers 100-300 Mbps in most areas. Enter your ZIP code above or chat with our experts for exact speeds at your address.` },
+  { question: 'Is fiber internet available at my address?', answer: `Fiber is available to roughly 43% of US addresses and growing fast. ${fiberProviders.map(p => p.name).join(', ')} are the major fiber providers. Enter your ZIP code to check fiber availability, or chat with us to learn if fiber is coming to your area soon.` },
+  { question: 'How do I find cheap internet at my address?', answer: `Start by checking all available providers with our tool above. Then compare their lowest-tier plans. Many providers offer plans starting at $30-50/mo. Government programs like the ACP can reduce costs for eligible households. Chat with our experts for exclusive deals not listed online.` },
 ];
 
 const schemas = [
@@ -56,7 +56,7 @@ const schemas = [
   description="Find internet providers near you. Check internet availability at your address by ZIP code — see fiber, cable, 5G & satellite options. Compare 25+ ISPs in your area free — instant results."
   schema={schemas}
 >
-  <StickyCallBar text="Check internet at your address — call for instant results" />
+  <StickyCallBar text="Enter your address to see available internet providers and plans" />
 
   <section class="section" style="padding-top: var(--space-xl);">
     <div class="container">
@@ -80,13 +80,6 @@ const schemas = [
           </p>
         </div>
 
-        <div style="margin-top: var(--space-xl);">
-          <p style="font-size: var(--text-sm); color: var(--text-tertiary); margin-bottom: var(--space-sm);">Or get instant results by phone:</p>
-          <a href={phoneHref} class="btn btn-cta btn-lg" style="font-size: var(--text-lg);">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-            Call {phone} — Free Expert Help
-          </a>
-        </div>
       </div>
 
       <!-- How It Works -->
@@ -146,8 +139,8 @@ const schemas = [
               <div class="flex gap-xs" style="margin-bottom: var(--space-md);">
                 {p.types.map(t => <span class={`tag tag-${t}`} style="font-size:0.6rem;">{getTypeLabel(t)}</span>)}
               </div>
-              <a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm" style="width: 100%; text-align: center;">
-                Check Availability — Call Now
+              <a href="#get-connected" class="btn btn-cta btn-sm" style="width: 100%; text-align: center;" data-signup-provider={p.slug}>
+                Check Availability
               </a>
             </div>
           ))}
@@ -159,9 +152,9 @@ const schemas = [
         <div class="card" style="padding: var(--space-2xl); text-align: center; background: linear-gradient(135deg, rgba(0,82,255,0.08), rgba(0,213,132,0.08)); border: 1px solid var(--brand-blue);">
           <h2 style="margin-bottom: var(--space-sm);">Can't Find Your Address?</h2>
           <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); max-width: 550px; margin-inline: auto;">
-            Our experts can look up internet availability at any US address — including new construction, rural properties, and recently serviced areas not yet in public databases.
+            Our experts can look up internet availability at any US address — including new construction, rural properties, and recently serviced areas. Chat with our team or enter your full address in the search above.
           </p>
-          <a href={phoneHref} class="btn btn-cta btn-lg">Call {phone} — Free Address Lookup</a>
+          <a href="#get-connected" class="btn btn-cta btn-lg" data-open-chat="true">Chat with Our Experts</a>
         </div>
       </div>
 

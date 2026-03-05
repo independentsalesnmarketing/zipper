@@ -34,7 +34,7 @@ const fastestPlans = getAllProviders().flatMap(p =>
 });
 
 const faqs = [
-  { question: `What is the fastest internet available in ${year}?`, answer: `The fastest widely available internet is ${formatSpeed(fastestSpeed)} from ${fastest.name}. AT&T Fiber offers up to 5 Gbps, Google Fiber up to 5 Gbps, and Frontier up to 5 Gbps in select areas. Actual availability depends on your address — call ${phone} to check.` },
+  { question: `What is the fastest internet available in ${year}?`, answer: `The fastest widely available internet is ${formatSpeed(fastestSpeed)} from ${fastest.name}. AT&T Fiber offers up to 5 Gbps, Google Fiber up to 5 Gbps, and Frontier up to 5 Gbps in select areas. Actual availability depends on your address — chat with us to check.` },
   { question: 'Do I actually need gigabit internet?', answer: 'Most households don\'t need full gigabit (1000 Mbps). A family of 4 streaming 4K, gaming, and working from home typically uses 200-400 Mbps. However, gigabit offers future-proofing, faster large downloads, and headroom for growth. If pricing is similar to 500 Mbps, gigabit is worth it.' },
   { question: 'Is upload speed important?', answer: 'Yes, increasingly so. Video calls, cloud backups, uploading content, live streaming, and working from home all depend on upload speed. Fiber offers symmetrical upload (as fast as download). Cable upload is typically 10-35 Mbps. If you work from home or create content, prioritize upload speed.' },
   { question: 'What is the fastest type of internet?', answer: 'Fiber optic is the fastest, with speeds up to 10 Gbps (consumer plans up to 5 Gbps). Cable maxes out at ~2 Gbps. 5G reaches up to 1 Gbps. DSL tops out at ~100 Mbps. Satellite (Starlink) reaches ~500 Mbps. For the absolute fastest connection, fiber is the answer.' },
@@ -68,9 +68,8 @@ const schemas = [
         <p class="hero-subtitle" style="max-width: 680px; margin-inline: auto;">
           We ranked all {speedRanked.length} providers by maximum download speed. From gigabit to multi-gig — find the fastest internet at your address.
         </p>
-        <a href={phoneHref} class="btn btn-call mt-xl" style="font-size: var(--text-lg);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          Call {phone} for Fastest Plans
+        <a href="#get-connected" class="btn btn-cta mt-xl" style="font-size: var(--text-lg);" data-open-chat="true">
+          Compare Our Fastest Plans
         </a>
       </div>
 
@@ -125,7 +124,7 @@ const schemas = [
                   <td>{plan.type ? plan.type.charAt(0).toUpperCase() + plan.type.slice(1) : p.types[0].charAt(0).toUpperCase() + p.types[0].slice(1)}</td>
                   <td>{plan.dataCap}</td>
                   <td>
-                    <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);">Call</a>
+                    <a href="#get-connected" class="btn btn-cta" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);" data-signup-provider={p.provider.slug}>Order</a>
                   </td>
                 </tr>
               ))}
@@ -167,7 +166,7 @@ const schemas = [
                   <td>{p.types.map(t => getTypeLabel(t)).join(', ')}</td>
                   <td>{formatPrice(getMinPrice(p))}/mo</td>
                   <td>
-                    <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);">Call</a>
+                    <a href="#get-connected" class="btn btn-cta" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);" data-signup-provider={p.slug}>Order</a>
                   </td>
                 </tr>
               ))}
@@ -225,5 +224,5 @@ const schemas = [
 
     </div>
   </section>
-  <StickyCallBar phone={phone} message="Get the fastest speeds — call now" />
+  <StickyCallBar text="Looking for gigabit speeds? Compare our fastest plans" />
 </Base>

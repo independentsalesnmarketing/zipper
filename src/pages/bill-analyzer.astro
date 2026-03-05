@@ -123,6 +123,7 @@ const partners = getPartnerProviders();
         if (plan.speed >= speed && planPrice < price) {
           betterDeals.push({
             provider: p.name,
+            slug: p.slug,
             phone: p.phone,
             plan: plan.name,
             speed: plan.speed,
@@ -194,7 +195,7 @@ const partners = getPartnerProviders();
               <div style="text-align:right;">
                 <div style="font-size:var(--text-xl);font-weight:900;color:var(--brand-green);">$${d.price.toFixed(2)}<span style="font-size:var(--text-xs);font-weight:400;">/mo</span></div>
                 <div style="font-size:var(--text-sm);color:var(--brand-green);">Save $${d.savings.toFixed(2)}/mo ($${d.annualSavings.toFixed(0)}/yr)</div>
-                <a href="tel:${d.phone.replace(/[^0-9]/g, '')}" class="btn btn-call" style="margin-top:var(--space-xs);font-size:var(--text-sm);">Switch Now</a>
+                <a href="#get-connected" class="btn btn-cta" style="margin-top:var(--space-xs);font-size:var(--text-sm);" data-signup-provider="${d.slug}">Sign Up</a>
               </div>
             </div>
           </div>
@@ -203,8 +204,11 @@ const partners = getPartnerProviders();
     } else {
       html += `
         <div class="card text-center" style="margin-top:var(--space-lg);padding:var(--space-xl);">
-          <p>We didn't find a plan that beats your current price for the same speed tier. But you might still save by switching — call for a personalized quote.</p>
-          <a href="tel:${mainPhone.replace(/[^0-9]/g, '')}" class="btn btn-call" style="margin-top:var(--space-md);">${mainPhone}</a>
+          <p>We didn't find a plan that beats your current price for the same speed tier. But you might still save by switching — our experts can find creative solutions.</p>
+          <div style="display:flex;flex-direction:column;gap:var(--space-md);align-items:center;margin-top:var(--space-md);">
+            <a href="#get-connected" class="btn btn-primary" style="min-width:200px;">Chat with an Expert</a>
+            <a href="tel:${mainPhone.replace(/[^0-9]/g, '')}" class="btn btn-secondary">${mainPhone}</a>
+          </div>
         </div>
       `;
     }

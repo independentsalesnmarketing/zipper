@@ -2,7 +2,7 @@
 import '@styles/global.css';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
-import AiChat from '@components/AiChat.astro';
+import Assistant from '@components/Assistant.astro';
 import ConversionBoost from '@components/ConversionBoost.astro';
 import SignUpForm from '@components/SignUpForm.astro';
 import { generateWebsiteSchema, generateOrganizationSchema } from '@lib/utils';
@@ -20,14 +20,14 @@ const {
   title,
   description = 'Find the best internet providers in your area. Compare plans, prices, and speeds from top providers. Call now for exclusive deals.',
   canonical,
-  ogImage = '/og-default.png',
+  ogImage = '/logo.svg',
   noindex = false,
   schema,
 } = Astro.props;
 
 const siteName = 'Internet 4 ALL';
 const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
-const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site).toString();
+const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site ?? 'https://internet4all.com').toString();
 const schemas = schema
   ? (Array.isArray(schema) ? [generateWebsiteSchema(), generateOrganizationSchema(), ...schema] : [generateWebsiteSchema(), generateOrganizationSchema(), schema])
   : [generateWebsiteSchema(), generateOrganizationSchema()];
@@ -83,7 +83,7 @@ const schemas = schema
     <slot />
   </main>
   <Footer />
-  <AiChat />
+  <Assistant />
   <ConversionBoost />
   <SignUpForm />
 

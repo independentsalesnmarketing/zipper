@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // ============================================================
 // Internet 4 ALL — Sitemap Index Generator
-// Handles 19K+ pages by splitting into multiple sitemap files
+// Handles 50K+ pages by splitting into multiple sitemap files (10K per file)
+// Pages: 31K ZIP + 19K city + 50 state + 220 dynamic + 35 static ≈ 50,500
 // Run after `npm run build`: node scripts/generate-sitemap.mjs
 // ============================================================
 

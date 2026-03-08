@@ -4,10 +4,11 @@ import Breadcrumb from '@components/Breadcrumb.astro';
 import ProviderSearch from '@components/ProviderSearch.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import ProviderCard from '@components/ProviderCard.astro';
-import { getProvidersByState, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getProvidersByState, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import { getZipPages, getStateName, getStateSlug, cities, type ZipData } from '@data/locations';
 import { getStateCensus } from '@data/census';
+import { getConfirmedProviders, getConfirmedFiberProviders, getOptimumTier, getOptimumRegion, getNearestFiberZip } from '@lib/zip-lookup';
 import type { Provider, Plan } from '@lib/providers';
 
 export function getStaticPaths() {
@@ -41,25 +42,88 @@ const cableProviders = allProviders.filter(p => p.types.includes('cable'));
 const dslProviders = allProviders.filter(p => p.types.includes('dsl'));
 const fiveGProviders = allProviders.filter(p => p.types.includes('5g'));
 const satelliteProviders = allProviders.filter(p => p.types.includes('satellite'));
-const fastest = partners.length ? partners.reduce((a, b) => getMaxSpeed(a) > getMaxSpeed(b) ? a : b) : null;
-const cheapest = partners.length ? partners.reduce((a, b) => getMinPrice(a) < getMinPrice(b) ? a : b) : null;
-const topRated = partners.length ? partners.reduce((a, b) => a.rating > b.rating ? a : b) : null;
+
+// ── ZIP-level confirmed coverage (from ZIP data files) ──
+const confirmedEntries = getConfirmedProviders(zipData.zip);
+const confirmedIds = new Set(confirmedEntries.map(c => c.id));
+const hasConfirmedData = confirmedEntries.length > 0;
+const confirmedProviders = allProviders.filter(p => confirmedIds.has(p.id));
+const confirmedPartners = confirmedProviders.filter(p => p.isPartner);
+const stateOnlyProviders = allProviders.filter(p => !confirmedIds.has(p.id) && !p.coverage.includes('Nationwide'));
+const nationwideProviders = allProviders.filter(p => p.coverage.includes('Nationwide'));
+const confirmedFiberIds = getConfirmedFiberProviders(zipData.zip);
+const confirmedFiberProviders = confirmedFiberIds.map(id => allProviders.find(p => p.id === id)).filter((p): p is Provider => !!p);
+const hasConfirmedFiber = confirmedFiberProviders.length > 0;
+const optimumTier = getOptimumTier(zipData.zip);
+const optimumRegion = getOptimumRegion(zipData.zip);
+
+// Re-sort with confirmed providers first when data exists
+const sortedProviders = hasConfirmedData ? [
+  ...confirmedProviders.filter(p => p.isPartner).sort((a, b) => b.rating - a.rating),
+  ...confirmedProviders.filter(p => !p.isPartner).sort((a, b) => b.rating - a.rating),
+  ...stateOnlyProviders.filter(p => p.isPartner).sort((a, b) => b.rating - a.rating),
+  ...stateOnlyProviders.filter(p => !p.isPartner).sort((a, b) => b.rating - a.rating),
+  ...nationwideProviders.sort((a, b) => b.rating - a.rating),
+] : allProviders;
+
+// Provider coverage status map
+const coverageStatus = new Map<string, 'confirmed' | 'statewide' | 'nationwide'>();
+for (const p of allProviders) {
+  if (confirmedIds.has(p.id)) coverageStatus.set(p.id, 'confirmed');
+  else if (p.coverage.includes('Nationwide')) coverageStatus.set(p.id, 'nationwide');
+  else coverageStatus.set(p.id, 'statewide');
+}
+
+// Altafiber & T-Mobile Fiber detection for editorial
+const isAltafiberZip = confirmedIds.has('altafiber');
+const isTMobileFiberZip = confirmedIds.has('tmobile');
+// Award candidates: use confirmed partners if available, otherwise all partners (Step 9)
+const awardCandidates = confirmedPartners.length > 0 ? confirmedPartners : partners;
+const fastest = awardCandidates.length ? awardCandidates.reduce((a, b) => getMaxSpeed(a) > getMaxSpeed(b) ? a : b) : null;
+const cheapest = awardCandidates.length ? awardCandidates.reduce((a, b) => getMinPrice(a) < getMinPrice(b) ? a : b) : null;
+const topRated = awardCandidates.length ? awardCandidates.reduce((a, b) => a.rating > b.rating ? a : b) : null;
 const maxSpd = fastest ? getMaxSpeed(fastest) : (allProviders.length ? Math.max(...allProviders.map(p => getMaxSpeed(p))) : 0);
 const minPrc = cheapest ? getMinPrice(cheapest) : (allProviders.length ? Math.min(...allProviders.map(p => getMinPrice(p))) : 0);
 const avgPrice = allProviders.length ? Math.round(allProviders.reduce((s, p) => s + getMinPrice(p), 0) / allProviders.length) : 0;
+
+// Optimum speed override for this specific ZIP's tier (Step 11)
+function getDisplaySpeed(p: Provider): number {
+  if (p.id === 'optimum' && optimumTier) {
+    if (optimumTier === '8 GIG') return 8000;
+    if (optimumTier === '1 GIG') return 1000;
+    if (optimumTier === '500 MEG') return 500;
+  }
+  return getMaxSpeed(p);
+}
 
 // Unique descriptive blurb based on ZIP characteristics
 const zipNum = parseInt(zipData.zip.substring(0, 3));
 const region = zipNum < 200 ? 'the Northeast' : zipNum < 300 ? 'the Mid-Atlantic' : zipNum < 400 ? 'the Southeast' : zipNum < 500 ? 'the Midwest' : zipNum < 600 ? 'the Central United States' : zipNum < 700 ? 'the Plains states' : zipNum < 800 ? 'the South Central region' : zipNum < 900 ? 'the Mountain West' : 'the Western United States';
 const hasFiber = fiberProviders.length > 0;
 const hasCable = cableProviders.length > 0;
-const techSummary = hasFiber && hasCable
-  ? `Both fiber and cable internet are available in parts of ${zipData.city}, delivering speeds from ${formatSpeed(maxSpd)} down to budget-friendly plans.`
-  : hasFiber
-    ? `Fiber internet is available in parts of ${zipData.city}, making it one of the better-connected areas in ${stateName}.`
-    : hasCable
-      ? `Cable internet is the primary high-speed option in ${zipData.city}, with wireless and satellite filling coverage gaps.`
-      : `Wireless and satellite internet serve as the main options in this area of ${stateName}.`;
+
+// Step 6: techSummary uses confirmed coverage data when available
+function listProviderNames(provs: Provider[]): string {
+  if (!provs.length) return '';
+  if (provs.length === 1) return provs[0].name;
+  if (provs.length === 2) return `${provs[0].name} and ${provs[1].name}`;
+  return provs.slice(0, -1).map(p => p.name).join(', ') + ', and ' + provs[provs.length - 1].name;
+}
+const techSummary = hasConfirmedData
+  ? hasConfirmedFiber
+    ? `${listProviderNames(confirmedFiberProviders)} Fiber ${confirmedFiberProviders.length === 1 ? 'is' : 'are'} confirmed available in ${zipData.zip}, with speeds up to ${formatSpeed(maxSpd)}.`
+    : confirmedProviders.length > 0
+      ? `${listProviderNames(confirmedProviders)} ${confirmedProviders.length === 1 ? 'is' : 'are'} confirmed in ${zipData.zip}. ${hasFiber ? `Fiber internet is available in parts of ${zipData.city}.` : 'Cable and wireless options serve this area.'}`
+      : hasFiber && hasCable
+        ? `Both fiber and cable internet are available in parts of ${zipData.city}, delivering speeds from ${formatSpeed(maxSpd)} down to budget-friendly plans.`
+        : `Internet service is available in ${zipData.zip} through regional and nationwide providers.`
+  : hasFiber && hasCable
+    ? `Both fiber and cable internet are available in parts of ${zipData.city}, delivering speeds from ${formatSpeed(maxSpd)} down to budget-friendly plans.`
+    : hasFiber
+      ? `Fiber internet is available in parts of ${zipData.city}, making it one of the better-connected areas in ${stateName}.`
+      : hasCable
+        ? `Cable internet is the primary high-speed option in ${zipData.city}, with wireless and satellite filling coverage gaps.`
+        : `Wireless and satellite internet serve as the main options in this area of ${stateName}.`;
 
 const popStr = parentCity?.population ? parentCity.population.toLocaleString() : '';
 const cityZips = parentCity?.zipCodes || [];
@@ -80,7 +144,7 @@ if (parentCity?.lat && parentCity?.lng) {
   // Nearby cities within 20 miles, sorted by proximity
   const nearbyCityZips = cities
     .filter(c => c.slug !== zipData.citySlug && c.lat && c.lng)
-    .map(c => ({ city: c, dist: haversineMiles(pLat, pLng, c.lat, c.lng) }))
+    .map(c => ({ city: c, dist: haversineMiles(pLat, pLng, c.lat!, c.lng!) }))
     .filter(({ dist }) => dist <= 20)
     .sort((a, b) => a.dist - b.dist)
     .flatMap(({ city }) => city.zipCodes);
@@ -104,18 +168,28 @@ const zipAreaDesc = areaType === 'urban'
       ? `ZIP code ${zipData.zip} is in ${zipData.city}, a smaller community where 2–4 providers typically serve each address. You may have fewer choices than urban areas, but local competition keeps quality solid.`
       : `ZIP code ${zipData.zip} is in a rural area near ${zipData.city}. Broadband options may be more limited, but fixed wireless, satellite, and expanding fiber networks are improving coverage year over year.`;
 
-// ── "Best For" awards — PARTNERS ONLY (Step 5) ──
-const bestGaming = partners.length ? partners.reduce((a, b) => {
+// Step 8: Append confirmed competition context
+const competitionNote = hasConfirmedData
+  ? confirmedProviders.length === 1
+    ? ` Internet options in ${zipData.zip} are limited, with ${confirmedProviders[0].name} as the primary confirmed provider.`
+    : confirmedProviders.length <= 3
+      ? ` ${confirmedProviders.length} providers compete for customers in ${zipData.zip}, which helps keep prices competitive.`
+      : ` ${zipData.zip} is one of the most competitive ZIP codes in ${zipData.city}, with ${confirmedProviders.length} confirmed providers.`
+  : '';
+const zipAreaDescFull = zipAreaDesc + competitionNote;
+
+// ── "Best For" awards — from confirmed partners or all partners (Step 9) ──
+const bestGaming = awardCandidates.length ? awardCandidates.reduce((a, b) => {
   const sA = getMaxSpeed(a) * 0.7 + getMaxUpload(a) * 0.3;
   const sB = getMaxSpeed(b) * 0.7 + getMaxUpload(b) * 0.3;
   return sA > sB ? a : b;
 }) : null;
-const bestStreaming = partners.length ? partners.reduce((a, b) => {
+const bestStreaming = awardCandidates.length ? awardCandidates.reduce((a, b) => {
   const sA = getMaxSpeed(a) * 0.5 + (a.plans.some(pl => pl.dataCap === 'Unlimited') ? 100 : 0) + a.rating * 10;
   const sB = getMaxSpeed(b) * 0.5 + (b.plans.some(pl => pl.dataCap === 'Unlimited') ? 100 : 0) + b.rating * 10;
   return sA > sB ? a : b;
 }) : null;
-const bestWFH = partners.length ? partners.reduce((a, b) => {
+const bestWFH = awardCandidates.length ? awardCandidates.reduce((a, b) => {
   const sA = getMaxUpload(a) * 0.6 + a.rating * 20 + (a.types.includes('fiber') ? 50 : 0);
   const sB = getMaxUpload(b) * 0.6 + b.rating * 20 + (b.types.includes('fiber') ? 50 : 0);
   return sA > sB ? a : b;
@@ -129,13 +203,25 @@ const awards = [
   { label: 'Best for Home Office', provider: bestWFH, reason: bestWFH ? `${formatSpeed(getMaxUpload(bestWFH))} upload` : '' },
 ].filter(a => a.provider);
 
-// ── Ranked lists (Step 9) — partners first ──
+// ── Ranked lists (Step 9) — confirmed partners first, then partners ──
 const rankedBySpeed: Provider[] = [...allProviders].sort((a, b) => {
+  if (hasConfirmedData) {
+    const aConf = confirmedIds.has(a.id);
+    const bConf = confirmedIds.has(b.id);
+    if (aConf && !bConf) return -1;
+    if (!aConf && bConf) return 1;
+  }
   if (a.isPartner && !b.isPartner) return -1;
   if (!a.isPartner && b.isPartner) return 1;
   return getMaxSpeed(b) - getMaxSpeed(a);
 });
 const rankedByPrice: Provider[] = [...allProviders].sort((a, b) => {
+  if (hasConfirmedData) {
+    const aConf = confirmedIds.has(a.id);
+    const bConf = confirmedIds.has(b.id);
+    if (aConf && !bConf) return -1;
+    if (!aConf && bConf) return 1;
+  }
   if (a.isPartner && !b.isPartner) return -1;
   if (!a.isPartner && b.isPartner) return 1;
   return getMinPrice(a) - getMinPrice(b);
@@ -151,17 +237,22 @@ const connectionTypes = [
 ].filter(ct => ct.providers.length > 0);
 
 const faqs = [
-  { question: `What internet providers serve ZIP code ${zipData.zip} in ${zipData.city}, ${stateName}?`, answer: `Internet availability at ${zipData.zip} in ${zipData.city}, ${stateName} depends on your exact street address. The area is served by ${allProviders.length} providers offering ${hasFiber ? 'fiber, ' : ''}${hasCable ? 'cable, ' : ''}wireless, and satellite connections. ${topRated ? `${topRated.name} is the highest rated at ${topRated.rating}/5 stars.` : ''} Use the address checker above for verified, address-level results — or call ${MAIN_PHONE} for instant expert help.` },
-  { question: `How do I find the best internet deal in ${zipData.zip}, ${zipData.city}?`, answer: `Enter your address above to see every provider at your location, then call our experts at ${MAIN_PHONE}. We compare all available plans and regularly find savings of $20–50/month versus ordering directly from provider websites. The service is completely free with no obligation.` },
+  { question: `What internet providers serve ZIP code ${zipData.zip} in ${zipData.city}, ${stateName}?`, answer: hasConfirmedData ? `${confirmedProviders.length} providers have confirmed coverage in ZIP ${zipData.zip}: ${confirmedProviders.slice(0, 4).map(p => p.name).join(', ')}. ${allProviders.length} total providers serve the ${zipData.city} area across ${hasFiber ? 'fiber, ' : ''}${hasCable ? 'cable, ' : ''}wireless, and satellite connections. ${topRated ? `${topRated.name} is the highest rated at ${topRated.rating}/5 stars.` : ''} Use the address checker above for verified, address-level results.` : `Internet availability at ${zipData.zip} in ${zipData.city}, ${stateName} depends on your exact street address. The area is served by ${allProviders.length} providers offering ${hasFiber ? 'fiber, ' : ''}${hasCable ? 'cable, ' : ''}wireless, and satellite connections. ${topRated ? `${topRated.name} is the highest rated at ${topRated.rating}/5 stars.` : ''} Use the address checker above for verified, address-level results — or sign up for instant expert help.` },
+  { question: `How do I find the best internet deal in ${zipData.zip}, ${zipData.city}?`, answer: `Enter your address above to see every provider at your location, then sign up for free help. We compare all available plans and regularly find savings of $20–50/month versus ordering directly from provider websites. The service is completely free with no obligation.` },
   { question: `What's the fastest internet available in ${zipData.zip}, ${zipData.city}, ${stateName}?`, answer: `Maximum advertised speeds in the ${zipData.city} ${zipData.zip} area reach ${formatSpeed(maxSpd)}${fiberProviders.length > 0 ? ` via fiber from ${fiberProviders.slice(0, 2).map(p => p.name).join(' and ')}` : ''}. Actual speeds at your address depend on which providers have infrastructure on your street. Check your exact address above for verified speed data.` },
-  { question: `What is the cheapest internet in ${zipData.zip}, ${zipData.city}?`, answer: `${cheapest ? `${cheapest.name} offers the lowest starting price near ${zipData.zip} at ${formatPrice(minPrc)}/mo.` : 'Prices vary by address.'} The average starting price across all providers is about $${avgPrice}/mo. Call ${MAIN_PHONE} for exclusive promotions that can save you $20–50/mo.` },
-  { question: `Can I get same-week internet installation in ${zipData.zip}?`, answer: `Most providers offer installation within 1–3 business days in ${zipData.city}. Self-install kits — common with 5G home internet and some cable plans — arrive within days and set up in under 30 minutes. Call ${MAIN_PHONE} to check the earliest available installation date at your address.` },
-  { question: `Is fiber internet available in ZIP code ${zipData.zip}?`, answer: hasFiber ? `Yes! Fiber internet is available in parts of ${zipData.zip} (${zipData.city}, ${stateName}) from ${fiberProviders.slice(0, 3).map(p => p.name).join(', ')}. Fiber offers symmetric speeds ideal for remote work, gaming, and streaming. Availability varies by street — enter your address above to verify.` : `Fiber availability in ${zipData.zip} is limited. Cable internet and 5G home internet are excellent alternatives with speeds suitable for most households. New fiber deployments are underway across ${stateName}.` },
-  { question: `What internet speed do I need for my household in ${zipData.city}?`, answer: `Light use (email, browsing): 25–50 Mbps. Streaming & video calls: 100–200 Mbps. Gaming & remote work: 200–500 Mbps. Large households with 5+ devices: 500 Mbps–1 Gbps. Our experts provide free, personalized speed recommendations when you call ${MAIN_PHONE}.` },
+  { question: `What is the cheapest internet in ${zipData.zip}, ${zipData.city}?`, answer: `${cheapest ? `${cheapest.name} offers the lowest starting price near ${zipData.zip} at ${formatPrice(minPrc)}/mo.` : 'Prices vary by address.'} The average starting price across all providers is about $${avgPrice}/mo. Sign up above for exclusive promotions that can save you $20–50/mo.` },
+  { question: `Can I get same-week internet installation in ${zipData.zip}?`, answer: `Most providers offer installation within 1–3 business days in ${zipData.city}. Self-install kits — common with 5G home internet and some cable plans — arrive within days and set up in under 30 minutes. Sign up above to check the earliest available installation date at your address.` },
+  { question: `Is fiber internet available in ZIP code ${zipData.zip}?`, answer: hasConfirmedFiber ? `Yes — fiber internet is confirmed available in ${zipData.zip} from ${confirmedFiberProviders.map(p => p.name).join(' and ')}. Our coverage data verifies fiber infrastructure in this ZIP code. Fiber offers symmetric speeds ideal for remote work, gaming, and streaming. Enter your address above to check availability at your specific location.` : hasFiber ? `Fiber internet is available in parts of ${zipData.zip} (${zipData.city}, ${stateName}) from ${fiberProviders.slice(0, 3).map(p => p.name).join(', ')}. Availability varies by street — enter your address above to verify.` : `Fiber availability in ${zipData.zip} is limited. Cable internet and 5G home internet are excellent alternatives with speeds suitable for most households. New fiber deployments are underway across ${stateName}.` },
+  { question: `What internet speed do I need for my household in ${zipData.city}?`, answer: `Light use (email, browsing): 25–50 Mbps. Streaming & video calls: 100–200 Mbps. Gaming & remote work: 200–500 Mbps. Large households with 5+ devices: 500 Mbps–1 Gbps. Our experts provide free, personalized speed recommendations when you sign up above.` },
+  { question: `Are there no-contract internet options in ${zipData.zip}?`, answer: `Yes — ${fiveGProviders.length > 0 ? `5G home internet from ${fiveGProviders.slice(0, 2).map(p => p.name).join(' and ')} requires no annual contract.` : 'Several providers offer no-contract plans.'} Many cable and fiber providers also offer month-to-month options, though you may pay a slightly higher rate versus a 1-year agreement. Enter your address above to filter by contract terms.` },
+  { question: `What is the cheapest internet plan available in ${zipData.zip}, ${zipData.city}?`, answer: `${cheapest ? `The most affordable option starts at ${formatPrice(minPrc)}/mo from ${cheapest.name}.` : `Plans start at ${formatPrice(minPrc)}/mo.`} Qualifying households may also save with low-income programs like Spectrum Internet Assist or the FCC Lifeline program. Visit our <a href="/cheap-internet">cheap internet guide</a> for more details.` },
 ];
 
-// ── Schemas: BreadcrumbList + FAQPage + WebPage + Product/Offer JSON-LD (Step 1) ──
-const productSchemas = allProviders.slice(0, 8).map(p => ({
+// ── Schemas: BreadcrumbList + FAQPage + WebPage + Product/Offer JSON-LD ──
+const schemaProviders = hasConfirmedData
+  ? [...confirmedProviders, ...nationwideProviders.filter(p => !confirmedIds.has(p.id))].slice(0, 8)
+  : allProviders.slice(0, 8);
+const productSchemas = schemaProviders.map(p => ({
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: `${p.name} Internet in ${zipData.city}, ${stateName} (${zipData.zip})`,
@@ -205,10 +296,12 @@ const schemas = [
 ---
 <Base
   title={`Internet Providers in ${zipData.zip} — ${zipData.city}, ${stateName} (${year}) | Compare & Save`}
-  description={`Find ${allProviders.length} internet providers at ZIP ${zipData.zip} in ${zipData.city}, ${stateName}. Verified FCC coverage data, speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. Fiber, cable, 5G & satellite.`}
+  description={hasConfirmedData
+    ? `${confirmedProviders.length} confirmed internet providers in ZIP ${zipData.zip}, ${zipData.city}, ${stateName}. ${allProviders.length} total options. Speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. Fiber, cable, 5G & satellite.`
+    : `Find ${allProviders.length} internet providers at ZIP ${zipData.zip} in ${zipData.city}, ${stateName}. Verified FCC coverage data, speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. Fiber, cable, 5G & satellite.`}
   schema={schemas}
 >
-<StickyCallBar text={`Best deals in ${zipData.zip} — call now`} />
+<StickyCallBar text={`Best deals in ${zipData.zip} — get connected`} />
 
 <section class="section" style="padding-top:var(--space-xl);">
 <div class="container">
@@ -286,17 +379,23 @@ const schemas = [
   <div id="static-providers" class="reveal" style="margin-bottom:var(--space-2xl);">
     <div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
       <h2 style="font-size:var(--text-xl);margin:0;">Providers Serving {zipData.city}, {stateName} ({zipData.zip})</h2>
-      <span style="font-size:var(--text-xs);padding:3px 10px;background:var(--surface-secondary);border-radius:var(--radius-full);color:var(--text-tertiary);">State-level data</span>
+      {hasConfirmedData ? (
+        <span style="font-size:var(--text-xs);padding:3px 10px;background:rgba(0,213,132,0.12);border:1px solid rgba(0,213,132,0.3);border-radius:var(--radius-full);color:var(--brand-green);font-weight:600;">&#10003; {confirmedProviders.length} confirmed in this ZIP</span>
+      ) : (
+        <span style="font-size:var(--text-xs);padding:3px 10px;background:var(--surface-secondary);border-radius:var(--radius-full);color:var(--text-tertiary);">State-level data</span>
+      )}
     </div>
     <p style="color:var(--text-tertiary);font-size:var(--text-sm);margin-bottom:var(--space-md);">
-      These providers serve {stateName} and may cover your address. Use the search above for address-verified results.
+      {hasConfirmedData
+        ? `${confirmedProviders.length} providers have verified coverage in ZIP ${zipData.zip}. Use the search above for address-level results.`
+        : `These providers serve ${stateName} and may cover your address. Use the search above for address-verified results.`}
     </p>
     <div class="flex flex-col gap-md">
-      {allProviders.slice(0, 6).map((p, i) => (
-        <ProviderCard provider={p} rank={i + 1} badge={p === fastest ? 'best-speed' : p === cheapest ? 'best-value' : p === topRated && i === 0 ? 'best-overall' : undefined} />
+      {sortedProviders.slice(0, 6).map((p, i) => (
+        <ProviderCard provider={p} rank={i + 1} badge={p === fastest ? 'best-speed' : p === cheapest ? 'best-value' : p === topRated && i === 0 ? 'best-overall' : undefined} coverageStatus={coverageStatus.get(p.id)} />
       ))}
     </div>
-    {allProviders.length > 6 && (
+    {sortedProviders.length > 6 && (
       <div style="text-align:center;margin-top:var(--space-md);">
         <a href={`/internet-providers/${zipData.citySlug}`} class="btn btn-secondary">See All {allProviders.length} Providers in {zipData.city} &rarr;</a>
       </div>
@@ -361,11 +460,12 @@ const schemas = [
             <th>Upload</th>
             <th>Starting Price</th>
             <th>Data Cap</th>
+            {hasConfirmedData && <th>Coverage</th>}
             <th>Rating</th>
           </tr>
         </thead>
         <tbody>
-          {allProviders.map(p => (
+          {sortedProviders.map(p => (
             <tr class={p === fastest ? 'row-highlight-speed' : p === cheapest ? 'row-highlight-value' : ''}>
               <td>
                 <div style="display:flex;align-items:center;gap:var(--space-sm);">
@@ -378,10 +478,19 @@ const schemas = [
                   {p.types.map(t => <span class={`tag tag-${t}`} style="font-size:0.65rem;">{getTypeLabel(t)}</span>)}
                 </div>
               </td>
-              <td style="font-weight:600;">{formatSpeed(getMaxSpeed(p))}</td>
+              <td style="font-weight:600;">{formatSpeed(getDisplaySpeed(p))}{p.id === 'optimum' && optimumTier ? <span style="display:block;font-size:0.6rem;color:var(--text-tertiary);">{optimumTier} tier</span> : ''}</td>
               <td style="color:var(--text-secondary);">{formatSpeed(getMaxUpload(p))}</td>
               <td style="font-weight:600;">{formatPrice(getMinPrice(p))}/mo</td>
               <td>{p.plans[0]?.dataCap || 'N/A'}</td>
+              {hasConfirmedData && (
+                <td>
+                  {coverageStatus.get(p.id) === 'confirmed'
+                    ? <span style="color:var(--brand-green);font-weight:600;font-size:var(--text-xs);">&#10003; Confirmed</span>
+                    : coverageStatus.get(p.id) === 'nationwide'
+                      ? <span style="font-size:var(--text-xs);color:var(--text-tertiary);">Nationwide</span>
+                      : <span style="font-size:var(--text-xs);color:var(--text-tertiary);">Statewide</span>}
+                </td>
+              )}
               <td>
                 <span style="color:var(--brand-amber);">{'★'.repeat(Math.floor(p.rating))}</span>
                 <span style="font-size:var(--text-xs);color:var(--text-tertiary);"> {p.rating}</span>
@@ -409,11 +518,12 @@ const schemas = [
             <th>Starting Price</th>
             <th>Contract</th>
             <th>Data Cap</th>
+            {hasConfirmedData && <th>Coverage</th>}
             <th>Rating</th>
           </tr>
         </thead>
         <tbody>
-          {allProviders.map(p => {
+          {sortedProviders.map(p => {
             const cheapPlan = p.plans.reduce((a, b) => (a.promoPrice || a.price) < (b.promoPrice || b.price) ? a : b);
             return (
               <tr>
@@ -429,6 +539,13 @@ const schemas = [
                 <td style="font-weight:600;">{formatPrice(getMinPrice(p))}/mo</td>
                 <td>{cheapPlan.contract}</td>
                 <td>{cheapPlan.dataCap}</td>
+                {hasConfirmedData && (
+                  <td>
+                    {coverageStatus.get(p.id) === 'confirmed'
+                      ? <span style="color:var(--brand-green);font-weight:600;font-size:var(--text-xs);">&#10003; Confirmed</span>
+                      : <span style="font-size:var(--text-xs);color:var(--text-tertiary);">{coverageStatus.get(p.id) === 'nationwide' ? 'Nationwide' : 'Statewide'}</span>}
+                  </td>
+                )}
                 <td><span style="color:var(--brand-amber);">★</span> {p.rating.toFixed(1)}</td>
               </tr>
             );
@@ -518,9 +635,10 @@ const schemas = [
     <h2 style="font-size:var(--text-2xl);margin-bottom:var(--space-md);">Internet in {zipData.zip}, {zipData.city}, {stateName}: What To Know</h2>
     <div class="card" style="padding:var(--space-xl);">
       <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:var(--space-md);">
-        ZIP code {zipData.zip} is located in {zipData.city}, {stateName} — part of {region}.
-        {popStr ? ` The city has a population of approximately ${popStr} residents.` : ''}
-        {' '}Internet infrastructure in {zipData.zip} includes
+        {zipAreaDescFull}
+      </p>
+      <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:var(--space-md);">
+        Internet infrastructure in {zipData.zip} includes
         {hasFiber ? ` fiber-optic networks (the fastest available technology with symmetrical upload and download speeds),` : ''}
         {hasCable ? ` cable broadband (widely available with speeds suitable for most households),` : ''}
         {' '}and wireless/satellite options that extend coverage to areas without wired infrastructure.
@@ -529,7 +647,7 @@ const schemas = [
         Prices in the {zipData.city} {zipData.zip} area start at <strong>{formatPrice(minPrc)}/mo</strong> with speeds reaching
         up to <strong>{formatSpeed(maxSpd)}</strong>. The number of providers at any specific address within {zipData.zip}
         typically ranges from 3 to 7, depending on the street-level infrastructure buildout. Enter your address above
-        to see your exact options, or call <strong>{MAIN_PHONE}</strong> for immediate expert assistance.
+        to see your exact options, or <a href="#get-connected" style="font-weight:700;color:var(--brand-blue);">sign up</a> for immediate expert assistance.
       </p>
     </div>
   </div>
@@ -541,7 +659,7 @@ const schemas = [
     <h2 style="margin-bottom:var(--space-xs);">All Internet Plans Available Near {zipData.zip}, {zipData.city}</h2>
     <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">Detailed plan breakdowns for every provider. Click to expand.</p>
     <div class="plan-accordion">
-      {rankedBySpeed.map(p => (
+      {sortedProviders.map(p => (
         <div class="plan-acc-item">
           <button class="plan-acc-header" type="button">
             <div style="display:flex;align-items:center;gap:var(--space-sm);flex:1;">
@@ -612,7 +730,7 @@ const schemas = [
         <h4 style="margin-bottom:var(--space-xs);">&#128640; Gigabit — 500+ Mbps</h4>
         <p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-xs);">Heavy downloads, smart home, 5+ simultaneous users.</p>
         <p style="font-size:var(--text-xs);color:var(--text-tertiary);">
-          {maxSpd >= 1000 ? `Available in ${zipData.city} — up to ${formatSpeed(maxSpd)}` : `Limited availability in ${zipData.zip} — call to check`}
+          {maxSpd >= 1000 ? `Available in ${zipData.city} — up to ${formatSpeed(maxSpd)}` : `Limited availability in ${zipData.zip} — sign up to check`}
         </p>
       </div>
     </div>
@@ -630,6 +748,49 @@ const schemas = [
         Plans start at <strong>{formatPrice(minPrc)}/mo</strong> with top speeds reaching <strong>{formatSpeed(maxSpd)}</strong>.
         {topRated ? ` ${topRated.name} leads in customer satisfaction with a ${topRated.rating}/5 star rating from ${topRated.reviewCount.toLocaleString()} reviews.` : ''}
       </p>
+
+      {hasConfirmedData && confirmedProviders.length > 1 && (
+        <Fragment>
+          <h3 style="margin-top:var(--space-lg);">Confirmed Internet Providers in {zipData.zip}</h3>
+          <p>
+            {confirmedProviders.length} providers have verified coverage in ZIP code {zipData.zip}:
+            {confirmedProviders.map((p, i) => (
+              <Fragment>
+                {i > 0 && (i === confirmedProviders.length - 1 ? ', and ' : ', ')}
+                <strong>{p.name}</strong> ({p.types.map(t => getTypeLabel(t)).join('/')}, up to {formatSpeed(getMaxSpeed(p))}, from {formatPrice(getMinPrice(p))}/mo)
+              </Fragment>
+            ))}.
+            Enter your address above to verify coverage at your specific location.
+          </p>
+        </Fragment>
+      )}
+
+      {isTMobileFiberZip && (
+        <Fragment>
+          <h3 style="margin-top:var(--space-lg);">T-Mobile 5G Home Internet in {zipData.zip}</h3>
+          <p>
+            T-Mobile has confirmed fixed wireless 5G coverage in {zipData.zip}. Unlike traditional home internet that requires a cable or fiber line to your home, T-Mobile 5G Home Internet uses the cellular network to deliver broadband speeds. It typically offers no annual contract, no data caps, and includes the gateway device. This makes it an excellent option for renters or for households looking to avoid installation appointments and long-term commitments.
+          </p>
+        </Fragment>
+      )}
+
+      {isAltafiberZip && (
+        <Fragment>
+          <h3 style="margin-top:var(--space-lg);">Altafiber Fiber Internet in {zipData.zip}</h3>
+          <p>
+            Altafiber (formerly Cincinnati Bell) has confirmed fiber-optic infrastructure in {zipData.zip}. As a regional provider focused on the Greater Cincinnati and Dayton areas, Altafiber offers competitively priced fiber plans with symmetric upload and download speeds. Their local presence often means faster customer service response times compared to national providers.
+          </p>
+        </Fragment>
+      )}
+
+      {optimumRegion && (
+        <Fragment>
+          <h3 style="margin-top:var(--space-lg);">Optimum Internet in {zipData.zip} ({optimumRegion})</h3>
+          <p>
+            Optimum serves {zipData.zip} as part of its {optimumRegion} service region{optimumTier ? `, offering speeds up to the ${optimumTier} tier` : ''}. Optimum provides cable and fiber internet with no annual contract on most plans. The available speed tiers vary by location — enter your address above to see which Optimum plans are available at your home.
+          </p>
+        </Fragment>
+      )}
 
       {census && (
         <Fragment>
@@ -658,7 +819,7 @@ const schemas = [
 
       <h3 style="margin-top:var(--space-lg);">How to Switch Providers in {zipData.city}</h3>
       <p>
-        <strong>1. Check what's available.</strong> Enter your address above or call {MAIN_PHONE} to see all options at your exact location.
+        <strong>1. Check what's available.</strong> Enter your address above to see all options at your exact location.
         <strong>2. Compare total cost.</strong> Look beyond the monthly rate — check equipment fees, installation costs, and price after promo expiry.
         <strong>3. Schedule overlap.</strong> Set up new service 1–2 days before canceling old service to avoid a gap.
         <strong>4. Return equipment.</strong> Return your old provider's modem/router promptly to avoid unreturned equipment charges.
@@ -666,7 +827,7 @@ const schemas = [
 
       <h3 style="margin-top:var(--space-lg);">Saving Money on Internet in {zipData.city}, {stateName}</h3>
       <p>
-        Our free comparison service regularly saves {zipData.city} households $20–50/mo. Call {MAIN_PHONE} to speak with an expert who knows the {stateName} market. We compare every available plan, negotiate promotional rates, and ensure you're on the best plan for your usage. There's no cost and no obligation.
+        Our free comparison service regularly saves {zipData.city} households $20–50/mo. <a href="#get-connected" style="font-weight:700;color:var(--brand-blue);">Sign up</a> to speak with an expert who knows the {stateName} market. We compare every available plan, negotiate promotional rates, and ensure you're on the best plan for your usage. There's no cost and no obligation.
       </p>
     </div>
   </div>
@@ -689,7 +850,7 @@ const schemas = [
         </div>
         <div>
           <h4 style="margin-bottom:var(--space-xs);">Provider Low-Income Plans</h4>
-          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Spectrum Internet Assist ($17.99/mo), AT&T Access ($5–10/mo), and similar programs. Call {MAIN_PHONE} to check eligibility.</p>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Spectrum Internet Assist ($17.99/mo), AT&T Access ($5–10/mo), and similar programs. <a href="/low-income-internet">Check eligibility</a>.</p>
         </div>
         <div>
           <h4 style="margin-bottom:var(--space-xs);">Community WiFi</h4>
@@ -710,13 +871,13 @@ const schemas = [
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-lg);align-items:start;">
         <div style="text-align:center;">
           <p style="font-weight:700;font-size:var(--text-md);margin-bottom:var(--space-sm);">Sign Up Online</p>
-          <a href="#get-connected" class="btn btn-cta btn-lg" style="width:100%;">Start Sign-Up</a>
+          <a href="#get-connected" class="btn btn-cta btn-lg" style="width:100%;">Get Connected Now</a>
           <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Quick, easy, no obligation</p>
         </div>
         <div style="text-align:center;">
-          <p style="font-weight:700;font-size:var(--text-md);margin-bottom:var(--space-sm);">Prefer to Talk?</p>
-          <a href={formatPhoneForTel(MAIN_PHONE)} class="btn btn-secondary btn-lg" style="width:100%;">Call {MAIN_PHONE}</a>
-          <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Mon–Fri 8AM–10PM ET</p>
+          <p style="font-weight:700;font-size:var(--text-md);margin-bottom:var(--space-sm);">Compare Plans</p>
+          <a href="/compare" class="btn btn-secondary btn-lg" style="width:100%;">Compare All Providers</a>
+          <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Side-by-side plan comparison</p>
         </div>
       </div>
     </div>
@@ -740,6 +901,22 @@ const schemas = [
   <!-- ═══════════════════════════════════════════
        NEARBY ZIP CODES — explore surrounding area
        ═══════════════════════════════════════════ -->
+  {!hasConfirmedFiber && siblingZips.length > 0 && (() => {
+    const nearestFiber = getNearestFiberZip(zipData.zip, siblingZips);
+    return nearestFiber ? (
+      <div class="reveal" style="margin-bottom:var(--space-lg);">
+        <div class="card" style="padding:var(--space-lg);border:1px solid rgba(0,82,255,0.2);background:linear-gradient(135deg,rgba(0,82,255,0.03),transparent);">
+          <div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-xs);">
+            <span style="font-size:var(--text-lg);">&#128225;</span>
+            <h4 style="margin:0;">Fiber Internet Nearby</h4>
+          </div>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);margin:0;">
+            No confirmed fiber in {zipData.zip}, but fiber coverage is available in nearby ZIP <a href={`/internet-providers/zip/${nearestFiber.zip}`} style="font-weight:700;color:var(--brand-blue);">{nearestFiber.zip}</a>. Check your address above — fiber availability can vary block by block.
+          </p>
+        </div>
+      </div>
+    ) : null;
+  })()}
   {siblingZips.length > 0 && (
     <div class="reveal" style="margin-bottom:var(--space-2xl);">
       <div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-sm);">
@@ -762,8 +939,8 @@ const schemas = [
     <h2 style="margin-bottom:var(--space-lg);">Frequently Asked Questions — Internet in {zipData.zip}, {zipData.city}, {stateName}</h2>
     {faqs.map(faq => (
       <div class="faq-item">
-        <button class="faq-question">{faq.question}</button>
-        <div class="faq-answer"><div class="faq-answer-inner">{faq.answer}</div></div>
+        <button class="faq-question" type="button">{faq.question}</button>
+        <div class="faq-answer"><div class="faq-answer-inner" set:html={faq.answer}></div></div>
       </div>
     ))}
   </div>
@@ -899,7 +1076,7 @@ const schemas = [
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function initZipPage() {
     // Plan accordion
     document.querySelectorAll('.plan-acc-header').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1054,6 +1231,12 @@ const schemas = [
 
     // Initialize hero refine search
     initHeroRefine();
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initZipPage);
+  } else {
+    initZipPage();
+  }
 </script>
 </Base>

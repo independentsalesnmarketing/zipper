@@ -9,7 +9,6 @@
  *   City page: <ProviderSearch ... />              → fires when user searches
  */
 import { providers as allProviders, MAIN_PHONE, getMaxSpeed, getMinPrice } from '@lib/providers';
-import { formatPhoneForTel } from '@lib/utils';
 
 interface Props {
   cityName: string;
@@ -67,8 +66,8 @@ const clientProviders = allProviders.map(p => ({
       <button type="submit" class="btn btn-cta">Check Availability</button>
     </form>
     <div class="ps-phone-row">
-      <span>or call for instant help:</span>
-      <a href={formatPhoneForTel(MAIN_PHONE)} class="ps-phone-link">{MAIN_PHONE}</a>
+      <span>or</span>
+      <a href="#get-connected" class="ps-phone-link">sign up for free help</a>
     </div>
   </div>
 
@@ -712,7 +711,6 @@ const clientProviders = allProviders.map(p => ({
     }).join('');
     const rating = p.rating ? `<span style="color:var(--brand-amber);">${'★'.repeat(Math.floor(p.rating))}</span> <span style="font-size:var(--text-xs);color:var(--text-tertiary);">${p.rating.toFixed(1)}</span>` : '';
     const price = p.minPrice > 0 ? fmtPrice(p.minPrice) : '—';
-    const tel = 'tel:+1' + (p.phone||mainPhone).replace(/\D/g,'');
 
     return `<div class="ps-row${p.isPartner ? ' ps-row--partner' : ''}">
       <div class="ps-rank">${rank}</div>
@@ -728,7 +726,7 @@ const clientProviders = allProviders.map(p => ({
         ${rating ? `<div class="ps-metric"><div class="ps-metric-label">Rating</div><div class="ps-metric-val">${rating}</div></div>` : ''}
       </div>
       <div class="ps-actions">
-        <a href="#get-connected" class="btn btn-cta ps-btn-order" data-signup-provider="${p.slug || ''}">Check Availability</a>
+        <a href="#get-connected" class="btn btn-cta ps-btn-order" data-signup-provider="${p.slug || ''}">Get Connected</a>
         ${p.slug ? `<a href="/provider/${p.slug}" class="btn btn-secondary btn-sm ps-btn-plans">View Plans</a>` : ''}
       </div>
     </div>`;
@@ -743,7 +741,7 @@ const clientProviders = allProviders.map(p => ({
     html += `<div class="ps-cta-card">
       <h4>Not sure which plan is right for you?</h4>
       <p>Our free comparison tool checks every provider at your address — no obligation, no spam.</p>
-      <a href="#get-connected" class="btn btn-cta btn-lg">Check Availability</a>
+      <a href="#get-connected" class="btn btn-cta btn-lg">Get Connected</a>
       <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Takes less than 2 minutes · No commitment required</div>
     </div>`;
     container.innerHTML = html;
@@ -753,7 +751,7 @@ const clientProviders = allProviders.map(p => ({
     container.innerHTML = `<div class="ps-cta-card">
       <h4>We couldn't verify providers right now</h4>
       <p>Check availability at your address using our instant comparison tool — free, no commitment.</p>
-      <a href="#get-connected" class="btn btn-cta btn-lg">Check Availability</a>
+      <a href="#get-connected" class="btn btn-cta btn-lg">Get Connected</a>
       <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Takes less than 2 minutes · No commitment required</div>
     </div>`; 
   }
@@ -787,8 +785,8 @@ const clientProviders = allProviders.map(p => ({
       if (e.message === 'RATE_LIMITED') {
         container.innerHTML = `<div class="ps-cta-card">
           <h4>High demand right now</h4>
-          <p>Call us for instant results — our experts check every provider at your address in real-time.</p>
-          <a href="tel:+1${mainPhone.replace(/\D/g,'')}" class="btn btn-cta btn-lg">Call ${mainPhone}</a>
+          <p>Try again in a moment, or sign up and we'll check every provider at your address for free.</p>
+          <a href="#get-connected" class="btn btn-cta btn-lg">Sign Up Free</a>
         </div>`;
       } else {
         // Handle network errors, timeouts, and other errors gracefully

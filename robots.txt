@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://internet4all.com/sitemap.xml

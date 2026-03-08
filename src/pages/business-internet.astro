@@ -2,14 +2,13 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
 const year = new Date().getFullYear();
 const month = new Date().toLocaleString('en-US', { month: 'long' });
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
+
 
 const allProviders = getAllProviders();
 const partners = getPartnerProviders();
@@ -50,13 +49,13 @@ const industries = [
 
 const faqs = [
   { question: 'What is the difference between business and residential internet?', answer: 'Business internet offers: higher upload speeds, static IP addresses, Service Level Agreements (SLA) guaranteeing uptime, priority customer support, and often dedicated (unshared) bandwidth. Residential plans are cheaper but may throttle during peak hours and lack SLAs. For mission-critical operations, business internet is worth the premium.' },
-  { question: 'How much does business internet cost?', answer: `Business internet costs $50–2,000+/mo depending on speed and service level. Small business plans (100–300 Mbps) typically cost $70–200/mo. Dedicated fiber with SLA for medium businesses runs $200–500/mo. Enterprise circuits (1–10 Gbps) cost $500–2,000+/mo. Call ${phone} for competitive quotes.` },
-  { question: 'What internet speed does my business need?', answer: `A general rule: 25 Mbps per employee for basic use, 50 Mbps per employee for heavy use. A 10-person office doing video calls and cloud computing needs 300–500 Mbps. Factor in: VoIP phones, security cameras, POS systems, and customer WiFi. Call ${phone} for a free business speed assessment.` },
+  { question: 'How much does business internet cost?', answer: `Business internet costs $50–2,000+/mo depending on speed and service level. Small business plans (100–300 Mbps) typically cost $70–200/mo. Dedicated fiber with SLA for medium businesses runs $200–500/mo. Enterprise circuits (1–10 Gbps) cost $500–2,000+/mo. Sign up above for competitive quotes.` },
+  { question: 'What internet speed does my business need?', answer: `A general rule: 25 Mbps per employee for basic use, 50 Mbps per employee for heavy use. A 10-person office doing video calls and cloud computing needs 300–500 Mbps. Factor in: VoIP phones, security cameras, POS systems, and customer WiFi. Sign up above for a free business speed assessment.` },
   { question: 'Do I need a static IP address for my business?', answer: 'You need a static IP if you: host a website or email server on-premises, use a VPN for remote employees, run security cameras accessible remotely, operate a point-of-sale system, or need consistent remote desktop access. Most business plans include at least one static IP.' },
   { question: 'What is an SLA and why does it matter for business?', answer: 'An SLA (Service Level Agreement) is a contractual guarantee of uptime and performance. A 99.9% uptime SLA means max 8.7 hours of downtime per year. A 99.99% SLA allows only 52 minutes. If the provider fails, you get service credits. SLAs are critical for businesses where downtime means lost revenue.' },
   { question: 'Can I use residential internet for my small business?', answer: `Yes, many home offices and micro-businesses use residential internet successfully. However, you miss out on SLAs, static IPs, and priority support. If internet downtime would cost you money or clients, upgrade to a business plan. Fiber plans like AT&T Fiber and Verizon Fios offer great residential speeds that work well for small businesses.` },
   { question: 'What is dedicated internet access (DIA)?', answer: 'Dedicated Internet Access means your bandwidth is not shared with any other customers. You always get the full speed you pay for, unlike shared connections that slow down during peak usage. DIA is essential for businesses with consistent high-bandwidth needs and is typically delivered over fiber.' },
-  { question: 'How do I set up internet for a new business location?', answer: `1) Check availability at your business address. 2) Determine your speed and feature needs. 3) Compare business plans from available providers. 4) Schedule installation (typically 2–4 weeks for business fiber). 5) Plan your internal network setup. Call ${phone} — our business specialists handle everything from quote to installation.` },
+  { question: 'How do I set up internet for a new business location?', answer: `1) Check availability at your business address. 2) Determine your speed and feature needs. 3) Compare business plans from available providers. 4) Schedule installation (typically 2–4 weeks for business fiber). 5) Plan your internal network setup. Sign up above — our business specialists handle everything from quote to installation.` },
 ];
 
 const schemas = [
@@ -89,7 +88,7 @@ const schemas = [
           SLA-backed connections, static IPs, and priority support. Plans from $50/mo to multi-gigabit enterprise circuits.
         </p>
         <div style="margin-top: var(--space-xl);">
-          <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Free Business Quote</a>
+          <a href="#get-connected" class="btn btn-cta btn-lg">Get a Free Business Quote</a>
           <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check Business Address</a>
         </div>
       </div>
@@ -169,7 +168,7 @@ const schemas = [
                   <td>{formatSpeed(getMaxSpeed(p))}</td>
                   <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
                   <td>{p.rating.toFixed(1)}/5</td>
-                  <td><a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Get Quote</a></td>
+                  <td><a href="#get-connected" class="btn btn-cta btn-sm">Get Quote</a></td>
                 </tr>
               ))}
             </tbody>
@@ -201,8 +200,8 @@ const schemas = [
           <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); max-width: 550px; margin-inline: auto;">
             Our business internet specialists will assess your needs, check availability at your business address, and provide a custom quote with the best available pricing. No obligation.
           </p>
-          <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Business Specialists</a>
-          <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin-top: var(--space-sm);">Average call time: 8 minutes • Custom quotes in 24 hours</p>
+          <a href="#get-connected" class="btn btn-cta btn-lg">Talk to Business Specialists</a>
+          <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin-top: var(--space-sm);">Custom quotes in 24 hours</p>
         </div>
       </div>
 

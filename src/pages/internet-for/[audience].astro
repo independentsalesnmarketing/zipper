@@ -2,8 +2,8 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getProvidersByType, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getProvidersByType } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
 interface AudienceData {
@@ -21,8 +21,6 @@ interface AudienceData {
 }
 
 const year = new Date().getFullYear();
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
 const partners = getPartnerProviders();
 
 const audiences: Record<string, AudienceData> = {
@@ -38,14 +36,14 @@ const audiences: Record<string, AudienceData> = {
     keyFeatures: ['Affordable pricing', 'No contracts required', 'Simple phone-based setup', 'Lifeline program eligible', 'Easy self-install', 'Reliable customer support'],
     providerFilter: (p) => p.plans.some(plan => plan.promoPrice <= 60) && p.plans.some(plan => plan.contract === 'None'),
     buyingTips: [
-      { title: 'You may qualify for Lifeline — $9.25 off every month', text: 'The FCC Lifeline program is still active and provides a permanent $9.25/month discount on internet for qualifying seniors. If you receive SNAP, Medicaid, or SSI — or your household income is at or below 135% of the Federal Poverty Level — you qualify. Call us and we\'ll check your eligibility instantly.' },
+      { title: 'You may qualify for Lifeline — $9.25 off every month', text: 'The FCC Lifeline program is still active and provides a permanent $9.25/month discount on internet for qualifying seniors. If you receive SNAP, Medicaid, or SSI — or your household income is at or below 135% of the Federal Poverty Level — you qualify. Sign up and we\'ll check your eligibility instantly.' },
       { title: '50 Mbps is plenty for video calls and streaming', text: 'You don\'t need a gigabit plan. For video calls with family, streaming Netflix or YouTube, and browsing, 25–100 Mbps handles everything comfortably. Don\'t pay for speed you won\'t use.' },
       { title: 'No-contract plans give you flexibility', text: 'Avoid being locked into 1–2 year contracts. Most providers now offer month-to-month plans. If your needs change or a better deal appears, you can switch without penalty.' },
       { title: '5G home internet is the easiest setup', text: 'T-Mobile and Verizon 5G ship a small gateway device to your door. Just plug it in, follow three simple steps, and you\'re online. No technician visit, no drilling, no complicated installation.' },
     ],
     faqs: [
       { question: 'What is the cheapest internet for seniors?', answer: 'The most affordable internet options for seniors in 2026: Xfinity Internet Essentials ($9.95/mo for qualifying households), Spectrum Internet Assist ($19.99/mo — SNAP/SSI), AT&T Access ($30/mo — SNAP/SSI), T-Mobile 5G Home ($40–50/mo, no contract), and Mint Mobile ($25/mo). With the Lifeline discount ($9.25/mo off), qualifying seniors can pay as little as $10.74/mo.' },
-      { question: 'Is there a senior discount for internet?', answer: 'While not all ISPs offer explicit "senior discounts," qualifying seniors often pay far less through Lifeline ($9.25/mo off), Spectrum Internet Assist ($19.99/mo), Xfinity Internet Essentials ($9.95/mo), and AT&T Access ($30/mo). Call us and we\'ll check which programs you qualify for based on your income or benefit status.' },
+      { question: 'Is there a senior discount for internet?', answer: 'While not all ISPs offer explicit "senior discounts," qualifying seniors often pay far less through Lifeline ($9.25/mo off), Spectrum Internet Assist ($19.99/mo), Xfinity Internet Essentials ($9.95/mo), and AT&T Access ($30/mo). Sign up and we\'ll check which programs you qualify for based on your income or benefit status.' },
       { question: 'What is the Lifeline internet program for seniors?', answer: 'Lifeline is a permanent FCC program giving eligible households $9.25/month off internet or phone service. You qualify if you receive SNAP, Medicaid, SSI, Veterans Pension/Survivors Benefit, or if your household income is at or below 135% of the Federal Poverty Guidelines. It never expires and can be stacked with provider discount programs.' },
       { question: 'What is the easiest internet to set up for seniors?', answer: '5G home internet is the simplest. T-Mobile sends a small device to your door. Plug it into a power outlet, wait a few minutes, and connect your phone or tablet to it like any WiFi. No technician, no cables, no difficult setup. T-Mobile\'s customer support is available 24/7 if you need help.' },
       { question: 'How fast does internet need to be for seniors?', answer: '25 Mbps is the minimum for comfortable use. 50–100 Mbps handles video calls with family, streaming shows on Netflix or YouTube, and online shopping without any issues. Even in a busy household, 100 Mbps is more than enough. Don\'t pay for faster speeds than you need.' },
@@ -68,11 +66,11 @@ const audiences: Record<string, AudienceData> = {
       { title: 'No credit check plans', text: 'Many 5G and prepaid internet plans don\'t require credit checks. T-Mobile 5G Home and Mint Mobile are great options.' },
     ],
     faqs: [
-      { question: 'Can I get free internet?', answer: 'With the Affordable Connectivity Program (ACP), you can get up to $30/mo off internet service, which may cover the full cost of some plans. Combined with Lifeline ($9.25/mo discount), some households pay $0 for internet. Call us to check eligibility.' },
+      { question: 'Can I get free internet?', answer: 'With the Affordable Connectivity Program (ACP), you can get up to $30/mo off internet service, which may cover the full cost of some plans. Combined with Lifeline ($9.25/mo discount), some households pay $0 for internet. Sign up to check eligibility.' },
       { question: 'What is the Affordable Connectivity Program?', answer: 'The ACP is a federal program providing up to $30/mo toward internet service for qualifying low-income households. You may qualify if your household income is at or below 200% of the Federal Poverty Guidelines, or if you participate in SNAP, Medicaid, WIC, SSI, or other assistance programs.' },
       { question: 'What internet plans don\'t require a credit check?', answer: 'T-Mobile 5G Home Internet, Mint Mobile, and most prepaid/5G home internet plans don\'t require credit checks. These are excellent options for households with no credit or poor credit.' },
       { question: 'What is the cheapest internet without compromise?', answer: 'T-Mobile 5G Home starts at $50/mo (often $40 with Magenta plan), Mint Mobile at $25/mo, and WOW! at $29.99/mo. With ACP subsidy, costs can drop well below $20/mo.' },
-      { question: 'How do I apply for low-income internet?', answer: 'Start at getinternet.gov for the ACP. For Lifeline, apply at lifelinesupport.org. For provider programs, call us at ' + phone + ' and we\'ll walk you through the application process for programs available at your address.' },
+      { question: 'How do I apply for low-income internet?', answer: 'Start at getinternet.gov for the ACP. For Lifeline, apply at lifelinesupport.org. For provider programs, sign up above and we\'ll walk you through the application process for programs available at your address.' },
     ],
   },
   rural: {
@@ -89,12 +87,12 @@ const audiences: Record<string, AudienceData> = {
       { title: 'Start with fixed wireless or fiber', text: 'If available, fixed wireless or fiber will give you the best rural experience. Check T-Mobile 5G, Verizon 5G, or local ISPs first.' },
       { title: 'Starlink is a game-changer', text: 'Starlink\'s LEO satellite provides 50-200 Mbps with 20-40ms latency — a massive improvement over HughesNet/Viasat. The $599 equipment cost pays for itself vs. years of slow internet.' },
       { title: 'Check for new fiber buildouts', text: 'Brightspeed, Windstream/Kinetic, and Frontier are aggressively building fiber in rural areas. Your address may have new options you didn\'t have 6 months ago.' },
-      { title: 'Use our tool to check your address', text: 'Rural availability changes rapidly. Call us to check the latest options at your specific address — you may have more choices than you think.' },
+      { title: 'Use our tool to check your address', text: 'Rural availability changes rapidly. Sign up to check the latest options at your specific address — you may have more choices than you think.' },
     ],
     faqs: [
-      { question: 'What is the best internet for rural areas?', answer: 'The best rural internet depends on availability at your address. Ranked: 1) Fiber from Frontier, Brightspeed, or Windstream if available. 2) 5G home internet from T-Mobile or Verizon. 3) Starlink satellite. 4) Fixed wireless from local ISPs. 5) Traditional satellite (Viasat, HughesNet). Call us to check what\'s available.' },
+      { question: 'What is the best internet for rural areas?', answer: 'The best rural internet depends on availability at your address. Ranked: 1) Fiber from Frontier, Brightspeed, or Windstream if available. 2) 5G home internet from T-Mobile or Verizon. 3) Starlink satellite. 4) Fixed wireless from local ISPs. 5) Traditional satellite (Viasat, HughesNet). Sign up to check what\'s available.' },
       { question: 'Is Starlink worth it for rural internet?', answer: 'Yes, for most rural households. Starlink offers 50-200 Mbps with low latency — good enough for streaming, video calls, and gaming. The $599 equipment cost is a barrier, but there\'s no contract, and it\'s available virtually everywhere.' },
-      { question: 'Can I get 5G internet in rural areas?', answer: 'T-Mobile 5G Home Internet is available in many rural areas. Their network covers 98% of Americans. Speeds vary (typically 50-245 Mbps), but it\'s often the best value at $50/mo with no contracts. Check availability at tmobile.com or call us.' },
+      { question: 'Can I get 5G internet in rural areas?', answer: 'T-Mobile 5G Home Internet is available in many rural areas. Their network covers 98% of Americans. Speeds vary (typically 50-245 Mbps), but it\'s often the best value at $50/mo with no contracts. Check availability at tmobile.com or sign up above.' },
       { question: 'Is DSL still a good option for rural areas?', answer: 'DSL can work for light internet use (email, browsing, standard streaming) but speeds are typically limited to 15-50 Mbps and degrade with distance from the provider\'s equipment. If DSL is your only wired option, consider supplementing with a 5G or satellite backup.' },
       { question: 'What speed do I need for rural living?', answer: 'For a typical household: 25 Mbps for basic use (1-2 people), 50-100 Mbps for streaming and work from home, 200+ Mbps for multiple users and heavy streaming. Most rural options now offer at least 50 Mbps.' },
     ],
@@ -144,7 +142,7 @@ const audiences: Record<string, AudienceData> = {
       { question: 'Is 100 Mbps enough for streaming?', answer: 'Yes, 100 Mbps handles 3-4 simultaneous 4K streams with bandwidth to spare for browsing and other activities. For most households, 100-200 Mbps is the sweet spot — fast enough for everything without paying for gigabit.' },
       { question: 'Why does my streaming buffer?', answer: 'Common causes: 1) WiFi signal too weak — move router closer or get mesh WiFi. 2) Too many devices on the network. 3) ISP throttling during peak hours. 4) Outdated router. 5) Speed too slow for multiple 4K streams. Run a speed test to diagnose.' },
       { question: 'Do I need unlimited data for streaming?', answer: 'Strongly recommended. 4K streaming uses 7 GB/hour. A household streaming 3-4 hours/day can use 600-800 GB/month or more. Add gaming, video calls, and downloads, and you can easily exceed 1 TB. Choose a plan with no data cap.' },
-      { question: 'Can I cut the cord and use internet only?', answer: 'Absolutely. Internet + streaming services (Netflix, Hulu, YouTube TV) typically costs $60-100/mo less than a traditional cable TV bundle. You need at least 50 Mbps (100+ recommended) and an unlimited data plan. Call us to find the best internet-only deal.' },
+      { question: 'Can I cut the cord and use internet only?', answer: 'Absolutely. Internet + streaming services (Netflix, Hulu, YouTube TV) typically costs $60-100/mo less than a traditional cable TV bundle. You need at least 50 Mbps (100+ recommended) and an unlimited data plan. Sign up to find the best internet-only deal.' },
     ],
   },
   apartments: {
@@ -188,7 +186,7 @@ const audiences: Record<string, AudienceData> = {
       { title: 'Think about Zoom and video calls', text: 'Online classes require consistent 10+ Mbps upload speed. Fiber and 5G handle this well; DSL and satellite may struggle.' },
     ],
     faqs: [
-      { question: 'What is the cheapest internet for students?', answer: 'Mint Mobile 5G ($25/mo), T-Mobile All Home ($40/mo), WOW! Internet ($29.99/mo), and Altafiber ($39.99/mo) are among the cheapest options. Some providers offer student discounts — call to ask. Splitting a plan with roommates is also very cost-effective.' },
+      { question: 'What is the cheapest internet for students?', answer: 'Mint Mobile 5G ($25/mo), T-Mobile All Home ($40/mo), WOW! Internet ($29.99/mo), and Altafiber ($39.99/mo) are among the cheapest options. Some providers offer student discounts — ask when signing up. Splitting a plan with roommates is also very cost-effective.' },
       { question: 'Do internet companies offer student discounts?', answer: 'Some do. Spectrum offers Internet Assist for qualifying low-income students. AT&T Access is available to eligible students. T-Mobile occasionally runs student promotions. Your university may also have negotiated discounts with local providers.' },
       { question: 'What speed do college students need?', answer: 'For one student: 50 Mbps handles video classes, streaming, and browsing easily. For 2-3 roommates: 100-300 Mbps ensures everyone can video call and stream simultaneously. For gamers: 200+ Mbps with low latency.' },
       { question: 'Can I get internet in my dorm room?', answer: 'Most dorms include WiFi through the university. Off-campus, 5G home internet is the easiest setup — no installation, no contract, moves with you. If your dorm WiFi is slow, a personal 5G hotspot can supplement it.' },
@@ -240,13 +238,59 @@ const audiences: Record<string, AudienceData> = {
       { question: 'Is business internet worth the extra cost?', answer: 'For most businesses, yes. Business plans include SLAs (guaranteed uptime), faster repair response (often same-day), static IP addresses, and priority technical support. If an hour of downtime costs you more than $50, business internet pays for itself.' },
       { question: 'Do I need a static IP for my business?', answer: 'You need a static IP if you: host a website or email server, use certain VPN configurations, run security cameras viewable remotely, or use specific POS systems. Most business plans include at least one static IP. Residential plans don\'t offer them.' },
       { question: 'Can I use residential internet for my small business?', answer: 'Technically yes, but you lose SLA guarantees, priority support, and may violate terms of service. For home-based businesses with 1-3 people, residential is usually fine. For retail/offices with employees, business internet\'s reliability justifies the premium.' },
-      { question: 'What is the best business internet provider?', answer: 'It depends on location. AT&T Business Fiber, Verizon Business Fios, and Spectrum Business are top choices nationally. For smaller markets, Frontier Business, Brightspeed, and Windstream/Kinetic serve well. Call us at ' + phone + ' to compare options at your business address.' },
+      { question: 'What is the best business internet provider?', answer: 'It depends on location. AT&T Business Fiber, Verizon Business Fios, and Spectrum Business are top choices nationally. For smaller markets, Frontier Business, Brightspeed, and Windstream/Kinetic serve well. Sign up above to compare options at your business address.' },
+    ],
+  },
+  'large-households': {
+    slug: 'large-households',
+    title: `Best Internet for Large Households (${year})`,
+    h1: 'Best Internet for Large Households',
+    description: `Internet plans for large families and busy households in ${year}. High-speed plans that handle 10+ devices, 4K streaming, gaming, and remote work at once.`,
+    intro: `When everyone's home — streaming, gaming, on video calls, doing homework — basic internet plans crumble. Large households with 5+ people and 10+ connected devices need serious bandwidth and a strong WiFi network to keep everyone happy without buffering, lag, or dropped calls. Here's how to choose a plan that can actually handle your family's demands.`,
+    speedNeeded: '300–1000+ Mbps',
+    budgetRange: '$60–$100/mo',
+    keyFeatures: ['High bandwidth for many devices', 'Unlimited data', 'WiFi 6/6E router', 'No throttling', 'Strong upload speeds', 'Whole-home coverage'],
+    providerFilter: (p) => getMaxSpeed(p) >= 500 && p.plans.some(plan => plan.dataCap === 'Unlimited'),
+    buyingTips: [
+      { title: 'Aim for 100 Mbps per person', text: 'A household of 5 should target 500 Mbps minimum. If multiple people stream 4K or game simultaneously, 1 Gbps provides headroom to avoid slowdowns.' },
+      { title: 'Unlimited data is non-negotiable', text: 'Large families burn through data fast. Multiple 4K streams, cloud storage, gaming downloads — you\'ll hit data caps quickly. Insist on unlimited data to avoid surprise overage charges.' },
+      { title: 'Invest in a mesh WiFi system', text: 'A single router won\'t cover a large home. Mesh systems (like eero, Google Nest, or Orbi) create seamless WiFi coverage from the basement to the attic.' },
+      { title: 'Fiber handles heavy use best', text: 'Cable internet slows during peak hours when neighbors are also online. Fiber provides dedicated bandwidth that doesn\'t degrade with neighborhood congestion — critical for large households.' },
+    ],
+    faqs: [
+      { question: 'How much internet speed does a large family need?', answer: 'For 5+ people with heavy use: 500 Mbps is comfortable, 1 Gbps is ideal. Each 4K stream uses ~25 Mbps, each Zoom call ~5-10 Mbps, and gaming ~50-100 Mbps. Multiply by the number of simultaneous users and add 20% headroom.' },
+      { question: 'What causes slow internet with many devices?', answer: 'Three main culprits: insufficient bandwidth (too slow a plan), router limitations (old routers can\'t handle 10+ devices), and WiFi dead zones. A speed upgrade, WiFi 6 router, and mesh system typically solve all three.' },
+      { question: 'Is gigabit internet worth it for families?', answer: 'If you have 5+ people streaming, gaming, and video calling simultaneously — yes. Gigabit plans ($60-100/mo) cost only $10-20/mo more than 300 Mbps plans but provide 3x+ the speed. The per-person cost is very low.' },
+      { question: 'Will a WiFi extender fix our slow internet?', answer: 'Extenders are a band-aid. They extend range but halve speed. Mesh WiFi systems are far better — they maintain full speed throughout your home and handle many devices more efficiently.' },
+    ],
+  },
+  'smart-home': {
+    slug: 'smart-home',
+    title: `Best Internet for Smart Homes (${year})`,
+    h1: 'Best Internet for Smart Homes',
+    description: `Internet plans optimized for smart home devices in ${year}. Low latency, reliable connections for cameras, thermostats, locks, and home automation systems.`,
+    intro: `Smart homes demand always-on, reliable internet. Security cameras, smart locks, thermostats, voice assistants, robot vacuums — each device needs a stable connection, and when your internet drops, your smart home stops being smart. The right plan provides enough bandwidth for dozens of IoT devices while maintaining the low latency needed for real-time monitoring.`,
+    speedNeeded: '200–500 Mbps',
+    budgetRange: '$50–$80/mo',
+    keyFeatures: ['Always-on reliability', 'Low latency', 'Strong upload for cameras', 'Handles 20+ devices', 'No data caps', 'WiFi 6 support'],
+    providerFilter: (p) => getMaxSpeed(p) >= 300 && p.plans.some(plan => plan.uploadSpeed >= 10),
+    buyingTips: [
+      { title: 'Upload speed matters for cameras', text: 'Security cameras uploading to the cloud need 3-5 Mbps upload each. Four cameras = 12-20 Mbps upload just for security. Fiber\'s symmetrical upload is ideal; cable\'s limited upload can bottleneck.' },
+      { title: 'Reliability beats raw speed', text: 'A smart lock that\'s offline is worse than a dumb lock. Choose a provider known for uptime over one with flashy speed numbers. Fiber is the most reliable technology.' },
+      { title: 'Segment your network', text: 'Many WiFi 6 routers let you create a separate IoT network for smart devices. This improves security and prevents smart devices from congesting your primary network.' },
+      { title: 'Consider a battery backup for your router', text: 'A UPS (uninterruptible power supply) keeps your internet running during brief power outages, maintaining security cameras and smart locks when you need them most.' },
+    ],
+    faqs: [
+      { question: 'How much internet speed do smart home devices need?', answer: 'Individual devices use very little: smart speakers (1 Mbps), cameras (3-5 Mbps each), thermostats (< 1 Mbps). But with 20+ devices, it adds up. 200-300 Mbps handles most smart homes comfortably. Heavy camera setups may need 500 Mbps for smooth upload.' },
+      { question: 'Do smart home devices slow down WiFi?', answer: 'They can, especially on older routers. Each device maintains a connection that uses router resources. WiFi 6 routers handle 40+ devices efficiently. WiFi 5 routers start struggling around 15-20 devices. Upgrading your router often fixes "slow internet" in smart homes.' },
+      { question: 'Is fiber better than cable for smart homes?', answer: 'Yes. Fiber provides consistent speeds (no peak-hour slowdowns), symmetrical upload for security cameras, and lower latency for real-time device control. Cable works fine for basic smart homes, but fiber is noticeably better for camera-heavy setups.' },
+      { question: 'What happens to my smart home when internet goes out?', answer: 'Most smart devices lose remote control and cloud features. Some (like Hue lights, Z-Wave locks) still work locally. To minimize disruption: use a UPS on your router, consider a 5G failover connection, and choose devices with local (non-cloud) control options.' },
     ],
   },
 };
 
 export function getStaticPaths() {
-  return ['seniors', 'low-income', 'rural', 'gaming', 'streaming', 'apartments', 'students', 'work-from-home', 'small-business'].map(slug => ({
+  return ['seniors', 'low-income', 'rural', 'gaming', 'streaming', 'apartments', 'students', 'work-from-home', 'small-business', 'large-households', 'smart-home'].map(slug => ({
     params: { audience: slug },
     props: { audienceSlug: slug },
   }));
@@ -290,9 +334,8 @@ const schemas = [
           {audience.h1.split(' ').slice(0, -1).join(' ')} <span class="gradient-text">{audience.h1.split(' ').slice(-1)[0]}</span>
         </h1>
         <p class="hero-subtitle" style="max-width: 700px; margin-inline: auto;">{audience.intro}</p>
-        <a href={phoneHref} class="btn btn-call mt-xl">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          Call {phone} for Personalized Recommendations
+        <a href="#get-connected" class="btn btn-cta mt-xl">
+          Get Personalized Recommendations
         </a>
       </div>
 
@@ -301,9 +344,9 @@ const schemas = [
         <div class="card reveal" style="margin-bottom: var(--space-2xl); background: rgba(0,213,132,0.04); border: 1px solid rgba(0,213,132,0.25); text-align: center; padding: var(--space-xl);">
           <div style="font-size: 1.8rem; margin-bottom: var(--space-sm);">💰</div>
           <h3 style="margin-bottom: var(--space-xs);">Seniors: You May Qualify for $9.25/mo Off — Every Month</h3>
-          <p style="color: var(--text-secondary); max-width: 560px; margin: 0 auto var(--space-lg);">The federal <strong>Lifeline program</strong> is permanently active and actively enrolling. If you receive SNAP, Medicaid, SSI, or Veterans benefits — or your income is below 135% of the Federal Poverty Level — you qualify. Call us and we'll verify eligibility instantly and walk you through enrollment.</p>
+          <p style="color: var(--text-secondary); max-width: 560px; margin: 0 auto var(--space-lg);">The federal <strong>Lifeline program</strong> is permanently active and actively enrolling. If you receive SNAP, Medicaid, SSI, or Veterans benefits — or your income is below 135% of the Federal Poverty Level — you qualify. Sign up and we'll verify eligibility instantly and walk you through enrollment.</p>
           <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
-            <a href={phoneHref} class="btn btn-call" style="font-size: var(--text-lg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call to Check Your Eligibility</a>
+            <a href="#get-connected" class="btn btn-cta" style="font-size: var(--text-lg);">Check Your Eligibility</a>
             <a href="/provider-programs" class="btn btn-secondary">See All Programs</a>
           </div>
         </div>
@@ -373,9 +416,8 @@ const schemas = [
                   </div>
                   <div class="flex gap-sm">
                     <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size:var(--text-sm);">Plans</a>
-                    <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-sm);">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-                      Call
+                    <a href="#get-connected" data-signup-provider={p.slug} class="btn btn-cta" style="font-size:var(--text-sm);">
+                      Get {p.name}
                     </a>
                   </div>
                 </div>
@@ -423,7 +465,7 @@ const schemas = [
 
       <!-- Relevant Connection Types -->
       {(() => {
-        const typeMap: Record<string, { slug: string; label: string; icon: string }[]> = {
+        const typeMap = {
           seniors: [
             { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
             { slug: '5g', label: '5G Home Internet', icon: '📱' },
@@ -469,15 +511,25 @@ const schemas = [
             { slug: 'cable', label: 'Cable Internet', icon: '📡' },
             { slug: '5g', label: '5G Home Internet', icon: '📱' },
           ],
+          'large-households': [
+            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+            { slug: '5g', label: '5G Home Internet', icon: '📱' },
+          ],
+          'smart-home': [
+            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+            { slug: '5g', label: '5G Home Internet', icon: '📱' },
+          ],
         };
-        const typeLinks = typeMap[audience.slug] || [];
+        const typeLinks = (typeMap as Record<string, { slug: string; label: string; icon: string }[]>)[audience.slug] || [];
         if (!typeLinks.length) return null;
         return (
           <div class="reveal" style="margin-bottom: var(--space-3xl);">
             <h2 style="margin-bottom: var(--space-sm);">Best Connection Types for {audience.h1}</h2>
             <p style="color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-xl);">Compare technologies and find the right fit for your needs.</p>
             <div class="grid grid-3" style="gap: var(--space-md);">
-              {typeLinks.map(t => (
+              {typeLinks.map((t: { slug: string; label: string; icon: string }) => (
                 <a href={`/internet-types/${t.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none; display: flex; gap: var(--space-sm); align-items: flex-start;">
                   <span style="font-size: var(--text-2xl);">{t.icon}</span>
                   <div>
@@ -512,5 +564,5 @@ const schemas = [
       </div>
     </div>
   </section>
-  <StickyCallBar phone={phone} message={`Expert ${audience.h1.toLowerCase()} advice — call now`} />
+  <StickyCallBar text={`Expert ${audience.h1.toLowerCase()} advice — get connected now`} />
 </Base>

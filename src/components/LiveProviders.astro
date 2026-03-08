@@ -22,7 +22,6 @@ const { cityName, state, zip, lat, lng } = Astro.props;
 
 // Build partner phone lookup from providers.json at build time
 import { providers as allProviders, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel } from '@lib/utils';
 
 const partnerPhones: Record<string, { phone: string; name: string; id: string }> = {};
 for (const p of allProviders.filter(p => p.isPartner)) {
@@ -459,7 +458,7 @@ for (const p of allProviders.filter(p => p.isPartner)) {
       html += `<div style="display:flex;align-items:center;gap:var(--space-md);flex-wrap:wrap;">`;
       html += `<span class="live-provider-speed">&#8595; ${fmtSpeed(e.maxDown)} / &#8593; ${fmtSpeed(e.maxUp)}</span>`;
       if (partner) {
-        html += `<a href="tel:+1${partner.phone.replace(/\D/g, '')}" class="btn btn-cta btn-sm">Get This Plan</a>`;
+        html += `<a href="#get-connected" class="btn btn-cta btn-sm" data-signup-provider="${partner.id}">Get This Plan</a>`;
       }
       html += `</div></div>`;
     }
@@ -467,7 +466,7 @@ for (const p of allProviders.filter(p => p.isPartner)) {
 
     html += `<div style="margin-top:var(--space-lg);text-align:center;">`;
     html += `<p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-sm);">Need help choosing? Our experts compare every option &mdash; free, no obligation.</p>`;
-    html += `<a href="tel:+1${mainPhone.replace(/\D/g, '')}" class="btn btn-cta">Call ${mainPhone}</a>`;
+    html += `<a href="#get-connected" class="btn btn-cta">Get Connected</a>`;
     html += `</div>`;
 
     return html;
@@ -512,12 +511,12 @@ for (const p of allProviders.filter(p => p.isPartner)) {
   function renderInlineForm(mainPhone: string, context: string): string {
     let html = `<div style="margin-top:var(--space-lg);display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-lg);align-items:start;">`;
 
-    // Left: Phone CTA
+    // Left: Sign Up CTA
     html += `<div style="padding:var(--space-lg);text-align:center;background:linear-gradient(135deg,rgba(0,82,255,0.06),rgba(0,213,132,0.06));border-radius:var(--radius-md);border:1px solid rgba(0,82,255,0.15);">`;
-    html += `<p style="font-weight:700;font-size:var(--text-md);margin-bottom:var(--space-xs);">Call for Instant Help</p>`;
-    html += `<p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-md);">Speak to an expert now — free, no obligation.</p>`;
-    html += `<a href="tel:+1${mainPhone.replace(/\D/g, '')}" class="btn btn-cta" style="width:100%;">Call ${mainPhone}</a>`;
-    html += `<p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Mon-Fri 8AM-10PM, Sat 9AM-7PM ET</p>`;
+    html += `<p style="font-weight:700;font-size:var(--text-md);margin-bottom:var(--space-xs);">Get Connected Now</p>`;
+    html += `<p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-md);">Sign up for free expert help &mdash; no obligation.</p>`;
+    html += `<a href="#get-connected" class="btn btn-cta" style="width:100%;">Sign Up Free</a>`;
+    html += `<p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Takes less than 2 minutes</p>`;
     html += `</div>`;
 
     // Right: Quick callback form

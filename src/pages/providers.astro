@@ -7,7 +7,14 @@ import StickyCallBar from '@components/StickyCallBar.astro';
 import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed } from '@lib/providers';
 import { generateBreadcrumbSchema, generateItemListSchema } from '@lib/utils';
 
-const allProviders = getAllProviders();
+const allProviders = getAllProviders().sort((a, b) => {
+  // Providers with logos first, then partners first, then by rating
+  if (a.logo && !b.logo) return -1;
+  if (!a.logo && b.logo) return 1;
+  if (a.isPartner && !b.isPartner) return -1;
+  if (!a.isPartner && b.isPartner) return 1;
+  return b.rating - a.rating;
+});
 const breadcrumbs = [{ name: 'Providers', url: '/providers' }];
 // Pass serializable provider data to client script for API matching
 const providerDataForClient = allProviders.map(p => ({
@@ -102,22 +109,6 @@ const zip3ToState = {
         <div class="reveal" style="display:flex; justify-content:center; margin-top: var(--space-xl);">
           <SearchBar size="large" placeholder="Enter your 5-digit ZIP code" />
         </div>
-
-        <!-- Provider Logos Section -->
-        <div class="providers-logos reveal" style="margin-top: var(--space-2xl);">
-          <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-lg);">Compare from 25+ providers</p>
-          <div class="logos-grid">
-            {allProviders.map((p) => (
-              <a href={`/provider/${p.slug}`} class="logo-item" title={p.name}>
-                {p.logo ? (
-                  <img src={p.logo} alt={p.name} loading="lazy" />
-                ) : (
-                  <span class="logo-fallback">{p.name.charAt(0)}</span>
-                )}
-              </a>
-            ))}
-          </div>
-        </div>
       </div>
 
       <!-- Location banner (hidden until search) -->
@@ -125,6 +116,7 @@ const zip3ToState = {
         <h3 id="location-text" style="font-size: var(--text-xl);">Showing providers for <strong id="location-city" style="color: var(--brand-blue);"></strong></h3>
         <p id="location-count" class="text-secondary text-sm mt-sm"></p>
       </div>
+
 
       <!-- Loading state -->
       <div id="loading-state" style="display:none; margin-top: var(--space-2xl);">
@@ -166,7 +158,7 @@ const zip3ToState = {
         </div>
         <div id="provider-list" class="flex flex-col gap-md">
           {allProviders.map((p, i) => (
-            <div class="provider-item reveal" data-provider-id={p.id} data-types={p.types.join(',')} data-speed={getMaxSpeed(p)} data-price={getMinPrice(p)} data-rating={p.rating} data-partner={p.isPartner ? '1' : '0'} style={`transition-delay: ${Math.min(i * 60, 400)}ms;`}>
+            <div class="provider-item reveal" data-provider-id={p.id} data-types={p.types.join(',')} data-speed={getMaxSpeed(p)} data-price={getMinPrice(p)} data-rating={p.rating} data-partner={p.isPartner ? '1' : '0'} data-has-logo={p.logo ? '1' : '0'} style={`transition-delay: ${Math.min(i * 60, 400)}ms;`}>
               <ProviderCard provider={p} rank={i + 1} />
             </div>
           ))}
@@ -209,6 +201,26 @@ const zip3ToState = {
           <polyline points="6 15 12 9 18 15"></polyline>
         </svg>
       </button>
+    </div>
+  </section>
+
+  <!-- Provider Logos -->
+  <section class="section" style="padding: var(--space-xl) 0;">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom: var(--space-lg);">
+        <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em;">Trusted by millions — compare 25+ providers</p>
+      </div>
+      <div class="logos-grid reveal">
+        {allProviders.map((p) => (
+          <a href={`/provider/${p.slug}`} class="logo-item" title={p.name}>
+            {p.logo ? (
+              <img src={p.logo} alt={p.name} loading="lazy" />
+            ) : (
+              <span class="logo-fallback">{p.name.charAt(0)}</span>
+            )}
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -766,8 +778,11 @@ const zip3ToState = {
   // Intercept search form submission to stay on page
   const searchForm = document.querySelector('.search-bar');
   if (searchForm) {
+    // Mark form so SearchBar's default navigation handler is skipped
+    searchForm.setAttribute('data-handled', '');
     searchForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      e.stopImmediatePropagation();
       var input = searchForm.querySelector('input[name="zip"]');
       var val = input && input.value ? input.value.trim() : '';
       if (val && /^\d{5}$/.test(val)) {
@@ -846,6 +861,9 @@ const zip3ToState = {
           case 'price': return av('price') - bv('price');
           case 'rating': return bv('rating') - av('rating');
           default:
+            const al = parseInt(a.getAttribute('data-has-logo') || '0');
+            const bl = parseInt(b.getAttribute('data-has-logo') || '0');
+            if (bl !== al) return bl - al;
             const ap = parseInt(a.getAttribute('data-partner') || '0');
             const bp = parseInt(b.getAttribute('data-partner') || '0');
             if (bp !== ap) return bp - ap;

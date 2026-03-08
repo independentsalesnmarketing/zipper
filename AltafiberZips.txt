@@ -1,0 +1,496 @@
+ZIP_Code	CITY_NAME	ST_ABBREV	SERVICE_Avail
+41001	Alexandria	Kentucky - KY	FIBER
+41001	Claryville	Kentucky - KY	FIBER
+41001	Grants Lick	Kentucky - KY	FIBER
+41005	Bullittsville	Kentucky - KY	FIBER
+41005	Camp Ernest	Kentucky - KY	FIBER
+41005	Idlewild	Kentucky - KY	FIBER
+41005	Belleview	Kentucky - KY	FIBER
+41005	Limaburg	Kentucky - KY	FIBER
+41005	McVille	Kentucky - KY	FIBER
+41005	Burlington	Kentucky - KY	FIBER
+41005	Rabbit Hash	Kentucky - KY	FIBER
+41006	Carntown	Kentucky - KY	FIBER
+41006	Mount Auburn	Kentucky - KY	FIBER
+41006	Peachgrove	Kentucky - KY	FIBER
+41006	Pleasant Hill	Kentucky - KY	FIBER
+41006	Butler	Kentucky - KY	FIBER
+41007	Carthage	Kentucky - KY	FIBER
+41007	California	Kentucky - KY	FIBER
+41007	Flagg Spring	Kentucky - KY	FIBER
+41007	Mentor	Kentucky - KY	FIBER
+41007	Gubser Mill	Kentucky - KY	FIBER
+41010	Blanchet	Kentucky - KY	FIBER
+41010	Owen	Kentucky - KY	FIBER
+41010	Corinth	Kentucky - KY	FIBER
+41011	Cov	Kentucky - KY	FIBER
+41011	Covington	Kentucky - KY	FIBER
+41011	Decoursey	Kentucky - KY	FIBER
+41011	Fort Mitchell	Kentucky - KY	FIBER
+41011	Fort Wright	Kentucky - KY	FIBER
+41011	Park Hills	Kentucky - KY	FIBER
+41011	Lookout Heights	Kentucky - KY	FIBER
+41011	Kenton Hills	Kentucky - KY	FIBER
+41012	Covington	Kentucky - KY	FIBER
+41014	Covington	Kentucky - KY	FIBER
+41014	Rouse	Kentucky - KY	FIBER
+41015	Rosedale	Kentucky - KY	FIBER
+41015	Taylor Mill	Kentucky - KY	FIBER
+41015	Kentonvale	Kentucky - KY	FIBER
+41015	Covington	Kentucky - KY	FIBER
+41015	Latonia	Kentucky - KY	FIBER
+41015	Ryland Hgts	Kentucky - KY	FIBER
+41015	Ryland Hght	Kentucky - KY	FIBER
+41015	Latonia Lakes	Kentucky - KY	FIBER
+41015	Ryland	Kentucky - KY	FIBER
+41015	Latonia Lks	Kentucky - KY	FIBER
+41015	Ryland Heights	Kentucky - KY	FIBER
+41016	Bromley	Kentucky - KY	FIBER
+41016	Covington	Kentucky - KY	FIBER
+41016	Ludlow	Kentucky - KY	FIBER
+41017	Crescent Springs	Kentucky - KY	FIBER
+41017	Dixie	Kentucky - KY	FIBER
+41017	Crestview Hls	Kentucky - KY	FIBER
+41017	Crestview Hills	Kentucky - KY	FIBER
+41017	Villa Hills	Kentucky - KY	FIBER
+41017	South Ft Mitchell	Kentucky - KY	FIBER
+41017	South Fort Mitchell	Kentucky - KY	FIBER
+41017	So Fort Mitchell	Kentucky - KY	FIBER
+41017	Lakeside Park	Kentucky - KY	FIBER
+41017	Fort Wright	Kentucky - KY	FIBER
+41017	Edgewood	Kentucky - KY	FIBER
+41017	Erlanger	Kentucky - KY	FIBER
+41017	Bromley	Kentucky - KY	FIBER
+41017	Covington	Kentucky - KY	FIBER
+41017	Crescent Park	Kentucky - KY	FIBER
+41017	Fort Mitchell	Kentucky - KY	FIBER
+41018	Erlanger	Kentucky - KY	FIBER
+41018	Covington	Kentucky - KY	FIBER
+41018	Edgewood	Kentucky - KY	FIBER
+41018	Elsmere	Kentucky - KY	FIBER
+41019	Internal Revenue	Kentucky - KY	FIBER
+41019	Covington	Kentucky - KY	FIBER
+41022	Florence	Kentucky - KY	FIBER
+41030	Bracht	Kentucky - KY	FIBER
+41030	Crittenden	Kentucky - KY	FIBER
+41030	Flingsville	Kentucky - KY	FIBER
+41033	De Mossville	Kentucky - KY	FIBER
+41033	Demossville	Kentucky - KY	FIBER
+41033	Fiskburg	Kentucky - KY	FIBER
+41033	Gardnersville	Kentucky - KY	FIBER
+41033	Portland	Kentucky - KY	FIBER
+41035	Dry Ridge	Kentucky - KY	FIBER
+41035	Sherman	Kentucky - KY	FIBER
+41040	Locust Grove	Kentucky - KY	FIBER
+41040	Neave	Kentucky - KY	FIBER
+41040	Morgan	Kentucky - KY	FIBER
+41040	McKinneysburg	Kentucky - KY	FIBER
+41040	Pendletn County	Kentucky - KY	FIBER
+41040	Lenoxburg	Kentucky - KY	FIBER
+41040	Goforth	Kentucky - KY	FIBER
+41040	Four Oaks	Kentucky - KY	FIBER
+41040	Falmouth	Kentucky - KY	FIBER
+41040	Brownings Corner	Kentucky - KY	FIBER
+41040	Pendleton County	Kentucky - KY	FIBER
+41042	Devon	Kentucky - KY	FIBER
+41042	Florence	Kentucky - KY	FIBER
+41042	Hopeful Heights	Kentucky - KY	FIBER
+41046	Glencoe	Kentucky - KY	FIBER
+41048	Francisville	Kentucky - KY	FIBER
+41048	Hebron	Kentucky - KY	FIBER
+41048	Taylorsport	Kentucky - KY	FIBER
+41051	Nicholson	Kentucky - KY	FIBER
+41051	White Tower	Kentucky - KY	FIBER
+41051	Independence	Kentucky - KY	FIBER
+41052	Jonesville	Kentucky - KY	FIBER
+41053	Kenton	Kentucky - KY	FIBER
+41054	Mason	Kentucky - KY	FIBER
+41059	Campsprings	Kentucky - KY	FIBER
+41059	Melbourne	Kentucky - KY	FIBER
+41059	Ross	Kentucky - KY	FIBER
+41063	Atwood	Kentucky - KY	FIBER
+41063	Morning View	Kentucky - KY	FIBER
+41063	Visalia	Kentucky - KY	FIBER
+41063	Piner	Kentucky - KY	FIBER
+41071	Southgate	Kentucky - KY	FIBER
+41071	So Newport	Kentucky - KY	FIBER
+41071	Fort Thomas	Kentucky - KY	FIBER
+41071	South Newport	Kentucky - KY	FIBER
+41071	Spence	Kentucky - KY	FIBER
+41071	Wilder	Kentucky - KY	FIBER
+41071	Woodlawn	Kentucky - KY	FIBER
+41071	Newport	Kentucky - KY	FIBER
+41072	Newport	Kentucky - KY	FIBER
+41073	Dayton	Kentucky - KY	FIBER
+41073	Newport	Kentucky - KY	FIBER
+41073	Bellevue	Kentucky - KY	FIBER
+41074	Dayton	Kentucky - KY	FIBER
+41074	Bellevue	Kentucky - KY	FIBER
+41074	Newport	Kentucky - KY	FIBER
+41075	Fort Thomas	Kentucky - KY	FIBER
+41075	Newport	Kentucky - KY	FIBER
+41076	Cold Spring Highland Heights	Kentucky - KY	FIBER
+41076	Highland Heights	Kentucky - KY	FIBER
+41076	Fort Thomas	Kentucky - KY	FIBER
+41076	Crestview	Kentucky - KY	FIBER
+41076	Cold Sprgs-Highland Heights	Kentucky - KY	FIBER
+41076	Cold Spring	Kentucky - KY	FIBER
+41076	Wilder	Kentucky - KY	FIBER
+41076	Highland Hgts	Kentucky - KY	FIBER
+41076	Cold Sprgs Hi	Kentucky - KY	FIBER
+41076	Cold Sprgs Highland Heights	Kentucky - KY	FIBER
+41076	Newport	Kentucky - KY	FIBER
+41080	Petersburg	Kentucky - KY	FIBER
+41085	Silver Grove	Kentucky - KY	FIBER
+41086	Sparta	Kentucky - KY	FIBER
+41091	Hamilton	Kentucky - KY	FIBER
+41091	Union	Kentucky - KY	FIBER
+41092	Verona	Kentucky - KY	FIBER
+41094	Richwood	Kentucky - KY	FIBER
+41094	Walton	Kentucky - KY	FIBER
+41094	Beaverlick	Kentucky - KY	FIBER
+41095	Warsaw	Kentucky - KY	FIBER
+41095	Napoleon	Kentucky - KY	FIBER
+41097	Williamstown	Kentucky - KY	FIBER
+41099	Highland Heights	Kentucky - KY	FIBER
+41099	Northern Kentucky University	Kentucky - KY	FIBER
+41099	Newport	Kentucky - KY	FIBER
+45001	Addyston	Ohio - OH	FIBER
+45002	Cleves	Ohio - OH	FIBER
+45005	Blue Ball	Ohio - OH	FIBER
+45005	Carlisle	Ohio - OH	FIBER
+45005	Franklin	Ohio - OH	FIBER
+45030	Crosby	Ohio - OH	FIBER
+45030	Fort Scott Camps	Ohio - OH	FIBER
+45030	New Baltimore	Ohio - OH	FIBER
+45030	New Haven	Ohio - OH	FIBER
+45030	Harrison	Ohio - OH	FIBER
+45032	Massie	Ohio - OH	FIBER
+45032	Harveysburg	Ohio - OH	FIBER
+45033	Hooven	Ohio - OH	FIBER
+45034	Kings Island	Ohio - OH	FIBER
+45034	Kings Mills	Ohio - OH	FIBER
+45036	Lebanon	Ohio - OH	FIBER
+45036	Liberty Township	Ohio - OH	FIBER
+45039	Maineville	Ohio - OH	FIBER
+45039	Foster	Ohio - OH	FIBER
+45039	Hamilton Township	Ohio - OH	FIBER
+45039	Landon	Ohio - OH	FIBER
+45040	Mason	Ohio - OH	FIBER
+45041	Miamitown	Ohio - OH	FIBER
+45051	North Bend	Ohio - OH	FIBER
+45051	Mount Saint Joseph	Ohio - OH	FIBER
+45051	Mount St Joseph	Ohio - OH	FIBER
+45052	North Bend	Ohio - OH	FIBER
+45052	Elizabethtown	Ohio - OH	FIBER
+45054	Oregonia	Ohio - OH	FIBER
+45065	South Lebanon	Ohio - OH	FIBER
+45066	Springboro	Ohio - OH	FIBER
+45068	Waynesville	Ohio - OH	FIBER
+45068	Corwin	Ohio - OH	FIBER
+45068	Lytle	Ohio - OH	FIBER
+45068	Mount Holly	Ohio - OH	FIBER
+45101	Ellsberry	Ohio - OH	FIBER
+45101	Aberdeen	Ohio - OH	FIBER
+45102	Hamlet	Ohio - OH	FIBER
+45102	Lindale	Ohio - OH	FIBER
+45102	Amelia	Ohio - OH	FIBER
+45103	Stonelick	Ohio - OH	FIBER
+45103	Batavia	Ohio - OH	FIBER
+45106	Mount Olive	Ohio - OH	FIBER
+45106	Bethel	Ohio - OH	FIBER
+45111	Loveland	Ohio - OH	FIBER
+45111	Camp Dennison	Ohio - OH	FIBER
+45112	Chilo	Ohio - OH	FIBER
+45115	Decatur	Ohio - OH	FIBER
+45115	Byrd	Ohio - OH	FIBER
+45118	Fayetteville	Ohio - OH	FIBER
+45118	Saint Martin	Ohio - OH	FIBER
+45119	Feesburg	Ohio - OH	FIBER
+45120	Felicity	Ohio - OH	FIBER
+45120	Stringtown	Ohio - OH	FIBER
+45121	Ash Ridge	Ohio - OH	FIBER
+45121	Browntown	Ohio - OH	FIBER
+45121	Clermont County	Ohio - OH	FIBER
+45121	Georgetown	Ohio - OH	FIBER
+45121	Hillman	Ohio - OH	FIBER
+45121	Utopia	Ohio - OH	FIBER
+45121	Brown County	Ohio - OH	FIBER
+45122	Cozaddale	Ohio - OH	FIBER
+45122	Edenton	Ohio - OH	FIBER
+45122	Goshen	Ohio - OH	FIBER
+45130	Hamersville	Ohio - OH	FIBER
+45130	Poetown	Ohio - OH	FIBER
+45130	Yankeetown	Ohio - OH	FIBER
+45131	Higginsport	Ohio - OH	FIBER
+45140	Symmes Township	Ohio - OH	FIBER
+45140	Loveland	Ohio - OH	FIBER
+45140	Murdock	Ohio - OH	FIBER
+45140	Seilcrest Acres	Ohio - OH	FIBER
+45140	Springvale	Ohio - OH	FIBER
+45140	Epworth Heights	Ohio - OH	FIBER
+45140	Steelville	Ohio - OH	FIBER
+45140	Twightwee	Ohio - OH	FIBER
+45140	Twenty Mile Stand	Ohio - OH	FIBER
+45145	Marathon	Ohio - OH	FIBER
+45147	Miamiville	Ohio - OH	FIBER
+45150	Day Heights	Ohio - OH	FIBER
+45150	Milford	Ohio - OH	FIBER
+45150	Mount Repose	Ohio - OH	FIBER
+45152	Morrow	Ohio - OH	FIBER
+45153	Moscow	Ohio - OH	FIBER
+45154	Five Mile	Ohio - OH	FIBER
+45154	Mount Orab	Ohio - OH	FIBER
+45154	Bardwell	Ohio - OH	FIBER
+45156	Neville	Ohio - OH	FIBER
+45157	Mount Pisgah	Ohio - OH	FIBER
+45157	Laurel	Ohio - OH	FIBER
+45157	New Richmond	Ohio - OH	FIBER
+45158	Newtonsville	Ohio - OH	FIBER
+45160	Owensville	Ohio - OH	FIBER
+45162	Butlerville	Ohio - OH	FIBER
+45162	Edenton	Ohio - OH	FIBER
+45162	Pleasant Plain	Ohio - OH	FIBER
+45162	Pleasant Pln	Ohio - OH	FIBER
+45167	Ripley	Ohio - OH	FIBER
+45167	Redoak	Ohio - OH	FIBER
+45168	Russellville	Ohio - OH	FIBER
+45171	Sardinia	Ohio - OH	FIBER
+45174	Terrace Park	Ohio - OH	FIBER
+45176	New Harmony	Ohio - OH	FIBER
+45176	Williamsburg	Ohio - OH	FIBER
+45176	Eastwood	Ohio - OH	FIBER
+45176	Crosstown	Ohio - OH	FIBER
+45201	Cincinnati	Ohio - OH	FIBER
+45202	Cincinnati	Ohio - OH	FIBER
+45203	Cincinnati	Ohio - OH	FIBER
+45203	Queen City	Ohio - OH	FIBER
+45204	Cincinnati	Ohio - OH	FIBER
+45204	Queen City	Ohio - OH	FIBER
+45205	Cincinnati	Ohio - OH	FIBER
+45205	Price Hill	Ohio - OH	FIBER
+45206	Cincinnati	Ohio - OH	FIBER
+45206	Walnut Hills	Ohio - OH	FIBER
+45207	Evanston	Ohio - OH	FIBER
+45207	Norwood	Ohio - OH	FIBER
+45207	Cincinnati	Ohio - OH	FIBER
+45208	Cincinnati	Ohio - OH	FIBER
+45208	Mount Lookout	Ohio - OH	FIBER
+45208	Hyde Park	Ohio - OH	FIBER
+45209	Cincinnati	Ohio - OH	FIBER
+45209	Oakley	Ohio - OH	FIBER
+45211	Bridgetown	Ohio - OH	FIBER
+45211	Cheviot	Ohio - OH	FIBER
+45211	Cincinnati	Ohio - OH	FIBER
+45211	Fairmont	Ohio - OH	FIBER
+45211	Mack	Ohio - OH	FIBER
+45212	Cincinnati	Ohio - OH	FIBER
+45212	Norwood	Ohio - OH	FIBER
+45213	Pleasant Ridge	Ohio - OH	FIBER
+45213	Kennedy Heights	Ohio - OH	FIBER
+45213	Taft	Ohio - OH	FIBER
+45213	Cincinnati	Ohio - OH	FIBER
+45214	Queen City	Ohio - OH	FIBER
+45214	Cincinnati	Ohio - OH	FIBER
+45214	Fairmount	Ohio - OH	FIBER
+45215	Cincinnati	Ohio - OH	FIBER
+45215	Arlington Heights	Ohio - OH	FIBER
+45215	Evendale	Ohio - OH	FIBER
+45215	Wyoming	Ohio - OH	FIBER
+45215	Woodlawn	Ohio - OH	FIBER
+45215	Lincoln Heights	Ohio - OH	FIBER
+45215	Lockland	Ohio - OH	FIBER
+45215	Reading	Ohio - OH	FIBER
+45216	Saint Bernard	Ohio - OH	FIBER
+45216	Carthage	Ohio - OH	FIBER
+45216	Cincinnati	Ohio - OH	FIBER
+45216	Valleydale	Ohio - OH	FIBER
+45217	Saint Bernard	Ohio - OH	FIBER
+45217	Cincinnati	Ohio - OH	FIBER
+45217	Ivorydale	Ohio - OH	FIBER
+45218	Cincinnati	Ohio - OH	FIBER
+45218	Parkdale	Ohio - OH	FIBER
+45219	Cincinnati	Ohio - OH	FIBER
+45219	Clifton	Ohio - OH	FIBER
+45219	Mount Auburn	Ohio - OH	FIBER
+45219	Corryville	Ohio - OH	FIBER
+45220	Burnet Woods	Ohio - OH	FIBER
+45220	Cincinnati	Ohio - OH	FIBER
+45220	Clifton	Ohio - OH	FIBER
+45221	Cincinnati	Ohio - OH	FIBER
+45221	University of Cincinnati	Ohio - OH	FIBER
+45222	Cincinnati	Ohio - OH	FIBER
+45222	Roselawn Finance	Ohio - OH	FIBER
+45222	Roselawn	Ohio - OH	FIBER
+45223	Cumminsville	Ohio - OH	FIBER
+45223	Northside	Ohio - OH	FIBER
+45223	Cincinnati	Ohio - OH	FIBER
+45224	North College Hl	Ohio - OH	FIBER
+45224	Colg Hill Station	Ohio - OH	FIBER
+45224	College Hl	Ohio - OH	FIBER
+45224	Finneytown	Ohio - OH	FIBER
+45224	Cincinnati	Ohio - OH	FIBER
+45225	Camp Washington	Ohio - OH	FIBER
+45225	Cincinnati	Ohio - OH	FIBER
+45226	Cincinnati	Ohio - OH	FIBER
+45226	East End	Ohio - OH	FIBER
+45227	Cincinnati	Ohio - OH	FIBER
+45227	Mariemont	Ohio - OH	FIBER
+45227	Fairfax	Ohio - OH	FIBER
+45228	California	Ohio - OH	FIBER
+45228	Cincinnati	Ohio - OH	FIBER
+45229	Avondale	Ohio - OH	FIBER
+45229	Cincinnati	Ohio - OH	FIBER
+45230	Cincinnati	Ohio - OH	FIBER
+45230	Mount Washington	Ohio - OH	FIBER
+45230	Mount Washing	Ohio - OH	FIBER
+45231	Mount Healthy	Ohio - OH	FIBER
+45231	Cincinnati	Ohio - OH	FIBER
+45231	Finneytown	Ohio - OH	FIBER
+45231	Wyoming	Ohio - OH	FIBER
+45231	North College Hl	Ohio - OH	FIBER
+45232	Cincinnati	Ohio - OH	FIBER
+45232	Saint Bernard	Ohio - OH	FIBER
+45233	Cincinnati	Ohio - OH	FIBER
+45233	Sayler Park Finance	Ohio - OH	FIBER
+45233	Sayler Park	Ohio - OH	FIBER
+45234	Cincinnati	Ohio - OH	FIBER
+45234	U S P S Pm Msc Ofc	Ohio - OH	FIBER
+45235	Cincinnati	Ohio - OH	FIBER
+45236	Cincinnati	Ohio - OH	FIBER
+45236	Deer Park	Ohio - OH	FIBER
+45236	Reading	Ohio - OH	FIBER
+45236	Kenwood	Ohio - OH	FIBER
+45236	Rossmoyne	Ohio - OH	FIBER
+45236	Blue Ash	Ohio - OH	FIBER
+45236	Silverton	Ohio - OH	FIBER
+45236	Sycamore Township	Ohio - OH	FIBER
+45236	Taft	Ohio - OH	FIBER
+45237	Bond Hill	Ohio - OH	FIBER
+45237	Cincinnati	Ohio - OH	FIBER
+45237	Golf Manor	Ohio - OH	FIBER
+45237	Losantiville	Ohio - OH	FIBER
+45237	Roselawn	Ohio - OH	FIBER
+45238	Covedale	Ohio - OH	FIBER
+45238	Delhi	Ohio - OH	FIBER
+45238	Del Fair	Ohio - OH	FIBER
+45238	Cincinnati	Ohio - OH	FIBER
+45239	White Oak	Ohio - OH	FIBER
+45239	Brookwood	Ohio - OH	FIBER
+45239	North College Hl	Ohio - OH	FIBER
+45239	Groesbeck	Ohio - OH	FIBER
+45239	Cincinnati	Ohio - OH	FIBER
+45239	Colerain Township	Ohio - OH	FIBER
+45240	Pleasant Run Farms	Ohio - OH	FIBER
+45240	Cincinnati	Ohio - OH	FIBER
+45240	Parkdale	Ohio - OH	FIBER
+45240	Forest Park	Ohio - OH	FIBER
+45241	Blue Ash	Ohio - OH	FIBER
+45241	Cincinnati	Ohio - OH	FIBER
+45241	Evendale	Ohio - OH	FIBER
+45241	Sharonville	Ohio - OH	FIBER
+45242	Hazelwood	Ohio - OH	FIBER
+45242	Cincinnati	Ohio - OH	FIBER
+45242	Montgomery	Ohio - OH	FIBER
+45242	Reed Hartman	Ohio - OH	FIBER
+45242	Sycamore Township	Ohio - OH	FIBER
+45242	Blue Ash	Ohio - OH	FIBER
+45243	Cincinnati	Ohio - OH	FIBER
+45243	Indian Hill	Ohio - OH	FIBER
+45243	Madeira	Ohio - OH	FIBER
+45244	Cincinnati	Ohio - OH	FIBER
+45244	Anderson	Ohio - OH	FIBER
+45244	Shademore	Ohio - OH	FIBER
+45244	Mount Carmel	Ohio - OH	FIBER
+45244	Newtown	Ohio - OH	FIBER
+45245	Cherry Grove	Ohio - OH	FIBER
+45245	Cincinnati	Ohio - OH	FIBER
+45245	Withamsville	Ohio - OH	FIBER
+45245	Newtown	Ohio - OH	FIBER
+45245	Anderson	Ohio - OH	FIBER
+45246	Glendale	Ohio - OH	FIBER
+45246	Parkdale	Ohio - OH	FIBER
+45246	Springdale	Ohio - OH	FIBER
+45246	Cincinnati	Ohio - OH	FIBER
+45247	Colerain Township	Ohio - OH	FIBER
+45247	Dunlap	Ohio - OH	FIBER
+45247	Green Township	Ohio - OH	FIBER
+45247	White Oak	Ohio - OH	FIBER
+45247	Dent	Ohio - OH	FIBER
+45247	Cincinnati	Ohio - OH	FIBER
+45247	Bevis	Ohio - OH	FIBER
+45247	Groesbeck	Ohio - OH	FIBER
+45248	Westwood	Ohio - OH	FIBER
+45248	Mack	Ohio - OH	FIBER
+45248	Westwood Area 2	Ohio - OH	FIBER
+45248	Dent	Ohio - OH	FIBER
+45248	Cincinnati	Ohio - OH	FIBER
+45248	Green Township	Ohio - OH	FIBER
+45249	Cincinnati	Ohio - OH	FIBER
+45249	Sycamore Township	Ohio - OH	FIBER
+45249	Symmes	Ohio - OH	FIBER
+45249	Symmes Township	Ohio - OH	FIBER
+45249	Sycamore	Ohio - OH	FIBER
+45250	Cincinnati	Ohio - OH	FIBER
+45251	Cincinnati	Ohio - OH	FIBER
+45251	Groesbeck	Ohio - OH	FIBER
+45251	Colerain	Ohio - OH	FIBER
+45251	Colerain Township	Ohio - OH	FIBER
+45252	Colerain	Ohio - OH	FIBER
+45252	Colerain Township	Ohio - OH	FIBER
+45252	Cincinnati	Ohio - OH	FIBER
+45253	Groesbeck	Ohio - OH	FIBER
+45253	Cincinnati	Ohio - OH	FIBER
+45254	Cincinnati	Ohio - OH	FIBER
+45254	Anderson	Ohio - OH	FIBER
+45255	Anderson	Ohio - OH	FIBER
+45255	Cincinnati	Ohio - OH	FIBER
+45258	Cincinnati	Ohio - OH	FIBER
+45262	Cincinnati	Ohio - OH	FIBER
+45263	Cincinnati	Ohio - OH	FIBER
+45263	Fifth Third Bank	Ohio - OH	FIBER
+45264	Cincinnati	Ohio - OH	FIBER
+45264	The First National Bank	Ohio - OH	FIBER
+45267	University Hospital	Ohio - OH	FIBER
+45267	University Cinc Med Sciences	Ohio - OH	FIBER
+45267	Cincinnati	Ohio - OH	FIBER
+45268	Envir Pro Agency	Ohio - OH	FIBER
+45268	Cincinnati	Ohio - OH	FIBER
+45269	Cincinnati	Ohio - OH	FIBER
+45269	Provident Bank	Ohio - OH	FIBER
+45270	Cincinnati	Ohio - OH	FIBER
+45270	Huntington National Bank	Ohio - OH	FIBER
+45271	Cincinnati	Ohio - OH	FIBER
+45271	Key Bank	Ohio - OH	FIBER
+45273	Cincinnati	Ohio - OH	FIBER
+45273	Business Reply	Ohio - OH	FIBER
+45274	Commercial Accounts	Ohio - OH	FIBER
+45274	Cincinnati	Ohio - OH	FIBER
+45275	Amf	Ohio - OH	FIBER
+45275	Cin Airport Annex	Ohio - OH	FIBER
+45275	Cincinnati Airport Annex	Ohio - OH	FIBER
+45275	Cincy amf	Ohio - OH	FIBER
+45275	Cincinnati	Ohio - OH	FIBER
+45277	Cincinnati	Ohio - OH	FIBER
+45277	Fidelity Investments	Ohio - OH	FIBER
+45280	Cincinnati	Ohio - OH	FIBER
+45296	Cincinnati	Ohio - OH	FIBER
+45296	The Central Trust Co	Ohio - OH	FIBER
+45298	Cincinnati	Ohio - OH	FIBER
+45298	Internal Revenue Service	Ohio - OH	FIBER
+45299	Pg Contest Mail	Ohio - OH	FIBER
+45299	Cincinnati	Ohio - OH	FIBER
+45999	Cincinnati	Ohio - OH	FIBER
+45999	IRS Service Center	Ohio - OH	FIBER
+47001	Aurora	Indiana - IN	FIBER
+47018	Dillsboro	Indiana - IN	FIBER
+47018	Elrod	Indiana - IN	FIBER
+47018	Farmers Retreat	Indiana - IN	FIBER
+47022	Dover	Indiana - IN	FIBER
+47022	Guilford	Indiana - IN	FIBER
+47022	New Alsace	Indiana - IN	FIBER
+47025	Greendale	Indiana - IN	FIBER
+47025	Lawrenceburg	Indiana - IN	FIBER
+47032	Moores Hill	Indiana - IN	FIBER
+47040	Rising Sun	Indiana - IN	FIBER
+47060	West Harrison	Indiana - IN	FIBER

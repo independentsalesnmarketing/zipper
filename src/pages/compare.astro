@@ -3,14 +3,14 @@ import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema } from '@lib/utils';
+import { generateBreadcrumbSchema } from '@lib/utils';
 
 const partners = getPartnerProviders();
 const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
 ---
 <Base
   title="Compare Internet Providers (2026) — Plans, Prices & Speeds"
-  description="Compare top internet providers side by side. See speeds, prices, contracts, and ratings in one view. Find the best plan — order online or call for expert help."
+  description="Compare top internet providers side by side. See speeds, prices, contracts, and ratings in one view. Find the best plan — order online for expert help."
   schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Compare', url: 'https://internet4all.com/compare' }])]}
 >
   <section class="section" style="padding-top: var(--space-xl);">
@@ -125,8 +125,8 @@ const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
                   <div class="cmw-promo">{p.promo}</div>
                 )}
                 <div class="cmw-actions">
-                  <a href={formatPhoneForTel(p.phone)} class="btn btn-cta" style="flex:1;font-size:var(--text-sm);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call Now</a>
-                  <a href="#get-connected" class="btn btn-secondary" data-signup-provider={p.slug} style="flex:1;font-size:var(--text-sm);">Order Online</a>
+                  <a href="#get-connected" class="btn btn-cta" data-signup-provider={p.slug} style="flex:1;font-size:var(--text-sm);">Order Now</a>
+                  <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="flex:1;font-size:var(--text-sm);">View Plans</a>
                 </div>
                 <a href={`/provider/${p.slug}`} style="display:block;text-align:center;font-size:var(--text-sm);color:var(--brand-blue);margin-top:var(--space-sm);padding-bottom:var(--space-xs);">Full {p.name} review →</a>
               </div>
@@ -150,10 +150,7 @@ const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
           <p style="color: rgba(255,255,255,0.8); margin-bottom: var(--space-lg); max-width: 420px; margin-inline: auto;">Our experts will compare plans at your address and recommend the best option for your needs — 100% free.</p>
           <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
             <a href="#get-connected" class="btn btn-cta" data-signup-provider="">Get My Recommendation</a>
-            <a href={formatPhoneForTel(partners[0]?.phone || '1-888-555-0123')} class="btn btn-secondary" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25);color:#fff;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-              Call an Expert
-            </a>
+            <a href="/quiz" class="btn btn-secondary" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25);color:#fff;">Take the Quiz</a>
           </div>
         </div>
       </div>

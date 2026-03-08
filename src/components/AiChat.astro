@@ -1,791 +1,716 @@
 ---
-import { MAIN_PHONE, getPartnerProviders, formatSpeed, formatPrice } from '@lib/providers';
-import { formatPhoneForTel } from '@lib/utils';
+import { getPartnerProviders, getMinPrice, getMaxSpeed } from '@lib/providers';
 
-const partners = getPartnerProviders();
+const partners = getPartnerProviders().map(p => ({
+  slug: p.slug,
+  name: p.name,
+  logo: p.logo,
+  phone: p.phone,
+  types: p.types,
+  rating: p.rating,
+  reviewCount: p.reviewCount,
+  coverage: p.coverage,
+  minPrice: getMinPrice(p),
+  maxSpeed: getMaxSpeed(p),
+  plans: p.plans.map(pl => ({
+    name: pl.name,
+    speed: pl.speed,
+    uploadSpeed: pl.uploadSpeed,
+    price: pl.promoPrice || pl.price,
+    regularPrice: pl.price,
+    contract: pl.contract,
+    dataCap: pl.dataCap,
+    features: pl.features,
+  })),
+}));
 ---
 
-<!-- AI Chat Widget -->
+<!-- AI Chat Widget — Gemini 2.5 Flash powered -->
 <div id="ai-chat" class="ai-chat">
-  <!-- Toggle Button -->
-  <button id="ai-chat-toggle" class="ai-chat-toggle" aria-label="Open chat assistant">
-    <svg id="chat-icon-open" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-    </svg>
-    <svg id="chat-icon-close" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-    </svg>
+  <button id="ai-chat-toggle" class="ai-chat-toggle" aria-label="Chat with Internet Advisor">
+    <svg id="chat-icon-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    <svg id="chat-icon-close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     <span class="ai-chat-badge" id="chat-badge">1</span>
   </button>
 
-  <!-- Chat Window -->
   <div id="ai-chat-window" class="ai-chat-window" style="display:none;">
     <div class="ai-chat-header">
       <div class="ai-chat-header-info">
         <div class="ai-chat-avatar">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 014 4v1a4 4 0 01-8 0V6a4 4 0 014-4z"/><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/></svg>
         </div>
         <div>
-          <strong style="font-size:var(--text-sm);">Internet Advisor</strong>
-          <span style="display:block;font-size:var(--text-xs);color:var(--brand-green);">● Online</span>
+          <strong class="ai-hdr-title">Internet Advisor</strong>
+          <span class="ai-chat-status"><span class="ai-status-dot"></span> AI-Powered</span>
         </div>
       </div>
       <button id="ai-chat-close" class="ai-chat-close" aria-label="Close chat">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
 
     <div id="ai-chat-messages" class="ai-chat-messages"></div>
 
-    <div id="ai-chat-options" class="ai-chat-options"></div>
+    <div id="ai-chat-suggestions" class="ai-chat-suggestions"></div>
 
-    <div class="ai-chat-footer">
-      <input type="text" id="ai-chat-input" class="ai-chat-input" placeholder="Type a message..." autocomplete="off" />
-      <button id="ai-chat-send" class="ai-chat-send" aria-label="Send message">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    <form id="ai-chat-form" class="ai-chat-footer" autocomplete="off">
+      <input type="text" id="ai-chat-input" class="ai-chat-input" placeholder="Ask about plans, speeds, pricing..." />
+      <button type="submit" id="ai-chat-send" class="ai-chat-send" aria-label="Send">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
-    </div>
+    </form>
   </div>
 </div>
 
-<!-- Provider data for chat engine -->
-<script id="chat-provider-data" type="application/json" set:html={JSON.stringify(partners.map(p => ({
-  id: p.id, name: p.name, slug: p.slug,
-  types: p.types, rating: p.rating,
-  minPrice: Math.min(...p.plans.map(pl => pl.promoPrice || pl.price)),
-  maxSpeed: Math.max(...p.plans.map(pl => pl.speed)),
-  plans: p.plans.map(pl => ({ name: pl.name, speed: pl.speed, price: pl.promoPrice || pl.price })),
-  coverage: p.coverage, phone: p.phone,
-  pros: p.pros.slice(0, 3),
-})))} />
+<script id="ai-chat-data" type="application/json" set:html={JSON.stringify(partners)} />
 
-<script define:vars={{ mainPhone: MAIN_PHONE }}>
-(function() {
-  const PHONE = mainPhone;
-  const providers = JSON.parse(document.getElementById('chat-provider-data').textContent);
+<script>
+(function(){
+  /* ── Config ───────────────────────────────────────────────────── */
+  const GEMINI_KEY = 'AIzaSyB0ew_Pmhtfdnqz4VOLSP6W66ngKMst5EE';
+  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
 
-  // DOM elements
+  const partners = JSON.parse(document.getElementById('ai-chat-data').textContent);
+
+  /* Broad-coverage providers not in ZIP files — always available as secondary */
+  const BROAD_COVERAGE_SLUGS = ['att-air', 'earthlink'];
+  const broadCoverageProviders = partners.filter(p => BROAD_COVERAGE_SLUGS.includes(p.slug));
+
+  /* ── ZIP coverage cache ──────────────────────────────────────── */
+  let zipCoverageData = null;
+  let zipDataLoading = null;
+
+  async function loadZipCoverage(){
+    if(zipCoverageData) return zipCoverageData;
+    if(zipDataLoading) return zipDataLoading;
+    zipDataLoading = fetch('/data/zip-coverage.json')
+      .then(r => r.ok ? r.json() : null)
+      .catch(() => null)
+      .then(d => { zipCoverageData = d; return d; });
+    return zipDataLoading;
+  }
+
+  /* Look up confirmed providers for a ZIP from local data */
+  function lookupZipLocal(zip){
+    if(!zipCoverageData || !zipCoverageData[zip]) return [];
+    return zipCoverageData[zip]; // [{id, fiber, tier?, region?}, ...]
+  }
+
+  /* Build provider context for a ZIP with AT&T Air/EarthLink logic */
+  function buildZipContext(zip){
+    const confirmed = lookupZipLocal(zip);
+    const confirmedIds = confirmed.map(e => e.id);
+    const confirmedPartners = partners.filter(p => confirmedIds.includes(p.slug));
+    const count = confirmedPartners.length;
+
+    let primary = [];
+    let secondary = [];
+
+    if(count === 0){
+      // No confirmed — show AT&T Air + EarthLink as primary, plus top 2 general partners
+      primary = broadCoverageProviders;
+      secondary = partners
+        .filter(p => !BROAD_COVERAGE_SLUGS.includes(p.slug))
+        .sort((a,b) => a.minPrice - b.minPrice)
+        .slice(0, 2);
+    } else if(count <= 2){
+      // Few confirmed — show confirmed as primary, AT&T Air + EarthLink prominently
+      primary = confirmedPartners;
+      secondary = broadCoverageProviders;
+    } else if(count <= 4){
+      // Moderate — confirmed primary, AT&T Air + EarthLink mentioned as alternatives
+      primary = confirmedPartners;
+      secondary = broadCoverageProviders;
+    } else {
+      // Many confirmed (5+) — just show confirmed, skip broad coverage
+      primary = confirmedPartners;
+      secondary = [];
+    }
+
+    // Build summary
+    const fiberIds = confirmed.filter(e => e.fiber).map(e => e.id);
+    let summary = `ZIP ${zip} coverage results:\n`;
+    summary += `Confirmed providers (${count}): ${confirmedPartners.map(p => `${p.name}${fiberIds.includes(p.slug) ? ' (fiber)' : ''}`).join(', ') || 'None in our database'}\n`;
+
+    if(primary.length){
+      summary += `\nRecommend these as PRIMARY options:\n`;
+      primary.forEach(p => {
+        const topPlan = p.plans[0];
+        summary += `• ${p.name}: from $${p.minPrice}/mo, up to ${p.maxSpeed} Mbps\n`;
+      });
+    }
+    if(secondary.length){
+      summary += `\n${count <= 2 ? 'Also STRONGLY recommend' : count <= 4 ? 'Also available' : 'Additionally available'} in this area:\n`;
+      secondary.forEach(p => {
+        summary += `• ${p.name}: from $${p.minPrice}/mo, up to ${p.maxSpeed} Mbps${BROAD_COVERAGE_SLUGS.includes(p.slug) ? ' (broad nationwide coverage)' : ''}\n`;
+      });
+    }
+
+    summary += `\nShow specific plan recommendations with [[ORDER:slug:Plan Name]] and/or [[PLAN:...]] cards. Focus on the PRIMARY providers first.`;
+
+    return { confirmed, confirmedPartners, primary, secondary, summary, count };
+  }
+
+  /* ── DOM refs ─────────────────────────────────────────────────── */
   const toggle = document.getElementById('ai-chat-toggle');
-  const window_ = document.getElementById('ai-chat-window');
+  const chatWin = document.getElementById('ai-chat-window');
   const closeBtn = document.getElementById('ai-chat-close');
-  const messages = document.getElementById('ai-chat-messages');
-  const options = document.getElementById('ai-chat-options');
+  const msgArea = document.getElementById('ai-chat-messages');
+  const suggestions = document.getElementById('ai-chat-suggestions');
+  const form = document.getElementById('ai-chat-form');
   const input = document.getElementById('ai-chat-input');
-  const sendBtn = document.getElementById('ai-chat-send');
   const badge = document.getElementById('chat-badge');
   const iconOpen = document.getElementById('chat-icon-open');
   const iconClose = document.getElementById('chat-icon-close');
 
   let isOpen = false;
   let started = false;
-  let answers = {};
+  let sending = false;
+  let lastZipSearched = null;
 
-  // ── Conversion-first chat flow ──────────────────────────────────────
-  // Principle: Bill interrogation first → savings hook → ZIP → use-case → result
-  // 3 questions max before a strong CTA. Short path, high urgency.
-  // ────────────────────────────────────────────────────────────────────
+  const history = [];
 
-  const flow = {
-    start: {
-      messages: [
-        "Quick question — what are you paying for internet each month?",
-        "I'll tell you right away if you're overpaying."
-      ],
-      options: [
-        { label: "Under $40/mo", value: 40, next: "bill_low" },
-        { label: "$40–$65/mo", value: 65, next: "bill_mid" },
-        { label: "$66–$85/mo", value: 85, next: "bill_high" },
-        { label: "$86+ — I think I'm overpaying", value: 120, next: "bill_very_high" },
-      ],
-      extra: `<a href="tel:${PHONE.replace(/[^0-9+]/g,'')}" style="display:block;text-align:center;margin-top:8px;font-size:12px;color:var(--brand-green);">Skip — talk to a live expert now →</a>`
-    },
-    bill_low: {
-      messages: ["That's actually decent! Still, plans keep changing — let's see if there's something better in your area. What's your ZIP?"],
-      input: true,
-      validate: (v) => /^\d{5}$/.test(v.trim()),
-      errorMsg: "Please enter your 5-digit ZIP code.",
-      process: (v) => { answers.zip = v.trim(); answers.bill = 40; },
-      next: "usage"
-    },
-    bill_mid: {
-      messages: ["You might be overpaying by $10–20/mo. We've helped thousands of customers find lower rates. What's your ZIP code?"],
-      input: true,
-      validate: (v) => /^\d{5}$/.test(v.trim()),
-      errorMsg: "Please enter your 5-digit ZIP code.",
-      process: (v) => { answers.zip = v.trim(); answers.bill = 65; },
-      next: "usage"
-    },
-    bill_high: {
-      messages: ["$66–85/mo is above average. Most people in similar areas pay $35–55/mo for better speeds. Enter your ZIP — I'll show you what you qualify for:"],
-      input: true,
-      validate: (v) => /^\d{5}$/.test(v.trim()),
-      errorMsg: "Please enter your 5-digit ZIP code.",
-      process: (v) => { answers.zip = v.trim(); answers.bill = 85; },
-      next: "usage"
-    },
-    bill_very_high: {
-      messages: ["$86+/mo is significantly above average. We typically save people in that range $30–50/mo by switching. What's your ZIP code?"],
-      input: true,
-      validate: (v) => /^\d{5}$/.test(v.trim()),
-      errorMsg: "Please enter your 5-digit ZIP code.",
-      process: (v) => { answers.zip = v.trim(); answers.bill = 120; },
-      next: "usage"
-    },
-    usage: {
-      messages: ["Last one — what's internet mainly used for at your place?"],
-      options: [
-        { label: "Streaming & casual browsing", value: "streaming", next: "results" },
-        { label: "Gaming or working from home", value: "gaming", next: "results" },
-        { label: "Everything — smart home, multiple people", value: "power", next: "results" },
-      ]
-    },
-    results: {
-      messages: ["Analyzing your area..."],
-      compute: true,
-    }
-  };
+  /* ── System instruction ─────────────────────────────────────── */
+  const systemInstruction = `You are a friendly, knowledgeable internet broadband advisor for Internet4All.com. Your goal is to help users find the best internet plan and get them signed up.
 
-  function toggleChat() {
-    isOpen = !isOpen;
-    window_.style.display = isOpen ? 'flex' : 'none';
-    iconOpen.style.display = isOpen ? 'none' : 'block';
-    iconClose.style.display = isOpen ? 'block' : 'none';
-    badge.style.display = 'none';
+CONTEXT — Partner providers (you can recommend and sign users up for these):
+${partners.map(p => `• ${p.name} (${p.slug}): ${p.types.join(', ')} | Rating: ${p.rating}/5 | From $${p.minPrice}/mo | Up to ${p.maxSpeed} Mbps | Plans: ${p.plans.map(pl => `${pl.name}: ${pl.speed}Mbps↓/${pl.uploadSpeed || '?'}Mbps↑ $${pl.price}/mo${pl.contract !== 'None' ? ' ('+pl.contract+' contract)' : ' (no contract)'}${pl.dataCap !== 'Unlimited' ? ' '+pl.dataCap+' cap' : ''}`).join('; ')}`).join('\n')}
 
-    if (!started) {
-      started = true;
-      setTimeout(() => runStep('start'), 400);
-    }
-  }
+CAPABILITIES:
+1. When the user provides a ZIP code, the system automatically looks up which providers serve that area and provides you the results. You do NOT need to add any special markers — just reply naturally with recommendations based on the context provided.
+2. When recommending a specific plan, include an order button using this exact format: [[ORDER:provider-slug:Plan Name]] — this renders as a clickable sign-up button.
+3. When showing plan comparisons, use this format for each plan card:
+[[PLAN:provider-slug|Plan Name|speed_down|speed_up|price|contract|data_cap]]
 
-  function addMessage(text, isUser) {
+CONVERSATION RULES:
+- Keep responses concise (2-4 sentences typical, longer for comparisons).
+- Always ask for the user's ZIP code early so you can give location-specific results.
+- Focus on driving conversions — recommend plans, highlight savings, create urgency.
+- Use plain text formatting. Use ** for bold. Structure comparisons clearly.
+- If a user seems ready to order, proactively show [[ORDER:slug:Plan Name]] buttons.
+- When comparing plans, present no more than 3-4 options to avoid overwhelming the user.
+- If you don't know something specific, say so honestly rather than making it up.
+- Mention that Internet4All helps users save an average of $20-30/mo by comparing all options.
+- Do not use markdown headers (#). Keep it conversational.`;
+
+  /* ── Helpers ──────────────────────────────────────────────────── */
+  function delay(ms){ return new Promise(r=>setTimeout(r,ms)); }
+  function escHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+  function scrollBottom(){ msgArea.scrollTop = msgArea.scrollHeight; }
+
+  /* ── Render message ──────────────────────────────────────────── */
+  function addMsg(html, role){
     const div = document.createElement('div');
-    div.className = `ai-msg ${isUser ? 'ai-msg-user' : 'ai-msg-bot'}`;
-    div.innerHTML = text;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
+    div.className = `ai-msg ${role==='user'?'ai-msg-user':'ai-msg-bot'}`;
+    div.innerHTML = html;
+    msgArea.appendChild(div);
+    scrollBottom();
+    div.querySelectorAll('.ai-order-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        openSignup(btn.dataset.slug, btn.dataset.plan);
+      });
+    });
   }
 
-  function addTyping() {
+  function addTyping(){
     const div = document.createElement('div');
     div.className = 'ai-msg ai-msg-bot ai-typing';
+    div.id = 'ai-typing';
     div.innerHTML = '<span></span><span></span><span></span>';
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-    return div;
+    msgArea.appendChild(div);
+    scrollBottom();
   }
+  function removeTyping(){ document.getElementById('ai-typing')?.remove(); }
 
-  function removeTyping() {
-    const el = messages.querySelector('.ai-typing');
-    if (el) el.remove();
-  }
+  /* ── Parse Gemini response ────────────────────────────────────── */
+  function parseResponse(text){
+    let html = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\n/g, '<br>');
 
-  function showOptions(opts) {
-    options.innerHTML = '';
-    opts.forEach(opt => {
-      const btn = document.createElement('button');
-      btn.className = 'ai-option-btn';
-      btn.textContent = opt.label;
-      btn.addEventListener('click', () => {
-        addMessage(opt.label, true);
-        options.innerHTML = '';
-        if (opt.value !== undefined) {
-          if (opt.value === 'price' || opt.value === 'speed' || opt.value === 'reliability' || opt.value === 'nocontract') {
-            answers.priority = opt.value;
-          } else if (typeof opt.value === 'number' && opt.next === 'usage') {
-            answers.household = opt.value;
-          } else if (typeof opt.value === 'number' && opt.next === 'budget') {
-            answers.usage = opt.value;
-          } else if (typeof opt.value === 'number' && opt.next === 'results') {
-            answers.budget = opt.value;
-          } else if (typeof opt.value === 'number' && opt.next === 'zip') {
-            answers.targetSpeed = opt.value;
-          }
-        }
-        if (opt.next) {
-          setTimeout(() => runStep(opt.next), 500);
-        }
-      });
-      options.appendChild(btn);
+    html = html.replace(/\[\[ORDER:([a-z0-9-]+):(.+?)\]\]/g, (_, slug, plan) => {
+      const p = partners.find(x=>x.slug===slug);
+      const label = p ? p.name : plan;
+      return `<button class="ai-order-btn" data-slug="${escHtml(slug)}" data-plan="${escHtml(plan)}">Sign Up for ${escHtml(label)} — ${escHtml(plan)} →</button>`;
     });
-  }
 
-  function getRecommendedSpeed() {
-    const h = answers.household || 1;
-    const u = answers.usage || 'streaming';
-    const speeds = { streaming: 100, gaming: 300, power: 500 };
-    return speeds[u] || 100;
-  }
-
-  function getSavingsEstimate() {
-    const bill = answers.bill || 0;
-    if (bill <= 40) return 0;
-    const avg = 45; // avg competitive price
-    return Math.max(0, bill - avg);
-  }
-
-  function computeResults() {
-    const recSpeed = getRecommendedSpeed();
-    // Score based on speed match + rating + price (no hard budget filter)
-    let scored = providers.map(p => {
-      let score = 0;
-      const cheapest = [...p.plans].sort((a, b) => a.price - b.price)[0];
-      if (cheapest.speed >= recSpeed) score += 30;
-      else if (cheapest.speed >= recSpeed * 0.5) score += 15;
-      score += (p.rating / 5) * 25;
-      if (cheapest.price <= 55) score += 20;
-      else if (cheapest.price <= 70) score += 10;
-      if (p.types.includes('fiber')) score += 8;
-      return { ...p, score, bestPlan: cheapest };
-    });
-    scored.sort((a, b) => b.score - a.score);
-    return scored.slice(0, 3);
-  }
-
-  async function runStep(stepId) {
-    const step = flow[stepId];
-    if (!step) return;
-
-    for (let i = 0; i < step.messages.length; i++) {
-      addTyping();
-      await delay(650 + Math.random() * 350);
-      removeTyping();
-      addMessage(step.messages[i], false);
-    }
-
-    // Show savings badge inline after bill steps
-    const savingsSteps = ['bill_mid', 'bill_high', 'bill_very_high'];
-    if (savingsSteps.includes(stepId)) {
-      const est = getSavingsEstimate();
-      if (est > 0) {
-        await delay(300);
-        addMessage(
-          `<div style="background:rgba(0,213,132,0.12);border:1px solid rgba(0,213,132,0.35);border-radius:10px;padding:10px 14px;text-align:center;">
-            <div style="font-size:22px;font-weight:800;color:#00d584;">Save ~$${est}/mo</div>
-            <div style="font-size:12px;color:#9ca3af;margin-top:2px;">Estimated based on your current bill</div>
-          </div>`,
-          false
-        );
+    html = html.replace(/\[\[PLAN:([a-z0-9-]+)\|(.+?)\|(\d+)\|([^\|]*)\|([^\|]+)\|([^\|]*)\|([^\]]*)\]\]/g,
+      (_, slug, name, down, up, price, contract, cap) => {
+        const p = partners.find(x=>x.slug===slug);
+        const pName = p ? p.name : slug;
+        return `<div class="ai-plan-card">
+          <div class="ai-plan-provider">${escHtml(pName)}</div>
+          <div class="ai-plan-name">${escHtml(name)}</div>
+          <div class="ai-plan-stats">
+            <span>${down} Mbps ↓${up ? ' / '+up+' Mbps ↑' : ''}</span>
+            <span class="ai-plan-price">$${escHtml(price)}/mo</span>
+          </div>
+          <div class="ai-plan-meta">${contract && contract !== 'None' ? contract+' contract' : 'No contract'} · ${cap && cap !== 'Unlimited' ? cap : 'Unlimited data'}</div>
+          <button class="ai-order-btn" data-slug="${escHtml(slug)}" data-plan="${escHtml(name)}">Get This Plan →</button>
+        </div>`;
       }
-    }
+    );
 
-    if (step.compute) {
-      addTyping();
-      await delay(1400);
-      removeTyping();
-      const results = computeResults();
-      showResults(results);
-      return;
-    }
-
-    if (step.extra) {
-      const el = document.createElement('div');
-      el.innerHTML = step.extra;
-      messages.appendChild(el);
-      messages.scrollTop = messages.scrollHeight;
-    }
-
-    if (step.options) {
-      showOptions(step.options);
-    }
-
-    if (step.input) {
-      input.disabled = false;
-      input.focus();
-      input.dataset.step = stepId;
-    } else {
-      input.disabled = true;
-    }
+    // Clean stray markers
+    html = html.replace(/\[\[LOOKUP_ZIP:\d{5}\]\]/g, '');
+    return html;
   }
 
-  function showResults(results) {
-    const savings = getSavingsEstimate();
-    if (savings > 0) {
-      addMessage(
-        `<div style="background:rgba(0,213,132,0.12);border:1px solid rgba(0,213,132,0.35);border-radius:10px;padding:10px 14px;text-align:center;margin-bottom:4px;">
-          <div style="font-size:13px;font-weight:700;color:#00d584;">Potential savings: ~$${savings}/mo ($${savings * 12}/yr)</div>
-        </div>`,
-        false
-      );
-    }
-
-    addMessage("Here are the best options in your area:", false);
-
-    results.forEach((p, i) => {
-      const medal = ['#1', '#2', '#3'][i];
-      const telHref = `tel:${p.phone.replace(/[^0-9+]/g, '')}`;
-      addMessage(
-        `<div style="border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px;margin-bottom:4px;background:#1a2336;">
-          <div style="font-weight:800;font-size:14px;margin-bottom:4px;color:#e8eaf0;">${medal} ${p.name}</div>
-          <div style="font-size:12px;color:#9ca3af;margin-bottom:8px;">
-            Up to ${p.bestPlan.speed} Mbps &middot; <strong style="color:#e8eaf0;">$${p.bestPlan.price}/mo</strong> &middot; ⭐ ${p.rating}/5
-          </div>
-          <div style="display:flex;flex-direction:column;gap:6px;">
-            <a href="#get-connected" data-signup-provider="${p.slug}" class="ai-order-cta" style="display:block;background:linear-gradient(135deg,#00d584,#1aff9f);color:#003d1a;text-align:center;padding:9px 4px;border-radius:8px;font-size:13px;font-weight:800;text-decoration:none;">Order Online — ${p.name} →</a>
-            <a href="${telHref}" style="display:block;text-align:center;padding:5px 4px;font-size:11px;color:#6b7280;text-decoration:none;">📞 Or call: ${p.phone}</a>
-          </div>
-        </div>`,
-        false
-      );
-    });
-
-    addMessage("These rates are time-sensitive. Locking in now can save you more.", false);
-
-    options.innerHTML = `
-      <button class="ai-option-btn" id="ai-restart" style="font-size:12px;color:#9ca3af;background:#111827;border-color:rgba(255,255,255,0.06);">Start over</button>
-    `;
-    document.getElementById('ai-restart')?.addEventListener('click', () => {
-      messages.innerHTML = '';
-      options.innerHTML = '';
-      answers = {};
-      runStep('start');
-    });
-
-    // Wire up "Order Online" links inside chat to trigger SignUpForm
-    messages.querySelectorAll('.ai-order-cta').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const slug = link.dataset.signupProvider;
-        // Close chat
-        isOpen = false;
-        window_.style.display = 'none';
-        iconOpen.style.display = '';
-        iconClose.style.display = 'none';
-        // Trigger signup modal
-        const modal = document.getElementById('signup-modal');
-        if (modal) {
-          modal.classList.add('open');
-          document.body.style.overflow = 'hidden';
-          if (slug) {
-            const sel = document.getElementById('su-provider');
-            if (sel) {
-              sel.value = slug;
-              sel.dispatchEvent(new Event('change'));
+  /* ── Open signup modal pre-filled ────────────────────────────── */
+  function openSignup(slug, planName){
+    isOpen = false;
+    chatWin.style.display = 'none';
+    iconOpen.style.display = ''; iconClose.style.display = 'none';
+    const modal = document.getElementById('signup-modal');
+    if(modal){
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      const sel = document.getElementById('su-provider');
+      if(sel && slug){
+        sel.value = slug;
+        sel.dispatchEvent(new Event('change'));
+        setTimeout(()=>{
+          const planSel = document.getElementById('su-plan');
+          if(planSel && planName){
+            for(const opt of planSel.options){
+              if(opt.textContent.includes(planName)){
+                planSel.value = opt.value;
+                planSel.dispatchEvent(new Event('change'));
+                break;
+              }
             }
           }
-        } else {
-          // Fallback: scroll to anchor
-          window.location.href = '#get-connected';
-        }
+        }, 200);
+      }
+    }
+  }
+
+  /* ── Show suggestions ────────────────────────────────────────── */
+  function showSuggestions(items){
+    suggestions.innerHTML = '';
+    items.forEach(text => {
+      const btn = document.createElement('button');
+      btn.className = 'ai-suggestion';
+      btn.textContent = text;
+      btn.addEventListener('click', ()=>{
+        suggestions.innerHTML = '';
+        sendMessage(text);
       });
+      suggestions.appendChild(btn);
     });
   }
 
-  // ── NLP-lite intent detection ──────────────────────────────────────
-  function detectIntent(text) {
-    const t = text.toLowerCase().trim();
-    const zipMatch = t.match(/\b(\d{5})\b/);
-    if (zipMatch) return { type: 'zip', zip: zipMatch[1] };
-    // Provider name mentions
-    for (const p of providers) {
-      if (t.includes(p.name.toLowerCase())) return { type: 'provider', name: p.name };
-    }
-    if (/cheap|affordable|low.?cost|budget|inexpensive|discount|save/.test(t)) return { type: 'cheap' };
-    if (/fast|fiber|gig|gigabit|1000\s?mbps|high.?speed/.test(t)) return { type: 'speed' };
-    if (/gaming|game|ps5|xbox|twitch|lag|ping/.test(t)) return { type: 'gaming' };
-    if (/streaming|netflix|hulu|youtube|4k|disney/.test(t)) return { type: 'streaming' };
-    if (/work.?from.?home|wfh|zoom|video.?call|remote/.test(t)) return { type: 'wfh' };
-    if (/cancel|switch|change provider|leave|drop|alternative/.test(t)) return { type: 'switch' };
-    if (/rural|satellite|wireless|5g|no.?cable/.test(t)) return { type: 'rural' };
-    if (/compare|vs\.?|versus|difference|better|which is/.test(t)) return { type: 'compare' };
-    if (/price|cost|how much|pay|bill|monthly|rate|fee/.test(t)) return { type: 'price' };
-    if (/no.?contract|month.?to.?month|commitment|lock.*in/.test(t)) return { type: 'contract' };
-    if (/bundle|tv|cable|phone|package|combo/.test(t)) return { type: 'bundle' };
-    if (/order|sign.?up|get started|enroll|apply/.test(t)) return { type: 'order' };
-    if (/hi\b|hello|hey\b|good morning|good afternoon|sup\b/.test(t)) return { type: 'greeting' };
-    return { type: 'question' };
+  /* ── Call Gemini 2.5 Flash ───────────────────────────────────── */
+  async function callGemini(userText){
+    history.push({ role: 'user', parts: [{ text: userText }] });
+    const body = {
+      system_instruction: { parts: [{ text: systemInstruction }] },
+      contents: history,
+      generationConfig: { temperature: 0.7, topP: 0.9, maxOutputTokens: 800 },
+      safetySettings: [
+        { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_ONLY_HIGH' },
+        { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_ONLY_HIGH' },
+        { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_ONLY_HIGH' },
+        { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_ONLY_HIGH' },
+      ]
+    };
+    const res = await fetch(GEMINI_URL, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body), signal: AbortSignal.timeout(15000),
+    });
+    if(!res.ok) throw new Error(`Gemini API error ${res.status}`);
+    const data = await res.json();
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    if(text) history.push({ role: 'model', parts: [{ text }] });
+    return text;
   }
 
-  function respondToIntent(intent) {
-    const fastest = [...providers].sort((a, b) => b.maxSpeed - a.maxSpeed).slice(0, 3);
-    const cheapest = [...providers].sort((a, b) => a.minPrice - b.minPrice).slice(0, 3);
-    switch (intent.type) {
-      case 'greeting':
-        return "Hey! I'm your internet advisor. I can help you find the best plan in your area, compare providers, check pricing, and get you signed up in minutes. What are you looking for today?";
-      case 'price':
-        return `Here are our lowest starting prices right now:<br><br>${cheapest.map(p => `<strong>${p.name}</strong> — from $${p.minPrice}/mo`).join('<br>')}<br><br>Enter your ZIP code and I'll confirm exact pricing at your address.`;
-      case 'speed':
-        return `Top picks for speed:<br><br>${fastest.map(p => `<strong>${p.name}</strong> — up to ${p.maxSpeed} Mbps`).join('<br>')}<br><br>Fiber plans offer the fastest, most reliable speeds. Want to check availability at your address?`;
-      case 'cheap':
-        return `Most affordable options right now:<br><br>${cheapest.map(p => `<strong>${p.name}</strong> — from $${p.minPrice}/mo`).join('<br>')}<br><br>Pricing varies by location. What's your ZIP code?`;
-      case 'gaming':
-        const gamingPs = providers.filter(p => p.maxSpeed >= 300 || p.types.includes('fiber')).slice(0, 3);
-        return `For gaming you need low latency and 300+ Mbps. Best options:<br><br>${(gamingPs.length ? gamingPs : fastest).map(p => `<strong>${p.name}</strong> — up to ${p.maxSpeed} Mbps`).join('<br>')}<br><br>Fiber is ideal — near-zero lag ping. Enter your ZIP to check fiber availability.`;
-      case 'streaming':
-        const streamPs = providers.filter(p => p.maxSpeed >= 100).slice(0, 3);
-        return `For 4K streaming, 100+ Mbps is ideal. Top picks:<br><br>${(streamPs.length ? streamPs : fastest).map(p => `<strong>${p.name}</strong> — from $${p.minPrice}/mo`).join('<br>')}<br><br>What's your ZIP code? I'll find the best plan for your area.`;
-      case 'wfh':
-        const wfhPs = providers.filter(p => p.maxSpeed >= 200 || p.types.includes('fiber')).slice(0, 3);
-        return `Working from home needs reliable upload speeds. Best picks:<br><br>${(wfhPs.length ? wfhPs : fastest).map(p => `<strong>${p.name}</strong> — up to ${p.maxSpeed} Mbps`).join('<br>')}<br><br>Fiber gives you symmetrical upload/download — crucial for video calls. Enter your ZIP to check availability.`;
-      case 'switch':
-        return `Switching is easier than you think! We check all providers at your address, compare side by side, and help you order in minutes. Most providers offer <strong>no-contract plans</strong> now. What's your current bill? I can check if you're overpaying.`;
-      case 'rural':
-        const ruralPs = providers.filter(p => p.types.includes('satellite') || p.types.includes('fixed-wireless')).slice(0, 2);
-        return ruralPs.length
-          ? `For rural areas, top options include:<br><br>${ruralPs.map(p => `<strong>${p.name}</strong> — ${p.types.join(', ')}`).join('<br>')}<br><br>Some rural areas now have fiber or fixed wireless. Enter your ZIP to check.`
-          : `Coverage in rural areas depends on your exact address. Enter your ZIP and I'll check every available option — including satellite and fixed wireless.`;
-      case 'compare':
-        return `I can compare any providers you're considering! Enter your ZIP code and I'll show a side-by-side breakdown of everything available at your address — speeds, pricing, and ratings.`;
-      case 'contract':
-        return `Great news — most major providers now offer month-to-month plans with no early termination fees. Enter your ZIP and I'll highlight the no-contract options available in your area.`;
-      case 'bundle':
-        return `Bundles can save you $20–50/mo vs. separate services. Most major providers offer internet + TV + phone combos. Enter your ZIP and I'll show bundle pricing in your area.`;
-      case 'order':
-        return `Ready to get started? It only takes about 3 minutes:<br><br>1. Tell me your ZIP code<br>2. Pick your speed & provider<br>3. Fill out the short order form<br><br>What's your ZIP code?`;
-      case 'zip':
-        answers.zip = intent.zip;
-        return `Got it — checking providers for <strong>${intent.zip}</strong>. What's your main use for the internet?`;
-      case 'provider': {
-        const prov = providers.find(p => p.name.toLowerCase() === intent.name.toLowerCase());
-        if (prov) return `<strong>${prov.name}</strong> is one of our recommended providers!<br><br>Starting from $${prov.minPrice}/mo · Up to ${prov.maxSpeed} Mbps · ⭐ ${prov.rating}/5<br><br>What's your ZIP code? I'll confirm ${prov.name} availability at your address.`;
-        return "I can check all available providers at your address. What's your ZIP code?";
-      }
-      default:
-        return "I'm here to help you find the perfect internet plan! I can check providers at your address, compare speeds and prices, or answer questions. What would you like to know?";
-    }
-  }
-  // ─────────────────────────────────────────────────────────────────────
+  /* ── Main send handler ───────────────────────────────────────── */
+  async function sendMessage(text){
+    if(sending || !text.trim()) return;
+    sending = true;
+    const userText = text.trim();
 
-  function handleSend() {
-    const val = input.value.trim();
-    if (!val) return;
-
-    const stepId = input.dataset.step;
-    const step = flow[stepId];
-
-    // Active guided input step — validate and process through flow
-    if (step) {
-      if (step.validate && !step.validate(val)) {
-        addMessage(val, true);
-        addMessage(step.errorMsg, false);
-        input.value = '';
-        return;
-      }
-      addMessage(val, true);
-      input.value = '';
-      input.disabled = true;
-      input.dataset.step = '';
-      if (step.process) step.process(val);
-      if (step.next) setTimeout(() => runStep(step.next), 500);
-      return;
-    }
-
-    // Free-form text — use NLP intent detection
-    addMessage(val, true);
+    addMsg(escHtml(userText), 'user');
+    suggestions.innerHTML = '';
     input.value = '';
-    const intent = detectIntent(val);
+    input.disabled = true;
+    addTyping();
 
-    // If a ZIP was entered as free text, pre-fill and continue flow
-    if (intent.type === 'zip' && !answers.zip) {
-      answers.zip = intent.zip;
-      (async () => {
-        const t = addTyping();
-        await delay(700);
-        removeTyping();
-        addMessage(`Got it — <strong>${intent.zip}</strong>! Last question:`, false);
-        await delay(300);
-        runStep('usage');
-      })();
-      return;
+    try {
+      // Check if user provided a ZIP code
+      const zipMatch = userText.match(/\b(\d{5})\b/);
+      let response;
+
+      if(zipMatch){
+        const zip = zipMatch[1];
+        lastZipSearched = zip;
+
+        // Load ZIP coverage data (cached)
+        await loadZipCoverage();
+        const ctx = buildZipContext(zip);
+
+        // Build enriched message with ZIP context for Gemini
+        const enrichedMsg = `${userText}\n\n[System context — provider availability for ZIP ${zip}:\n${ctx.summary}]`;
+        response = await callGemini(enrichedMsg);
+      } else {
+        response = await callGemini(userText);
+      }
+
+      removeTyping();
+      addMsg(parseResponse(response), 'model');
+      showFollowUps(userText, response);
+
+    } catch(e){
+      removeTyping();
+      console.error('Chat error:', e);
+      addMsg(getFallbackResponse(userText), 'model');
+      showSuggestions(['Check plans at my ZIP', 'Show cheapest plans', 'Compare fastest providers']);
     }
 
-    (async () => {
-      const t = addTyping();
-      await delay(750 + Math.random() * 400);
-      removeTyping();
-      addMessage(respondToIntent(intent), false);
-
-      // Offer a ZIP prompt after helpful responses
-      const needsZip = ['price','speed','cheap','gaming','streaming','wfh','switch','rural','compare','contract','bundle','order','zip','question'];
-      if (needsZip.includes(intent.type) && !answers.zip) {
-        await delay(350);
-        options.innerHTML = '';
-        const btn = document.createElement('button');
-        btn.className = 'ai-option-btn';
-        btn.textContent = 'Check plans at my address →';
-        btn.addEventListener('click', () => { options.innerHTML = ''; runStep('start'); });
-        options.appendChild(btn);
-      } else if (intent.type === 'zip' && answers.zip) {
-        await delay(350);
-        runStep('usage');
-      }
-    })();
+    sending = false;
+    input.disabled = false;
+    input.focus();
   }
 
-  function delay(ms) {
-    return new Promise(r => setTimeout(r, ms));
+  /* ── Follow-up suggestions ───────────────────────────────────── */
+  function showFollowUps(userText, response){
+    const t = userText.toLowerCase();
+    const hasZip = /\b\d{5}\b/.test(t);
+    const items = [];
+    if(!hasZip && !lastZipSearched)
+      items.push('Check plans at my ZIP code');
+    if(/cheap|price|afford|budget|cost/.test(t))
+      items.push('Show no-contract options');
+    else if(/fast|speed|fiber|gig/.test(t))
+      items.push('Which is cheapest?');
+    else if(hasZip)
+      items.push('Compare all plans', 'Show cheapest option');
+    if(items.length < 2) items.push('Help me choose a plan');
+    if(items.length < 3) items.push("I'm ready to sign up");
+    showSuggestions(items.slice(0,3));
   }
 
-  // Event listeners
-  toggle.addEventListener('click', toggleChat);
-  closeBtn.addEventListener('click', toggleChat);
-  sendBtn.addEventListener('click', handleSend);
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') handleSend();
+  /* ── Local fallback when API fails ────────────────────────────── */
+  function getFallbackResponse(userText){
+    const t = userText.toLowerCase();
+    const sorted = [...partners].sort((a,b)=>a.minPrice - b.minPrice);
+    const fastest = [...partners].sort((a,b)=>b.maxSpeed - a.maxSpeed);
+
+    if(/\b\d{5}\b/.test(t)){
+      const zip = t.match(/\b(\d{5})\b/)[1];
+      const ctx = buildZipContext(zip);
+      const show = ctx.primary.length ? ctx.primary : sorted;
+      return `Here are the top providers for <strong>${zip}</strong>:<br><br>${show.slice(0,3).map(p =>
+        `<div class="ai-plan-card">
+          <div class="ai-plan-provider">${p.name}</div>
+          <div class="ai-plan-stats"><span>Up to ${p.maxSpeed} Mbps</span><span class="ai-plan-price">From $${p.minPrice}/mo</span></div>
+          <button class="ai-order-btn" data-slug="${p.slug}" data-plan="${p.plans[0].name}">Sign Up →</button>
+        </div>`).join('')}${ctx.secondary.length ? '<br>Also available: ' + ctx.secondary.map(p => `<strong>${p.name}</strong> from $${p.minPrice}/mo`).join(', ') : ''}`;
+    }
+    if(/cheap|afford|budget|low.?cost|price/.test(t)){
+      return `Here are our most affordable plans:<br><br>${sorted.slice(0,3).map(p =>
+        `<div class="ai-plan-card">
+          <div class="ai-plan-provider">${p.name}</div>
+          <div class="ai-plan-stats"><span>Up to ${p.maxSpeed} Mbps</span><span class="ai-plan-price">From $${p.minPrice}/mo</span></div>
+          <button class="ai-order-btn" data-slug="${p.slug}" data-plan="${p.plans[0].name}">Get Started →</button>
+        </div>`).join('')}<br>Tell me your ZIP code for exact availability!`;
+    }
+    if(/fast|speed|fiber|gig/.test(t)){
+      return `Top picks for speed:<br><br>${fastest.slice(0,3).map(p =>
+        `<div class="ai-plan-card">
+          <div class="ai-plan-provider">${p.name}</div>
+          <div class="ai-plan-stats"><span>Up to ${p.maxSpeed} Mbps</span><span class="ai-plan-price">From $${p.minPrice}/mo</span></div>
+          <button class="ai-order-btn" data-slug="${p.slug}" data-plan="${p.plans[0].name}">Get Started →</button>
+        </div>`).join('')}<br>Enter your ZIP and I'll confirm availability.`;
+    }
+    return `I can help you find the perfect internet plan! Here are our top-rated providers:<br><br>${sorted.slice(0,3).map(p =>
+      `<strong>${p.name}</strong> — from $${p.minPrice}/mo, up to ${p.maxSpeed} Mbps`).join('<br>')}<br><br>Tell me your ZIP code and what you use the internet for, and I'll find the best match!`;
+  }
+
+  /* ── Toggle chat open/close ──────────────────────────────────── */
+  function openChat(){
+    isOpen = true;
+    chatWin.style.display = 'flex';
+    iconOpen.style.display = 'none';
+    iconClose.style.display = 'block';
+    badge.style.display = 'none';
+    if(!started){
+      started = true;
+      loadZipCoverage(); // Pre-load ZIP data
+      greet();
+    }
+    input.focus();
+  }
+
+  function closeChat(){
+    isOpen = false;
+    chatWin.style.display = 'none';
+    iconOpen.style.display = 'block';
+    iconClose.style.display = 'none';
+  }
+
+  async function greet(){
+    addTyping();
+    await delay(600);
+    removeTyping();
+    addMsg("Hi! I'm your AI-powered internet advisor. I can help you find the best plan, compare providers, and get you signed up in minutes.<br><br>What can I help you with today?", 'model');
+    history.push({ role: 'model', parts: [{ text: "Hi! I'm your AI-powered internet advisor. I can help you find the best plan, compare providers, and get you signed up in minutes. What can I help you with today?" }] });
+    showSuggestions([
+      "What's available at my address?",
+      "Show me the cheapest plans",
+      "I need fast internet for gaming",
+    ]);
+  }
+
+  /* ── Events ──────────────────────────────────────────────────── */
+  toggle.addEventListener('click', ()=> isOpen ? closeChat() : openChat());
+  closeBtn.addEventListener('click', closeChat);
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    sendMessage(input.value);
   });
 
-  // Auto-show badge after delay
-  setTimeout(() => {
-    if (!isOpen) badge.style.display = 'flex';
-  }, 3000);
+  setTimeout(()=>{ if(!isOpen) badge.style.display = 'flex'; }, 3000);
 })();
 </script>
 
 <style>
+  /* ═══════════════════════════════════════════════════════════════
+     AI Chat — fully isolated dark theme. All colors explicit with
+     !important to override any global CSS variable cascade.
+     ═══════════════════════════════════════════════════════════════ */
+
   .ai-chat {
     position: fixed;
     bottom: 80px;
     right: 20px;
     z-index: 9999;
-    font-family: var(--font-sans);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
+  /* Nuclear reset — prevent ANY global color/font bleed into chat window */
+  .ai-chat-window,
+  .ai-chat-window *,
+  .ai-chat-window *::before,
+  .ai-chat-window *::after {
+    --text-primary: #e0e4ee !important;
+    --text-secondary: #9ca3af !important;
+    --text-tertiary: #6b7280 !important;
+    color: #e0e4ee !important;
+    border-color: rgba(255,255,255,0.08) !important;
+  }
+
+  /* ── Toggle button ──────────────────────────────────────────── */
   .ai-chat-toggle {
-    width: 64px;
-    height: 64px;
+    width: 60px; height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--brand-blue), var(--brand-purple));
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 32px rgba(0, 82, 255, 0.4), 0 0 1px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: #fff !important;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 24px rgba(102,126,234,0.45);
     cursor: pointer;
-    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s;
-    position: relative;
-    border: 2px solid rgba(255,255,255,0.1);
+    transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s;
+    position: relative; border: none;
   }
   .ai-chat-toggle:hover {
-    transform: scale(1.12);
-    box-shadow: 0 12px 40px rgba(0, 82, 255, 0.5), 0 0 20px rgba(0, 82, 255, 0.2);
+    transform: scale(1.1);
+    box-shadow: 0 10px 36px rgba(102,126,234,0.55);
   }
-
   .ai-chat-badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: var(--brand-red);
-    color: white;
-    font-size: 11px;
-    font-weight: 700;
-    display: none;
-    align-items: center;
-    justify-content: center;
+    position: absolute; top: -3px; right: -3px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: #ef4444 !important; color: #fff !important;
+    font-size: 11px; font-weight: 700;
+    display: none; align-items: center; justify-content: center;
+    border: 2px solid #111827 !important;
   }
 
+  /* ── Window ─────────────────────────────────────────────────── */
   .ai-chat-window {
-    position: absolute;
-    bottom: 72px;
-    right: 0;
-    width: 400px;
-    max-height: 560px;
-    background: var(--gray-900, #111827);
-    border: 1px solid rgba(255,255,255,0.1);
+    position: absolute; bottom: 72px; right: 0;
+    width: 400px; max-height: 580px;
+    background: #0f1629 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
     border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 82, 255, 0.2), 0 0 40px rgba(0, 82, 255, 0.1);
-    animation: chatSlideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex; flex-direction: column; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(102,126,234,0.15);
+    animation: chatSlideUp 0.3s cubic-bezier(.34,1.56,.64,1);
   }
-
   @keyframes chatSlideUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity:0; transform: translateY(12px) scale(0.96); }
+    to { opacity:1; transform: translateY(0) scale(1); }
   }
 
+  /* ── Header ─────────────────────────────────────────────────── */
   .ai-chat-header {
     padding: 14px 16px;
-    background: linear-gradient(135deg, var(--brand-blue), var(--brand-purple));
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    display: flex; align-items: center; justify-content: space-between;
     flex-shrink: 0;
   }
-  .ai-chat-header-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: white;
+  .ai-chat-header *,
+  .ai-chat-header-info,
+  .ai-chat-header-info strong,
+  .ai-chat-header-info .ai-hdr-title,
+  .ai-chat-header-info .ai-chat-status {
+    color: #fff !important;
   }
+  .ai-chat-header-info { display: flex; align-items: center; gap: 10px; }
+  .ai-chat-header-info .ai-hdr-title { font-size: 14px; font-weight: 700; }
   .ai-chat-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(255,255,255,0.2) !important;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ai-chat-avatar svg { color: #fff !important; }
+  .ai-chat-status { display: block; font-size: 11px; color: rgba(255,255,255,0.8) !important; }
+  .ai-status-dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: #34d399 !important; margin-right: 3px; vertical-align: middle;
   }
   .ai-chat-close {
-    color: rgba(255,255,255,0.8);
-    cursor: pointer;
-    padding: 4px;
+    color: rgba(255,255,255,0.7) !important; cursor: pointer; padding: 4px;
+    background: none !important; border: none !important;
   }
-  .ai-chat-close:hover { color: white; }
+  .ai-chat-close:hover { color: #fff !important; }
+  .ai-chat-close svg { color: rgba(255,255,255,0.7) !important; }
 
+  /* ── Messages ───────────────────────────────────────────────── */
   .ai-chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    min-height: 200px;
-    max-height: 320px;
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    min-height: 200px; max-height: 340px; scroll-behavior: smooth;
+    background: #0f1629 !important;
   }
+  .ai-chat-messages::-webkit-scrollbar { width: 4px; }
+  .ai-chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1) !important; border-radius: 4px; }
 
   .ai-msg {
-    max-width: 85%;
-    padding: 12px 16px;
-    border-radius: 16px;
-    font-size: 14px;
-    line-height: 1.6;
-    animation: msgFade 0.3s ease-out;
-    word-wrap: break-word;
+    max-width: 88%; padding: 12px 16px; border-radius: 16px;
+    font-size: 13.5px; line-height: 1.65;
+    animation: msgFade 0.25s ease-out; word-wrap: break-word;
   }
-
   @keyframes msgFade {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity:0; transform: translateY(6px); }
+    to { opacity:1; transform: translateY(0); }
   }
-
   .ai-msg-bot {
-    background: #1f2937;
-    color: #e8eaf0;
+    background: #1a2240 !important;
     align-self: flex-start;
-    border-bottom-left-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.07);
+    border-bottom-left-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.06) !important;
   }
+  .ai-msg-bot,
+  .ai-msg-bot * { color: #e0e4ee !important; }
+  .ai-msg-bot strong { color: #f0f2f8 !important; }
+  .ai-msg-bot a { color: #a5b4fc !important; text-decoration: underline; }
   .ai-msg-user {
-    background: linear-gradient(135deg, var(--brand-blue), #0040d9);
-    color: white;
+    background: linear-gradient(135deg, #667eea, #5a67d8) !important;
     align-self: flex-end;
-    border-bottom-right-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,82,255,0.3);
+    border-bottom-right-radius: 4px;
+    border: none !important;
   }
+  .ai-msg-user,
+  .ai-msg-user * { color: #fff !important; }
 
-  .ai-typing {
-    display: flex;
-    gap: 4px;
-    padding: 12px 18px;
-  }
+  /* ── Typing indicator ───────────────────────────────────────── */
+  .ai-typing { display: flex; gap: 5px; padding: 14px 18px; background: #1a2240 !important; }
   .ai-typing span {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--gray-500);
-    animation: typingBounce 1.4s infinite;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #4b5563 !important; color: #4b5563 !important;
+    animation: tBounce 1.4s infinite;
   }
   .ai-typing span:nth-child(2) { animation-delay: 0.2s; }
   .ai-typing span:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes typingBounce {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-    30% { transform: translateY(-6px); opacity: 1; }
+  @keyframes tBounce {
+    0%,60%,100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-5px); opacity: 1; }
   }
 
-  .ai-chat-options {
-    padding: 0 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    flex-shrink: 0;
-    max-height: 200px;
-    overflow-y: auto;
+  /* ── Plan cards ─────────────────────────────────────────────── */
+  .ai-plan-card {
+    background: #141d35 !important;
+    border: 1px solid rgba(102,126,234,0.2) !important;
+    border-radius: 12px; padding: 12px; margin: 6px 0;
   }
-  .ai-chat-options:empty { padding: 0; }
+  .ai-plan-card * { color: #e0e4ee !important; }
+  .ai-plan-provider {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+    color: #818cf8 !important; font-weight: 700; margin-bottom: 2px;
+  }
+  .ai-plan-name { font-weight: 700; font-size: 14px; color: #e0e4ee !important; margin-bottom: 6px; }
+  .ai-plan-stats {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: #9ca3af !important; margin-bottom: 4px;
+  }
+  .ai-plan-stats span { color: #9ca3af !important; }
+  .ai-plan-price { font-weight: 800; color: #34d399 !important; font-size: 15px; }
+  .ai-plan-meta { font-size: 11px; color: #6b7280 !important; margin-bottom: 8px; }
 
-  .ai-option-btn {
-    display: block;
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    background: #1f2937;
-    color: #e8eaf0;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.2s ease;
-    text-decoration: none;
+  /* ── Order / CTA button ─────────────────────────────────────── */
+  .ai-order-btn {
+    display: block; width: 100%; padding: 10px 12px;
+    background: linear-gradient(135deg, #34d399, #10b981) !important;
+    color: #022c22 !important;
+    font-size: 13px; font-weight: 800; border: none !important; border-radius: 10px;
+    cursor: pointer; text-align: center;
+    transition: filter 0.15s, transform 0.15s; margin-top: 4px;
   }
-  .ai-option-btn:hover {
-    background: var(--gray-700, #374151);
-    border-color: var(--brand-blue);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0,82,255,0.2);
+  .ai-order-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+  /* ── Suggestions ────────────────────────────────────────────── */
+  .ai-chat-suggestions {
+    padding: 0 14px; display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0;
+    background: #0f1629 !important;
   }
-  .ai-option-call {
-    background: linear-gradient(135deg, var(--brand-green, #00d584), #00b871) !important;
-    color: white !important;
-    font-weight: 700;
-    border: none !important;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(0,213,132,0.3) !important;
+  .ai-chat-suggestions:empty { padding: 0; }
+  .ai-suggestion {
+    padding: 8px 14px;
+    background: #1a2240 !important;
+    border: 1px solid rgba(102,126,234,0.25) !important;
+    border-radius: 20px;
+    color: #c4b5fd !important;
+    font-size: 12.5px; font-weight: 600; cursor: pointer;
+    transition: all 0.15s; white-space: nowrap;
   }
-  .ai-option-call:hover {
-    filter: brightness(1.08);
-    box-shadow: 0 6px 20px rgba(0,213,132,0.4) !important;
-    transform: translateY(-2px);
+  .ai-suggestion:hover {
+    background: #252f52 !important;
+    border-color: #818cf8 !important;
+    color: #e0e7ff !important; transform: translateY(-1px);
   }
 
+  /* ── Footer / input ─────────────────────────────────────────── */
   .ai-chat-footer {
-    padding: 12px 16px;
-    border-top: 1px solid var(--border, #1f2937);
-    display: flex;
-    gap: 8px;
-    flex-shrink: 0;
+    padding: 12px 14px;
+    border-top: 1px solid rgba(255,255,255,0.06) !important;
+    display: flex; gap: 8px; flex-shrink: 0;
+    background: #0f1629 !important;
   }
   .ai-chat-input {
-    flex: 1;
-    padding: 10px 14px;
-    border: 1px solid #374151;
-    border-radius: 10px;
-    background: #1f2937;
-    color: #e8eaf0;
-    font-size: 13px;
-    outline: none;
+    flex: 1; padding: 10px 14px;
+    border: 1px solid #2d3752 !important; border-radius: 12px;
+    background: #1a2240 !important; color: #e0e4ee !important;
+    font-size: 13px; outline: none; transition: border-color 0.15s;
   }
-  .ai-chat-input::placeholder { color: #6b7280; }
-  .ai-chat-input:focus {
-    border-color: var(--brand-blue);
-  }
-  .ai-chat-input:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  .ai-chat-input::placeholder { color: #6b7280 !important; }
+  .ai-chat-input:focus { border-color: #667eea !important; }
+  .ai-chat-input:disabled { opacity: 0.5; cursor: not-allowed; }
   .ai-chat-send {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: var(--brand-blue);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: background 0.15s;
+    width: 40px; height: 40px; border-radius: 12px;
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    color: #fff !important;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; flex-shrink: 0; transition: filter 0.15s; border: none !important;
   }
-  .ai-chat-send:hover {
-    background: var(--brand-blue-dark);
-  }
+  .ai-chat-send svg { color: #fff !important; }
+  .ai-chat-send:hover { filter: brightness(1.15); }
 
+  /* ── Mobile ─────────────────────────────────────────────────── */
   @media (max-width: 480px) {
     .ai-chat { bottom: 70px; right: 12px; }
-    .ai-chat-window {
-      width: calc(100vw - 24px);
-      right: -6px;
-      max-height: 70vh;
-    }
-    .ai-chat-toggle {
-      width: 52px;
-      height: 52px;
-    }
+    .ai-chat-window { width: calc(100vw - 24px); right: -6px; max-height: 75vh; }
+    .ai-chat-toggle { width: 52px; height: 52px; }
+    .ai-chat-messages { max-height: 45vh; }
   }
 </style>

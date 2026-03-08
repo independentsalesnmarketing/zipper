@@ -1182,76 +1182,69 @@
 
   /* ---- Plan Card ---- */
   .plan-card {
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.3);
+    background: var(--white);
+    border: 1.5px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: var(--space-xl);
+    padding: var(--space-xl) var(--space-lg);
     text-align: center;
-    transition: all var(--duration-normal) var(--ease-spring);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     position: relative;
     overflow: hidden;
-  }
-  .plan-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1));
-    pointer-events: none;
+    display: flex;
+    flex-direction: column;
   }
   .plan-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--shadow-xl), var(--glow-blue);
-    border-color: #0052ff;
-    background: rgba(255,255,255,0.95);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border-color: var(--brand-blue);
   }
   .plan-card--featured {
-    border-color: #0052ff;
-    box-shadow: var(--glow-blue);
-    background: linear-gradient(135deg, rgba(0,82,255,0.05), rgba(0,217,255,0.05));
-    transform: scale(1.05);
+    border-color: var(--brand-blue);
+    box-shadow: 0 4px 20px rgba(0, 82, 255, 0.12);
+    background: linear-gradient(180deg, rgba(0, 82, 255, 0.03) 0%, var(--white) 100%);
   }
   .plan-card--featured:hover {
-    transform: translateY(-8px) scale(1.08);
-    box-shadow: var(--glow-blue), 0 0 32px rgba(0,82,255,0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 82, 255, 0.18);
   }
   .plan-card .plan-name {
     font-family: var(--font-display);
-    font-size: var(--text-lg);
+    font-size: var(--text-sm);
     font-weight: 600;
-    margin-bottom: var(--space-sm);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-md);
   }
   .plan-card .plan-speed {
     font-size: var(--text-3xl);
     font-weight: 800;
-    background: linear-gradient(135deg, #0052ff, #00d9ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text-primary);
+    line-height: 1.1;
   }
   .plan-card .plan-speed-unit {
     font-size: var(--text-sm);
     color: var(--text-tertiary);
     font-weight: 400;
+    margin-bottom: var(--space-md);
   }
   .plan-card .plan-price {
-    font-size: var(--text-4xl);
+    font-size: var(--text-3xl);
     font-weight: 800;
-    background: linear-gradient(135deg, #00d584, #1aff9f);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-block: var(--space-md);
+    color: var(--brand-blue);
+    margin-block: var(--space-sm);
   }
-  .plan-card .plan-price span { font-size: var(--text-sm); font-weight: 400; color: var(--text-tertiary); }
+  .plan-card .plan-price span { font-size: var(--text-sm); font-weight: 500; color: var(--text-tertiary); }
   .plan-card .plan-original-price {
     font-size: var(--text-sm);
     color: var(--text-tertiary);
     text-decoration: line-through;
+    margin-bottom: var(--space-xs);
   }
   .plan-card .plan-features {
     margin-top: var(--space-lg);
     text-align: left;
+    flex: 1;
   }
   .plan-card .plan-features li {
     display: flex;
@@ -1262,7 +1255,7 @@
     color: var(--text-secondary);
   }
   .plan-card .plan-features li::before {
-    content: '✓';
+    content: '\2713';
     color: var(--brand-green);
     font-weight: 700;
   }
@@ -1332,6 +1325,23 @@
   }
   .site-header .header-cta { font-size: var(--text-sm); }
 
+  .site-header .header-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--brand-blue);
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.4em 0.7em;
+    border-radius: var(--radius-md);
+    transition: background var(--duration-fast), color var(--duration-fast);
+  }
+  .site-header .header-phone:hover {
+    background: rgba(0,82,255,0.07);
+  }
+
   .mobile-menu-btn {
     display: none;
     flex-direction: column;
@@ -1351,6 +1361,7 @@
     .mobile-menu-btn { display: flex; }
     .site-header nav { display: none; }
     .site-header .header-cta { display: none; }
+    .site-header .header-phone { display: none; }
     .site-header nav.open {
       display: flex;
       flex-direction: column;
@@ -1512,7 +1523,8 @@
     100% { transform: translate(80px, -80px); }
   }
   .hero h1, .hero h2, .hero h3, .hero h4 { color: var(--white); }
-  .hero p { color: var(--text-on-dark-muted); }
+  .hero p, .hero .hero-subtitle { color: rgba(255, 255, 255, 0.85); }
+  .hero strong { color: inherit; }
 
   .hero-badge {
     display: inline-flex;

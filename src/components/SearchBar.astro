@@ -28,6 +28,8 @@ const { placeholder = 'Enter your ZIP code', size = 'default' } = Astro.props;
   document.querySelectorAll('.search-bar').forEach(form => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      // If a page-specific handler already claimed this form, do nothing
+      if ((form as HTMLElement).hasAttribute('data-handled')) return;
       const input = form.querySelector('input[name="zip"]') as HTMLInputElement;
       const zip = input?.value?.trim();
       if (zip && /^[0-9]{5}$/.test(zip)) {

@@ -2,14 +2,13 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
 const year = new Date().getFullYear();
 const month = new Date().toLocaleString('en-US', { month: 'long' });
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
+
 
 // Providers that offer bundle-eligible services
 const bundleProviders = getAllProviders()
@@ -31,11 +30,11 @@ const bundleDeals = [
 
 const faqs = [
   { question: 'Are internet and TV bundles worth it?', answer: 'It depends. Bundles can save $10-30/mo compared to buying services separately from the same provider. However, internet + streaming services (Netflix, YouTube TV, Hulu Live) often costs less overall than a traditional cable bundle. For live sports fans, bundles may still offer the best value.' },
-  { question: 'What is the cheapest internet and TV bundle?', answer: `Current cheapest bundles start around $89.99/mo for 300 Mbps internet + 125+ channels. Optimum, Spectrum, and Verizon Fios offer competitive bundle pricing. Call ${phone} for the latest bundle deals at your address.` },
+  { question: 'What is the cheapest internet and TV bundle?', answer: `Current cheapest bundles start around $89.99/mo for 300 Mbps internet + 125+ channels. Optimum, Spectrum, and Verizon Fios offer competitive bundle pricing. Sign up above and we'll find the best bundle deal at your address.` },
   { question: 'Can I bundle internet with streaming TV?', answer: 'Yes! Many providers offer discounts when you add streaming services. AT&T includes HBO Max with some plans. Frontier partners with YouTube TV. Verizon Fios offers Disney+ bundles. These "streaming bundles" are often cheaper than traditional cable TV bundles.' },
   { question: 'Should I cut the cord or get a bundle?', answer: 'For most people, cutting the cord saves money. Internet-only ($40-80/mo) + streaming services ($15-65/mo) typically costs $60-145/mo — often less than a $100-180/mo cable bundle. The exception: heavy live sports viewers may still benefit from traditional TV bundles.' },
-  { question: 'Do bundles require contracts?', answer: 'Not always. Spectrum bundles are contract-free. Verizon Fios allows Mix & Match without contracts. However, some providers offer deeper discounts with 1-2 year agreements. Always ask about contract terms before signing up — call us for details.' },
-  { question: 'Can I add TV later to my internet plan?', answer: 'Usually yes. Most providers let you add TV service to an existing internet plan. In fact, this can sometimes trigger bundle pricing retroactively. Call your provider (or call us at ' + phone + ') to explore adding TV to your current internet plan.' },
+  { question: 'Do bundles require contracts?', answer: 'Not always. Spectrum bundles are contract-free. Verizon Fios allows Mix & Match without contracts. However, some providers offer deeper discounts with 1-2 year agreements. Always ask about contract terms before signing up.' },
+  { question: 'Can I add TV later to my internet plan?', answer: 'Usually yes. Most providers let you add TV service to an existing internet plan. In fact, this can sometimes trigger bundle pricing retroactively. Sign up above and we can help you explore adding TV to your current internet plan.' },
 ];
 
 const schemas = [
@@ -65,8 +64,8 @@ const schemas = [
           Save up to $30/mo by bundling internet and TV with the same cable or fiber provider. Compare {bundleDeals.length} top <strong>cable and internet plans</strong> from major providers.
           We'll help you decide if bundling or cord-cutting saves you more.
         </p>
-        <a href={phoneHref} class="btn btn-call mt-xl" style="font-size: var(--text-lg);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> Call {phone} for Bundle Deals
+        <a href="#get-connected" class="btn btn-cta mt-xl" style="font-size: var(--text-lg);">
+          Get Bundle Deals
         </a>
       </div>
 
@@ -99,7 +98,7 @@ const schemas = [
                   <td>{deal.speed}</td>
                   <td>{deal.channels}</td>
                   <td>
-                    <a href={phoneHref} class="btn btn-call" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);">Call</a>
+                    <a href="#get-connected" class="btn btn-cta" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);">Order</a>
                   </td>
                 </tr>
               ))}
@@ -156,9 +155,8 @@ const schemas = [
         </div>
         <div class="text-center mt-xl">
           <p style="font-weight:600;margin-bottom:var(--space-md);">Not sure which is right for you?</p>
-          <a href={phoneHref} class="btn btn-call">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-            Call for Personalized Bundle Advice
+          <a href="#get-connected" class="btn btn-cta">
+            Get Personalized Bundle Advice
           </a>
         </div>
       </div>
@@ -183,7 +181,7 @@ const schemas = [
               </div>
               <p class="text-secondary" style="font-size:var(--text-sm);margin-bottom:var(--space-md);">{p.description}</p>
               <div class="flex gap-sm">
-                <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="flex:1;font-size:var(--text-sm);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Ask About Bundles</a>
+                <a href="#get-connected" class="btn btn-cta" style="flex:1;font-size:var(--text-sm);">Ask About Bundles</a>
                 <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size:var(--text-sm);">Details</a>
               </div>
             </div>
@@ -204,5 +202,5 @@ const schemas = [
 
     </div>
   </section>
-  <StickyCallBar phone={phone} message="Ask about bundle savings — call now" />
+  <StickyCallBar text="Save on internet & TV bundles — sign up for free help" />
 </Base>

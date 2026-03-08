@@ -10,8 +10,7 @@
  *
  * Triggers: data-signup-modal, data-signup-provider="slug"
  */
-import { providers, MAIN_PHONE, getMinPrice, getMaxSpeed, formatSpeed, formatPrice } from '@lib/providers';
-import { formatPhoneForTel } from '@lib/utils';
+import { providers, getMinPrice, getMaxSpeed, formatSpeed, formatPrice } from '@lib/providers';
 
 interface Props {
   providerSlug?: string;
@@ -29,7 +28,12 @@ const partnerData = providers
     plans: p.plans.map(pl => ({
       name: pl.name,
       speed: pl.speed,
+      uploadSpeed: pl.uploadSpeed,
       price: pl.promoPrice || pl.price,
+      regularPrice: pl.price,
+      contract: pl.contract,
+      dataCap: pl.dataCap,
+      features: pl.features.slice(0, 3),
     })),
   }));
 ---
@@ -87,6 +91,8 @@ const partnerData = providers
             <option value="">Choose a plan...</option>
           </select>
         </div>
+
+        <div id="su-plan-details" class="su-plan-details" style="display:none;"></div>
 
         <div class="su-field">
           <label class="su-label" for="su-need">What's your situation?</label>
@@ -191,14 +197,18 @@ const partnerData = providers
       <div class="su-success-icon">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       </div>
-      <h3 class="su-title">You're All Set!</h3>
-      <p class="su-subtitle" id="su-success-msg">Your sign-up request has been received. A specialist will reach out within 1 business day to finalize your service.</p>
+      <h3 class="su-title">Order Received!</h3>
+      <p class="su-order-ref" id="su-order-ref" style="font-size:var(--text-lg);font-weight:800;color:var(--brand-blue);margin-bottom:var(--space-sm);"></p>
+      <p class="su-subtitle" id="su-success-msg">Your order is being processed. You'll receive a confirmation text shortly. A confirmation specialist will contact you to schedule your installation.</p>
       <div class="su-success-alt">
-        <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-bottom:var(--space-sm);">Want to get connected even faster?</p>
-        <a href={formatPhoneForTel(MAIN_PHONE)} class="su-btn su-btn-secondary" style="display:inline-flex;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          Call {MAIN_PHONE}
-        </a>
+        <div style="background:var(--gray-50);border-radius:var(--radius-md);padding:var(--space-md);margin-top:var(--space-lg);text-align:left;">
+          <p style="font-size:var(--text-sm);font-weight:700;color:var(--text-primary);margin-bottom:var(--space-xs);">What happens next:</p>
+          <ol style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.8;padding-left:var(--space-lg);margin:0;">
+            <li>You'll receive a text confirmation within minutes</li>
+            <li>A specialist will contact you to confirm your installation date</li>
+            <li>Your service will be activated on your preferred date</li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -452,6 +462,28 @@ const partnerData = providers
     border-top: 4px solid var(--brand-blue);
   }
 
+  /* Plan details card */
+  .su-plan-details {
+    background: var(--gray-50);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin-bottom: var(--space-sm);
+    animation: su-slide-up 0.25s ease;
+  }
+  .su-plan-details .su-pd-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: var(--text-sm);
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .su-plan-details .su-pd-row:last-child { border-bottom: none; }
+  .su-plan-details .su-pd-label { color: var(--text-tertiary); }
+  .su-plan-details .su-pd-val { font-weight: 600; color: var(--text-primary); }
+  .su-plan-details .su-pd-features { display: flex; flex-wrap: wrap; gap: 4px; margin-top: var(--space-xs); }
+  .su-plan-details .su-pd-tag { font-size: 11px; background: var(--gray-100); border-radius: 99px; padding: 2px 8px; color: var(--text-secondary); }
+
   @media (max-width: 600px) {
     .su-modal { padding: var(--space-lg); max-height: 95vh; }
     .su-row { grid-template-columns: 1fr; }
@@ -472,7 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!modal || !form) return;
 
   // Partner data from server
-  interface PartnerPlan { name: string; speed: number; price: number; }
+  interface PartnerPlan { name: string; speed: number; uploadSpeed: number; price: number; regularPrice: number; contract: string; dataCap: string; features: string[]; }
   interface PartnerInfo { slug: string; name: string; logo: string | null; phone: string; plans: PartnerPlan[]; }
   const partners: PartnerInfo[] = JSON.parse(modal.dataset.partners || '[]');
 
@@ -489,6 +521,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const titleEl = document.getElementById('su-title') as HTMLElement;
   const subtitleEl = document.getElementById('su-subtitle') as HTMLElement;
   const reviewEl = document.getElementById('su-review') as HTMLElement;
+  const planDetailsEl = document.getElementById('su-plan-details') as HTMLElement;
+
+  function updatePlanDetails(opt: HTMLOptionElement | null) {
+    if (!opt || !opt.value || !opt.dataset.speed) {
+      planDetailsEl.style.display = 'none';
+      return;
+    }
+    const speed = parseInt(opt.dataset.speed || '0');
+    const upload = parseInt(opt.dataset.uploadSpeed || '0');
+    const price = parseFloat(opt.dataset.price || '0');
+    const regPrice = parseFloat(opt.dataset.regularPrice || '0');
+    const contract = opt.dataset.contract || 'N/A';
+    const dataCap = opt.dataset.dataCap || 'N/A';
+    const features = (opt.dataset.features || '').split('|').filter(Boolean);
+
+    const speedLabel = speed >= 1000 ? (speed/1000) + ' Gbps' : speed + ' Mbps';
+    const uploadLabel = upload >= 1000 ? (upload/1000) + ' Gbps' : upload + ' Mbps';
+    const savings = regPrice - price;
+
+    let html = `<div class="su-pd-row"><span class="su-pd-label">Download</span><span class="su-pd-val">${speedLabel}</span></div>`;
+    html += `<div class="su-pd-row"><span class="su-pd-label">Upload</span><span class="su-pd-val">${uploadLabel}</span></div>`;
+    html += `<div class="su-pd-row"><span class="su-pd-label">Price</span><span class="su-pd-val">$${price.toFixed(2)}/mo${savings > 0 ? ` <span style="color:var(--brand-green);font-size:var(--text-xs);">Save $${savings.toFixed(0)}/mo</span>` : ''}</span></div>`;
+    html += `<div class="su-pd-row"><span class="su-pd-label">Contract</span><span class="su-pd-val">${contract}</span></div>`;
+    html += `<div class="su-pd-row"><span class="su-pd-label">Data Cap</span><span class="su-pd-val">${dataCap}</span></div>`;
+    if (features.length) {
+      html += `<div class="su-pd-features">${features.map(f => `<span class="su-pd-tag">${f}</span>`).join('')}</div>`;
+    }
+    planDetailsEl.innerHTML = html;
+    planDetailsEl.style.display = '';
+  }
+
+  planSelect.addEventListener('change', () => {
+    const opt = planSelect.options[planSelect.selectedIndex];
+    updatePlanDetails(opt as HTMLOptionElement);
+  });
 
   function openModal(providerSlug?: string) {
     modal.classList.add('open');
@@ -521,10 +588,22 @@ document.addEventListener('DOMContentLoaded', () => {
       partner.plans.forEach(pl => {
         const opt = document.createElement('option');
         opt.value = pl.name;
-        opt.textContent = `${pl.name} — ${pl.speed >= 1000 ? (pl.speed/1000) + ' Gbps' : pl.speed + ' Mbps'} — $${pl.price.toFixed(2)}/mo`;
+        const speedLabel = pl.speed >= 1000 ? (pl.speed/1000) + ' Gbps' : pl.speed + ' Mbps';
+        const uploadLabel = pl.uploadSpeed >= 1000 ? (pl.uploadSpeed/1000) + ' Gbps' : pl.uploadSpeed + ' Mbps';
+        opt.textContent = `${pl.name} — ${speedLabel} ↓ / ${uploadLabel} ↑ — $${pl.price.toFixed(2)}/mo`;
+        opt.dataset.speed = String(pl.speed);
+        opt.dataset.uploadSpeed = String(pl.uploadSpeed);
+        opt.dataset.price = String(pl.price);
+        opt.dataset.regularPrice = String(pl.regularPrice);
+        opt.dataset.contract = pl.contract;
+        opt.dataset.dataCap = pl.dataCap;
+        opt.dataset.features = pl.features.join('|');
         planSelect.appendChild(opt);
       });
       planField.style.display = '';
+
+      // Show plan details card when plan is selected
+      updatePlanDetails(null);
     } else {
       logoRow.style.display = 'none';
       defaultHeader.style.display = '';
@@ -591,7 +670,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!el.value.trim()) { el.classList.add('su-error'); valid = false; } else { el.classList.remove('su-error'); }
     });
     const emailEl = document.getElementById('su-email') as HTMLInputElement;
-    if (emailEl.value && !emailEl.value.includes('@')) { emailEl.classList.add('su-error'); valid = false; }
+    if (emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) { emailEl.classList.add('su-error'); valid = false; }
+    const phoneEl = document.getElementById('su-phone') as HTMLInputElement;
+    if (phoneEl.value && !/^[\d\s\-\(\)\+\.]{7,15}$/.test(phoneEl.value.trim())) { phoneEl.classList.add('su-error'); valid = false; }
+    const dobEl = document.getElementById('su-dob') as HTMLInputElement;
+    if (dobEl.value) {
+      const dob = new Date(dobEl.value);
+      const minAge = new Date();
+      minAge.setFullYear(minAge.getFullYear() - 18);
+      if (dob > minAge) { dobEl.classList.add('su-error'); valid = false; }
+    }
     if (!valid) return;
     buildReview();
     goToStep(3);
@@ -599,10 +687,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('su-back-3')?.addEventListener('click', () => goToStep(2));
 
+  let lastSubmitTime = 0;
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    const now = Date.now();
+    if (now - lastSubmitTime < 10000) return; // 10-second cooldown
+    lastSubmitTime = now;
     const consent = document.getElementById('su-consent') as HTMLInputElement;
     if (!consent.checked) { consent.focus(); return; }
+    // Generate order reference number
+    const orderRef = 'IA-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substring(2, 5).toUpperCase();
+    const orderRefEl = document.getElementById('su-order-ref');
+    if (orderRefEl) orderRefEl.textContent = 'Order #' + orderRef;
     // In production, submit to API. For now, show success.
     goToStep(totalSteps + 1);
   });

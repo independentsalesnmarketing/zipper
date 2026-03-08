@@ -1,0 +1,1904 @@
+ZIP_Code	CITY_NAME	ST_ABBREV	SERVICE_Avail
+10459	Bronx	New York	8 GIG
+10472	Bronx	New York	8 GIG
+10473	Bronx	New York	8 GIG
+10474	Bronx	New York	8 GIG
+11203	Brooklyn	New York	8 GIG
+11213	Brooklyn	New York	8 GIG
+11218	Brooklyn	New York	8 GIG
+11225	Brooklyn	New York	8 GIG
+11226	Brooklyn	New York	8 GIG
+11510	Baldwin	New York	8 GIG
+11710	Bellmore	New York	8 GIG
+11714	Bethpage	New York	8 GIG
+11554	East Meadow	New York	8 GIG
+11732	East Norwich	New York	8 GIG
+11003	Elmont	New York	8 GIG
+11010	Franklin Square	New York	8 GIG
+11545	Glen Head	New York	8 GIG
+11547	Glenwood Landing	New York	8 GIG
+11557	Hewlett	New York	8 GIG
+11801	Hicksville	New York	8 GIG
+11096	Inwood	New York	8 GIG
+11753	Jericho	New York	8 GIG
+11756	Levittown	New York	8 GIG
+11560	Locust Valley	New York	8 GIG
+11758	Massapequa	New York	8 GIG
+11566	Merrick	New York	8 GIG
+11572	Oceanside	New York	8 GIG
+11804	Old Bethpage	New York	8 GIG
+11771	Oyster Bay	New York	8 GIG
+11803	Plainview	New York	8 GIG
+11569	Point Lookout	New York	8 GIG
+11575	Roosevelt	New York	8 GIG
+11783	Seaford	New York	8 GIG
+11791	Syosset	New York	8 GIG
+11553	Uniondale	New York	8 GIG
+11556	Uniondale	New York	8 GIG
+11793	Wantagh	New York	8 GIG
+11552	West Hempstead	New York	8 GIG
+11797	Woodbury	New York	8 GIG
+11598	Woodmere	New York	8 GIG
+11207	Brooklyn	New York	8 GIG
+11208	Brooklyn	New York	8 GIG
+11209	Brooklyn	New York	8 GIG
+11211	Brooklyn	New York	8 GIG
+11212	Brooklyn	New York	8 GIG
+11215	Brooklyn	New York	8 GIG
+11233	Brooklyn	New York	8 GIG
+11236	Brooklyn	New York	8 GIG
+11237	Brooklyn	New York	8 GIG
+11713	Bellport	New York	8 GIG
+11715	Blue Point	New York	8 GIG
+11719	Brookhaven	New York	8 GIG
+11934	Center Moriches	New York	8 GIG
+11720	Centereach	New York	8 GIG
+11727	Coram	New York	8 GIG
+11940	East Moriches	New York	8 GIG
+11733	East Setauket	New York	8 GIG
+11941	Eastport	New York	8 GIG
+11738	Farmingville	New York	8 GIG
+11742	Holtsville	New York	8 GIG
+11949	Manorville	New York	8 GIG
+11950	Mastic	New York	8 GIG
+11951	Mastic Beach	New York	8 GIG
+11763	Medford	New York	8 GIG
+11953	Middle Island	New York	8 GIG
+11764	Miller Place	New York	8 GIG
+11955	Moriches	New York	8 GIG
+11766	Mount Sinai	New York	8 GIG
+11772	Patchogue	New York	8 GIG
+11777	Port Jefferson	New York	8 GIG
+11776	Port Jefferson Station	New York	8 GIG
+11961	Ridge	New York	8 GIG
+11778	Rocky Point	New York	8 GIG
+11779	Ronkonkoma	New York	8 GIG
+11784	Selden	New York	8 GIG
+11967	Shirley	New York	8 GIG
+11786	Shoreham	New York	8 GIG
+11789	Sound Beach	New York	8 GIG
+11790	Stony Brook	New York	8 GIG
+11794	Stony Brook	New York	8 GIG
+11980	Yaphank	New York	8 GIG
+11507	Albertson	New York	8 GIG
+11709	Bayville	New York	8 GIG
+11514	Carle Place	New York	8 GIG
+11721	Centerport	New York	8 GIG
+11724	Cold Spring Harbor	New York	8 GIG
+11731	East Northport	New York	8 GIG
+11542	Glen Cove	New York	8 GIG
+11020	Great Neck	New York	8 GIG
+11021	Great Neck	New York	8 GIG
+11023	Great Neck	New York	8 GIG
+11024	Great Neck	New York	8 GIG
+11740	Greenlawn	New York	8 GIG
+11548	Greenvale	New York	8 GIG
+11743	Huntington	New York	8 GIG
+11746	Huntington Station	New York	8 GIG
+11030	Manhasset	New York	8 GIG
+11747	Melville	New York	8 GIG
+11765	Mill Neck	New York	8 GIG
+11040	New Hyde Park	New York	8 GIG
+11042	New Hyde Park	New York	8 GIG
+11568	Old Westbury	New York	8 GIG
+11050	Port Washington	New York	8 GIG
+11576	Roslyn	New York	8 GIG
+11577	Roslyn Heights	New York	8 GIG
+11579	Sea Cliff	New York	8 GIG
+11590	Westbury	New York	8 GIG
+10464	Bronx	New York	8 GIG
+10466	Bronx	New York	8 GIG
+10470	Bronx	New York	8 GIG
+10475	Bronx	New York	8 GIG
+11930	Amagansett	New York	8 GIG
+11931	Aquebogue	New York	8 GIG
+11932	Bridgehampton	New York	8 GIG
+11933	Calverton	New York	8 GIG
+11935	Cutchogue	New York	8 GIG
+11937	East Hampton	New York	8 GIG
+11939	East Marion	New York	8 GIG
+11942	East Quogue	New York	8 GIG
+11944	Greenport	New York	8 GIG
+11946	Hampton Bays	New York	8 GIG
+11947	Jamesport	New York	8 GIG
+11948	Laurel	New York	8 GIG
+11952	Mattituck	New York	8 GIG
+11954	Montauk	New York	8 GIG
+11956	New Suffolk	New York	8 GIG
+11957	Orient	New York	8 GIG
+11958	Peconic	New York	8 GIG
+11959	Quogue	New York	8 GIG
+11960	Remsenburg	New York	8 GIG
+11901	Riverhead	New York	8 GIG
+11963	Sag Harbor	New York	8 GIG
+11962	Sagaponack	New York	8 GIG
+11964	Shelter Island	New York	8 GIG
+11965	Shelter Island Heights	New York	8 GIG
+11970	South Jamesport	New York	8 GIG
+11968	Southampton	New York	8 GIG
+11971	Southold	New York	8 GIG
+11972	Speonk	New York	8 GIG
+11792	Wading River	New York	8 GIG
+11975	Wainscott	New York	8 GIG
+11976	Water Mill	New York	8 GIG
+11977	Westhampton	New York	8 GIG
+11978	Westhampton Beach	New York	8 GIG
+11725	Commack	New York	8 GIG
+11001	Floral Park	New York	8 GIG
+11530	Garden City	New York	8 GIG
+11550	Hempstead	New York	8 GIG
+11749	Islandia	New York	8 GIG
+11754	Kings Park	New York	8 GIG
+11755	Lake Grove	New York	8 GIG
+11501	Mineola	New York	8 GIG
+11767	Nesconset	New York	8 GIG
+11768	Northport	New York	8 GIG
+11780	Saint James	New York	8 GIG
+11787	Smithtown	New York	8 GIG
+11596	Williston Park	New York	8 GIG
+10463	Bronx	New York	8 GIG
+10468	Bronx	New York	8 GIG
+10471	Bronx	New York	8 GIG
+10461	Bronx	New York	8 GIG
+10465	Bronx	New York	8 GIG
+10469	Bronx	New York	8 GIG
+10457	Bronx	New York	8 GIG
+10458	Bronx	New York	8 GIG
+10460	Bronx	New York	8 GIG
+10462	Bronx	New York	8 GIG
+10467	Bronx	New York	8 GIG
+11204	Brooklyn	New York	8 GIG
+11210	Brooklyn	New York	8 GIG
+11214	Brooklyn	New York	8 GIG
+11223	Brooklyn	New York	8 GIG
+11224	Brooklyn	New York	8 GIG
+11228	Brooklyn	New York	8 GIG
+11229	Brooklyn	New York	8 GIG
+11230	Brooklyn	New York	8 GIG
+11234	Brooklyn	New York	8 GIG
+11235	Brooklyn	New York	8 GIG
+11239	Brooklyn	New York	8 GIG
+11701	Amityville	New York	8 GIG
+11509	Atlantic Beach	New York	8 GIG
+11702	Babylon	New York	8 GIG
+11706	Bay Shore	New York	8 GIG
+11705	Bayport	New York	8 GIG
+11716	Bohemia	New York	8 GIG
+11717	Brentwood	New York	8 GIG
+11718	Brightwaters	New York	8 GIG
+11516	Cedarhurst	New York	8 GIG
+11722	Central Islip	New York	8 GIG
+11726	Copiague	New York	8 GIG
+11729	Deer Park	New York	8 GIG
+11730	East Islip	New York	8 GIG
+11518	East Rockaway	New York	8 GIG
+11735	Farmingdale	New York	8 GIG
+11520	Freeport	New York	8 GIG
+11739	Great River	New York	8 GIG
+11788	Hauppauge	New York	8 GIG
+11741	Holbrook	New York	8 GIG
+11558	Island Park	New York	8 GIG
+11751	Islip	New York	8 GIG
+11752	Islip Terrace	New York	8 GIG
+11559	Lawrence	New York	8 GIG
+11757	Lindenhurst	New York	8 GIG
+11561	Long Beach	New York	8 GIG
+11563	Lynbrook	New York	8 GIG
+11565	Malverne	New York	8 GIG
+11762	Massapequa Park	New York	8 GIG
+11703	North Babylon	New York	8 GIG
+11769	Oakdale	New York	8 GIG
+11570	Rockville Centre	New York	8 GIG
+11782	Sayville	New York	8 GIG
+11580	Valley Stream	New York	8 GIG
+11581	Valley Stream	New York	8 GIG
+11704	West Babylon	New York	8 GIG
+11795	West Islip	New York	8 GIG
+11796	West Sayville	New York	8 GIG
+11798	Wyandanch	New York	8 GIG
+11219	Brooklyn	New York	8 GIG
+11220	Brooklyn	New York	8 GIG
+11232	Brooklyn	New York	8 GIG
+06604	Bridgeport	Tri-State	8 GIG
+06605	Bridgeport	Tri-State	8 GIG
+06606	Bridgeport	Tri-State	8 GIG
+06607	Bridgeport	Tri-State	8 GIG
+06608	Bridgeport	Tri-State	8 GIG
+06610	Bridgeport	Tri-State	8 GIG
+06614	Stratford	Tri-State	8 GIG
+06615	Stratford	Tri-State	8 GIG
+06611	Trumbull	Tri-State	8 GIG
+07920	Basking Ridge	Tri-State	8 GIG
+07921	Bedminster	Tri-State	8 GIG
+08805	Bound Brook	Tri-State	8 GIG
+08807	Bridgewater	Tri-State	8 GIG
+07927	Cedar Knolls	Tri-State	8 GIG
+07928	Chatham	Tri-State	8 GIG
+07721	Cliffwood	Tri-State	8 GIG
+08812	Dunellen	Tri-State	8 GIG
+07936	East Hanover	Tri-State	8 GIG
+08817	Edison	Tri-State	8 GIG
+08820	Edison	Tri-State	8 GIG
+08837	Edison	Tri-State	8 GIG
+07931	Far Hills	Tri-State	8 GIG
+07932	Florham Park	Tri-State	8 GIG
+08904	Highland Park	Tri-State	8 GIG
+07735	Keyport	Tri-State	8 GIG
+07938	Liberty Corner	Tri-State	8 GIG
+07940	Madison	Tri-State	8 GIG
+08835	Manville	Tri-State	8 GIG
+08836	Martinsville	Tri-State	8 GIG
+07747	Matawan	Tri-State	8 GIG
+08840	Metuchen	Tri-State	8 GIG
+08846	Middlesex	Tri-State	8 GIG
+08850	Milltown	Tri-State	8 GIG
+08831	Monroe Township	Tri-State	8 GIG
+07960	Morristown	Tri-State	8 GIG
+08901	New Brunswick	Tri-State	8 GIG
+08933	New Brunswick	Tri-State	8 GIG
+08902	North Brunswick	Tri-State	8 GIG
+08857	Old Bridge	Tri-State	8 GIG
+08859	Parlin	Tri-State	8 GIG
+08854	Piscataway	Tri-State	8 GIG
+08869	Raritan	Tri-State	8 GIG
+08872	Sayreville	Tri-State	8 GIG
+07076	Scotch Plains	Tri-State	8 GIG
+08873	Somerset	Tri-State	8 GIG
+08876	Somerville	Tri-State	8 GIG
+08879	South Amboy	Tri-State	8 GIG
+08880	South Bound Brook	Tri-State	8 GIG
+07080	South Plainfield	Tri-State	8 GIG
+07981	Whippany	Tri-State	8 GIG
+10912	Bellvale	Tri-State	8 GIG
+10918	Chester	Tri-State	8 GIG
+10921	Florida	Tri-State	8 GIG
+10924	Goshen	Tri-State	8 GIG
+10925	Greenwood Lake	Tri-State	8 GIG
+07421	Hewitt	Tri-State	8 GIG
+10933	Johnson	Tri-State	8 GIG
+07851	Layton	Tri-State	8 GIG
+18336	Matamoras	Tri-State	8 GIG
+10940	Middletown	Tri-State	8 GIG
+18337	Milford	Tri-State	8 GIG
+18340	Millrift	Tri-State	8 GIG
+07827	Montague	Tri-State	8 GIG
+10958	New Hampton	Tri-State	8 GIG
+07435	Newfoundland	Tri-State	8 GIG
+10969	Pine Island	Tri-State	8 GIG
+12771	Port Jervis	Tri-State	8 GIG
+10979	Sterling Forest	Tri-State	8 GIG
+10981	Sugar Loaf	Tri-State	8 GIG
+10988	Unionville	Tri-State	8 GIG
+10990	Warwick	Tri-State	8 GIG
+07480	West Milford	Tri-State	8 GIG
+10998	Westtown	Tri-State	8 GIG
+06807	Cos Cob	Tri-State	8 GIG
+06612	Easton	Tri-State	8 GIG
+06829	Georgetown	Tri-State	8 GIG
+06830	Greenwich	Tri-State	8 GIG
+06831	Greenwich	Tri-State	8 GIG
+06840	New Canaan	Tri-State	8 GIG
+06870	Old Greenwich	Tri-State	8 GIG
+06896	Redding	Tri-State	8 GIG
+06877	Ridgefield	Tri-State	8 GIG
+06878	Riverside	Tri-State	8 GIG
+06883	Weston	Tri-State	8 GIG
+06897	Wilton	Tri-State	8 GIG
+07002	Bayonne	Tri-State	8 GIG
+07109	Belleville	Tri-State	8 GIG
+07017	East Orange	Tri-State	8 GIG
+07201	Elizabeth	Tri-State	8 GIG
+07202	Elizabeth	Tri-State	8 GIG
+07206	Elizabeth	Tri-State	8 GIG
+07208	Elizabeth	Tri-State	8 GIG
+07205	Hillside	Tri-State	8 GIG
+07111	Irvington	Tri-State	8 GIG
+07101	Newark	Tri-State	8 GIG
+07102	Newark	Tri-State	8 GIG
+07103	Newark	Tri-State	8 GIG
+07104	Newark	Tri-State	8 GIG
+07105	Newark	Tri-State	8 GIG
+07106	Newark	Tri-State	8 GIG
+07107	Newark	Tri-State	8 GIG
+07108	Newark	Tri-State	8 GIG
+07112	Newark	Tri-State	8 GIG
+07114	Newark	Tri-State	8 GIG
+07079	South Orange	Tri-State	8 GIG
+10502	Ardsley	Tri-State	8 GIG
+10503	Ardsley on Hudson	Tri-State	8 GIG
+10510	Briarcliff Manor	Tri-State	8 GIG
+10708	Bronxville	Tri-State	8 GIG
+10511	Buchanan	Tri-State	8 GIG
+10516	Cold Spring	Tri-State	8 GIG
+10567	Cortlandt Manor	Tri-State	8 GIG
+10517	Crompond	Tri-State	8 GIG
+10520	Croton on Hudson	Tri-State	8 GIG
+10522	Dobbs Ferry	Tri-State	8 GIG
+10709	Eastchester	Tri-State	8 GIG
+10523	Elmsford	Tri-State	8 GIG
+10530	Hartsdale	Tri-State	8 GIG
+10706	Hastings on Hudson	Tri-State	8 GIG
+10532	Hawthorne	Tri-State	8 GIG
+10533	Irvington	Tri-State	8 GIG
+10545	Maryknoll	Tri-State	8 GIG
+10548	Montrose	Tri-State	8 GIG
+10562	Ossining	Tri-State	8 GIG
+10566	Peekskill	Tri-State	8 GIG
+10803	Pelham	Tri-State	8 GIG
+10570	Pleasantville	Tri-State	8 GIG
+10573	Port Chester	Tri-State	8 GIG
+10583	Scarsdale	Tri-State	8 GIG
+10591	Tarrytown	Tri-State	8 GIG
+10594	Thornwood	Tri-State	8 GIG
+10707	Tuckahoe	Tri-State	8 GIG
+10595	Valhalla	Tri-State	8 GIG
+10596	Verplanck	Tri-State	8 GIG
+10603	White Plains	Tri-State	8 GIG
+10607	White Plains	Tri-State	8 GIG
+10701	Yonkers	Tri-State	8 GIG
+10703	Yonkers	Tri-State	8 GIG
+10704	Yonkers	Tri-State	8 GIG
+10705	Yonkers	Tri-State	8 GIG
+10710	Yonkers	Tri-State	8 GIG
+08720	Allenwood	Tri-State	8 GIG
+07712	Asbury Park	Tri-State	8 GIG
+07717	Avon by the Sea	Tri-State	8 GIG
+07719	Belmar	Tri-State	8 GIG
+07720	Bradley Beach	Tri-State	8 GIG
+08730	Brielle	Tri-State	8 GIG
+07734	Keansburg	Tri-State	8 GIG
+08735	Lavallette	Tri-State	8 GIG
+08736	Manasquan	Tri-State	8 GIG
+08739	Normandy Beach	Tri-State	8 GIG
+08750	Sea Girt	Tri-State	8 GIG
+08751	Seaside Heights	Tri-State	8 GIG
+08752	Seaside Park	Tri-State	8 GIG
+07762	Spring Lake	Tri-State	8 GIG
+07030	Hoboken	Tri-State	8 GIG
+07047	North Bergen	Tri-State	8 GIG
+07087	Union City	Tri-State	8 GIG
+07086	Weehawken	Tri-State	8 GIG
+07093	West New York	Tri-State	8 GIG
+06750	Bantam	Tri-State	8 GIG
+06751	Bethlehem	Tri-State	8 GIG
+06753	Cornwall	Tri-State	8 GIG
+06754	Cornwall Bridge	Tri-State	8 GIG
+06756	Goshen	Tri-State	8 GIG
+06791	Harwinton	Tri-State	8 GIG
+06758	Lakeside	Tri-State	8 GIG
+06759	Litchfield	Tri-State	8 GIG
+06763	Morris	Tri-State	8 GIG
+06057	New Hartford	Tri-State	8 GIG
+06777	New Preston Marble Dale	Tri-State	8 GIG
+06778	Northfield	Tri-State	8 GIG
+06779	Oakville	Tri-State	8 GIG
+06787	Thomaston	Tri-State	8 GIG
+06790	Torrington	Tri-State	8 GIG
+06795	Watertown	Tri-State	8 GIG
+06796	West Cornwall	Tri-State	8 GIG
+10501	Amawalk	Tri-State	8 GIG
+10504	Armonk	Tri-State	8 GIG
+10505	Baldwin Place	Tri-State	8 GIG
+10506	Bedford	Tri-State	8 GIG
+10507	Bedford Hills	Tri-State	8 GIG
+10509	Brewster	Tri-State	8 GIG
+10514	Chappaqua	Tri-State	8 GIG
+10518	Cross River	Tri-State	8 GIG
+10519	Croton Falls	Tri-State	8 GIG
+10526	Goldens Bridge	Tri-State	8 GIG
+10527	Granite Springs	Tri-State	8 GIG
+10528	Harrison	Tri-State	8 GIG
+10535	Jefferson Valley	Tri-State	8 GIG
+10536	Katonah	Tri-State	8 GIG
+10537	Lake Peekskill	Tri-State	8 GIG
+10540	Lincolndale	Tri-State	8 GIG
+10541	Mahopac	Tri-State	8 GIG
+10546	Millwood	Tri-State	8 GIG
+10547	Mohegan Lake	Tri-State	8 GIG
+10549	Mount Kisco	Tri-State	8 GIG
+10560	North Salem	Tri-State	8 GIG
+10576	Pound Ridge	Tri-State	8 GIG
+10577	Purchase	Tri-State	8 GIG
+10578	Purdys	Tri-State	8 GIG
+10579	Putnam Valley	Tri-State	8 GIG
+10587	Shenorock	Tri-State	8 GIG
+10588	Shrub Oak	Tri-State	8 GIG
+10589	Somers	Tri-State	8 GIG
+10590	South Salem	Tri-State	8 GIG
+10597	Waccabuc	Tri-State	8 GIG
+10604	West Harrison	Tri-State	8 GIG
+10601	White Plains	Tri-State	8 GIG
+10605	White Plains	Tri-State	8 GIG
+10606	White Plains	Tri-State	8 GIG
+10598	Yorktown Heights	Tri-State	8 GIG
+07401	Allendale	Tri-State	8 GIG
+07620	Alpine	Tri-State	8 GIG
+07621	Bergenfield	Tri-State	8 GIG
+07403	Bloomingdale	Tri-State	8 GIG
+07603	Bogota	Tri-State	8 GIG
+07405	Butler	Tri-State	8 GIG
+07006	Caldwell	Tri-State	8 GIG
+07009	Cedar Grove	Tri-State	8 GIG
+07011	Clifton	Tri-State	8 GIG
+07012	Clifton	Tri-State	8 GIG
+07013	Clifton	Tri-State	8 GIG
+07014	Clifton	Tri-State	8 GIG
+07624	Closter	Tri-State	8 GIG
+07626	Cresskill	Tri-State	8 GIG
+07627	Demarest	Tri-State	8 GIG
+07628	Dumont	Tri-State	8 GIG
+07407	Elmwood Park	Tri-State	8 GIG
+07630	Emerson	Tri-State	8 GIG
+07410	Fair Lawn	Tri-State	8 GIG
+07417	Franklin Lakes	Tri-State	8 GIG
+07026	Garfield	Tri-State	8 GIG
+07452	Glen Rock	Tri-State	8 GIG
+07601	Hackensack	Tri-State	8 GIG
+07508	Haledon	Tri-State	8 GIG
+07640	Harrington Park	Tri-State	8 GIG
+07604	Hasbrouck Heights	Tri-State	8 GIG
+07420	Haskell	Tri-State	8 GIG
+07641	Haworth	Tri-State	8 GIG
+07506	Hawthorne	Tri-State	8 GIG
+07642	Hillsdale	Tri-State	8 GIG
+07423	Ho Ho Kus	Tri-State	8 GIG
+07034	Lake Hiawatha	Tri-State	8 GIG
+07035	Lincoln Park	Tri-State	8 GIG
+07424	Little Falls	Tri-State	8 GIG
+07644	Lodi	Tri-State	8 GIG
+07430	Mahwah	Tri-State	8 GIG
+07495	Mahwah	Tri-State	8 GIG
+07607	Maywood	Tri-State	8 GIG
+07432	Midland Park	Tri-State	8 GIG
+07043	Montclair	Tri-State	8 GIG
+07645	Montvale	Tri-State	8 GIG
+07878	Mount Tabor	Tri-State	8 GIG
+07646	New Milford	Tri-State	8 GIG
+07647	Northvale	Tri-State	8 GIG
+07648	Norwood	Tri-State	8 GIG
+07110	Nutley	Tri-State	8 GIG
+07436	Oakland	Tri-State	8 GIG
+07649	Oradell	Tri-State	8 GIG
+07652	Paramus	Tri-State	8 GIG
+07656	Park Ridge	Tri-State	8 GIG
+07054	Parsippany	Tri-State	8 GIG
+07055	Passaic	Tri-State	8 GIG
+07501	Paterson	Tri-State	8 GIG
+07502	Paterson	Tri-State	8 GIG
+07503	Paterson	Tri-State	8 GIG
+07504	Paterson	Tri-State	8 GIG
+07505	Paterson	Tri-State	8 GIG
+07513	Paterson	Tri-State	8 GIG
+07514	Paterson	Tri-State	8 GIG
+07522	Paterson	Tri-State	8 GIG
+07524	Paterson	Tri-State	8 GIG
+07440	Pequannock	Tri-State	8 GIG
+07442	Pompton Lakes	Tri-State	8 GIG
+07444	Pompton Plains	Tri-State	8 GIG
+07446	Ramsey	Tri-State	8 GIG
+07450	Ridgewood	Tri-State	8 GIG
+07456	Ringwood	Tri-State	8 GIG
+07661	River Edge	Tri-State	8 GIG
+07457	Riverdale	Tri-State	8 GIG
+07662	Rochelle Park	Tri-State	8 GIG
+07663	Saddle Brook	Tri-State	8 GIG
+07458	Saddle River	Tri-State	8 GIG
+07606	South Hackensack	Tri-State	8 GIG
+07666	Teaneck	Tri-State	8 GIG
+07670	Tenafly	Tri-State	8 GIG
+07512	Totowa	Tri-State	8 GIG
+07676	Township of Washington	Tri-State	8 GIG
+07463	Waldwick	Tri-State	8 GIG
+07465	Wanaque	Tri-State	8 GIG
+07470	Wayne	Tri-State	8 GIG
+07675	Westwood	Tri-State	8 GIG
+07075	Wood Ridge	Tri-State	8 GIG
+07677	Woodcliff Lake	Tri-State	8 GIG
+07481	Wyckoff	Tri-State	8 GIG
+06524	Bethany	Tri-State	8 GIG
+06460	Milford	Tri-State	8 GIG
+06461	Milford	Tri-State	8 GIG
+06477	Orange	Tri-State	8 GIG
+06525	Woodbridge	Tri-State	8 GIG
+06820	Darien	Tri-State	8 GIG
+06824	Fairfield	Tri-State	8 GIG
+06825	Fairfield	Tri-State	8 GIG
+06850	Norwalk	Tri-State	8 GIG
+06851	Norwalk	Tri-State	8 GIG
+06853	Norwalk	Tri-State	8 GIG
+06854	Norwalk	Tri-State	8 GIG
+06855	Norwalk	Tri-State	8 GIG
+06890	Southport	Tri-State	8 GIG
+06880	Westport	Tri-State	8 GIG
+07820	Allamuchy	Tri-State	8 GIG
+07922	Berkeley Heights	Tri-State	8 GIG
+07005	Boonton	Tri-State	8 GIG
+07828	Budd Lake	Tri-State	8 GIG
+07834	Denville	Tri-State	8 GIG
+07801	Dover	Tri-State	8 GIG
+07836	Flanders	Tri-State	8 GIG
+07837	Glasser	Tri-State	8 GIG
+07840	Hackettstown	Tri-State	8 GIG
+07842	Hibernia	Tri-State	8 GIG
+07843	Hopatcong	Tri-State	8 GIG
+07847	Kenvil	Tri-State	8 GIG
+07849	Lake Hopatcong	Tri-State	8 GIG
+07850	Landing	Tri-State	8 GIG
+07852	Ledgewood	Tri-State	8 GIG
+07945	Mendham	Tri-State	8 GIG
+07803	Mine Hill	Tri-State	8 GIG
+07045	Montville	Tri-State	8 GIG
+07950	Morris Plains	Tri-State	8 GIG
+07856	Mount Arlington	Tri-State	8 GIG
+07970	Mount Freedom	Tri-State	8 GIG
+07046	Mountain Lakes	Tri-State	8 GIG
+07857	Netcong	Tri-State	8 GIG
+07438	Oak Ridge	Tri-State	8 GIG
+07058	Pine Brook	Tri-State	8 GIG
+07060	Plainfield	Tri-State	8 GIG
+07062	Plainfield	Tri-State	8 GIG
+07869	Randolph	Tri-State	8 GIG
+07866	Rockaway	Tri-State	8 GIG
+07876	Succasunna	Tri-State	8 GIG
+07082	Towaco	Tri-State	8 GIG
+07059	Warren	Tri-State	8 GIG
+07069	Watchung	Tri-State	8 GIG
+07885	Wharton	Tri-State	8 GIG
+10910	Arden	Tri-State	8 GIG
+10913	Blauvelt	Tri-State	8 GIG
+10920	Congers	Tri-State	8 GIG
+10923	Garnerville	Tri-State	8 GIG
+10927	Haverstraw	Tri-State	8 GIG
+10931	Hillburn	Tri-State	8 GIG
+10952	Monsey	Tri-State	8 GIG
+10954	Nanuet	Tri-State	8 GIG
+10956	New City	Tri-State	8 GIG
+10960	Nyack	Tri-State	8 GIG
+10962	Orangeburg	Tri-State	8 GIG
+10964	Palisades	Tri-State	8 GIG
+10965	Pearl River	Tri-State	8 GIG
+10968	Piermont	Tri-State	8 GIG
+10970	Pomona	Tri-State	8 GIG
+10974	Sloatsburg	Tri-State	8 GIG
+10975	Southfields	Tri-State	8 GIG
+10976	Sparkill	Tri-State	8 GIG
+10977	Spring Valley	Tri-State	8 GIG
+10980	Stony Point	Tri-State	8 GIG
+10901	Suffern	Tri-State	8 GIG
+10982	Tallman	Tri-State	8 GIG
+10983	Tappan	Tri-State	8 GIG
+10984	Thiells	Tri-State	8 GIG
+10986	Tomkins Cove	Tri-State	8 GIG
+10987	Tuxedo Park	Tri-State	8 GIG
+10989	Valley Cottage	Tri-State	8 GIG
+10993	West Haverstraw	Tri-State	8 GIG
+10994	West Nyack	Tri-State	8 GIG
+07710	Adelphia	Tri-State	8 GIG
+07711	Allenhurst	Tri-State	8 GIG
+08501	Allentown	Tri-State	8 GIG
+08724	Brick	Tri-State	8 GIG
+07722	Colts Neck	Tri-State	8 GIG
+08514	Cream Ridge	Tri-State	8 GIG
+07723	Deal	Tri-State	8 GIG
+07726	Englishtown	Tri-State	8 GIG
+07727	Farmingdale	Tri-State	8 GIG
+07728	Freehold	Tri-State	8 GIG
+07731	Howell	Tri-State	8 GIG
+08526	Imlaystown	Tri-State	8 GIG
+08527	Jackson	Tri-State	8 GIG
+08701	Lakewood	Tri-State	8 GIG
+07740	Long Branch	Tri-State	8 GIG
+07746	Marlboro	Tri-State	8 GIG
+08510	Millstone Township	Tri-State	8 GIG
+08535	Millstone Township	Tri-State	8 GIG
+07751	Morganville	Tri-State	8 GIG
+07753	Neptune	Tri-State	8 GIG
+08533	New Egypt	Tri-State	8 GIG
+07755	Oakhurst	Tri-State	8 GIG
+07756	Ocean Grove	Tri-State	8 GIG
+07763	Tennent	Tri-State	8 GIG
+10538	Larchmont	Tri-State	8 GIG
+10543	Mamaroneck	Tri-State	8 GIG
+10801	New Rochelle	Tri-State	8 GIG
+10804	New Rochelle	Tri-State	8 GIG
+10805	New Rochelle	Tri-State	8 GIG
+10580	Rye	Tri-State	8 GIG
+06901	Stamford	Tri-State	8 GIG
+06902	Stamford	Tri-State	8 GIG
+06903	Stamford	Tri-State	8 GIG
+06905	Stamford	Tri-State	8 GIG
+06906	Stamford	Tri-State	8 GIG
+06907	Stamford	Tri-State	8 GIG
+08520	Hightstown	Tri-State	8 GIG
+08609	Trenton	Tri-State	8 GIG
+08610	Trenton	Tri-State	8 GIG
+08611	Trenton	Tri-State	8 GIG
+08619	Trenton	Tri-State	8 GIG
+08620	Trenton	Tri-State	8 GIG
+08629	Trenton	Tri-State	8 GIG
+08638	Trenton	Tri-State	8 GIG
+08648	Trenton	Tri-State	8 GIG
+08690	Trenton	Tri-State	8 GIG
+08691	Trenton	Tri-State	8 GIG
+08561	Windsor	Tri-State	8 GIG
+12501	Amenia	Tri-State	8 GIG
+12506	Bangall	Tri-State	8 GIG
+12508	Beacon	Tri-State	8 GIG
+12510	Billings	Tri-State	8 GIG
+10914	Blooming Grove	Tri-State	8 GIG
+12511	Castle Point	Tri-State	8 GIG
+10917	Central Valley	Tri-State	8 GIG
+12512	Chelsea	Tri-State	8 GIG
+12514	Clinton Corners	Tri-State	8 GIG
+12515	Clintondale	Tri-State	8 GIG
+12522	Dover Plains	Tri-State	8 GIG
+12524	Fishkill	Tri-State	8 GIG
+12525	Gardiner	Tri-State	8 GIG
+10524	Garrison	Tri-State	8 GIG
+12527	Glenham	Tri-State	8 GIG
+10926	Harriman	Tri-State	8 GIG
+12528	Highland	Tri-State	8 GIG
+10930	Highland Mills	Tri-State	8 GIG
+12531	Holmes	Tri-State	8 GIG
+12533	Hopewell Junction	Tri-State	8 GIG
+12537	Hughsonville	Tri-State	8 GIG
+12538	Hyde Park	Tri-State	8 GIG
+12540	Lagrangeville	Tri-State	8 GIG
+12542	Marlboro	Tri-State	8 GIG
+12545	Millbrook	Tri-State	8 GIG
+12546	Millerton	Tri-State	8 GIG
+12547	Milton	Tri-State	8 GIG
+12548	Modena	Tri-State	8 GIG
+10950	Monroe	Tri-State	8 GIG
+12561	New Paltz	Tri-State	8 GIG
+12564	Pawling	Tri-State	8 GIG
+12567	Pine Plains	Tri-State	8 GIG
+12568	Plattekill	Tri-State	8 GIG
+12569	Pleasant Valley	Tri-State	8 GIG
+12601	Poughkeepsie	Tri-State	8 GIG
+12603	Poughkeepsie	Tri-State	8 GIG
+12570	Poughquag	Tri-State	8 GIG
+12571	Red Hook	Tri-State	8 GIG
+12572	Rhinebeck	Tri-State	8 GIG
+12578	Salt Point	Tri-State	8 GIG
+12580	Staatsburg	Tri-State	8 GIG
+12581	Stanfordville	Tri-State	8 GIG
+12582	Stormville	Tri-State	8 GIG
+12585	Verbank	Tri-State	8 GIG
+12589	Wallkill	Tri-State	8 GIG
+12590	Wappingers Falls	Tri-State	8 GIG
+12592	Wassaic	Tri-State	8 GIG
+12594	Wingdale	Tri-State	8 GIG
+41512	Ashcamp	Appalachia	500 MEG
+41513	Belcher	Appalachia	500 MEG
+24603	Big Rock	Appalachia	500 MEG
+41522	Elkhorn City	Appalachia	500 MEG
+41526	Fords Branch	Appalachia	500 MEG
+41534	Hellier	Appalachia	500 MEG
+41540	Lick Creek	Appalachia	500 MEG
+41542	Lookout	Appalachia	500 MEG
+41548	Mouthcard	Appalachia	500 MEG
+41501	Pikeville	Appalachia	500 MEG
+41559	Regina	Appalachia	500 MEG
+41561	Rockhouse	Appalachia	500 MEG
+41562	Shelbiana	Appalachia	500 MEG
+41563	Shelby Gap	Appalachia	500 MEG
+42206	Auburn	Appalachia	500 MEG
+42256	Lewisburg	Appalachia	500 MEG
+42276	Russellville	Appalachia	500 MEG
+25003	Alum Creek	Appalachia	500 MEG
+25312	Charleston	Appalachia	500 MEG
+25320	Charleston	Appalachia	500 MEG
+25521	Griffithsville	Appalachia	500 MEG
+25248	Kenna	Appalachia	500 MEG
+25564	Sod	Appalachia	500 MEG
+25567	Sumerco	Appalachia	500 MEG
+25202	Tornado	Appalachia	500 MEG
+25573	Yawkey	Appalachia	500 MEG
+65233	Boonville	Ozarks	500 MEG
+64836	Carthage	Ozarks	500 MEG
+64801	Joplin	Ozarks	500 MEG
+72024	Carlisle	Mid South	500 MEG
+72041	De Valls Bluff	Mid South	500 MEG
+72064	Hazen	Mid South	500 MEG
+71852	Nashville	Mid South	500 MEG
+70518	Broussard	Mid South	500 MEG
+70519	Cade	Mid South	500 MEG
+70528	Delcambre	Mid South	500 MEG
+70533	Erath	Mid South	500 MEG
+70544	Jeanerette	Mid South	500 MEG
+70569	Lydia	Mid South	500 MEG
+70560	New Iberia	Mid South	500 MEG
+70582	Saint Martinville	Mid South	500 MEG
+70592	Youngsville	Mid South	500 MEG
+74953	Poteau	Ozarks	500 MEG
+71357	Newellton	Mid South	500 MEG
+71366	Saint Joseph	Mid South	500 MEG
+64683	Trenton	Ozarks	500 MEG
+72079	Jefferson	Mid South	500 MEG
+71601	Pine Bluff	Mid South	500 MEG
+71603	Pine Bluff	Mid South	500 MEG
+72132	Redfield	Mid South	500 MEG
+72150	Sheridan	Mid South	500 MEG
+71602	White Hall	Mid South	500 MEG
+73005	Anadarko	Red River	500 MEG
+75550	Annona	Red River	500 MEG
+75554	Avery	Red River	500 MEG
+75412	Bagwell	Red River	500 MEG
+75416	Blossom	Red River	500 MEG
+75417	Bogata	Red River	500 MEG
+75426	Clarksville	Red River	500 MEG
+75435	Deport	Red River	500 MEG
+75436	Detroit	Red River	500 MEG
+75487	Talco	Red River	500 MEG
+75636	Cason	Red River	500 MEG
+75638	Daingerfield	Red River	500 MEG
+75656	Hughes Springs	Red River	500 MEG
+75668	Lone Star	Red River	500 MEG
+75755	Big Sandy	Red River	500 MEG
+75765	Hawkins	Red River	500 MEG
+75792	Winona	Red River	500 MEG
+74743	Hugo	Red River	500 MEG
+74745	Idabel	Red River	500 MEG
+77331	Coldspring	South Texas	500 MEG
+77351	Livingston	South Texas	500 MEG
+77360	Onalaska	South Texas	500 MEG
+77364	Pointblank	South Texas	500 MEG
+77371	Shepherd	South Texas	500 MEG
+76550	Lampasas	South Texas	500 MEG
+78602	Bastrop	South Texas	500 MEG
+78659	Paige	South Texas	500 MEG
+76567	Rockdale	South Texas	500 MEG
+75785	Rusk	Red River	500 MEG
+75862	Trinity	South Texas	500 MEG
+73048	Hydro	Red River	500 MEG
+73096	Weatherford	Red River	500 MEG
+76360	Electra	West Texas	500 MEG
+76365	Henrietta	West Texas	500 MEG
+89028	Laughlin	Pacific	500 MEG
+89029	Laughlin	Pacific	500 MEG
+83810	Cataldo	Pacific	500 MEG
+83837	Kellogg	Pacific	500 MEG
+83839	Kingston	Pacific	500 MEG
+83849	Osburn	Pacific	500 MEG
+83850	Pinehurst	Pacific	500 MEG
+83867	Silverton	Pacific	500 MEG
+83868	Smelterville	Pacific	500 MEG
+83873	Wallace	Pacific	500 MEG
+92242	Earp	Pacific	500 MEG
+85344	Parker	Pacific	500 MEG
+92267	Parker Dam	Pacific	500 MEG
+85541	Payson	Pacific	500 MEG
+85544	Pine	Pacific	500 MEG
+79252	Quanah	West Texas	500 MEG
+76380	Seymour	West Texas	500 MEG
+79201	Childress	West Texas	500 MEG
+79095	Wellington	West Texas	500 MEG
+26253	Beverly	Appalachia	400 MEG
+26254	Bowden	Appalachia	400 MEG
+26257	Coalton	Appalachia	400 MEG
+26259	Dailey	Appalachia	400 MEG
+26241	Elkins	Appalachia	400 MEG
+26273	Huttonsville	Appalachia	400 MEG
+26276	Kerens	Appalachia	400 MEG
+26280	Mill Creek	Appalachia	400 MEG
+26283	Montrose	Appalachia	400 MEG
+26285	Norton	Appalachia	400 MEG
+26293	Valley Bend	Appalachia	400 MEG
+26210	Adrian	Appalachia	400 MEG
+26201	Buckhannon	Appalachia	400 MEG
+26301	Clarksburg	Appalachia	400 MEG
+26218	French Creek	Appalachia	400 MEG
+26378	Jane Lew	Appalachia	400 MEG
+26385	Lost Creek	Appalachia	400 MEG
+26408	Mount Clare	Appalachia	400 MEG
+26234	Rock Cave	Appalachia	400 MEG
+26451	West Milford	Appalachia	400 MEG
+26452	Weston	Appalachia	400 MEG
+41132	Denton	Appalachia	400 MEG
+41143	Grayson	Appalachia	400 MEG
+41146	Hitchins	Appalachia	400 MEG
+41168	Rush	Appalachia	400 MEG
+41181	Willard	Appalachia	400 MEG
+44021	Burton	Appalachia	400 MEG
+44023	Chagrin Falls	Appalachia	400 MEG
+44412	Diamond	Appalachia	400 MEG
+44231	Garrettsville	Appalachia	400 MEG
+44234	Hiram	Appalachia	400 MEG
+44255	Mantua	Appalachia	400 MEG
+44062	Middlefield	Appalachia	400 MEG
+44065	Newbury	Appalachia	400 MEG
+44444	Newton Falls	Appalachia	400 MEG
+44080	Parkman	Appalachia	400 MEG
+44266	Ravenna	Appalachia	400 MEG
+44470	Southington	Appalachia	400 MEG
+44481	Warren	Appalachia	400 MEG
+44285	Wayland	Appalachia	400 MEG
+44491	West Farmington	Appalachia	400 MEG
+44288	Windham	Appalachia	400 MEG
+43722	Buffalo	Appalachia	400 MEG
+43723	Byesville	Appalachia	400 MEG
+43725	Cambridge	Appalachia	400 MEG
+43733	Derwent	Appalachia	400 MEG
+43750	Kipling	Appalachia	400 MEG
+43755	Lore City	Appalachia	400 MEG
+43768	Old Washington	Appalachia	400 MEG
+43772	Pleasant City	Appalachia	400 MEG
+43773	Quaker City	Appalachia	400 MEG
+43778	Salesville	Appalachia	400 MEG
+43780	Senecaville	Appalachia	400 MEG
+26330	Bridgeport	Appalachia	400 MEG
+26568	Enterprise	Appalachia	400 MEG
+26554	Fairmont	Appalachia	400 MEG
+26570	Fairview	Appalachia	400 MEG
+26571	Farmington	Appalachia	400 MEG
+26347	Flemington	Appalachia	400 MEG
+26572	Four States	Appalachia	400 MEG
+26349	Galloway	Appalachia	400 MEG
+26361	Gypsy	Appalachia	400 MEG
+26366	Haywood	Appalachia	400 MEG
+26369	Hepzibah	Appalachia	400 MEG
+26576	Idamay	Appalachia	400 MEG
+26386	Lumberport	Appalachia	400 MEG
+26582	Mannington	Appalachia	400 MEG
+26404	Meadowbrook	Appalachia	400 MEG
+26424	Rosemont	Appalachia	400 MEG
+26431	Shinnston	Appalachia	400 MEG
+26435	Simpson	Appalachia	400 MEG
+26438	Spelter	Appalachia	400 MEG
+26591	Worthington	Appalachia	400 MEG
+64628	Brookfield	Ozarks	400 MEG
+65023	Centertown	Ozarks	400 MEG
+65101	Jefferson City	Ozarks	400 MEG
+65109	Jefferson City	Ozarks	400 MEG
+65053	Lohman	Ozarks	400 MEG
+66701	Fort Scott	Ozarks	400 MEG
+64850	Neosho	Ozarks	400 MEG
+74955	Sallisaw	Ozarks	400 MEG
+70554	Mamou	Mid South	400 MEG
+70586	Ville Platte	Mid South	400 MEG
+75935	Center	South Texas	400 MEG
+75972	San Augustine	South Texas	400 MEG
+75973	Shelbyville	South Texas	400 MEG
+73018	Chickasha	Red River	400 MEG
+79745	Kermit	West Texas	400 MEG
+79756	Monahans	West Texas	400 MEG
+71322	Bunkie	Mid South	30 MEG
+71327	Cottonport	Mid South	30 MEG
+71329	Dupont	Mid South	30 MEG
+71330	Echo	Mid South	30 MEG
+71339	Hamburg	Mid South	30 MEG
+71341	Hessmer	Mid South	30 MEG
+71350	Mansura	Mid South	30 MEG
+71351	Marksville	Mid South	30 MEG
+71355	Moreauville	Mid South	30 MEG
+71362	Plaucheville	Mid South	30 MEG
+71369	Simmesport	Mid South	30 MEG
+71023	Doyline	Mid South	30 MEG
+71024	Dubberly	Mid South	30 MEG
+71051	Elm Grove	Mid South	30 MEG
+71039	Heflin	Mid South	30 MEG
+71068	Ringgold	Mid South	30 MEG
+71073	Sibley	Mid South	30 MEG
+77836	Caldwell	South Texas	3 MEG
+79079	Shamrock	West Texas	3 MEG
+71325	Cheneyville	Mid South	20 MEG
+71430	Forest Hill	Mid South	20 MEG
+71433	Glenmora	Mid South	20 MEG
+71346	Lecompte	Mid South	20 MEG
+71485	Woodworth	Mid South	20 MEG
+72007	Austin	Ozarks	150 MEG
+72023	Cabot	Ozarks	150 MEG
+72032	Conway	Ozarks	150 MEG
+72076	Jacksonville	Ozarks	150 MEG
+72099	Little Rock Air Force Base	Ozarks	150 MEG
+72086	Lonoke	Ozarks	150 MEG
+72120	Sherwood	Ozarks	150 MEG
+72173	Vilonia	Ozarks	150 MEG
+72176	Ward	Ozarks	150 MEG
+95703	Applegate	Pacific	150 MEG
+95602	Auburn	Pacific	150 MEG
+95603	Auburn	Pacific	150 MEG
+95713	Colfax	Pacific	150 MEG
+95945	Grass Valley	Pacific	150 MEG
+95949	Grass Valley	Pacific	150 MEG
+95722	Meadow Vista	Pacific	150 MEG
+95736	Weimar	Pacific	150 MEG
+93513	Big Pine	Pacific	150 MEG
+93514	Bishop	Pacific	150 MEG
+93526	Independence	Pacific	150 MEG
+86322	Camp Verde	Pacific	150 MEG
+86326	Cottonwood	Pacific	150 MEG
+86342	Lake Montezuma	Pacific	150 MEG
+86017	Munds Park	Pacific	150 MEG
+86335	Rimrock	Pacific	150 MEG
+86336	Sedona	Pacific	150 MEG
+86351	Sedona	Pacific	150 MEG
+72933	Charleston	Ozarks	15 MEG
+72042	De Witt	Mid South	15 MEG
+71957	Mount Ida	Mid South	15 MEG
+72160	Stuttgart	Mid South	15 MEG
+67003	Anthony	Red River	15 MEG
+73737	Fairview	Red River	15 MEG
+75835	Crockett	South Texas	15 MEG
+75844	Grapeland	South Texas	15 MEG
+73438	Healdton	Red River	15 MEG
+73456	Ringling	Red River	15 MEG
+73463	Wilson	Red River	15 MEG
+78024	Hunt	South Texas	15 MEG
+78025	Ingram	South Texas	15 MEG
+78028	Kerrville	South Texas	15 MEG
+76932	Big Lake	West Texas	15 MEG
+79226	Clarendon	West Texas	15 MEG
+79731	Crane	West Texas	15 MEG
+79248	Paducah	West Texas	15 MEG
+83858	Rathdrum	Pacific	15 MEG
+83869	Spirit Lake	Pacific	15 MEG
+83861	Saint Maries	Pacific	15 MEG
+83520	Ahsahka	Pacific	15 MEG
+83530	Grangeville	Pacific	15 MEG
+83536	Kamiah	Pacific	15 MEG
+83544	Orofino	Pacific	15 MEG
+74937	Heavener	Ozarks	1 MEG
+76255	Nocona	West Texas	1 MEG
+76374	Olney	West Texas	1 MEG
+11201	Brooklyn	New York	1 GIG
+11205	Brooklyn	New York	1 GIG
+11206	Brooklyn	New York	1 GIG
+11216	Brooklyn	New York	1 GIG
+11221	Brooklyn	New York	1 GIG
+11249	Brooklyn	New York	1 GIG
+11217	Brooklyn	New York	1 GIG
+11238	Brooklyn	New York	1 GIG
+10451	Bronx	New York	1 GIG
+10452	Bronx	New York	1 GIG
+10453	Bronx	New York	1 GIG
+10454	Bronx	New York	1 GIG
+10455	Bronx	New York	1 GIG
+10456	Bronx	New York	1 GIG
+07821	Andover	Tri-State	1 GIG
+07822	Augusta	Tri-State	1 GIG
+07825	Blairstown	Tri-State	1 GIG
+07826	Branchville	Tri-State	1 GIG
+07832	Columbia	Tri-State	1 GIG
+07416	Franklin	Tri-State	1 GIG
+07418	Glenwood	Tri-State	1 GIG
+07838	Great Meadows	Tri-State	1 GIG
+07419	Hamburg	Tri-State	1 GIG
+07422	Highland Lakes	Tri-State	1 GIG
+07844	Hope	Tri-State	1 GIG
+07846	Johnsonburg	Tri-State	1 GIG
+07848	Lafayette	Tri-State	1 GIG
+07860	Newton	Tri-State	1 GIG
+07439	Ogdensburg	Tri-State	1 GIG
+07871	Sparta	Tri-State	1 GIG
+07874	Stanhope	Tri-State	1 GIG
+07875	Stillwater	Tri-State	1 GIG
+07460	Stockholm	Tri-State	1 GIG
+07461	Sussex	Tri-State	1 GIG
+07462	Vernon	Tri-State	1 GIG
+24910	Alderson	Appalachia	1 GIG
+25810	Allen Junction	Appalachia	1 GIG
+25811	Amigo	Appalachia	1 GIG
+25007	Arnett	Appalachia	1 GIG
+25008	Artie	Appalachia	1 GIG
+24916	Asbury	Appalachia	1 GIG
+24712	Athens	Appalachia	1 GIG
+25813	Beaver	Appalachia	1 GIG
+25801	Beckley	Appalachia	1 GIG
+25817	Bolt	Appalachia	1 GIG
+25818	Bradley	Appalachia	1 GIG
+24925	Caldwell	Appalachia	1 GIG
+25820	Camp Creek	Appalachia	1 GIG
+25958	Charmco	Appalachia	1 GIG
+25044	Clear Creek	Appalachia	1 GIG
+25823	Coal City	Appalachia	1 GIG
+25048	Colcord	Appalachia	1 GIG
+25825	Cool Ridge	Appalachia	1 GIG
+25826	Corinne	Appalachia	1 GIG
+25827	Crab Orchard	Appalachia	1 GIG
+24931	Crawley	Appalachia	1 GIG
+25832	Daniels	Appalachia	1 GIG
+25060	Dorothy	Appalachia	1 GIG
+25062	Dry Creek	Appalachia	1 GIG
+25836	Eccles	Appalachia	1 GIG
+25839	Fairdale	Appalachia	1 GIG
+24902	Fairlea	Appalachia	1 GIG
+25840	Fayetteville	Appalachia	1 GIG
+25841	Flat Top	Appalachia	1 GIG
+25843	Ghent	Appalachia	1 GIG
+25844	Glen Daniel	Appalachia	1 GIG
+24093	Glen Lyn	Appalachia	1 GIG
+25849	Glen White	Appalachia	1 GIG
+25851	Harper	Appalachia	1 GIG
+25853	Helen	Appalachia	1 GIG
+25951	Hinton	Appalachia	1 GIG
+25857	Josephine	Appalachia	1 GIG
+25969	Jumping Branch	Appalachia	1 GIG
+24731	Kegley	Appalachia	1 GIG
+25860	Lanark	Appalachia	1 GIG
+24733	Lashmeet	Appalachia	1 GIG
+25971	Lerona	Appalachia	1 GIG
+25972	Leslie	Appalachia	1 GIG
+25865	Lester	Appalachia	1 GIG
+24901	Lewisburg	Appalachia	1 GIG
+24951	Lindside	Appalachia	1 GIG
+25866	Lochgelly	Appalachia	1 GIG
+25871	Mabscott	Appalachia	1 GIG
+25873	Mac Arthur	Appalachia	1 GIG
+24736	Matoaka	Appalachia	1 GIG
+24957	Maxwelton	Appalachia	1 GIG
+25878	Midway	Appalachia	1 GIG
+25879	Minden	Appalachia	1 GIG
+25880	Mount Hope	Appalachia	1 GIG
+25882	Mullens	Appalachia	1 GIG
+25140	Naoma	Appalachia	1 GIG
+24124	Narrows	Appalachia	1 GIG
+25978	Nimitz	Appalachia	1 GIG
+24739	Oakvale	Appalachia	1 GIG
+25902	Odd	Appalachia	1 GIG
+25904	Pax	Appalachia	1 GIG
+24134	Pearisburg	Appalachia	1 GIG
+24136	Pembroke	Appalachia	1 GIG
+24963	Peterstown	Appalachia	1 GIG
+25906	Piney View	Appalachia	1 GIG
+25979	Pipestem	Appalachia	1 GIG
+24740	Princeton	Appalachia	1 GIG
+25908	Princewick	Appalachia	1 GIG
+25909	Prosperity	Appalachia	1 GIG
+25981	Quinwood	Appalachia	1 GIG
+25962	Rainelle	Appalachia	1 GIG
+25911	Raleigh	Appalachia	1 GIG
+25901	Redstar	Appalachia	1 GIG
+25915	Rhodell	Appalachia	1 GIG
+24147	Rich Creek	Appalachia	1 GIG
+24150	Ripplemead	Appalachia	1 GIG
+24747	Rock	Appalachia	1 GIG
+25174	Rock Creek	Appalachia	1 GIG
+24970	Ronceverte	Appalachia	1 GIG
+25984	Rupert	Appalachia	1 GIG
+25917	Scarbro	Appalachia	1 GIG
+25918	Shady Spring	Appalachia	1 GIG
+25919	Skelton	Appalachia	1 GIG
+25921	Sophia	Appalachia	1 GIG
+25922	Spanishburg	Appalachia	1 GIG
+25927	Stanaford	Appalachia	1 GIG
+25928	Stephenson	Appalachia	1 GIG
+25932	Surveyor	Appalachia	1 GIG
+24981	Talcott	Appalachia	1 GIG
+25989	White Oak	Appalachia	1 GIG
+24986	White Sulphur Springs	Appalachia	1 GIG
+25943	Wyco	Appalachia	1 GIG
+25501	Alkol	Appalachia	1 GIG
+25002	Alloy	Appalachia	1 GIG
+25009	Ashford	Appalachia	1 GIG
+25503	Ashton	Appalachia	1 GIG
+25504	Barboursville	Appalachia	1 GIG
+25015	Belle	Appalachia	1 GIG
+26656	Belva	Appalachia	1 GIG
+25019	Bickmore	Appalachia	1 GIG
+25024	Bloomingrose	Appalachia	1 GIG
+25025	Blount	Appalachia	1 GIG
+25026	Blue Creek	Appalachia	1 GIG
+25031	Boomer	Appalachia	1 GIG
+25035	Cabin Creek	Appalachia	1 GIG
+25036	Cannelton	Appalachia	1 GIG
+25039	Cedar Grove	Appalachia	1 GIG
+25301	Charleston	Appalachia	1 GIG
+25302	Charleston	Appalachia	1 GIG
+25303	Charleston	Appalachia	1 GIG
+25304	Charleston	Appalachia	1 GIG
+25305	Charleston	Appalachia	1 GIG
+25306	Charleston	Appalachia	1 GIG
+25309	Charleston	Appalachia	1 GIG
+25311	Charleston	Appalachia	1 GIG
+25313	Charleston	Appalachia	1 GIG
+25314	Charleston	Appalachia	1 GIG
+25315	Charleston	Appalachia	1 GIG
+25387	Charleston	Appalachia	1 GIG
+25389	Charleston	Appalachia	1 GIG
+25040	Charlton Heights	Appalachia	1 GIG
+25043	Clay	Appalachia	1 GIG
+25045	Clendenin	Appalachia	1 GIG
+25049	Comfort	Appalachia	1 GIG
+25051	Costa	Appalachia	1 GIG
+25510	Culloden	Appalachia	1 GIG
+25053	Danville	Appalachia	1 GIG
+25054	Dawes	Appalachia	1 GIG
+25057	Deep Water	Appalachia	1 GIG
+25059	Dixie	Appalachia	1 GIG
+25061	Drybranch	Appalachia	1 GIG
+25064	Dunbar	Appalachia	1 GIG
+25067	East Bank	Appalachia	1 GIG
+25512	East Lynn	Appalachia	1 GIG
+25071	Elkview	Appalachia	1 GIG
+25075	Eskdale	Appalachia	1 GIG
+25079	Falling Rock	Appalachia	1 GIG
+25514	Fort Gay	Appalachia	1 GIG
+25081	Foster	Appalachia	1 GIG
+25083	Gallagher	Appalachia	1 GIG
+25085	Gauley Bridge	Appalachia	1 GIG
+25517	Genoa	Appalachia	1 GIG
+25086	Glasgow	Appalachia	1 GIG
+25090	Glen Ferris	Appalachia	1 GIG
+25102	Handley	Appalachia	1 GIG
+25103	Hansford	Appalachia	1 GIG
+25107	Hernshaw	Appalachia	1 GIG
+25110	Hugheston	Appalachia	1 GIG
+25701	Huntington	Appalachia	1 GIG
+25704	Huntington	Appalachia	1 GIG
+25526	Hurricane	Appalachia	1 GIG
+25111	Indore	Appalachia	1 GIG
+25112	Institute	Appalachia	1 GIG
+25529	Julian	Appalachia	1 GIG
+25115	Kanawha Falls	Appalachia	1 GIG
+25118	Kimberly	Appalachia	1 GIG
+25535	Lavalette	Appalachia	1 GIG
+25125	Lizemores	Appalachia	1 GIG
+25126	London	Appalachia	1 GIG
+25130	Madison	Appalachia	1 GIG
+25132	Mammoth	Appalachia	1 GIG
+25134	Miami	Appalachia	1 GIG
+25541	Milton	Appalachia	1 GIG
+25136	Montgomery	Appalachia	1 GIG
+25139	Mount Carbon	Appalachia	1 GIG
+25142	Nellis	Appalachia	1 GIG
+25143	Nitro	Appalachia	1 GIG
+25545	Ona	Appalachia	1 GIG
+25148	Orgas	Appalachia	1 GIG
+25154	Peytona	Appalachia	1 GIG
+25156	Pinch	Appalachia	1 GIG
+25159	Poca	Appalachia	1 GIG
+25160	Pond Gap	Appalachia	1 GIG
+25161	Powellton	Appalachia	1 GIG
+25162	Pratt	Appalachia	1 GIG
+25165	Racine	Appalachia	1 GIG
+25169	Ridgeview	Appalachia	1 GIG
+25173	Robson	Appalachia	1 GIG
+25177	Saint Albans	Appalachia	1 GIG
+25560	Scott Depot	Appalachia	1 GIG
+25181	Seth	Appalachia	1 GIG
+25186	Smithers	Appalachia	1 GIG
+25565	Spurlockville	Appalachia	1 GIG
+26690	Swiss	Appalachia	1 GIG
+25193	Sylvester	Appalachia	1 GIG
+25201	Tad	Appalachia	1 GIG
+25205	Uneeda	Appalachia	1 GIG
+25570	Wayne	Appalachia	1 GIG
+25209	Whitesville	Appalachia	1 GIG
+25214	Winifrede	Appalachia	1 GIG
+28513	Ayden	North Carolina	1 GIG
+27827	Falkland	North Carolina	1 GIG
+27829	Fountain	North Carolina	1 GIG
+27834	Greenville	North Carolina	1 GIG
+27858	Greenville	North Carolina	1 GIG
+28530	Grifton	North Carolina	1 GIG
+27837	Grimesland	North Carolina	1 GIG
+27879	Simpson	North Carolina	1 GIG
+27884	Stokes	North Carolina	1 GIG
+28590	Winterville	North Carolina	1 GIG
+28704	Arden	North Carolina	1 GIG
+28724	Dana	North Carolina	1 GIG
+28726	East Flat Rock	North Carolina	1 GIG
+28729	Etowah	North Carolina	1 GIG
+28731	Flat Rock	North Carolina	1 GIG
+28732	Fletcher	North Carolina	1 GIG
+28739	Hendersonville	North Carolina	1 GIG
+28791	Hendersonville	North Carolina	1 GIG
+28792	Hendersonville	North Carolina	1 GIG
+28742	Horse Shoe	North Carolina	1 GIG
+28759	Mills River	North Carolina	1 GIG
+28758	Mountain Home	North Carolina	1 GIG
+28766	Penrose	North Carolina	1 GIG
+28790	Zirconia	North Carolina	1 GIG
+25606	Accoville	Appalachia	1 GIG
+25607	Amherstdale	Appalachia	1 GIG
+41603	Banner	Appalachia	1 GIG
+41203	Beauty	Appalachia	1 GIG
+41514	Belfry	Appalachia	1 GIG
+25022	Blair	Appalachia	1 GIG
+25665	Borderland	Appalachia	1 GIG
+25508	Chapmanville	Appalachia	1 GIG
+25667	Chattaroy	Appalachia	1 GIG
+25047	Clothier	Appalachia	1 GIG
+25614	Cora	Appalachia	1 GIG
+25669	Crum	Appalachia	1 GIG
+24827	Cyclone	Appalachia	1 GIG
+25617	Davin	Appalachia	1 GIG
+41214	Debord	Appalachia	1 GIG
+25670	Delbarton	Appalachia	1 GIG
+25076	Ethel	Appalachia	1 GIG
+41219	Flatgap	Appalachia	1 GIG
+41527	Forest Hills	Appalachia	1 GIG
+41531	Hardy	Appalachia	1 GIG
+25624	Henlawson	Appalachia	1 GIG
+25625	Holden	Appalachia	1 GIG
+41535	Huddy	Appalachia	1 GIG
+41224	Inez	Appalachia	1 GIG
+25674	Kermit	Appalachia	1 GIG
+25628	Kistler	Appalachia	1 GIG
+25676	Lenore	Appalachia	1 GIG
+25601	Logan	Appalachia	1 GIG
+25630	Lorado	Appalachia	1 GIG
+41230	Louisa	Appalachia	1 GIG
+41231	Lovely	Appalachia	1 GIG
+25632	Lyburn	Appalachia	1 GIG
+25634	Mallory	Appalachia	1 GIG
+25635	Man	Appalachia	1 GIG
+41543	McAndrews	Appalachia	1 GIG
+25637	Mount Gay	Appalachia	1 GIG
+25685	Naugatuck	Appalachia	1 GIG
+25149	Ottawa	Appalachia	1 GIG
+41240	Paintsville	Appalachia	1 GIG
+25639	Peach Creek	Appalachia	1 GIG
+25547	Pecks Mill	Appalachia	1 GIG
+41250	Pilgrim	Appalachia	1 GIG
+41653	Prestonsburg	Appalachia	1 GIG
+25691	Rawl	Appalachia	1 GIG
+25183	Sharples	Appalachia	1 GIG
+41255	Sitka	Appalachia	1 GIG
+41503	South Williamson	Appalachia	1 GIG
+41256	Staffordsville	Appalachia	1 GIG
+25646	Stollings	Appalachia	1 GIG
+41567	Stone	Appalachia	1 GIG
+25647	Switzer	Appalachia	1 GIG
+41260	Thelma	Appalachia	1 GIG
+41262	Tomahawk	Appalachia	1 GIG
+25649	Verdunville	Appalachia	1 GIG
+41267	Warfield	Appalachia	1 GIG
+25652	Whitman	Appalachia	1 GIG
+25653	Wilkinson	Appalachia	1 GIG
+25661	Williamson	Appalachia	1 GIG
+25654	Yolyn	Appalachia	1 GIG
+28525	Deep Run	North Carolina	1 GIG
+27534	Goldsboro	North Carolina	1 GIG
+28501	Kinston	North Carolina	1 GIG
+28504	Kinston	North Carolina	1 GIG
+28551	La Grange	North Carolina	1 GIG
+28752	Marion	North Carolina	1 GIG
+28761	Nebo	North Carolina	1 GIG
+28519	Bridgeton	North Carolina	1 GIG
+28523	Cove City	North Carolina	1 GIG
+28526	Dover	North Carolina	1 GIG
+28527	Ernul	North Carolina	1 GIG
+28560	New Bern	North Carolina	1 GIG
+28562	New Bern	North Carolina	1 GIG
+28573	Pollocksville	North Carolina	1 GIG
+28586	Vanceboro	North Carolina	1 GIG
+26134	Belmont	Appalachia	1 GIG
+45714	Belpre	Appalachia	1 GIG
+45620	Cheshire	Appalachia	1 GIG
+26142	Davisville	Appalachia	1 GIG
+26143	Elizabeth	Appalachia	1 GIG
+45729	Fleming	Appalachia	1 GIG
+26146	Friendly	Appalachia	1 GIG
+45631	Gallipolis	Appalachia	1 GIG
+25515	Gallipolis Ferry	Appalachia	1 GIG
+25247	Hartford	Appalachia	1 GIG
+25106	Henderson	Appalachia	1 GIG
+25123	Leon	Appalachia	1 GIG
+25253	Letart	Appalachia	1 GIG
+45742	Little Hocking	Appalachia	1 GIG
+45744	Lowell	Appalachia	1 GIG
+45750	Marietta	Appalachia	1 GIG
+25260	Mason	Appalachia	1 GIG
+45760	Middleport	Appalachia	1 GIG
+26150	Mineral Wells	Appalachia	1 GIG
+25264	Mount Alto	Appalachia	1 GIG
+25265	New Haven	Appalachia	1 GIG
+26155	New Martinsville	Appalachia	1 GIG
+45768	Newport	Appalachia	1 GIG
+26159	Paden City	Appalachia	1 GIG
+26160	Palestine	Appalachia	1 GIG
+26101	Parkersburg	Appalachia	1 GIG
+26104	Parkersburg	Appalachia	1 GIG
+25550	Point Pleasant	Appalachia	1 GIG
+45769	Pomeroy	Appalachia	1 GIG
+26055	Proctor	Appalachia	1 GIG
+45771	Racine	Appalachia	1 GIG
+26164	Ravenswood	Appalachia	1 GIG
+25270	Reedy	Appalachia	1 GIG
+45773	Reno	Appalachia	1 GIG
+25271	Ripley	Appalachia	1 GIG
+45775	Rutland	Appalachia	1 GIG
+26170	Saint Marys	Appalachia	1 GIG
+26175	Sistersville	Appalachia	1 GIG
+25276	Spencer	Appalachia	1 GIG
+45779	Syracuse	Appalachia	1 GIG
+26105	Vienna	Appalachia	1 GIG
+26180	Walker	Appalachia	1 GIG
+26181	Washington	Appalachia	1 GIG
+26184	Waverly	Appalachia	1 GIG
+25287	West Columbia	Appalachia	1 GIG
+45788	Whipple	Appalachia	1 GIG
+26187	Williamstown	Appalachia	1 GIG
+27812	Bethel	North Carolina	1 GIG
+27825	Everetts	North Carolina	1 GIG
+27857	Oak City	North Carolina	1 GIG
+27861	Parmele	North Carolina	1 GIG
+27871	Robersonville	North Carolina	1 GIG
+27892	Williamston	North Carolina	1 GIG
+27809	Battleboro	North Carolina	1 GIG
+27819	Conetoe	North Carolina	1 GIG
+27822	Elm City	North Carolina	1 GIG
+27823	Enfield	North Carolina	1 GIG
+27856	Nashville	North Carolina	1 GIG
+27864	Pinetops	North Carolina	1 GIG
+27801	Rocky Mount	North Carolina	1 GIG
+27803	Rocky Mount	North Carolina	1 GIG
+27804	Rocky Mount	North Carolina	1 GIG
+27874	Scotland Neck	North Carolina	1 GIG
+27878	Sharpsburg	North Carolina	1 GIG
+27886	Tarboro	North Carolina	1 GIG
+28725	Dillsboro	North Carolina	1 GIG
+28788	Webster	North Carolina	1 GIG
+28723	Cullowhee	North Carolina	1 GIG
+28734	Franklin	North Carolina	1 GIG
+28763	Otto	North Carolina	1 GIG
+28774	Sapphire	North Carolina	1 GIG
+28779	Sylva	North Carolina	1 GIG
+27814	Blounts Creek	North Carolina	1 GIG
+27817	Chocowinity	North Carolina	1 GIG
+27889	Washington	North Carolina	1 GIG
+28617	Crumpler	North Carolina	1 GIG
+28640	Jefferson	North Carolina	1 GIG
+28643	Lansing	North Carolina	1 GIG
+28693	Warrensville	North Carolina	1 GIG
+28694	West Jefferson	North Carolina	1 GIG
+71301	Alexandria	Mid South	1 GIG
+71302	Alexandria	Mid South	1 GIG
+71303	Alexandria	Mid South	1 GIG
+71405	Ball	Mid South	1 GIG
+71407	Bentley	Mid South	1 GIG
+71328	Deville	Mid South	1 GIG
+71423	Dry Prong	Mid South	1 GIG
+71359	Pineville	Mid South	1 GIG
+71360	Pineville	Mid South	1 GIG
+71467	Pollock	Mid South	1 GIG
+71923	Arkadelphia	Mid South	1 GIG
+71743	Gurdon	Mid South	1 GIG
+72823	Atkins	Ozarks	1 GIG
+65605	Aurora	Ozarks	1 GIG
+65705	Marionville	Ozarks	1 GIG
+65708	Monett	Ozarks	1 GIG
+65723	Pierce City	Ozarks	1 GIG
+65769	Verona	Ozarks	1 GIG
+71220	Bastrop	Mid South	1 GIG
+71229	Collinston	Mid South	1 GIG
+71261	Mer Rouge	Mid South	1 GIG
+72501	Batesville	Ozarks	1 GIG
+72521	Cave City	Ozarks	1 GIG
+72527	Desha	Ozarks	1 GIG
+72562	Newark	Ozarks	1 GIG
+72568	Pleasant Plains	Ozarks	1 GIG
+72571	Rosie	Ozarks	1 GIG
+72579	Sulphur Rock	Ozarks	1 GIG
+71110	Barksdale Air Force Base	Mid South	1 GIG
+71006	Benton	Mid South	1 GIG
+71111	Bossier City	Mid South	1 GIG
+71112	Bossier City	Mid South	1 GIG
+71037	Haughton	Mid South	1 GIG
+71067	Princeton	Mid South	1 GIG
+71409	Boyce	Mid South	1 GIG
+65616	Branson	Ozarks	1 GIG
+65653	Forsyth	Ozarks	1 GIG
+65672	Hollister	Ozarks	1 GIG
+65679	Kirbyville	Ozarks	1 GIG
+65726	Point Lookout	Ozarks	1 GIG
+65739	Ridgedale	Ozarks	1 GIG
+65740	Rockaway Beach	Ozarks	1 GIG
+65754	Spokane	Ozarks	1 GIG
+70634	Deridder	Mid South	1 GIG
+70657	Ragley	Mid South	1 GIG
+70659	Rosepine	Mid South	1 GIG
+72837	Dover	Ozarks	1 GIG
+71730	El Dorado	Mid South	1 GIG
+71749	Junction City	Mid South	1 GIG
+71759	Norphlet	Mid South	1 GIG
+71762	Smackover	Mid South	1 GIG
+71765	Strong	Mid South	1 GIG
+38723	Avon	Mid South	1 GIG
+38701	Greenville	Mid South	1 GIG
+38703	Greenville	Mid South	1 GIG
+38748	Hollandale	Mid South	1 GIG
+38756	Leland	Mid South	1 GIG
+38760	Metcalfe	Mid South	1 GIG
+38780	Wayside	Mid South	1 GIG
+38930	Greenwood	Mid South	1 GIG
+38751	Indianola	Mid South	1 GIG
+38761	Moorhead	Mid South	1 GIG
+38954	Sidon	Mid South	1 GIG
+74331	Afton	Ozarks	1 GIG
+74344	Grove	Ozarks	1 GIG
+72543	Heber Springs	Ozarks	1 GIG
+72581	Tumbling Shoals	Ozarks	1 GIG
+72342	Helena	Ozarks	1 GIG
+72355	Lexa	Ozarks	1 GIG
+72366	Marvell	Ozarks	1 GIG
+72374	Poplar Grove	Ozarks	1 GIG
+72390	West Helena	Ozarks	1 GIG
+71909	Hot Springs Village	Mid South	1 GIG
+71949	Jessieville	Mid South	1 GIG
+72087	Lonsdale	Mid South	1 GIG
+72335	Forrest City	Ozarks	1 GIG
+72348	Hughes	Ozarks	1 GIG
+72359	Madison	Ozarks	1 GIG
+72394	Widener	Ozarks	1 GIG
+70630	Bell City	Mid South	1 GIG
+70646	Hayes	Mid South	1 GIG
+70647	Iowa	Mid South	1 GIG
+70650	Lacassine	Mid South	1 GIG
+72411	Bay	Ozarks	1 GIG
+72416	Bono	Ozarks	1 GIG
+72417	Brookland	Ozarks	1 GIG
+72421	Cash	Ozarks	1 GIG
+72401	Jonesboro	Ozarks	1 GIG
+72404	Jonesboro	Ozarks	1 GIG
+72437	Lake City	Ozarks	1 GIG
+72467	State University	Ozarks	1 GIG
+72471	Swifton	Ozarks	1 GIG
+71247	Hodge	Mid South	1 GIG
+71251	Jonesboro	Mid South	1 GIG
+71268	Quitman	Mid South	1 GIG
+70601	Lake Charles	Mid South	1 GIG
+70605	Lake Charles	Mid South	1 GIG
+70606	Lake Charles	Mid South	1 GIG
+70607	Lake Charles	Mid South	1 GIG
+70611	Lake Charles	Mid South	1 GIG
+70615	Lake Charles	Mid South	1 GIG
+70629	Lake Charles	Mid South	1 GIG
+70663	Sulphur	Mid South	1 GIG
+70665	Sulphur	Mid South	1 GIG
+70668	Vinton	Mid South	1 GIG
+70669	Westlake	Mid South	1 GIG
+71403	Anacoco	Mid South	1 GIG
+71426	Fisher	Mid South	1 GIG
+71429	Florien	Mid South	1 GIG
+71459	Fort Polk	Mid South	1 GIG
+71439	Hornbeck	Mid South	1 GIG
+71446	Leesville	Mid South	1 GIG
+71461	Newllano	Mid South	1 GIG
+64067	Lexington	Ozarks	1 GIG
+64074	Napoleon	Ozarks	1 GIG
+64097	Wellington	Ozarks	1 GIG
+71753	Magnolia	Mid South	1 GIG
+71770	Waldo	Mid South	1 GIG
+72104	Malvern	Mid South	1 GIG
+71449	Many	Mid South	1 GIG
+71462	Noble	Mid South	1 GIG
+71486	Zwolle	Mid South	1 GIG
+64468	Maryville	Ozarks	1 GIG
+71018	Cotton Valley	Mid South	1 GIG
+71055	Minden	Mid South	1 GIG
+72619	Bull Shoals	Ozarks	1 GIG
+72626	Cotter	Ozarks	1 GIG
+72634	Flippin	Ozarks	1 GIG
+72635	Gassville	Ozarks	1 GIG
+72642	Lakeview	Ozarks	1 GIG
+72651	Midway	Ozarks	1 GIG
+72653	Mountain Home	Ozarks	1 GIG
+71414	Clarence	Mid South	1 GIG
+71456	Natchez	Mid South	1 GIG
+71457	Natchitoches	Mid South	1 GIG
+71497	Natchitoches	Mid South	1 GIG
+72043	Diaz	Ozarks	1 GIG
+72075	Jacksonport	Ozarks	1 GIG
+72112	Newport	Ozarks	1 GIG
+72473	Tuckerman	Ozarks	1 GIG
+65656	Galena	Ozarks	1 GIG
+65669	Highlandville	Ozarks	1 GIG
+65686	Kimberling City	Ozarks	1 GIG
+65714	Nixa	Ozarks	1 GIG
+65721	Ozark	Ozarks	1 GIG
+65737	Reeds Spring	Ozarks	1 GIG
+65742	Rogersville	Ozarks	1 GIG
+65753	Sparta	Ozarks	1 GIG
+65771	Walnut Shade	Ozarks	1 GIG
+66053	Louisburg	Ozarks	1 GIG
+66062	Olathe	Ozarks	1 GIG
+66064	Osawatomie	Ozarks	1 GIG
+66071	Paola	Ozarks	1 GIG
+66083	Spring Hill	Ozarks	1 GIG
+72433	Hoxie	Ozarks	1 GIG
+72455	Pocahontas	Ozarks	1 GIG
+72476	Walnut Ridge	Ozarks	1 GIG
+72830	Clarksville	Ozarks	1 GIG
+72834	Dardanelle	Ozarks	1 GIG
+72845	Knoxville	Ozarks	1 GIG
+72846	Lamar	Ozarks	1 GIG
+72847	London	Ozarks	1 GIG
+72110	Morrilton	Ozarks	1 GIG
+72127	Plumerville	Ozarks	1 GIG
+72858	Pottsville	Ozarks	1 GIG
+72801	Russellville	Ozarks	1 GIG
+72802	Russellville	Ozarks	1 GIG
+71001	Arcadia	Mid South	1 GIG
+71227	Choudrant	Mid South	1 GIG
+71235	Dubach	Mid South	1 GIG
+71245	Grambling	Mid South	1 GIG
+71270	Ruston	Mid South	1 GIG
+71272	Ruston	Mid South	1 GIG
+71275	Simsboro	Mid South	1 GIG
+74959	Spiro	Ozarks	1 GIG
+64401	Agency	Ozarks	1 GIG
+64501	Saint Joseph	Ozarks	1 GIG
+64503	Saint Joseph	Ozarks	1 GIG
+64504	Saint Joseph	Ozarks	1 GIG
+64505	Saint Joseph	Ozarks	1 GIG
+64506	Saint Joseph	Ozarks	1 GIG
+64507	Saint Joseph	Ozarks	1 GIG
+64485	Savannah	Ozarks	1 GIG
+72958	Waldron	Ozarks	1 GIG
+71483	Winnfield	Mid South	1 GIG
+73717	Alva	Red River	1 GIG
+75751	Athens	Red River	1 GIG
+75752	Athens	Red River	1 GIG
+75756	Brownsboro	Red River	1 GIG
+75124	Eustace	Red River	1 GIG
+75144	Kerens	Red River	1 GIG
+75770	Larue	Red River	1 GIG
+75778	Murchison	Red River	1 GIG
+75163	Trinidad	Red River	1 GIG
+76825	Brady	South Texas	1 GIG
+77833	Brenham	South Texas	1 GIG
+77868	Navasota	South Texas	1 GIG
+77801	Bryan	South Texas	1 GIG
+77802	Bryan	South Texas	1 GIG
+77803	Bryan	South Texas	1 GIG
+77807	Bryan	South Texas	1 GIG
+77808	Bryan	South Texas	1 GIG
+77840	College Station	South Texas	1 GIG
+77843	College Station	South Texas	1 GIG
+77845	College Station	South Texas	1 GIG
+77328	Cleveland	South Texas	1 GIG
+77301	Conroe	South Texas	1 GIG
+77302	Conroe	South Texas	1 GIG
+77303	Conroe	South Texas	1 GIG
+77304	Conroe	South Texas	1 GIG
+77306	Conroe	South Texas	1 GIG
+77384	Conroe	South Texas	1 GIG
+77385	Conroe	South Texas	1 GIG
+77354	Magnolia	South Texas	1 GIG
+77316	Montgomery	South Texas	1 GIG
+77356	Montgomery	South Texas	1 GIG
+77318	Willis	South Texas	1 GIG
+77378	Willis	South Texas	1 GIG
+74030	Drumright	Red River	1 GIG
+73701	Enid	Red River	1 GIG
+73703	Enid	Red River	1 GIG
+73705	Enid	Red River	1 GIG
+73503	Fort Sill	Red River	1 GIG
+73501	Lawton	Red River	1 GIG
+73505	Lawton	Red River	1 GIG
+76240	Gainesville	Red River	1 GIG
+76264	Sadler	Red River	1 GIG
+75092	Sherman	Red River	1 GIG
+76273	Whitesboro	Red River	1 GIG
+78753	Austin	South Texas	1 GIG
+76527	Florence	South Texas	1 GIG
+78626	Georgetown	South Texas	1 GIG
+78628	Georgetown	South Texas	1 GIG
+78633	Georgetown	South Texas	1 GIG
+76530	Granger	South Texas	1 GIG
+78634	Hutto	South Texas	1 GIG
+76537	Jarrell	South Texas	1 GIG
+78641	Leander	South Texas	1 GIG
+78642	Liberty Hill	South Texas	1 GIG
+78653	Manor	South Texas	1 GIG
+78660	Pflugerville	South Texas	1 GIG
+78664	Round Rock	South Texas	1 GIG
+78665	Round Rock	South Texas	1 GIG
+75644	Gilmer	Red River	1 GIG
+75645	Gilmer	Red River	1 GIG
+75647	Gladewater	Red River	1 GIG
+75662	Kilgore	Red River	1 GIG
+75601	Longview	Red River	1 GIG
+75604	Longview	Red River	1 GIG
+75693	White Oak	Red River	1 GIG
+75143	Kemp	Red River	1 GIG
+75156	Mabank	Red River	1 GIG
+75147	Mabank	Red River	1 GIG
+75148	Malakoff	Red River	1 GIG
+75750	Arp	Red River	1 GIG
+75652	Henderson	Red River	1 GIG
+75654	Henderson	Red River	1 GIG
+75658	Joinerville	Red River	1 GIG
+75684	Overton	Red River	1 GIG
+74431	Dewar	Red River	1 GIG
+74437	Henryetta	Red River	1 GIG
+74445	Morris	Red River	1 GIG
+74447	Okmulgee	Red River	1 GIG
+77320	Huntsville	South Texas	1 GIG
+77340	Huntsville	South Texas	1 GIG
+77341	Huntsville	South Texas	1 GIG
+77358	New Waverly	South Texas	1 GIG
+75760	Cushing	Red River	1 GIG
+75766	Jacksonville	Red River	1 GIG
+75780	New Summerfield	Red River	1 GIG
+75801	Palestine	Red River	1 GIG
+75142	Kaufman	Red River	1 GIG
+77338	Humble	South Texas	1 GIG
+77346	Humble	South Texas	1 GIG
+77339	Kingwood	South Texas	1 GIG
+77345	Kingwood	South Texas	1 GIG
+77365	Porter	South Texas	1 GIG
+75758	Chandler	Red River	1 GIG
+75763	Frankston	Red River	1 GIG
+75757	Bullard	Red River	1 GIG
+75762	Flint	Red River	1 GIG
+75941	Diboll	South Texas	1 GIG
+75949	Huntington	South Texas	1 GIG
+75901	Lufkin	South Texas	1 GIG
+75904	Lufkin	South Texas	1 GIG
+75969	Pollok	South Texas	1 GIG
+75103	Canton	Red River	1 GIG
+75140	Grand Saline	Red River	1 GIG
+75771	Lindale	Red River	1 GIG
+75773	Mineola	Red River	1 GIG
+75783	Quitman	Red River	1 GIG
+75790	Van	Red River	1 GIG
+77523	Baytown	South Texas	1 GIG
+77520	Baytown	South Texas	1 GIG
+77521	Baytown	South Texas	1 GIG
+77535	Dayton	South Texas	1 GIG
+77580	Mont Belvieu	South Texas	1 GIG
+75455	Mount Pleasant	Red River	1 GIG
+75457	Mount Vernon	Red River	1 GIG
+75686	Pittsburg	Red River	1 GIG
+75480	Scroggins	Red River	1 GIG
+75493	Winfield	Red River	1 GIG
+74401	Muskogee	Red River	1 GIG
+74403	Muskogee	Red River	1 GIG
+74467	Wagoner	Red River	1 GIG
+75925	Alto	South Texas	1 GIG
+75946	Garrison	South Texas	1 GIG
+75961	Nacogdoches	South Texas	1 GIG
+75962	Nacogdoches	South Texas	1 GIG
+75964	Nacogdoches	South Texas	1 GIG
+75965	Nacogdoches	South Texas	1 GIG
+77327	Cleveland	South Texas	1 GIG
+77532	Crosby	South Texas	1 GIG
+77336	Huffman	South Texas	1 GIG
+77357	New Caney	South Texas	1 GIG
+77372	Splendora	South Texas	1 GIG
+75421	Brookston	Red River	1 GIG
+75460	Paris	Red River	1 GIG
+75462	Paris	Red River	1 GIG
+75477	Roxton	Red River	1 GIG
+75486	Sumner	Red River	1 GIG
+73052	Lindsay	Red River	1 GIG
+73075	Pauls Valley	Red River	1 GIG
+73098	Wynnewood	Red River	1 GIG
+73077	Perry	Red River	1 GIG
+75409	Anna	Red River	1 GIG
+76227	Aubrey	Red River	1 GIG
+75009	Celina	Red River	1 GIG
+75034	Frisco	Red River	1 GIG
+75058	Gunter	Red River	1 GIG
+76249	Krum	Red River	1 GIG
+75068	Little Elm	Red River	1 GIG
+75071	McKinney	Red River	1 GIG
+75454	Melissa	Red River	1 GIG
+76258	Pilot Point	Red River	1 GIG
+76259	Ponder	Red River	1 GIG
+75078	Prosper	Red River	1 GIG
+76266	Sanger	Red River	1 GIG
+76271	Tioga	Red River	1 GIG
+73051	Lexington	Red River	1 GIG
+73057	Maysville	Red River	1 GIG
+73068	Noble	Red River	1 GIG
+73080	Purcell	Red River	1 GIG
+73095	Wayne	Red River	1 GIG
+74868	Seminole	Red River	1 GIG
+74884	Wewoka	Red River	1 GIG
+74023	Cushing	Red River	1 GIG
+74059	Perkins	Red River	1 GIG
+74074	Stillwater	Red River	1 GIG
+74075	Stillwater	Red River	1 GIG
+74078	Stillwater	Red River	1 GIG
+75431	Como	Red River	1 GIG
+75482	Sulphur Springs	Red River	1 GIG
+75494	Winnsboro	Red River	1 GIG
+75002	Allen	Red River	1 GIG
+75114	Crandall	Red River	1 GIG
+75217	Dallas	Red River	1 GIG
+75253	Dallas	Red River	1 GIG
+75132	Fate	Red River	1 GIG
+75126	Forney	Red River	1 GIG
+75069	McKinney	Red River	1 GIG
+75149	Mesquite	Red River	1 GIG
+75180	Mesquite	Red River	1 GIG
+75181	Mesquite	Red River	1 GIG
+75407	Princeton	Red River	1 GIG
+75032	Rockwall	Red River	1 GIG
+75087	Rockwall	Red River	1 GIG
+75189	Royse City	Red River	1 GIG
+75159	Seagoville	Red River	1 GIG
+75160	Terrell	Red River	1 GIG
+75161	Terrell	Red River	1 GIG
+75098	Wylie	Red River	1 GIG
+75605	Longview	Red River	1 GIG
+75789	Troup	Red River	1 GIG
+75701	Tyler	Red River	1 GIG
+75702	Tyler	Red River	1 GIG
+75703	Tyler	Red River	1 GIG
+75704	Tyler	Red River	1 GIG
+75705	Tyler	Red River	1 GIG
+75706	Tyler	Red River	1 GIG
+75707	Tyler	Red River	1 GIG
+75708	Tyler	Red River	1 GIG
+75709	Tyler	Red River	1 GIG
+75791	Whitehouse	Red River	1 GIG
+77951	Bloomington	South Texas	1 GIG
+77968	Inez	South Texas	1 GIG
+77977	Placedo	South Texas	1 GIG
+77988	Telferner	South Texas	1 GIG
+77901	Victoria	South Texas	1 GIG
+77904	Victoria	South Texas	1 GIG
+77905	Victoria	South Texas	1 GIG
+73801	Woodward	Red River	1 GIG
+79526	Hermleigh	West Texas	1 GIG
+79549	Snyder	West Texas	1 GIG
+79512	Colorado City	West Texas	1 GIG
+79545	Roscoe	West Texas	1 GIG
+79556	Sweetwater	West Texas	1 GIG
+79601	Abilene	West Texas	1 GIG
+79602	Abilene	West Texas	1 GIG
+79603	Abilene	West Texas	1 GIG
+79605	Abilene	West Texas	1 GIG
+79606	Abilene	West Texas	1 GIG
+79504	Baird	West Texas	1 GIG
+79510	Clyde	West Texas	1 GIG
+79607	Dyess Air Force Base	West Texas	1 GIG
+79536	Merkel	West Texas	1 GIG
+79562	Tuscola	West Texas	1 GIG
+79563	Tye	West Texas	1 GIG
+76430	Albany	West Texas	1 GIG
+79101	Amarillo	West Texas	1 GIG
+79102	Amarillo	West Texas	1 GIG
+79103	Amarillo	West Texas	1 GIG
+79104	Amarillo	West Texas	1 GIG
+79106	Amarillo	West Texas	1 GIG
+79107	Amarillo	West Texas	1 GIG
+79108	Amarillo	West Texas	1 GIG
+79111	Amarillo	West Texas	1 GIG
+79124	Amarillo	West Texas	1 GIG
+79109	Amarillo	West Texas	1 GIG
+79110	Amarillo	West Texas	1 GIG
+79118	Amarillo	West Texas	1 GIG
+79119	Amarillo	West Texas	1 GIG
+79121	Amarillo	West Texas	1 GIG
+79015	Canyon	West Texas	1 GIG
+79016	Canyon	West Texas	1 GIG
+79045	Hereford	West Texas	1 GIG
+79088	Tulia	West Texas	1 GIG
+79501	Anson	West Texas	1 GIG
+92225	Blythe	Pacific	1 GIG
+85334	Ehrenberg	Pacific	1 GIG
+76424	Breckenridge	West Texas	1 GIG
+86429	Bullhead City	Pacific	1 GIG
+86442	Bullhead City	Pacific	1 GIG
+86426	Fort Mohave	Pacific	1 GIG
+86427	Fort Mohave	Pacific	1 GIG
+86440	Mohave Valley	Pacific	1 GIG
+76354	Burkburnett	West Texas	1 GIG
+76367	Iowa Park	West Texas	1 GIG
+88103	Cannon Air Force Base	West Texas	1 GIG
+88101	Clovis	West Texas	1 GIG
+79325	Farwell	West Texas	1 GIG
+79035	Friona	West Texas	1 GIG
+88135	Texico	West Texas	1 GIG
+76437	Cisco	West Texas	1 GIG
+76448	Eastland	West Texas	1 GIG
+76466	Olden	West Texas	1 GIG
+76470	Ranger	West Texas	1 GIG
+95521	Arcata	Pacific	1 GIG
+95524	Bayside	Pacific	1 GIG
+95525	Blue Lake	Pacific	1 GIG
+95528	Carlotta	Pacific	1 GIG
+95501	Eureka	Pacific	1 GIG
+95503	Eureka	Pacific	1 GIG
+95536	Ferndale	Pacific	1 GIG
+95537	Fields Landing	Pacific	1 GIG
+95540	Fortuna	Pacific	1 GIG
+95547	Hydesville	Pacific	1 GIG
+95551	Loleta	Pacific	1 GIG
+95519	McKinleyville	Pacific	1 GIG
+95562	Rio Dell	Pacific	1 GIG
+95564	Samoa	Pacific	1 GIG
+95565	Scotia	Pacific	1 GIG
+95570	Trinidad	Pacific	1 GIG
+86001	Flagstaff	Pacific	1 GIG
+86004	Flagstaff	Pacific	1 GIG
+86011	Flagstaff	Pacific	1 GIG
+79520	Hamlin	West Texas	1 GIG
+86401	Kingman	Pacific	1 GIG
+86409	Kingman	Pacific	1 GIG
+86403	Lake Havasu City	Pacific	1 GIG
+86404	Lake Havasu City	Pacific	1 GIG
+86405	Lake Havasu City	Pacific	1 GIG
+86406	Lake Havasu City	Pacific	1 GIG
+79316	Brownfield	West Texas	1 GIG
+79329	Idalou	West Texas	1 GIG
+79401	Lubbock	West Texas	1 GIG
+79403	Lubbock	West Texas	1 GIG
+79404	Lubbock	West Texas	1 GIG
+79406	Lubbock	West Texas	1 GIG
+79407	Lubbock	West Texas	1 GIG
+79409	Lubbock	West Texas	1 GIG
+79410	Lubbock	West Texas	1 GIG
+79411	Lubbock	West Texas	1 GIG
+79412	Lubbock	West Texas	1 GIG
+79413	Lubbock	West Texas	1 GIG
+79414	Lubbock	West Texas	1 GIG
+79415	Lubbock	West Texas	1 GIG
+79416	Lubbock	West Texas	1 GIG
+79423	Lubbock	West Texas	1 GIG
+79424	Lubbock	West Texas	1 GIG
+79350	New Deal	West Texas	1 GIG
+79356	Post	West Texas	1 GIG
+79366	Ransom Canyon	West Texas	1 GIG
+79360	Seminole	West Texas	1 GIG
+79363	Shallowater	West Texas	1 GIG
+79364	Slaton	West Texas	1 GIG
+79382	Wolfforth	West Texas	1 GIG
+93529	June Lake	Pacific	1 GIG
+93546	Mammoth Lakes	Pacific	1 GIG
+79714	Andrews	West Texas	1 GIG
+79720	Big Spring	West Texas	1 GIG
+79511	Coahoma	West Texas	1 GIG
+79701	Midland	West Texas	1 GIG
+79703	Midland	West Texas	1 GIG
+79705	Midland	West Texas	1 GIG
+79706	Midland	West Texas	1 GIG
+79707	Midland	West Texas	1 GIG
+79712	Midland	West Texas	1 GIG
+79765	Odessa	West Texas	1 GIG
+76067	Mineral Wells	West Texas	1 GIG
+93933	Marina	Pacific	1 GIG
+93940	Monterey	Pacific	1 GIG
+93944	Monterey	Pacific	1 GIG
+93955	Seaside	Pacific	1 GIG
+89048	Pahrump	Pacific	1 GIG
+89060	Pahrump	Pacific	1 GIG
+89061	Pahrump	Pacific	1 GIG
+79772	Pecos	West Texas	1 GIG
+79235	Floydada	West Texas	1 GIG
+79241	Lockney	West Texas	1 GIG
+79072	Plainview	West Texas	1 GIG
+79546	Rotan	West Texas	1 GIG
+76908	Goodfellow Air Force Base	West Texas	1 GIG
+76901	San Angelo	West Texas	1 GIG
+76903	San Angelo	West Texas	1 GIG
+76904	San Angelo	West Texas	1 GIG
+76905	San Angelo	West Texas	1 GIG
+76909	San Angelo	West Texas	1 GIG
+96141	Homewood	Pacific	1 GIG
+95724	Norden	Pacific	1 GIG
+96146	Olympic Valley	Pacific	1 GIG
+95728	Soda Springs	Pacific	1 GIG
+96145	Tahoe City	Pacific	1 GIG
+96142	Tahoma	Pacific	1 GIG
+96161	Truckee	Pacific	1 GIG
+96162	Truckee	Pacific	1 GIG
+76384	Vernon	West Texas	1 GIG

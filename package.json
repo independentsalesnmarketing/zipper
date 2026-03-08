@@ -14,7 +14,10 @@
     "sitemap": "node scripts/generate-sitemap.mjs"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/sitemap": "^3.2.0",
     "astro": "^4.16.0",
-    "@astrojs/sitemap": "^3.2.0"
+    "typescript": "^5.9.3",
+    "zipcodes": "^8.0.0"
   }
 }

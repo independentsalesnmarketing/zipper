@@ -36,11 +36,13 @@ export interface Provider {
 export const MAIN_PHONE = data.mainPhone;
 export const providers: Provider[] = data.providers as Provider[];
 
-export function getProviderById(id: string): Provider | undefined {
+export function getProviderById(id: string | null | undefined): Provider | undefined {
+  if (!id || typeof id !== 'string') return undefined;
   return providers.find(p => p.id === id);
 }
 
-export function getProviderBySlug(slug: string): Provider | undefined {
+export function getProviderBySlug(slug: string | null | undefined): Provider | undefined {
+  if (!slug || typeof slug !== 'string') return undefined;
   return providers.find(p => p.slug === slug);
 }
 
@@ -63,14 +65,17 @@ export function getProvidersByState(state: string): Provider[] {
 }
 
 export function getMinPrice(provider: Provider): number {
+  if (!provider.plans || provider.plans.length === 0) return 0;
   return Math.min(...provider.plans.map(p => p.promoPrice || p.price));
 }
 
 export function getMaxSpeed(provider: Provider): number {
+  if (!provider.plans || provider.plans.length === 0) return 0;
   return Math.max(...provider.plans.map(p => p.speed));
 }
 
 export function getMaxUpload(provider: Provider): number {
+  if (!provider.plans || provider.plans.length === 0) return 0;
   return Math.max(...provider.plans.map(p => p.uploadSpeed || 0));
 }
 

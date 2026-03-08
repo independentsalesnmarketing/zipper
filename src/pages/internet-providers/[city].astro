@@ -3,10 +3,11 @@ import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import ProviderCard from '@components/ProviderCard.astro';
-import { getProvidersByState, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getProvidersByState, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import { getCityPages, getNearbyCities, getStateName, getStateSlug, getCitiesInState, type CityData } from '@data/locations';
 import { getStateCensus, formatPercent, formatPopulation } from '@data/census';
+import { getZipCoverageSummary } from '@lib/zip-lookup';
 import type { Provider, Plan } from '@lib/providers';
 
 export function getStaticPaths() {
@@ -28,6 +29,10 @@ const lastUpdated = new Date().toISOString().split('T')[0];
 const lastUpdatedDisplay = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 const popStr = cityData.population.toLocaleString();
 const census = getStateCensus(cityData.state);
+
+// ── ZIP-level coverage summary across all city ZIPs ──
+const zipCoverageSummary = getZipCoverageSummary(cityData.zipCodes);
+const hasZipCoverage = zipCoverageSummary.length > 0;
 
 // ── Provider data ──
 const stateProviders = getProvidersByState(cityData.state);
@@ -124,7 +129,7 @@ const techHighlight = fiberProviders.length >= 2
 const faqs = [
   {
     question: `What are the best internet providers in ${cityData.name}, ${stateName}?`,
-    answer: `${cityData.name} has access to ${providers.length} internet providers, including ${providers.slice(0, 4).map(p => p.name).join(', ')}. ${topRated ? `${topRated.name} has the highest customer rating at ${topRated.rating}/5 stars.` : ''} Exact availability depends on your street address — enter your ZIP code above for verified results or call ${MAIN_PHONE} for free expert help.`,
+    answer: `${cityData.name} has access to ${providers.length} internet providers, including ${providers.slice(0, 4).map(p => p.name).join(', ')}. ${topRated ? `${topRated.name} has the highest customer rating at ${topRated.rating}/5 stars.` : ''} Exact availability depends on your street address — enter your ZIP code above for verified results or sign up for free expert help.`,
   },
   {
     question: `What is the fastest internet available in ${cityData.name}, ${stateName}?`,
@@ -132,13 +137,13 @@ const faqs = [
   },
   {
     question: `What is the cheapest internet in ${cityData.name}, ${stateName}?`,
-    answer: `Plans start at ${cheapest ? formatPrice(minPrc) : '$25'}/mo${cheapest ? ` with ${cheapest.name}` : ''} in the ${cityData.name} area. The average starting price across all ${providers.length} providers is $${avgPrice}/mo. Call ${MAIN_PHONE} — our experts regularly find savings of $20–50/mo versus ordering directly through provider websites.`,
+    answer: `Plans start at ${cheapest ? formatPrice(minPrc) : '$25'}/mo${cheapest ? ` with ${cheapest.name}` : ''} in the ${cityData.name} area. The average starting price across all ${providers.length} providers is $${avgPrice}/mo. Sign up above — our experts regularly find savings of $20–50/mo versus ordering directly through provider websites.`,
   },
   {
     question: `Is fiber internet available in ${cityData.name}, ${stateName}?`,
     answer: fiberProviders.length > 0
       ? `Yes — fiber internet is available in parts of ${cityData.name} from ${fiberProviders.slice(0, 3).map(p => p.name).join(', ')}. Fiber delivers symmetric upload/download speeds and the lowest latency of any connection type. ${census ? `Across ${stateName}, approximately ${formatPercent(census.fiberPct)} of households can access fiber.` : ''} Enter your ZIP code above to check availability at your specific location.`
-      : `Fiber availability in ${cityData.name} is currently limited, though infrastructure buildout is underway across ${stateName}. Cable and 5G home internet are excellent high-speed alternatives available now. Call ${MAIN_PHONE} to check the latest options at your address.`,
+      : `Fiber availability in ${cityData.name} is currently limited, though infrastructure buildout is underway across ${stateName}. Cable and 5G home internet are excellent high-speed alternatives available now. Sign up above to check the latest options at your address.`,
   },
   {
     question: `How many internet options does a typical ${cityData.name}, ${stateName} address have?`,
@@ -150,11 +155,11 @@ const faqs = [
   },
   {
     question: `How do I switch internet providers in ${cityData.name}, ${stateName}?`,
-    answer: `Switching is straightforward: 1) Enter your ZIP code above or call ${MAIN_PHONE} to compare all options. 2) Our experts match you with the best plan for your needs and budget. 3) Schedule installation — most providers offer setup within 1–3 business days. 4) Cancel your old service once the new one is active. Our comparison service is completely free.`,
+    answer: `Switching is straightforward: 1) Enter your ZIP code above to compare all options. 2) Our experts match you with the best plan for your needs and budget. 3) Schedule installation — most providers offer setup within 1–3 business days. 4) Cancel your old service once the new one is active. Our comparison service is completely free.`,
   },
   {
     question: `What internet speed do I need for my household in ${cityData.name}, ${stateName}?`,
-    answer: `Light use (email, browsing): 25–50 Mbps. Streaming & video calls (2–3 devices): 100–200 Mbps. Gaming & remote work: 200–500 Mbps. Large household (5+ devices): 500 Mbps–1 Gbps. ${census ? `The average download speed in ${stateName} is ${census.avgDownload} Mbps.` : ''} Call our experts for a free, personalized recommendation.`,
+    answer: `Light use (email, browsing): 25–50 Mbps. Streaming & video calls (2–3 devices): 100–200 Mbps. Gaming & remote work: 200–500 Mbps. Large household (5+ devices): 500 Mbps–1 Gbps. ${census ? `The average download speed in ${stateName} is ${census.avgDownload} Mbps.` : ''} Sign up above for a free, personalized recommendation.`,
   },
 ];
 
@@ -205,7 +210,7 @@ const schemas = [
   description={`Compare ${providers.length} internet providers in ${cityData.name}, ${stateName}. Speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. ${fiberProviders.length} fiber, ${cableProviders.length} cable${fiveGProviders.length > 0 ? `, ${fiveGProviders.length} 5G` : ''} options. Grade: ${grade}.`}
   schema={schemas}
 >
-<StickyCallBar text={`Best internet deals in ${cityData.name} — call now`} />
+<StickyCallBar text={`Best internet deals in ${cityData.name} — get connected`} />
 
 <section class="section" style="padding-top:var(--space-xl);">
 <div class="container">
@@ -681,7 +686,7 @@ const schemas = [
 
       <h3 style="margin-top:var(--space-lg);">Money-Saving Tips for Internet in {cityData.name}, {stateName}</h3>
       <p>
-        <strong>1. Compare before you commit.</strong> The {providers.length} providers serving {cityData.name} have different pricing structures. Use our free comparison tool or call {MAIN_PHONE} to see all options side-by-side.
+        <strong>1. Compare before you commit.</strong> The {providers.length} providers serving {cityData.name} have different pricing structures. Use our free comparison tool to see all options side-by-side.
       </p>
       <p>
         <strong>2. Ask about promotional pricing.</strong> Most providers offer introductory rates for new customers. Make sure you know what the price will be after the promotional period ends.
@@ -735,7 +740,8 @@ const schemas = [
           <h4 style="margin-bottom:var(--space-xs);">Provider Low-Income Plans</h4>
           <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">
             Many providers offer affordable plans: Spectrum Internet Assist ($17.99/mo, 30 Mbps), AT&T Access ($5–10/mo), and similar programs.
-            Call {MAIN_PHONE} to check which programs you qualify for in {cityData.name}.
+            <a href="/low-income-internet" class="btn btn-primary" style="margin-top:var(--space-xs);font-size:var(--text-sm);">Check Eligibility →</a>
+            to see which programs you qualify for in {cityData.name}.
           </p>
         </div>
         <div>
@@ -759,17 +765,54 @@ const schemas = [
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-lg);align-items:start;">
         <div style="text-align:center;">
           <p style="font-weight:700;font-size:var(--text-md);margin-bottom:var(--space-sm);">Sign Up Online</p>
-          <a href="#get-connected" class="btn btn-cta btn-lg" style="width:100%;">Start Sign-Up</a>
+          <a href="#get-connected" class="btn btn-cta btn-lg" style="width:100%;">Get Connected Now</a>
           <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Quick, easy, no obligation</p>
         </div>
         <div style="text-align:center;">
-          <p style="font-weight:700;font-size:var(--text-md);margin-bottom:var(--space-sm);">Prefer to Talk?</p>
-          <a href={formatPhoneForTel(MAIN_PHONE)} class="btn btn-secondary btn-lg" style="width:100%;">Call {MAIN_PHONE}</a>
-          <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Mon–Fri 8AM–10PM &middot; Sat 9AM–7PM ET</p>
+          <p style="font-weight:700;font-size:var(--text-md);margin-bottom:var(--space-sm);">Compare Plans</p>
+          <a href="/compare" class="btn btn-secondary btn-lg" style="width:100%;">Compare All Providers</a>
+          <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Side-by-side plan comparison</p>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- ═══════════════════════════════════════════
+       ZIP COVERAGE TABLE — confirmed providers per ZIP
+       ═══════════════════════════════════════════ -->
+  {hasZipCoverage && (
+    <div class="reveal" style="margin-bottom:var(--space-2xl);">
+      <h2 style="margin-bottom:var(--space-xs);">Confirmed Provider Coverage by ZIP Code in {cityData.name}</h2>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">
+        {zipCoverageSummary.length} of {cityData.zipCodes.length} ZIP codes in {cityData.name} have confirmed provider coverage data. Click any ZIP for detailed plans and pricing.
+      </p>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+        <table class="compare-table" style="min-width:500px;">
+          <thead>
+            <tr>
+              <th>ZIP Code</th>
+              <th>Confirmed Providers</th>
+              <th>Fiber</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {zipCoverageSummary.slice(0, 20).map(z => {
+              const fiberCount = z.providers.filter(p => p.fiber).length;
+              return (
+                <tr>
+                  <td><a href={`/internet-providers/zip/${z.zip}`} style="font-weight:700;color:var(--brand-blue);">{z.zip}</a></td>
+                  <td>{z.providers.length} provider{z.providers.length !== 1 ? 's' : ''}</td>
+                  <td>{fiberCount > 0 ? <span style="color:var(--brand-green);font-weight:600;">&#10003; {fiberCount} fiber</span> : <span style="color:var(--text-tertiary);">—</span>}</td>
+                  <td><a href={`/internet-providers/zip/${z.zip}`} style="font-size:var(--text-sm);color:var(--brand-blue);">View plans &rarr;</a></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )}
 
   <!-- ═══════════════════════════════════════════
        STEP 10: ZIP CODES + NEARBY CITIES AS PILLS

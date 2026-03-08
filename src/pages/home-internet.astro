@@ -2,14 +2,13 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getAllProviders, getPartnerProviders, getProvidersByType, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getAllProviders, getPartnerProviders, getProvidersByType, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
 const year = new Date().getFullYear();
 const month = new Date().toLocaleString('en-US', { month: 'long' });
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
+
 
 const allProviders = getAllProviders();
 const partners = getPartnerProviders();
@@ -37,13 +36,13 @@ const speedTiers = [
 ];
 
 const faqs = [
-  { question: 'What is the best home internet provider in 2025?', answer: `The best home internet provider depends on your address and needs. ${rankedProviders[0]?.name} is our top-rated provider overall. For pure speed, fiber providers like AT&T Fiber and Google Fiber lead. For value, Spectrum offers no-contract plans with no data caps. Call ${phone} for a personalized recommendation based on your address.` },
+  { question: 'What is the best home internet provider in 2025?', answer: `The best home internet provider depends on your address and needs. ${rankedProviders[0]?.name} is our top-rated provider overall. For pure speed, fiber providers like AT&T Fiber and Google Fiber lead. For value, Spectrum offers no-contract plans with no data caps. Sign up above for a personalized recommendation based on your address.` },
   { question: 'How much does home internet cost per month?', answer: 'Home internet costs $25–100/mo depending on speed and provider. Basic plans (25–100 Mbps) cost $25–50/mo. Mid-tier plans (200–500 Mbps) run $50–75/mo. Gigabit fiber costs $60–100/mo. Many providers offer promotional pricing for the first 12 months.' },
   { question: 'What internet speed do I need for my home?', answer: 'For 1–2 people doing basic browsing, 50 Mbps is enough. Households with 3–5 people streaming and working from home need 200–500 Mbps. Large households with gamers and 4K TVs should get 500 Mbps–1 Gbps. We recommend at least 25 Mbps per person in your household.' },
   { question: 'Is fiber internet better than cable for home use?', answer: 'Fiber provides symmetrical upload/download speeds, lower latency, and more reliable service. Cable is more widely available and still offers fast downloads (up to 1.2 Gbps). If fiber is available at your address, it\'s generally the better choice. If not, cable is an excellent alternative.' },
-  { question: 'Do I need a contract for home internet?', answer: `Many providers now offer no-contract plans. Spectrum, T-Mobile 5G Home Internet, and several others have no annual commitments. Contract plans sometimes offer lower monthly rates but include early termination fees ($100–200). Call ${phone} to find no-contract options at your address.` },
+  { question: 'Do I need a contract for home internet?', answer: `Many providers now offer no-contract plans. Spectrum, T-Mobile 5G Home Internet, and several others have no annual commitments. Contract plans sometimes offer lower monthly rates but include early termination fees ($100–200). Sign up above to find no-contract options at your address.` },
   { question: 'Can I get home internet without a phone line?', answer: 'Yes! Cable, fiber, 5G, and satellite internet all work independently of phone lines. Only DSL uses phone infrastructure. Most modern internet plans are standalone — no phone line required. If you want a phone bundle, see our internet and phone packages page.' },
-  { question: 'How do I set up home internet?', answer: `1) Check availability at your address. 2) Choose a provider and plan. 3) Schedule installation (same-day sometimes available). 4) A technician installs equipment or you self-install. Most setups take 1–2 hours. Call ${phone} and we'll handle everything from ordering to scheduling.` },
+  { question: 'How do I set up home internet?', answer: `1) Check availability at your address. 2) Choose a provider and plan. 3) Schedule installation (same-day sometimes available). 4) A technician installs equipment or you self-install. Most setups take 1–2 hours. Sign up above and we'll handle everything from ordering to scheduling.` },
   { question: 'What equipment do I need for home internet?', answer: 'You need a modem (connects to your ISP) and a router (creates your WiFi network). Many providers include a combo modem/router for $10–15/mo or free. You can also buy your own to save money. Fiber plans may include an ONT (optical network terminal) installed by the provider.' },
 ];
 
@@ -77,7 +76,7 @@ const schemas = [
           from {allProviders.length}+ providers to help you choose the best home internet in {year}.
         </p>
         <div style="margin-top: var(--space-xl);">
-          <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Talk to an Expert</a>
+          <a href="#get-connected" class="btn btn-cta btn-lg">Talk to an Expert</a>
           <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check My Address</a>
         </div>
       </div>
@@ -102,7 +101,7 @@ const schemas = [
                 </div>
               </div>
               <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-bottom: var(--space-md);">{tp.reason}</p>
-              <a href={formatPhoneForTel(tp.provider!.phone)} class="btn btn-cta btn-sm" style="width: 100%; text-align: center;">
+              <a href="#get-connected" class="btn btn-cta btn-sm" style="width: 100%; text-align: center;">
                 Get This Plan
               </a>
             </div>
@@ -139,7 +138,7 @@ const schemas = [
                   <td>{formatSpeed(getMaxSpeed(p))}</td>
                   <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
                   <td>{p.rating.toFixed(1)}</td>
-                  <td><a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a></td>
+                  <td><a href="#get-connected" class="btn btn-cta btn-sm">Get Plan</a></td>
                 </tr>
               ))}
             </tbody>
@@ -177,7 +176,7 @@ const schemas = [
         </div>
         <div class="card" style="padding: var(--space-lg); margin-top: var(--space-lg); text-align: center; background: var(--surface-2);">
           <p style="margin-bottom: var(--space-sm);">Not sure what speed you need? Our experts will analyze your household and recommend the perfect plan.</p>
-          <a href={phoneHref} class="btn btn-cta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Get a Free Speed Recommendation</a>
+          <a href="#get-connected" class="btn btn-cta">Get a Free Speed Recommendation</a>
         </div>
       </div>
 

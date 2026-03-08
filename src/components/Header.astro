@@ -1,6 +1,4 @@
 ---
-import { MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel } from '@lib/utils';
 ---
 <header class="site-header">
   <div class="container header-inner">
@@ -18,9 +16,9 @@ import { formatPhoneForTel } from '@lib/utils';
       <a href="/low-income-internet">Assistance</a>
     </nav>
 
-    <a href="#get-connected" class="btn btn-cta header-cta" data-event="header-signup" data-event-category="conversion" data-event-label="header-check-availability">
-      Check Availability
-    </a>
+    <button class="btn btn-cta header-cta" id="talk-to-agent-btn" data-event="header-voice" data-event-category="conversion" data-event-label="header-talk-to-agent">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;vertical-align:-2px;"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg>Talk to Agent
+    </button>
 
     <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -46,4 +44,13 @@ import { formatPhoneForTel } from '@lib/utils';
       a.classList.add('active');
     }
   });
+
+  // Talk to Agent button → opens voice agent
+  const agentBtn = document.getElementById('talk-to-agent-btn');
+  if(agentBtn){
+    agentBtn.addEventListener('click', () => {
+      if(typeof window.openAssistant === 'function') window.openAssistant('talk');
+      else if(typeof window.openVoiceAgent === 'function') window.openVoiceAgent();
+    });
+  }
 </script>

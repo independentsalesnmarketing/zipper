@@ -1,0 +1,97 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import SearchBar from '@components/SearchBar.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { stateNames } from '@lib/providers';
+import { getStatePages } from '@data/locations';
+import { generateBreadcrumbSchema } from '@lib/utils';
+
+const year = new Date().getFullYear();
+const statePages = getStatePages().sort((a, b) => a.name.localeCompare(b.name));
+
+const regions: Record<string, string[]> = {
+  'Northeast': ['CT','DE','DC','ME','MD','MA','NH','NJ','NY','PA','RI','VT','VA','WV'],
+  'Southeast': ['AL','AR','FL','GA','KY','LA','MS','NC','SC','TN'],
+  'Midwest': ['IL','IN','IA','KS','MI','MN','MO','NE','ND','OH','SD','WI'],
+  'West': ['AK','AZ','CA','CO','HI','ID','MT','NV','NM','OK','OR','TX','UT','WA','WY'],
+};
+
+const schema = generateBreadcrumbSchema([
+  { name: 'Home', url: 'https://internet4all.com' },
+  { name: 'Internet Providers by State', url: 'https://internet4all.com/internet-providers' },
+]);
+---
+<Base
+  title={`Internet Providers by State — All 50 States (${year})`}
+  description={`Find internet providers in every US state. Compare plans, prices, speeds, and availability for all 50 states plus Washington DC. Updated ${year}.`}
+  schema={[schema]}
+>
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Internet Providers by State' }]} />
+
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">All 50 States + DC</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Internet Providers <span class="gradient-text">by State</span>
+        </h1>
+        <p class="hero-subtitle" style="max-width: 640px; margin-inline: auto;">
+          Select your state to see every available internet provider, compare plans, and find the best deals in your area.
+        </p>
+        <div style="display:flex; justify-content:center; margin-top: var(--space-xl);">
+          <SearchBar size="large" placeholder="Or enter your ZIP code for exact results" />
+        </div>
+      </div>
+
+      <!-- Regions -->
+      {Object.entries(regions).map(([region, abbrs]) => (
+        <div class="reveal" style="margin-bottom: var(--space-2xl);">
+          <h2 style="margin-bottom: var(--space-lg); font-size: var(--text-2xl);">{region}</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--space-md);">
+            {statePages.filter(sp => abbrs.includes(sp.abbr)).map(sp => {
+              const cityCount = sp.cities.length;
+              const providerCount = sp.providers.length;
+              return (
+                <a href={`/internet-providers/${sp.slug}`} class="card state-link-card" style="padding: var(--space-lg); text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;">
+                  <div style="font-weight: 700; font-size: var(--text-lg); color: var(--text-primary); margin-bottom: var(--space-xs);">{sp.name}</div>
+                  <div style="font-size: var(--text-xs); color: var(--text-tertiary);">
+                    {providerCount}+ providers · {cityCount.toLocaleString()} cities
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+
+      <!-- Full alphabetical list -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">All States A–Z</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--space-sm);">
+          {statePages.map(sp => (
+            <a href={`/internet-providers/${sp.slug}`} style="padding: var(--space-sm) var(--space-md); font-size: var(--text-sm); font-weight: 600; color: var(--text-secondary); text-decoration: none; border-radius: var(--radius-md); transition: color 0.15s, background 0.15s;"
+               class="state-alpha-link">
+              {sp.name} →
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <StickyCallBar />
+</Base>
+
+<style>
+  .state-link-card:hover {
+    border-color: var(--brand-blue);
+    box-shadow: 0 4px 16px rgba(0, 82, 255, 0.12);
+    transform: translateY(-2px);
+  }
+  .state-alpha-link:hover {
+    color: var(--brand-blue);
+    background: rgba(0, 82, 255, 0.04);
+  }
+</style>

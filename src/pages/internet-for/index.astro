@@ -2,12 +2,9 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema } from '@lib/utils';
+import { generateBreadcrumbSchema } from '@lib/utils';
 
 const year = new Date().getFullYear();
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
 
 const guides = [
   { slug: 'seniors', title: 'Best Internet for Seniors', description: 'Simple, affordable plans with reliable service and great customer support. No contracts required.', speed: '25–100 Mbps', budget: '$25–$55/mo' },
@@ -19,6 +16,8 @@ const guides = [
   { slug: 'students', title: 'Best Internet for Students', description: 'Budget-friendly, no-contract plans perfect for dorms and off-campus living.', speed: '50–300 Mbps', budget: '$25–$60/mo' },
   { slug: 'work-from-home', title: 'Best Internet for Working from Home', description: 'Fast upload speeds, low latency, and reliable connections for remote workers.', speed: '100–500 Mbps', budget: '$50–$90/mo' },
   { slug: 'small-business', title: 'Best Internet for Small Business', description: 'SLA guarantees, static IPs, priority support, and business-grade reliability.', speed: '200–1000 Mbps', budget: '$60–$200/mo' },
+  { slug: 'large-households', title: 'Best Internet for Large Households', description: 'High bandwidth for 10+ devices, unlimited data, whole-home WiFi coverage.', speed: '300–1000+ Mbps', budget: '$60–$100/mo' },
+  { slug: 'smart-home', title: 'Best Internet for Smart Homes', description: 'Reliable always-on connectivity for cameras, locks, thermostats, and IoT devices.', speed: '200–500 Mbps', budget: '$50–$80/mo' },
 ];
 
 const schemas = [
@@ -62,9 +61,8 @@ const schemas = [
 
       <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
         <p style="font-size: var(--text-lg); margin-bottom: var(--space-md);">Not sure what you need?</p>
-        <a href={phoneHref} class="btn btn-call" style="font-size: var(--text-lg);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          Call {phone} — We'll Help You Choose
+        <a href="#get-connected" class="btn btn-cta" style="font-size: var(--text-lg);">
+          Get Help Choosing
         </a>
       </div>
 
@@ -80,5 +78,5 @@ const schemas = [
       </div>
     </div>
   </section>
-  <StickyCallBar phone={phone} message="Personalized advice — call now" />
+  <StickyCallBar text="Personalized advice — sign up for free help" />
 </Base>

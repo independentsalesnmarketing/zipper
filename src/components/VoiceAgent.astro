@@ -1,0 +1,783 @@
+---
+import { getPartnerProviders, getMinPrice, getMaxSpeed } from '@lib/providers';
+
+const partners = getPartnerProviders().map(p => ({
+  slug: p.slug,
+  name: p.name,
+  phone: p.phone,
+  types: p.types,
+  rating: p.rating,
+  minPrice: getMinPrice(p),
+  maxSpeed: getMaxSpeed(p),
+  plans: p.plans.map(pl => ({
+    name: pl.name,
+    speed: pl.speed,
+    uploadSpeed: pl.uploadSpeed,
+    price: pl.promoPrice || pl.price,
+    contract: pl.contract,
+    dataCap: pl.dataCap,
+  })),
+}));
+---
+
+<!-- Voice Agent Modal — Gemini 2.5 Flash + Gemini TTS -->
+<div id="voice-agent-overlay" class="va-overlay" style="display:none">
+  <div class="va-modal">
+    <button id="va-close" class="va-close" aria-label="Close voice agent">&times;</button>
+
+    <div class="va-header">
+      <div class="va-orb" id="va-orb">
+        <div class="va-orb-ring"></div>
+        <div class="va-orb-core">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </div>
+      </div>
+      <h2 class="va-title">Internet Advisor</h2>
+      <p class="va-subtitle" id="va-status">Tap the microphone to start talking</p>
+    </div>
+
+    <div id="va-transcript" class="va-transcript"></div>
+
+    <div class="va-controls">
+      <button id="va-mic" class="va-mic" aria-label="Start speaking">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </button>
+      <button id="va-keyboard" class="va-keyboard" aria-label="Type instead">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="6" y1="8" x2="6" y2="8"/><line x1="10" y1="8" x2="10" y2="8"/><line x1="14" y1="8" x2="14" y2="8"/><line x1="18" y1="8" x2="18" y2="8"/><line x1="6" y1="12" x2="6" y2="12"/><line x1="10" y1="12" x2="10" y2="12"/><line x1="14" y1="12" x2="14" y2="12"/><line x1="18" y1="12" x2="18" y2="12"/><line x1="8" y1="16" x2="16" y2="16"/></svg>
+      </button>
+    </div>
+
+    <form id="va-text-form" class="va-text-form" style="display:none" autocomplete="off">
+      <input type="text" id="va-text-input" class="va-text-input" placeholder="Type your message..." />
+      <button type="submit" class="va-text-send" aria-label="Send">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </form>
+
+    <div id="va-actions" class="va-actions"></div>
+  </div>
+</div>
+
+<script id="va-provider-data" type="application/json" set:html={JSON.stringify(partners)} />
+
+<script>
+(function(){
+  const GEMINI_KEY = 'AIzaSyB0ew_Pmhtfdnqz4VOLSP6W66ngKMst5EE';
+  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
+  const TTS_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${GEMINI_KEY}`;
+  const partners = JSON.parse(document.getElementById('va-provider-data').textContent);
+
+  /* Broad-coverage providers not in ZIP files */
+  const BROAD_COVERAGE_SLUGS = ['att-air', 'earthlink'];
+  const broadCoverageProviders = partners.filter(p => BROAD_COVERAGE_SLUGS.includes(p.slug));
+
+  /* ── ZIP coverage cache ──────────────────────────────────────── */
+  let zipCoverageData = null;
+  let zipDataLoading = null;
+
+  async function loadZipCoverage(){
+    if(zipCoverageData) return zipCoverageData;
+    if(zipDataLoading) return zipDataLoading;
+    zipDataLoading = fetch('/data/zip-coverage.json')
+      .then(r => r.ok ? r.json() : null)
+      .catch(() => null)
+      .then(d => { zipCoverageData = d; return d; });
+    return zipDataLoading;
+  }
+
+  function lookupZipLocal(zip){
+    if(!zipCoverageData || !zipCoverageData[zip]) return [];
+    return zipCoverageData[zip];
+  }
+
+  function buildZipContext(zip){
+    const confirmed = lookupZipLocal(zip);
+    const confirmedIds = confirmed.map(e => e.id);
+    const confirmedPartners = partners.filter(p => confirmedIds.includes(p.slug));
+    const count = confirmedPartners.length;
+
+    let primary = [], secondary = [];
+    if(count === 0){
+      primary = broadCoverageProviders;
+      secondary = partners.filter(p => !BROAD_COVERAGE_SLUGS.includes(p.slug)).sort((a,b) => a.minPrice - b.minPrice).slice(0, 2);
+    } else if(count <= 2){
+      primary = confirmedPartners;
+      secondary = broadCoverageProviders;
+    } else if(count <= 4){
+      primary = confirmedPartners;
+      secondary = broadCoverageProviders;
+    } else {
+      primary = confirmedPartners;
+      secondary = [];
+    }
+
+    const fiberIds = confirmed.filter(e => e.fiber).map(e => e.id);
+    let summary = `ZIP ${zip} results:\n`;
+    summary += `Confirmed (${count}): ${confirmedPartners.map(p => `${p.name}${fiberIds.includes(p.slug) ? ' (fiber)' : ''}`).join(', ') || 'None in database'}\n`;
+    if(primary.length) summary += `PRIMARY: ${primary.map(p => `${p.name} from $${p.minPrice}/mo`).join(', ')}\n`;
+    if(secondary.length) summary += `${count <= 2 ? 'ALSO RECOMMEND' : 'Also available'}: ${secondary.map(p => `${p.name} from $${p.minPrice}/mo`).join(', ')}\n`;
+    return { confirmed, confirmedPartners, primary, secondary, summary, count };
+  }
+
+  /* ── DOM ──────────────────────────────────────────────────────── */
+  const overlay = document.getElementById('voice-agent-overlay');
+  const closeBtn = document.getElementById('va-close');
+  const orb = document.getElementById('va-orb');
+  const status = document.getElementById('va-status');
+  const transcript = document.getElementById('va-transcript');
+  const micBtn = document.getElementById('va-mic');
+  const kbBtn = document.getElementById('va-keyboard');
+  const textForm = document.getElementById('va-text-form');
+  const textInput = document.getElementById('va-text-input');
+  const actionsDiv = document.getElementById('va-actions');
+
+  let isOpen = false;
+  let isListening = false;
+  let isSpeaking = false;
+  let recognition = null;
+  let audioCtx = null;
+  let currentSource = null;
+  let history = [];
+  let collectedData = {};
+
+  /* ── VAD state (shared with initRecognition closure) ──────── */
+  let vadStream = null;
+  let vadSourceNode = null;
+  let vadAnalyser = null;
+  let vadRaf = null;
+  let vadSilenceTimer = null;
+  let vadHadSpeech = false;
+
+  function ensureAudioCtx(){
+    if(!audioCtx) try { audioCtx = new AudioContext({ sampleRate: 24000 }); } catch(e){}
+  }
+
+  const systemInstruction = `You are a friendly, professional voice-based internet advisor for Internet4All.com. You speak conversationally — keep responses SHORT (1-3 sentences max) since they will be read aloud.
+
+AVAILABLE PROVIDERS:
+${partners.map(p => `• ${p.name} (${p.slug}): ${p.types.join(', ')} | From $${p.minPrice}/mo | Up to ${p.maxSpeed} Mbps | Plans: ${p.plans.map(pl => `${pl.name} ${pl.speed}Mbps $${pl.price}/mo`).join(', ')}`).join('\n')}
+
+YOUR FLOW (guide the conversation naturally):
+1. Greet and ask what they're looking for (or their ZIP code)
+2. When you have their needs, recommend 1-2 plans
+3. Ask if they'd like to sign up for one
+4. If yes, collect: full name, address (street, city, state, zip), email, phone, preferred install date
+5. When you have all info, say EXACTLY: [[READY_TO_ORDER:provider-slug:Plan Name]]
+
+DATA COLLECTION RULES:
+- When you learn a piece of info, include it as: [[DATA:field:value]] — fields: name, address, city, state, zip, email, phone, installDate, provider, plan
+- Ask for one piece of info at a time. Don't overwhelm.
+- Confirm info back to the user before moving on.
+
+IMPORTANT:
+- Be concise — you're being spoken aloud. No long lists.
+- Use a warm, helpful tone. You're a person, not a robot.
+- If the user just wants info, give it and offer to help them order.
+- Don't use markdown formatting — plain text only.
+- Never say "as an AI" or reveal you're not human.`;
+
+  /* ── Speech Recognition + Dual VAD (audio-level + transcript-change) */
+  function initRecognition(){
+    if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) return null;
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const r = new SR();
+    r.continuous = true;
+    r.interimResults = true;
+    r.lang = 'en-US';
+
+    let lastInterimText = '';
+    let vadCtx = null;
+    let textChangeTimer = null;
+    let gotAnyInterim = false;
+    const SILENCE_MS = 1800;
+    const VA_THRESHOLD = 6;
+
+    function startVAD(){
+      vadHadSpeech = false; gotAnyInterim = false;
+      clearTimeout(vadSilenceTimer); vadSilenceTimer = null;
+      clearTimeout(textChangeTimer); textChangeTimer = null;
+
+      (async () => {
+        try {
+          if(!vadStream) vadStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          if(!isListening) return;
+          if(!vadCtx) vadCtx = new AudioContext(); /* default sample rate — NOT 24kHz */
+          if(vadCtx.state === 'suspended') await vadCtx.resume();
+          vadAnalyser = vadCtx.createAnalyser();
+          vadAnalyser.fftSize = 512;
+          vadSourceNode = vadCtx.createMediaStreamSource(vadStream);
+          vadSourceNode.connect(vadAnalyser);
+
+          const buf = new Uint8Array(vadAnalyser.frequencyBinCount);
+          const tick = () => {
+            if(!isListening) return;
+            vadAnalyser.getByteFrequencyData(buf);
+            let sum = 0;
+            for(let i = 0; i < buf.length; i++) sum += buf[i];
+            const rms = sum / buf.length;
+            if(rms > VA_THRESHOLD){
+              vadHadSpeech = true;
+              clearTimeout(vadSilenceTimer); vadSilenceTimer = null;
+            } else if(vadHadSpeech && !vadSilenceTimer){
+              vadSilenceTimer = setTimeout(() => {
+                vadSilenceTimer = null;
+                if(isListening) try { r.stop(); } catch(e){}
+              }, SILENCE_MS);
+            }
+            vadRaf = requestAnimationFrame(tick);
+          };
+          vadRaf = requestAnimationFrame(tick);
+        } catch(e){ /* Audio VAD unavailable — transcript timer is backup */ }
+      })();
+    }
+
+    function stopVAD(){
+      clearTimeout(vadSilenceTimer); vadSilenceTimer = null;
+      clearTimeout(textChangeTimer); textChangeTimer = null;
+      cancelAnimationFrame(vadRaf);
+      vadHadSpeech = false; gotAnyInterim = false;
+      if(vadSourceNode){ try { vadSourceNode.disconnect(); } catch(e){} vadSourceNode = null; }
+    }
+
+    function resetTextTimer(){
+      clearTimeout(textChangeTimer);
+      if(!gotAnyInterim) return;
+      textChangeTimer = setTimeout(() => {
+        textChangeTimer = null;
+        if(isListening) try { r.stop(); } catch(e){}
+      }, SILENCE_MS);
+    }
+
+    r.onstart = () => {
+      isListening = true;
+      lastInterimText = '';
+      orb.classList.add('va-listening');
+      micBtn.classList.add('va-active');
+      status.textContent = 'Listening...';
+      startVAD();
+    };
+
+    r.onresult = (e) => {
+      let interim = '', final = '';
+      for(let i = e.resultIndex; i < e.results.length; i++){
+        if(e.results[i].isFinal) final += e.results[i][0].transcript;
+        else interim += e.results[i][0].transcript;
+      }
+      if(interim){ status.textContent = interim; lastInterimText = interim; gotAnyInterim = true; }
+      if(final){
+        stopVAD();
+        lastInterimText = '';
+        try { r.stop(); } catch(e2){}
+        processUserInput(final.trim());
+      } else if(interim){
+        resetTextTimer();
+      }
+    };
+
+    r.onerror = (e) => {
+      stopVAD();
+      isListening = false;
+      orb.classList.remove('va-listening');
+      micBtn.classList.remove('va-active');
+      if(e.error === 'no-speech'){
+        status.textContent = 'Listening...';
+        if(isOpen && !isSpeaking){
+          setTimeout(() => {
+            if(isOpen && !isListening && !isSpeaking) try { r.start(); } catch(e2){}
+          }, 400);
+        }
+      }
+      else if(e.error === 'not-allowed'){
+        status.textContent = 'Microphone access denied. Use the keyboard instead.';
+        textForm.style.display = 'flex';
+      } else if(e.error !== 'aborted') status.textContent = 'Tap the microphone to speak';
+    };
+
+    r.onend = () => {
+      stopVAD();
+      isListening = false;
+      orb.classList.remove('va-listening');
+      micBtn.classList.remove('va-active');
+      if(!isSpeaking && lastInterimText.trim()){
+        const fallback = lastInterimText.trim();
+        lastInterimText = '';
+        processUserInput(fallback);
+      } else {
+        lastInterimText = '';
+        if(isOpen && !isSpeaking){
+          setTimeout(() => {
+            if(isOpen && !isListening && !isSpeaking) try { r.start(); } catch(e2){}
+          }, 400);
+        }
+      }
+    };
+
+    return r;
+  }
+
+  /* ── Gemini TTS — real AI voice ──────────────────────────────── */
+  async function speak(text){
+    if(!text) return;
+    isSpeaking = true;
+    orb.classList.add('va-speaking');
+    status.textContent = 'Speaking...';
+
+    try {
+      const res = await fetch(TTS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: `Say warmly and conversationally: ${text}` }] }],
+          generationConfig: {
+            response_modalities: ['AUDIO'],
+            speech_config: {
+              voice_config: {
+                prebuilt_voice_config: { voice_name: 'Sulafat' }
+              }
+            }
+          }
+        }),
+        signal: AbortSignal.timeout(15000),
+      });
+
+      if(!res.ok) throw new Error(`TTS API ${res.status}`);
+
+      const data = await res.json();
+      const audioB64 = data?.candidates?.[0]?.content?.parts?.[0]?.inline_data?.data;
+      if(!audioB64) throw new Error('No audio data');
+
+      // Decode base64 → PCM bytes
+      const raw = atob(audioB64);
+      const bytes = new Uint8Array(raw.length);
+      for(let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
+
+      // PCM 16-bit signed LE, 24kHz mono → AudioBuffer
+      ensureAudioCtx();
+      if(audioCtx.state === 'suspended') await audioCtx.resume();
+
+      const samples = bytes.length / 2;
+      const audioBuffer = audioCtx.createBuffer(1, samples, 24000);
+      const channelData = audioBuffer.getChannelData(0);
+      const view = new DataView(bytes.buffer);
+      for(let i = 0; i < samples; i++){
+        channelData[i] = view.getInt16(i * 2, true) / 32768;
+      }
+
+      // Play
+      await new Promise((resolve) => {
+        if(currentSource){ try { currentSource.stop(); } catch(e){} }
+        const source = audioCtx.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(audioCtx.destination);
+        source.onended = resolve;
+        source.start();
+        currentSource = source;
+      });
+
+    } catch(e){
+      console.warn('Gemini TTS failed, falling back to browser:', e);
+      // Fallback to browser SpeechSynthesis if TTS API fails
+      await speakFallback(text);
+    }
+
+    isSpeaking = false;
+    orb.classList.remove('va-speaking');
+    currentSource = null;
+  }
+
+  /* Browser SpeechSynthesis fallback */
+  function speakFallback(text){
+    return new Promise(resolve => {
+      const synth = window.speechSynthesis;
+      if(!synth || !text){ resolve(); return; }
+      synth.cancel();
+      const utt = new SpeechSynthesisUtterance(text);
+      utt.rate = 1.05; utt.pitch = 1;
+      const voices = synth.getVoices();
+      const preferred = voices.find(v => /samantha|karen|google.*us|english.*female/i.test(v.name)) || voices.find(v => v.lang.startsWith('en'));
+      if(preferred) utt.voice = preferred;
+      utt.onend = resolve;
+      utt.onerror = resolve;
+      synth.speak(utt);
+    });
+  }
+
+  /* Stop any playing audio */
+  function stopSpeaking(){
+    if(currentSource){ try { currentSource.stop(); } catch(e){} currentSource = null; }
+    window.speechSynthesis?.cancel();
+    isSpeaking = false;
+    orb.classList.remove('va-speaking');
+  }
+
+  /* ── Transcript display ──────────────────────────────────────── */
+  function addTranscriptMsg(text, role){
+    const div = document.createElement('div');
+    div.className = `va-msg va-msg-${role}`;
+    div.textContent = text;
+    transcript.appendChild(div);
+    transcript.scrollTop = transcript.scrollHeight;
+  }
+
+  /* ── Call Gemini 2.5 Flash for reasoning ─────────────────────── */
+  async function callGemini(text){
+    history.push({ role: 'user', parts: [{ text }] });
+    const res = await fetch(GEMINI_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system_instruction: { parts: [{ text: systemInstruction }] },
+        contents: history,
+        generationConfig: { temperature: 0.7, maxOutputTokens: 300 },
+        safetySettings: [
+          { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_ONLY_HIGH' },
+          { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_ONLY_HIGH' },
+          { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_ONLY_HIGH' },
+          { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_ONLY_HIGH' },
+        ]
+      }),
+      signal: AbortSignal.timeout(12000),
+    });
+    if(!res.ok) throw new Error(`API error ${res.status}`);
+    const data = await res.json();
+    const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    if(reply) history.push({ role: 'model', parts: [{ text: reply }] });
+    return reply;
+  }
+
+  /* ── Process user input ──────────────────────────────────────── */
+  async function processUserInput(text){
+    if(!text) return;
+    addTranscriptMsg(text, 'user');
+    status.textContent = 'Thinking...';
+    orb.classList.add('va-thinking');
+
+    try {
+      // Check for ZIP code and enrich with coverage data
+      const zipMatch = text.match(/\b(\d{5})\b/);
+      let enrichedText = text;
+      if(zipMatch){
+        await loadZipCoverage();
+        const ctx = buildZipContext(zipMatch[1]);
+        enrichedText = `${text}\n\n[System: ${ctx.summary}]`;
+      }
+
+      let reply = await callGemini(enrichedText);
+
+      // Extract [[DATA:field:value]] markers
+      const dataMatches = reply.matchAll(/\[\[DATA:(\w+):(.+?)\]\]/g);
+      for(const m of dataMatches) collectedData[m[1]] = m[2];
+      reply = reply.replace(/\[\[DATA:\w+:.+?\]\]/g, '').trim();
+
+      // Check for [[READY_TO_ORDER:slug:plan]]
+      const orderMatch = reply.match(/\[\[READY_TO_ORDER:([a-z0-9-]+):(.+?)\]\]/);
+      if(orderMatch){
+        reply = reply.replace(/\[\[READY_TO_ORDER:.+?\]\]/, '').trim();
+        if(reply){
+          addTranscriptMsg(reply, 'agent');
+          await speak(reply);
+        }
+        completeOrder(orderMatch[1], orderMatch[2]);
+        return;
+      }
+
+      if(reply){
+        addTranscriptMsg(reply, 'agent');
+        orb.classList.remove('va-thinking');
+        await speak(reply);
+        /* Auto-listen after speaking — seamless conversation loop */
+        if(isOpen && recognition){
+          status.textContent = 'Speak now...';
+          setTimeout(() => {
+            if(isOpen && !isListening && !isSpeaking){
+              try { recognition.start(); } catch(e){}
+            }
+          }, 300);
+        }
+      }
+    } catch(e){
+      console.error('Voice agent error:', e);
+      orb.classList.remove('va-thinking');
+      const fallback = "I'm having a brief connection issue. You can also use the chat at the bottom right, or type your message using the keyboard button.";
+      addTranscriptMsg(fallback, 'agent');
+      status.textContent = 'Connection issue — try again or type';
+      await speak(fallback);
+    }
+  }
+
+  /* ── Complete order → open SignUpForm ─────────────────────────── */
+  function completeOrder(slug, planName){
+    addTranscriptMsg('Opening the sign-up form with your details...', 'agent');
+    status.textContent = 'Opening sign-up form...';
+
+    setTimeout(()=>{
+      overlay.style.display = 'none';
+      isOpen = false;
+      stopSpeaking();
+
+      const modal = document.getElementById('signup-modal');
+      if(modal){
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        const sel = document.getElementById('su-provider');
+        if(sel && slug){ sel.value = slug; sel.dispatchEvent(new Event('change')); }
+        setTimeout(()=>{
+          const planSel = document.getElementById('su-plan');
+          if(planSel && planName){
+            for(const opt of planSel.options){
+              if(opt.textContent.includes(planName)){ planSel.value = opt.value; planSel.dispatchEvent(new Event('change')); break; }
+            }
+          }
+          const fields = {
+            'su-name': collectedData.name, 'su-email': collectedData.email,
+            'su-phone': collectedData.phone, 'su-address': collectedData.address,
+            'su-city': collectedData.city, 'su-state': collectedData.state, 'su-zip': collectedData.zip,
+          };
+          for(const [id, val] of Object.entries(fields)){
+            if(val){ const el = document.getElementById(id); if(el) el.value = val; }
+          }
+        }, 300);
+      }
+    }, 1000);
+  }
+
+  /* ── Open / Close ────────────────────────────────────────────── */
+  function open(){
+    overlay.style.display = 'flex';
+    isOpen = true;
+    document.body.style.overflow = 'hidden';
+    if(!recognition) recognition = initRecognition();
+    ensureAudioCtx();
+    loadZipCoverage(); // Pre-load ZIP data
+    if(history.length === 0){
+      const greeting = "Hi there! I'm your internet advisor. I can help you find a great plan, compare options, or get you signed up. What are you looking for today?";
+      history.push({ role: 'model', parts: [{ text: greeting }] });
+      addTranscriptMsg(greeting, 'agent');
+      speak(greeting).then(()=>{
+        /* Auto-listen after greeting — seamless conversation start */
+        if(isOpen && recognition){
+          status.textContent = 'Speak now...';
+          setTimeout(() => {
+            if(isOpen && !isListening && !isSpeaking){
+              try { recognition.start(); } catch(e){}
+            }
+          }, 300);
+        }
+      });
+    }
+  }
+
+  function close(){
+    overlay.style.display = 'none';
+    isOpen = false;
+    document.body.style.overflow = '';
+    stopSpeaking();
+    if(recognition && isListening) recognition.abort();
+    isListening = false;
+    /* Clean up VAD */
+    clearTimeout(vadSilenceTimer); vadSilenceTimer = null;
+    cancelAnimationFrame(vadRaf);
+    vadRunning = false; vadHadSpeech = false;
+    if(vadSourceNode){ try { vadSourceNode.disconnect(); } catch(e){} vadSourceNode = null; }
+    orb.classList.remove('va-listening','va-speaking','va-thinking');
+  }
+
+  /* ── Mic toggle ──────────────────────────────────────────────── */
+  function toggleMic(){
+    ensureAudioCtx();
+    if(isSpeaking){
+      /* Interrupt AI speech and start listening */
+      stopSpeaking();
+      if(recognition){
+        setTimeout(() => { try { recognition.start(); } catch(e){} }, 200);
+      }
+      return;
+    }
+    if(!recognition){
+      textForm.style.display = 'flex';
+      textInput.focus();
+      status.textContent = 'Speech not available — type your message';
+      return;
+    }
+    if(isListening) recognition.stop();
+    else { try { recognition.start(); } catch(e){} }
+  }
+
+  /* ── Events ──────────────────────────────────────────────────── */
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', e => { if(e.target === overlay) close(); });
+  micBtn.addEventListener('click', toggleMic);
+  kbBtn.addEventListener('click', ()=>{
+    textForm.style.display = textForm.style.display === 'none' ? 'flex' : 'none';
+    if(textForm.style.display === 'flex') textInput.focus();
+  });
+  textForm.addEventListener('submit', e=>{
+    e.preventDefault();
+    const val = textInput.value.trim();
+    if(val){ textInput.value = ''; processUserInput(val); }
+  });
+
+  window.openVoiceAgent = open;
+})();
+</script>
+
+<style>
+  .va-overlay {
+    position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    animation: vaFadeIn 0.25s ease;
+  }
+  @keyframes vaFadeIn { from{opacity:0} to{opacity:1} }
+
+  .va-modal {
+    width: 420px; max-width: 94vw; max-height: 90vh;
+    background: #0f1629 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 24px; padding: 28px 24px 24px;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+    position: relative;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    animation: vaSlideUp 0.3s cubic-bezier(.34,1.56,.64,1);
+  }
+  /* Nuclear color isolation for voice agent */
+  .va-modal, .va-modal *, .va-modal *::before, .va-modal *::after {
+    --text-primary: #e0e4ee !important;
+    --text-secondary: #9ca3af !important;
+    color: #e0e4ee !important;
+  }
+  @keyframes vaSlideUp { from{opacity:0;transform:translateY(20px) scale(0.95)} to{opacity:1;transform:translateY(0) scale(1)} }
+
+  .va-close {
+    position: absolute; top: 12px; right: 16px;
+    font-size: 28px; color: #6b7280 !important;
+    background: none !important; border: none !important; cursor: pointer; line-height: 1;
+  }
+  .va-close:hover { color: #e0e4ee !important; }
+
+  .va-header { text-align: center; }
+  .va-title { font-size: 20px; font-weight: 700; color: #e0e4ee !important; margin: 8px 0 0; }
+  .va-subtitle { font-size: 13px; color: #9ca3af !important; margin: 4px 0 0; min-height: 18px; }
+
+  .va-orb {
+    width: 90px; height: 90px; border-radius: 50%;
+    position: relative; display: flex; align-items: center; justify-content: center; margin: 0 auto;
+  }
+  .va-orb-ring {
+    position: absolute; inset: -6px; border-radius: 50%;
+    border: 2px solid rgba(102,126,234,0.3) !important; transition: all 0.3s;
+  }
+  .va-orb-core {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s;
+  }
+  .va-orb-core svg { color: #fff !important; }
+
+  .va-listening .va-orb-ring {
+    border-color: #34d399 !important;
+    box-shadow: 0 0 20px rgba(52,211,153,0.3);
+    animation: vaRingPulse 1.5s infinite;
+  }
+  .va-listening .va-orb-core { background: linear-gradient(135deg, #34d399, #059669) !important; }
+  .va-speaking .va-orb-ring {
+    border-color: #818cf8 !important;
+    animation: vaRingPulse 0.8s infinite;
+  }
+  .va-speaking .va-orb-core { box-shadow: 0 0 24px rgba(129,140,248,0.4); }
+  .va-thinking .va-orb-ring {
+    border-color: #fbbf24 !important;
+    animation: vaRingSpin 1.2s linear infinite;
+  }
+
+  @keyframes vaRingPulse {
+    0%,100% { transform: scale(1); opacity:0.6; }
+    50% { transform: scale(1.08); opacity:1; }
+  }
+  @keyframes vaRingSpin { to { transform: rotate(360deg); } }
+
+  .va-transcript {
+    width: 100%; max-height: 200px; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 8px; padding: 4px 0;
+  }
+  .va-transcript::-webkit-scrollbar { width: 3px; }
+  .va-transcript::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1) !important; border-radius: 3px; }
+
+  .va-msg {
+    padding: 10px 14px; border-radius: 14px;
+    font-size: 13px; line-height: 1.5; max-width: 90%;
+    animation: msgFade 0.2s ease-out;
+  }
+  @keyframes msgFade { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+  .va-msg-user {
+    background: linear-gradient(135deg, #667eea, #5a67d8) !important;
+    align-self: flex-end; border-bottom-right-radius: 4px;
+  }
+  .va-msg-user { color: #fff !important; }
+  .va-msg-agent {
+    background: #1a2240 !important;
+    align-self: flex-start; border-bottom-left-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+  }
+  .va-msg-agent { color: #e0e4ee !important; }
+
+  .va-controls { display: flex; align-items: center; gap: 16px; }
+  .va-mic {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    color: #fff !important;
+    display: flex; align-items: center; justify-content: center;
+    border: none !important; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(102,126,234,0.3);
+  }
+  .va-mic svg { color: #fff !important; }
+  .va-mic:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(102,126,234,0.4); }
+  .va-mic.va-active {
+    background: linear-gradient(135deg, #34d399, #059669) !important;
+    box-shadow: 0 4px 20px rgba(52,211,153,0.4);
+    animation: vaMicPulse 1.5s infinite;
+  }
+  @keyframes vaMicPulse {
+    0%,100% { box-shadow: 0 4px 20px rgba(52,211,153,0.3); }
+    50% { box-shadow: 0 4px 36px rgba(52,211,153,0.6); }
+  }
+  .va-keyboard {
+    width: 42px; height: 42px; border-radius: 12px;
+    background: #1a2240 !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    color: #9ca3af !important;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .va-keyboard svg { color: #9ca3af !important; }
+  .va-keyboard:hover { background: #252f52 !important; color: #e0e4ee !important; }
+  .va-keyboard:hover svg { color: #e0e4ee !important; }
+
+  .va-text-form { width: 100%; display: flex; gap: 8px; }
+  .va-text-input {
+    flex: 1; padding: 10px 14px;
+    border: 1px solid #2d3752 !important; border-radius: 12px;
+    background: #1a2240 !important; color: #e0e4ee !important;
+    font-size: 13px; outline: none;
+  }
+  .va-text-input::placeholder { color: #4b5563 !important; }
+  .va-text-input:focus { border-color: #667eea !important; }
+  .va-text-send {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    color: #fff !important;
+    display: flex; align-items: center; justify-content: center;
+    border: none !important; cursor: pointer;
+  }
+  .va-text-send svg { color: #fff !important; }
+
+  .va-actions { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
+
+  @media (max-width: 480px) {
+    .va-modal { padding: 20px 16px 16px; }
+    .va-orb-core { width: 60px; height: 60px; }
+    .va-orb { width: 76px; height: 76px; }
+  }
+</style>

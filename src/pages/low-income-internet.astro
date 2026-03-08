@@ -2,11 +2,9 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { MAIN_PHONE, getPartnerProviders, formatPrice, formatSpeed } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } from '@lib/utils';
+import { getPartnerProviders, formatPrice, formatSpeed } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } from '@lib/utils';
 
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
 const partners = getPartnerProviders();
 const year = new Date().getFullYear();
 
@@ -199,14 +197,14 @@ const schema = [
       <h1 class="reveal">
         Low Income Internet Programs — <span class="gradient-text">Every Discount Available in {year}</span>
       </h1>
-      <p class="hero-subtitle reveal" style="max-width:660px;margin-inline:auto;">
+      <p class="hero-subtitle reveal" style="max-width:660px;margin-inline:auto;font-size:var(--text-base);color:white;">
         The ACP ended in 2024. Here's what replaced it: a complete guide to every <strong>federal Lifeline benefit</strong>, 
         every <strong>provider low-income program</strong>, state assistance, and qualifying criteria — all in one place. 
         Many households can get internet for <strong>under $10/month</strong> by stacking programs.
       </p>
       <div class="reveal" style="margin-top:var(--space-xl);display:flex;gap:var(--space-md);justify-content:center;flex-wrap:wrap;">
         <a href="#programs" class="btn btn-primary btn-lg">See All Programs ↓</a>
-        <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Get Help Applying — Free</a>
+        <a href="#get-connected" class="btn btn-cta btn-lg">Get Help Applying — Free</a>
       </div>
     </div>
   </section>
@@ -315,7 +313,7 @@ const schema = [
         ))}
       </div>
       <div class="text-center reveal" style="margin-top:var(--space-2xl);">
-        <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Need Help? Call Us — We'll Walk You Through It</a>
+        <a href="#get-connected" class="btn btn-cta btn-lg">Need Help? We'll Walk You Through It</a>
         <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">Free · No obligation · Available Mon–Fri 8am–9pm ET</p>
       </div>
     </div>
@@ -381,8 +379,8 @@ const schema = [
                 Check {prog.provider.split(' ')[0]} Availability →
               </a>
             ) : (
-              <a href={phoneHref} class="btn btn-secondary" style="width:100%;text-align:center;font-size:var(--text-xs);">
-                Check Availability by Phone
+              <a href="#get-connected" class="btn btn-secondary" style="width:100%;text-align:center;font-size:var(--text-xs);">
+                Get Connected
               </a>
             )}
           </div>
@@ -462,9 +460,9 @@ const schema = [
       <h2 style="margin-bottom:var(--space-md);">Not Sure Which Program You Qualify For?</h2>
       <p style="color:var(--text-secondary);max-width:520px;margin:0 auto var(--space-xl);">
         We'll help you figure out which federal, state, and provider programs apply to your household — and help you apply. 
-        The call is free, takes about 5 minutes, and there's no obligation.
+        It's free, takes about 5 minutes, and there's no obligation.
       </p>
-      <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Enrollment Help, Free</a>
+      <a href="#get-connected" class="btn btn-cta btn-lg">Get Enrollment Help — Free</a>
       <div style="margin-top:var(--space-lg);display:flex;gap:var(--space-xl);justify-content:center;flex-wrap:wrap;font-size:var(--text-sm);color:var(--text-secondary);">
         <span>✓ No credit check required</span>
         <span>✓ No obligation</span>

@@ -2,17 +2,13 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
-
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 
 const faqs = [
   { q: 'What is the Lifeline program?', a: 'Lifeline is a permanent FCC program that provides $9.25 per month off qualifying internet or phone service for low-income households. You qualify if your household income is at or below 135% of the Federal Poverty Guidelines, or if you receive SNAP, Medicaid, SSI, Federal Public Housing Assistance, or Veterans Pension/Survivors Benefit. Apply at lifelinesupport.org.' },
   { q: 'Is the Affordable Connectivity Program (ACP) still available?', a: 'No. ACP funding ended in May 2024 and the program has been discontinued. However, Lifeline ($9.25/mo) is still active and permanent. Additionally, many providers run their own low-income programs that fill part of the gap left by ACP.' },
   { q: 'How do I apply for Lifeline internet?', a: 'You can apply for Lifeline at lifelinesupport.org or through your internet provider. Eligibility is based on income or participation in qualifying government assistance programs. Once approved, the $9.25/month discount applies automatically to your internet or phone bill.' },
-  { q: 'What is Spectrum Internet Assist?', a: 'Spectrum Internet Assist offers internet service at $19.99/month for qualifying households. You may qualify if a household member receives SNAP, SSI, Medicaid, or participates in the National School Lunch Program (NSLP). Call Spectrum at their low-income program line or call us to apply.' },
+  { q: 'What is Spectrum Internet Assist?', a: 'Spectrum Internet Assist offers internet service at $19.99/month for qualifying households. You may qualify if a household member receives SNAP, SSI, Medicaid, or participates in the National School Lunch Program (NSLP). Call Spectrum at their low-income program line or call us or sign up above to apply.' },
   { q: 'What is Xfinity Internet Essentials?', a: 'Xfinity Internet Essentials provides 50-100 Mbps internet for $9.95-$29.95 per month for qualifying households. Eligible programs include SNAP, SSI, WIC, Medicaid, National School Lunch Program, housing assistance, and others. Apply at internetessentials.com.' },
   { q: 'What is AT&T Access?', a: 'AT&T Access offers guaranteed $30/month internet service (fiber or fixed wireless) for households receiving SNAP or SSI benefits. Apply at att.com/access. No credit check, no data cap. Speed varies by location (10-25 Mbps on most plans).' },
   { q: 'Can I combine Lifeline with a provider low-income program?', a: 'Yes! Lifeline can be stacked on top of provider discount programs. For example, Spectrum Internet Assist at $19.99 combined with Lifeline at $9.25 off brings your monthly cost to about $10.74. This is the most effective way to minimize your bill.' },
@@ -40,10 +36,8 @@ const faqs = [
         Here's everything available right now and how to get enrolled.
       </p>
       <div class="reveal" style="margin-top:var(--space-xl);">
-        <a href={phoneHref} class="btn btn-cta btn-lg">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> Call {phone} — Get Enrollment Help
-        </a>
-        <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:var(--space-xs);">Our agents help you identify which programs you qualify for — free.</p>
+        <a href="#get-connected" class="btn btn-cta btn-lg">Get Enrollment Help</a>
+        <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:var(--space-xs);">We help you identify which programs you qualify for — free.</p>
       </div>
     </div>
   </section>
@@ -107,7 +101,7 @@ const faqs = [
             </div>
           </div>
           <div class="flex gap-sm flex-wrap">
-            <a href={phoneHref} class="btn btn-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Get Enrollment Help</a>
+            <a href="#get-connected" class="btn btn-primary">Get Enrollment Help</a>
             <a href="https://www.lifelinesupport.org" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Apply at lifelinesupport.org ↗</a>
           </div>
         </div>
@@ -149,7 +143,7 @@ const faqs = [
               </ul>
             </div>
           </div>
-          <a href={phoneHref} class="btn btn-primary"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Apply for Spectrum Internet Assist</a>
+          <a href="#get-connected" class="btn btn-primary">Apply for Spectrum Internet Assist</a>
         </div>
 
         <!-- Xfinity Internet Essentials -->
@@ -190,7 +184,7 @@ const faqs = [
               </ul>
             </div>
           </div>
-          <a href={phoneHref} class="btn btn-primary"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Apply for Xfinity Internet Essentials</a>
+          <a href="#get-connected" class="btn btn-primary">Apply for Xfinity Internet Essentials</a>
         </div>
 
         <!-- AT&T Access -->
@@ -228,7 +222,7 @@ const faqs = [
               </ul>
             </div>
           </div>
-          <a href={phoneHref} class="btn btn-primary"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Apply for AT&T Access</a>
+          <a href="#get-connected" class="btn btn-primary">Apply for AT&T Access</a>
         </div>
 
         <!-- Mediacom Xtream Connect -->
@@ -265,7 +259,7 @@ const faqs = [
               </ul>
             </div>
           </div>
-          <a href={phoneHref} class="btn btn-primary"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Apply for Mediacom Xtream Connect</a>
+          <a href="#get-connected" class="btn btn-primary">Apply for Mediacom Xtream Connect</a>
         </div>
 
       </div>
@@ -305,8 +299,8 @@ const faqs = [
         </div>
       </div>
       <div class="text-center reveal" style="margin-top:var(--space-xl);">
-        <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call to Maximize Your Savings</a>
-        <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-sm);">Our agents will identify every program you qualify for and walk you through enrollment.</p>
+        <a href="#get-connected" class="btn btn-cta btn-lg">Maximize Your Savings</a>
+        <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-sm);">We'll identify every program you qualify for and walk you through enrollment.</p>
       </div>
     </div>
   </section>

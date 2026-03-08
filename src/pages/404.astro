@@ -1,0 +1,27 @@
+---
+import Base from '@layouts/Base.astro';
+import SearchBar from '@components/SearchBar.astro';
+---
+<Base
+  title="Page Not Found"
+  description="The page you're looking for doesn't exist. Search for internet providers in your area."
+  noindex={true}
+>
+  <section style="min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: var(--space-3xl) var(--container-pad);">
+    <div style="max-width: 560px; width: 100%; text-align: center;">
+      <div style="font-size: 6rem; font-weight: 900; color: var(--brand-blue); line-height: 1; margin-bottom: var(--space-md); opacity: 0.15;">404</div>
+      <h1 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-md);">Page Not Found</h1>
+      <p style="font-size: var(--text-lg); color: var(--text-secondary); margin-bottom: var(--space-2xl); line-height: 1.6;">
+        That page doesn't exist, but we can still find the best internet in your area.
+      </p>
+
+      <SearchBar size="large" placeholder="Enter your ZIP code" />
+
+      <div style="margin-top: var(--space-2xl); display: flex; flex-wrap: wrap; gap: var(--space-md); justify-content: center;">
+        <a href="/" class="btn btn-primary">Go Home</a>
+        <a href="/providers" class="btn btn-secondary">Browse Providers</a>
+        <a href="/check-availability" class="btn btn-secondary">Check Availability</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -2,14 +2,13 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getAllProviders, getPartnerProviders, getProvidersByType, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getAllProviders, getPartnerProviders, getProvidersByType, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
 const year = new Date().getFullYear();
 const month = new Date().toLocaleString('en-US', { month: 'long' });
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
+
 
 const allProviders = getAllProviders();
 const wirelessProviders = allProviders
@@ -42,12 +41,12 @@ const comparisonData = [
 const faqs = [
   { question: 'What is wireless home internet?', answer: 'Wireless home internet delivers broadband without physical cables to your home. This includes 5G home internet (uses cellular towers), fixed wireless (uses radio towers), and satellite internet (uses orbiting satellites). These technologies are increasingly popular alternatives to traditional cable and fiber connections.' },
   { question: 'Is wireless internet as fast as cable or fiber?', answer: '5G home internet can match cable speeds (100–1,000 Mbps) in many areas. Fixed wireless offers 25–1,000 Mbps. However, fiber still leads in raw speed (up to 8 Gbps) and latency. For most households, 5G and fixed wireless provide more than enough speed for streaming, gaming, and working from home.' },
-  { question: 'What is the best wireless internet provider?', answer: `T-Mobile 5G Home Internet is the most widely available wireless option, covering 300+ million people. Verizon 5G Home offers the fastest wireless speeds in select cities. For rural areas, Starlink satellite provides the best wireless option. Call ${phone} to check wireless availability at your address.` },
+  { question: 'What is the best wireless internet provider?', answer: `T-Mobile 5G Home Internet is the most widely available wireless option, covering 300+ million people. Verizon 5G Home offers the fastest wireless speeds in select cities. For rural areas, Starlink satellite provides the best wireless option. Sign up above to check wireless availability at your address.` },
   { question: 'Can I use wireless internet for gaming?', answer: '5G home internet has acceptable latency (20–40 ms) for most online games. Fixed wireless works for casual gaming. However, competitive gamers may prefer fiber (1–5 ms latency). Satellite internet has higher latency and is not recommended for real-time competitive gaming.' },
   { question: 'Do I need a contract for wireless internet?', answer: 'Most wireless internet providers offer no-contract plans. T-Mobile 5G Home Internet, Verizon 5G Home, and Starlink all require no annual commitment. This makes wireless internet ideal if you want flexibility to switch or cancel without early termination fees.' },
-  { question: 'Is wireless internet good for working from home?', answer: `Yes! 5G and fixed wireless provide enough speed and reliability for video conferencing, cloud applications, and VPN connections. Speeds of 100+ Mbps are common. For reliable work-from-home internet, make sure you have good signal strength. Call ${phone} for a coverage check at your address.` },
+  { question: 'Is wireless internet good for working from home?', answer: `Yes! 5G and fixed wireless provide enough speed and reliability for video conferencing, cloud applications, and VPN connections. Speeds of 100+ Mbps are common. For reliable work-from-home internet, make sure you have good signal strength. Sign up above for a coverage check at your address.` },
   { question: 'What is the difference between 5G home internet and mobile hotspot?', answer: '5G home internet uses a dedicated indoor gateway plugged into a wall outlet — it\'s designed for whole-home coverage with unlimited data. Mobile hotspots use a portable device with limited data. Home 5G offers much faster speeds and is meant to replace wired broadband.' },
-  { question: 'Can I get wireless internet in a rural area?', answer: `Yes! Fixed wireless providers serve many rural and suburban areas. Starlink satellite covers virtually every US address. T-Mobile 5G Home is rapidly expanding to rural communities. Call ${phone} to find the best wireless option for your rural address.` },
+  { question: 'Can I get wireless internet in a rural area?', answer: `Yes! Fixed wireless providers serve many rural and suburban areas. Starlink satellite covers virtually every US address. T-Mobile 5G Home is rapidly expanding to rural communities. Sign up above to find the best wireless option for your rural address.` },
 ];
 
 const schemas = [
@@ -80,7 +79,7 @@ const schemas = [
           5G home internet, fixed wireless, and satellite — with speeds up to 1 Gbps. Many plans start under $50/mo with no contract.
         </p>
         <div style="margin-top: var(--space-xl);">
-              <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Check Wireless Coverage</a>
+              <a href="#get-connected" class="btn btn-cta btn-lg">Check Wireless Coverage</a>
           <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check My Address</a>
         </div>
       </div>
@@ -150,7 +149,7 @@ const schemas = [
                   <td>{formatSpeed(getMaxSpeed(p))}</td>
                   <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
                   <td>{p.rating.toFixed(1)}/5</td>
-                  <td><a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a></td>
+                  <td><a href="#get-connected" class="btn btn-cta btn-sm">Get Plan</a></td>
                 </tr>
               ))}
             </tbody>
@@ -199,7 +198,7 @@ const schemas = [
           <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); max-width: 550px; margin-inline: auto;">
             Our wireless internet experts will check 5G, fixed wireless, and satellite coverage at your exact address — and find the fastest, cheapest option.
           </p>
-          <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Free Wireless Check</a>
+          <a href="#get-connected" class="btn btn-cta btn-lg">Get a Free Wireless Check</a>
         </div>
       </div>
 

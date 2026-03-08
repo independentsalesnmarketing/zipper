@@ -2,14 +2,12 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
 const year = new Date().getFullYear();
 const month = new Date().toLocaleString('en-US', { month: 'long' });
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
 
 // Rank providers: partners first, then by rating
 const rankedProviders = getAllProviders()
@@ -20,18 +18,19 @@ const rankedProviders = getAllProviders()
   });
 
 const topPick = rankedProviders[0];
+const partners = rankedProviders.filter(p => p.isPartner);
 
 const categories = [
-  { title: 'Best Overall', icon: '🏆', provider: rankedProviders[0], reason: `Top-rated with ${formatSpeed(getMaxSpeed(rankedProviders[0]))} speeds and excellent customer satisfaction.` },
-  { title: 'Best Value', icon: '💰', provider: rankedProviders.find(p => getMinPrice(p) <= 40 && getMaxSpeed(p) >= 300) || rankedProviders[1], reason: 'Best balance of speed, features, and price.' },
-  { title: 'Best for Speed', icon: '⚡', provider: rankedProviders.reduce((a, b) => getMaxSpeed(a) > getMaxSpeed(b) ? a : b), reason: `Fastest available speeds up to ${formatSpeed(getMaxSpeed(rankedProviders.reduce((a, b) => getMaxSpeed(a) > getMaxSpeed(b) ? a : b)))}.` },
-  { title: 'Best for Rural', icon: '🌾', provider: rankedProviders.find(p => p.coverage.includes('Nationwide') && p.types.includes('satellite')) || rankedProviders.find(p => p.coverage.includes('Nationwide')) || rankedProviders[3], reason: 'Available virtually everywhere, including remote areas.' },
-  { title: 'Best No Contract', icon: '🔓', provider: rankedProviders.find(p => p.plans.every(plan => plan.contract === 'None') && getMaxSpeed(p) >= 300) || rankedProviders[2], reason: 'All plans are month-to-month with no early termination fees.' },
-  { title: 'Best Budget', icon: '🏷️', provider: rankedProviders.reduce((a, b) => getMinPrice(a) < getMinPrice(b) ? a : b), reason: `Most affordable plans starting at ${formatPrice(getMinPrice(rankedProviders.reduce((a, b) => getMinPrice(a) < getMinPrice(b) ? a : b)))}/mo.` },
+  { title: 'Best Overall', icon: '🏆', provider: partners[0], reason: `Top-rated with ${formatSpeed(getMaxSpeed(partners[0]))} speeds and excellent customer satisfaction.` },
+  { title: 'Best Value', icon: '💰', provider: partners.find(p => getMinPrice(p) <= 40 && getMaxSpeed(p) >= 300) || partners[1], reason: 'Best balance of speed, features, and price.' },
+  { title: 'Best for Speed', icon: '⚡', provider: partners.reduce((a, b) => getMaxSpeed(a) > getMaxSpeed(b) ? a : b), reason: `Fastest available speeds up to ${formatSpeed(getMaxSpeed(partners.reduce((a, b) => getMaxSpeed(a) > getMaxSpeed(b) ? a : b)))}.` },
+  { title: 'Best for Rural', icon: '🌾', provider: partners.find(p => p.coverage.includes('Nationwide') && p.types.includes('satellite')) || partners.find(p => p.coverage.includes('Nationwide')) || partners[3], reason: 'Available virtually everywhere, including remote areas.' },
+  { title: 'Best No Contract', icon: '🔓', provider: partners.find(p => p.plans.every(plan => plan.contract === 'None') && getMaxSpeed(p) >= 300) || partners[2], reason: 'All plans are month-to-month with no early termination fees.' },
+  { title: 'Best Budget', icon: '🏷️', provider: partners.reduce((a, b) => getMinPrice(a) < getMinPrice(b) ? a : b), reason: `Most affordable plans starting at ${formatPrice(getMinPrice(partners.reduce((a, b) => getMinPrice(a) < getMinPrice(b) ? a : b)))}/mo.` },
 ];
 
 const faqs = [
-  { question: `What is the best internet provider in ${year}?`, answer: `Based on our analysis of speed, price, reliability, coverage, and customer satisfaction, ${topPick.name} ranks as the best overall internet provider in ${year}. However, the best provider for you depends on your address, budget, and needs. Call ${phone} for a personalized recommendation.` },
+  { question: `What is the best internet provider in ${year}?`, answer: `Based on our analysis of speed, price, reliability, coverage, and customer satisfaction, ${topPick.name} ranks as the best overall internet provider in ${year}. However, the best provider for you depends on your address, budget, and needs. Sign up above for a personalized recommendation.` },
   { question: 'How do you rank internet providers?', answer: 'We evaluate providers on 6 criteria: 1) Speed offerings and consistency. 2) Pricing and value. 3) Contract terms and transparency. 4) Coverage and availability. 5) Customer satisfaction ratings. 6) Technology type (fiber scores highest). Our rankings are updated monthly.' },
   { question: 'Is fiber internet always better?', answer: 'For most users, yes. Fiber offers the fastest speeds, lowest latency, symmetrical upload/download, no data caps, and no congestion during peak hours. The main limitation is availability — fiber is only in ~43% of US addresses. Cable is an excellent alternative where fiber isn\'t available.' },
   { question: 'What internet speed do I actually need?', answer: '1-2 people, basic use: 25-50 Mbps. Small family, streaming + WFH: 100-200 Mbps. Large family, gaming + 4K: 300-500 Mbps. Power users, content creators: 500-1000 Mbps. Most households are well-served by 100-300 Mbps.' },
@@ -66,9 +65,8 @@ const schemas = [
           We analyzed {rankedProviders.length} internet providers across speed, price, reliability, coverage, and customer satisfaction.
           Here are our expert rankings.
         </p>
-        <a href={phoneHref} class="btn btn-call mt-xl" style="font-size: var(--text-lg);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          Call {phone} for Expert Advice
+        <a href="#get-connected" class="btn btn-cta mt-xl" style="font-size: var(--text-lg);">
+          Get Expert Advice
         </a>
       </div>
 
@@ -123,8 +121,8 @@ const schemas = [
                     <td>{cheapest.contract}</td>
                     <td>{p.plans.some(plan => plan.dataCap === 'Unlimited') ? 'Unlimited available' : cheapest.dataCap}</td>
                     <td>
-                      <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);">
-                        Call
+                      <a href="#get-connected" data-signup-provider={p.slug} class="btn btn-cta" style="font-size:var(--text-xs);padding:var(--space-xs) var(--space-sm);">
+                        Order
                       </a>
                     </td>
                   </tr>
@@ -156,9 +154,8 @@ const schemas = [
                   </h3>
                   <span class="text-secondary">{p.rating}/5 • {p.reviewCount.toLocaleString()} reviews • {p.types.map(t => getTypeLabel(t)).join(', ')}</span>
                 </div>
-                <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-                  {p.isPartner ? p.phone : phone}
+                <a href="#get-connected" data-signup-provider={p.slug} class="btn btn-cta">
+                  Get {p.name}
                 </a>
               </div>
 
@@ -228,5 +225,5 @@ const schemas = [
 
     </div>
   </section>
-  <StickyCallBar phone={phone} message="Expert advice — call now" />
+  <StickyCallBar text="Expert advice — get connected now" />
 </Base>

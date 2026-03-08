@@ -2,12 +2,10 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getPartnerProviders, formatSpeed, formatPrice, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getPartnerProviders, formatSpeed, formatPrice } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 
 const partners = getPartnerProviders().slice(0, 6);
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
 
 const faqs = [
   { q: 'Can I get new internet service after being disconnected?', a: 'Yes. When you sign up with a new ISP, your history with your previous provider does not automatically transfer. Most new providers run a standard credit check but do not check your payment history with other ISPs. You can start fresh with a new company today.' },
@@ -16,7 +14,7 @@ const faqs = [
   { q: 'Do internet providers share disconnection records with each other?', a: 'Most standard ISPs run a credit check but do not pull ISP-specific payment history. A small number use services like the National Consumer Telecom & Utilities Exchange (NCTUE). The safest way to avoid any history lookup is to go with a no-credit-check 5G provider like T-Mobile or a prepaid service.' },
   { q: 'Can I get internet with bad credit or no credit check?', a: 'Yes. T-Mobile 5G Home Internet, Verizon 5G Home, AT&T Air, and most prepaid internet services do not run credit checks at all. You can sign up online today and have your device in 1-2 business days.' },
   { q: 'What if I want to reconnect with my original provider after being disconnected?', a: 'Your original provider will typically require you to pay the outstanding balance in full before restoring service. If that\'s not possible right now, switching to a new provider is the fastest path back online. Once you\'re back on your feet, you can always address the old balance separately.' },
-  { q: 'Is there same-day internet service available?', a: 'Yes. In many cities, T-Mobile and Verizon 5G Home can be activated the same day you order online — the device ships immediately and activates automatically. Additionally, our agents can sometimes expedite installation for cable and fiber providers to get you online within 24-48 hours.' },
+  { q: 'Is there same-day internet service available?', a: 'Yes. In many cities, T-Mobile and Verizon 5G Home can be activated the same day you order online — the device ships immediately and activates automatically. Additionally, we can sometimes expedite installation for cable and fiber providers to get you online within 24-48 hours.' },
 ];
 ---
 <Base
@@ -43,10 +41,10 @@ const faqs = [
 
       <!-- Urgency CTA block -->
       <div class="reveal" style="margin-top:var(--space-xl);display:flex;flex-direction:column;align-items:center;gap:var(--space-md);">
-        <a href={phoneHref} class="btn btn-cta" style="font-size:var(--text-xl);padding:var(--space-md) var(--space-2xl);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> Call {phone} — Get Online Today
-        </a>
-        <p style="font-size:var(--text-sm);color:var(--text-muted);">Free. No pressure. We find you the fastest option at your address.</p>
+          <a href="#chat" class="btn btn-cta" style="font-size:var(--text-xl);padding:var(--space-md) var(--space-2xl);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat with us — Get Online Today
+          </a>
+          <p style="font-size:var(--text-sm);color:var(--text-muted);">Fastest help: chat or fill out our form. Phone support available if needed.</p>
       </div>
 
       <!-- Trust signals -->
@@ -126,7 +124,7 @@ const faqs = [
             <span class="badge">✓ Up to 245 Mbps</span>
             <span class="badge">✓ No contract</span>
           </div>
-          <a href={phoneHref} class="btn btn-call" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call to Sign Up for T-Mobile 5G</a>
+          <a href="#chat" class="btn btn-primary" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat to Sign Up for T-Mobile 5G</a>
         </div>
 
         <!-- Option 2: Verizon 5G -->
@@ -150,7 +148,7 @@ const faqs = [
             <span class="badge">✓ Up to 1 Gbps</span>
             <span class="badge">✓ No contract</span>
           </div>
-          <a href={phoneHref} class="btn btn-call" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call to Sign Up for Verizon 5G</a>
+          <a href="#chat" class="btn btn-primary" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat to Sign Up for Verizon 5G</a>
         </div>
 
         <!-- Option 3: Partner providers -->
@@ -173,7 +171,7 @@ const faqs = [
                 <span class="badge">{best.contract}</span>
                 <span class="badge">{best.dataCap}</span>
               </div>
-              <a href={`tel:${p.phone.replace(/[^0-9]/g, '')}`} class="btn btn-call" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Get {p.name} Today</a>
+              <a href="#chat" class="btn btn-primary" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat to Get {p.name} Today</a>
             </div>
           );
         })}
@@ -181,7 +179,7 @@ const faqs = [
 
       <div class="text-center reveal" style="margin-top:var(--space-xl);">
         <p style="color:var(--text-secondary);margin-bottom:var(--space-md);">Not sure which provider serves your area?</p>
-        <a href={phoneHref} class="btn btn-primary btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — We'll Check Instantly</a>
+        <a href="#chat" class="btn btn-primary btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat — We'll Check Instantly</a>
       </div>
     </div>
   </section>
@@ -238,11 +236,11 @@ const faqs = [
       <div class="card gradient-border text-center" style="padding:var(--space-2xl);">
         <h2 class="reveal">Don't Wait. <span class="gradient-text">Get Online Today.</span></h2>
         <p class="reveal" style="font-size:var(--text-lg);max-width:560px;margin:var(--space-md) auto 0;">
-          Our agents will check every provider available at your address, find the fastest option with no credit check, 
+          We'll check every provider available at your address, find the fastest option with no credit check, 
           and get you signed up in minutes. Free help — no pressure.
         </p>
         <div class="reveal" style="margin-top:var(--space-xl);display:flex;flex-direction:column;align-items:center;gap:var(--space-md);">
-          <a href={phoneHref} class="btn btn-cta btn-lg">{phone}</a>
+          <a href="#get-connected" class="btn btn-cta btn-lg">Get Connected Now</a>
           <p style="font-size:var(--text-xs);color:var(--text-muted);">Available 7 days a week · No credit check options available · Same-day in many areas</p>
         </div>
       </div>

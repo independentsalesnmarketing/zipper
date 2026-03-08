@@ -2,7 +2,7 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getPartnerProviders, formatSpeed, formatPrice, MAIN_PHONE } from '@lib/providers';
+import { getPartnerProviders, formatSpeed, formatPrice } from '@lib/providers';
 import { generateBreadcrumbSchema } from '@lib/utils';
 
 const partners = getPartnerProviders();
@@ -83,7 +83,7 @@ const partners = getPartnerProviders();
 
   <StickyCallBar text="Overpaying? Let's fix that." />
 
-<script define:vars={{ partners: partners.map(p => ({ name: p.name, slug: p.slug, phone: p.phone, types: p.types, plans: p.plans })), mainPhone: MAIN_PHONE }}>
+<script define:vars={{ partners: partners.map(p => ({ name: p.name, slug: p.slug, phone: p.phone, types: p.types, plans: p.plans })) }}>
 (function() {
   let contract = 'unsure';
   
@@ -194,7 +194,7 @@ const partners = getPartnerProviders();
               <div style="text-align:right;">
                 <div style="font-size:var(--text-xl);font-weight:900;color:var(--brand-green);">$${d.price.toFixed(2)}<span style="font-size:var(--text-xs);font-weight:400;">/mo</span></div>
                 <div style="font-size:var(--text-sm);color:var(--brand-green);">Save $${d.savings.toFixed(2)}/mo ($${d.annualSavings.toFixed(0)}/yr)</div>
-                <a href="tel:${d.phone.replace(/[^0-9]/g, '')}" class="btn btn-call" style="margin-top:var(--space-xs);font-size:var(--text-sm);">Switch Now</a>
+                <a href="#get-connected" class="btn btn-cta" style="margin-top:var(--space-xs);font-size:var(--text-sm);">Switch Now</a>
               </div>
             </div>
           </div>
@@ -203,8 +203,8 @@ const partners = getPartnerProviders();
     } else {
       html += `
         <div class="card text-center" style="margin-top:var(--space-lg);padding:var(--space-xl);">
-          <p>We didn't find a plan that beats your current price for the same speed tier. But you might still save by switching — call for a personalized quote.</p>
-          <a href="tel:${mainPhone.replace(/[^0-9]/g, '')}" class="btn btn-call" style="margin-top:var(--space-md);">${mainPhone}</a>
+          <p>We didn't find a plan that beats your current price for the same speed tier. But you might still save by switching — sign up for a personalized quote.</p>
+          <a href="#get-connected" class="btn btn-cta" style="margin-top:var(--space-md);">Get Connected</a>
         </div>
       `;
     }

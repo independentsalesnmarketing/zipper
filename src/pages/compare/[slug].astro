@@ -3,7 +3,7 @@ import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { getPartnerProviders, getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, stateNames } from '@lib/providers';
-import { formatPhoneForTel, slugify, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { slugify, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
 export function getStaticPaths() {
@@ -127,8 +127,8 @@ const schemas = [
             </div>
           </div>
           {providerA.isPartner && (
-            <a href={formatPhoneForTel(providerA.phone)} class="btn btn-cta" style="margin-top: var(--space-lg);">
-              Call {providerA.phone}
+            <a href="#get-connected" data-signup-provider={providerA.slug} class="btn btn-cta" style="margin-top: var(--space-lg);">
+              Get {providerA.name}
             </a>
           )}
         </div>
@@ -163,8 +163,8 @@ const schemas = [
             </div>
           </div>
           {providerB.isPartner && (
-            <a href={formatPhoneForTel(providerB.phone)} class="btn btn-cta" style="margin-top: var(--space-lg);">
-              Call {providerB.phone}
+            <a href="#get-connected" data-signup-provider={providerB.slug} class="btn btn-cta" style="margin-top: var(--space-lg);">
+              Get {providerB.name}
             </a>
           )}
         </div>
@@ -247,8 +247,8 @@ const schemas = [
             {providerA.types.includes('fiber') && <li style="padding:var(--space-xs) 0;">✓ <strong>Fiber internet</strong> — most reliable connection</li>}
           </ul>
           {providerA.isPartner && (
-            <a href={formatPhoneForTel(providerA.phone)} class="btn btn-cta" style="margin-top: var(--space-lg);">
-              Get {providerA.name} — Call {providerA.phone}
+            <a href="#get-connected" data-signup-provider={providerA.slug} class="btn btn-cta" style="margin-top: var(--space-lg);">
+              Get {providerA.name}
             </a>
           )}
         </div>
@@ -264,8 +264,8 @@ const schemas = [
             {providerB.types.includes('fiber') && <li style="padding:var(--space-xs) 0;">✓ <strong>Fiber internet</strong> — most reliable connection</li>}
           </ul>
           {providerB.isPartner && (
-            <a href={formatPhoneForTel(providerB.phone)} class="btn btn-cta" style="margin-top: var(--space-lg);">
-              Get {providerB.name} — Call {providerB.phone}
+            <a href="#get-connected" data-signup-provider={providerB.slug} class="btn btn-cta" style="margin-top: var(--space-lg);">
+              Get {providerB.name}
             </a>
           )}
         </div>
@@ -380,5 +380,5 @@ const schemas = [
     </div>
   </section>
 
-  <StickyCallBar text={`Compare ${providerA.name} vs ${providerB.name} — call for best deal`} />
+  <StickyCallBar text={`Compare ${providerA.name} vs ${providerB.name} — find the best deal`} />
 </Base>

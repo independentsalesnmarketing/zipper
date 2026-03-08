@@ -2,8 +2,8 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
 export function getStaticPaths() {
@@ -23,8 +23,6 @@ const maxUpload = getMaxUpload(provider);
 const minPrice = getMinPrice(provider);
 const partners = getPartnerProviders();
 const isPartner = provider.isPartner;
-const phone = isPartner ? provider.phone : MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
 
 // Find alternative providers (partners first)
 const alternatives = getAllProviders()
@@ -154,10 +152,7 @@ const schemas = [
         <h3>Not Getting the {provider.name} Speeds You Expect?</h3>
         <p style="margin-top:var(--space-sm);max-width:500px;margin-inline:auto;color:var(--text-secondary);">If your speed test shows significantly less than what {provider.name} advertises, you may have better options available. Our experts can help you find a faster, more reliable provider.</p>
         <div class="flex gap-md justify-center flex-wrap" style="margin-top:var(--space-xl);">
-          <a href={`tel:${phoneHref}`} class="btn btn-cta">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            Call {phone}
-          </a>
+          <a href="#get-connected" class="btn btn-cta">Find a Better Provider</a>
           <a href="/providers" class="btn btn-secondary">Compare All Providers</a>
         </div>
       </div>

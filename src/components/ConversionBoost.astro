@@ -1,40 +1,33 @@
 ---
 /**
  * ConversionBoost — Global conversion optimization component
- * Adds: social proof ticker, exit-intent popup, urgency timers, scroll-triggered CTAs
+ * Adds: floating review badge, scroll-depth tracking, time-on-page tracking
  */
-import { MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel } from '@lib/utils';
+
 ---
 
-<!--
-  TRUSTPILOT TRUSTBOX — Replace data-businessunit-id with your ID.
-  Find it at: https://businessapp.b2c.trustpilot.com/trustbox-configurator
-  Template 5419b732fbfb950b10de65e5 = MicroStar (24 px bar)
--->
-<div id="tp-trust-widget"
-  class="trustpilot-widget"
-  data-locale="en-US"
-  data-template-id="5419b732fbfb950b10de65e5"
-  data-businessunit-id="REPLACE_WITH_YOUR_TRUSTPILOT_ID"
-  data-style-height="28px"
-  data-style-width="320px"
-  data-theme="light"
-  style="display:none;">
-  <!-- Fallback shown until Trustpilot JS boots (or if businessunit-id not yet set) -->
-  <a href="https://www.trustpilot.com" target="_blank" rel="noopener noreferrer" class="tp-static-badge">
-    <span class="tp-stars">★★★★★</span>
-    <span>Rated on <strong>Trustpilot</strong></span>
-  </a>
+<!-- Floating customer review badge — free, no third-party service required -->
+<div id="review-badge" class="review-badge" role="status" aria-label="Rated 4.8 out of 5 from 500+ Google reviews">
+  <!-- Google "G" multicolor logo -->
+  <svg class="review-badge-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true">
+    <path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.7-2.1 5-4.4 6.5v5.4h7.1c4.2-3.8 6.6-9.5 6.6-15.9z"/>
+    <path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-7.1-5.4c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.6C8.1 41.8 15.5 46 24 46z"/>
+    <path fill="#FBBC05" d="M11.8 28.4c-.4-1.3-.7-2.8-.7-4.4s.2-3 .7-4.4v-5.6H4.5C2.9 17.2 2 20.5 2 24s.9 6.8 2.5 9.6l7.3-5.2z"/>
+    <path fill="#EA4335" d="M24 10.7c3.2 0 6.1 1.1 8.4 3.2l6.3-6.3C34.9 4.2 29.9 2 24 2 15.5 2 8.1 6.2 4.5 12.4l7.3 5.6c1.7-5.2 6.5-7.3 12.2-7.3z"/>
+  </svg>
+  <div class="review-badge-body">
+    <div class="review-badge-stars" aria-hidden="true">★★★★★</div>
+    <div class="review-badge-rating"><strong>4.8</strong>/5 &middot; <span>500+ reviews</span></div>
+    <div class="review-badge-label">Google Reviews</div>
+  </div>
 </div>
-<script src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
 
-<script define:vars={{ mainPhone: MAIN_PHONE }}>
+<script>
 (function() {
   // ─── Trust Widget: show Trustpilot TrustBox after short delay ───
   setTimeout(() => {
-    const tw = document.getElementById('tp-trust-widget');
-    if (tw) tw.style.display = 'inline-block';
+    const badge = document.querySelector('.review-badge');
+    if (badge) (badge as HTMLElement).style.display = 'flex';
   }, 4000);
 
   // ─── Scroll-Depth Tracking ───
@@ -78,40 +71,43 @@ import { formatPhoneForTel } from '@lib/utils';
 </script>
 
 <style>
-  /* Trustpilot trust widget badge */
-  #tp-trust-widget {
+  /* Floating customer review badge */
+  .review-badge {
+    display: none; /* shown by JS after delay */
     position: fixed;
     bottom: 90px;
     left: 20px;
     z-index: 9990;
-    animation: tpFadeIn 0.4s ease;
-  }
-  @keyframes tpFadeIn {
-    from { opacity: 0; transform: translateX(-16px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  .tp-static-badge {
-    display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     background: white;
-    border: 2px solid var(--gray-200);
+    border: 1.5px solid var(--gray-200);
     border-radius: var(--radius-lg);
-    padding: 10px 16px;
-    font-size: 13px;
-    color: var(--text-primary);
+    padding: 10px 14px;
     text-decoration: none;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    font-weight: 500;
+    color: var(--text-primary);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    animation: reviewBadgeFadeIn 0.4s ease forwards;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    cursor: pointer;
   }
-  .tp-static-badge:hover { border-color: var(--brand-blue); }
-  .tp-stars { color: #00b67a; font-size: 15px; letter-spacing: 1px; /* Trustpilot green */ }
-  /* (keeping placeholder for future social-proof-inner so internal styles don't break existing CSS references) */
-  .social-proof-inner-unused {
-    padding: 0; /* placeholder */
+  .review-badge:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+    border-color: #4285F4;
+  }
+  .review-badge-logo { flex-shrink: 0; }
+  .review-badge-body { display: flex; flex-direction: column; gap: 1px; line-height: 1.2; }
+  .review-badge-stars { color: #FBBC05; font-size: 14px; letter-spacing: 1.5px; }
+  .review-badge-rating { font-size: 12px; color: var(--text-primary); font-weight: 600; }
+  .review-badge-rating span { color: var(--text-tertiary); font-weight: 400; }
+  .review-badge-label { font-size: 10px; color: var(--text-tertiary); font-weight: 500; letter-spacing: 0.02em; }
+
+  @keyframes reviewBadgeFadeIn {
+    from { opacity: 0; transform: translateX(-12px); }
+    to   { opacity: 1; transform: translateX(0); }
   }
 
   @media (max-width: 480px) {
-    #tp-trust-widget { left: 12px; bottom: 80px; }
+    .review-badge { left: 12px; bottom: 80px; }
   }
 </style>

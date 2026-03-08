@@ -2,8 +2,8 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getAllProviders, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } from '@lib/utils';
+import { getAllProviders } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } from '@lib/utils';
 
 // Import raw census data
 // We re-implement a minimal local version to avoid a circular import; the data is the same.
@@ -170,8 +170,6 @@ const faqs = [
   { question: 'Are there government programs to help with internet costs?', answer: 'Yes. The Lifeline program provides $9.25/month off internet bills for qualifying low-income households. Several ISPs run their own low-income programs: Xfinity Internet Essentials ($9.95/mo), AT&T Access ($30/mo), Spectrum Internet Assist ($19.99/mo), and Cox Connect2Compete ($9.95/mo for K-12 households.' },
   { question: 'How do I find the cheapest internet in my state?', answer: 'Enter your ZIP code in our provider search to see every option at your exact address — including income-based programs you may qualify for. Pricing varies significantly within states; urban areas typically have more competition and lower prices than rural areas.' },
 ];
-
-const phoneHref = formatPhoneForTel(MAIN_PHONE);
 ---
 <Base
   title={`Internet Affordability Index by State (${year}) — What % of Income Goes to Internet?`}
@@ -364,10 +362,10 @@ const phoneHref = formatPhoneForTel(MAIN_PHONE);
         <p style="color:var(--text-secondary);max-width:520px;margin:0 auto var(--space-xl);">
           State averages don't tell the whole story. Pricing varies by ZIP code, and there may be income-based programs or promotional plans you don't know about.
         </p>
-        <a href={phoneHref} class="btn btn-cta btn-lg">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call for Free — Find Your Best Rate
+        <a href="#get-connected" class="btn btn-cta btn-lg">
+          Find Your Best Rate — Free
         </a>
-        <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-md);">Free · No obligation · 2-minute call</p>
+        <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-md);">Free · No obligation</p>
       </div>
 
       <!-- FAQ -->

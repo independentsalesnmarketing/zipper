@@ -57,10 +57,15 @@ export function generateBreadcrumbSchema(items: { name: string; url: string }[])
   };
 }
 
-export function generateFAQSchema(faqs: { question: string; answer: string }[]) {
+export function generateFAQSchema(
+  faqs: { question: string; answer: string }[],
+  datePublished?: string
+) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    datePublished: datePublished ?? new Date().toISOString().split('T')[0],
+    dateModified: new Date().toISOString().split('T')[0],
     mainEntity: faqs.map(faq => ({
       '@type': 'Question',
       name: faq.question,

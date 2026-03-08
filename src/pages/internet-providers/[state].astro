@@ -3,8 +3,8 @@ import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import ProviderCard from '@components/ProviderCard.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor, stateNames, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor, stateNames } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import { getStatePages, getCitiesInState, getStateSlug, type StatePageData } from '@data/locations';
 import { getStateCensus, getBroadbandGrade, getRankAmongStates, getStateComparison, getNationalAverage, formatPercent, formatPopulation, formatIncome } from '@data/census';
 import type { Provider, Plan } from '@lib/providers';
@@ -20,7 +20,11 @@ interface Props { stateData: StatePageData; }
 const { stateData } = Astro.props;
 
 const allProviders = getAllProviders();
-const providers = stateData.providers
+// Include state-specific providers plus any nationwide providers not already listed
+const stateSpecificIds = new Set(stateData.providers);
+const nationwideExtras = allProviders.filter(p => p.coverage.includes('Nationwide') && !stateSpecificIds.has(p.id));
+const providerIds = [...stateData.providers, ...nationwideExtras.map(p => p.id)];
+const providers = providerIds
   .map(id => allProviders.find(p => p.id === id))
   .filter((p): p is Provider => !!p)
   .sort((a, b) => {
@@ -121,10 +125,10 @@ for (const p of providers) {
 const faqs = [
   { question: `What are the best internet providers in ${stateData.name} in ${year}?`, answer: `The top internet providers in ${stateData.name} are ${providers.slice(0, 5).map(p => p.name).join(', ')}. ${topRated ? `${topRated.name} has the highest customer satisfaction rating at ${topRated.rating}/5 stars.` : ''} ${census ? `With ${formatPercent(census.broadbandPct)} of households connected, ${stateData.name} ranks #${broadbandRank} nationally for broadband adoption.` : ''}` },
   { question: `What is the fastest internet available in ${stateData.name}?`, answer: `${fastest ? `${fastest.name} offers the fastest internet in ${stateData.name} with download speeds up to ${formatSpeed(maxSpd)}.` : 'Speeds vary by provider.'} ${fiberProviders.length > 0 ? `Fiber internet — the fastest technology — is available from ${fiberProviders.map(p => p.name).join(', ')}.` : ''} ${census ? `The average download speed across ${stateData.name} is ${census.avgDownload} Mbps.` : ''}` },
-  { question: `What is the cheapest internet in ${stateData.name}?`, answer: `${cheapest ? `${cheapest.name} offers the lowest starting price in ${stateData.name} at just ${formatPrice(minPrc)}/mo.` : 'Prices vary.'} The average starting price across all providers is about $${avgPrice}/mo. Call ${MAIN_PHONE} for exclusive promotions that can save you $20-50/mo off regular pricing.` },
+  { question: `What is the cheapest internet in ${stateData.name}?`, answer: `${cheapest ? `${cheapest.name} offers the lowest starting price in ${stateData.name} at just ${formatPrice(minPrc)}/mo.` : 'Prices vary.'} The average starting price across all providers is about $${avgPrice}/mo. Sign up above for exclusive promotions that can save you $20-50/mo off regular pricing.` },
   { question: `Is fiber internet available in ${stateData.name}?`, answer: fiberProviders.length > 0 ? `Yes! Fiber internet is available in ${stateData.name} from ${fiberProviders.map(p => p.name).join(', ')}. ${census ? `Approximately ${formatPercent(census.fiberPct)} of ${stateData.name} households have access to fiber infrastructure.` : ''} Fiber delivers the fastest speeds with symmetrical upload and download — ideal for remote work, gaming, and streaming.` : `Fiber availability in ${stateData.name} is limited. Cable internet and 5G home internet are excellent alternatives with speeds suitable for most households.` },
   { question: `How does ${stateData.name}'s internet compare to other states?`, answer: census ? `${stateData.name} ranks #${broadbandRank} out of 51 states/territories for broadband adoption at ${formatPercent(census.broadbandPct)} (national average: ${formatPercent(natAvgBroadband)}). The state earns a broadband grade of ${grade}. ${census.underservedPct > 15 ? `However, ${formatPercent(census.underservedPct)} of households still lack adequate 25/3 Mbps service.` : `Only ${formatPercent(census.underservedPct)} of households lack adequate broadband.`}` : `${stateData.name} has ${providers.length} internet providers serving the state, with options ranging from fiber to satellite.` },
-  { question: `How many internet providers serve ${stateData.name}?`, answer: `${providers.length} internet providers serve ${stateData.name}, including ${fiberProviders.length} fiber, ${cableProviders.length} cable, ${fiveGProviders.length > 0 ? `${fiveGProviders.length} 5G home internet, ` : ''}and ${satelliteProviders.length} satellite providers. Our experts can help you compare all available options at your address — just enter your ZIP code above or call ${MAIN_PHONE} for free help.` },
+  { question: `How many internet providers serve ${stateData.name}?`, answer: `${providers.length} internet providers serve ${stateData.name}, including ${fiberProviders.length} fiber, ${cableProviders.length} cable, ${fiveGProviders.length > 0 ? `${fiveGProviders.length} 5G home internet, ` : ''}and ${satelliteProviders.length} satellite providers. Our experts can help you compare all available options at your address — just enter your ZIP code above or sign up for free help.` },
   { question: `What internet speed do I need in ${stateData.name}?`, answer: `For basic browsing and email, 25-50 Mbps is sufficient. For streaming on 2-3 devices, aim for 100-200 Mbps. For gaming, video calls, and remote work, 200-500 Mbps is ideal. For large households with 5+ devices, 500 Mbps to 1 Gbps ensures everyone stays connected. ${census ? `The average household in ${stateData.name} uses about ${Math.round(census.avgDownload * 0.6)} Mbps during peak hours.` : ''}` },
   { question: `What cities in ${stateData.name} have the best internet?`, answer: metroCities.length > 0 ? `The best internet coverage in ${stateData.name} is in ${metroCities.slice(0, 5).map(c => c.name).join(', ')}. ${census ? `${formatPercent(census.urbanPct)} of ${stateData.name}'s population lives in urban areas with better provider options.` : ''} Metro areas typically offer 5+ providers including fiber, while rural areas may have 2-3 options.` : `Coverage varies across ${stateData.name}. Enter your ZIP code to see exact availability at your address.` },
 ];
@@ -323,7 +327,7 @@ const schemas = [
             {a.provider.isPartner && (
               <a href={`/deals/${a.provider.slug}`} style="display:block;text-align:center;font-size:var(--text-xs);color:var(--brand-green);margin-top:var(--space-xs);margin-bottom:var(--space-xs);">See {a.provider.name} Deals →</a>
             )}
-            <a href={formatPhoneForTel(a.provider.isPartner ? a.provider.phone : MAIN_PHONE)} class="btn btn-cta btn-sm" style="margin-top:var(--space-sm);width:100%;">Call to Order</a>
+            <a href="#get-connected" data-signup-provider={a.provider.slug} class="btn btn-cta btn-sm" style="margin-top:var(--space-sm);width:100%;">Order Now</a>
           </div>
         ))}
       </div>
@@ -433,7 +437,7 @@ const schemas = [
                 <span style="font-size:0.6rem;color:var(--text-tertiary);display:block;">({p.reviewCount.toLocaleString()} reviews)</span>
               </td>
               <td>
-                <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-cta btn-sm">Call</a>
+                <a href="#get-connected" data-signup-provider={p.slug} class="btn btn-cta btn-sm">Order</a>
               </td>
             </tr>
           ))}
@@ -602,7 +606,7 @@ const schemas = [
                       </td>
                       <td>{plan.contract}</td>
                       <td>{plan.dataCap}</td>
-                      <td><a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-cta btn-sm">Order</a></td>
+                      <td><a href="#get-connected" class="btn btn-cta btn-sm" data-signup-provider={p.slug}>Order</a></td>
                     </tr>
                   ))}
                 </tbody>
@@ -718,7 +722,7 @@ const schemas = [
 
       <h3 style="margin-top:var(--space-lg);">Saving Money on Internet in {stateData.name}</h3>
       <p>
-        <strong>1. Compare all options.</strong> Use our free comparison tool or call {MAIN_PHONE} — we regularly find savings of $20–50/mo.
+        <strong>1. Compare all options.</strong> Use our free comparison tool — we regularly find savings of $20–50/mo.
         <strong>2. Watch for promo rates.</strong> Know the regular price before signing up.
         <strong>3. Buy your own equipment.</strong> Skip the $10–15/mo rental fee.
         <strong>4. Check low-income programs.</strong> The FCC's Affordable Connectivity Program, Spectrum Internet Assist, and AT&T Access can help qualifying households.
@@ -744,7 +748,7 @@ const schemas = [
         </div>
         <div>
           <h4 style="margin-bottom:var(--space-xs);">🏠 Provider Low-Income Plans</h4>
-          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Spectrum Internet Assist ($17.99/mo), AT&T Access ($5–10/mo), and similar programs. Call {MAIN_PHONE} to check eligibility.</p>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Spectrum Internet Assist ($17.99/mo), AT&T Access ($5–10/mo), and similar programs. <a href="/low-income-internet">Check eligibility</a>.</p>
         </div>
         <div>
           <h4 style="margin-bottom:var(--space-xs);">🏫 Community WiFi</h4>
@@ -761,8 +765,8 @@ const schemas = [
   <div class="reveal" style="margin-bottom:var(--space-2xl);">
     <div class="card" style="padding:var(--space-2xl);text-align:center;background:linear-gradient(135deg,rgba(0,82,255,0.08),rgba(0,213,132,0.08));border:1px solid var(--brand-blue);">
       <h2 style="margin-bottom:var(--space-sm);">Find Your Perfect Internet Plan in {stateData.name}</h2>
-      <p style="color:var(--text-secondary);margin-bottom:var(--space-lg);max-width:550px;margin-inline:auto;">Our experts compare every provider so you don't have to. Call now for exclusive deals not available online.</p>
-      <a href={formatPhoneForTel(MAIN_PHONE)} class="btn btn-cta btn-lg">Call {MAIN_PHONE} — It's Free</a>
+      <p style="color:var(--text-secondary);margin-bottom:var(--space-lg);max-width:550px;margin-inline:auto;">Our experts compare every provider so you don't have to. Sign up now for exclusive deals not available elsewhere.</p>
+      <a href="#get-connected" class="btn btn-cta btn-lg">Get Connected — It's Free</a>
     </div>
   </div>
 
@@ -789,14 +793,16 @@ const schemas = [
           </div>
         </div>
       )}
-      <div class="grid grid-3 gap-md" style="gap:var(--space-sm);">
-        {cities.filter(c => !c.isMetro).map(city => (
-          <a href={`/internet-providers/${city.slug}`} class="card" style="padding:var(--space-md);display:flex;justify-content:space-between;align-items:center;text-decoration:none;">
-            <span style="font-weight:600;color:var(--text-primary);">{city.name}</span>
-            <span style="font-size:var(--text-sm);color:var(--text-tertiary);">{city.population.toLocaleString()}</span>
-          </a>
-        ))}
-      </div>
+      {cities.filter(c => !c.isMetro).length > 0 && (
+        <div class="grid grid-3" style="gap:var(--space-sm);">
+          {cities.filter(c => !c.isMetro).map(city => (
+            <a href={`/internet-providers/${city.slug}`} class="card" style="padding:var(--space-md);display:flex;justify-content:space-between;align-items:center;text-decoration:none;">
+              <span style="font-weight:600;color:var(--text-primary);">{city.name}</span>
+              <span style="font-size:var(--text-sm);color:var(--text-tertiary);">{city.population.toLocaleString()}</span>
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   )}
 
@@ -851,9 +857,9 @@ const schemas = [
     <h2 style="margin-bottom:var(--space-xl);">Frequently Asked Questions — {stateData.name} Internet</h2>
     {faqs.map(faq => (
       <div class="faq-item">
-        <button class="faq-question">{faq.question}</button>
+        <button class="faq-question" type="button">{faq.question}</button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">{faq.answer}</div>
+          <div class="faq-answer-inner" set:html={faq.answer}></div>
         </div>
       </div>
     ))}
@@ -877,7 +883,7 @@ const schemas = [
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function initStatePage() {
     // ZIP search form handler
     const form = document.getElementById('zip-search-form') as HTMLFormElement;
     const input = document.getElementById('zip-input') as HTMLInputElement;
@@ -905,6 +911,12 @@ const schemas = [
         if (item) item.classList.toggle('open');
       });
     });
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStatePage);
+  } else {
+    initStatePage();
+  }
 </script>
 </Base>

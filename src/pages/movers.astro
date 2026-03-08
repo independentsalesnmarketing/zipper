@@ -3,18 +3,18 @@ import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import SearchBar from '@components/SearchBar.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getPartnerProviders, formatSpeed, formatPrice, renderStars, MAIN_PHONE } from '@lib/providers';
+import { getPartnerProviders, formatSpeed, formatPrice, renderStars } from '@lib/providers';
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 
 const partners = getPartnerProviders().slice(0, 6);
 const faqs = [
   { q: 'How far in advance should I set up internet before moving?', a: 'We recommend scheduling your new internet install 2-3 weeks before your move date. This ensures a technician can come on or near move-in day so you\'re never without service.' },
-  { q: 'Can I transfer my current internet to my new address?', a: 'Many providers allow you to transfer internet service to your new address. However, your current provider may not serve your new area. Call us and we\'ll check availability at your new address and help you transfer or find a better option.' },
+  { q: 'Can I transfer my current internet to my new address?', a: 'Many providers allow you to transfer internet service to your new address. However, your current provider may not serve your new area. Sign up above and we\'ll check availability at your new address and help you transfer or find a better option.' },
   { q: 'What if my current provider doesn\'t serve my new address?', a: 'No worries — that\'s exactly what we\'re here for! Enter your new ZIP code above and we\'ll show you every provider available at your new home, with exclusive deals for new customers. New customers almost always get the best pricing.' },
   { q: 'Do I need to cancel my old service myself?', a: 'Yes. Contact your current provider to cancel once your new service is active. Return any equipment to avoid charges. We recommend keeping old service active until your new connection is confirmed working.' },
-  { q: 'Are there special deals for people who just moved?', a: 'Absolutely! New customers almost always get the best promotional pricing. Many of our partner providers offer exclusive move-in deals with discounted rates for 12-24 months. Call us to hear about current offers.' },
-  { q: 'Will a new provider pay my ETF if I\'m stuck in a contract?', a: 'Some providers run contract buyout programs that cover up to $500 of your early termination fee when you switch. Call us and we\'ll check which providers at your new address are currently running buyout promotions.' },
-  { q: 'How quickly can I get internet set up at my new address?', a: '5G home internet (T-Mobile, Verizon) ships directly to your new address and can be activated same-day or next-day. Cable self-install kits arrive in 2-3 days. Professional installation for fiber or cable is typically 3-5 business days. Call us as soon as your move date is confirmed.' },
+  { q: 'Are there special deals for people who just moved?', a: 'Absolutely! New customers almost always get the best promotional pricing. Many of our partner providers offer exclusive move-in deals with discounted rates for 12-24 months. Sign up above to hear about current offers.' },
+  { q: 'Will a new provider pay my ETF if I\'m stuck in a contract?', a: 'Some providers run contract buyout programs that cover up to $500 of your early termination fee when you switch. Sign up above and we\'ll check which providers at your new address are currently running buyout promotions.' },
+  { q: 'How quickly can I get internet set up at my new address?', a: '5G home internet (T-Mobile, Verizon) ships directly to your new address and can be activated same-day or next-day. Cable self-install kits arrive in 2-3 days. Professional installation for fiber or cable is typically 3-5 business days. Sign up as soon as your move date is confirmed.' },
 ];
 ---
 <Base
@@ -68,7 +68,7 @@ const faqs = [
         <div class="card reveal reveal-delay-2" style="position:relative;padding-top:var(--space-xl);">
           <div style="position:absolute;top:-18px;left:var(--space-lg);width:36px;height:36px;border-radius:50%;background:var(--gradient-secondary);display:grid;place-items:center;font-weight:800;font-size:var(--text-sm);">2</div>
           <h4 style="margin-bottom:var(--space-sm);">Schedule Install</h4>
-          <p style="font-size:var(--text-sm);">Call us or request a callback. We'll help you choose the best plan and <strong>schedule installation for move-in day</strong>.</p>
+          <p style="font-size:var(--text-sm);">Sign up above or request a callback. We'll help you choose the best plan and <strong>schedule installation for move-in day</strong>.</p>
         </div>
         <div class="card reveal reveal-delay-3" style="position:relative;padding-top:var(--space-xl);">
           <div style="position:absolute;top:-18px;left:var(--space-lg);width:36px;height:36px;border-radius:50%;background:var(--gradient-accent);display:grid;place-items:center;font-weight:800;font-size:var(--text-sm);">3</div>
@@ -106,8 +106,8 @@ const faqs = [
                   <div style="font-size:var(--text-xl);font-weight:800;">{formatSpeed(p.plans[p.plans.length - 1].speed)}</div>
                 </div>
               </div>
-              <a href={`tel:${p.phone.replace(/[^0-9]/g, '')}`} class="btn btn-call" style="width:100%;text-align:center;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> Call for Move-In Deal
+              <a href="#get-connected" class="btn btn-cta" style="width:100%;text-align:center;">
+                Get Move-In Deal
               </a>
             </div>
           );
@@ -120,11 +120,11 @@ const faqs = [
   <section class="section">
     <div class="container">
       <div class="card gradient-border" style="padding:var(--space-2xl);text-align:center;">
-        <h2 class="reveal" style="margin-bottom:var(--space-md);">Why Call <span class="gradient-text">Internet 4 ALL</span> When Moving?</h2>
+        <h2 class="reveal" style="margin-bottom:var(--space-md);">Why Choose <span class="gradient-text">Internet 4 ALL</span> When Moving?</h2>
         <div class="grid grid-3" style="margin-top:var(--space-xl);text-align:left;">
           <div class="reveal reveal-delay-1">
-            <h5 style="color:var(--brand-green);margin-bottom:var(--space-xs);">One call, all providers</h5>
-            <p style="font-size:var(--text-sm);">Instead of calling 5 different companies, call us once. We'll compare every option at your new address.</p>
+            <h5 style="color:var(--brand-green);margin-bottom:var(--space-xs);">One stop, all providers</h5>
+            <p style="font-size:var(--text-sm);">Instead of contacting 5 different companies, use us once. We'll compare every option at your new address.</p>
           </div>
           <div class="reveal reveal-delay-2">
             <h5 style="color:var(--brand-blue-light);margin-bottom:var(--space-xs);">Exclusive move-in prices</h5>
@@ -132,7 +132,7 @@ const faqs = [
           </div>
           <div class="reveal reveal-delay-3">
             <h5 style="color:var(--brand-purple);margin-bottom:var(--space-xs);">Same-week installation</h5>
-            <p style="font-size:var(--text-sm);">We prioritize movers. Most installations can be scheduled within 3-5 business days of your call.</p>
+            <p style="font-size:var(--text-sm);">We prioritize movers. Most installations can be scheduled within 3-5 business days of signing up.</p>
           </div>
         </div>
       </div>

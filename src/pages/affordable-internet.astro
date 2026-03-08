@@ -3,19 +3,17 @@ import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import SearchBar from '@components/SearchBar.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getPartnerProviders, formatSpeed, formatPrice, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getPartnerProviders, formatSpeed, formatPrice } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 
 const partners = getPartnerProviders();
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
 const year = new Date().getFullYear();
 
 const faqs = [
   { q: 'What counts as "affordable" internet?', a: 'Affordable internet typically means plans under $50/month that still deliver enough speed (25+ Mbps) for everyday use. With inflation driving up prices in 2025-2026, finding genuinely affordable plans means looking beyond standard advertised rates — including promotional pricing, assistance programs, and 5G options without long-term contracts.' },
   { q: 'What is the most affordable home internet available?', a: 'The most affordable home internet options in 2026 are: Mint Mobile 5G ($25/mo), T-Mobile 5G Home Internet ($40-$50/mo with Magenta plan), WOW! Internet (starting $29.99/mo), Xfinity Internet Essentials ($9.95/mo w/ qualifying assistance), and AT&T Access ($30/mo for SNAP/SSI recipients). Plans vary by location.' },
   { q: 'Is affordable internet the same as cheap internet?', a: 'Not exactly. "Cheap" internet focuses on the lowest possible upfront price, sometimes sacrificing speed or reliability. "Affordable" internet means the best value — reasonable price for reliable service. $40/mo for 300 Mbps fiber is more affordable than $30/mo for 10 Mbps DSL, even though the DSL is cheaper.' },
-  { q: 'How can I lower my current internet bill?', a: 'Call your provider and ask for their retention department. Mention that competitors offer lower prices. Request a loyalty discount or promotional rate. If they won\'t budge, threaten to cancel — this often unlocks unpublished discounts. If you qualify, apply for Lifeline ($9.25/mo off) or a provider low-income program.' },
+  { q: 'How can I lower my current internet bill?', a: 'Contact your provider and ask for their retention department. Mention that competitors offer lower prices. Request a loyalty discount or promotional rate. If they won\'t budge, threaten to cancel — this often unlocks unpublished discounts. If you qualify, apply for Lifeline ($9.25/mo off) or a provider low-income program.' },
   { q: 'Are there affordable internet plans with no credit check?', a: 'Yes. T-Mobile 5G Home Internet, Verizon 5G Home, AT&T Air, and most prepaid internet plans require no credit checks. These are some of the most affordable options available, typically $25-$50/mo with no contracts.' },
   { q: 'What is the FCC 30-day cancellation right?', a: 'Under FCC broadband label rules, if your internet price increases significantly after the promotional period, you may have the right to cancel within 30 days of receiving notice of the rate change without an early termination fee. Always check your provider\'s terms and contact us if your rate has increased unexpectedly.' },
 ];
@@ -54,7 +52,7 @@ const plans = [
         <SearchBar placeholder="Enter your ZIP — find affordable plans near you" size="large" />
       </div>
       <div class="reveal" style="margin-top:var(--space-md);">
-        <a href={phoneHref} class="btn btn-cta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — We'll Find Your Lowest Rate</a>
+        <a href="#get-connected" class="btn btn-cta">Find Your Lowest Rate</a>
       </div>
     </div>
   </section>
@@ -107,7 +105,7 @@ const plans = [
         ))}
       </div>
       <div class="text-center reveal" style="margin-top:var(--space-2xl);">
-        <a href={phoneHref} class="btn btn-primary btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Check Availability at Your Address</a>
+        <a href="#get-connected" class="btn btn-primary btn-lg">Get Connected</a>
       </div>
     </div>
   </section>
@@ -141,7 +139,7 @@ const plans = [
   <section class="section">
     <div class="container">
       <h2 class="text-center reveal">Compare Affordable Plans <span class="gradient-text">at Your Address</span></h2>
-      <p class="text-center reveal" style="max-width:500px;margin:var(--space-sm) auto var(--space-xl);">Partner providers with affordable internet plans and fast setup. Call for current pricing and availability.</p>
+      <p class="text-center reveal" style="max-width:500px;margin:var(--space-sm) auto var(--space-xl);">Partner providers with affordable internet plans and fast setup. Sign up for current pricing and availability.</p>
       <div class="grid grid-2">
         {partners.slice(0, 6).map((p, i) => {
           const cheapest = p.plans.reduce((a, b) => (a.promoPrice || a.price) < (b.promoPrice || b.price) ? a : b);
@@ -162,9 +160,7 @@ const plans = [
                 <span class="badge">{cheapest.contract}</span>
                 <span class="badge">{cheapest.dataCap}</span>
               </div>
-              <a href={`tel:${p.phone.replace(/[^0-9]/g, '')}`} class="btn btn-call" style="width:100%;text-align:center;">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> Get Affordable {p.name} Rates
-              </a>
+              <a href="#get-connected" class="btn btn-cta" style="width:100%;text-align:center;">Get Affordable {p.name} Rates</a>
             </div>
           );
         })}

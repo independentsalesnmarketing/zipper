@@ -2,14 +2,12 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getAllProviders, getProvidersByType, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getAllProviders, getProvidersByType, formatSpeed, formatPrice, getMinPrice, getMaxSpeed } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
 const year = new Date().getFullYear();
 const month = new Date().toLocaleString('en-US', { month: 'long' });
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
 
 const cableProviders = getProvidersByType('cable')
   .sort((a, b) => {
@@ -28,7 +26,7 @@ const streamingAlternatives = [
 ];
 
 const faqs = [
-  { question: `What is the best cable TV provider in ${year}?`, answer: `The best cable TV providers in ${year} are Spectrum (no contracts, 125+ channels), Xfinity (X1 platform, wide availability), and Optimum (competitive pricing in the Northeast). However, streaming TV services are increasingly replacing traditional cable. Call ${phone} to compare options.` },
+  { question: `What is the best cable TV provider in ${year}?`, answer: `The best cable TV providers in ${year} are Spectrum (no contracts, 125+ channels), Xfinity (X1 platform, wide availability), and Optimum (competitive pricing in the Northeast). However, streaming TV services are increasingly replacing traditional cable. Sign up above to compare options.` },
   { question: 'Is cable TV still worth it?', answer: 'For live sports fans and those who want channel-surfing, cable TV still has value. But for most viewers, streaming services offer better value: more on-demand content, lower prices, no equipment fees, and no contracts. The average cable bill is $83/mo vs. $15-73/mo for streaming.' },
   { question: 'What is a good alternative to cable TV?', answer: 'YouTube TV ($72.99/mo for 100+ channels), Sling TV ($40/mo for 30+ channels), and Philo ($28/mo for 70+ entertainment channels) are the top cable alternatives. Pair with Netflix, Disney+, or Hulu for a complete entertainment setup at a lower cost than cable.' },
   { question: 'Can I get cable TV without cable internet?', answer: 'Yes, but it\'s not common. Most cable TV now comes bundled with internet, and standalone TV may actually cost more than a bundle. A better approach: get internet from any provider and use a streaming TV service for live channels.' },
@@ -63,9 +61,8 @@ const schemas = [
           Traditional cable TV or streaming? We compare {cableProviders.length} cable providers
           and {streamingAlternatives.length} streaming alternatives to help you make the best choice and save money.
         </p>
-        <a href={phoneHref} class="btn btn-call mt-xl" style="font-size: var(--text-lg);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          Call {phone} for TV + Internet Deals
+        <a href="#get-connected" class="btn btn-cta mt-xl" style="font-size: var(--text-lg);">
+          Get TV + Internet Deals
         </a>
       </div>
 
@@ -95,7 +92,7 @@ const schemas = [
                 </div>
                 <div class="flex gap-sm">
                   <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size:var(--text-sm);">Plans</a>
-                  <a href={formatPhoneForTel(p.isPartner ? p.phone : MAIN_PHONE)} class="btn btn-call" style="font-size:var(--text-sm);">Call</a>
+                  <a href="#get-connected" data-signup-provider={p.slug} class="btn btn-cta" style="font-size:var(--text-sm);">Order</a>
                 </div>
               </div>
             </div>
@@ -140,7 +137,7 @@ const schemas = [
           <div>
             <h3 style="font-size: var(--text-base);">Get Internet-Only Service</h3>
             <p class="text-secondary" style="font-size:var(--text-sm);">
-              Call us at {phone} to switch to an internet-only plan. Most providers offer 100-300 Mbps for $40-60/mo — plenty for streaming.
+              Sign up to switch to an internet-only plan. Most providers offer 100-300 Mbps for $40-60/mo — plenty for streaming.
             </p>
           </div>
           <div>
@@ -157,7 +154,7 @@ const schemas = [
           </div>
         </div>
         <div class="text-center mt-xl">
-          <a href={phoneHref} class="btn btn-call" style="font-size:var(--text-lg);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:5px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call for Internet-Only Deals</a>
+          <a href="#get-connected" class="btn btn-cta" style="font-size:var(--text-lg);">Get Internet-Only Deals</a>
         </div>
       </div>
 
@@ -213,5 +210,5 @@ const schemas = [
       </div>
     </div>
   </section>
-  <StickyCallBar phone={phone} message="TV + Internet deals — call now" />
+  <StickyCallBar text="TV + Internet deals — get connected now" />
 </Base>

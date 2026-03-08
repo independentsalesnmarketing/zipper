@@ -2,14 +2,12 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel, MAIN_PHONE } from '@lib/providers';
-import { formatPhoneForTel, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
 const year = new Date().getFullYear();
 const month = new Date().toLocaleString('en-US', { month: 'long' });
-const phone = MAIN_PHONE;
-const phoneHref = formatPhoneForTel(phone);
 
 const allProviders = getAllProviders();
 const partners = getPartnerProviders();
@@ -48,11 +46,11 @@ const bundleDeals = [
 ];
 
 const faqs = [
-  { question: 'What are the best TV providers in my area?', answer: `TV availability depends on your address. Cable TV (Spectrum, Xfinity, Cox) is available in most urban and suburban areas. Satellite TV (DIRECTV, DISH) is available everywhere. Streaming TV works anywhere with internet. Call ${phone} to find out which TV providers serve your address.` },
+  { question: 'What are the best TV providers in my area?', answer: `TV availability depends on your address. Cable TV (Spectrum, Xfinity, Cox) is available in most urban and suburban areas. Satellite TV (DIRECTV, DISH) is available everywhere. Streaming TV works anywhere with internet. Sign up above to find out which TV providers serve your address.` },
   { question: 'Is it cheaper to get a TV bundle or stream?', answer: 'It depends on your watching habits. Internet + cable TV bundles typically cost $90–130/mo. Streaming live TV costs $40–80/mo on top of your internet bill. If you watch lots of sports and local channels, cable bundles often offer better value. If you watch mostly on-demand content, streaming is cheaper.' },
-  { question: 'Can I still get cable TV?', answer: `Yes! Cable TV is still widely available and remains the most popular way to watch live TV. Spectrum, Xfinity, Cox, and Optimum all offer cable TV packages. Many people pair cable TV with internet for bundle savings. Call ${phone} to check cable TV availability at your address.` },
+  { question: 'Can I still get cable TV?', answer: `Yes! Cable TV is still widely available and remains the most popular way to watch live TV. Spectrum, Xfinity, Cox, and Optimum all offer cable TV packages. Many people pair cable TV with internet for bundle savings. Sign up to check cable TV availability at your address.` },
   { question: 'What TV provider has the most channels?', answer: 'DIRECTV offers up to 330+ channels on its Premier tier — the most of any traditional provider. DISH offers up to 290+ channels. For cable, Spectrum offers 150–200+ channels. For streaming, fuboTV offers 180+ channels. The right choice depends on which channels you want, not just the total count.' },
-  { question: 'Should I bundle TV and internet together?', answer: `Bundling usually saves $10–30/mo compared to buying separately. Most cable and fiber providers offer internet + TV bundles. You also get one bill and one customer service number. Call ${phone} for the best bundle deals in your area — we often have exclusive pricing not available online.` },
+  { question: 'Should I bundle TV and internet together?', answer: `Bundling usually saves $10–30/mo compared to buying separately. Most cable and fiber providers offer internet + TV bundles. You also get one bill and one customer service number. Sign up for the best bundle deals in your area — we often have exclusive pricing not available online.` },
   { question: 'What do I need to watch TV without cable?', answer: 'You need: 1) A fast internet connection (25+ Mbps for HD, 50+ for 4K). 2) A streaming device (smart TV, Roku, Fire Stick, Apple TV, or Chromecast). 3) A streaming service subscription (YouTube TV, Hulu Live, Netflix, etc.). That\'s it — no cable box, no dish, no contract. Our experts can set you up with the best internet for streaming.' },
   { question: 'Is satellite TV still worth it?', answer: 'Satellite TV makes sense if: you live in a rural area without cable, you want NFL Sunday Ticket or premium sports, or you want 200+ channels. DIRECTV has moved to streaming but still offers satellite in some areas. For most urban/suburban addresses, cable or streaming will be better value.' },
   { question: 'What internet speed do I need for streaming TV?', answer: 'For SD streaming: 3–5 Mbps per stream. For HD: 5–10 Mbps. For 4K: 25 Mbps. Multiply by the number of simultaneous viewers. A household of 4 streaming in HD needs at least 40 Mbps. We recommend 100+ Mbps for comfortable streaming across multiple devices. Visit our speed test to check your current speed.' },
@@ -71,7 +69,7 @@ const schemas = [
   description={`Find cable TV providers in your area for ${month} ${year}. Compare cable, satellite, fiber TV, and streaming options near you. Cable and internet bundles starting at $50/mo. ${tvProviders.length}+ cable TV providers compared.`}
   schema={schemas}
 >
-  <StickyCallBar text="Find TV providers in your area — call for bundle deals" />
+  <StickyCallBar text="Find TV providers in your area — get bundle deals" />
 
   <section class="section" style="padding-top: var(--space-xl);">
     <div class="container">
@@ -88,7 +86,7 @@ const schemas = [
           channels lineups, and bundle deals. Save up to $30/mo when you pair TV with internet.
         </p>
         <div style="margin-top: var(--space-xl);">
-          <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Get TV + Internet Deals</a>
+          <a href="#get-connected" class="btn btn-cta btn-lg">Get TV + Internet Deals</a>
           <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check My Address</a>
         </div>
       </div>
@@ -148,12 +146,12 @@ const schemas = [
                 <span style="font-size: var(--text-xl); font-weight: 800; color: var(--brand-green);">{bd.price}</span>
                 <span class="badge badge-blue" style="font-size: 0.55rem;">{bd.highlight}</span>
               </div>
-              <a href={phoneHref} class="btn btn-cta btn-sm" style="width: 100%; text-align: center;">Get This Bundle</a>
+              <a href="#get-connected" class="btn btn-cta btn-sm" style="width: 100%; text-align: center;">Get This Bundle</a>
             </div>
           ))}
         </div>
         <div class="text-center" style="margin-top: var(--space-lg);">
-          <p style="color: var(--text-tertiary); font-size: var(--text-xs);">Prices shown are typical promotional rates. Call for exact pricing at your address.</p>
+          <p style="color: var(--text-tertiary); font-size: var(--text-xs);">Prices shown are typical promotional rates. Sign up for exact pricing at your address.</p>
         </div>
       </div>
 
@@ -187,7 +185,7 @@ const schemas = [
         </div>
         <div class="card" style="padding: var(--space-lg); margin-top: var(--space-lg); text-align: center; background: var(--surface-2);">
           <p style="margin-bottom: var(--space-sm);">Streaming TV requires fast internet. We'll help you find the perfect internet plan for buffer-free viewing.</p>
-          <a href={phoneHref} class="btn btn-cta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Get Internet for Streaming</a>
+          <a href="#get-connected" class="btn btn-cta">Get Internet for Streaming</a>
         </div>
       </div>
 
@@ -220,7 +218,7 @@ const schemas = [
                   <td>{formatSpeed(getMaxSpeed(p))}</td>
                   <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
                   <td>{p.rating.toFixed(1)}</td>
-                  <td><a href={formatPhoneForTel(p.phone)} class="btn btn-cta btn-sm">Call</a></td>
+                  <td><a href="#get-connected" data-signup-provider={p.slug} class="btn btn-cta btn-sm">Order</a></td>
                 </tr>
               ))}
             </tbody>
@@ -235,7 +233,7 @@ const schemas = [
           <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); max-width: 550px; margin-inline: auto;">
             Our experts know every TV and internet deal in your area. We'll compare cable, satellite, and streaming options to find the best fit for your budget and viewing habits.
           </p>
-          <a href={phoneHref} class="btn btn-cta btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call {phone} — Free TV Consultation</a>
+          <a href="#get-connected" class="btn btn-cta btn-lg">Get a Free TV Consultation</a>
         </div>
       </div>
 

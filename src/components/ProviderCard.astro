@@ -33,7 +33,7 @@ const badgeLabels: Record<string, string> = {
   <div class="pc-col-logo">
     <a href={`/provider/${provider.slug}`} class="pc-logo-link" aria-label={`${provider.name} details`}>
       {provider.logo ? (
-        <img src={provider.logo} alt={`${provider.name} logo`} width="160" height="80" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <img src={provider.logo} alt={`${provider.name} logo`} width="160" height="80" loading="lazy" decoding="async" onerror="this.style.display='none';if(this.nextElementSibling)this.nextElementSibling.style.display='flex'" />
       ) : (
         <div class="pc-logo-fallback">{provider.name.charAt(0)}</div>
       )}

@@ -1712,10 +1712,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--space-lg);
-    flex-wrap: wrap;
-    max-width: 1200px;
+    gap: var(--space-md);
+    flex-wrap: nowrap;
+    max-width: 1400px;
     margin: 0 auto;
+    overflow-x: auto;
+    padding: 0 var(--space-md);
   }
   .hero-logo-chip {
     width: 100px;
@@ -1764,6 +1766,7 @@
 
     .hero-logos-strip {
       gap: var(--space-sm);
+      flex-wrap: wrap;
     }
     .hero-logo-chip {
       width: 80px;

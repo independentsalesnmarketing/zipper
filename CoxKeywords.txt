@@ -1,0 +1,98 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+cox internet	USD	2000000	0%	0%	High	88	3.10	9.30
+cox internet plans	USD	900000	0%	0%	High	87	2.90	8.70
+cox communications internet	USD	700000	0%	0%	High	86	2.80	8.40
+cox cable internet	USD	600000	0%	0%	High	87	3.00	9.00
+cox internet service	USD	500000	0%	0%	High	86	2.85	8.55
+cox internet deals	USD	450000	0%	0%	High	89	3.60	10.80
+cox internet near me	USD	400000	0%	0%	High	85	2.70	8.10
+cox internet speed	USD	380000	0%	0%	High	84	2.60	7.80
+cox high speed internet	USD	350000	0%	0%	High	86	2.90	8.70
+cox internet availability	USD	320000	0%	0%	High	84	2.55	7.65
+cox internet in my area	USD	300000	0%	0%	High	85	2.65	7.95
+cox wifi	USD	280000	0%	0%	Medium	76	2.20	6.60
+cox internet wifi	USD	260000	0%	0%	Medium	75	2.15	6.45
+cox internet promotions	USD	240000	0%	0%	High	88	3.70	11.10
+cox internet promo	USD	220000	0%	0%	High	87	3.60	10.80
+cox new customer deals	USD	200000	0%	5%	High	89	3.90	11.70
+cox internet new customer offer	USD	180000	0%	5%	High	88	3.80	11.40
+cox gigablast	USD	160000	0%	0%	High	85	3.30	9.90
+cox 1 gig internet	USD	150000	0%	0%	High	85	3.20	9.60
+cox gigabit internet	USD	140000	0%	0%	High	85	3.25	9.75
+cox panoramic wifi	USD	300000	0%	0%	Medium	72	2.30	6.90
+cox panoramic wifi modem	USD	200000	0%	0%	Medium	70	2.25	6.75
+cox modem	USD	250000	0%	0%	Medium	67	2.10	6.30
+cox router	USD	230000	0%	0%	Medium	66	2.05	6.15
+cox internet equipment	USD	180000	0%	0%	Medium	65	2.00	6.00
+cox outage map	USD	600000	0%	0%	Low	22	0.55	1.65
+cox internet outage	USD	500000	0%	0%	Low	20	0.50	1.50
+cox customer service	USD	800000	0%	0%	Low	30	0.80	2.40
+cox customer service number	USD	600000	0%	0%	Low	28	0.75	2.25
+cox customer support	USD	400000	0%	0%	Low	27	0.70	2.10
+cox internet speed test	USD	350000	0%	0%	Medium	62	1.80	5.40
+cox internet no contract	USD	200000	0%	0%	High	82	3.00	9.00
+cox no contract internet	USD	180000	0%	0%	High	81	2.90	8.70
+cox month to month internet	USD	150000	0%	0%	High	80	2.80	8.40
+cox internet 100 mbps	USD	150000	0%	0%	High	83	2.90	8.70
+cox internet 250 mbps	USD	140000	0%	0%	High	83	2.95	8.85
+cox internet 500 mbps	USD	130000	0%	0%	High	84	3.05	9.15
+cox internet 1000 mbps	USD	120000	0%	0%	High	85	3.20	9.60
+cox internet gaming	USD	100000	0%	5%	Medium	73	2.30	6.90
+cox internet for gaming	USD	90000	0%	5%	Medium	74	2.35	7.05
+cox internet latency	USD	80000	0%	0%	Medium	70	2.20	6.60
+cox internet upload speed	USD	200000	0%	0%	Medium	72	2.25	6.75
+cox internet unlimited data	USD	250000	0%	0%	High	82	2.90	8.70
+cox unlimited data plan	USD	200000	0%	0%	High	81	2.85	8.55
+cox internet streaming	USD	150000	0%	0%	Medium	73	2.20	6.60
+cox internet for apartments	USD	130000	0%	0%	Medium	72	2.30	6.90
+cox internet service area	USD	200000	0%	0%	High	83	2.50	7.50
+cox coverage map	USD	180000	0%	0%	High	82	2.45	7.35
+cox internet by address	USD	160000	0%	0%	High	83	2.55	7.65
+cox internet check availability	USD	140000	0%	0%	High	82	2.50	7.50
+cox internet review	USD	250000	0%	0%	Medium	70	1.95	5.85
+cox internet vs xfinity	USD	100000	0%	0%	High	84	3.30	9.90
+cox internet vs att	USD	80000	0%	0%	High	83	3.20	9.60
+cox internet vs spectrum	USD	90000	0%	0%	High	83	3.25	9.75
+cox business internet	USD	350000	0%	0%	High	86	4.80	14.40
+cox business plans	USD	280000	0%	0%	High	85	4.60	13.80
+cox internet las vegas	USD	200000	0%	0%	High	85	3.10	9.30
+cox internet phoenix	USD	180000	0%	0%	High	84	3.00	9.00
+cox internet tucson	USD	100000	0%	0%	High	83	2.90	8.70
+cox internet oklahoma city	USD	90000	0%	0%	High	83	2.85	8.55
+cox internet san diego	USD	120000	0%	0%	High	84	2.95	8.85
+cox internet wichita	USD	80000	0%	0%	High	82	2.80	8.40
+cox internet norfolk	USD	70000	0%	0%	High	81	2.75	8.25
+cox internet cleveland	USD	90000	0%	0%	High	82	2.80	8.40
+cox internet kansas city	USD	80000	0%	0%	High	82	2.80	8.40
+cox internet omaha	USD	70000	0%	0%	High	81	2.75	8.25
+cox internet baton rouge	USD	60000	0%	0%	High	80	2.70	8.10
+cox internet reno	USD	60000	0%	0%	High	80	2.70	8.10
+cox autopay discount	USD	100000	0%	0%	High	81	2.90	8.70
+cox self installation	USD	150000	0%	0%	Medium	68	2.10	6.30
+cox internet installation	USD	130000	0%	0%	Medium	67	2.05	6.15
+cox internet installation cost	USD	100000	0%	0%	Medium	65	2.00	6.00
+cox affordable internet	USD	100000	0%	0%	High	79	2.50	7.50
+cox internet essentials	USD	90000	0%	0%	Medium	63	1.50	4.50
+cox internet plans for low income	USD	80000	0%	0%	High	78	2.40	7.20
+cox connect2compete	USD	50000	0%	0%	Medium	60	1.50	4.50
+cox internet plans by address	USD	500	0%	0%	High	86	2.90	8.70
+cox internet availability by zip code	USD	500	0%	0%	High	84	2.55	7.65
+cox internet pricing for new customers	USD	500	0%	0%	High	88	3.80	11.40
+cox internet no contract plans	USD	500	0%	0%	High	81	3.00	9.00
+cox internet upload speeds	USD	500	0%	0%	Medium	72	2.25	6.75
+cox internet 1 gig plan price	USD	500	0%	0%	High	85	3.25	9.75
+cox internet gaming latency	USD	500	0%	5%	Medium	73	2.35	7.05
+cox internet for streaming	USD	500	0%	0%	Medium	73	2.25	6.75
+cox internet installation fee	USD	500	0%	0%	Medium	66	2.05	6.15
+cox internet modem and router fees	USD	500	0%	0%	Medium	66	2.10	6.30
+cox internet unlimited data plans	USD	500	0%	0%	High	82	2.90	8.70
+cox internet deals near me	USD	500	0%	0%	High	89	3.70	11.10
+cox internet check availability by zip	USD	500	0%	0%	High	83	2.55	7.65
+cox internet business pricing	USD	500	0%	0%	High	86	4.80	14.40
+cox internet customer reviews	USD	500	0%	0%	Medium	70	1.95	5.85
+cox internet outage map	USD	500	0%	0%	Low	22	0.55	1.65
+cox internet for apartments	USD	500	0%	0%	Medium	72	2.30	6.90
+cox internet vs fiber internet	USD	500	0%	0%	High	83	3.20	9.60
+cox internet promotional pricing	USD	500	0%	0%	High	88	3.80	11.40
+cox internet address lookup	USD	500	0%	0%	High	83	2.55	7.65
+cox internet gigabit plan	USD	500	0%	0%	High	85	3.20	9.60

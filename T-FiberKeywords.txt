@@ -1,0 +1,801 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+tmobile near to me	USD	5000000	0%	0%	Medium	39	2.13	6.00
+t mobile cell phone plans	USD	500000	-90%	900%	Low	17	1.22	8.09
+t mobile wireless plans	USD	500000	0%	9900%	Low	1	1.44	10.00
+t mobile phone plan	USD	500000	0%	0%	Medium	53	1.35	8.78
+t mobile cell plans	USD	500000	0%	0%	Low	25	1.33	9.14
+tmobile home internet plans	USD	500000	0%	900%	Low	3	2.24	206.57
+tim mobile plans	USD	500000	0%	0%	Low	25	1.33	9.14
+internet from t mobile	USD	500000	0%	0%	Medium	52	2.66	320.81
+tmobile cell plan	USD	500000	0%	9900%	Low	1	1.44	10.00
+tmobile mobile phone plans	USD	500000	0%	0%	Medium	53	1.35	8.78
+t mobile mobile plan	USD	500000	0%	0%	Low	25	1.33	9.14
+t mobile 1 phone plan	USD	500000	0%	0%	Medium	53	1.35	8.78
+plans of t mobile	USD	500000	0%	0%	Low	25	1.33	9.14
+t mobile retailers near me	USD	500000	-90%	-90%	Low	29	1.88	6.00
+t mobile phones	USD	50000	0%	0%	High	96	0.84	10.20
+t mobile wifi	USD	50000	0%	0%	Medium	55	3.03	283.29
+tmobile family plan	USD	50000	0%	0%	Medium	61	1.41	10.12
+t mobile plans for seniors	USD	50000	0%	0%	Medium	54	0.71	6.75
+t mobile iphone	USD	50000	0%	0%	High	100	0.77	9.45
+t mobile internet plans	USD	50000	0%	0%	Medium	42	1.86	287.40
+tmobile home internet customer service	USD	50000	0%	900%	Low	7	0.01	4.16
+tmobile byod	USD	50000	0%	0%	Medium	35	1.47	9.77
+t mobile fiber	USD	50000	0%	900%	Medium	34	4.20	605.62
+t mobile unlimited plan	USD	50000	-90%	900%	Low	4	1.58	7.97
+5g home internet t mobile	USD	50000	-99%	900%	Low	3	3.29	256.76
+t mobile postpaid plans	USD	50000	9900%	9900%	Low	0	1.84	8.83
+free phones from t mobile	USD	50000	0%	0%	High	78	1.53	10.60
+tmobile business phones	USD	50000	0%	0%	Low	33	8.00	310.95
+netflix t mobile	USD	50000	0%	0%	Low	3	2.91	6.10
+t mobile fiber internet	USD	50000	0%	900%	Medium	41	2.34	524.48
+t mobile bring your own device	USD	50000	0%	0%	Medium	35	1.47	9.77
+t mobile deals on iphone	USD	50000	0%	0%	High	97	1.15	8.33
+byop t mobile	USD	50000	0%	0%	Medium	35	1.47	9.77
+t mobile magenta plans	USD	50000	900%	900%	Low	1	1.78	7.27
+tmobile i phone	USD	50000	0%	0%	High	100	0.77	9.45
+business plans tmobile	USD	50000	-90%	-90%	Medium	42	6.02	728.55
+t mobile mobile phones	USD	50000	0%	0%	High	96	0.84	10.20
+iphone en t mobile	USD	50000	0%	0%	High	100	0.77	9.45
+mytmobile business	USD	50000	0%	0%	Medium	37	9.48	437.03
+tmobile family phone plans	USD	50000	0%	0%	Medium	61	1.41	10.12
+t mobile 5g home internet plans	USD	50000	0%	900%	Low	0	2.94	266.08
+tmobiles phones	USD	50000	0%	0%	High	96	0.84	10.20
+netflix and tmobile	USD	50000	0%	0%	Low	3	2.91	6.10
+t mobile overseas plan	USD	50000	0%	0%	Low	16	1.81	7.80
+t mobile family package	USD	50000	0%	0%	Medium	61	1.41	10.12
+netflix by t mobile	USD	50000	0%	0%	Low	3	2.91	6.10
+netflix from t mobile	USD	50000	0%	0%	Low	3	2.91	6.10
+bring device to t mobile	USD	50000	0%	0%	Medium	35	1.47	9.77
+tim mobile phones	USD	50000	0%	0%	High	96	0.84	10.20
+tmobile post paid plans	USD	50000	9900%	9900%	Low	0	1.84	8.83
+netflix for t mobile	USD	50000	0%	0%	Low	3	2.91	6.10
+international phone plan t mobile	USD	50000	0%	0%	Low	16	1.81	7.80
+tmobilecareers	USD	50000	0%	0%	Low	12	0.59	1.85
+t mobile international roaming plan	USD	50000	0%	0%	Low	2	2.72	7.72
+t mobile postpaid offers	USD	50000	9900%	9900%	Low	0	1.84	8.83
+check imei for tmobile	USD	50000	0%	0%	Low	1	0.75	6.00
+t mobile and iphone	USD	50000	0%	0%	High	100	0.77	9.45
+t mobile on us netflix	USD	50000	0%	900%	Low	0	2.14	5.58
+tim mobile hotspot	USD	50000	0%	0%	High	99	0.93	4.95
+t mobile wireless internet	USD	5000	0%	0%	Medium	41	2.72	194.04
+t mobile cell phones	USD	5000	0%	0%	High	95	1.41	8.68
+tmobile home internet 5g	USD	5000	0%	0%	Medium	48	2.59	159.22
+t mobile plans for 1 line	USD	5000	0%	0%	High	96	1.11	5.99
+team mobile internet	USD	5000	0%	0%	Medium	66	2.89	151.46
+mobile home internet	USD	5000	0%	0%	High	74	5.37	48.46
+t mobile home wifi	USD	5000	0%	0%	Medium	38	2.68	280.63
+t mobile samsung phones	USD	5000	0%	0%	High	98	0.50	6.00
+t mobile first responder	USD	5000	0%	0%	Low	33	5.56	64.79
+iphone 13 pro max t mobile	USD	5000	-90%	-90%	High	100	0.47	5.00
+iphone 11 t mobile	USD	5000	0%	-90%	High	99	0.46	6.00
+tmobile home internet speed	USD	5000	0%	0%	Low	32	3.91	264.53
+t mobile deals for seniors	USD	5000	0%	0%	High	92	0.75	8.13
+tmobile home internet availability	USD	5000	0%	0%	Medium	37	3.16	401.41
+t mobile hotspot box	USD	5000	0%	0%	High	68	3.02	179.60
+t mobile for seniors	USD	5000	0%	0%	Medium	65	0.76	7.26
+t mobile sales	USD	5000	0%	0%	High	98	2.27	10.20
+tmobile individual plans	USD	5000	-90%	-90%	Medium	63	2.14	8.46
+ofertas de t mobile	USD	5000	0%	0%	High	100	1.18	8.08
+t mobile phone plans for seniors	USD	5000	0%	900%	High	71	0.75	6.63
+tmobile phones on sale	USD	5000	0%	0%	High	100	0.41	6.35
+iphone 12 t mobile	USD	5000	-90%	-90%	High	99	0.19	4.95
+t mobile android phones	USD	5000	0%	0%	High	100	0.44	6.06
+t mobile monthly plans	USD	5000	0%	0%	High	73	1.92	7.99
+t mobile wifi plans	USD	5000	0%	0%	Medium	49	2.31	264.79
+tmobile cell phones	USD	5000	0%	900%	High	95	1.28	10.56
+t mobile website	USD	5000	-90%	0%	Medium	38	1.08	7.47
+t mobile ipad deals	USD	5000	-90%	0%	High	88	0.24	3.85
+t mobile service plans	USD	5000	-90%	-90%	Medium	55	1.58	8.02
+tmobile home internet phone number	USD	5000	0%	0%	Low	9	0.04	9.99
+t mobile new phones	USD	5000	0%	0%	High	100	1.27	10.20
+planes t mobile	USD	5000	0%	0%	High	97	1.28	5.68
+t mobile cell phone plans for seniors	USD	5000	-90%	0%	Medium	35	0.79	6.93
+promociones de t mobile	USD	5000	0%	0%	High	100	2.13	6.75
+t mobile phone prices	USD	5000	0%	0%	High	100	0.75	8.99
+t mobile postpaid	USD	5000	0%	900%	Medium	45	2.77	10.12
+samsung t mobile	USD	5000	0%	0%	High	100	1.23	7.14
+tmobile home internet check	USD	5000	-90%	-90%	Low	30	5.13	766.04
+t mobile wireless home internet	USD	5000	0%	900%	Low	17	2.67	281.32
+t mobile smartphones	USD	5000	-90%	0%	High	93	0.79	8.86
+planes de t mobile	USD	5000	0%	0%	High	99	0.75	5.46
+tmobile home internet eligibility	USD	5000	0%	0%	Low	27	6.00	602.96
+t mobile single line	USD	5000	0%	-90%	High	84	2.18	8.40
+tienda t mobile	USD	5000	0%	0%	High	98	1.44	5.41
+telefonos de t mobile	USD	5000	0%	0%	High	98	1.32	5.81
+t mobile plan deals	USD	5000	0%	0%	High	91	1.56	8.34
+t mobile internet deals	USD	5000	0%	0%	Medium	38	2.59	374.82
+t mobile plan prices	USD	5000	0%	0%	Medium	49	1.22	7.80
+t mobile new line	USD	5000	0%	0%	High	100	3.50	13.55
+tmobile business lines	USD	5000	0%	0%	Medium	42	7.77	781.14
+tmobile family plan deals	USD	5000	0%	0%	Medium	59	1.49	10.11
+t mobile first responder discount	USD	5000	0%	0%	Low	27	4.72	33.24
+t mobile telefonos	USD	5000	0%	0%	High	99	1.46	6.00
+ofertas en t mobile	USD	5000	0%	0%	High	100	1.71	7.64
+t mobile 5g home internet availability	USD	5000	0%	0%	Low	18	3.12	495.79
+t mobile promociones	USD	5000	0%	0%	High	100	2.28	8.14
+t mobile plans for 3 lines	USD	5000	0%	900%	Medium	45	1.42	8.85
+t mobile new plans	USD	5000	0%	0%	High	79	2.49	9.79
+t mobile cell plans for seniors	USD	5000	-90%	0%	Medium	35	0.79	6.93
+t mobile 55 plus plans	USD	5000	0%	0%	Medium	46	0.74	8.05
+t mobile new iphone	USD	5000	0%	0%	High	100	0.73	7.06
+tmobile family plan 4 lines	USD	5000	0%	900%	Low	32	1.09	8.27
+promociones en t mobile	USD	5000	0%	0%	High	100	2.28	8.14
+t mobile veteran discount	USD	5000	-90%	-90%	Low	24	1.62	13.82
+t mobile business unlimited	USD	5000	0%	-90%	Low	30	16.55	413.04
+t mobile portable hotspot	USD	5000	0%	900%	High	100	0.53	4.04
+t mobile military plans	USD	5000	0%	0%	Low	18	1.71	13.58
+tmobile internet availability	USD	5000	0%	0%	Medium	39	2.68	668.96
+t mobile iphone on us	USD	5000	-90%	-90%	High	96	2.01	8.79
+tienda de t mobile	USD	5000	0%	0%	High	92	1.51	5.09
+tfb t mobile	USD	5000	0%	0%	Low	31	9.77	42.98
+t mobile international roaming	USD	5000	0%	0%	Low	8	2.50	7.47
+iphone on us t mobile	USD	5000	-90%	-90%	High	96	2.01	8.79
+cheapest t mobile phone	USD	5000	0%	0%	High	100	0.21	5.50
+t mobile internet price	USD	5000	0%	0%	Medium	34	3.21	374.78
+tmobile home internet deals	USD	5000	0%	900%	Low	9	2.62	227.04
+t mobile phone line	USD	5000	0%	900%	Medium	56	2.67	10.12
+t mobile mobile hotspot device	USD	5000	0%	0%	High	90	0.60	4.15
+t mobile internet access	USD	5000	0%	0%	Low	28	4.62	288.50
+tmobile home internet promotion	USD	5000	0%	0%	Low	25	4.31	136.81
+t mobile satellite internet	USD	5000	0%	0%	Low	29	0.65	4.58
+new t mobile plan	USD	5000	0%	0%	High	79	2.49	9.79
+t mobile price	USD	5000	0%	0%	Medium	52	1.25	10.64
+planes en t mobile	USD	5000	0%	0%	High	97	1.28	5.68
+t mobile free phone with new line	USD	5000	-90%	0%	Low	27	2.07	8.30
+t mobile iphone plan	USD	5000	0%	900%	High	93	1.88	9.53
+t mobile for home	USD	5000	0%	0%	Medium	34	3.90	259.57
+t mobile first responder plan	USD	5000	0%	0%	Low	25	4.40	49.70
+apple iphone t mobile	USD	5000	0%	0%	High	99	0.60	7.09
+t mobile byod check	USD	5000	0%	900%	Low	23	0.09	6.50
+t mobile plans comparison	USD	5000	0%	0%	Low	22	0.73	6.66
+t mobile discounts for seniors	USD	5000	0%	0%	Low	28	1.58	8.35
+iphone prices t mobile	USD	5000	-90%	0%	High	100	0.77	6.85
+t mobile plans over 55	USD	5000	0%	0%	Medium	48	0.74	8.32
+t mobile plans for 4 lines	USD	5000	0%	900%	Low	25	1.71	9.40
+tmobile internet cost	USD	5000	0%	-90%	Low	31	3.20	359.25
+internet providers t mobile	USD	5000	0%	0%	Medium	47	2.79	181.73
+new line t mobile	USD	5000	0%	0%	High	100	3.50	13.55
+t mobile plan cost	USD	5000	0%	900%	Medium	42	1.07	7.55
+t mobile senior discounts	USD	5000	0%	0%	Low	28	1.58	8.35
+tmobile business phone plan	USD	5000	0%	900%	Low	12	6.06	434.30
+t mobile newest iphone	USD	5000	0%	0%	High	100	0.73	7.06
+t mobile costs	USD	5000	0%	0%	Medium	52	1.25	10.64
+tmobile home internet pricing	USD	5000	0%	0%	Low	32	2.74	329.24
+tmobile hot spot box	USD	5000	0%	0%	High	68	3.02	179.60
+tmobile cellphone	USD	5000	0%	0%	High	95	1.41	8.68
+phone service t mobile	USD	5000	0%	900%	Low	10	1.87	7.38
+tmobile telefonos	USD	5000	0%	0%	High	99	1.46	6.00
+t mobile essential plans	USD	5000	0%	0%	Low	15	1.57	6.58
+t mobile plans for single line	USD	5000	0%	900%	High	72	1.81	7.92
+t mobile cell phone sale	USD	5000	0%	0%	High	100	0.41	6.35
+tmobile home internet promo	USD	5000	0%	0%	Low	25	4.31	136.81
+t mobile for senior	USD	5000	0%	0%	Medium	65	0.76	7.26
+t mobile wifi portable	USD	5000	0%	0%	High	95	0.48	4.59
+t mobile plans for over 55	USD	5000	0%	0%	Medium	48	0.74	8.32
+tmobile hot spot device	USD	5000	0%	0%	High	90	0.60	4.15
+tmobile travels	USD	5000	0%	0%	Low	1	0.01	7.75
+t mobile plans for two lines	USD	5000	0%	0%	High	79	1.00	6.90
+t mobile magenta military plan	USD	5000	-90%	0%	Low	3	0.82	8.22
+magenta plans t mobile	USD	5000	0%	-90%	Low	22	1.85	6.51
+cell phones t mobile sale	USD	5000	0%	0%	High	100	0.41	6.35
+tmobile new phone plans	USD	5000	0%	0%	High	79	2.49	9.79
+individual t mobile plans	USD	5000	-90%	-90%	Medium	63	2.14	8.46
+t mobile i phone 12	USD	5000	0%	-90%	High	100	0.25	5.00
+netflix t mobile free	USD	5000	0%	0%	Low	3	2.46	4.85
+t mobile plans for 55 and over	USD	5000	0%	0%	Medium	48	0.74	8.32
+t mobile military discounts	USD	5000	0%	0%	Low	15	1.78	14.18
+t mobile ipad deal	USD	5000	-90%	0%	High	88	0.24	3.85
+wifi plans t mobile	USD	5000	0%	0%	Medium	49	2.31	264.79
+isp tmobile	USD	5000	-90%	-90%	Low	30	4.41	223.14
+t mobile plans 55 plus	USD	5000	0%	0%	Medium	46	0.74	8.05
+t mobile rate	USD	5000	0%	-90%	Medium	47	0.94	8.93
+t mobile travel plans	USD	5000	0%	0%	Low	11	0.01	4.47
+t mobile plan 3 lines	USD	5000	0%	900%	Medium	45	1.42	8.85
+2 line t mobile plan	USD	5000	0%	0%	High	79	1.00	6.90
+tmobile cell phones for sale	USD	5000	0%	0%	High	100	0.24	6.30
+single line tmobile	USD	5000	0%	-90%	High	84	2.18	8.40
+t mobile for two lines	USD	5000	0%	0%	Medium	65	2.09	8.50
+t mobile netflix plan	USD	5000	-90%	0%	Low	5	2.81	5.89
+tmobile iphone12	USD	5000	0%	-90%	High	100	0.25	5.00
+senior discount tmobile	USD	5000	0%	0%	Low	28	1.58	8.35
+t mobile global roaming	USD	5000	0%	0%	Low	8	2.50	7.47
+t mobile hire	USD	5000	0%	0%	Low	9	0.62	1.42
+t mobile cell phone family plans	USD	5000	-90%	0%	Low	8	1.09	6.47
+t mobile netflix deal	USD	5000	-90%	900%	Low	3	2.97	5.57
+special t mobile	USD	5000	0%	0%	High	100	1.85	10.80
+netflix for free t mobile	USD	5000	0%	0%	Low	3	2.46	4.85
+tmobile 55plus	USD	5000	0%	0%	Medium	49	0.82	8.38
+t mobile branches	USD	5000	0%	0%	Low	10	0.01	4.00
+t mobile phone compatible	USD	5000	0%	0%	Medium	57	0.39	8.17
+i phone 11 t mobile	USD	5000	0%	-90%	High	99	0.46	6.00
+i phone 12 t mobile	USD	5000	-90%	-90%	High	99	0.19	4.95
+single line plan t mobile	USD	5000	0%	900%	High	72	1.81	7.92
+t mobile plans for individuals	USD	5000	-90%	-90%	Medium	63	2.14	8.46
+samsung tmobile deals	USD	5000	-90%	-90%	High	92	1.75	8.07
+phones sold by t mobile	USD	5000	0%	0%	High	100	0.41	6.35
+t mobile travelling abroad	USD	5000	0%	-90%	Low	6	0.85	6.17
+t mobile plus 55	USD	5000	0%	0%	Medium	49	0.82	8.38
+international data plan t mobile	USD	5000	0%	0%	Low	9	1.95	7.67
+tmobile checker	USD	5000	0%	-90%	Low	13	4.36	14.84
+t mobile plans two lines	USD	5000	0%	0%	High	79	1.00	6.90
+t mobile promotions netflix	USD	5000	-90%	0%	Low	1		
+free netflix tmobile	USD	5000	0%	0%	Low	3	2.46	4.85
+2 line plan t mobile	USD	5000	0%	0%	High	79	1.00	6.90
+t mobile roaming rates	USD	5000	-90%	-90%	Low	4	2.71	6.62
+iphone 11tmobile	USD	5000	0%	-90%	High	99	0.46	6.00
+free t mobile netflix	USD	5000	0%	0%	Low	3	2.46	4.85
+add a tmobile line	USD	5000	0%	0%	Medium	43	2.22	7.50
+imei lookup t mobile	USD	5000	0%	0%	Low	1	0.75	6.00
+roaming with t mobile	USD	5000	0%	0%	Low	12	2.45	7.01
+samsung mobile t mobile	USD	5000	0%	0%	High	98	0.50	6.00
+t mobile and netflix free	USD	5000	0%	0%	Low	3	2.46	4.85
+t mobile and samsung	USD	5000	0%	0%	High	89	1.83	8.57
+t mobile data overseas	USD	5000	0%	0%	Low	17	2.60	7.97
+t mobile first responders verification	USD	5000	0%	-90%	Low	11	4.64	15.77
+t mobile imei compatibility check	USD	5000	0%	900%	Low	1	0.75	6.00
+t mobile international traveling	USD	5000	0%	0%	Low	5	0.01	5.40
+t mobile overseas texting	USD	5000	0%	0%	Low	8	2.95	6.50
+t mobile phone stores near me	USD	5000	0%	0%	Medium	59	1.96	7.29
+t mobile traveling overseas	USD	5000	0%	0%	Low	5	0.01	5.40
+tmobile netflix promotion	USD	5000	-90%	0%	Low	1		
+traveling abroad with t mobile	USD	5000	0%	-90%	Low	6	0.85	6.17
+t mobile iphone 13 pro max	USD	500	0%	-90%	High	100	0.96	6.03
+tm9bile internet	USD	500	0%	0%	High	70	4.85	99.10
+t mobile iphone 11	USD	500	0%	-90%	High	94	0.25	5.21
+t mobile high speed internet	USD	500	0%	0%	Medium	45	2.67	332.88
+team mobile plans	USD	500	0%	0%	High	100	2.11	11.48
+t mobile internet for home	USD	500	0%	0%	Medium	54	2.09	237.27
+tmo home internet	USD	500	0%	0%	Medium	47	4.71	154.96
+t mobile internet casa	USD	500	0%	0%	Medium	52	2.51	159.36
+t mobile plans for 2 lines unlimited data	USD	500	0%	0%	Medium	57	1.31	26.15
+t mobile unlimited internet	USD	500	0%	0%	Medium	40	2.60	148.54
+team mobile phones	USD	500	0%	0%	High	100	2.04	7.11
+t mobile broadband	USD	500	0%	0%	Medium	41	3.19	429.68
+iphone 12 pro max t mobile	USD	500	0%	0%	High	100	0.80	6.00
+t mobile rural internet	USD	500	-90%	-90%	Low	31	3.11	130.04
+t mobile iphone 12 pro max	USD	500	0%	0%	High	92	0.78	5.88
+team mobile wifi	USD	500	0%	0%	High	87	3.25	173.43
+t mobile business wireless	USD	500	0%	0%	Medium	50	13.83	816.85
+t mobile revvl 5g	USD	500	0%	0%	High	86	1.06	4.59
+t mobile phone deals for seniors	USD	500	0%	0%	High	98	0.93	8.36
+tm9bile phones	USD	500	0%	0%	High	100	1.90	10.20
+t mobile magenta 55	USD	500	-90%	-90%	Low	19	1.04	5.93
+iphone xr t mobile	USD	500	0%	0%	High	100	0.69	6.61
+t mobile internet las vegas	USD	500	-90%	-90%	Medium	50	1.88	10.71
+t mobile wifi service	USD	500	0%	0%	Medium	54	3.30	237.30
+t mobile home 5g	USD	500	0%	0%	Medium	39	3.00	710.94
+t mobile business cell phone plans	USD	500	0%	0%	Low	9	6.22	393.45
+t mobile fixed wireless	USD	500	0%	0%	Medium	36	4.50	600.26
+ofertas t mobile	USD	500	-90%	0%	High	100	1.74	6.85
+t mobile internet en casa	USD	500	0%	0%	Medium	48	2.46	111.88
+t mobile specials for seniors	USD	500	0%	0%	High	100	0.66	7.01
+t mobile lte home internet	USD	500	-90%	-90%	Medium	50	2.61	64.80
+telefonos en t mobile	USD	500	0%	0%	High	100	1.47	6.00
+t mobile rates for seniors	USD	500	0%	0%	Medium	49	0.66	7.29
+bring your own phone t mobile	USD	500	0%	0%	Medium	54	3.62	10.64
+t mobile unlimited home internet	USD	500	0%	0%	Low	19	3.19	132.27
+tmobile home internet las vegas	USD	500	0%	0%	Medium	39	1.86	18.94
+5g t mobile home internet	USD	500	0%	0%	Medium	43	2.55	221.44
+celulares t mobile	USD	500	0%	0%	High	100	1.96	7.62
+t mobile residential internet	USD	500	0%	0%	Medium	54	2.32	304.12
+t mobile whole home internet	USD	500	0%	0%	Medium	54	2.60	381.02
+samsung galaxy t mobile	USD	500	0%	0%	High	100	0.66	6.00
+t mobile 5g wifi	USD	500	0%	0%	Medium	47	3.08	396.88
+t mobile shop phones	USD	500	0%	0%	High	100	1.19	7.62
+t mobile wifi internet	USD	500	0%	0%	Medium	52	2.52	167.66
+iphone 12 pro t mobile	USD	500	0%	0%	High	100	1.31	6.00
+tmo internet	USD	500	0%	0%	Medium	49	3.97	300.88
+iphone 11 pro max t mobile	USD	500	-90%	-90%	High	100	0.68	5.91
+google pixel t mobile	USD	500	0%	0%	High	97	1.12	6.13
+t mobile iphone 13 deals	USD	500	0%	0%	Low	13	1.13	6.26
+t mobile wifi availability	USD	500	0%	0%	Medium	41	2.16	528.67
+magenta plans	USD	500	0%	0%	Low	22	2.72	9.69
+tmobile family plan 2 lines	USD	500	0%	0%	Medium	55	1.76	8.91
+t mobile business phone deals	USD	500	0%	0%	Medium	34	5.73	239.27
+tmobile home internet coverage	USD	500	0%	0%	Low	31	3.69	459.90
+mobile home wifi	USD	500	0%	-90%	High	83	3.72	12.09
+tmobile home internet in my area	USD	500	0%	0%	Medium	56	2.09	179.05
+t mobile offers for seniors	USD	500	0%	-90%	High	93	0.75	7.91
+team mobile phone plans	USD	500	0%	0%	High	100	2.11	11.48
+internet residencial t mobile	USD	500	0%	0%	Medium	48	1.90	112.47
+t mobile iphones for sale	USD	500	-90%	0%	High	100	0.45	6.00
+t mobile phone and internet	USD	500	0%	0%	Low	28	0.60	6.09
+t mobile family plan cost	USD	500	0%	0%	Low	31	1.01	7.60
+tmo plans	USD	500	0%	0%	Low	22	0.04	4.26
+t mobile line deals	USD	500	0%	0%	High	95	2.51	8.11
+t mobile broadband internet	USD	500	0%	-90%	Medium	44	2.32	185.86
+t mobile internet packages	USD	500	0%	0%	Medium	36	2.43	204.84
+t mobile contract plans	USD	500	-90%	-90%	High	89	1.67	7.94
+t mobile 1 line	USD	500	0%	0%	High	81	1.99	8.70
+t mobile home wireless internet	USD	500	0%	0%	Medium	39	2.19	232.81
+t mobile iphone 11 pro max	USD	500	0%	-90%	High	100	0.59	5.98
+t mobile cellular internet	USD	500	0%	0%	Low	20	3.02	266.38
+t mobile internet and phone	USD	500	0%	0%	Low	28	0.04	5.62
+t mobile law enforcement discount	USD	500	0%	0%	Low	9	4.90	15.47
+t mobile senior citizen plan	USD	500	0%	0%	Medium	39	0.65	5.35
+tmobile home internet near me	USD	500	0%	0%	Medium	49	3.77	100.98
+tmobile home internet number	USD	500	0%	0%	Low	6	0.03	9.77
+mobile by t mobile	USD	500	0%	0%	High	85	3.26	8.98
+t mobile iphone xr	USD	500	0%	-90%	High	100	0.87	7.19
+t mobile bring your own phone promotion	USD	500	-90%	-90%	Medium	56	2.99	7.90
+t mobile military one plan	USD	500	-90%	-90%	Low	15	1.61	8.44
+tmobile home internet hotspot	USD	500	0%	0%	Medium	65	3.05	109.75
+t mobile cable internet	USD	500	0%	0%	Medium	43	0.73	6.00
+t mobile plans military	USD	500	0%	0%	Low	25	0.87	12.72
+t mobile wifi home internet	USD	500	0%	0%	Medium	43	2.61	198.65
+t mobile internet connection	USD	500	0%	0%	Medium	39	3.26	135.46
+t mobile senior phone	USD	500	0%	0%	High	100	0.43	6.00
+t mobile magenta military	USD	500	0%	0%	Low	15	1.04	9.66
+t mobile essentials 55	USD	500	0%	0%	Low	27	0.69	8.12
+t mobile lte internet	USD	500	-90%	-90%	Low	24	3.40	228.16
+tmobile home internet unlimited	USD	500	0%	0%	Medium	40	2.87	126.46
+t mobile family plan price	USD	500	0%	0%	Low	31	1.01	7.60
+google phone t mobile	USD	500	0%	0%	High	100	0.72	5.60
+t mobile iphone 12 pro	USD	500	0%	-90%	High	87	0.28	6.00
+t mobile plans magenta	USD	500	-90%	-90%	Low	29	2.55	7.76
+t mobile monthly cost	USD	500	0%	0%	Medium	37	1.28	8.22
+t mobile seniors plan	USD	500	0%	0%	Medium	50	0.69	7.10
+t mobile telefonos gratis	USD	500	0%	0%	High	100	2.21	7.08
+tmo byod	USD	500	0%	0%	Low	22	0.05	6.00
+iphone 11 pro t mobile	USD	500	0%	-90%	High	100	0.75	5.74
+t mobile single plan	USD	500	0%	0%	High	74	1.82	8.34
+tmobile family plan 3 lines	USD	500	0%	0%	Medium	60	1.17	8.52
+t mobile internet options	USD	500	0%	0%	Medium	41	2.45	301.78
+plan familiar t mobile	USD	500	0%	0%	High	87	1.84	6.25
+home wifi t mobile	USD	500	0%	0%	Medium	59	2.56	277.79
+t mobile magenta plan price	USD	500	0%	0%	Low	16	1.38	6.00
+t mobile for senior citizens	USD	500	0%	0%	Medium	60	0.69	6.00
+t mobile galaxy	USD	500	0%	0%	High	97	0.75	6.99
+t mobile especiales	USD	500	0%	0%	High	100	2.04	8.06
+celulares de t mobile	USD	500	0%	-90%	High	99	2.05	6.00
+franklin wireless hotspot	USD	500	0%	-90%	High	70	1.10	10.48
+t mobile fixed wireless internet	USD	500	0%	900%	Low	8	3.58	431.27
+t mobile apple deals	USD	500	0%	0%	High	100	0.77	7.30
+t mobile internet plans for home	USD	500	0%	0%	Medium	46	1.85	336.90
+t mobile ofertas de telefonos	USD	500	0%	0%	High	100	1.16	5.22
+franklin t9 mobile hotspot	USD	500	0%	0%	High	70	0.49	5.45
+tmobile home internet phoenix	USD	500	900%	0%	Medium	38	2.93	125.41
+cheap iphones t mobile	USD	500	0%	0%	High	100	0.71	6.00
+t mobile iphone pro max	USD	500	0%	0%	High	100	1.53	7.74
+tmobile home internet trial	USD	500	0%	0%	Medium	36	3.67	193.49
+t mobile internet offers	USD	500	0%	0%	Medium	42	2.57	483.07
+internet para casa t mobile	USD	500	0%	0%	Medium	50	2.03	111.44
+t mobile internet specials	USD	500	0%	0%	Medium	44	2.22	179.66
+magenta military	USD	500	-90%	-90%	Low	19	1.26	10.00
+t mobile samsung galaxy phones	USD	500	0%	0%	High	99	0.60	4.63
+tmobile family plan unlimited	USD	500	0%	0%	Medium	37	1.55	8.15
+t mobile wireless wifi	USD	500	0%	0%	Medium	46	2.34	190.25
+magenta military plan	USD	500	0%	0%	Low	16	0.97	6.45
+t mobile byod deals	USD	500	0%	0%	Low	15	3.50	11.20
+t mobile 2 lines unlimited	USD	500	-90%	-90%	Medium	51	1.73	9.63
+t mobile family plan 5 lines	USD	500	0%	0%	Low	14	0.68	5.21
+t mobile prepaid home internet	USD	500	0%	0%	Low	24	3.56	167.42
+t mobile free phones for veterans	USD	500	0%	0%	Medium	56	1.30	6.75
+t mobile unlimited wifi	USD	500	0%	0%	Medium	40	2.48	298.17
+t mobile wifi hotspot device	USD	500	-90%	-90%	High	95	0.28	5.10
+t mobile wifi near me	USD	500	0%	0%	Medium	52	3.65	178.48
+t mobile buy iphone	USD	500	0%	0%	High	100	0.86	8.14
+team mobile iphone	USD	500	-90%	0%	High	100	1.53	6.00
+t mobile first responder nurse	USD	500	0%	0%	Low	15	3.56	19.45
+t9 franklin mobile hotspot	USD	500	-90%	-90%	High	82	0.57	64.87
+new samsung phone t mobile	USD	500	0%	0%	High	100	1.36	7.17
+t mobile plans for 2	USD	500	0%	0%	Medium	60	1.61	9.39
+t mobile plans 2 lines	USD	500	0%	0%	Medium	57	1.47	8.23
+t mobile senior rates	USD	500	0%	0%	Medium	44	0.76	6.62
+hotspot device t mobile	USD	500	0%	0%	High	100	0.65	4.75
+t mobile military magenta	USD	500	0%	-90%	Low	15	1.84	10.38
+t mobile cost per month	USD	500	0%	0%	Low	26	1.22	9.05
+t mobile planes familiares	USD	500	0%	0%	High	98	1.72	5.50
+t mobile portable wifi box	USD	500	0%	0%	High	94	0.35	4.94
+magenta t mobile plan	USD	500	0%	0%	Low	24	1.93	6.79
+t mobile home internet device	USD	500	0%	0%	High	90	2.15	79.27
+t mobile wifi speed	USD	500	0%	0%	Low	28	6.45	289.58
+revvl 5 phone	USD	500	0%	-90%	High	88	0.27	3.75
+t mobile line price	USD	500	0%	0%	Medium	53	2.75	8.99
+t mobile single plans	USD	500	0%	0%	High	74	1.82	8.34
+t mobile family deals	USD	500	0%	0%	High	77	1.19	11.32
+buy phone t mobile	USD	500	0%	0%	High	100	1.05	9.63
+tmobile home internet discount	USD	500	0%	0%	Low	19	3.87	210.28
+t mobile veteran plan	USD	500	0%	0%	Low	25	2.00	13.93
+t mobile bring your own phone deal	USD	500	900%	900%	Low	18	3.14	9.37
+t mobile magenta plus plan	USD	500	0%	0%	Low	6	1.54	6.60
+t mobile wireless internet plans	USD	500	0%	0%	Medium	36	2.58	134.45
+tmobile internet only	USD	500	0%	0%	Medium	46	1.64	152.67
+t mobile 2 phone plan	USD	500	0%	0%	Medium	63	1.65	9.35
+galaxy phones t mobile	USD	500	0%	0%	High	97	0.75	6.99
+team mobile store near me	USD	500	0%	0%	Medium	58	0.54	5.13
+planes familiares de t mobile	USD	500	0%	0%	High	88	1.68	6.00
+android prices	USD	500	0%	0%	Medium	65	1.17	1.97
+telefonos gratis en t mobile	USD	500	0%	0%	High	100	2.21	7.08
+t mobile phone internet	USD	500	0%	0%	Low	24	1.29	7.86
+t mobile android	USD	500	0%	0%	High	92	1.97	9.15
+team mobile cell phone plans	USD	500	0%	0%	High	100	2.11	11.48
+wifi hotspot t mobile	USD	500	-90%	-90%	High	99	2.30	147.96
+t mobile wifi deals	USD	500	0%	0%	Medium	37	2.65	280.84
+t mobile cell phone service deals	USD	500	0%	900%	Low	10	1.78	6.00
+t mobile new galaxy phone	USD	500	0%	0%	High	95	0.75	6.00
+tmobile phone plan deals	USD	500	-90%	0%	Medium	41	2.11	9.30
+iphone pro max t mobile	USD	500	0%	0%	High	100	0.77	7.95
+cost of t mobile home internet	USD	500	0%	0%	Medium	38	2.73	369.83
+t mobile elderly plan	USD	500	-90%	0%	Medium	39	0.93	8.16
+t mobile internet bundle	USD	500	0%	0%	Low	19	4.00	446.97
+t mobile senior citizen discount	USD	500	0%	0%	Low	8	0.75	4.45
+t mobile overseas	USD	500	0%	0%	Low	20	1.92	6.88
+t mobile new member deals	USD	500	-90%	0%	High	97	3.50	13.14
+t mobile internet rates	USD	500	900%	900%	Medium	34	2.64	426.23
+tmobile home internet wifi	USD	500	0%	0%	Medium	50	3.48	156.85
+t mobile fiber optic	USD	500	-90%	0%	Medium	38	3.88	589.41
+mobile hotspot tmobile	USD	500	0%	0%	High	80	2.87	87.35
+t mobile free smartphone	USD	500	0%	0%	Low	16	1.04	11.29
+t mobile wifi price	USD	500	0%	0%	Low	29	4.49	393.16
+t mobile magenta plan cost	USD	500	-90%	-90%	Low	19	2.08	5.44
+t mobile android phone deals	USD	500	0%	900%	High	100	0.75	5.08
+t mobile solo plan	USD	500	0%	0%	Medium	55	2.23	9.26
+telefonos samsung t mobile	USD	500	0%	0%	High	100	0.90	5.25
+tmobile home internet locations	USD	500	900%	900%	Low	27	10.35	659.94
+newest iphone t mobile	USD	500	-90%	0%	High	100	0.73	7.00
+tmobile home internet san diego	USD	500	0%	0%	Medium	38	2.47	265.33
+t mobile internet and cable	USD	500	0%	0%	Medium	43	0.73	6.00
+t mobile cell service plans	USD	500	0%	0%	Low	7	1.33	7.53
+first responder tmobile	USD	500	0%	0%	Low	30	4.56	71.35
+t mobile esn check	USD	500	0%	0%	Low	19	2.58	10.27
+senior t mobile plan	USD	500	0%	0%	Medium	42	0.64	6.69
+t mobile bring your own phone plan	USD	500	0%	0%	Medium	44	2.78	10.00
+tmobile home internet phone	USD	500	0%	0%	Low	14	0.75	6.88
+t mobile wifi cost	USD	500	0%	0%	Low	29	4.49	393.16
+t mobile best plans	USD	500	0%	0%	Medium	60	1.19	7.92
+first responder discount t mobile	USD	500	0%	0%	Low	30	5.00	30.46
+t mobile new android phones	USD	500	0%	0%	High	100	0.56	5.29
+different t mobile plans	USD	500	0%	0%	Low	31	1.37	6.61
+t mobile home wifi plans	USD	500	0%	0%	Medium	38	2.51	375.08
+t mobile home internet packages	USD	500	0%	0%	Medium	47	1.98	189.85
+t mobile plans for military	USD	500	-90%	0%	Low	22	1.74	11.62
+t mobile wifi puck	USD	500	0%	0%	High	91	2.48	88.98
+franklin hotspot	USD	500	0%	0%	High	88	1.60	77.68
+t mobile 5g home internet price	USD	500	0%	0%	Low	6	5.54	251.45
+bring my phone to tmobile	USD	500	0%	0%	Medium	57	3.50	13.73
+iphone 12 tmobile price	USD	500	-90%	-90%	High	81	0.22	5.80
+tmobile home internet bundle	USD	500	0%	0%	Low	17	3.38	144.52
+t mobile for first responders	USD	500	0%	-90%	Medium	41	4.48	56.31
+t mobile 55 and up plans	USD	500	0%	0%	Medium	59	0.97	7.82
+t mobile family plan 6 lines	USD	500	0%	900%	Low	6	0.75	6.00
+especial de t mobile	USD	500	0%	0%	High	95	1.21	6.63
+t mobile offers samsung	USD	500	0%	-90%	High	83	1.39	8.91
+t mobile basic phones	USD	500	0%	0%	High	100	0.60	7.18
+t mobile magenta first responder plan	USD	500	0%	0%	Low	4	5.03	61.51
+tmobile home internet options	USD	500	0%	0%	Medium	41	2.74	223.05
+t mobile tariffs	USD	500	0%	0%	High	71	1.51	7.91
+t mobile iphone 12 deals	USD	500	-90%	-90%	Low	24		
+1 line t mobile	USD	500	0%	0%	High	81	1.99	8.70
+magenta military t mobile	USD	500	0%	0%	Low	4		
+iphone 12 price t mobile	USD	500	0%	-90%	High	83	3.15	6.00
+plan de telefono t mobile	USD	500	0%	0%	High	99	0.75	4.65
+t mobile phone line plans	USD	500	0%	0%	Medium	35	2.27	8.82
+tmobile wifi availability	USD	500	0%	0%	Medium	41	2.16	528.67
+t mobile memorial day sale	USD	500	∞	0%	Low	14		
+tmobile home internet portable	USD	500	-90%	0%	High	98	0.20	6.77
+tmobile pixel phones	USD	500	0%	0%	High	91	0.75	5.87
+t mobile byod plans	USD	500	0%	0%	Low	14	2.88	10.94
+planes de internet t mobile	USD	500	0%	0%	Medium	48	2.61	146.98
+t mobile lines price	USD	500	0%	0%	Medium	53	2.75	8.99
+team mobile cell phones	USD	500	0%	0%	High	100	2.04	7.11
+t mobile magenta international	USD	500	0%	0%	Low	15	1.65	6.18
+tmobile iphone 12 pro max	USD	500	0%	0%	High	92	0.78	5.88
+t mobile for 1 line	USD	500	0%	0%	High	81	1.99	8.70
+google pixel phone t mobile	USD	500	-90%	0%	High	97	1.17	4.47
+t mobile 1 person plan	USD	500	900%	900%	Medium	53	1.90	7.18
+t mobile wireless phones	USD	500	0%	900%	Medium	63	2.26	8.41
+internet through tmobile	USD	500	0%	-90%	Medium	54	2.51	121.58
+iphone pro max tmobile	USD	500	0%	0%	High	100	0.77	7.95
+t mobile plans for existing customers	USD	500	0%	0%	Medium	54	1.04	6.30
+t mobile smartphone plans	USD	500	0%	0%	Low	26	2.08	9.75
+tmobile home internet military discount	USD	500	-90%	-90%	Low	28	4.65	167.91
+t mobile iphone cost	USD	500	0%	0%	High	100	1.77	7.96
+t mobile magenta 55 plan	USD	500	0%	0%	Low	18	1.24	7.16
+t mobile senior discount plan	USD	500	0%	900%	Low	22	1.59	8.07
+t mobile no contract internet	USD	500	-90%	0%	Medium	47	3.98	141.39
+t mobile free phones with new service	USD	500	0%	900%	Low	3	2.06	9.92
+tmobile phone rates	USD	500	0%	0%	Medium	63	0.81	7.22
+t mobile different plans	USD	500	0%	0%	Medium	35	1.57	7.11
+t mobile plans for 5 lines	USD	500	0%	0%	Low	9	0.68	6.00
+t mobile free phone for seniors	USD	500	0%	-90%	High	67	1.17	6.00
+tmobile home internet chicago	USD	500	0%	900%	Medium	41	4.83	110.28
+call tmobile home internet	USD	500	0%	0%	Low	14	0.02	7.44
+t mobile revvl 5	USD	500	-90%	-90%	High	95	1.12	5.49
+t mobile i phone 11	USD	500	0%	-90%	High	94	0.25	5.21
+tmo store near me	USD	500	0%	900%	Medium	43	0.80	3.94
+tmobile pro max	USD	500	-90%	-90%	High	99	4.00	11.29
+t mobile discounts for nurses	USD	500	0%	0%	Low	23	3.99	11.68
+tmobile home internet lte	USD	500	-90%	-90%	Medium	38	5.89	178.17
+tmobile home internet wireless	USD	500	0%	0%	Medium	51	3.12	87.58
+t mobile unlimited cell phone plans	USD	500	0%	0%	Low	31	1.47	6.97
+t mobile one line price	USD	500	0%	0%	Medium	41	1.62	7.28
+franklin mobile hotspot	USD	500	-90%	-90%	High	85	1.19	35.16
+single t mobile plan	USD	500	0%	0%	High	74	1.82	8.34
+t mobile deals near me	USD	500	0%	900%	High	99	2.27	10.20
+55 plus plan t mobile	USD	500	0%	900%	Medium	36	0.76	7.42
+t mobile single line cost	USD	500	0%	900%	Medium	53	1.76	8.63
+t mobile gigabit internet	USD	500	-90%	0%	Low	31	2.63	416.69
+55 plus tmobile	USD	500	0%	0%	Medium	44	0.71	6.59
+t mobile planes de internet	USD	500	0%	0%	Medium	48	2.61	146.98
+magenta data plan	USD	500	0%	-90%	Low	32	2.88	8.70
+t mobile home plans	USD	500	0%	900%	Low	31	3.44	383.30
+t mobile phone plans prices	USD	500	0%	0%	Medium	56	1.19	7.66
+t mobile phone purchase	USD	500	-90%	0%	High	100	1.09	6.28
+byod check tmobile	USD	500	0%	0%	Low	22	0.05	6.50
+t mobile magenta plan international	USD	500	0%	0%	Low	11	3.10	6.73
+t mobile 55 plus deal	USD	500	0%	900%	High	71	0.85	7.37
+t mobile abroad	USD	500	0%	0%	Low	13	2.48	7.39
+byod tmo	USD	500	0%	0%	Low	27	0.03	5.24
+tmobile home internet prepaid	USD	500	0%	0%	Medium	54	3.44	89.58
+t mobile fiber optic internet	USD	500	0%	0%	Low	31	0.02	3.63
+t mobile iphone pro	USD	500	-90%	-90%	High	99	1.23	6.45
+t mobile franklin t9	USD	500	0%	0%	High	83	12.51	94.89
+t mobile 2 lines deals	USD	500	0%	0%	Medium	60	2.24	9.65
+t mobile over 55 deals	USD	500	0%	0%	Medium	58	0.74	8.63
+ofertas de telefono en t mobile	USD	500	0%	0%	High	100	1.16	5.22
+rev 5 phone	USD	500	0%	-90%	High	88	0.27	3.75
+bring your phone t mobile	USD	500	0%	0%	Medium	57	3.50	13.73
+t mobile plans 5 lines	USD	500	0%	0%	Low	9	0.68	6.00
+t mobile with netflix	USD	500	0%	0%	Low	12	2.99	5.61
+t mobile two phone plan	USD	500	0%	0%	Medium	63	1.65	9.35
+t mobile phone line cost	USD	500	0%	900%	Medium	54	1.70	8.46
+t mobile magenta plan 55 and over	USD	500	0%	0%	Low	20	0.40	5.20
+t mobile roaming plans	USD	500	0%	0%	Low	17	2.90	7.80
+t mobile portable hotspot device	USD	500	0%	900%	Medium	64	0.40	3.25
+t mobile cost to add a line	USD	500	-90%	-90%	Low	18	2.05	6.13
+t mobile new family plan	USD	500	0%	0%	Medium	36	1.46	9.55
+t mobile 3 lines deal	USD	500	0%	0%	Medium	36	1.52	9.84
+tmobile small business plan	USD	500	0%	0%	Medium	44	5.65	598.94
+samsung mobile promotion	USD	500	0%	0%	High	71	2.03	9.32
+tmobile phone service plans	USD	500	0%	0%	Low	27	1.54	8.15
+tmobile military deals	USD	500	-90%	-90%	Low	25	1.60	11.70
+t mobile line plan	USD	500	0%	0%	Medium	65	2.34	8.68
+military plans t mobile	USD	500	0%	0%	Low	23	0.90	8.88
+cheap phones t mobile for sale	USD	500	0%	0%	High	100	0.15	4.90
+t mobile 55 and older plans	USD	500	0%	0%	Medium	36	0.70	8.75
+t mobile 2 lines cost	USD	500	0%	0%	Medium	38	1.20	9.14
+t mobile wireless internet speed	USD	500	0%	-90%	Low	25	5.41	294.58
+t mobile 1 line cost	USD	500	0%	0%	Medium	47	1.77	8.50
+tmobile single phone plans	USD	500	0%	0%	High	74	1.82	8.34
+t mobile plans for 6 lines	USD	500	0%	0%	Low	7	0.68	6.22
+t mobile essential 55 plan	USD	500	0%	0%	Low	24	0.81	7.54
+t mobile 2 lines price	USD	500	0%	-90%	Medium	34	1.18	8.40
+t mobile family plan unlimited data	USD	500	0%	0%	Low	16	1.57	10.65
+t mobile on veterans	USD	500	0%	0%	Low	24	2.18	13.31
+t mobile cell internet	USD	500	0%	0%	Low	20	3.02	266.38
+tmobile home internet customer service number	USD	500	0%	0%	Low	5	0.01	7.35
+t mobile kiosk	USD	500	0%	0%	Low	18	3.15	9.17
+t mobile phone plans for one person	USD	500	-90%	0%	Medium	64	1.75	7.17
+t mobile 5 lines plans	USD	500	0%	0%	Low	9	0.68	6.00
+t mobile cost for 2 lines	USD	500	0%	0%	Medium	38	1.20	9.14
+t mobile individual phone plans	USD	500	0%	0%	High	74	1.82	8.34
+t mobile jobs remote	USD	500	0%	900%	Low	22	0.24	1.39
+netflix t mobile setup	USD	500	0%	0%	Low	1		
+t mobile t9 hotspot	USD	500	0%	0%	Medium	56	3.50	150.84
+t mobile plans for two	USD	500	0%	0%	Medium	60	1.61	9.39
+military t mobile plan	USD	500	0%	900%	Low	22	0.77	9.33
+tmobile hotspot for home	USD	500	0%	0%	High	77	2.33	134.24
+best t mobile plan for 2 lines	USD	500	900%	900%	Medium	45	0.68	6.60
+t mobile unlimited international	USD	500	0%	-90%	Low	14	2.95	7.89
+t mobile 1 line price	USD	500	0%	0%	Medium	47	1.77	8.50
+t mobile military phone plans	USD	500	0%	0%	Low	2	2.08	13.48
+senior citizen t mobile	USD	500	0%	0%	Medium	60	0.69	6.00
+t mobile for 3 lines	USD	500	0%	-90%	Medium	40	2.20	11.77
+t mobile sim compatibility	USD	500	0%	0%	Medium	36	3.49	10.94
+t mobile phones iphones	USD	500	0%	900%	High	99	0.77	7.01
+t mobile 3 lines cost	USD	500	0%	0%	Low	32	1.75	10.73
+t mobile compare phones	USD	500	0%	-90%	High	75	4.03	9.02
+t mobile price for 2 lines	USD	500	0%	0%	Medium	39	1.15	8.85
+netflix thru t mobile	USD	500	-90%	0%	Low	3	1.99	6.75
+t mobile blacklist check	USD	500	-90%	-90%	Low	6	4.39	7.73
+t mobile cost for 1 line	USD	500	0%	0%	Medium	47	1.77	8.50
+telefonos t mobile samsung	USD	500	0%	0%	High	100	0.90	5.25
+magenta55	USD	500	0%	-90%	Low	18	0.89	6.55
+tmobile home internet download speeds	USD	500	0%	0%	Low	28	7.69	248.44
+t mobile senior plan 2 lines	USD	500	0%	900%	Medium	44	0.65	6.74
+t mobile franklin hotspot	USD	500	0%	900%	Medium	65	4.64	100.29
+t mobile sale on samsung phones	USD	500	0%	0%	High	100	0.22	4.79
+t mobile inventory	USD	500	-90%	0%	High	98	1.26	11.69
+essential 55 t mobile	USD	500	0%	-90%	Low	26	0.36	5.61
+t mobile free android phones	USD	500	-90%	0%	High	74	1.76	7.34
+t mobile unlimited wifi plans	USD	500	0%	900%	Low	6	2.56	158.20
+cell phones tmobile	USD	500	0%	0%	High	99	1.47	8.30
+t mobile overseas coverage	USD	500	0%	0%	Low	15	2.74	6.88
+t mobile essentials 55 plan	USD	500	0%	0%	Low	24	0.81	7.54
+t mobile android phones on sale	USD	500	-90%	-90%	High	100	0.29	5.05
+t mobile 2 line phone plans	USD	500	-90%	0%	Low	15	1.42	6.99
+free netflix through t mobile	USD	500	-90%	-90%	Low	2		
+t mobile ipad offers	USD	500	-90%	0%	High	68		
+t mobile senior plans 1 line	USD	500	0%	0%	Medium	61	0.61	4.83
+tmobile home internet account	USD	500	-90%	-90%	Low	15	0.02	0.06
+t mobile 5 lines price	USD	500	-90%	0%	Low	8	0.68	5.31
+t mobile magenta benefits	USD	500	0%	0%	Low	13	1.76	5.04
+t mobile panama	USD	500	0%	0%	Low	16	2.40	6.18
+t mobile plans essentials	USD	500	-90%	0%	Low	28	0.88	6.48
+t mobile plans 6 lines	USD	500	0%	0%	Low	7	0.68	6.22
+t mobile pro	USD	500	0%	0%	High	89	3.46	109.88
+t mobile family plan for 2 lines	USD	500	0%	0%	Medium	55	1.76	8.91
+tmobile veterans	USD	500	0%	0%	Low	24	2.18	13.31
+t mobile plan for 55 and older	USD	500	0%	0%	Medium	36	0.70	8.75
+t mobile deals for over 55	USD	500	0%	0%	Medium	58	0.74	8.63
+byod tmobile check	USD	500	-90%	0%	Low	27	0.20	9.46
+t mobile mexico roaming	USD	500	0%	0%	Low	11	2.53	6.39
+using tmobile abroad	USD	500	900%	0%	Low	16	1.81	5.98
+t mobile caribbean coverage	USD	500	0%	0%	Low	14	2.35	7.56
+t mobile roaming countries	USD	500	0%	0%	Low	11	3.62	7.28
+t mobile family plan with free phones	USD	500	0%	0%	Medium	45	1.48	8.71
+bring your own device to t mobile	USD	500	0%	0%	Medium	54	3.62	10.64
+tmobile stores by me	USD	500	0%	0%	Low	26		
+t mobile 6 line plan	USD	500	0%	0%	Low	7	0.68	6.22
+tiendas t mobile abiertas cerca de mi	USD	500	0%	0%	Low	21	3.50	6.00
+t mobile european coverage	USD	500	0%	0%	Low	2	0.01	7.32
+t mobile global coverage	USD	500	0%	0%	Low	15	2.74	6.88
+t mobile home internet houston	USD	500	900%	900%	Medium	39	5.00	93.96
+t mobile best plan for 2 lines	USD	500	900%	900%	Medium	45	0.68	6.60
+t mobile outlet near me	USD	500	0%	0%	Medium	53	1.43	6.00
+t mobile phone plan for 2	USD	500	0%	900%	Medium	62	1.39	9.82
+senior citizen plan t mobile	USD	500	0%	0%	Medium	39	0.65	5.35
+t mobile best family plan	USD	500	0%	0%	Medium	48	0.91	6.00
+t mobile store phones	USD	500	0%	0%	High	100	1.31	8.46
+metro by t mobile hiring	USD	500	0%	0%	Low	5	0.16	0.77
+tmobile magenta family plan	USD	500	-90%	0%	Low	4	1.08	5.98
+new samsung t mobile	USD	500	0%	0%	High	93	1.02	6.63
+t mobile sim card compatibility	USD	500	0%	0%	Medium	36	3.49	10.94
+t mobile ecuador	USD	500	0%	0%	Low	13	2.70	5.57
+internet lte tmobile	USD	500	-90%	-90%	Low	24	3.40	228.16
+t mobile military discount plan	USD	500	0%	900%	Low	2	1.12	9.94
+tmobile unlimited cost	USD	500	-90%	-90%	Medium	38	2.13	8.44
+t mobile deals for two lines	USD	500	0%	0%	Medium	60	2.24	9.65
+t mobile coverage countries	USD	500	0%	0%	Low	8	2.36	6.55
+t mobile near me deals	USD	500	0%	900%	High	99	2.27	10.20
+tmobile prepaid byod	USD	500	0%	0%	Low	18	4.53	15.00
+authorized t mobile dealer	USD	500	0%	0%	Low	28	2.13	10.09
+tmobile check esn	USD	500	0%	0%	Low	16	1.82	8.69
+55 plus t mobile plan	USD	500	0%	900%	Low	33	0.64	6.57
+mobile wifi hotspot tmobile	USD	500	0%	0%	High	93	2.54	147.90
+t mobile senior plan price	USD	500	0%	0%	Medium	47	0.56	6.36
+t mobile pickup in store	USD	500	0%	0%	High	95	0.68	13.66
+t mobile byop plans	USD	500	0%	0%	Medium	44	2.78	10.00
+t mobile international plan countries	USD	500	0%	0%	Low	13	3.08	7.90
+magenta military plan t mobile	USD	500	-90%	0%	Low	17	1.67	5.81
+tmobile package deals	USD	500	0%	900%	High	94	1.55	8.07
+55 plans t mobile	USD	500	900%	900%	Low	31	0.62	7.65
+t mobile plans list	USD	500	0%	900%	Medium	35	1.99	6.92
+cheapest iphone at t mobile	USD	500	0%	0%	High	100	0.71	6.00
+galaxy tab t mobile	USD	500	0%	0%	High	100	0.53	4.80
+t mobile offer netflix	USD	500	0%	0%	Low	9	3.22	5.97
+revvl 5 g	USD	500	0%	-90%	High	89	1.09	5.00
+t mobile unlimited plans for 2 lines	USD	500	0%	900%	Low	5	2.21	10.00
+t mobile free international roaming	USD	500	0%	0%	Low	9	4.06	8.17
+tmobile ipad promotion	USD	500	-90%	0%	High	71	0.34	3.53
+tmobile 2 person plan	USD	500	900%	0%	Medium	48	1.87	11.57
+t mobile two lines unlimited	USD	500	-90%	-90%	Medium	51	1.73	9.63
+t mobile phone bill cost	USD	500	0%	0%	Low	4	0.77	7.84
+t mobile honduras	USD	500	0%	0%	Low	14	2.68	6.48
+t mobile fourth of july sale	USD	500	0%	-100%	Unknown			
+t mobile deals for 3 lines	USD	500	0%	0%	Medium	36	1.52	9.84
+t mobile magenta phone plan	USD	500	-90%	-90%	Low	3		
+google phone at t mobile	USD	500	0%	0%	High	100	0.72	5.60
+t mobile netflix offer	USD	500	0%	0%	Low	9	3.22	5.97
+t mobile phones in stock	USD	500	0%	900%	High	91	0.01	6.00
+t mobile senior plans for 2 lines	USD	500	0%	0%	Medium	49	0.73	5.92
+t mobile inventory check	USD	500	0%	0%	Medium	56	2.45	12.53
+t mobile unlimited plus plan	USD	500	-90%	0%	Low	13	1.48	7.05
+t mobile memorial day deals	USD	500	0%	0%	Low	0		
+t mobile 2 line price	USD	500	0%	-90%	Medium	34	1.18	8.40
+t mobile traveling to mexico	USD	500	0%	0%	Low	8	2.95	5.39
+t mobile free roaming	USD	500	0%	0%	Low	9	4.06	8.17
+family plan t mobile cost	USD	500	0%	0%	Low	31	1.01	7.60
+tmobile unlock checker	USD	500	0%	0%	Low	12	0.55	1.39
+tmobile ipad offer	USD	500	-90%	0%	High	68		
+t mobile coverage in aruba	USD	500	0%	0%	Low	15	2.05	5.57
+cheap iphones at t mobile	USD	500	0%	0%	High	100	0.71	6.00
+tmo store locator	USD	500	0%	0%	Low	18	0.01	0.01
+t mobile roaming coverage	USD	500	0%	900%	Low	1		
+unlimited t mobile family plan	USD	500	0%	0%	Medium	37	1.55	8.15
+t mobile unlimited plan international	USD	500	0%	0%	Low	21	3.50	7.50
+tmobile franklin	USD	500	0%	0%	Medium	40	3.84	59.33
+activate netflix on t mobile	USD	500	0%	0%	Low	1		
+activate netflix t mobile	USD	500	0%	0%	Low	1		
+activate netflix with t mobile	USD	500	0%	0%	Low	1		
+activate tmobile netflix	USD	500	0%	0%	Low	1		
+authorized t mobile store	USD	500	0%	0%	Low	22		
+check imei blacklist t mobile	USD	500	0%	0%	Low	2	0.14	5.00
+check imei number tmobile	USD	500	0%	900%	Low	2		
+data roaming t mobile international	USD	500	0%	0%	Low	9	1.73	8.08
+google pixel at t mobile	USD	500	0%	0%	High	97	1.12	6.13
+hotspot franklin	USD	500	0%	0%	High	88	1.60	77.68
+imei blacklist check t mobile	USD	500	0%	0%	Low	2	0.14	5.00
+imei compatibility check t mobile	USD	500	0%	0%	Low	3		
+imei number tmobile	USD	500	0%	0%	Low	1		
+jamaica t mobile	USD	500	0%	0%	Low	2		
+metro t mobile careers	USD	500	0%	0%	Low	9	0.57	1.02
+near by t mobile store	USD	500	-90%	0%	Low	32	3.00	5.00
+netflix included with t mobile	USD	500	900%	900%	Low	6	2.93	5.46
+redeem netflix t mobile	USD	500	0%	0%	Low	1		
+remote jobs t mobile	USD	500	0%	-90%	Low	10	0.28	2.55
+setup t mobile netflix	USD	500	0%	0%	Low	1		
+t mobile 50 and over plan	USD	500	-90%	0%	Low	21	0.25	4.36
+t mobile apple iphone deal	USD	500	-90%	0%	High	100	0.77	6.00
+t mobile authorized dealers near me	USD	500	0%	0%	Medium	38	1.97	8.54
+t mobile authorized store near me	USD	500	0%	0%	Low	30	0.75	6.00
+t mobile byod imei check	USD	500	0%	0%	Low	6	0.75	6.50
+t mobile call centers locations	USD	500	0%	0%	Low	8		
+t mobile china roaming	USD	500	0%	0%	Low	3		
+t mobile en el salvador	USD	500	0%	0%	Low	15	2.45	6.62
+t mobile europe roaming	USD	500	0%	-90%	Low	4		
+t mobile handsets	USD	500	0%	0%	Low	19	4.71	10.45
+t mobile hiring age	USD	500	0%	0%	Low	1		
+t mobile in ecuador	USD	500	0%	0%	Low	13	2.70	5.57
+t mobile in el salvador	USD	500	0%	0%	Low	15	2.45	6.62
+t mobile in honduras	USD	500	0%	0%	Low	14	2.68	6.48
+t mobile in mexico roaming	USD	500	0%	0%	Low	11	2.53	6.39
+t mobile india roaming	USD	500	0%	0%	Low	2		
+t mobile international plan mexico	USD	500	0%	0%	Low	5	3.31	6.73
+t mobile international roaming countries	USD	500	0%	0%	Low	11	3.62	7.28
+t mobile international roaming india	USD	500	0%	0%	Low	2		
+t mobile international roaming rates	USD	500	0%	-90%	Low	5		
+t mobile international unlimited data	USD	500	0%	0%	Low	18	2.61	7.76
+t mobile internet overseas	USD	500	0%	0%	Low	6	1.91	47.59
+t mobile iphone comparison	USD	500	0%	0%	Low	31		
+t mobile japan roaming	USD	500	0%	0%	Low	10	1.41	4.04
+t mobile korea roaming	USD	500	0%	-90%	Low	6	1.59	5.54
+t mobile merging	USD	500	0%	0%	Low	3	4.75	11.49
+t mobile mexico plans	USD	500	0%	0%	Low	5	3.31	6.73
+t mobile model	USD	500	-90%	0%	Low	25	2.38	11.09
+t mobile netflix activation	USD	500	0%	0%	Low	0		
+t mobile netflix redemption	USD	500	0%	0%	Low	1		
+t mobile netflix set up	USD	500	0%	0%	Low	1		
+t mobile netflix subscription	USD	500	0%	900%	Low	2		
+t mobile official store near me	USD	500	0%	0%	Medium	34	0.68	6.00
+t mobile openings	USD	500	0%	0%	Low	17	0.61	6.00
+t mobile pink phone	USD	500	900%	0%	High	96		
+t mobile plan calculator	USD	500	0%	-90%	Low	5		
+t mobile plans for international travel	USD	500	900%	0%	Low	13	0.01	2.56
+t mobile roaming eu	USD	500	0%	-90%	Low	4		
+t mobile service in bahamas	USD	500	0%	0%	Low	16	2.58	5.46
+t mobile service overseas	USD	500	0%	0%	Low	18	2.18	7.49
+t mobile simple global coverage	USD	500	0%	0%	Low	0		
+t mobile small phone	USD	500	0%	0%	High	100	0.45	10.20
+t mobile use overseas	USD	500	0%	0%	Low	14	3.18	6.73
+t mobile verify first responder	USD	500	0%	-90%	Low	8	10.94	64.78
+t mobile wing	USD	500	0%	0%	Low	4		
+tmo careers	USD	500	0%	0%	Low	14	0.66	2.51
+tmo imei check	USD	500	0%	0%	Low	1		
+tmobile activate netflix	USD	500	0%	0%	Low	1		
+tmobile family plan promotion	USD	500	0%	0%	Low	28	0.77	7.21
+tmobile global plans	USD	500	0%	0%	Low	21	1.97	7.88
+tmobile imei compatibility	USD	500	0%	0%	Low	2		
+tmobile locations and hours	USD	500	-90%	-90%	Low	15		
+tmobile one plan cost	USD	500	-90%	-90%	Low	22	2.07	8.00
+tmobile one plus phones	USD	500	0%	-90%	High	100	0.36	4.71
+tmobile stores locations	USD	500	0%	0%	Low	10		
+tmobile stores near me now	USD	500	0%	-90%	Low	30	2.87	6.00
+tmobile tv channels	USD	500	900%	0%	Low	4	0.46	1.10
+t mobile fiber internet plans	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber availability by address	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber pricing	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber upload speeds	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber no contract internet	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber 500 mbps plan	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber 1 gig plan	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber 2 gig plan	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber for gaming	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber for streaming	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber installation fee	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber equipment costs	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber internet deals	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber internet near me	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber check availability	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber customer reviews	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber latency	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber outage map	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber for apartments	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber business internet	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber vs cable	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber vs at&t fiber	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber service area	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber internet by zip code	USD	500	0%	0%	Medium	45	2.00	12.00
+t mobile fiber unlimited data	USD	500	0%	0%	Medium	45	2.00	12.00

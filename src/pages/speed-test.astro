@@ -25,7 +25,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
         </div>
         <p id="speed-label" class="text-tertiary mt-md" style="font-size:var(--text-sm);">Click Start to test your speed</p>
 
-        <div class="grid grid-3 mt-xl" style="gap:var(--space-xl);">
+        <div class="grid grid-3 mt-xl st-metrics" style="gap:var(--space-xl);">
           <div>
             <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:var(--tracking-wide);">Download</div>
             <div id="dl-speed" class="speed-display" style="font-size:var(--text-2xl);margin-top:var(--space-xs);">—</div>
@@ -43,7 +43,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
           </div>
         </div>
 
-        <button id="start-test" class="btn btn-primary btn-lg mt-xl" style="min-width:200px;">
+        <button id="start-test" class="btn btn-primary btn-lg mt-xl st-start-btn" style="min-width:200px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           Start Speed Test
         </button>
@@ -180,6 +180,10 @@ import { generateBreadcrumbSchema } from '@lib/utils';
   const progressFill = document.getElementById('progress-fill') as HTMLElement;
   const analysisEl = document.getElementById('speed-analysis') as HTMLElement;
   const analysisContent = document.getElementById('analysis-content') as HTMLElement;
+
+  if (!startBtn || !gauge || !speedValue || !speedLabel || !dlSpeed || !ulSpeed || !pingVal || !progressBar || !progressFill || !analysisEl || !analysisContent) {
+    console.error('Speed test UI initialization failed: required DOM nodes are missing.');
+  } else {
 
   let running = false;
 
@@ -407,6 +411,10 @@ import { generateBreadcrumbSchema } from '@lib/utils';
       });
       ulSpeed.textContent = ulResult.toFixed(1);
 
+      if (dlResult <= 0 && ulResult <= 0) {
+        throw new Error('No measurable throughput from test endpoints');
+      }
+
       // Phase 4: Jitter (bonus metric)
       speedLabel.textContent = 'Measuring jitter...';
       progressFill.style.width = '95%';
@@ -503,8 +511,8 @@ import { generateBreadcrumbSchema } from '@lib/utils';
       ${dl < 100 ? `
         <div style="padding:var(--space-lg);background:linear-gradient(135deg,rgba(0,82,255,0.08),rgba(183,0,255,0.08));border:1px solid rgba(0,82,255,0.2);border-radius:var(--radius-md);">
           <p style="color:var(--text-primary);font-weight:600;">Upgrade your speed</p>
-          <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">Our partner providers offer plans up to 5 Gbps — that's ${Math.round(5000 / dl)}× faster than your current speed.</p>
-          <div style="display:flex;gap:var(--space-sm);margin-top:var(--space-md);">
+          <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">Our partner providers offer plans up to 5 Gbps — that's ${Math.round(5000 / Math.max(dl, 1))}× faster than your current speed.</p>
+          <div class="st-upgrade-actions" style="display:flex;gap:var(--space-sm);margin-top:var(--space-md);">
             <a href="/providers" class="btn btn-primary" style="font-size:var(--text-sm);">Compare Faster Plans</a>
             <a href="/quiz" class="btn btn-secondary" style="font-size:var(--text-sm);">Take Speed Quiz</a>
           </div>
@@ -521,7 +529,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
       <div style="margin-top:var(--space-xl);padding:var(--space-xl);background:var(--gray-800);border-radius:var(--radius-lg);border:1px solid var(--border-color);">
         <h4 style="margin-bottom:var(--space-xs);">Are You Getting What You're Paying For?</h4>
         <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">Select your advertised plan speed and we'll show you if your provider is delivering what you paid for.</p>
-        <div style="display:flex;gap:var(--space-md);flex-wrap:wrap;align-items:flex-end;">
+        <div class="st-plan-check-row" style="display:flex;gap:var(--space-md);flex-wrap:wrap;align-items:flex-end;">
           <div style="flex:1;min-width:180px;">
             <label for="plan-speed" style="display:block;font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;margin-bottom:var(--space-xs);">My Plan Says I Get</label>
             <select id="plan-speed" style="width:100%;padding:var(--space-sm) var(--space-md);background:var(--gray-900);border:1px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:var(--text-sm);">
@@ -565,7 +573,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
           <div style="padding:var(--space-lg);background:rgba(0,213,132,0.08);border:1px solid rgba(0,213,132,0.2);border-radius:var(--radius-md);">
             <p style="color:var(--brand-green);font-weight:700;font-size:var(--text-lg);">You're Getting ${pct}% of Your Plan Speed</p>
             <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">That's within normal range. WiFi interference, device limitations, and network routing can account for up to 20% variance.</p>
-            <div style="margin-top:var(--space-md);display:flex;gap:var(--space-sm);flex-wrap:wrap;">
+            <div class="st-gap-actions" style="margin-top:var(--space-md);display:flex;gap:var(--space-sm);flex-wrap:wrap;">
               <a href="/deals" class="btn btn-secondary" style="font-size:var(--text-sm);">See Better Deals</a>
               <a href="/compare" class="btn btn-secondary" style="font-size:var(--text-sm);">Compare All Plans</a>
             </div>
@@ -576,7 +584,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
             <p style="color:var(--brand-amber);font-weight:700;font-size:var(--text-lg);">⚠️ You're Only Getting ${pct}% of Your Paid Speed</p>
             <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">You're paying for <strong>${planMbps} Mbps</strong> but getting <strong>${dl.toFixed(0)} Mbps</strong> — a shortfall of <strong>${gap.toFixed(0)} Mbps (${shortfall}%)</strong>. This may indicate network congestion, equipment issues, or overselling by your provider.</p>
             <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-sm);">Options: restart your router, run a wired test, or compare providers who actually deliver their advertised speeds.</p>
-            <div style="margin-top:var(--space-md);display:flex;gap:var(--space-sm);flex-wrap:wrap;">
+            <div class="st-gap-actions" style="margin-top:var(--space-md);display:flex;gap:var(--space-sm);flex-wrap:wrap;">
               <a href="/switch" class="btn btn-primary" style="font-size:var(--text-sm);">Compare Alternatives</a>
               <a href="/bill-analyzer" class="btn btn-secondary" style="font-size:var(--text-sm);">Analyze My Bill</a>
             </div>
@@ -592,7 +600,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
               <li>Under FCC broadband rules, significant speed underdelivery is grounds for plan dispute</li>
               <li>Switch to a provider that delivers — many offer guaranteed speeds</li>
             </ul>
-            <div style="margin-top:var(--space-lg);display:flex;gap:var(--space-md);flex-wrap:wrap;">
+            <div class="st-gap-actions" style="margin-top:var(--space-lg);display:flex;gap:var(--space-md);flex-wrap:wrap;">
               <a href="/switch" class="btn btn-cta btn-lg">Find a Better Provider</a>
               <a href="/switch" class="btn btn-secondary">Compare All Alternatives</a>
             </div>
@@ -601,8 +609,47 @@ import { generateBreadcrumbSchema } from '@lib/utils';
       }
     }
 
-    checkGapBtn?.addEventListener('click', () => checkPlanGap(dl));
+    if (checkGapBtn) {
+      checkGapBtn.onclick = () => checkPlanGap(dl);
+    }
   }
 
-  startBtn?.addEventListener('click', runTest);
+  startBtn.addEventListener('click', runTest);
+  }
 </script>
+
+<style>
+  @media (max-width: 640px) {
+    .st-metrics {
+      grid-template-columns: 1fr !important;
+      gap: var(--space-md) !important;
+    }
+
+    .st-start-btn {
+      width: 100%;
+      min-width: 0 !important;
+      font-size: var(--text-base) !important;
+    }
+
+    .st-plan-check-row {
+      flex-direction: column;
+      align-items: stretch !important;
+    }
+
+    .st-plan-check-row > div {
+      width: 100%;
+      min-width: 0 !important;
+    }
+
+    .st-gap-actions,
+    .st-upgrade-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .st-gap-actions .btn,
+    .st-upgrade-actions .btn {
+      width: 100%;
+    }
+  }
+</style>

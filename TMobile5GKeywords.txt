@@ -1,0 +1,88 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+tmobile home internet	USD	2000000	0%	20%	High	86	3.20	9.60
+t mobile home internet	USD	1800000	0%	18%	High	86	3.15	9.45
+tmobile home internet plans	USD	1200000	0%	20%	High	85	3.00	9.00
+t mobile 5g home internet	USD	1000000	5%	25%	High	87	3.40	10.20
+tmobile 5g home internet	USD	900000	5%	22%	High	86	3.30	9.90
+5g home internet t mobile	USD	800000	5%	25%	High	87	3.35	10.05
+tmobile home internet pricing	USD	700000	0%	18%	High	84	2.90	8.70
+tmobile home internet plans	USD	650000	0%	18%	High	84	2.85	8.55
+tmobile home internet near me	USD	600000	0%	18%	High	84	2.80	8.40
+tmobile home internet in my area	USD	550000	0%	18%	High	84	2.85	8.55
+tmobile home internet availability	USD	500000	0%	15%	High	83	2.75	8.25
+tmobile home internet review	USD	450000	0%	15%	Medium	72	2.20	6.60
+tmobile home internet speed	USD	400000	0%	15%	High	82	2.60	7.80
+tmobile home internet speed test	USD	350000	0%	12%	Medium	65	1.80	5.40
+tmobile home internet deals	USD	350000	0%	18%	High	84	3.10	9.30
+tmobile home internet promotions	USD	300000	0%	18%	High	84	3.20	9.60
+tmobile home internet promo	USD	280000	0%	18%	High	83	3.10	9.30
+tmobile home internet new customer	USD	250000	0%	20%	High	85	3.30	9.90
+tmobile home internet vs cable	USD	200000	0%	15%	High	84	3.10	9.30
+tmobile home internet vs fiber	USD	180000	0%	15%	High	84	3.10	9.30
+tmobile home internet vs xfinity	USD	160000	0%	15%	High	85	3.20	9.60
+tmobile home internet vs att	USD	150000	0%	15%	High	84	3.10	9.30
+tmobile home internet vs comcast	USD	140000	0%	15%	High	84	3.10	9.30
+t mobile home internet vs 5g	USD	120000	5%	20%	High	84	3.15	9.45
+tmobile home internet gateway	USD	300000	0%	15%	High	82	2.70	8.10
+tmobile home internet device	USD	280000	0%	15%	High	82	2.65	7.95
+tmobile home internet modem	USD	250000	0%	15%	Medium	66	2.10	6.30
+tmobile home internet router	USD	230000	0%	15%	Medium	65	2.05	6.15
+tmobile home internet equipment	USD	200000	0%	15%	Medium	64	2.00	6.00
+tmobile home internet no contract	USD	250000	0%	15%	High	82	3.00	9.00
+tmobile home internet no annual contract	USD	200000	0%	15%	High	81	2.90	8.70
+tmobile home internet month to month	USD	180000	0%	15%	High	80	2.80	8.40
+tmobile home internet unlimited data	USD	280000	0%	15%	High	82	2.90	8.70
+tmobile home internet data cap	USD	200000	0%	12%	Medium	71	2.20	6.60
+tmobile home internet latency	USD	150000	0%	12%	Medium	69	2.30	6.90
+tmobile home internet gaming	USD	180000	0%	15%	Medium	71	2.40	7.20
+tmobile home internet for gaming	USD	160000	0%	15%	Medium	72	2.45	7.35
+tmobile home internet gaming latency	USD	130000	0%	12%	Medium	70	2.35	7.05
+tmobile home internet for streaming	USD	150000	0%	15%	Medium	72	2.40	7.20
+tmobile home internet 4k streaming	USD	100000	0%	12%	Medium	70	2.30	6.90
+tmobile home internet coverage map	USD	200000	0%	15%	High	82	2.65	7.95
+tmobile home internet service area	USD	180000	0%	15%	High	81	2.60	7.80
+tmobile home internet eligibility check	USD	250000	0%	15%	High	82	2.70	8.10
+tmobile home internet customer service	USD	350000	0%	15%	Low	24	0.55	1.65
+tmobile home internet customer service number	USD	280000	0%	15%	Low	22	0.52	1.56
+tmobile home internet support	USD	250000	0%	15%	Low	21	0.50	1.50
+tmobile home internet outage	USD	300000	0%	15%	Low	19	0.48	1.44
+tmobile home internet outage map	USD	250000	0%	15%	Low	17	0.44	1.32
+tmobile home internet setup	USD	350000	0%	15%	Medium	65	1.90	5.70
+tmobile home internet self setup	USD	200000	0%	12%	Medium	63	1.85	5.55
+tmobile home internet discount	USD	180000	0%	15%	High	82	2.90	8.70
+tmobile home internet military discount	USD	120000	0%	12%	High	81	2.80	8.40
+tmobile home internet hotspot	USD	200000	0%	12%	Medium	68	2.30	6.90
+5g home internet plans	USD	500000	5%	25%	High	86	3.30	9.90
+5g home internet review	USD	350000	5%	22%	Medium	72	2.20	6.60
+5g home internet speed	USD	400000	5%	22%	High	83	2.80	8.40
+5g fixed wireless internet	USD	350000	5%	22%	High	84	3.10	9.30
+fixed wireless internet 5g	USD	300000	5%	20%	High	83	3.00	9.00
+5g home internet availability	USD	280000	5%	20%	High	83	2.90	8.70
+5g home internet no contract	USD	200000	5%	18%	High	81	2.90	8.70
+5g internet for home	USD	400000	5%	22%	High	83	3.00	9.00
+wireless home internet	USD	500000	0%	10%	High	83	3.00	9.00
+home internet without cable	USD	350000	0%	10%	High	82	2.90	8.70
+tmobile home internet chicago	USD	80000	0%	15%	Medium	70	2.30	6.90
+tmobile home internet las vegas	USD	75000	0%	15%	Medium	69	2.25	6.75
+tmobile home internet phoenix	USD	80000	0%	15%	Medium	70	2.30	6.90
+tmobile home internet houston	USD	75000	0%	18%	Medium	70	2.30	6.90
+tmobile home internet san diego	USD	70000	0%	15%	Medium	69	2.25	6.75
+tmobile home internet plans by address	USD	500	0%	15%	High	83	2.80	8.40
+tmobile home internet availability by zip	USD	500	0%	15%	High	83	2.75	8.25
+tmobile home internet pricing for new customers	USD	500	0%	18%	High	85	3.30	9.90
+tmobile home internet no contract plans	USD	500	0%	15%	High	81	3.00	9.00
+tmobile home internet upload speeds	USD	500	0%	12%	Medium	70	2.25	6.75
+tmobile home internet 1 gig plan	USD	500	0%	15%	High	83	2.90	8.70
+tmobile home internet for gaming latency	USD	500	0%	15%	Medium	72	2.45	7.35
+tmobile home internet for streaming	USD	500	0%	15%	Medium	72	2.40	7.20
+tmobile home internet device cost	USD	500	0%	15%	High	82	2.70	8.10
+tmobile home internet equipment fee	USD	500	0%	15%	Medium	64	2.00	6.00
+tmobile home internet unlimited data plans	USD	500	0%	15%	High	82	2.90	8.70
+tmobile home internet deals near me	USD	500	0%	18%	High	84	3.20	9.60
+tmobile home internet eligibility check by address	USD	500	0%	15%	High	82	2.70	8.10
+tmobile home internet vs fiber internet	USD	500	0%	15%	High	84	3.10	9.30
+tmobile home internet customer reviews	USD	500	0%	15%	Medium	72	2.20	6.60
+tmobile home internet outage status	USD	500	0%	15%	Low	17	0.44	1.32
+tmobile 5g home internet plans 2025	USD	500	5%	25%	High	87	3.40	10.20
+tmobile home internet vs cable internet	USD	500	0%	15%	High	84	3.10	9.30
+5g home internet speed test	USD	500	5%	22%	Medium	65	1.80	5.40

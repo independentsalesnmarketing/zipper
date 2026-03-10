@@ -918,6 +918,7 @@ const clientProviders = allProviders.map(p => ({
         closeSugs();
         // If we have a ZIP code, navigate to the ZIP page for best experience
         if (s.zip && /^\d{5}$/.test(s.zip)) {
+          if (typeof window.showPageLoader === 'function') window.showPageLoader('Finding providers in ' + s.zip + '…');
           window.location.href = `/internet-providers/zip/${s.zip}`;
           return;
         }

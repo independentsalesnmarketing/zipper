@@ -3,7 +3,7 @@
  * Run: node test-gemini.mjs
  */
 
-const KEY = 'AIzaSyBMJ6NqtVAhhjZa19hD_yFuRvm_ag8pFcE';
+const KEY = 'AIzaSyDq8NVtj8Oe3co_mDuR0bBqS-0ONn_Hz6I';
 const CHAT_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${KEY}`;
 const TTS_URL  = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${KEY}`;
 

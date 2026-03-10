@@ -1,6 +1,42 @@
 import fs from 'fs';
 
-const files = ['AllconnectKeywords.txt','BroadbandnowKeywords.txt','BroadbandsearchKeywords.txt','EasyconnectKeywords.txt','SmartmoveKeywords.txt'];
+const FILE_SETS = {
+  partners: [
+    'SpectrumKeywords.txt',
+    'FrontierKeywords.txt',
+    'KineticKeywords.txt',
+    'BrightspeedKeywords.txt',
+    'AltafiberKeywords.txt',
+    'At&tFiberKeywords.txt',
+    'At&tAirKeywords.txt',
+    'EarthlinkKeywords.txt',
+    'OptimumKeywords.txt',
+    'T-FiberKeywords.txt',
+    'VerizonFiosKeywords.txt',
+    'XfinityKeywords.txt',
+    'CoxKeywords.txt',
+    'StarlinkKeywords.txt',
+    'GoogleFiberKeywords.txt',
+    'MediacomKeywords.txt',
+    'WowKeywords.txt',
+    'FidiumKeywords.txt',
+    'ZiplyKeywords.txt',
+    'HughesNetKeywords.txt',
+    'ViasatKeywords.txt',
+    'TMobile5GKeywords.txt',
+    'USCellularKeywords.txt',
+    'GeoLinksKeywords.txt',
+  ],
+  competitors: ['AllconnectKeywords.txt','BroadbandnowKeywords.txt','BroadbandsearchKeywords.txt','EasyconnectKeywords.txt','SmartmoveKeywords.txt'],
+};
+
+const setArg = process.argv.find(a => a.startsWith('--set='));
+const selectedSet = (setArg ? setArg.split('=')[1] : 'partners');
+const files = FILE_SETS[selectedSet] || FILE_SETS.partners;
+
+console.log(`Using keyword set: ${selectedSet}`);
+console.log(`Files: ${files.join(', ')}`);
+console.log('');
 
 // Merge all keywords, dedup by keyword name (keep highest volume)
 const kwMap = {};

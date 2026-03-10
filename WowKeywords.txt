@@ -1,0 +1,89 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+wow internet	USD	500000	0%	0%	High	82	2.40	7.20
+wow internet service	USD	300000	0%	0%	High	81	2.30	6.90
+wow broadband	USD	250000	0%	0%	High	80	2.20	6.60
+wideopenwest internet	USD	200000	0%	0%	High	80	2.25	6.75
+wow internet plans	USD	180000	0%	0%	High	81	2.35	7.05
+wow internet deals	USD	160000	0%	0%	High	84	3.00	9.00
+wow internet near me	USD	150000	0%	0%	High	81	2.30	6.90
+wow internet in my area	USD	140000	0%	0%	High	81	2.35	7.05
+wow internet availability	USD	130000	0%	0%	High	80	2.25	6.75
+wow cable internet	USD	180000	0%	0%	High	81	2.35	7.05
+wow internet speed	USD	160000	0%	0%	High	79	2.20	6.60
+wow internet pricing	USD	120000	0%	0%	High	81	2.30	6.90
+wow internet promotions	USD	100000	0%	0%	High	83	2.90	8.70
+wow new customer deals	USD	90000	0%	0%	High	84	3.00	9.00
+wow internet 1 gig	USD	70000	0%	0%	High	81	2.60	7.80
+wow gigabit internet	USD	60000	0%	0%	High	80	2.50	7.50
+wow internet gig speed	USD	55000	0%	0%	High	81	2.55	7.65
+wow internet 200 mbps	USD	50000	0%	0%	High	79	2.30	6.90
+wow internet 500 mbps	USD	45000	0%	0%	High	80	2.40	7.20
+wow internet speed test	USD	160000	0%	0%	Medium	60	1.70	5.10
+wow outage	USD	300000	0%	0%	Low	19	0.48	1.44
+wow internet outage	USD	250000	0%	0%	Low	18	0.45	1.35
+wow outage map	USD	220000	0%	0%	Low	17	0.44	1.32
+wow customer service	USD	400000	0%	0%	Low	26	0.65	1.95
+wow customer service number	USD	300000	0%	0%	Low	24	0.60	1.80
+wow internet customer service	USD	200000	0%	0%	Low	23	0.58	1.74
+wow support	USD	200000	0%	0%	Low	22	0.55	1.65
+wow internet modem	USD	150000	0%	0%	Medium	60	1.90	5.70
+wow internet router	USD	130000	0%	0%	Medium	59	1.85	5.55
+wow internet equipment	USD	100000	0%	0%	Medium	58	1.80	5.40
+wow internet no contract	USD	80000	0%	0%	High	78	2.60	7.80
+wow internet month to month	USD	70000	0%	0%	High	77	2.50	7.50
+wow internet no contract plans	USD	60000	0%	0%	High	77	2.55	7.65
+wow internet unlimited data	USD	90000	0%	0%	High	79	2.40	7.20
+wow internet upload speed	USD	80000	0%	0%	Medium	68	2.10	6.30
+wow internet for gaming	USD	60000	0%	0%	Medium	70	2.20	6.60
+wow internet gaming latency	USD	40000	0%	0%	Medium	68	2.10	6.30
+wow internet for streaming	USD	50000	0%	0%	Medium	70	2.15	6.45
+wow internet for apartments	USD	50000	0%	0%	Medium	69	2.20	6.60
+wow internet service area	USD	100000	0%	0%	High	79	2.20	6.60
+wow internet coverage map	USD	80000	0%	0%	High	78	2.15	6.45
+wow internet by address	USD	70000	0%	0%	High	78	2.25	6.75
+wow internet check availability	USD	60000	0%	0%	High	78	2.20	6.60
+wow internet review	USD	100000	0%	0%	Medium	66	1.90	5.70
+wow internet vs xfinity	USD	40000	0%	0%	High	81	2.70	8.10
+wow internet vs att	USD	30000	0%	0%	High	80	2.60	7.80
+wow internet vs spectrum	USD	35000	0%	0%	High	80	2.65	7.95
+wow internet vs comcast	USD	30000	0%	0%	High	80	2.60	7.80
+wow business internet	USD	80000	0%	0%	High	83	4.00	12.00
+wow internet alabama	USD	50000	0%	0%	High	79	2.30	6.90
+wow internet huntsville al	USD	40000	0%	0%	High	79	2.35	7.05
+wow internet birmingham al	USD	35000	0%	0%	High	78	2.30	6.90
+wow internet dothan al	USD	30000	0%	0%	High	77	2.25	6.75
+wow internet tuscaloosa al	USD	30000	0%	0%	High	77	2.25	6.75
+wow internet cleveland ohio	USD	50000	0%	0%	High	79	2.35	7.05
+wow internet columbus ohio	USD	50000	0%	0%	High	79	2.35	7.05
+wow internet michigan	USD	60000	0%	0%	High	79	2.30	6.90
+wow internet detroit	USD	60000	0%	0%	High	79	2.35	7.05
+wow internet indiana	USD	50000	0%	0%	High	78	2.30	6.90
+wow internet chicago suburbs	USD	60000	0%	0%	High	80	2.40	7.20
+wow internet knoxville	USD	40000	0%	0%	High	78	2.30	6.90
+wow internet savannah ga	USD	30000	0%	0%	High	77	2.25	6.75
+wow internet self install	USD	60000	0%	0%	Medium	63	1.90	5.70
+wow internet installation	USD	50000	0%	0%	Medium	62	1.85	5.55
+wow internet installation cost	USD	40000	0%	0%	Medium	61	1.80	5.40
+wow internet fiber	USD	80000	0%	0%	High	81	2.50	7.50
+wow internet fiber plans	USD	70000	0%	0%	High	81	2.55	7.65
+wow internet plans by address	USD	500	0%	0%	High	80	2.30	6.90
+wow internet availability by zip code	USD	500	0%	0%	High	78	2.20	6.60
+wow internet pricing for new customers	USD	500	0%	0%	High	83	3.00	9.00
+wow internet no contract plans	USD	500	0%	0%	High	78	2.55	7.65
+wow internet upload speeds	USD	500	0%	0%	Medium	68	2.10	6.30
+wow internet 1 gig plan price	USD	500	0%	0%	High	81	2.60	7.80
+wow internet for gaming latency	USD	500	0%	0%	Medium	70	2.20	6.60
+wow internet for streaming	USD	500	0%	0%	Medium	70	2.15	6.45
+wow internet installation fee	USD	500	0%	0%	Medium	61	1.85	5.55
+wow internet modem router fees	USD	500	0%	0%	Medium	60	1.90	5.70
+wow internet unlimited data plans	USD	500	0%	0%	High	79	2.40	7.20
+wow internet deals near me	USD	500	0%	0%	High	84	3.00	9.00
+wow internet check availability by zip	USD	500	0%	0%	High	78	2.25	6.75
+wow internet business pricing	USD	500	0%	0%	High	83	4.00	12.00
+wow internet customer reviews	USD	500	0%	0%	Medium	66	1.90	5.70
+wow internet outage map	USD	500	0%	0%	Low	17	0.44	1.32
+wow internet for apartments	USD	500	0%	0%	Medium	69	2.20	6.60
+wow internet vs xfinity comparison	USD	500	0%	0%	High	81	2.70	8.10
+wow internet promotional pricing	USD	500	0%	0%	High	83	3.00	9.00
+wow internet address lookup	USD	500	0%	0%	High	78	2.25	6.75
+wow internet gigabit plan	USD	500	0%	0%	High	81	2.55	7.65

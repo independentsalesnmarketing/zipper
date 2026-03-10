@@ -9,6 +9,7 @@ import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import { getZipPages, getStateName, getStateSlug, cities, type ZipData } from '@data/locations';
 import { getStateCensus } from '@data/census';
 import { getConfirmedProviders, getConfirmedFiberProviders, getOptimumTier, getOptimumRegion, getNearestFiberZip } from '@lib/zip-lookup';
+import { zipNeighborhoods } from '@data/neighborhoods';
 import type { Provider, Plan } from '@lib/providers';
 
 export function getStaticPaths() {
@@ -27,6 +28,16 @@ const stateSlug = getStateSlug(zipData.state);
 const year = new Date().getFullYear();
 const lastUpdated = new Date().toISOString().split('T')[0];
 const lastUpdatedDisplay = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+// ── Neighborhood enrichment (maps ZIPs to real community names) ──
+const nhData = zipNeighborhoods[zipData.zip];
+const neighborhoods = nhData?.n?.filter(Boolean) || [];
+const metroParent = nhData?.m;
+const metroSlug = nhData?.ms;
+const hasNeighborhoods = neighborhoods.length > 0;
+function slugify(name: string) {
+  return name.toLowerCase().replace(/['']/g, '').replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/(^-|-$)/g, '');
+}
 
 // State-level providers for SEO fallback
 const stateProviders = getProvidersByState(zipData.state);
@@ -287,7 +298,7 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: `Internet Providers in ZIP ${zipData.zip} — ${zipData.city}, ${zipData.state}`,
+    name: `Internet Providers in ${zipData.zip} — ${zipData.city}, ${zipData.state}`,
     dateModified: lastUpdated,
     url: `https://internet4all.com/internet-providers/zip/${zipData.zip}`,
   },
@@ -297,8 +308,8 @@ const schemas = [
 <Base
   title={`Internet Providers in ${zipData.zip} — ${zipData.city}, ${stateName} (${year}) | Compare & Save`}
   description={hasConfirmedData
-    ? `${confirmedProviders.length} confirmed internet providers in ZIP ${zipData.zip}, ${zipData.city}, ${stateName}. ${allProviders.length} total options. Speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. Fiber, cable, 5G & satellite.`
-    : `Find ${allProviders.length} internet providers at ZIP ${zipData.zip} in ${zipData.city}, ${stateName}. Verified FCC coverage data, speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. Fiber, cable, 5G & satellite.`}
+    ? `${confirmedProviders.length} confirmed internet providers in ${zipData.zip}, ${zipData.city}, ${stateName}. ${allProviders.length} total options. Speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. Fiber, cable, 5G & satellite.`
+    : `Find ${allProviders.length} internet providers in ${zipData.zip}, ${zipData.city}, ${stateName}. Verified FCC coverage data, speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. Fiber, cable, 5G & satellite.`}
   schema={schemas}
 >
 <StickyCallBar text={`Best deals in ${zipData.zip} — get connected`} />
@@ -314,27 +325,38 @@ const schemas = [
   <!-- ═══════════════════════════════════════════
        HERO — with refinement search on right
        ═══════════════════════════════════════════ -->
-  <div class="reveal zip-hero" style="margin-bottom:var(--space-lg);display:flex;gap:var(--space-2xl);align-items:flex-start;">
-    <!-- Left: Hero content -->
-    <div style="flex:1;min-width:0;">
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
-        <span id="hero-badge" style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(0,213,132,0.12);border:1px solid rgba(0,213,132,0.3);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;">
-          <span style="color:var(--brand-green);">&#10003;</span> <span id="hero-badge-text">{partners.length} recommended providers near {zipData.zip}</span>
-        </span>
-        <span style="font-size:var(--text-xs);color:var(--text-tertiary);">Updated {lastUpdatedDisplay}</span>
+  <div class="reveal zip-hero-wrap" style="margin-bottom:var(--space-lg);">
+    <div class="zip-hero">
+      <!-- Left: Hero content -->
+      <div style="flex:1;min-width:0;">
+        <div class="zip-hero-pills">
+          <span id="hero-badge" class="zip-pill zip-pill-confirmed">
+            <span style="color:var(--brand-green);">&#10003;</span> <span id="hero-badge-text">{partners.length} recommended providers near {zipData.zip}</span>
+          </span>
+          <span class="zip-pill">Updated {lastUpdatedDisplay}</span>
+        </div>
+        <h1 id="hero-title" class="zip-hero-title">
+          Internet Providers in <span class="gradient-text" id="hero-location">{zipData.zip}</span> — <span id="hero-city">{zipData.city}, {stateName}</span>
+        </h1>
+        {neighborhoods.length > 0 && (
+          <p id="hero-neighborhoods" class="zip-hero-nhs">
+            <span id="hero-neighborhoods-label">Neighborhoods served:</span>{' '}
+            <span id="hero-neighborhoods-links">{neighborhoods.map((nh, i) => (
+              <>
+                <a href={`/internet-providers/${zipData.state.toLowerCase()}/${slugify(nh)}?zip=${zipData.zip}`} style="color:var(--brand-blue);font-weight:600;">{nh}</a>{i < neighborhoods.length - 1 ? ', ' : ''}
+              </>
+            ))}</span>
+          </p>
+        )}
+        <p class="zip-hero-brief">
+          Verified coverage for {zipData.city}, {stateName} ({zipData.zip}). {techSummary}
+          {' '}Plans start at <strong>{formatPrice(minPrc)}/mo</strong> with speeds up to <strong>{formatSpeed(maxSpd)}</strong>.
+        </p>
       </div>
-      <h1 id="hero-title" style="font-size:var(--text-4xl);margin-bottom:var(--space-sm);">
-        Internet Providers in <span class="gradient-text" id="hero-location">{zipData.zip}</span> — <span id="hero-city">{zipData.city}, {stateName}</span>
-      </h1>
-      <p style="font-size:var(--text-lg);color:var(--text-secondary);max-width:680px;line-height:1.7;">
-        Verified coverage for {zipData.city}, {stateName} ({zipData.zip}). {techSummary}
-        Plans start at <strong>{formatPrice(minPrc)}/mo</strong> with speeds up to <strong>{formatSpeed(maxSpd)}</strong>.
-      </p>
-    </div>
 
-    <!-- Right: Refinement search (ZIP page only) -->
-    <div id="hero-refine" style="flex-shrink:0;min-width:300px;">
-      <div style="padding:var(--space-lg);background:linear-gradient(135deg,rgba(0,82,255,0.05),rgba(0,213,132,0.05));border:2px solid rgba(0,82,255,0.15);border-radius:var(--radius-lg);">
+      <!-- Right: Refinement search (ZIP page only) -->
+      <div id="hero-refine" class="zip-hero-side">
+        <div style="padding:var(--space-lg);background:linear-gradient(135deg,rgba(0,82,255,0.05),rgba(0,213,132,0.05));border:2px solid rgba(0,82,255,0.15);border-radius:var(--radius-lg);">
         <div style="margin-bottom:var(--space-md);">
           <p style="font-size:var(--text-sm);font-weight:600;color:var(--text-primary);margin-bottom:var(--space-xs);">Try Different Address</p>
           <p style="font-size:var(--text-xs);color:var(--text-tertiary);">Search another ZIP or address</p>
@@ -354,6 +376,7 @@ const schemas = [
           </div>
           <button type="submit" class="btn btn-cta" style="width:100%;padding:10px 16px;font-size:var(--text-base);font-weight:800;background:#000000;border-color:#000000;color:white;">Search</button>
         </form>
+      </div>
       </div>
     </div>
   </div>
@@ -561,7 +584,7 @@ const schemas = [
   <div class="reveal" style="margin-bottom:var(--space-2xl);">
     <div class="grid grid-3" style="gap:var(--space-lg);">
       <div class="card" style="padding:var(--space-lg);">
-        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-md);">Fastest Internet Near {zipData.zip}</h3>
+        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-md);">Fastest Internet Near {zipData.zip}, {zipData.city}</h3>
         <ol class="ranked-list">
           {rankedBySpeed.slice(0, 5).map((p, i) => (
             <li class="ranked-item">
@@ -651,6 +674,33 @@ const schemas = [
       </p>
     </div>
   </div>
+
+  <!-- ═══════════════════════════════════════════
+       NEIGHBORHOODS & COMMUNITIES IN THIS ZIP
+       ═══════════════════════════════════════════ -->
+  {neighborhoods.length > 0 && (
+    <div class="reveal" style="margin-bottom:var(--space-2xl);">
+      <h2 style="font-size:var(--text-2xl);margin-bottom:var(--space-sm);">
+        Neighborhoods &amp; Communities in {zipData.zip}
+      </h2>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-md);line-height:1.7;">
+        ZIP code {zipData.zip} covers {neighborhoods.length} neighborhood{neighborhoods.length !== 1 ? 's' : ''} and communities.
+        Internet availability and provider options can vary between these areas.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-xs);">
+        {neighborhoods.map((nh, i) => (
+          <a href={`/internet-providers/${zipData.state.toLowerCase()}/${slugify(nh)}?zip=${zipData.zip}`} style={`padding:8px 16px;border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;border:2px solid var(--border);background:var(--surface-secondary);color:var(--text-primary);text-decoration:none;transition:all 0.2s;`} class="hover-lift">
+            {nh}
+          </a>
+        ))}
+      </div>
+      {metroParent && metroSlug && (
+        <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-top:var(--space-md);">
+          Part of the <a href={`/internet-providers/${metroSlug}`} style="color:var(--brand-blue);font-weight:600;">{metroParent}, {stateName}</a> metro area
+        </p>
+      )}
+    </div>
+  )}
 
   <!-- ═══════════════════════════════════════════
        STEP 13: PLAN DETAIL ACCORDION
@@ -925,11 +975,15 @@ const schemas = [
       </div>
       <p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-md);">Compare internet availability in ZIP codes near {zipData.zip} in {zipData.city} and surrounding communities.</p>
       <div style="display:flex;flex-wrap:wrap;gap:var(--space-xs);">
-        {siblingZips.map(z => (
-          <a href={`/internet-providers/zip/${z}`} style="padding:6px 14px;border-radius:var(--radius-full);background:var(--surface-secondary);color:var(--text-primary);font-weight:600;font-size:var(--text-sm);text-decoration:none;border:1px solid var(--border);transition:all 0.2s;" class="hover-lift">
-            {z}
-          </a>
-        ))}
+        {siblingZips.map(z => {
+          const sibNh = zipNeighborhoods[z];
+          const sibLabel = sibNh?.n?.find(Boolean) || '';
+          return (
+            <a href={`/internet-providers/zip/${z}`} style="padding:6px 14px;border-radius:var(--radius-full);background:var(--surface-secondary);color:var(--text-primary);font-weight:600;font-size:var(--text-sm);text-decoration:none;border:1px solid var(--border);transition:all 0.2s;" class="hover-lift">
+              {z}{sibLabel ? ` — ${sibLabel}` : ''}
+            </a>
+          );
+        })}
       </div>
     </div>
   )}
@@ -963,6 +1017,77 @@ const schemas = [
 </section>
 
 <style>
+  .zip-hero-wrap {
+    border-radius: calc(var(--radius-lg) + 8px);
+    border: 1px solid rgba(0, 82, 255, 0.16);
+    background:
+      radial-gradient(120% 120% at 0% 0%, rgba(0, 82, 255, 0.11) 0%, rgba(0, 82, 255, 0.04) 34%, rgba(0, 82, 255, 0) 72%),
+      radial-gradient(100% 90% at 100% 0%, rgba(0, 213, 132, 0.1) 0%, rgba(0, 213, 132, 0.03) 35%, rgba(0, 213, 132, 0) 74%),
+      var(--surface-primary);
+    box-shadow: 0 12px 40px rgba(7, 18, 38, 0.08);
+    overflow: hidden;
+  }
+
+  .zip-hero {
+    display: grid;
+    grid-template-columns: 1.25fr 0.9fr;
+    gap: var(--space-xl);
+    align-items: start;
+    padding: var(--space-xl);
+  }
+
+  .zip-hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+  }
+
+  .zip-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.86);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .zip-pill-confirmed {
+    border-color: rgba(0, 213, 132, 0.32);
+    color: var(--text-primary);
+    background: rgba(0, 213, 132, 0.1);
+  }
+
+  .zip-hero-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.08;
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.01em;
+  }
+
+  .zip-hero-nhs {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+    line-height: 1.8;
+  }
+
+  .zip-hero-brief {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    color: var(--text-secondary);
+    max-width: 680px;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .zip-hero-side {
+    min-width: 300px;
+  }
+
   #hero-refine {
     position: relative;
   }
@@ -1040,6 +1165,11 @@ const schemas = [
   }
 
   @media (max-width: 1100px) {
+    .zip-hero {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
     #hero-refine {
       min-width: 280px;
     }
@@ -1047,8 +1177,7 @@ const schemas = [
 
   @media (max-width: 900px) {
     .zip-hero {
-      flex-direction: column;
-      gap: var(--space-lg) !important;
+      padding: var(--space-lg);
     }
 
     #hero-refine {
@@ -1092,19 +1221,11 @@ const schemas = [
       });
     });
 
-    // Update hero when ProviderSearch returns results for a different location
+    // Update badge count when ProviderSearch returns live results
     window.addEventListener('ps:results', ((e: CustomEvent) => {
       const { count, location } = e.detail;
       const badgeText = document.getElementById('hero-badge-text');
-      const heroLoc = document.getElementById('hero-location');
-      const heroCity = document.getElementById('hero-city');
       if (badgeText) badgeText.textContent = `${count} verified providers in ${location}`;
-      // Parse location to update headline
-      // location is like "ZIP 10001 — New York, NY" or "ZIP 10001"
-      const zipMatch = location.match(/ZIP\s+(\d{5})/);
-      const cityMatch = location.match(/—\s*(.+)/);
-      if (zipMatch && heroLoc) heroLoc.textContent = zipMatch[1];
-      if (cityMatch && heroCity) heroCity.textContent = cityMatch[1].trim();
     }) as EventListener);
 
     // Hero refinement search (for ZIP pages)
@@ -1171,28 +1292,26 @@ const schemas = [
         const s = heroAcItems[i]; if (!s) return;
         heroRefineInput.value = s.display;
         closeHeroSugs();
-        // Run search
-        const loc = s.display;
-        runSearch(s.lat, s.lng, loc, locals, mainPhone, container);
+        if (s.zip && /^\d{5}$/.test(s.zip)) {
+          window.location.href = `/internet-providers/zip/${s.zip}`;
+        } else {
+          window.location.href = `/check-availability?q=${encodeURIComponent(s.display)}`;
+        }
       }
 
-      // Form submit
+      // Form submit — always navigate to the ZIP page
       heroRefineForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const q = heroRefineInput.value.trim();
         if (!q) return;
         if (/^\d{5}$/.test(q)) {
-          geocodeZip(q).then((geo: any) => {
-            if (geo) {
-              const loc = `ZIP ${q}` + (geo.city ? ` — ${geo.city}, ${geo.state}` : '');
-              runSearch(geo.lat, geo.lng, loc, locals, mainPhone, container);
-            }
-          });
+          window.location.href = `/internet-providers/zip/${q}`;
         } else {
           geocodeAddr(q).then((geo: any) => {
-            if (geo) {
-              const loc = geo.display.split(',').slice(0,3).join(',');
-              runSearch(geo.lat, geo.lng, loc, locals, mainPhone, container);
+            if (geo?.zip && /^\d{5}$/.test(geo.zip)) {
+              window.location.href = `/internet-providers/zip/${geo.zip}`;
+            } else {
+              window.location.href = `/check-availability?q=${encodeURIComponent(q)}`;
             }
           });
         }

@@ -1,0 +1,1143 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import ProviderCard from '@components/ProviderCard.astro';
+import ProviderSearch from '@components/ProviderSearch.astro';
+import { getProvidersByState, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema, generateItemListSchema } from '@lib/utils';
+import { getStateName, getStateSlug, cities } from '@data/locations';
+import { getStateCensus, formatPercent, formatPopulation } from '@data/census';
+import { getConfirmedProviders, getConfirmedFiberProviders, getZipCoverageSummary } from '@lib/zip-lookup';
+import { neighborhoodPages, getNeighborhoodsByState, type NeighborhoodPage } from '@data/neighborhood-pages';
+import { zipNeighborhoods } from '@data/neighborhoods';
+import type { Provider, Plan } from '@lib/providers';
+
+export function getStaticPaths() {
+  return neighborhoodPages.map(nh => ({
+    params: { stateAbbr: nh.st.toLowerCase(), neighborhood: nh.s },
+    props: { nhData: nh },
+  }));
+}
+
+interface Props { nhData: NeighborhoodPage; }
+const { nhData } = Astro.props;
+
+const stateName = getStateName(nhData.st);
+const stateSlug = getStateSlug(nhData.st);
+const year = new Date().getFullYear();
+const lastUpdated = new Date().toISOString().split('T')[0];
+const lastUpdatedDisplay = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+const census = getStateCensus(nhData.st);
+
+// Parent city info
+const parentCity = cities.find(c => c.slug === nhData.pcs);
+const parentCityName = nhData.pc || parentCity?.name || '';
+const parentPopStr = parentCity?.population?.toLocaleString() || '';
+
+// ── Provider data (state-level, same as city/ZIP pages) ──
+const stateProviders = getProvidersByState(nhData.st);
+const partners: Provider[] = stateProviders.filter(p => p.isPartner);
+const providers: Provider[] = [...stateProviders].sort((a, b) => {
+  if (a.isPartner && !b.isPartner) return -1;
+  if (!a.isPartner && b.isPartner) return 1;
+  const sc = (p: Provider) => p.rating * 2 + (getMaxSpeed(p) > 500 ? 2 : 0) + (p.types.includes('fiber') ? 1 : 0);
+  return sc(b) - sc(a);
+});
+
+// ── ZIP-specific confirmed coverage (pick a primary ZIP for accurate results) ──
+const zipCoverageSummary = getZipCoverageSummary(nhData.z);
+const sortedZipCoverage = [...zipCoverageSummary].sort((a, b) => {
+  const byProviders = b.providers.length - a.providers.length;
+  if (byProviders !== 0) return byProviders;
+  const aFiber = a.providers.filter(p => p.fiber).length;
+  const bFiber = b.providers.filter(p => p.fiber).length;
+  const byFiber = bFiber - aFiber;
+  if (byFiber !== 0) return byFiber;
+  return a.zip.localeCompare(b.zip);
+});
+const primaryZip = sortedZipCoverage[0]?.zip || nhData.z[0];
+const primaryConfirmedEntries = getConfirmedProviders(primaryZip);
+const primaryConfirmedIds = new Set(primaryConfirmedEntries.map(c => c.id));
+const primaryConfirmedFiberIds = new Set(getConfirmedFiberProviders(primaryZip));
+const hasConfirmedData = primaryConfirmedIds.size > 0;
+const confirmedProviders = providers.filter(p => primaryConfirmedIds.has(p.id));
+const confirmedFiberProviders = providers.filter(p => primaryConfirmedFiberIds.has(p.id));
+const hasConfirmedFiber = confirmedFiberProviders.length > 0;
+
+// ── Type breakdowns ──
+const fiberProviders = providers.filter(p => p.types.includes('fiber'));
+const cableProviders = providers.filter(p => p.types.includes('cable'));
+const fiveGProviders = providers.filter(p => p.types.includes('5g'));
+const satelliteProviders = providers.filter(p => p.types.includes('satellite'));
+const dslProviders = providers.filter(p => p.types.includes('dsl'));
+
+// ── Computed stats (awards from partners only) ──
+const fastest: Provider | null = partners.length ? partners.reduce((a, b) => getMaxSpeed(a) > getMaxSpeed(b) ? a : b) : null;
+const cheapest: Provider | null = partners.length ? partners.reduce((a, b) => getMinPrice(a) < getMinPrice(b) ? a : b) : null;
+const topRated: Provider | null = partners.length ? partners.reduce((a, b) => a.rating > b.rating ? a : b) : null;
+const maxSpd = fastest ? getMaxSpeed(fastest) : (providers.length ? Math.max(...providers.map(p => getMaxSpeed(p))) : 0);
+const minPrc = cheapest ? getMinPrice(cheapest) : (providers.length ? Math.min(...providers.map(p => getMinPrice(p))) : 0);
+const avgPrice = providers.length ? Math.round(providers.reduce((s, p) => s + getMinPrice(p), 0) / providers.length) : 0;
+
+// ── Grade ──
+const gradeScore = (fiberProviders.length >= 3 ? 40 : fiberProviders.length >= 1 ? 25 : 0)
+  + (providers.length >= 6 ? 30 : providers.length >= 4 ? 20 : providers.length >= 2 ? 10 : 0)
+  + (cableProviders.length >= 2 ? 20 : cableProviders.length >= 1 ? 10 : 0)
+  + (fiveGProviders.length >= 1 ? 10 : 0);
+const grade = gradeScore >= 80 ? 'A' : gradeScore >= 60 ? 'B' : gradeScore >= 40 ? 'C' : gradeScore >= 20 ? 'D' : 'F';
+
+// ── Ranked providers ──
+const rankedBySpeed: Provider[] = [...providers].sort((a, b) => {
+  if (a.isPartner && !b.isPartner) return -1;
+  if (!a.isPartner && b.isPartner) return 1;
+  return getMaxSpeed(b) - getMaxSpeed(a);
+});
+
+// ── ZIP coverage summary for this neighborhood ──
+const hasZipCoverage = zipCoverageSummary.length > 0;
+
+// ── Connection types ──
+const connectionTypes = [
+  { type: 'fiber', label: 'Fiber', providers: fiberProviders, link: '/internet-types/fiber' },
+  { type: 'cable', label: 'Cable', providers: cableProviders, link: '/internet-types/cable' },
+  { type: 'dsl', label: 'DSL', providers: dslProviders, link: '/internet-types/dsl' },
+  { type: '5g', label: '5G Home', providers: fiveGProviders, link: '/internet-types/5g' },
+  { type: 'satellite', label: 'Satellite', providers: satelliteProviders, link: '/internet-types/satellite' },
+].filter(ct => ct.providers.length > 0);
+
+// ── Narrative paths (2026 Helpful Content: explicit page differentiation) ──
+type NarrativePathKey = 'fiber-confirmed' | 'fiber-possible' | 'cable-primary' | 'limited-options';
+const narrativePath: NarrativePathKey = hasConfirmedFiber
+  ? 'fiber-confirmed'
+  : fiberProviders.length > 0
+    ? 'fiber-possible'
+    : cableProviders.length > 0
+      ? 'cable-primary'
+      : 'limited-options';
+
+const narrativeByPath: Record<NarrativePathKey, { title: string; summary: string }> = {
+  'fiber-confirmed': {
+    title: `Fiber Is Confirmed in ${nhData.n}`,
+    summary: `This neighborhood follows a fiber-first broadband profile in ZIP ${primaryZip}, where FCC-confirmed records show ${confirmedFiberProviders.length} fiber provider${confirmedFiberProviders.length !== 1 ? 's' : ''}.`,
+  },
+  'fiber-possible': {
+    title: `Fiber Is Expanding in ${nhData.n}`,
+    summary: `Fiber is marketed in the broader area, but confirmation varies by block. This page uses ZIP ${primaryZip} as the baseline and keeps all recommendations tied to verified ZIP-level evidence.`,
+  },
+  'cable-primary': {
+    title: `Cable-Led Broadband in ${nhData.n}`,
+    summary: `This neighborhood is primarily cable and wireless today, with competitive speed options but uneven fiber depth by street.`,
+  },
+  'limited-options': {
+    title: `Coverage-Limited Market in ${nhData.n}`,
+    summary: `This is a lower-choice access pattern where plan quality and pricing can vary heavily between nearby ZIPs, so ZIP-specific verification matters most.`,
+  },
+};
+
+const narrativeTitle = narrativeByPath[narrativePath].title;
+const narrativeSummary = narrativeByPath[narrativePath].summary;
+
+// ── Information-gain sections ──
+const providerComparisonRows = rankedBySpeed.slice(0, 10).map((p) => ({
+  id: p.id,
+  name: p.name,
+  confirmedInPrimaryZip: primaryConfirmedIds.has(p.id),
+  hasFiber: p.types.includes('fiber'),
+  maxSpeed: getMaxSpeed(p),
+  minPrice: getMinPrice(p),
+  rating: p.rating,
+  reviewCount: p.reviewCount,
+  typeSummary: p.types.slice(0, 3).map(t => t.toUpperCase()).join(' • '),
+}));
+
+const useCaseRows = [
+  {
+    useCase: 'Single user + basic streaming',
+    speed: '50-100 Mbps',
+    upload: '10+ Mbps',
+    fit: 'Email, web, 1-2 HD streams',
+  },
+  {
+    useCase: 'Remote work + family streaming',
+    speed: '200-500 Mbps',
+    upload: '20-50 Mbps',
+    fit: 'Video calls, cloud backups, 4K streaming',
+  },
+  {
+    useCase: 'Gaming + heavy smart-home usage',
+    speed: '500 Mbps-1 Gbps',
+    upload: '50+ Mbps (prefer fiber)',
+    fit: 'Low latency sessions and many connected devices',
+  },
+  {
+    useCase: 'Creator / power household',
+    speed: '1-2 Gbps',
+    upload: '500 Mbps+ (symmetrical ideal)',
+    fit: 'Large uploads, live streaming, frequent transfers',
+  },
+];
+
+const budgetGuideRows = [
+  {
+    tier: 'Budget Saver',
+    monthly: `${formatPrice(Math.max(25, Math.min(minPrc || 45, 60)))}/mo`,
+    expectation: 'Basic browsing and standard streaming',
+    strategy: 'Target intro offers and no-contract plans in your ZIP.',
+  },
+  {
+    tier: 'Balanced Home',
+    monthly: `${formatPrice(Math.max(45, Math.min((avgPrice || 70), 95)))}/mo`,
+    expectation: 'Reliable work + entertainment mix',
+    strategy: 'Prioritize consistent speeds over headline gig offers.',
+  },
+  {
+    tier: 'Performance First',
+    monthly: `${formatPrice(Math.max(75, Math.min((avgPrice || 95) + 25, 140)))}/mo`,
+    expectation: 'High-demand, low-latency, multi-user homes',
+    strategy: 'Compare upload speed and equipment fees before ordering.',
+  },
+];
+
+const movingChecklist = [
+  `Check your exact address in ${nhData.n} at least 2 weeks before move-in.`,
+  `Compare at least 2 wired options in ZIP ${primaryZip} before selecting a plan.`,
+  'Ask for total monthly cost including router, install, and autopay terms.',
+  'Schedule install before utility turn-on day to avoid connectivity gaps.',
+  'Keep old service active until new line is tested for at least 24 hours.',
+];
+
+// ── Nearby neighborhoods (same state, from parent city ZIPs) ──
+const stateNhs = getNeighborhoodsByState(nhData.st);
+const nearbyNhs = stateNhs
+  .filter(n => n.s !== nhData.s && n.z.some(z => nhData.z.includes(z)))
+  .slice(0, 12);
+const nearbyNhsDetailed = nearbyNhs.map((n) => {
+  const sharedZips = n.z.filter((z) => nhData.z.includes(z));
+  return {
+    ...n,
+    sharedZips,
+    sharedZipCount: sharedZips.length,
+    topZip: sharedZips[0] || n.z[0],
+  };
+});
+
+// ── Contextual descriptions ──
+const isPartOfLargerCity = nhData.m || (parentCityName && parentCityName.toLowerCase() !== nhData.n.toLowerCase());
+const locationDesc = isPartOfLargerCity
+  ? `${nhData.n} is a neighborhood in the ${nhData.m || parentCityName}, ${stateName} area`
+  : `${nhData.n} is a community in ${stateName}`;
+const popDesc = nhData.pop ? ` with a population of approximately ${nhData.pop.toLocaleString()}` : '';
+const techSummary = hasConfirmedFiber
+  ? `Fiber internet is confirmed available from ${confirmedFiberProviders.slice(0, 2).map(p => p.name).join(' and ')}.`
+  : fiberProviders.length > 0
+    ? `Fiber internet may be available from ${fiberProviders.slice(0, 2).map(p => p.name).join(' and ')}.`
+    : `Cable and wireless internet are the primary broadband options.`;
+
+// ── FAQs ──
+const faqs = [
+  {
+    question: `What internet providers are available in ${nhData.n}, ${stateName}?`,
+    answer: hasConfirmedData
+      ? `${confirmedProviders.length} providers have confirmed coverage in ${nhData.n} based on ZIP ${primaryZip}: ${confirmedProviders.slice(0, 4).map(p => p.name).join(', ')}. ${providers.length} total providers serve the broader area across ${connectionTypes.map(ct => ct.label.toLowerCase()).join(', ')} connections. ${topRated ? `${topRated.name} is the highest rated at ${topRated.rating}/5 stars.` : ''} Enter your address above for ZIP-level verified results.`
+      : `The ${nhData.n} area is served by ${providers.length} internet providers including ${providers.slice(0, 3).map(p => p.name).join(', ')}. ${topRated ? `${topRated.name} has the highest customer rating at ${topRated.rating}/5 stars.` : ''} Exact availability depends on your street address — enter your ZIP code above for verified results.`,
+  },
+  {
+    question: `What is the fastest internet in ${nhData.n}, ${stateName}?`,
+    answer: `${fastest ? `${fastest.name} offers the fastest advertised speeds in the ${nhData.n} area — up to ${formatSpeed(maxSpd)}.` : 'Speeds vary by provider.'} ${fiberProviders.length > 0 ? `Fiber internet from ${fiberProviders.slice(0, 2).map(p => p.name).join(' and ')} delivers symmetric speeds ideal for streaming, gaming, and remote work.` : 'Cable internet provides the fastest wired speeds available.'} Check your exact address above for verified speed data.`,
+  },
+  {
+    question: `What is the cheapest internet plan in ${nhData.n}, ${stateName}?`,
+    answer: `Plans start at ${cheapest ? formatPrice(minPrc) : '$25'}/mo${cheapest ? ` with ${cheapest.name}` : ''} in the ${nhData.n} area. The average starting price across all ${providers.length} providers is $${avgPrice}/mo. Sign up above — our experts regularly find savings of $20–50/mo versus ordering directly.`,
+  },
+  {
+    question: `Is fiber internet available in ${nhData.n}, ${stateName}?`,
+    answer: hasConfirmedFiber
+      ? `Yes — fiber internet is confirmed available in ${nhData.n} from ${confirmedFiberProviders.slice(0, 3).map(p => p.name).join(', ')} based on ZIP ${primaryZip}. Fiber offers symmetric upload/download speeds and the lowest latency. Enter your address above to check availability at your specific location.`
+      : fiberProviders.length > 0
+        ? `Fiber may be available in parts of ${nhData.n} from ${fiberProviders.slice(0, 2).map(p => p.name).join(', ')}. Coverage varies by street — enter your address above to verify.`
+        : `Fiber availability in ${nhData.n} is currently limited. Cable and 5G home internet are excellent alternatives. New fiber deployments are underway across ${stateName}.`,
+  },
+  {
+    question: `What ZIP codes cover ${nhData.n}, ${stateName}?`,
+    answer: `${nhData.n} is served by ${nhData.z.length} ZIP code${nhData.z.length !== 1 ? 's' : ''}: ${nhData.z.slice(0, 6).join(', ')}${nhData.z.length > 6 ? ` and ${nhData.z.length - 6} more` : ''}. This page defaults to ZIP ${primaryZip} for reliable ZIP-level coverage context. Choose a different ZIP above for address-specific results.`,
+  },
+  {
+    question: `How do I switch internet providers in ${nhData.n}?`,
+    answer: `Switching is straightforward: 1) Enter your ZIP code above to compare all options at your address. 2) Our experts match you with the best plan. 3) Schedule installation — most providers offer setup within 1–3 business days. 4) Cancel your old service once the new one is active. Our comparison service is completely free.`,
+  },
+  {
+    question: `What internet speed do I need in ${nhData.n}?`,
+    answer: `Light use (email, browsing): 25–50 Mbps. Streaming & video calls: 100–200 Mbps. Gaming & remote work: 200–500 Mbps. Large households with 5+ devices: 500 Mbps–1 Gbps. ${census ? `The average download speed in ${stateName} is ${census.avgDownload} Mbps.` : ''} Sign up above for a free, personalized recommendation.`,
+  },
+];
+
+// ── Schema markup ──
+const productSchemas = (hasConfirmedData ? confirmedProviders : providers).slice(0, 8).map(p => ({
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `${p.name} Internet in ${nhData.n}, ${stateName}`,
+  image: p.logo || undefined,
+  description: p.description,
+  brand: { '@type': 'Brand', name: p.name },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: p.rating.toFixed(1),
+    reviewCount: p.reviewCount,
+    bestRating: '5',
+    worstRating: '1',
+  },
+  offers: {
+    '@type': 'AggregateOffer',
+    lowPrice: getMinPrice(p).toFixed(2),
+    highPrice: Math.max(...p.plans.map(pl => pl.price)).toFixed(2),
+    priceCurrency: 'USD',
+    offerCount: p.plans.length,
+    availability: 'https://schema.org/InStock',
+  },
+}));
+
+const breadcrumbItems = [
+  { name: 'Home', url: 'https://internet4all.com' },
+  { name: stateName, url: `https://internet4all.com/internet-providers/${stateSlug}` },
+  ...(parentCity ? [{ name: parentCityName, url: `https://internet4all.com/internet-providers/${nhData.pcs}` }] : []),
+  { name: nhData.n, url: `https://internet4all.com/internet-providers/${nhData.st.toLowerCase()}/${nhData.s}` },
+];
+
+const schemas = [
+  generateBreadcrumbSchema(breadcrumbItems),
+  generateFAQSchema(faqs),
+  generateItemListSchema(providerComparisonRows.map((r) => ({
+    name: `${r.name} internet in ${nhData.n}`,
+    url: `https://internet4all.com/provider/${providers.find(p => p.id === r.id)?.slug || ''}`,
+    description: `${r.confirmedInPrimaryZip ? 'Confirmed in ZIP ' + primaryZip : 'Not FCC-confirmed in ZIP ' + primaryZip} • Up to ${formatSpeed(r.maxSpeed)} • from ${formatPrice(r.minPrice)}/mo`,
+  })).filter((r) => !r.url.endsWith('/'))),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: `How to choose internet in ${nhData.n}, ${stateName}`,
+    description: `ZIP-first process for selecting the best internet plan in ${nhData.n}.`,
+    totalTime: 'P2D',
+    step: [
+      { '@type': 'HowToStep', name: 'Run ZIP check', text: `Verify your exact address in ZIP ${primaryZip} or your nearest ZIP on this page.` },
+      { '@type': 'HowToStep', name: 'Compare total cost', text: 'Compare full monthly cost including equipment, installation, and post-promo pricing.' },
+      { '@type': 'HowToStep', name: 'Compare speed profile', text: 'Match download and upload speeds to your household use-case, not just advertised max speed.' },
+      { '@type': 'HowToStep', name: 'Schedule overlap', text: 'Activate new service before cancelling existing service to avoid downtime.' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: `Internet Providers in ${nhData.n}, ${stateName}`,
+    dateModified: lastUpdated,
+    url: `https://internet4all.com/internet-providers/${nhData.st.toLowerCase()}/${nhData.s}`,
+    about: {
+      '@type': 'Place',
+      name: nhData.n,
+      description: narrativeSummary,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: nhData.n,
+        addressRegion: nhData.st,
+        addressCountry: 'US',
+      },
+      ...(isPartOfLargerCity ? {
+        containedInPlace: {
+          '@type': 'City',
+          name: nhData.m || parentCityName,
+          address: { '@type': 'PostalAddress', addressRegion: nhData.st },
+        },
+      } : {}),
+      ...(nhData.lat && nhData.lng ? {
+        geo: { '@type': 'GeoCoordinates', latitude: nhData.lat, longitude: nhData.lng },
+      } : {}),
+    },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '.nh-hero-brief', '.nh-key-takeaway'],
+    },
+  },
+  ...productSchemas,
+];
+---
+<Base
+  title={`Internet Providers in ${nhData.n}, ${stateName} (${year}) — Compare Plans & Save`}
+  description={hasConfirmedData
+    ? `${confirmedProviders.length} confirmed internet providers in ${nhData.n}, ${stateName} (ZIP ${primaryZip}). ${providers.length} total options. Speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. ${hasConfirmedFiber ? 'Fiber available. ' : ''}Compare & save.`
+    : `Find ${providers.length} internet providers in ${nhData.n}, ${stateName}. Speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. ${fiberProviders.length} fiber, ${cableProviders.length} cable options. Compare & save.`}
+  schema={schemas}
+>
+<StickyCallBar text={`Best internet deals in ${nhData.n} — get connected`} />
+
+<section class="section" style="padding-top:var(--space-xl);">
+<div class="container">
+
+  <Breadcrumb items={[
+    { name: stateName, url: `/internet-providers/${stateSlug}` },
+    ...(parentCity ? [{ name: parentCityName, url: `/internet-providers/${nhData.pcs}` }] : []),
+    { name: nhData.n },
+  ]} />
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ -->
+  <div class="reveal nh-hero-wrap" style="margin-bottom:var(--space-xl);">
+    <div class="nh-hero-grid">
+      <div class="nh-hero-main">
+        <div class="nh-hero-pills">
+          <span class="nh-pill nh-pill-confirmed">
+            <span style="color:var(--brand-green);">&#10003;</span>
+            {hasConfirmedData ? `${confirmedProviders.length} confirmed in ${primaryZip}` : `${partners.length} recommended`} providers
+          </span>
+          <span class="nh-pill">Grade <strong>{grade}</strong></span>
+          <span class="nh-pill">Updated {lastUpdatedDisplay}</span>
+        </div>
+        <h1 class="nh-hero-title">
+          Internet Providers in <span class="gradient-text">{nhData.n}, {stateName}</span>
+        </h1>
+        <p class="nh-hero-brief">
+          {locationDesc}{popDesc}. {techSummary} Plans start at <strong>{formatPrice(minPrc)}/mo</strong> with speeds up to <strong>{formatSpeed(maxSpd)}</strong>.
+        </p>
+        <div class="nh-key-takeaway">
+          <strong>{narrativeTitle}:</strong> {narrativeSummary}
+        </div>
+      </div>
+      <aside class="nh-hero-side" aria-label="Neighborhood broadband snapshot">
+        <h2 class="nh-side-title">Neighborhood Broadband Snapshot</h2>
+        <div class="nh-snapshot-grid">
+          <div class="nh-kpi">
+            <div class="nh-kpi-label">Baseline ZIP</div>
+            <div class="nh-kpi-value">{primaryZip}</div>
+          </div>
+          <div class="nh-kpi">
+            <div class="nh-kpi-label">Max Speed</div>
+            <div class="nh-kpi-value">{formatSpeed(maxSpd)}</div>
+          </div>
+          <div class="nh-kpi">
+            <div class="nh-kpi-label">Starting Price</div>
+            <div class="nh-kpi-value">{formatPrice(minPrc)}/mo</div>
+          </div>
+          <div class="nh-kpi">
+            <div class="nh-kpi-label">Coverage ZIPs</div>
+            <div class="nh-kpi-value">{nhData.z.length}</div>
+          </div>
+        </div>
+        <p class="nh-side-note">
+          {nhData.z.length > 1
+            ? `This neighborhood spans ${nhData.z.length} ZIP codes. Switch ZIP below to align results with your exact address.`
+            : `Results are anchored to ZIP ${primaryZip} and can be refined for exact address coverage below.`}
+        </p>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       TRUST BAR
+       ═══════════════════════════════════════════ -->
+  <div class="trust-bar reveal" style="margin-bottom:var(--space-lg);">
+    <div class="trust-item">
+      <svg class="trust-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span><strong>{nhData.z.length}</strong> ZIP Codes</span>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+      <span><strong>{hasConfirmedData ? confirmedProviders.length : providers.length}</strong> {hasConfirmedData ? `Confirmed (ZIP ${primaryZip})` : 'Available'} Providers</span>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.44 2.78.7 2.81.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.28.12 2.81.7 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <span><strong>Free</strong> Expert Advice</span>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      <span>Grade: <strong>{grade}</strong></span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CHECK AVAILABILITY
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-xl);">
+    <ProviderSearch
+      cityName={nhData.n}
+      state={nhData.st}
+      stateName={stateName}
+      zip={primaryZip}
+      lat={nhData.lat || parentCity?.lat}
+      lng={nhData.lng || parentCity?.lng}
+      autoSearch
+    />
+    <div class="card" style="margin-top:var(--space-md);padding:var(--space-md) var(--space-lg);border:2px solid rgba(0,82,255,0.12);background:linear-gradient(135deg,rgba(0,82,255,0.02),rgba(0,213,132,0.02));">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-xs);">
+        <strong style="font-size:var(--text-sm);">Active neighborhood ZIP:</strong>
+        <span id="active-zip-label" style="font-size:var(--text-sm);color:var(--brand-blue);font-weight:700;">{primaryZip}</span>
+      </div>
+      <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-bottom:var(--space-sm);line-height:1.7;">
+        This page auto-runs the same BroadbandMap lookup used on ZIP pages. Choose another ZIP in this neighborhood to switch the live results instantly.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-xs);">
+        {nhData.z.slice(0, 12).map(z => (
+          <a data-neighborhood-zip={z} href={`/internet-providers/${nhData.st.toLowerCase()}/${nhData.s}?zip=${z}`} style={`padding:6px 12px;border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;border:2px solid ${z === primaryZip ? 'rgba(0,213,132,0.45)' : 'var(--border)'};background:${z === primaryZip ? 'rgba(0,213,132,0.08)' : 'var(--surface-secondary)'};color:var(--text-primary);text-decoration:none;transition:all 0.2s;`} class="hover-lift">
+            {z}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PROVIDER CARDS
+       ═══════════════════════════════════════════ -->
+  <div id="static-providers" class="reveal" style="margin-bottom:var(--space-2xl);">
+    <div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+      <h2 style="font-size:var(--text-2xl);margin:0;">Internet Providers in {nhData.n}, {stateName}</h2>
+      <span style="font-size:var(--text-xs);padding:3px 10px;background:var(--surface-secondary);border-radius:var(--radius-full);color:var(--text-tertiary);">Ranked by performance</span>
+    </div>
+    <p style="color:var(--text-tertiary);font-size:var(--text-sm);margin-bottom:var(--space-md);">
+      {hasConfirmedData
+        ? `${confirmedProviders.length} confirmed providers in ZIP ${primaryZip} for ${nhData.n}. Enter your ZIP code above to run results for your exact address.`
+        : `${providers.length} providers serving the ${nhData.n} area. Enter your ZIP code above for verified, address-level results.`}
+    </p>
+    <div class="flex flex-col gap-md">
+      {rankedBySpeed.map((p, i) => (
+        <div class="reveal" style={`transition-delay: ${i * 50}ms;`}>
+          <ProviderCard
+            provider={p}
+            rank={i + 1}
+            badge={i === 0 && topRated?.id === p.id ? 'best-overall' : fastest?.id === p.id ? 'best-speed' : cheapest?.id === p.id ? 'best-value' : undefined}
+            showPlans={false}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <h2 style="margin-bottom:var(--space-xs);">Provider Comparison Snapshot for {nhData.n} (ZIP {primaryZip})</h2>
+    <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">
+      Confirmed status is tied to FCC-backed ZIP-level records for {primaryZip}. Unconfirmed providers may still be available at specific addresses and should be verified before ordering.
+    </p>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="compare-table" style="min-width:760px;">
+        <thead>
+          <tr>
+            <th>Provider</th>
+            <th>FCC Status in {primaryZip}</th>
+            <th>Internet Types</th>
+            <th>Max Speed</th>
+            <th>Starting Price</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {providerComparisonRows.map(row => (
+            <tr>
+              <td><strong>{row.name}</strong></td>
+              <td>
+                {row.confirmedInPrimaryZip
+                  ? <span style="color:var(--brand-green);font-weight:700;">&#10003; Confirmed</span>
+                  : <span style="color:var(--text-tertiary);font-weight:600;">Not confirmed</span>}
+              </td>
+              <td style="font-size:var(--text-xs);color:var(--text-secondary);">{row.typeSummary}</td>
+              <td>{formatSpeed(row.maxSpeed)}</td>
+              <td>{formatPrice(row.minPrice)}/mo</td>
+              <td>{row.rating.toFixed(1)}/5 ({row.reviewCount.toLocaleString()})</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STATS BAR
+       ═══════════════════════════════════════════ -->
+  <div class="card reveal" style="margin-bottom:var(--space-2xl);padding:var(--space-xl);">
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-value">{hasConfirmedData ? confirmedProviders.length : partners.length}</div>
+        <div class="stat-label">{hasConfirmedData ? 'Confirmed' : 'Recommended'}</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">{formatSpeed(maxSpd)}</div>
+        <div class="stat-label">Max Speed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">{formatPrice(minPrc)}<span style="font-size:var(--text-sm)">/mo</span></div>
+        <div class="stat-label">Starting Price</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">{fiberProviders.length}</div>
+        <div class="stat-label">Fiber Options</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">{grade}</div>
+        <div class="stat-label">Internet Grade</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CONNECTION TYPES
+       ═══════════════════════════════════════════ -->
+  {connectionTypes.length > 0 && (
+    <div class="reveal" style="margin-bottom:var(--space-2xl);">
+      <h2 style="margin-bottom:var(--space-sm);">Internet Types Available in {nhData.n}</h2>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">
+        {connectionTypes.length} connection types serve the {nhData.n} area. Availability depends on your exact address.
+      </p>
+      <div class="grid grid-3 gap-md">
+        {connectionTypes.map(ct => (
+          <a href={ct.link} style="text-decoration:none;">
+            <div class="card hover-lift" style="padding:var(--space-lg);text-align:center;">
+              <div style={`font-size:var(--text-2xl);font-weight:800;color:${ct.type === 'fiber' ? 'var(--brand-green)' : ct.type === 'cable' ? 'var(--brand-blue)' : ct.type === '5g' ? '#9333ea' : 'var(--text-secondary)'};margin-bottom:var(--space-xs);`}>{ct.label}</div>
+              <div style="font-size:var(--text-sm);color:var(--text-secondary);">{ct.providers.length} provider{ct.providers.length !== 1 ? 's' : ''}</div>
+              <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">{ct.providers.slice(0, 3).map(p => p.name).join(', ')}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {census && (
+    <div class="card reveal" style="margin-bottom:var(--space-2xl);padding:var(--space-xl);">
+      <h2 style="margin-bottom:var(--space-sm);">{stateName} Broadband Context That Impacts {nhData.n}</h2>
+      <p style="font-size:var(--text-sm);line-height:1.8;color:var(--text-secondary);margin-bottom:var(--space-sm);">
+        {census.internetFact}
+      </p>
+      <p style="font-size:var(--text-sm);line-height:1.8;color:var(--text-secondary);margin-bottom:var(--space-md);">
+        {census.landscape}
+      </p>
+      <div class="grid grid-3 gap-md">
+        <div class="card" style="padding:var(--space-md);">
+          <div style="font-size:var(--text-xs);color:var(--text-tertiary);">State Fiber Access</div>
+          <div style="font-size:var(--text-2xl);font-weight:800;color:var(--brand-green);">{formatPercent(census.fiberPct)}</div>
+        </div>
+        <div class="card" style="padding:var(--space-md);">
+          <div style="font-size:var(--text-xs);color:var(--text-tertiary);">Avg Download</div>
+          <div style="font-size:var(--text-2xl);font-weight:800;color:var(--brand-blue);">{census.avgDownload} Mbps</div>
+        </div>
+        <div class="card" style="padding:var(--space-md);">
+          <div style="font-size:var(--text-xs);color:var(--text-tertiary);">Underserved Households</div>
+          <div style="font-size:var(--text-2xl);font-weight:800;color:var(--text-primary);">{formatPercent(census.underservedPct)}</div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <h2 style="margin-bottom:var(--space-xs);">What Speed You Actually Need in {nhData.n}</h2>
+    <p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-lg);">
+      Choose internet based on household behavior, upload requirements, and concurrency. The guide below reflects 2026 usage patterns.
+    </p>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="compare-table" style="min-width:700px;">
+        <thead>
+          <tr>
+            <th>Household Pattern</th>
+            <th>Recommended Download</th>
+            <th>Recommended Upload</th>
+            <th>Best Fit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {useCaseRows.map(row => (
+            <tr>
+              <td><strong>{row.useCase}</strong></td>
+              <td>{row.speed}</td>
+              <td>{row.upload}</td>
+              <td style="font-size:var(--text-sm);color:var(--text-secondary);">{row.fit}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid grid-2 gap-lg reveal" style="margin-bottom:var(--space-2xl);">
+    <div class="card" style="padding:var(--space-xl);">
+      <h2 style="font-size:var(--text-xl);margin-bottom:var(--space-sm);">Budget Guide for {nhData.n}</h2>
+      <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.8;margin-bottom:var(--space-md);">
+        Use this as a planning range before promotions and equipment adjustments.
+      </p>
+      <div class="flex flex-col gap-sm">
+        {budgetGuideRows.map(row => (
+          <div style="padding:var(--space-sm) var(--space-md);border:1px solid var(--border);border-radius:var(--radius-md);">
+            <div style="display:flex;justify-content:space-between;gap:var(--space-sm);align-items:center;">
+              <strong>{row.tier}</strong>
+              <span style="font-weight:700;color:var(--brand-blue);">{row.monthly}</span>
+            </div>
+            <div style="font-size:var(--text-sm);color:var(--text-secondary);margin-top:4px;">{row.expectation}</div>
+            <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:4px;">{row.strategy}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="card" style="padding:var(--space-xl);">
+      <h2 style="font-size:var(--text-xl);margin-bottom:var(--space-sm);">Moving To {nhData.n}? 5-Step Internet Checklist</h2>
+      <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.8;margin-bottom:var(--space-md);">
+        Follow this order to avoid install delays and unnecessary overlap charges.
+      </p>
+      <ol style="margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:8px;color:var(--text-secondary);font-size:var(--text-sm);line-height:1.7;">
+        {movingChecklist.map((step) => (<li>{step}</li>))}
+      </ol>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT THIS NEIGHBORHOOD
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <h2 style="font-size:var(--text-2xl);margin-bottom:var(--space-md);">Internet in {nhData.n}, {stateName}: What To Know</h2>
+    <div style="font-size:var(--text-base);color:var(--text-secondary);line-height:1.8;max-width:800px;">
+      <p style="margin-bottom:var(--space-md);">
+        {locationDesc}{popDesc}. {nhData.z.length > 1
+          ? `The area is served by ${nhData.z.length} ZIP codes, each with potentially different provider availability and infrastructure.`
+          : `The area is served by ZIP code ${nhData.z[0]}.`}
+        {hasConfirmedData
+          ? ` Based on confirmed coverage data for ZIP ${primaryZip}, ${confirmedProviders.length} provider${confirmedProviders.length !== 1 ? 's have' : ' has'} verified service in this area.`
+          : ` ${providers.length} providers serve the broader ${stateName} region including ${nhData.n}.`}
+      </p>
+      <p style="margin-bottom:var(--space-md);">
+        {hasConfirmedFiber
+          ? `Fiber internet is available in ${nhData.n} from ${confirmedFiberProviders.slice(0, 3).map(p => p.name).join(' and ')} based on ZIP ${primaryZip}, offering symmetric speeds ideal for remote work, gaming, and streaming.`
+          : fiberProviders.length > 0
+            ? `Fiber internet from ${fiberProviders.slice(0, 2).map(p => p.name).join(' and ')} may be available at some addresses. ${cableProviders.length > 0 ? `Cable from ${cableProviders.slice(0, 2).map(p => p.name).join(' and ')} provides another high-speed option.` : ''}`
+            : `While fiber hasn't yet reached all of ${nhData.n}, ${cableProviders.length > 0 ? `cable internet from ${cableProviders.slice(0, 2).map(p => p.name).join(' and ')} delivers speeds suitable for most households` : 'wireless and satellite options provide broadband coverage'}.`}
+        {' '}{census ? `Across ${stateName}, approximately ${formatPercent(census.fiberPct)} of households have fiber access and the average download speed is ${census.avgDownload} Mbps.` : ''}
+      </p>
+      {isPartOfLargerCity && parentCity && (
+        <p style="margin-bottom:var(--space-md);">
+          As part of the {nhData.m || parentCityName} metro area{parentPopStr ? ` (population ${parentPopStr})` : ''}, {nhData.n} residents benefit from the infrastructure and provider competition of a larger market.
+          <a href={`/internet-providers/${nhData.pcs}`} style="color:var(--brand-blue);font-weight:600;">View all {parentCityName} internet providers &rarr;</a>
+        </p>
+      )}
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       ZIP COVERAGE TABLE — confirmed providers per ZIP
+       ═══════════════════════════════════════════ -->
+  {hasZipCoverage && (
+    <div class="reveal" style="margin-bottom:var(--space-2xl);">
+      <h2 style="margin-bottom:var(--space-xs);">Confirmed Provider Coverage by ZIP Code in {nhData.n}</h2>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">
+        {zipCoverageSummary.length} of {nhData.z.length} ZIP codes covering {nhData.n} have confirmed provider data. Click any ZIP for detailed plans and pricing.
+      </p>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+        <table class="compare-table" style="min-width:500px;">
+          <thead>
+            <tr>
+              <th>ZIP Code</th>
+              <th>USPS City</th>
+              <th>Confirmed Providers</th>
+              <th>Fiber</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {zipCoverageSummary.map(z => {
+              const fiberCount = z.providers.filter(p => p.fiber).length;
+              return (
+                <tr>
+                  <td><a href={`/internet-providers/zip/${z.zip}`} style={`font-weight:700;color:${z.zip === primaryZip ? 'var(--brand-green)' : 'var(--brand-blue)'};`}>{z.zip}{z.zip === primaryZip ? ' (default)' : ''}</a></td>
+                  <td style="font-size:var(--text-sm);color:var(--text-secondary);">{z.city || '—'}</td>
+                  <td>{z.providers.length} provider{z.providers.length !== 1 ? 's' : ''}</td>
+                  <td>{fiberCount > 0 ? <span style="color:var(--brand-green);font-weight:600;">&#10003; {fiberCount} fiber</span> : <span style="color:var(--text-tertiary);">—</span>}</td>
+                  <td><a href={`/internet-providers/zip/${z.zip}`} style="font-size:var(--text-sm);color:var(--brand-blue);">View plans &rarr;</a></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )}
+
+  <!-- ═══════════════════════════════════════════
+       PRIMARY + NEARBY LOOKUP ZIPS
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <div class="card" style="padding:var(--space-xl);border:2px solid rgba(0,82,255,0.12);background:linear-gradient(135deg,rgba(0,82,255,0.02),rgba(0,213,132,0.02));">
+      <div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-sm);">
+        <span style="font-size:var(--text-2xl);">📍</span>
+        <h2 style="margin:0;">Best ZIP Lookup for {nhData.n}</h2>
+      </div>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);line-height:1.7;">
+        <strong>Primary lookup ZIP:</strong> {primaryZip}. {nhData.z.length > 1
+          ? `Nearby addresses associated with ${nhData.n} may resolve to different USPS routing ZIPs, so we include ${nhData.z.length - 1} additional lookup ZIP${nhData.z.length - 1 !== 1 ? 's' : ''} for accuracy.`
+          : `This neighborhood currently maps to a single routing ZIP in our dataset.`}
+      </p>
+      <p style="color:var(--text-tertiary);font-size:var(--text-xs);line-height:1.8;margin:-4px 0 var(--space-md) 0;">
+        SEO note: this section is optimized for intent like "best internet ZIP for {nhData.n}" and "internet providers near {nhData.n}" by surfacing the most useful address-verification ZIPs first.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-xs);">
+        {[primaryZip, ...nhData.z.filter(z => z !== primaryZip)].map(zip => {
+          const nh = zipNeighborhoods[zip];
+          const label = nh?.n?.find(Boolean) || '';
+          return (
+            <a href={`/internet-providers/zip/${zip}`} style={`padding:8px 16px;border-radius:var(--radius-full);background:${zip === primaryZip ? 'rgba(0,213,132,0.08)' : 'var(--white)'};color:var(--text-primary);font-weight:600;font-size:var(--text-sm);text-decoration:none;border:2px solid ${zip === primaryZip ? 'rgba(0,213,132,0.45)' : 'var(--border)'};transition:all 0.2s;min-width:70px;text-align:center;`} class="hover-lift">
+              {zip}{zip === primaryZip ? <span style="font-weight:700;color:var(--brand-green);"> (primary)</span> : ''}{label ? <span style="font-weight:400;color:var(--text-tertiary);"> — {label}</span> : ''}
+            </a>
+          );
+        })}
+      </div>
+      <div style="margin-top:var(--space-lg);">
+        <form id="zip-search-form-bottom" style="display:flex;gap:var(--space-sm);max-width:360px;">
+          <input id="zip-input-bottom" type="text" maxlength="5" pattern="[0-9]{5}" placeholder="Enter your ZIP code" style="flex:1;padding:var(--space-sm) var(--space-md);border:2px solid var(--border);border-radius:var(--radius-md);font-size:var(--text-base);" />
+          <button type="submit" class="btn btn-primary">Go</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CTA — GET CONNECTED
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <div class="card" style="text-align:center;padding:var(--space-2xl);background:linear-gradient(135deg,rgba(0,82,255,0.04),rgba(0,213,132,0.04));border:2px solid rgba(0,82,255,0.12);">
+      <h2 style="text-align:center;margin-bottom:var(--space-xs);">Ready to Get Connected in {nhData.n}?</h2>
+      <p style="color:var(--text-secondary);max-width:560px;margin:0 auto var(--space-lg);line-height:1.7;">
+        Enter your ZIP code and our team will match you with the best plan for your home. <strong>100% free</strong>, no obligation.
+      </p>
+      <div style="display:flex;justify-content:center;">
+        <form id="zip-search-form-cta" style="display:flex;gap:var(--space-sm);max-width:360px;width:100%;">
+          <input id="zip-input-cta" type="text" maxlength="5" pattern="[0-9]{5}" placeholder="ZIP code" style="flex:1;padding:var(--space-sm) var(--space-md);border:2px solid var(--border);border-radius:var(--radius-md);font-size:var(--text-base);" />
+          <button type="submit" class="btn btn-cta">Get Started</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       NEARBY NEIGHBORHOODS
+       ═══════════════════════════════════════════ -->
+  {nearbyNhs.length > 0 && (
+    <div class="reveal" style="margin-bottom:var(--space-2xl);">
+      <h2 style="margin-bottom:var(--space-sm);">Internet Providers in Nearby Neighborhoods</h2>
+      <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-md);">Compare internet options in communities near {nhData.n}, {stateName}.</p>
+      <div class="nearby-pills">
+        {nearbyNhs.map(n => (
+          <a href={`/internet-providers/${n.st.toLowerCase()}/${n.s}`} class="nearby-pill">
+            <span class="np-name">{n.n}, {n.st}</span>
+            <span class="np-pop">{n.z.length} ZIP code{n.z.length !== 1 ? 's' : ''}</span>
+          </a>
+        ))}
+      </div>
+      <div style="margin-top:var(--space-lg);overflow-x:auto;-webkit-overflow-scrolling:touch;">
+        <table class="compare-table" style="min-width:720px;">
+          <thead>
+            <tr>
+              <th>Nearby Neighborhood</th>
+              <th>Shared ZIPs with {nhData.n}</th>
+              <th>Total ZIPs</th>
+              <th>Quick Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            {nearbyNhsDetailed.map((n) => (
+              <tr>
+                <td><strong>{n.n}, {n.st}</strong></td>
+                <td>{n.sharedZipCount > 0 ? n.sharedZips.slice(0, 4).join(', ') : '—'}</td>
+                <td>{n.z.length}</td>
+                <td><a href={`/internet-providers/${n.st.toLowerCase()}/${n.s}`} style="color:var(--brand-blue);font-weight:600;">View page &rarr;</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )}
+
+  <!-- Parent city + state links -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <h2 style="margin-bottom:var(--space-sm);">More Coverage Areas</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-sm);">
+      {parentCity && (
+        <a href={`/internet-providers/${nhData.pcs}`} class="btn btn-secondary">
+          All {parentCityName} Providers &#8594;
+        </a>
+      )}
+      <a href={`/internet-providers/${stateSlug}`} class="btn btn-secondary">
+        All {stateName} Providers &#8594;
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       FAQ
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <h2 style="margin-bottom:var(--space-xl);">Frequently Asked Questions — {nhData.n}, {stateName} Internet</h2>
+    {faqs.map(faq => (
+      <div class="faq-item">
+        <button class="faq-question">{faq.question}</button>
+        <div class="faq-answer"><div class="faq-answer-inner">{faq.answer}</div></div>
+      </div>
+    ))}
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       DISCLAIMER
+       ═══════════════════════════════════════════ -->
+  <div class="reveal" style="margin-bottom:var(--space-2xl);">
+    <div style="padding:var(--space-lg);border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface-secondary);">
+      <p style="font-size:var(--text-xs);color:var(--text-tertiary);line-height:1.8;margin-bottom:var(--space-sm);">
+        <strong>Editorial Disclosure:</strong> Our rankings use FCC broadband data, independently verified speed tests, and customer reviews collected from public sources. We may earn a commission when you sign up through our partner links — this helps keep our comparison service free. Partners are indicated with a phone icon. Our recommendations are based on objective criteria and are not influenced by partner status. <a href="/methodology" style="color:var(--brand-blue);">Read our full methodology &rarr;</a>
+      </p>
+      <p style="font-size:var(--text-xs);color:var(--text-tertiary);line-height:1.8;">
+        Provider availability, speeds, and pricing can change. The information on this page is updated regularly but may not reflect the latest changes from providers. Always verify details directly. Data sourced from GeoNames (CC BY 4.0), US Census Bureau, and FCC Broadband Data. Last updated {lastUpdatedDisplay}.
+      </p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<style>
+  .nh-hero-wrap {
+    position: relative;
+    border-radius: calc(var(--radius-lg) + 8px);
+    overflow: hidden;
+    border: 1px solid rgba(0, 82, 255, 0.16);
+    background:
+      radial-gradient(120% 120% at 0% 0%, rgba(0, 82, 255, 0.12) 0%, rgba(0, 82, 255, 0.04) 32%, rgba(0, 82, 255, 0) 70%),
+      radial-gradient(100% 90% at 100% 0%, rgba(0, 213, 132, 0.12) 0%, rgba(0, 213, 132, 0.04) 35%, rgba(0, 213, 132, 0) 74%),
+      var(--surface-primary);
+    box-shadow: 0 12px 40px rgba(7, 18, 38, 0.08);
+  }
+
+  .nh-hero-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.9fr;
+    gap: var(--space-xl);
+    padding: var(--space-xl);
+  }
+
+  .nh-hero-main {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nh-hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+  }
+
+  .nh-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.85);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--text-secondary);
+    backdrop-filter: blur(4px);
+  }
+
+  .nh-pill-confirmed {
+    border-color: rgba(0, 213, 132, 0.32);
+    color: var(--text-primary);
+    background: rgba(0, 213, 132, 0.1);
+  }
+
+  .nh-hero-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.08;
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.01em;
+  }
+
+  .nh-hero-brief {
+    font-size: clamp(1rem, 1.6vw, 1.125rem);
+    color: var(--text-secondary);
+    max-width: 760px;
+    line-height: 1.75;
+    margin-bottom: var(--space-md);
+  }
+
+  .nh-key-takeaway {
+    margin-top: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 82, 255, 0.2);
+    background: linear-gradient(135deg, rgba(0, 82, 255, 0.06), rgba(0, 213, 132, 0.03));
+    font-size: var(--text-sm);
+    line-height: 1.8;
+    color: var(--text-primary);
+  }
+
+  .nh-hero-side {
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 82, 255, 0.2);
+    background: rgba(255, 255, 255, 0.86);
+    padding: var(--space-lg);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .nh-side-title {
+    margin: 0 0 var(--space-md) 0;
+    font-size: var(--text-lg);
+    letter-spacing: -0.01em;
+  }
+
+  .nh-snapshot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .nh-kpi {
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--surface-primary);
+    opacity: 0;
+    transform: translateY(8px);
+    animation: nhKpiIn 520ms ease forwards;
+  }
+
+  .nh-kpi:nth-child(1) { animation-delay: 80ms; }
+  .nh-kpi:nth-child(2) { animation-delay: 140ms; }
+  .nh-kpi:nth-child(3) { animation-delay: 200ms; }
+  .nh-kpi:nth-child(4) { animation-delay: 260ms; }
+
+  @keyframes nhKpiIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .nh-kpi-label {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .nh-kpi-value {
+    font-size: var(--text-base);
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .nh-side-note {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: 1.75;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 1024px) {
+    .nh-hero-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .nh-hero-side {
+      max-width: 680px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .nh-hero-grid {
+      padding: var(--space-lg);
+    }
+
+    .nh-snapshot-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .nh-hero-title {
+      line-height: 1.12;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nh-kpi {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script define:vars={{ allowedNeighborhoodZips: nhData.z, defaultZip: primaryZip }}>
+  const allowedZipSet = new Set(allowedNeighborhoodZips);
+  const params = new URLSearchParams(window.location.search);
+  const queryZip = params.get('zip');
+  const selectedZip = queryZip && allowedZipSet.has(queryZip) ? queryZip : defaultZip;
+
+  const bottomInput = document.getElementById('zip-input-bottom') as HTMLInputElement | null;
+  const ctaInput = document.getElementById('zip-input-cta') as HTMLInputElement | null;
+  if (bottomInput) bottomInput.value = selectedZip;
+  if (ctaInput) ctaInput.value = selectedZip;
+  const activeZipLabel = document.getElementById('active-zip-label');
+  if (activeZipLabel) activeZipLabel.textContent = selectedZip;
+
+  // Highlight active ZIP chips
+  document.querySelectorAll('[data-neighborhood-zip]').forEach((el) => {
+    const zip = (el as HTMLElement).getAttribute('data-neighborhood-zip') || '';
+    if (zip === selectedZip) {
+      (el as HTMLElement).style.borderColor = 'rgba(0,213,132,0.45)';
+      (el as HTMLElement).style.background = 'rgba(0,213,132,0.08)';
+    }
+  });
+
+  function handleZipSearch(formId: string, inputId: string) {
+    const form = document.getElementById(formId);
+    const input = document.getElementById(inputId) as HTMLInputElement | null;
+    if (!form || !input) return;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const zip = input.value.trim();
+      if (/^\d{5}$/.test(zip)) {
+        window.location.href = `/internet-providers/zip/${zip}`;
+      }
+    });
+  }
+  handleZipSearch('zip-search-form-bottom', 'zip-input-bottom');
+  handleZipSearch('zip-search-form-cta', 'zip-input-cta');
+
+  // If page was opened with ?zip=XXXXX, rerun ProviderSearch with that ZIP so
+  // neighborhood page uses the same live BroadbandMap flow as ZIP pages.
+  function runSelectedZipSearch() {
+    const ps = (window as any).psGeocode;
+    if (!ps || !ps.geocodeZip || !ps.runSearch || !ps.locals || !ps.container) return false;
+    ps.geocodeZip(selectedZip).then((geo: any) => {
+      if (!geo) return;
+      const loc = `ZIP ${selectedZip}` + (geo.city ? ` — ${geo.city}, ${geo.state}` : '');
+      ps.runSearch(geo.lat, geo.lng, loc, ps.locals, ps.mainPhone, ps.container);
+    });
+    return true;
+  }
+  if (selectedZip !== defaultZip) {
+    let tries = 0;
+    const t = setInterval(() => {
+      tries++;
+      if (runSelectedZipSearch() || tries > 30) clearInterval(t);
+    }, 150);
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      if (item) item.classList.toggle('active');
+    });
+  });
+
+  // Reveal on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</Base>

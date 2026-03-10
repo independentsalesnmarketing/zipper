@@ -210,6 +210,7 @@ const schemas = [
   const params = new URLSearchParams(window.location.search);
   const zip = params.get('zip');
   if (zip && /^[0-9]{5}$/.test(zip)) {
+    if (typeof window.showPageLoader === 'function') window.showPageLoader('Finding providers in ' + zip + '…');
     window.location.replace(`/internet-providers/zip/${zip}`);
   }
 </script>

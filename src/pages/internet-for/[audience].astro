@@ -318,6 +318,65 @@ const schemas = [
   ]),
   generateFAQSchema(audience.faqs),
 ];
+
+const typeMap: Record<string, { slug: string; label: string; icon: string }[]> = {
+  seniors: [
+    { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
+    { slug: '5g', label: '5G Home Internet', icon: '📱' },
+    { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+  ],
+  'low-income': [
+    { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
+    { slug: 'fixed-wireless', label: 'Fixed Wireless', icon: '📶' },
+    { slug: '5g', label: '5G Home Internet', icon: '📱' },
+  ],
+  rural: [
+    { slug: 'satellite', label: 'Satellite Internet', icon: '🛰️' },
+    { slug: 'fixed-wireless', label: 'Fixed Wireless', icon: '📶' },
+    { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
+  ],
+  gaming: [
+    { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+    { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+    { slug: '5g', label: '5G Home Internet', icon: '📱' },
+  ],
+  streaming: [
+    { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+    { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+    { slug: '5g', label: '5G Home Internet', icon: '📱' },
+  ],
+  apartments: [
+    { slug: '5g', label: '5G Home Internet', icon: '📱' },
+    { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+    { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+  ],
+  students: [
+    { slug: '5g', label: '5G Home Internet', icon: '📱' },
+    { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+    { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
+  ],
+  'work-from-home': [
+    { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+    { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+    { slug: '5g', label: '5G Home Internet', icon: '📱' },
+  ],
+  'small-business': [
+    { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+    { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+    { slug: '5g', label: '5G Home Internet', icon: '📱' },
+  ],
+  'large-households': [
+    { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+    { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+    { slug: '5g', label: '5G Home Internet', icon: '📱' },
+  ],
+  'smart-home': [
+    { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
+    { slug: 'cable', label: 'Cable Internet', icon: '📡' },
+    { slug: '5g', label: '5G Home Internet', icon: '📱' },
+  ],
+};
+const typeLinks = typeMap[audience.slug] || [];
 ---
 <Base
   title={audience.title}
@@ -387,8 +446,9 @@ const schemas = [
           {relevantProviders.map((p, i) => {
             const minP = getMinPrice(p);
             const maxS = getMaxSpeed(p);
+            const cardStyle = "padding: var(--space-xl); margin-bottom: var(--space-md);" + (!p.isPartner ? " opacity:0.85;" : "");
             return (
-              <div class="card" style={`padding: var(--space-xl); margin-bottom: var(--space-md); ${!p.isPartner ? 'opacity:0.85;' : ''}`}>
+              <div class="card" style={cardStyle}>
                 <div class="flex items-center gap-lg flex-wrap">
                   <div class="flex items-center gap-sm" style="min-width:40px;">
                     <span style="font-size:var(--text-2xl);font-weight:800;color:var(--text-tertiary);">#{i+1}</span>
@@ -415,7 +475,7 @@ const schemas = [
                     </div>
                   </div>
                   <div class="flex gap-sm">
-                    <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size:var(--text-sm);">Plans</a>
+                    <a href={"/provider/" + p.slug} class="btn btn-secondary" style="font-size:var(--text-sm);">Plans</a>
                     <a href="#get-connected" data-signup-provider={p.slug} class="btn btn-cta" style="font-size:var(--text-sm);">
                       Get {p.name}
                     </a>
@@ -455,93 +515,38 @@ const schemas = [
       <div class="reveal" style="margin-bottom: var(--space-3xl);">
         <h2 style="margin-bottom: var(--space-lg);">Internet Guides by Need</h2>
         <div class="grid grid-3" style="gap: var(--space-sm);">
-          {Object.values(audiences).filter(a => a.slug !== audience.slug).map(a => (
-            <a href={`/internet-for/${a.slug}`} class="card" style="padding: var(--space-md); text-decoration: none;">
-              <span style="font-weight: 500; font-size: var(--text-sm);">{a.h1}</span>
-            </a>
-          ))}
+          {Object.values(audiences).filter(a => a.slug !== audience.slug).map(a => {
+            const audienceLink = "/internet-for/" + a.slug;
+            return (
+              <a href={audienceLink} class="card" style="padding: var(--space-md); text-decoration: none;">
+                <span style="font-weight: 500; font-size: var(--text-sm);">{a.h1}</span>
+              </a>
+            );
+          })}
         </div>
       </div>
 
       <!-- Relevant Connection Types -->
-      {(() => {
-        const typeMap = {
-          seniors: [
-            { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
-            { slug: '5g', label: '5G Home Internet', icon: '📱' },
-            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
-          ],
-          'low-income': [
-            { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
-            { slug: 'fixed-wireless', label: 'Fixed Wireless', icon: '📶' },
-            { slug: '5g', label: '5G Home Internet', icon: '📱' },
-          ],
-          rural: [
-            { slug: 'satellite', label: 'Satellite Internet', icon: '🛰️' },
-            { slug: 'fixed-wireless', label: 'Fixed Wireless', icon: '📶' },
-            { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
-          ],
-          gaming: [
-            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
-            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
-            { slug: '5g', label: '5G Home Internet', icon: '📱' },
-          ],
-          streaming: [
-            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
-            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
-            { slug: '5g', label: '5G Home Internet', icon: '📱' },
-          ],
-          apartments: [
-            { slug: '5g', label: '5G Home Internet', icon: '📱' },
-            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
-            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
-          ],
-          students: [
-            { slug: '5g', label: '5G Home Internet', icon: '📱' },
-            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
-            { slug: 'dsl', label: 'DSL Internet', icon: '📞' },
-          ],
-          'work-from-home': [
-            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
-            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
-            { slug: '5g', label: '5G Home Internet', icon: '📱' },
-          ],
-          'small-business': [
-            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
-            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
-            { slug: '5g', label: '5G Home Internet', icon: '📱' },
-          ],
-          'large-households': [
-            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
-            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
-            { slug: '5g', label: '5G Home Internet', icon: '📱' },
-          ],
-          'smart-home': [
-            { slug: 'fiber', label: 'Fiber Internet', icon: '⚡' },
-            { slug: 'cable', label: 'Cable Internet', icon: '📡' },
-            { slug: '5g', label: '5G Home Internet', icon: '📱' },
-          ],
-        };
-        const typeLinks = (typeMap as Record<string, { slug: string; label: string; icon: string }[]>)[audience.slug] || [];
-        if (!typeLinks.length) return null;
-        return (
-          <div class="reveal" style="margin-bottom: var(--space-3xl);">
-            <h2 style="margin-bottom: var(--space-sm);">Best Connection Types for {audience.h1}</h2>
-            <p style="color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-xl);">Compare technologies and find the right fit for your needs.</p>
-            <div class="grid grid-3" style="gap: var(--space-md);">
-              {typeLinks.map((t: { slug: string; label: string; icon: string }) => (
-                <a href={`/internet-types/${t.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none; display: flex; gap: var(--space-sm); align-items: flex-start;">
+      {typeLinks.length > 0 && (
+        <div class="reveal" style="margin-bottom: var(--space-3xl);">
+          <h2 style="margin-bottom: var(--space-sm);">Best Connection Types for {audience.h1}</h2>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-xl);">Compare technologies and find the right fit for your needs.</p>
+          <div class="grid grid-3" style="gap: var(--space-md);">
+            {typeLinks.map(t => {
+              const typeLink = "/internet-types/" + t.slug;
+              return (
+                <a href={typeLink} class="card" style="padding: var(--space-lg); text-decoration: none; display: flex; gap: var(--space-sm); align-items: flex-start;">
                   <span style="font-size: var(--text-2xl);">{t.icon}</span>
                   <div>
                     <div style="font-weight: 600; color: var(--text-primary);">{t.label}</div>
                     <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Compare plans →</div>
                   </div>
                 </a>
-              ))}
-            </div>
+              );
+            })}
           </div>
-        );
-      })()}
+        </div>
+      )}
 
       <!-- Top Provider Deals -->
       <div class="reveal" style="margin-bottom: var(--space-3xl);">
@@ -550,8 +555,9 @@ const schemas = [
         <div class="grid grid-3" style="gap: var(--space-md);">
           {relevantProviders.filter(p => p.isPartner).slice(0, 3).map(p => {
             const minP = getMinPrice(p);
+            const dealLink = "/deals/" + p.slug;
             return (
-              <a href={`/deals/${p.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none; border: 1px solid var(--brand-green); display: flex; gap: var(--space-sm); align-items: flex-start;">
+              <a href={dealLink} class="card" style="padding: var(--space-lg); text-decoration: none; border: 1px solid var(--brand-green); display: flex; gap: var(--space-sm); align-items: flex-start;">
                 <span style="font-size: var(--text-2xl);">🔥</span>
                 <div>
                   <div style="font-weight: 700; color: var(--text-primary);">{p.name} Deals</div>
@@ -564,5 +570,5 @@ const schemas = [
       </div>
     </div>
   </section>
-  <StickyCallBar text={`Expert ${audience.h1.toLowerCase()} advice — get connected now`} />
+  <StickyCallBar text={"Expert " + audience.h1.toLowerCase() + " advice — get connected now"} />
 </Base>

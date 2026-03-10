@@ -1,0 +1,94 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+starlink internet	USD	2000000	10%	40%	High	90	4.00	12.00
+starlink satellite internet	USD	1500000	10%	35%	High	89	3.80	11.40
+starlink plans	USD	1200000	10%	30%	High	88	3.60	10.80
+starlink cost	USD	1100000	10%	28%	High	87	3.50	10.50
+starlink price	USD	1000000	10%	25%	High	87	3.40	10.20
+starlink availability	USD	900000	10%	30%	High	86	3.30	9.90
+starlink internet service	USD	800000	10%	25%	High	88	3.70	11.10
+starlink dish	USD	700000	10%	22%	High	85	3.20	9.60
+starlink hardware	USD	600000	10%	20%	High	84	3.10	9.30
+starlink equipment	USD	550000	10%	20%	High	84	3.00	9.00
+starlink monthly cost	USD	500000	10%	25%	High	87	3.50	10.50
+starlink subscription	USD	450000	10%	22%	High	86	3.40	10.20
+spacex starlink	USD	400000	10%	30%	High	88	3.60	10.80
+starlink internet plans	USD	380000	10%	25%	High	88	3.70	11.10
+starlink speed	USD	350000	10%	20%	High	85	2.80	8.40
+starlink internet speed	USD	320000	10%	20%	High	85	2.75	8.25
+starlink speed test	USD	300000	10%	18%	Medium	68	1.80	5.40
+starlink latency	USD	280000	10%	20%	Medium	72	2.60	7.80
+starlink for rural areas	USD	260000	10%	25%	High	88	3.80	11.40
+starlink rural internet	USD	240000	10%	22%	High	87	3.70	11.10
+starlink internet for rural	USD	220000	10%	20%	High	87	3.65	10.95
+starlink farm internet	USD	180000	5%	20%	High	86	3.50	10.50
+starlink coverage map	USD	300000	10%	25%	High	85	2.80	8.40
+starlink service area	USD	280000	10%	22%	High	85	2.75	8.25
+starlink internet in my area	USD	350000	10%	25%	High	86	3.00	9.00
+starlink availability check	USD	250000	10%	22%	High	85	2.85	8.55
+starlink near me	USD	400000	10%	28%	High	86	2.90	8.70
+starlink review	USD	500000	10%	20%	Medium	74	2.20	6.60
+starlink internet review	USD	400000	10%	18%	Medium	73	2.15	6.45
+starlink vs hughesnet	USD	200000	10%	25%	High	86	3.40	10.20
+starlink vs viasat	USD	180000	10%	22%	High	86	3.35	10.05
+starlink vs fixed wireless	USD	150000	10%	20%	High	85	3.30	9.90
+starlink vs cable internet	USD	130000	10%	18%	High	85	3.25	9.75
+starlink vs 5g home internet	USD	120000	10%	22%	High	86	3.40	10.20
+starlink vs fiber internet	USD	110000	10%	18%	High	85	3.30	9.90
+starlink installation	USD	400000	10%	20%	Medium	72	2.30	6.90
+starlink self install	USD	300000	10%	18%	Medium	70	2.20	6.60
+starlink dish installation	USD	250000	10%	18%	Medium	70	2.25	6.75
+starlink install kit	USD	200000	10%	18%	Medium	68	2.10	6.30
+starlink installation cost	USD	300000	10%	20%	High	83	2.80	8.40
+starlink dish cost	USD	400000	10%	22%	High	85	3.20	9.60
+starlink equipment cost	USD	350000	10%	20%	High	84	3.10	9.30
+starlink no contract	USD	150000	10%	20%	High	82	3.00	9.00
+starlink month to month	USD	130000	10%	18%	High	81	2.90	8.70
+starlink unlimited data	USD	300000	10%	22%	High	83	3.00	9.00
+starlink data plan	USD	280000	10%	20%	High	83	2.95	8.85
+starlink standard plan	USD	250000	10%	18%	High	84	3.20	9.60
+starlink priority plan	USD	200000	10%	20%	High	85	3.40	10.20
+starlink residential plan	USD	180000	10%	18%	High	84	3.10	9.30
+starlink roam plan	USD	200000	10%	25%	High	84	3.20	9.60
+starlink rv internet	USD	180000	10%	22%	High	83	3.10	9.30
+starlink portable internet	USD	150000	10%	20%	High	82	3.00	9.00
+starlink mobile internet	USD	180000	10%	22%	High	83	3.10	9.30
+starlink for gaming	USD	150000	10%	18%	Medium	73	2.60	7.80
+starlink gaming latency	USD	100000	10%	20%	Medium	72	2.55	7.65
+starlink ping	USD	200000	10%	15%	Medium	68	2.20	6.60
+starlink outage	USD	400000	10%	18%	Low	25	0.60	1.80
+starlink outage map	USD	350000	10%	18%	Low	23	0.55	1.65
+starlink customer service	USD	400000	10%	18%	Low	28	0.70	2.10
+starlink support	USD	300000	10%	15%	Low	25	0.65	1.95
+starlink business internet	USD	200000	10%	25%	High	88	5.50	16.50
+starlink business plan	USD	180000	10%	22%	High	87	5.20	15.60
+starlink for work from home	USD	150000	10%	20%	High	83	3.00	9.00
+starlink remote work internet	USD	130000	10%	18%	High	82	2.90	8.70
+elon musk internet	USD	400000	10%	30%	High	86	3.20	9.60
+starlink 2025	USD	300000	10%	35%	High	85	3.10	9.30
+starlink gen 3 dish	USD	200000	10%	30%	High	84	3.00	9.00
+starlink mini	USD	180000	10%	25%	High	84	3.10	9.30
+best satellite internet	USD	500000	10%	20%	High	88	3.80	11.40
+satellite internet plans	USD	400000	10%	18%	High	87	3.60	10.80
+rural internet options	USD	350000	10%	20%	High	87	3.70	11.10
+remote internet access	USD	250000	10%	18%	High	85	3.20	9.60
+starlink internet plans by address	USD	500	10%	25%	High	86	3.30	9.90
+starlink internet availability by zip	USD	500	10%	22%	High	85	2.85	8.55
+starlink internet pricing for new customers	USD	500	10%	25%	High	88	3.60	10.80
+starlink internet no contract	USD	500	10%	20%	High	82	3.00	9.00
+starlink internet upload speeds	USD	500	10%	18%	Medium	70	2.20	6.60
+starlink internet 1 gig plan	USD	500	10%	20%	High	84	3.10	9.30
+starlink internet for gaming latency	USD	500	10%	18%	Medium	72	2.55	7.65
+starlink internet for streaming	USD	500	10%	18%	Medium	73	2.40	7.20
+starlink internet installation cost	USD	500	10%	20%	High	84	3.10	9.30
+starlink internet equipment cost	USD	500	10%	20%	High	84	3.00	9.00
+starlink internet unlimited data	USD	500	10%	22%	High	83	3.00	9.00
+starlink internet deals	USD	500	10%	25%	High	87	3.50	10.50
+starlink internet service area check	USD	500	10%	22%	High	85	2.85	8.55
+starlink internet business plans	USD	500	10%	25%	High	87	5.50	16.50
+starlink internet customer reviews	USD	500	10%	18%	Medium	73	2.20	6.60
+starlink internet outage	USD	500	10%	18%	Low	25	0.60	1.80
+starlink internet for rural homes	USD	500	10%	25%	High	87	3.70	11.10
+starlink internet vs cable	USD	500	10%	18%	High	85	3.30	9.90
+starlink internet vs fiber	USD	500	10%	18%	High	85	3.30	9.90
+starlink internet vs fixed wireless	USD	500	10%	20%	High	85	3.30	9.90
+starlink internet for remote areas	USD	500	10%	22%	High	87	3.60	10.80

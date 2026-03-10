@@ -33,6 +33,7 @@ const { placeholder = 'Enter your ZIP code', size = 'default' } = Astro.props;
       const input = form.querySelector('input[name="zip"]') as HTMLInputElement;
       const zip = input?.value?.trim();
       if (zip && /^[0-9]{5}$/.test(zip)) {
+        if (typeof window.showPageLoader === 'function') window.showPageLoader('Finding providers in ' + zip + '…');
         // Try the pre-generated ZIP page first; fall back to check-availability
         fetch(`/internet-providers/zip/${zip}/`, { method: 'HEAD' })
           .then(res => {

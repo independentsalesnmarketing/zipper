@@ -1746,6 +1746,22 @@
   }
 
   @media (max-width: 600px) {
+    .scroll-btn,
+    #scroll-to-results {
+      width: 52px !important;
+      height: 52px !important;
+      right: 14px !important;
+      bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important;
+      box-shadow: 0 6px 18px rgba(0, 82, 255, 0.28) !important;
+      animation: none !important;
+    }
+
+    .scroll-btn svg,
+    #scroll-to-results svg {
+      width: 22px !important;
+      height: 22px !important;
+    }
+
     .hero-logos-strip {
       gap: var(--space-sm);
     }
@@ -2345,6 +2361,15 @@
 
   /* Hero & Section spacing reduction on mobile */
   @media (max-width: 768px) {
+    html, body {
+      width: 100%;
+      overflow-x: clip;
+    }
+
+    .container {
+      padding-inline: clamp(0.85rem, 3.5vw, 1.15rem);
+    }
+
     .hero {
       padding-block: var(--space-2xl) var(--space-xl) !important;
     }
@@ -2373,12 +2398,236 @@
       word-break: break-word;
       text-align: center;
     }
-    /* Header CTA hidden on mobile - handled by .header-cta display:none */
-    /* Mobile nav menu button visible */
+
+    .site-header .header-inner {
+      min-height: 64px;
+      gap: var(--space-sm);
+      padding-block: 0.55rem;
+    }
+
+    .site-header .logo img {
+      height: 52px !important;
+      width: auto !important;
+      max-width: min(72vw, 240px);
+    }
+
+    .site-header nav.open {
+      max-height: calc(100dvh - 72px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 2px;
+    }
+
+    .site-header nav.open a {
+      padding: 0.75rem 0.35rem;
+      font-size: 0.98rem;
+      white-space: normal;
+      line-height: 1.35;
+    }
+
+    .sticky-cta {
+      padding-top: 0.65rem;
+      padding-bottom: calc(0.65rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    .sticky-cta .cta-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+    }
+
+    .sticky-cta .cta-text {
+      font-size: var(--text-xs);
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    .sticky-cta .cta-inner > div {
+      width: 100%;
+      justify-content: stretch !important;
+    }
+
+    .sticky-cta .btn {
+      width: 100%;
+      min-height: 44px;
+      font-size: var(--text-sm) !important;
+    }
+
+    table,
+    .compare-table,
+    .comparison-table {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      white-space: nowrap;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      white-space: nowrap;
+      font-size: var(--text-xs);
+    }
+
+    /* Mobile safety valve for inline desktop min-width declarations. */
+    [style*="min-width:"]:not(table):not(th):not(td):not(input):not(select):not(textarea):not(button) {
+      min-width: 0 !important;
+      max-width: 100% !important;
+    }
+
+    [style*="display:flex"],
+    [style*="display: flex"] {
+      flex-wrap: wrap;
+    }
+
+    [style*="display:flex"] > *,
+    [style*="display: flex"] > * {
+      min-width: 0;
+    }
+
+    /* ── Grid collapse: 3-col → 1-col at tablet breakpoint ── */
+    .grid-3 { grid-template-columns: 1fr !important; }
+
+    /* ── Stats bar: flex row → 3-col grid so it doesn't overflow ── */
+    .stats-bar {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md) !important;
+      margin-top: var(--space-lg);
+      padding-top: var(--space-md);
+    }
+    .stat-value {
+      font-size: var(--text-xl) !important;
+    }
+
+    /* ── ZIP hero: side-by-side → stacked ── */
+    .zip-hero {
+      flex-direction: column !important;
+      gap: var(--space-lg) !important;
+    }
+    #hero-refine {
+      min-width: 0 !important;
+      width: 100% !important;
+    }
+
+    /* ── Heading sizes for inline-styled headings ── */
+    [style*="font-size:var(--text-4xl)"] {
+      font-size: clamp(1.55rem, 5.5vw, 2.15rem) !important;
+      line-height: 1.2 !important;
+    }
+    [style*="font-size:var(--text-2xl)"],
+    [style*="font-size: var(--text-2xl)"] {
+      font-size: clamp(1.2rem, 4vw, 1.55rem) !important;
+    }
+
+    /* ── Section spacing: reduce generous desktop margins ── */
+    [style*="margin-bottom:var(--space-2xl)"],
+    [style*="margin-bottom: var(--space-2xl)"] {
+      margin-bottom: var(--space-lg) !important;
+    }
+    [style*="padding:var(--space-2xl)"],
+    [style*="padding: var(--space-2xl)"] {
+      padding: var(--space-lg) !important;
+    }
+    [style*="padding:var(--space-xl)"],
+    [style*="padding: var(--space-xl)"] {
+      padding: var(--space-md) !important;
+    }
+
+    /* ── Connection badges: 2-col on tablet ── */
+    .connection-badge {
+      min-width: 0;
+      flex: 1 1 calc(50% - var(--space-sm));
+    }
+
+    /* ── Nearby pills: tighter spacing ── */
+    .nearby-pill {
+      min-width: 0;
+      padding: var(--space-xs) var(--space-md);
+    }
+
+    /* ── column-count: 4 → 2 ── */
+    [style*="column-count:4"],
+    [style*="column-count: 4"] {
+      column-count: 2 !important;
+    }
+
+    /* ── ProviderSearch: prevent input overflow ── */
+    .ps-input-group {
+      min-width: 0 !important;
+      width: 100%;
+    }
+
+    /* ── Award grid: cap at 2 columns ── */
+    .award-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* ── Trust bar: tighten on mobile ── */
+    .trust-bar {
+      gap: var(--space-xs);
+      padding: var(--space-sm) var(--space-md);
+    }
+    .trust-item {
+      font-size: var(--text-xs);
+    }
+
+    /* ── Plan accordion inner padding ── */
+    .plan-acc-header {
+      padding: var(--space-sm) var(--space-md);
+      font-size: var(--text-sm);
+    }
+    .plan-acc-item.open .plan-acc-content {
+      padding: 0 var(--space-md) var(--space-md);
+    }
+
+    /* ── Breadcrumb wrapping ── */
+    .breadcrumb {
+      flex-wrap: wrap;
+      font-size: var(--text-xs);
+    }
+
+    /* ── Editorial content tighter on mobile ── */
+    .editorial-content p {
+      font-size: var(--text-sm) !important;
+      line-height: 1.7 !important;
+    }
+    .editorial-content h3 {
+      font-size: var(--text-lg) !important;
+    }
+
+    /* ── CTA grid with 240px min — reduce for mobile ── */
+    [style*="minmax(240px"] {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* ── City grid-4 stacks ── */
+    .grid-4 {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* ── Footer logo ── */
+    .site-footer .logo img {
+      height: 48px !important;
+    }
   }
 
-  /* Extra small mobile fixes */
+  /* ════════════════════════════════════════════
+     SMALL MOBILE (≤480px) — compact everything
+     ════════════════════════════════════════════ */
   @media (max-width: 480px) {
+    .site-header .logo img {
+      height: 44px !important;
+      max-width: min(66vw, 210px);
+    }
+
+    .site-header .header-inner {
+      min-height: 58px;
+      padding-block: 0.45rem;
+    }
+
     .hero {
       padding-block: var(--space-xl) var(--space-lg) !important;
     }
@@ -2393,6 +2642,7 @@
     /* Grids go single column */
     .grid-3 { grid-template-columns: 1fr !important; }
     .grid-2 { grid-template-columns: 1fr !important; }
+    .grid-4 { grid-template-columns: 1fr !important; }
     /* Footer bottom stacks */
     .footer-bottom {
       flex-direction: column;
@@ -2410,6 +2660,72 @@
     .card { padding: var(--space-md) !important; }
     /* Plan cards */
     .plan-card { padding: var(--space-md) !important; }
+
+    /* ── Stats bar: 2-col on small phones ── */
+    .stats-bar {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .stat-value {
+      font-size: var(--text-lg) !important;
+    }
+
+    /* ── Trust bar: vertical stack ── */
+    .trust-bar {
+      flex-direction: column;
+      align-items: stretch;
+      padding: var(--space-sm);
+      gap: 4px;
+    }
+    .trust-item {
+      justify-content: flex-start;
+      white-space: normal;
+      font-size: 0.7rem;
+      gap: 4px;
+    }
+
+    /* ── Connection badges: full-width stack ── */
+    .connection-badge {
+      flex: 1 1 100%;
+    }
+
+    /* ── Award grid: single column ── */
+    .award-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* ── column-count: all → 1 on small screens ── */
+    [style*="column-count"] {
+      column-count: 1 !important;
+    }
+
+    /* ── ProviderSearch: even tighter on small phones ── */
+    .ps-input-group {
+      min-width: 0 !important;
+    }
+
+    /* ── Nearby pills: full-width on phones ── */
+    .nearby-pill {
+      flex: 1 1 100%;
+      justify-content: space-between;
+    }
+
+    /* ── Heading clamp tighter ── */
+    [style*="font-size:var(--text-4xl)"] {
+      font-size: clamp(1.35rem, 6vw, 1.75rem) !important;
+    }
+
+    /* ── Speed guide / low-income 2-col grid → 1-col ── */
+    [style*="gap:var(--space-lg)"].grid-2,
+    .grid.grid-2 {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* ── ZIP code pills: smaller & tighter ── */
+    a[href*="/internet-providers/zip/"][style*="padding:8px"] {
+      padding: 6px 10px !important;
+      font-size: var(--text-xs) !important;
+      min-width: 0 !important;
+    }
   }
 }
 

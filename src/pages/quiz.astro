@@ -98,6 +98,9 @@ const partners = getPartnerProviders();
 
 <script define:vars={{ partners: partners.map(p => ({ name: p.name, slug: p.slug, phone: p.phone, types: p.types, plans: p.plans })) }}>
 (function() {
+  const quizRoot = document.getElementById('quiz');
+  if (!quizRoot) return;
+
   const answers = {};
   let current = 1;
   const total = 5;
@@ -108,7 +111,10 @@ const partners = getPartnerProviders();
       answers[q] = this.dataset.value;
       
       // Highlight selected
-      this.closest('.quiz-question').querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('btn-primary'));
+      this.closest('.quiz-question').querySelectorAll('.quiz-opt').forEach(b => {
+        b.classList.remove('btn-primary');
+        b.classList.add('btn-secondary');
+      });
       this.classList.add('btn-primary');
       this.classList.remove('btn-secondary');
       
@@ -235,6 +241,7 @@ const partners = getPartnerProviders();
     document.getElementById('quiz-restart')?.addEventListener('click', () => {
       resultsEl.style.display = 'none';
       resultsEl.innerHTML = '';
+      Object.keys(answers).forEach((k) => delete answers[k]);
       document.querySelector('.quiz-question[data-q="1"]').style.display = 'block';
       document.querySelectorAll('.quiz-opt').forEach(b => {
         b.classList.remove('btn-primary');
@@ -248,4 +255,31 @@ const partners = getPartnerProviders();
   }
 })();
 </script>
+
+<style>
+  @media (max-width: 640px) {
+    #quiz .grid-2 {
+      grid-template-columns: 1fr !important;
+    }
+
+    #quiz .quiz-opt {
+      min-height: 46px;
+      font-size: var(--text-sm);
+    }
+
+    #quiz-results .card [style*="justify-content:space-between"] {
+      flex-direction: column;
+      align-items: flex-start !important;
+    }
+
+    #quiz-results .card [style*="text-align:right"] {
+      text-align: left !important;
+      width: 100%;
+    }
+
+    #quiz-results .btn {
+      width: 100%;
+    }
+  }
+</style>
 </Base>

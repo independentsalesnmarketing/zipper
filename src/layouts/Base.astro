@@ -5,6 +5,7 @@ import Footer from '@components/Footer.astro';
 import Assistant from '@components/Assistant.astro';
 import ConversionBoost from '@components/ConversionBoost.astro';
 import SignUpForm from '@components/SignUpForm.astro';
+import GeoNudge from '@components/GeoNudge.astro';
 import { generateWebsiteSchema, generateOrganizationSchema } from '@lib/utils';
 
 interface Props {
@@ -78,6 +79,30 @@ const schemas = schema
   ))}
 </head>
 <body>
+  <!-- Page transition loader -->
+  <div id="page-loader" class="pl-overlay" aria-hidden="true">
+    <div class="pl-content">
+      <div class="pl-spinner">
+        <div class="pl-ring"></div>
+        <div class="pl-ring pl-ring-2"></div>
+        <div class="pl-dot"></div>
+      </div>
+      <p class="pl-text" id="pl-text">Finding providers…</p>
+    </div>
+  </div>
+  <style>
+    .pl-overlay{position:fixed;inset:0;z-index:99999;background:rgba(10,15,30,.88);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s ease}
+    .pl-overlay.active{opacity:1;pointer-events:auto}
+    .pl-content{display:flex;flex-direction:column;align-items:center;gap:20px}
+    .pl-spinner{position:relative;width:72px;height:72px}
+    .pl-ring{position:absolute;inset:0;border-radius:50%;border:3px solid transparent;border-top-color:var(--primary,#0052ff);animation:plSpin 1s cubic-bezier(.6,.15,.35,.85) infinite}
+    .pl-ring-2{inset:8px;border-top-color:var(--accent,#00c2ff);animation-duration:1.4s;animation-direction:reverse}
+    .pl-dot{position:absolute;top:50%;left:50%;width:10px;height:10px;margin:-5px 0 0 -5px;background:var(--primary,#0052ff);border-radius:50%;animation:plPulse 1s ease-in-out infinite}
+    .pl-text{color:#e0e4ee;font-family:var(--font-body,'Inter',sans-serif);font-size:.95rem;font-weight:500;letter-spacing:.02em;margin:0}
+    @keyframes plSpin{to{transform:rotate(360deg)}}
+    @keyframes plPulse{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+  </style>
+
   <Header />
   <main>
     <slot />
@@ -86,6 +111,7 @@ const schemas = schema
   <Assistant />
   <ConversionBoost />
   <SignUpForm />
+  <GeoNudge />
 
   <!-- Scroll reveal observer -->
   <script>
@@ -170,6 +196,23 @@ const schemas = schema
 
         console.log(`[Analytics] Event: ${eventName}, Category: ${eventCategory}, Label: ${eventLabel}`);
       }
+    });
+  </script>
+
+  <!-- Page transition loader logic -->
+  <script>
+    window.showPageLoader = function(msg) {
+      const el = document.getElementById('page-loader');
+      const txt = document.getElementById('pl-text');
+      if (!el) return;
+      if (txt && msg) txt.textContent = msg;
+      el.classList.add('active');
+      el.setAttribute('aria-hidden', 'false');
+    };
+    // Auto-hide on page load (back/forward cache)
+    window.addEventListener('pageshow', () => {
+      const el = document.getElementById('page-loader');
+      if (el) { el.classList.remove('active'); el.setAttribute('aria-hidden', 'true'); }
     });
   </script>
 </body>

@@ -2,7 +2,9 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
+import { existsSync, readFileSync } from 'node:fs';
 import { getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor, renderStars, stateNames } from '@lib/providers';
+import { getCityPages, getStateSlug } from '@data/locations';
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
@@ -22,6 +24,218 @@ const maxSpeed = getMaxSpeed(provider);
 const maxUpload = getMaxUpload(provider);
 const year = new Date().getFullYear();
 
+const keywordFileBySlug: Record<string, string> = {
+  spectrum: 'SpectrumKeywords.txt',
+  frontier: 'FrontierKeywords.txt',
+  windstream: 'KineticKeywords.txt',
+  brightspeed: 'BrightspeedKeywords.txt',
+  altafiber: 'AltafiberKeywords.txt',
+  'att-fiber': 'At&tFiberKeywords.txt',
+  'att-air': 'At&tAirKeywords.txt',
+  earthlink: 'EarthlinkKeywords.txt',
+  optimum: 'OptimumKeywords.txt',
+  'tmobile-fiber': 'T-FiberKeywords.txt',
+  verizon: 'VerizonFiosKeywords.txt',
+  xfinity: 'XfinityKeywords.txt',
+  cox: 'CoxKeywords.txt',
+  starlink: 'StarlinkKeywords.txt',
+  'google-fiber': 'GoogleFiberKeywords.txt',
+  mediacom: 'MediacomKeywords.txt',
+  wow: 'WowKeywords.txt',
+  fidium: 'FidiumKeywords.txt',
+  ziply: 'ZiplyKeywords.txt',
+  hughesnet: 'HughesNetKeywords.txt',
+  viasat: 'ViasatKeywords.txt',
+  'tmobile-5g': 'TMobile5GKeywords.txt',
+  uscellular: 'USCellularKeywords.txt',
+  geolinks: 'GeoLinksKeywords.txt',
+};
+
+const brandTokensBySlug: Record<string, string[]> = {
+  spectrum: ['spectrum', 'charter'],
+  frontier: ['frontier'],
+  windstream: ['kinetic', 'windstream'],
+  brightspeed: ['brightspeed', 'bright speed'],
+  altafiber: ['altafiber', 'cincinnati bell', 'fioptics', 'fi optics'],
+  'att-fiber': ['at&t', 'att'],
+  'att-air': ['at&t', 'att', 'internet air'],
+  earthlink: ['earthlink'],
+  optimum: ['optimum', 'altice'],
+  'tmobile-fiber': ['t mobile', 'tmobile'],
+  verizon: ['verizon', 'fios'],
+  xfinity: ['xfinity', 'comcast', 'xfi'],
+  cox: ['cox', 'cox communications'],
+  starlink: ['starlink', 'spacex'],
+  'google-fiber': ['google fiber'],
+  mediacom: ['mediacom'],
+  wow: ['wow', 'wideopenwest'],
+  fidium: ['fidium', 'consolidated communications'],
+  ziply: ['ziply'],
+  hughesnet: ['hughesnet', 'hughes net'],
+  viasat: ['viasat', 'exede'],
+  'tmobile-5g': ['tmobile home internet', 't mobile home internet', '5g home internet'],
+  uscellular: ['uscellular', 'us cellular'],
+  geolinks: ['geolinks'],
+};
+
+function getProviderKeywordClusters(slug: string, providerName: string) {
+  const keywordFile = keywordFileBySlug[slug];
+  if (!keywordFile) {
+    return { shortTail: [] as string[], longTail: [] as string[] };
+  }
+
+  const keywordPath = new URL(`../../../${keywordFile}`, import.meta.url);
+  if (!existsSync(keywordPath)) {
+    return { shortTail: [] as string[], longTail: [] as string[] };
+  }
+
+  const includeIntent = /\b(internet|fiber|broadband|wifi|isp|availability|speed|plans?|pricing|price|deals?|address|zip|gig|mbps|streaming|gaming|upload|download|latency|modem|router|no contract|business internet)\b/i;
+  const excludeNoise = /\b(customer service|support|phone number|phone service|tv|television|mobile phones?|cell phone|iphone|android|store|career|jobs?|login|pay bill|prepaid|retailers?)\b/i;
+  const brandTokens = (brandTokensBySlug[slug] || [providerName.toLowerCase()]).map(t => t.toLowerCase());
+
+  const lines = readFileSync(keywordPath, 'utf-8').split('\n').slice(1).filter(Boolean);
+  const terms = lines
+    .map((line) => (line.split('\t')[0] || '').trim().toLowerCase())
+    .filter((term) => term && includeIntent.test(term) && !excludeNoise.test(term))
+    .filter((term) => brandTokens.some(token => term.includes(token)));
+
+  const deduped = Array.from(new Set(terms));
+  const shortTail = deduped
+    .filter(t => t.split(/\s+/).length <= 3)
+    .slice(0, 8);
+  const longTail = deduped
+    .filter(t => t.split(/\s+/).length >= 4)
+    .sort((a, b) => b.split(/\s+/).length - a.split(/\s+/).length)
+    .slice(0, 14);
+
+  return { shortTail, longTail };
+}
+
+const keywordClusters = getProviderKeywordClusters(provider.slug, provider.name);
+const primarySeoPhrase = keywordClusters.longTail[0] || `${provider.name.toLowerCase()} internet plans by address`;
+
+const _kw = [...keywordClusters.shortTail, ...keywordClusters.longTail];
+const kwHasAvailability = _kw.some(t => /availab|zip|address|area|map/i.test(t));
+const kwHasDeals       = _kw.some(t => /deal|new customer|pricing|promo/i.test(t));
+const kwHasGaming      = _kw.some(t => /gaming|streaming|latency/i.test(t));
+const kwHasNoContract  = _kw.some(t => /no.?contract/i.test(t));
+const kwHasEquipment   = _kw.some(t => /modem|router/i.test(t));
+const kwHasGig         = _kw.some(t => /\bgig\b|\d+\s*gig/i.test(t));
+const kwShowSection    = kwHasAvailability || kwHasDeals || kwHasGaming || _kw.length > 0;
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function parseTopCitiesFromResearch(md: string, providerHeading: string): string[] {
+  const headingRe = new RegExp(`^###\\s+${escapeRegExp(providerHeading)}\\s*$`, 'm');
+  const headingMatch = md.match(headingRe);
+  if (!headingMatch || headingMatch.index === undefined) return [];
+
+  const sectionStart = headingMatch.index;
+  const remaining = md.slice(sectionStart + headingMatch[0].length);
+  const nextHeadingIdx = remaining.search(/^###\s+/m);
+  const section = nextHeadingIdx === -1 ? remaining : remaining.slice(0, nextHeadingIdx);
+
+  const topCitiesLabelRe = /\*\*Top\s+\d+\s+Serviceable\s+Cities:\*\*/m;
+  const topCitiesLabelMatch = section.match(topCitiesLabelRe);
+  if (!topCitiesLabelMatch || topCitiesLabelMatch.index === undefined) return [];
+
+  const afterLabel = section.slice(topCitiesLabelMatch.index + topCitiesLabelMatch[0].length).trimStart();
+  const firstLine = (afterLabel.split('\n')[0] || '').trim();
+  if (!firstLine) return [];
+
+  return firstLine
+    .replace(/\.$/, '')
+    .split(';')
+    .map(c => c.trim())
+    .filter(Boolean);
+}
+
+const researchHeadingBySlug: Record<string, string> = {
+  'spectrum': 'Spectrum (Charter Communications)',
+  'xfinity': 'Xfinity (Comcast)',
+  'cox': 'Cox Communications',
+  'optimum': 'Optimum (Altice)',
+  'wow': 'WOW! (WideOpenWest)',
+  'mediacom': 'Mediacom',
+  'att-fiber': 'AT&T Fiber',
+  'verizon': 'Verizon Fios',
+  'frontier': 'Frontier Fiber',
+  'google-fiber': 'Google Fiber (GFiber)',
+  'ziply': 'Ziply Fiber',
+  'fidium': 'Fidium Fiber',
+  'altafiber': 'altafiber',
+  'brightspeed': 'Brightspeed',
+  'tmobile-5g': 'T-Mobile 5G Home Internet',
+  'att-air': 'AT&T Internet Air',
+  'starlink': 'Starlink (SpaceX)',
+  'viasat': 'Viasat',
+  'hughesnet': 'HughesNet',
+  'geolinks': 'GeoLinks',
+  'uscellular': 'U.S. Cellular',
+  'tmobile-fiber': 'T-Mobile Fiber',
+  'windstream': 'Kinetic by Windstream',
+  'earthlink': 'EarthLink',
+};
+
+const researchMd = readFileSync(new URL('../../../ISP_info_March_2026.md', import.meta.url), 'utf-8');
+const researchHeading = researchHeadingBySlug[provider.slug];
+const topCities = researchHeading ? parseTopCitiesFromResearch(researchMd, researchHeading).slice(0, 50) : [];
+
+function normalizeCityName(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/\./g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function cityNameCandidates(name: string): string[] {
+  const base = name.trim();
+  return [
+    base,
+    base.replace(/\bSt\b/gi, 'Saint'),
+    base.replace(/\bSt\.?\b/gi, 'Saint'),
+    base.replace(/\bSaint\b/gi, 'St'),
+    base.replace(/\bFt\.?\b/gi, 'Fort'),
+    base.replace(/\bFort\b/gi, 'Ft'),
+    base.replace(/\bMt\.?\b/gi, 'Mount'),
+    base.replace(/\bMount\b/gi, 'Mt'),
+  ];
+}
+
+const citySlugByKey = new Map<string, string>();
+for (const city of getCityPages()) {
+  citySlugByKey.set(`${normalizeCityName(city.name)}|${city.state}`, city.slug);
+}
+
+const topCityLinks = topCities.map((entry) => {
+  const label = entry.trim();
+  const cleaned = label.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim();
+  const match = cleaned.match(/^(.+?),\s*([A-Z]{2})$/);
+
+  if (!match) return { label, href: '/providers' };
+
+  const cityName = match[1].trim();
+  const stateAbbr = match[2].trim();
+
+  let citySlug: string | undefined;
+  for (const candidate of cityNameCandidates(cityName)) {
+    const key = `${normalizeCityName(candidate)}|${stateAbbr}`;
+    citySlug = citySlugByKey.get(key);
+    if (citySlug) break;
+  }
+
+  if (citySlug) {
+    return { label, href: `/internet-providers/${citySlug}` };
+  }
+
+  const stateHref = stateNames[stateAbbr] ? `/internet-providers/${getStateSlug(stateAbbr)}` : '/providers';
+  return { label, href: stateHref };
+});
+
 // Brand colors for each provider
 const brandColors: Record<string, { primary: string; light: string; dark: string }> = {
   'spectrum': { primary: '#0052FF', light: '#e6eeff', dark: '#003bba' },
@@ -30,10 +244,13 @@ const brandColors: Record<string, { primary: string; light: string; dark: string
   'frontier': { primary: '#FF0037', light: '#ffe6ec', dark: '#cc002c' },
   'att-air': { primary: '#009FDB', light: '#e0f4fc', dark: '#007bad' },
   'tmobile-fiber': { primary: '#E20074', light: '#fde0ef', dark: '#b5005c' },
-  'windstream': { primary: '#00B2E4', light: '#e0f6fd', dark: '#008bb3' },
-  'optimum': { primary: '#0097D5', light: '#e0f3fb', dark: '#0076a8' },
+  // Kinetic by Windstream — purple + teal direction
+  'windstream': { primary: '#6A3FB0', light: '#efe9fb', dark: '#0A8E9A' },
+  // Optimum brand palette
+  'optimum': { primary: '#F66608', light: '#fff1e6', dark: '#002864' },
   'earthlink': { primary: '#009933', light: '#e0f5e8', dark: '#007526' },
-  'brightspeed': { primary: '#00A5E0', light: '#e0f4fd', dark: '#0082b3' },
+  // Brightspeed brand palette (softened gold for better on-page balance)
+  'brightspeed': { primary: '#E0B100', light: '#fff6d9', dark: '#1F1F1F' },
   'altafiber': { primary: '#1C3D69', light: '#e5eaf1', dark: '#142d4f' },
   'xfinity': { primary: '#6023E1', light: '#ede6fc', dark: '#4a1bb3' },
   'tmobile-5g': { primary: '#E20074', light: '#fde0ef', dark: '#b5005c' },
@@ -50,6 +267,7 @@ const brandColors: Record<string, { primary: string; light: string; dark: string
   'mediacom': { primary: '#00529B', light: '#e0edf7', dark: '#003d74' },
 };
 const brand = brandColors[provider.slug] || { primary: '#0052FF', light: '#e6eeff', dark: '#003bba' };
+const heroBg = provider.slug === 'brightspeed' ? '#1F1F1F' : brand.primary;
 
 // Technology descriptions
 const techDescriptions: Record<string, string> = {
@@ -73,7 +291,7 @@ const useCases = {
   'basic': ['web browsing and email', 'social media', 'SD video streaming', 'online shopping', 'light video calls'],
 };
 
-const faqs = [
+const baseFaqs = [
   { question: `Is ${provider.name} available in my area?`, answer: `${provider.name} is available in ${provider.coverage.includes('Nationwide') ? 'all 50 states' : provider.coverage.length + ' states: ' + provider.coverage.join(', ')}. Enter your ZIP code above to check exact availability at your address.` },
   { question: `What is ${provider.name}'s fastest plan?`, answer: `${provider.name}'s fastest plan offers up to ${formatSpeed(maxSpeed)} download speed. Prices start at ${formatPrice(minPrice)}/mo.` },
   { question: `Does ${provider.name} have data caps?`, answer: provider.plans[0]?.dataCap === 'Unlimited' ? `No, ${provider.name} offers unlimited data on all plans — no throttling, no overage fees.` : `${provider.name} plans include data allowances. See plan details above for specific caps.` },
@@ -81,6 +299,25 @@ const faqs = [
   { question: `How does ${provider.name} compare to other providers?`, answer: `${provider.name} offers speeds up to ${formatSpeed(maxSpeed)} starting at ${formatPrice(minPrice)}/mo with a ${provider.rating.toFixed(1)}/5 rating from ${provider.reviewCount.toLocaleString()} reviews. Compare plans side-by-side on our comparison page.` },
   { question: `What technology does ${provider.name} use?`, answer: `${provider.name} uses ${provider.types.map(t => getTypeLabel(t)).join(' and ')} technology. ${primaryType === 'fiber' ? 'Fiber provides the fastest, most reliable connection with symmetrical upload/download speeds.' : primaryType === '5g' ? '5G home internet offers fast wireless speeds without requiring a wired connection.' : 'This provides reliable coverage for most internet activities.'}` },
 ];
+
+const keywordFaqs = keywordClusters.longTail.length
+  ? [
+      {
+        question: `How do I check ${provider.name} availability by address?`,
+        answer: `Use our ZIP search to check ${provider.name} service at your exact address in seconds. Availability can vary by neighborhood even within the same city.`,
+      },
+      {
+        question: `What are the best ${provider.name} internet plans for gaming and streaming?`,
+        answer: `For gaming and 4K streaming, most homes should target plans in the 300 Mbps to ${formatSpeed(maxSpeed)} range, especially with multiple connected devices.`,
+      },
+      {
+        question: `How much does ${provider.name} internet cost per month?`,
+        answer: `${provider.name} plans start around ${formatPrice(minPrice)}/mo and increase with speed tiers, equipment options, and promotional periods.`,
+      },
+    ]
+  : [];
+
+const faqs = [...baseFaqs, ...keywordFaqs];
 
 const schemas = [
   generateProductSchema(provider),
@@ -94,22 +331,165 @@ const schemas = [
 ---
 <Base
   title={`${provider.name} Internet Plans, Prices & Reviews (${year})`}
-  description={`${provider.name} offers internet speeds up to ${formatSpeed(maxSpeed)} starting at ${formatPrice(minPrice)}/mo. Read reviews, compare plans, and sign up for exclusive deals.`}
+  description={`${provider.name} offers internet speeds up to ${formatSpeed(maxSpeed)} starting at ${formatPrice(minPrice)}/mo. Compare ${primarySeoPhrase}, check availability by address, and find the best plan for your home.`}
   schema={schemas}
 >
-  <style define:vars={{ brandPrimary: brand.primary, brandLight: brand.light, brandDark: brand.dark }}>
-    .provider-hero { border-top: 4px solid var(--brandPrimary); }
-    .provider-hero .btn-cta { background: var(--brandPrimary) !important; }
-    .provider-hero .btn-cta:hover { background: var(--brandDark) !important; }
-    .provider-hero .btn-secondary { border-color: var(--brandPrimary); color: var(--brandPrimary); }
-    .provider-hero .btn-secondary:hover { background: var(--brandLight); }
-    .brand-plan-card { border-top: 3px solid var(--brandPrimary); }
-    .brand-plan-card .btn-cta { background: var(--brandPrimary) !important; }
-    .brand-plan-card .btn-cta:hover { background: var(--brandDark) !important; }
-    .brand-plan-card--featured { border-color: var(--brandPrimary); box-shadow: 0 4px 24px color-mix(in srgb, var(--brandPrimary) 20%, transparent); }
-    .brand-section-heading { color: var(--brandPrimary); }
-    .brand-tag { background: var(--brandLight); color: var(--brandDark); border: 1px solid color-mix(in srgb, var(--brandPrimary) 20%, transparent); }
+  <style define:vars={{ brandPrimary: brand.primary, brandLight: brand.light, brandDark: brand.dark, brandHero: heroBg }}>
+    /* Immersive brand hero */
+    .provider-hero {
+      border-top: none !important;
+      background: var(--brandHero) !important;
+      color: white !important;
+      border-color: transparent !important;
+    }
+    .provider-hero h1 { color: white !important; }
+    .provider-hero .tag {
+      background: rgba(255,255,255,0.18) !important;
+      color: white !important;
+      border: 1px solid rgba(255,255,255,0.25) !important;
+    }
+    .provider-hero .rating .star-filled,
+    .provider-hero .star-filled { color: #ffd700 !important; }
+    .provider-hero .rating .star-empty,
+    .provider-hero .star-empty { color: rgba(255,255,255,0.3) !important; }
+    .provider-hero .rating-value { color: white !important; }
+    .provider-hero .rating-count { color: rgba(255,255,255,0.7) !important; }
+    .provider-hero .btn-cta {
+      background: white !important;
+      color: #0b1736 !important;
+      font-weight: 800 !important;
+    }
+    .provider-hero .btn-cta:hover {
+      background: var(--brandLight) !important;
+      color: #08102a !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .provider-hero .btn-secondary {
+      background: rgba(0,0,0,0.16) !important;
+      border-color: rgba(255,255,255,0.4) !important;
+      color: white !important;
+    }
+    .provider-hero .btn-secondary:hover {
+      background: rgba(0,0,0,0.28) !important;
+      border-color: rgba(255,255,255,0.6) !important;
+    }
+    .provider-hero .stats-bar {
+      border-top-color: rgba(255,255,255,0.15) !important;
+      background: rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      margin-left: calc(-1 * var(--space-lg));
+      margin-right: calc(-1 * var(--space-lg));
+      margin-bottom: calc(-1 * var(--space-lg));
+    }
+    .provider-hero .stat-value,
+    .provider-hero .stat-value.brand-stat-value { color: white !important; }
+    .provider-hero .stat-label { color: rgba(255,255,255,0.7) !important; }
+    .provider-hero .brand-logo-wrap {
+      background: white;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .provider-hero .brand-logo-wrap {
+      width: 128px;
+      height: 128px;
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .provider-hero .brand-logo-wrap img {
+      width: 128px;
+      height: 128px;
+      object-fit: contain;
+      padding: 12px;
+    }
+    .provider-hero .brand-logo-wrap .brand-logo-fallback {
+      font-weight: 900;
+      font-size: 3rem;
+      color: #334155;
+      line-height: 1;
+    }
+
+    @media (max-width: 640px) {
+      .provider-hero .brand-logo-wrap {
+        width: 96px;
+        height: 96px;
+        border-radius: var(--radius-lg);
+      }
+      .provider-hero .brand-logo-wrap img {
+        width: 96px;
+        height: 96px;
+        padding: 10px;
+      }
+      .provider-hero .brand-logo-wrap .brand-logo-fallback {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* Plan cards — branded accents */
+    .brand-plan-card {
+      border-top: 4px solid var(--brandPrimary);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .brand-plan-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px color-mix(in srgb, var(--brandPrimary) 18%, transparent);
+    }
+    .brand-plan-card .btn-cta {
+      background: var(--brandPrimary) !important;
+      color: white !important;
+      border: 1px solid color-mix(in srgb, var(--brandDark) 40%, transparent) !important;
+    }
+    .brand-plan-card .btn-cta:hover {
+      background: var(--brandDark) !important;
+      color: white !important;
+    }
+    .brand-plan-card--featured {
+      border-color: var(--brandPrimary);
+      border-top-width: 5px;
+      box-shadow: 0 4px 24px color-mix(in srgb, var(--brandPrimary) 22%, transparent);
+    }
+
+    /* Section headings */
+    .brand-section-heading {
+      color: var(--brandPrimary);
+      position: relative;
+      display: inline-block;
+      padding-bottom: var(--space-xs);
+    }
+    .brand-section-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 36px;
+      height: 3px;
+      background: var(--brandPrimary);
+      border-radius: 2px;
+    }
+
+    /* Brand tags & accents */
+    .brand-tag {
+      background: var(--brandLight);
+      color: var(--brandDark);
+      border: 1px solid color-mix(in srgb, var(--brandPrimary) 20%, transparent);
+      font-weight: 600;
+    }
     .brand-stat-value { color: var(--brandPrimary); }
+
+    /* Ensure in-page anchor navigation does not hide heading under sticky header. */
+    #provider-plans {
+      scroll-margin-top: 108px;
+    }
+
+    @media (max-width: 768px) {
+      #provider-plans {
+        scroll-margin-top: 92px;
+      }
+    }
   </style>
 
   <section class="section" style="padding-top: var(--space-xl);">
@@ -122,11 +502,11 @@ const schemas = [
       <!-- Provider Header -->
       <div class="card provider-hero" style="margin-bottom: var(--space-2xl); padding: var(--space-2xl);">
         <div class="flex items-center gap-lg flex-wrap">
-          <div style="width:72px;height:72px;border-radius:var(--radius-lg);background:var(--gray-50);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+          <div class="brand-logo-wrap">
             {provider.logo ? (
-              <img src={provider.logo} alt={`${provider.name} logo`} width="72" height="72" style="padding:8px; object-fit:contain;" />
+              <img src={provider.logo} alt={`${provider.name} logo`} width="128" height="128" />
             ) : (
-              <span style="font-weight:800;font-size:var(--text-2xl);color:var(--text-tertiary);">{provider.name.charAt(0)}</span>
+              <span class="brand-logo-fallback">{provider.name.charAt(0)}</span>
             )}
           </div>
           <div style="flex:1; min-width: 0;">
@@ -328,6 +708,23 @@ const schemas = [
         </div>
       </div>
 
+      <!-- Top Cities -->
+      {topCityLinks.length > 0 && (
+        <div class="reveal" style="margin-bottom: var(--space-3xl);">
+          <h2 style="margin-bottom: var(--space-xl);">Top {provider.name} Service Cities</h2>
+          <div class="card" style="padding: var(--space-xl);">
+            <p style="margin-bottom: var(--space-md); color: var(--text-secondary);">{provider.name} is popular in these cities:</p>
+            <div class="flex flex-wrap gap-sm">
+              {topCityLinks.map(city => (
+                <a href={city.href} class="brand-tag" style="padding: 6px 12px; border-radius: 999px; text-decoration: none; font-size: var(--text-sm);">
+                  {city.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       <!-- Customer Experience — SEO content -->
       <div class="reveal" style="margin-bottom: var(--space-3xl);">
         <h2 style="margin-bottom: var(--space-xl);">{provider.name} Customer Experience</h2>
@@ -352,6 +749,58 @@ const schemas = [
           </div>
         </div>
       </div>
+
+      {kwShowSection && (
+        <div class="reveal" style="margin-bottom: var(--space-3xl);">
+          <h2 style="margin-bottom: var(--space-xl);">{provider.name} Internet: What to Know Before You Sign Up</h2>
+
+          {kwHasAvailability && (
+            <div style="margin-bottom: var(--space-xl);">
+              <h3 style="margin-bottom: var(--space-sm);">Check {provider.name} Availability by Address</h3>
+              <p style="color: var(--text-secondary); line-height: 1.7;">
+                {provider.name} availability varies by neighborhood, so checking your specific address is the only reliable way to confirm service.
+                Enter your ZIP code on our <a href="/check-availability" style="color: var(--brandPrimary);">availability checker</a> to see
+                whether {provider.name} {primaryType === 'fiber' ? 'fiber internet' : 'internet'} reaches your home and which speed tiers are offered at your address.
+              </p>
+            </div>
+          )}
+
+          <div style="margin-bottom: var(--space-xl);">
+            <h3 style="margin-bottom: var(--space-sm);">{provider.name} Internet Plans and Pricing</h3>
+            <p style="color: var(--text-secondary); line-height: 1.7;">
+              {provider.name} internet plans start at {formatPrice(minPrice)}/mo and scale up to {formatSpeed(maxSpeed)} download speeds.
+              {kwHasGig && <> Whether you need a 1 Gig or 2 Gig internet plan for a large household, or a more affordable mid-tier option, </>}
+              {!kwHasGig && <> Whether you need a fast plan for a large household, or a budget-friendly option, </>}
+              you can <a href="#provider-plans" style="color: var(--brandPrimary);">compare all {provider.name} plans</a> above or
+              run a side-by-side <a href="/compare" style="color: var(--brandPrimary);">comparison against other providers</a> in your area.
+              {kwHasNoContract && <> {provider.name} also offers no-contract internet plans if you prefer the flexibility to switch without penalties.</>}
+            </p>
+          </div>
+
+          {kwHasDeals && (
+            <div style="margin-bottom: var(--space-xl);">
+              <h3 style="margin-bottom: var(--space-sm);">{provider.name} Internet Deals for New Customers</h3>
+              <p style="color: var(--text-secondary); line-height: 1.7;">
+                New customers can often find {provider.name} internet deals that significantly lower the monthly rate for the first 12 months —
+                promotional pricing, waived installation fees, or bundled equipment discounts are common.
+                Check our <a href="/deals" style="color: var(--brandPrimary);">deals page</a> for the latest {provider.name} internet offers,
+                or see our <a href="/cheap-internet" style="color: var(--brandPrimary);">cheap internet guide</a> if budget is your top priority.
+              </p>
+            </div>
+          )}
+
+          {kwHasGaming && (
+            <div style="margin-bottom: var(--space-xl);">
+              <h3 style="margin-bottom: var(--space-sm);">{provider.name} Internet for Gaming and Streaming</h3>
+              <p style="color: var(--text-secondary); line-height: 1.7;">
+                For competitive gaming and 4K streaming, the two factors that matter most are low latency and consistent upload speeds —
+                not just peak download speed. {primaryType === 'fiber' ? `${provider.name}'s fiber network delivers symmetrical upload speeds and sub-20ms latency, making it one of the strongest choices for gamers.` : `Aim for a ${provider.name} plan in the 300 Mbps or higher range to handle simultaneous gaming and streaming across multiple devices.`}
+                {kwHasEquipment && <> Using {provider.name}'s recommended modem and router setup also ensures you're not losing speed to outdated equipment.</>}
+              </p>
+            </div>
+          )}
+        </div>
+      )}
 
       <!-- FAQ -->
       <div class="reveal" style="margin-bottom: var(--space-3xl);">

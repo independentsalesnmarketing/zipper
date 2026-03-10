@@ -75,7 +75,7 @@ const schemas = [
         </div>
         <p id="speed-label" class="text-tertiary mt-md" style="font-size:var(--text-sm);">Click Start to test your {provider.name} speed</p>
 
-        <div class="grid grid-3 mt-xl" style="gap:var(--space-xl);">
+        <div class="grid grid-3 mt-xl stp-metrics" style="gap:var(--space-xl);">
           <div>
             <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:var(--tracking-wide);">Download</div>
             <div id="dl-speed" class="speed-display" style="font-size:var(--text-2xl);margin-top:var(--space-xs);">—</div>
@@ -93,7 +93,7 @@ const schemas = [
           </div>
         </div>
 
-        <button id="start-test" class="btn btn-primary btn-lg mt-xl" style="min-width:200px;">
+        <button id="start-test" class="btn btn-primary btn-lg mt-xl stp-start-btn" style="min-width:200px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           Start Speed Test
         </button>
@@ -123,7 +123,7 @@ const schemas = [
         </div>
 
         <h3 style="font-size: var(--text-lg); margin-top: var(--space-xl); margin-bottom: var(--space-md);">{provider.name} Plans</h3>
-        <div style="overflow-x: auto;">
+        <div class="stp-table-wrap" style="overflow-x: auto;">
           <table style="width: 100%; border-collapse: collapse; font-size: var(--text-sm);">
             <thead>
               <tr style="border-bottom: 2px solid var(--border);">
@@ -207,6 +207,10 @@ const schemas = [
   const progressBar = document.getElementById('progress-bar') as HTMLElement;
   const progressFill = document.getElementById('progress-fill') as HTMLElement;
 
+  if (!startBtn || !gauge || !speedValue || !speedLabel || !dlSpeed || !ulSpeed || !pingVal || !progressBar || !progressFill) {
+    console.error('Provider speed test UI initialization failed: required DOM nodes are missing.');
+  } else {
+
   let running = false;
   const DL_ENDPOINT = 'https://speed.cloudflare.com/__down?bytes=';
   const UL_ENDPOINT = 'https://speed.cloudflare.com/__up';
@@ -273,7 +277,7 @@ const schemas = [
     return speeds.length ? speeds.slice(-2).reduce((a, b) => a + b, 0) / Math.min(speeds.length, 2) : 0;
   }
 
-  startBtn?.addEventListener('click', async () => {
+  startBtn.addEventListener('click', async () => {
     if (running) return;
     running = true;
     startBtn.disabled = true;
@@ -294,6 +298,14 @@ const schemas = [
     const ul = await measureUpload();
     progressFill.style.width = '100%';
 
+    if (dl <= 0 && ul <= 0) {
+      speedLabel.textContent = 'Unable to measure your speed right now. Please try again in a moment.';
+      startBtn.textContent = 'Try Again';
+      startBtn.disabled = false;
+      running = false;
+      return;
+    }
+
     animateValue(dlSpeed, dl, 500);
     animateValue(ulSpeed, ul, 500);
     animateValue(pingVal, ping, 300);
@@ -305,4 +317,24 @@ const schemas = [
     startBtn.disabled = false;
     running = false;
   });
+  }
 </script>
+
+<style>
+  @media (max-width: 640px) {
+    .stp-metrics {
+      grid-template-columns: 1fr !important;
+      gap: var(--space-md) !important;
+    }
+
+    .stp-start-btn {
+      width: 100%;
+      min-width: 0 !important;
+      font-size: var(--text-base) !important;
+    }
+
+    .stp-table-wrap table {
+      min-width: 620px;
+    }
+  }
+</style>

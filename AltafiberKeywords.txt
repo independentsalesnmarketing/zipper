@@ -1,0 +1,916 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+internet providers near me	USD	500000	0%	-90%	High	73	8.06	26.71
+internet companies near me	USD	500000	0%	-90%	High	73	8.06	26.71
+att fiber internet	USD	500000	0%	900%	Low	14	2.84	9.73
+at&t fiber	USD	500000	0%	0%	Medium	40	3.11	9.27
+internet suppliers near me	USD	500000	0%	-90%	High	73	8.06	26.71
+internet carriers near me	USD	500000	0%	-90%	High	73	8.06	26.71
+isp provider near me	USD	500000	0%	-90%	High	73	8.06	26.71
+internet isp near me	USD	500000	0%	-90%	High	73	8.06	26.71
+fiber optic service providers	USD	500000	-90%	900%	Low	1	6.61	23.16
+fiber internet	USD	50000	0%	0%	Medium	35	5.68	21.32
+fiber internet providers	USD	50000	0%	900%	Low	5	5.00	20.34
+home wifi	USD	50000	0%	0%	High	77	8.61	37.13
+internet providers	USD	50000	0%	0%	Medium	58	7.17	25.39
+home internet providers	USD	50000	0%	0%	Medium	58	7.25	26.34
+internet services for my address	USD	50000	0%	-90%	High	83	5.31	23.18
+fiber internet in my area	USD	50000	0%	0%	High	82	4.52	19.52
+internet company	USD	50000	0%	-90%	Medium	65	7.33	26.07
+internet fiber in my area	USD	50000	0%	0%	High	82	4.52	19.52
+fiber internet plans	USD	50000	900%	9900%	Low	1	4.58	17.58
+best internet provider	USD	50000	0%	-90%	High	70	4.85	18.98
+wifi services near me	USD	50000	0%	-90%	High	88	12.00	47.37
+home internet services	USD	50000	0%	0%	Medium	58	7.25	26.34
+internet providers for my area	USD	50000	0%	0%	High	81	6.19	23.69
+internet services in my area	USD	50000	0%	0%	High	81	6.19	23.69
+internet provider for my address	USD	50000	0%	-90%	High	83	5.31	23.18
+internet services by address	USD	50000	0%	-90%	High	78	4.06	20.46
+internet provider by address	USD	50000	0%	-90%	High	78	4.06	20.46
+internet available at my address	USD	50000	0%	-90%	High	76	3.85	17.79
+internet near me	USD	50000	0%	0%	High	78	9.70	36.04
+best internet provider in my area	USD	50000	0%	0%	High	83	5.83	20.74
+internet for my area	USD	50000	0%	-90%	High	85	6.57	24.58
+fiber wire internet	USD	50000	0%	0%	Medium	35	5.68	21.32
+wifi providers	USD	50000	0%	-90%	High	77	8.86	32.42
+internet options by address	USD	50000	0%	-90%	High	78	4.06	20.46
+internet available by address	USD	50000	0%	-90%	High	76	3.85	17.79
+best internet company	USD	50000	0%	-90%	High	70	4.85	18.98
+internet carriers	USD	50000	0%	0%	Medium	58	7.17	25.39
+wifi company near me	USD	50000	0%	-90%	High	76	10.00	35.91
+att fiber plans	USD	50000	0%	900%	Low	12	1.43	8.00
+internet options in my area	USD	50000	0%	0%	High	81	6.19	23.69
+internet companies in my area	USD	50000	0%	0%	High	81	6.19	23.69
+broadband internet	USD	50000	0%	0%	Low	30	3.29	14.38
+isp in my area	USD	50000	0%	0%	High	81	6.19	23.69
+internet carriers in my area	USD	50000	0%	0%	High	81	6.19	23.69
+internet offers in my area	USD	50000	0%	0%	High	81	6.19	23.69
+best isp in my area	USD	50000	0%	0%	High	83	5.83	20.74
+isp for my address	USD	50000	0%	-90%	High	83	5.31	23.18
+home internet cheap	USD	50000	0%	0%	Medium	64	5.78	23.44
+fiber optic internet providers	USD	50000	0%	900%	Low	2	4.51	23.76
+internet choices in my area	USD	50000	0%	0%	High	81	6.19	23.69
+san diego internet	USD	50000	0%	0%	Low	2	2.33	19.74
+internet suppliers in my area	USD	50000	0%	0%	High	81	6.19	23.69
+best internet options	USD	50000	0%	-90%	High	70	4.85	18.98
+wifi internet providers near me	USD	50000	0%	-90%	High	76	10.00	35.91
+cheap internet companies	USD	50000	0%	0%	High	70	6.00	22.46
+fiber internet companies	USD	50000	0%	900%	Low	5	5.00	20.34
+isp providers in my area	USD	50000	0%	0%	High	81	6.19	23.69
+internet offered at my address	USD	50000	0%	-90%	High	76	3.85	17.79
+great internet providers	USD	50000	0%	-90%	High	70	4.85	18.98
+fiberwire internet	USD	50000	0%	0%	Medium	35	5.68	21.32
+fiber isp	USD	50000	0%	900%	Low	6	5.55	23.45
+cheap internet home service	USD	50000	0%	0%	High	70	6.00	22.46
+fiberglass internet	USD	50000	0%	0%	Medium	35	5.68	21.32
+internet isp	USD	50000	0%	0%	Medium	58	7.17	25.39
+best internet company in my area	USD	50000	0%	0%	High	83	5.83	20.74
+fiber high speed internet	USD	50000	900%	99900%	Low	0	6.03	25.00
+internet network providers	USD	50000	0%	0%	Low	32	6.89	23.92
+internet services offered in my area	USD	50000	0%	0%	High	81	6.19	23.69
+internet carriers for my address	USD	50000	0%	-90%	High	83	5.31	23.18
+best isps	USD	50000	0%	-90%	High	70	4.85	18.98
+fiber optic internet companies	USD	50000	0%	900%	Low	2	4.51	23.76
+internet server providers	USD	50000	0%	0%	Low	32	6.89	23.92
+fiber optic high speed internet	USD	50000	0%	9900%	Low	0	5.38	22.70
+internet isp in my area	USD	50000	0%	0%	High	81	6.19	23.69
+in my area internet providers	USD	50000	0%	0%	High	81	6.19	23.69
+fiber optic isp	USD	50000	0%	900%	Low	2	4.51	23.76
+isp providers for my address	USD	50000	0%	-90%	High	83	5.31	23.18
+internet available to my address	USD	50000	0%	-90%	High	76	3.85	17.79
+best internet carriers	USD	50000	0%	-90%	High	70	4.85	18.98
+internet access providers	USD	50000	0%	0%	Low	10	4.74	20.00
+near me internet	USD	50000	0%	0%	High	78	9.70	36.04
+home and internet	USD	50000	0%	0%	High	82	9.03	32.58
+altafiber internet	USD	5000	0%	900%	Medium	62	1.26	9.22
+internet providers cincinnati	USD	5000	0%	-90%	High	76	5.54	18.13
+altafiber customer service	USD	5000	0%	0%	Low	31	0.99	3.72
+columbus ohio internet providers	USD	5000	0%	0%	High	72	6.64	24.47
+fiber optic internet near me	USD	5000	0%	0%	High	80	4.14	18.09
+fiber optics near me	USD	5000	0%	0%	Medium	59	6.40	23.31
+fiber optics internet	USD	5000	0%	0%	Medium	45	5.08	23.25
+internet services cincinnati	USD	5000	0%	-90%	High	76	5.54	18.13
+fiber wifi	USD	5000	0%	0%	High	70	6.67	23.67
+fiber optic wifi	USD	5000	0%	0%	Medium	60	6.00	27.47
+cheap wifi near me	USD	5000	0%	0%	Medium	66	9.50	35.04
+fiber near me	USD	5000	0%	0%	Medium	65	6.32	24.43
+fiber home internet	USD	5000	0%	900%	Low	29	5.95	24.61
+fiber optic internet in my area	USD	5000	0%	0%	High	73	4.45	20.00
+wifi services	USD	5000	0%	0%	High	84	10.00	34.93
+home wifi service	USD	5000	0%	0%	High	78	9.87	39.91
+internet in columbus ohio	USD	5000	0%	0%	High	72	6.64	24.47
+fiber internet near me	USD	5000	0%	0%	High	76	6.13	19.62
+home internet providers near me	USD	5000	0%	-90%	High	78	8.32	30.31
+fiber optic broadband	USD	5000	0%	900%	Low	3	4.67	19.16
+altafiber login	USD	5000	0%	0%	Low	15	1.10	1.83
+get wifi	USD	5000	-90%	0%	High	72	12.05	55.81
+fiber to home	USD	5000	0%	-90%	Low	25	3.25	13.31
+wifi companies	USD	5000	0%	0%	High	77	9.99	36.83
+best wifi providers	USD	5000	0%	0%	High	75	6.03	25.92
+best wifi near me	USD	5000	0%	0%	High	77	10.00	37.72
+internet wifi	USD	5000	0%	0%	High	81	7.36	26.97
+residential internet providers	USD	5000	-90%	900%	Low	6	5.05	22.20
+internet home	USD	5000	0%	0%	High	78	6.91	25.52
+cheap internet near me	USD	5000	0%	0%	High	87	7.50	25.90
+internet companies columbus ohio	USD	5000	0%	0%	High	72	6.64	24.47
+internet plans in my area	USD	5000	0%	-90%	High	68	5.26	21.34
+wireless internet providers near me	USD	5000	0%	-90%	High	69	5.95	20.46
+best home internet provider	USD	5000	0%	0%	High	73	5.15	20.57
+fi optics	USD	5000	0%	0%	Medium	51	1.24	11.48
+internet plans near me	USD	5000	0%	0%	High	80	6.49	24.24
+home internet deals	USD	5000	0%	0%	Medium	67	6.77	22.07
+home wifi providers	USD	5000	900%	0%	Medium	60	9.05	35.52
+good internet providers	USD	5000	0%	0%	High	73	6.33	24.97
+wifi internet providers	USD	5000	0%	-90%	High	72	8.02	28.50
+best wifi company	USD	5000	0%	0%	High	74	7.05	27.09
+cincinnati ohio internet providers	USD	5000	0%	-90%	High	76	5.54	18.13
+fiber in my area	USD	5000	0%	0%	High	77	5.04	23.37
+att fiber optic	USD	5000	0%	0%	Medium	40	2.53	9.03
+fibre optic internet near me	USD	5000	0%	0%	High	76	6.13	19.62
+best internet services	USD	5000	0%	0%	High	74	4.54	17.05
+internet available in my area	USD	5000	0%	0%	High	69	5.67	23.48
+internet available near me	USD	5000	0%	-90%	High	72	7.16	25.52
+fiber net	USD	5000	0%	0%	Low	20	5.15	25.57
+home internet providers in my area	USD	5000	0%	0%	High	88	8.13	31.48
+internet deals near me	USD	5000	0%	0%	High	84	7.50	23.36
+home internet wifi	USD	5000	0%	0%	High	68	5.92	25.76
+internet providers colorado springs	USD	5000	0%	0%	High	73	7.82	35.67
+internet prices	USD	5000	0%	0%	Medium	58	3.20	12.95
+cheap internet in my area	USD	5000	0%	0%	High	77	4.15	17.76
+google fiber cost	USD	5000	0%	0%	Medium	34	4.56	15.00
+internet for my address	USD	5000	0%	0%	High	81	5.71	25.48
+new internet providers	USD	5000	0%	-90%	High	68	8.25	32.98
+columbus internet providers	USD	5000	0%	0%	High	72	6.64	24.47
+the best internet provider	USD	5000	0%	-90%	Medium	66	4.46	19.71
+best home internet	USD	5000	0%	0%	High	79	5.68	21.70
+wifi service providers near me	USD	5000	0%	0%	High	89	11.18	43.16
+wifi service in my area	USD	5000	900%	0%	High	91	9.48	38.29
+fast internet near me	USD	5000	-90%	-90%	High	84	8.26	28.23
+fiber internet availability	USD	5000	0%	900%	Low	3	3.11	16.42
+best wifi	USD	5000	0%	0%	High	73	6.05	24.99
+broadband internet near me	USD	5000	0%	-90%	Medium	65	4.46	20.46
+wifi prices	USD	5000	0%	0%	High	71	3.51	14.00
+cheapest wifi service	USD	5000	0%	0%	High	79	8.62	30.70
+internet packages	USD	5000	900%	0%	Medium	55	5.00	18.23
+wifi in my area	USD	5000	0%	0%	High	83	9.05	32.75
+internet by address	USD	5000	0%	-90%	High	75	3.23	18.90
+internet options at my address	USD	5000	0%	0%	High	81	5.61	22.11
+internet deal	USD	5000	0%	0%	High	67	7.00	20.88
+cheap wifi for home	USD	5000	0%	0%	High	72	7.17	28.11
+internet providers louisville ky	USD	5000	0%	-90%	High	74	6.36	27.43
+internet access near me	USD	5000	0%	-90%	High	72	7.16	25.52
+internet providers in my area by zip code	USD	5000	0%	0%	High	75	3.67	17.61
+best internet providers near me	USD	5000	0%	0%	High	82	7.23	25.04
+wireless internet in my area	USD	5000	0%	0%	High	83	9.05	32.75
+local internet providers	USD	5000	0%	0%	High	70	6.24	24.00
+home internet rates	USD	5000	0%	0%	High	73	3.77	14.81
+best internet near me	USD	5000	0%	0%	High	82	7.23	25.04
+broadband provider	USD	5000	-90%	0%	Low	4	3.02	23.54
+internet availability	USD	5000	0%	-90%	Medium	58	3.19	16.57
+internet providers san diego	USD	5000	0%	0%	High	76	6.25	26.22
+connect internet	USD	5000	0%	0%	Medium	40	1.27	13.01
+wifi options	USD	5000	0%	-90%	High	77	8.09	28.67
+find internet providers	USD	5000	0%	-90%	Medium	63	3.79	27.00
+internet options near me	USD	5000	0%	0%	High	83	7.24	26.54
+wifi options near me	USD	5000	0%	-90%	High	88	9.86	33.09
+find internet providers by address	USD	5000	0%	0%	High	77	4.04	20.97
+fast internet in my area	USD	5000	0%	0%	High	76	5.32	20.46
+best wifi service	USD	5000	0%	-90%	High	77	7.11	30.74
+wifi provider in my area	USD	5000	0%	0%	High	75	7.58	29.90
+internet providers by zip code	USD	5000	900%	0%	Medium	55	2.71	17.35
+top internet providers	USD	5000	0%	0%	High	73	6.33	24.97
+internet providers charlotte nc	USD	5000	0%	-90%	High	78	7.75	26.24
+fiber availability	USD	5000	0%	0%	Medium	54	2.06	17.47
+fiber internet cost	USD	5000	0%	900%	Low	15	2.10	12.58
+check internet providers by address	USD	5000	0%	-90%	High	75	3.87	20.46
+wifi carriers for home	USD	5000	900%	0%	Medium	60	9.05	35.52
+wifi available at my address	USD	5000	0%	900%	High	80	6.96	26.49
+fiber business internet	USD	5000	0%	900%	Low	3	30.00	99.77
+fast internet providers	USD	5000	0%	0%	Low	22	4.76	23.40
+best wifi internet provider	USD	5000	0%	0%	High	75	6.03	25.92
+internet services available by address	USD	5000	0%	-90%	High	68	3.22	19.88
+cheapest wifi in my area	USD	5000	0%	-90%	High	79	7.35	28.13
+cheapest internet provider near me	USD	5000	0%	0%	High	86	6.31	21.66
+fiber optic cable internet	USD	5000	0%	0%	High	84	0.97	13.50
+internet and wifi providers	USD	5000	0%	-90%	High	72	8.02	28.50
+good home internet	USD	5000	0%	0%	High	79	5.68	21.70
+internet provider search	USD	5000	0%	0%	Low	19	2.55	18.58
+fiber optic network	USD	5000	-90%	-90%	Low	15	4.53	18.00
+wifi and internet providers	USD	5000	0%	0%	High	69	8.82	32.16
+isp available at my address	USD	5000	0%	-90%	High	68	3.22	19.88
+local internet companies	USD	5000	0%	0%	High	70	6.24	24.00
+find internet providers for my address	USD	5000	0%	0%	High	81	5.71	25.48
+internet providers available at my address	USD	5000	0%	900%	High	87	6.51	26.53
+local internet services	USD	5000	0%	0%	High	70	6.24	24.00
+isp columbus ohio	USD	5000	0%	0%	High	72	6.64	24.47
+charlotte internet providers	USD	5000	0%	-90%	High	78	7.75	26.24
+monthly internet cost	USD	5000	0%	900%	Low	31	1.95	8.20
+google fiber rates	USD	5000	0%	0%	Medium	34	4.56	15.00
+best deals for internet	USD	5000	0%	0%	Medium	43	5.34	17.41
+better internet in my area	USD	5000	0%	0%	High	77	6.04	24.91
+internet providers in ct	USD	5000	0%	-90%	High	69	7.05	42.44
+wifi cheap near me	USD	5000	0%	0%	Medium	66	9.50	35.04
+cheapest internet providers in my area	USD	5000	0%	-90%	High	75	5.63	20.83
+affordable business internet	USD	5000	900%	900%	Medium	38	20.00	51.99
+wifi service providers in my area	USD	5000	0%	0%	High	75	7.58	29.90
+available wifi in my area	USD	5000	0%	0%	High	78	7.81	28.78
+us internet providers	USD	5000	900%	0%	Low	21	3.08	13.50
+fiber internet prices	USD	5000	0%	900%	Low	15	2.10	12.58
+wifi offered in my area	USD	5000	0%	0%	High	75	7.58	29.90
+internet providers cleveland ohio	USD	5000	0%	-90%	High	71	6.41	31.49
+highest speed internet in my area	USD	5000	0%	0%	High	80	5.53	20.00
+home internet and wifi	USD	5000	0%	0%	High	68	5.92	25.76
+fiber connection internet	USD	5000	0%	900%	Low	8	3.77	18.85
+home wifi service providers	USD	5000	900%	0%	Medium	60	9.05	35.52
+cheapest wifi company	USD	5000	0%	0%	High	79	8.62	30.70
+home wifi companies	USD	5000	900%	0%	Medium	60	9.05	35.52
+high speed internet providers in my area	USD	5000	0%	0%	High	80	5.53	20.00
+internet services charlotte nc	USD	5000	0%	-90%	High	78	7.75	26.24
+wifi carrier in my area	USD	5000	0%	0%	High	75	7.58	29.90
+home internet companies near me	USD	5000	0%	-90%	High	78	8.32	30.31
+mi fiber	USD	5000	0%	0%	Low	17	3.57	20.00
+available internet providers by address	USD	5000	0%	-90%	High	68	3.22	19.88
+att fiber optics internet	USD	5000	0%	0%	Low	14	2.40	8.00
+fastest internet available	USD	5000	0%	0%	Low	22	4.76	23.40
+best wifi service provider	USD	5000	0%	0%	High	75	6.03	25.92
+home internet fiber	USD	5000	0%	900%	Low	29	5.95	24.61
+oklahoma city internet providers	USD	5000	0%	-90%	Medium	62	5.55	32.11
+internet cable near me	USD	5000	0%	0%	High	85	6.62	23.00
+home internet wifi providers	USD	5000	900%	0%	Medium	60	9.05	35.52
+oklahoma internet providers	USD	5000	0%	-90%	Medium	62	5.55	32.11
+new york city internet providers	USD	5000	0%	0%	Medium	57	7.51	25.00
+internet wireless providers	USD	5000	0%	0%	High	79	5.19	17.50
+isp colorado springs	USD	5000	0%	0%	High	73	7.82	35.67
+internet companies san diego	USD	5000	0%	0%	High	76	6.25	26.22
+home internet price	USD	5000	0%	0%	High	73	3.77	14.81
+fiber optic home internet	USD	5000	900%	900%	Low	6	5.74	20.00
+live oak fiber	USD	5000	0%	0%	Low	21	2.30	47.88
+internet providers colorado springs co	USD	5000	0%	0%	High	73	7.82	35.67
+gigabit internet providers	USD	5000	0%	0%	Low	9	4.57	21.24
+internet for tv	USD	5000	0%	0%	High	73	1.44	12.90
+available internet near me	USD	5000	0%	-90%	High	72	7.16	25.52
+best internets	USD	5000	0%	0%	High	70	5.32	20.00
+fiber internet speeds	USD	5000	0%	0%	Low	24	2.16	11.00
+low cost business internet	USD	5000	900%	900%	Medium	38	20.00	51.99
+internet options by zip code	USD	5000	900%	0%	Medium	55	2.71	17.35
+cheap internet cable	USD	5000	0%	-90%	Medium	56	2.53	13.50
+isp available in my area	USD	5000	0%	0%	High	69	5.67	23.48
+home internet high speed	USD	5000	0%	9900%	Low	2	5.99	25.36
+different internet companies	USD	5000	0%	-90%	High	68	6.44	24.06
+isp san diego	USD	5000	0%	0%	High	76	6.25	26.22
+internet providers wireless	USD	5000	0%	0%	High	79	5.19	17.50
+available isp by address	USD	5000	0%	-90%	High	68	3.22	19.88
+internet provider new york	USD	5000	0%	0%	Medium	57	7.51	25.00
+internet networks	USD	5000	0%	0%	Low	29	2.45	12.97
+internet companies charlotte nc	USD	5000	0%	-90%	High	78	7.75	26.24
+fastest internet company	USD	5000	0%	0%	Low	22	4.76	23.40
+high speed cheap internet	USD	5000	0%	-90%	Medium	63	4.57	17.05
+high speed internet my area	USD	5000	0%	0%	High	80	5.53	20.00
+internet available by zip code	USD	5000	900%	0%	Medium	55	2.71	17.35
+the best internet company	USD	5000	0%	-90%	Medium	66	4.46	19.71
+internet companies in colorado springs	USD	5000	0%	0%	High	73	7.82	35.67
+fiber internet home	USD	5000	0%	900%	Low	29	5.95	24.61
+best home internet companies	USD	5000	0%	0%	High	73	5.15	20.57
+internet services in ct	USD	5000	0%	-90%	High	69	7.05	42.44
+optic cable internet	USD	5000	0%	0%	High	84	0.97	13.50
+zip code internet providers	USD	5000	900%	0%	Medium	55	2.71	17.35
+fiber internet router	USD	5000	0%	0%	High	87	0.32	8.00
+good home internet providers	USD	5000	0%	0%	High	73	5.15	20.57
+good wifi company	USD	5000	0%	0%	High	74	7.05	27.09
+local isp providers	USD	5000	0%	0%	High	70	6.24	24.00
+best home internet offers	USD	5000	0%	-90%	Medium	59	5.37	19.20
+high speed internet services in my area	USD	5000	0%	0%	High	80	5.53	20.00
+fiber optic internet speeds	USD	5000	0%	0%	Low	24	2.16	11.00
+wireless internet companies near me	USD	5000	0%	-90%	High	69	5.95	20.46
+cheap home wireless internet	USD	5000	0%	0%	High	72	7.17	28.11
+wifi co	USD	5000	0%	0%	High	77	9.99	36.83
+wire internet	USD	5000	0%	0%	Medium	64	5.54	20.99
+internet get	USD	5000	900%	0%	Medium	53	9.06	46.21
+my internet providers	USD	5000	0%	0%	Low	12	2.83	13.22
+internet near me prices	USD	5000	0%	-90%	High	76	4.37	19.57
+internet wifi service in my area	USD	5000	0%	0%	High	75	7.58	29.90
+get internet provider	USD	5000	0%	-90%	Medium	63	3.79	27.00
+cincinnati isp	USD	5000	0%	-90%	High	76	5.54	18.13
+good wifi provider	USD	5000	0%	0%	High	75	6.03	25.92
+fiber lines	USD	5000	900%	900%	Low	19	5.00	54.97
+internet services available by zip code	USD	5000	900%	0%	Medium	55	2.71	17.35
+residential isp	USD	5000	-90%	900%	Low	6	5.05	22.20
+top rated internet	USD	5000	0%	0%	High	70	5.32	20.00
+isp providers by zip code	USD	5000	900%	0%	Medium	55	2.71	17.35
+fiber optic internet connection	USD	5000	0%	900%	Low	8	3.77	18.85
+internet companies in usa	USD	5000	900%	0%	Low	21	3.08	13.50
+internet carriers by zip code	USD	5000	900%	0%	Medium	55	2.71	17.35
+cheap wifi for the house	USD	5000	0%	0%	High	72	7.17	28.11
+cincinnatibell	USD	5000	0%	-90%	Low	25	0.99	7.38
+altafiber outage	USD	5000	0%	0%	Low	1	1.80	8.21
+find me an internet provider	USD	5000	0%	-90%	Medium	63	3.79	27.00
+cincinnatibell net	USD	5000	0%	0%	Low	0		
+altafiber cincinnati	USD	500	0%	0%	Medium	50	1.52	7.72
+cincinnati bell internet	USD	500	0%	0%	Medium	66	2.41	11.54
+cincinnati bell fioptics	USD	500	0%	0%	Medium	54	1.70	11.08
+cincinnati bell altafiber	USD	500	0%	0%	Medium	36	1.22	6.85
+fioptics internet	USD	500	0%	0%	High	73	1.82	12.48
+cincinnati bell fiber optics	USD	500	0%	0%	Medium	48	1.71	10.78
+alta fiber cincinnati	USD	500	0%	0%	High	67	1.68	8.83
+alta fiber internet	USD	500	0%	0%	Medium	56	2.11	10.00
+ultra fiber internet	USD	500	0%	900%	Medium	59	3.12	14.34
+cincinnati fioptics	USD	500	0%	0%	Medium	57	2.64	12.62
+cincinnati fiber optics	USD	500	-90%	-90%	Medium	62	2.76	11.14
+altafiber cincinnati bell	USD	500	0%	900%	Medium	35	1.29	9.12
+best internet provider cincinnati	USD	500	0%	0%	High	74	2.18	12.75
+altafiber internet plans	USD	500	0%	0%	Medium	38	1.07	5.40
+wifi cincinnati	USD	500	0%	-90%	High	72	7.37	31.58
+altafiber plans	USD	500	0%	0%	Medium	47	0.55	3.01
+internet cincinnati	USD	500	900%	0%	High	80	7.32	22.44
+altafiber business	USD	500	0%	0%	Medium	59	1.36	29.99
+fiber internet cincinnati	USD	500	0%	900%	Low	8	3.44	12.75
+fiber internet columbus ohio	USD	500	0%	0%	High	68	3.78	14.76
+altafiber phone number	USD	500	0%	0%	Medium	37	1.17	4.74
+altafiber tv packages	USD	500	0%	0%	Low	19	0.55	3.21
+internet providers lexington ky	USD	500	0%	0%	High	79	7.92	35.00
+alta fiber customer service	USD	500	0%	-90%	Low	22	1.19	4.97
+internet providers dayton ohio	USD	500	0%	0%	High	76	6.08	29.12
+internet providers springfield ohio	USD	500	0%	-90%	High	85	4.72	14.22
+altafiber dayton ohio	USD	500	900%	0%	Medium	56	2.06	9.01
+altafiber florence ky	USD	500	0%	0%	Medium	34	2.35	9.73
+cincinnati altafiber	USD	500	900%	0%	Medium	42	1.33	7.01
+wifi in cincinnati	USD	500	0%	-90%	High	72	7.37	31.58
+altafiber deals	USD	500	0%	0%	Medium	61	0.96	4.99
+fiber wifi near me	USD	500	0%	-90%	High	85	8.57	29.99
+fiber internet providers near me	USD	500	-90%	-90%	Medium	49	6.53	25.76
+optic fiber internet near me	USD	500	-90%	-90%	High	77	5.68	24.44
+internet providers columbus indiana	USD	500	0%	-90%	High	79	5.64	17.60
+alti fiber	USD	500	-90%	-90%	Low	30	1.66	12.48
+internet lexington ky	USD	500	0%	0%	High	81	9.17	35.00
+gigabit internet near me	USD	500	0%	0%	High	67	5.01	20.46
+cincinnati bell customer service	USD	500	0%	0%	Low	25	1.22	7.41
+gig internet near me	USD	500	0%	-90%	Medium	56	7.51	27.15
+cincinnati bell phone number	USD	500	0%	0%	Low	31	1.61	11.14
+internet providers newport news	USD	500	0%	0%	Medium	59	7.96	35.00
+fiber optic in my area	USD	500	0%	0%	High	79	4.53	20.00
+internet dayton ohio	USD	500	0%	-90%	High	69	8.34	30.72
+wifi indianapolis	USD	500	0%	0%	High	78	9.50	47.75
+fiber internet dayton ohio	USD	500	900%	0%	High	72	4.93	20.92
+home internet options by address	USD	500	0%	0%	High	79	4.68	20.46
+fiber optic wifi near me	USD	500	0%	0%	High	69	8.48	28.89
+fiber internet providers in my area	USD	500	0%	0%	Medium	61	5.42	23.25
+internet fiber near me	USD	500	900%	0%	High	77	6.52	22.45
+ohio internet providers	USD	500	0%	0%	Low	33	4.15	15.20
+get fiber internet	USD	500	0%	0%	High	72	6.75	29.99
+internet indianapolis	USD	500	900%	0%	Medium	54	10.03	42.62
+wifi columbus ohio	USD	500	0%	-90%	High	82	11.14	50.35
+internet for my house	USD	500	0%	-90%	High	70	8.36	38.05
+internet providers montgomery al	USD	500	0%	0%	Medium	57	10.00	33.52
+wifi near me for home	USD	500	0%	-90%	Medium	66	11.57	57.55
+cheap fiber internet	USD	500	0%	0%	High	80	4.27	19.12
+wifi service providers	USD	500	0%	0%	Medium	52	8.90	33.08
+best fiber optic internet in my area	USD	500	0%	0%	High	72	4.62	22.20
+house wifi	USD	500	0%	0%	High	72	8.44	35.89
+fiber companies near me	USD	500	0%	0%	Medium	63	5.15	29.99
+cable companies cincinnati	USD	500	0%	0%	Medium	58	2.04	12.36
+all internet providers	USD	500	0%	0%	Medium	50	5.93	24.00
+buy internet	USD	500	0%	0%	High	72	8.48	29.99
+springfield internet providers	USD	500	0%	-90%	High	72	8.92	55.09
+internet offers	USD	500	0%	-90%	Medium	64	8.09	27.00
+fiber internet cleveland	USD	500	0%	0%	Medium	52	5.01	16.07
+fiber providers near me	USD	500	0%	0%	Medium	60	5.85	27.64
+wifi for home near me	USD	500	0%	0%	Medium	61	10.38	44.14
+internet offers near me	USD	500	0%	0%	High	84	7.99	26.45
+home internet options near me	USD	500	0%	0%	High	92	5.42	21.22
+fiber optic internet lexington ky	USD	500	-90%	0%	Medium	48	5.17	35.00
+fiber network near me	USD	500	0%	0%	High	69	5.39	20.69
+get wifi for home	USD	500	0%	0%	High	79	12.41	49.98
+fiber check	USD	500	0%	0%	Medium	51	2.03	13.55
+fiber optic cable near me	USD	500	0%	-90%	High	95	3.45	14.00
+wifi available near me	USD	500	0%	0%	Medium	64	7.06	30.50
+internet hawaii	USD	500	0%	0%	Medium	61	4.45	14.98
+fiber optic internet providers near me	USD	500	900%	0%	Medium	50	5.23	20.46
+fiber internet lexington ky	USD	500	-90%	0%	Medium	48	5.17	35.00
+fiber service in my area	USD	500	0%	0%	High	79	5.90	22.28
+best fiber internet	USD	500	0%	0%	High	76	5.30	22.39
+business internet providers near me	USD	500	0%	0%	High	80	30.16	105.39
+best fiber internet in my area	USD	500	0%	0%	High	74	5.31	22.70
+fiber internet available in my area	USD	500	0%	900%	High	78	5.00	20.00
+cheap home wifi near me	USD	500	0%	0%	Medium	62	7.24	33.11
+best fiber internet provider in my area	USD	500	0%	0%	High	70	5.31	23.23
+home internet in my area	USD	500	0%	-90%	High	81	7.24	31.21
+internet only providers	USD	500	0%	0%	Medium	65	5.95	17.50
+fiber optic internet providers in my area	USD	500	0%	0%	Medium	61	5.42	23.25
+best fiber optic internet	USD	500	0%	0%	High	72	4.11	19.33
+best home wifi service	USD	500	0%	0%	High	80	6.20	26.01
+best home internet in my area	USD	500	0%	0%	High	78	5.84	24.80
+fiber providers	USD	500	0%	0%	Medium	50	5.95	22.70
+my cincinnati bell	USD	500	0%	0%	Low	1	0.07	11.35
+residential internet	USD	500	0%	0%	Medium	35	7.48	32.51
+home wifi services near me	USD	500	0%	0%	High	82	11.16	46.26
+fiber available in my area	USD	500	0%	0%	High	76	4.11	18.30
+get home internet	USD	500	0%	0%	Medium	59	12.82	66.68
+home wifi options	USD	500	0%	0%	High	76	5.71	22.26
+internet providers springfield oregon	USD	500	0%	-90%	High	88	9.26	41.59
+home internet companies	USD	500	0%	0%	Medium	51	7.82	29.88
+home internet available in my area	USD	500	0%	0%	High	73	5.90	24.06
+internet in my area by address	USD	500	0%	0%	High	87	7.64	24.23
+fiber internet check	USD	500	0%	0%	High	71	2.60	14.38
+internet providers available in my area	USD	500	900%	0%	Medium	54	4.28	23.88
+fiber wifi in my area	USD	500	0%	0%	High	83	8.40	29.99
+best fiber internet provider	USD	500	0%	0%	Medium	63	5.15	22.70
+high speed internet at my address	USD	500	0%	0%	High	79	4.85	19.49
+high speed internet providers near me	USD	500	0%	-90%	Medium	65	7.53	24.00
+internet for my home	USD	500	0%	-90%	High	70	8.36	38.05
+best wifi service near me	USD	500	0%	0%	High	77	9.57	32.53
+1 gig internet near me	USD	500	0%	0%	High	82	6.31	20.46
+internet providers for me	USD	500	0%	0%	High	69	6.29	29.99
+ohio internet	USD	500	900%	0%	Medium	52	6.75	20.14
+internet near me by address	USD	500	0%	0%	High	86	8.16	31.31
+wifi internet near me	USD	500	0%	0%	High	73	10.55	34.62
+internet en mi area	USD	500	0%	0%	High	80	3.80	18.34
+local wifi providers	USD	500	0%	0%	Medium	57	8.00	28.44
+fiber cable internet	USD	500	0%	0%	High	74	4.74	18.62
+fiber internet for my address	USD	500	0%	0%	High	72	6.27	27.49
+best high speed internet near me	USD	500	0%	0%	High	83	7.47	25.40
+best wireless internet provider	USD	500	0%	0%	High	75	4.24	15.79
+check internet availability by address	USD	500	0%	0%	Medium	65	3.66	15.66
+internet around me	USD	500	0%	0%	High	85	9.36	33.21
+best internet provider san diego	USD	500	0%	0%	Medium	52	4.61	20.81
+internet providers in my area by address	USD	500	0%	0%	High	79	4.72	20.46
+altafiber speed test	USD	500	0%	0%	Low	2	0.03	3.07
+cable internet providers for my address	USD	500	0%	0%	High	74	5.12	20.46
+internet colorado springs	USD	500	0%	0%	High	71	7.64	35.32
+wifi near me cheap	USD	500	0%	0%	Medium	63	11.81	41.08
+wifi san diego	USD	500	0%	0%	Medium	63	9.77	46.62
+internet ohio	USD	500	900%	0%	Medium	52	6.75	20.14
+internet options at my house	USD	500	0%	0%	High	69	4.60	22.07
+residential internet providers near me	USD	500	900%	0%	High	83	6.69	26.70
+internet available to me	USD	500	0%	0%	Medium	57	6.12	26.70
+local internet	USD	500	0%	0%	High	77	7.11	26.49
+new internet	USD	500	0%	0%	Medium	56	8.29	31.47
+wifi at my address	USD	500	0%	0%	High	82	9.06	35.00
+wifi for my home	USD	500	0%	0%	High	85	9.85	52.97
+top internet providers in my area	USD	500	0%	0%	High	75	5.48	23.44
+internet near	USD	500	0%	0%	High	74	10.48	37.22
+fiber internet colorado springs	USD	500	0%	0%	High	71	6.33	26.82
+fiber internet deals	USD	500	-90%	0%	Low	6	6.35	24.19
+find internet providers in my area	USD	500	0%	0%	Medium	49	3.92	25.25
+internet providers grand rapids	USD	500	0%	0%	High	68	7.46	33.35
+internet providers near me by address	USD	500	0%	0%	High	68	7.10	23.38
+fiber speeds	USD	500	0%	0%	Medium	35	2.18	12.00
+internet at my location	USD	500	0%	0%	High	68	6.36	25.03
+online internet providers	USD	500	0%	0%	Medium	46	10.00	35.99
+fast wifi near me	USD	500	0%	0%	Medium	59	8.08	36.39
+find internet	USD	500	0%	0%	Medium	57	3.99	27.00
+cheap home internet near me	USD	500	0%	-90%	High	88	6.75	28.25
+check fiber availability	USD	500	0%	0%	Medium	65	2.64	13.10
+fiber internet options	USD	500	0%	0%	Medium	65	4.48	19.62
+business fiber internet near me	USD	500	0%	-90%	High	79	31.50	139.97
+wifi at my house	USD	500	0%	0%	High	70	11.62	57.08
+internet online	USD	500	0%	0%	Medium	60	5.75	27.00
+optic internet	USD	500	0%	0%	Medium	50	6.25	29.99
+dayton internet providers	USD	500	0%	0%	High	76	6.08	29.12
+fastest internet provider in my area	USD	500	0%	0%	Medium	64	5.80	25.28
+internet plans for my address	USD	500	0%	0%	High	73	6.37	21.08
+home internet connection	USD	500	0%	0%	Medium	39	6.64	25.65
+go fiber internet	USD	500	0%	0%	Medium	66	4.25	18.84
+fiber internet at my address	USD	500	0%	0%	High	78	4.33	20.59
+local internet providers in my area	USD	500	0%	0%	High	79	5.75	23.62
+fiber providers in my area	USD	500	0%	0%	High	79	5.59	20.96
+best home internet provider in my area	USD	500	0%	0%	High	79	6.02	22.74
+best internet for my address	USD	500	0%	0%	High	76	5.85	26.08
+fastest fiber internet	USD	500	-90%	0%	Medium	42	5.32	20.00
+wifi providers for my address	USD	500	0%	0%	High	84	8.28	32.85
+the best internet provider in my area	USD	500	0%	0%	Medium	63	4.89	23.29
+wifi prices near me	USD	500	0%	0%	High	75	4.65	20.46
+wireless internet providers in my area	USD	500	0%	0%	Medium	61	4.84	20.46
+at home internet providers	USD	500	0%	0%	High	89	9.66	41.18
+internet for me	USD	500	0%	0%	High	76	10.48	30.80
+wifi company in my area	USD	500	900%	0%	High	77	12.00	41.97
+fiber isp near me	USD	500	-90%	-90%	Medium	49	6.53	25.76
+wifi for my address	USD	500	0%	0%	High	82	9.06	35.00
+internet providers colorado	USD	500	0%	0%	Medium	53	5.53	25.98
+local internet providers near me	USD	500	0%	-90%	High	80	6.69	24.00
+broadband internet in my area	USD	500	0%	0%	Medium	56	3.02	18.93
+internet providers for my location	USD	500	0%	0%	High	79	6.43	24.82
+internet coverage	USD	500	0%	0%	Medium	58	3.85	17.29
+find internet in my area	USD	500	0%	0%	Medium	56	4.61	27.00
+good internet providers near me	USD	500	-90%	-90%	High	87	8.24	30.53
+fiber internet san diego	USD	500	0%	0%	Medium	58	3.80	19.92
+high speed internet availability by address	USD	500	900%	0%	High	70	3.61	14.91
+gig internet	USD	500	0%	0%	Medium	62	5.01	19.22
+fastest home internet in my area	USD	500	900%	-90%	High	71	5.06	23.14
+get wifi near me	USD	500	-90%	-90%	High	94	14.00	63.57
+good internet near me	USD	500	0%	0%	High	83	9.99	35.58
+internet cleveland ohio	USD	500	0%	0%	Medium	59	9.05	36.84
+in home internet providers	USD	500	-90%	-90%	High	78	5.77	32.42
+internet access by address	USD	500	0%	0%	High	72	3.65	20.46
+internet where i live	USD	500	0%	-90%	High	70	6.02	26.00
+most reliable internet provider	USD	500	0%	0%	High	72	2.43	16.01
+best internet connection	USD	500	0%	0%	Medium	57	2.78	13.50
+wifi availability	USD	500	0%	0%	Medium	57	3.87	20.12
+fiber availability by address	USD	500	0%	0%	High	74	2.87	14.10
+wifi colorado springs	USD	500	0%	0%	High	73	10.98	50.36
+wifi carriers near me	USD	500	0%	0%	High	87	10.48	40.82
+internet providers independence mo	USD	500	0%	0%	High	72	9.06	34.67
+internet services around me	USD	500	0%	0%	High	83	7.77	29.62
+home wifi providers near me	USD	500	0%	-90%	Medium	52	9.66	38.49
+best internet provider deals	USD	500	0%	0%	Medium	54	4.92	16.44
+fiber service	USD	500	0%	-90%	Medium	48	7.27	26.98
+internet and wifi service	USD	500	0%	0%	Medium	55	8.60	32.13
+internet in our area	USD	500	0%	-90%	High	82	6.96	25.00
+find my internet provider	USD	500	0%	0%	High	72	3.37	24.97
+fiber options in my area	USD	500	0%	0%	High	74	4.30	21.56
+best internet provider for my address	USD	500	0%	0%	High	83	5.13	23.26
+high speed wifi near me	USD	500	0%	0%	High	68	9.27	30.28
+internet wifi near me	USD	500	0%	-90%	High	78	11.17	38.45
+internet providers for my house	USD	500	0%	0%	High	71	6.33	32.51
+internet providers lexington sc	USD	500	0%	0%	High	95	7.84	31.15
+good cheap internet	USD	500	0%	0%	High	73	7.01	25.35
+home internet providers for my address	USD	500	0%	0%	High	85	7.00	25.03
+check what internet is available at my address	USD	500	0%	0%	High	76	3.91	20.46
+search internet providers by address	USD	500	0%	-90%	High	69	3.35	18.93
+good internet in my area	USD	500	0%	0%	High	78	6.52	26.62
+wifi options in my area	USD	500	0%	0%	High	78	7.50	29.88
+best internet provider colorado springs	USD	500	0%	0%	High	71	5.71	30.03
+florida internet providers	USD	500	0%	-90%	Medium	53	4.89	21.02
+good internet providers in my area	USD	500	900%	0%	High	87	8.30	27.75
+fiber internet charlotte nc	USD	500	0%	0%	Medium	66	7.48	22.00
+wifi for me	USD	500	0%	-90%	High	82	12.17	40.68
+internet charlotte nc	USD	500	0%	0%	High	68	9.24	35.01
+fiber optic availability	USD	500	0%	-90%	Medium	63	2.48	13.14
+hawaii internet providers	USD	500	0%	0%	Medium	50	3.14	12.75
+best wifi companies near me	USD	500	0%	0%	High	71	9.44	35.01
+cheapest high speed internet near me	USD	500	0%	0%	High	76	6.22	21.77
+wifi internet providers in my area	USD	500	900%	0%	Medium	59	6.26	27.00
+wifi options for my address	USD	500	0%	0%	High	82	8.13	30.50
+best fiber internet near me	USD	500	-90%	0%	Medium	66	6.25	22.70
+best home wifi provider	USD	500	0%	0%	Medium	66	6.12	26.30
+bay area internet providers	USD	500	0%	0%	High	72	4.60	17.72
+best home internet near me	USD	500	-90%	-90%	High	88	8.01	27.57
+wired internet providers	USD	500	0%	-90%	Medium	64	6.42	19.01
+internet by zip code	USD	500	0%	0%	Medium	66	2.13	14.88
+best internet provider charlotte nc	USD	500	0%	0%	High	73	6.10	15.41
+internet companies around me	USD	500	0%	-90%	High	81	10.62	35.19
+get internet near me	USD	500	0%	0%	High	85	10.00	44.64
+internet providers near me for home	USD	500	0%	0%	High	89	8.90	29.04
+internet in area	USD	500	0%	0%	Medium	65	7.39	29.99
+internet check availability	USD	500	0%	0%	Medium	64	3.68	20.07
+internet and wifi providers near me	USD	500	-90%	-90%	High	81	4.00	25.61
+kentucky internet providers	USD	500	900%	0%	Medium	34	3.50	20.00
+buy internet online	USD	500	0%	-90%	Medium	63	6.47	29.99
+cincinnati bell telephone	USD	500	0%	0%	Low	22	1.87	9.76
+fiber internet options for my address	USD	500	0%	900%	High	79	4.94	22.18
+best wifi for my location	USD	500	-90%	0%	High	81	6.38	25.89
+different wifi providers	USD	500	-90%	-90%	Medium	64	6.93	22.51
+gigabit internet in my area	USD	500	0%	-90%	High	69	4.62	20.46
+cheap home wifi plans	USD	500	0%	0%	Medium	64	5.98	23.97
+top rated internet providers	USD	500	0%	0%	High	70	2.03	15.05
+cable wifi near me	USD	500	0%	0%	Medium	63	7.25	30.39
+ultra internet	USD	500	0%	0%	Medium	35	3.08	12.31
+home internet for my address	USD	500	0%	0%	High	83	7.71	27.00
+wifi services near me for home	USD	500	0%	0%	High	89	11.64	48.75
+wifi in area	USD	500	0%	0%	Medium	52	6.21	23.91
+fiber optic companies near me	USD	500	0%	0%	Medium	44	3.69	29.99
+internet options for me	USD	500	0%	0%	High	69	6.29	29.99
+internet companies available in my area	USD	500	0%	0%	High	71	5.25	19.74
+internet providers crestview fl	USD	500	0%	-90%	High	83	7.17	32.10
+best home wifi plans	USD	500	0%	0%	Medium	65	5.15	25.37
+internet connections in my area	USD	500	0%	0%	High	71	4.63	20.46
+fastest internet at my address	USD	500	0%	0%	High	77	4.50	20.46
+home internet san diego	USD	500	0%	0%	High	85	7.26	32.02
+internet providers near	USD	500	0%	0%	High	71	8.16	28.31
+home internet and cable	USD	500	0%	0%	Low	31	5.26	20.24
+find fiber internet	USD	500	0%	0%	High	72	6.75	29.99
+find isp by address	USD	500	0%	0%	High	67	3.10	17.90
+other internet providers in my area	USD	500	0%	0%	High	79	6.03	20.90
+internet providers richmond ky	USD	500	0%	0%	High	80	8.52	32.71
+top home internet providers	USD	500	0%	-90%	High	67	6.73	29.07
+fast internet providers near me	USD	500	0%	0%	Medium	47	7.41	20.83
+best internet for my location	USD	500	0%	0%	High	80	5.86	22.13
+residential wifi	USD	500	-90%	-90%	High	75	7.97	32.41
+gig wifi	USD	500	-90%	0%	Medium	62	2.78	13.24
+reliable internet	USD	500	0%	0%	Medium	53	5.62	17.96
+good internet companies	USD	500	0%	-90%	High	76	7.05	29.72
+wifi specials near me	USD	500	0%	0%	High	84	9.03	30.00
+residential fiber internet	USD	500	900%	0%	Low	5	4.85	23.25
+best high speed internet in my area	USD	500	0%	0%	High	68	5.41	23.83
+wifi charlotte nc	USD	500	900%	0%	High	70	10.00	50.74
+fiber internet by address	USD	500	0%	900%	Medium	63	3.84	20.84
+internet provider address lookup	USD	500	0%	-90%	High	69	3.35	18.93
+wifi available	USD	500	0%	0%	Medium	57	3.87	20.12
+fiber internet nashville	USD	500	900%	0%	Medium	58	8.41	36.02
+fiber optic available in my area	USD	500	0%	-90%	High	75	3.62	17.22
+cleveland internet	USD	500	0%	0%	Medium	59	9.05	36.84
+internet that services my address	USD	500	0%	-90%	High	90	8.94	27.00
+internet providers clayton nc	USD	500	0%	-90%	High	70	6.41	20.72
+internet providers deals	USD	500	0%	0%	Medium	45	6.23	18.85
+wifi available by address	USD	500	0%	0%	High	80	4.83	22.57
+best wifi for my address	USD	500	0%	0%	High	80	7.84	32.43
+all internet providers in my area	USD	500	0%	0%	High	70	4.38	22.39
+best wifi internet	USD	500	0%	0%	High	72	5.70	21.46
+internet access in my area	USD	500	0%	0%	High	71	4.63	20.46
+wifi offer	USD	500	0%	0%	Medium	64	7.29	27.08
+new fiber optic internet	USD	500	0%	900%	Medium	65	4.38	19.94
+fiber internet milwaukee	USD	500	-90%	-90%	Medium	65	3.32	12.75
+best internet options in my area	USD	500	0%	0%	Medium	62	6.20	26.73
+local fiber internet	USD	500	0%	-90%	High	68	4.76	20.00
+isp in my area by address	USD	500	0%	0%	High	79	4.72	20.46
+internet providers for my home	USD	500	0%	0%	High	71	6.33	32.51
+find internet near me	USD	500	0%	0%	High	85	10.00	44.64
+cincinnati cable providers	USD	500	0%	0%	Medium	58	2.04	12.36
+high speed internet available in my area	USD	500	0%	-90%	Medium	52	4.02	15.86
+fiber internet grand rapids	USD	500	0%	0%	High	68	4.15	27.61
+broadband fiber	USD	500	0%	0%	Low	22	4.00	20.25
+fiber internet louisville ky	USD	500	0%	0%	High	68	5.48	22.20
+internet services in my area by zip code	USD	500	900%	0%	High	83	5.99	20.46
+internet near my address	USD	500	0%	900%	High	95	7.78	27.00
+internet florida	USD	500	0%	-90%	Medium	45	8.16	23.27
+fiber optic internet colorado springs	USD	500	0%	0%	High	71	6.33	26.82
+indiana internet providers	USD	500	900%	0%	Medium	47	3.75	20.00
+tv fiber	USD	500	900%	900%	Low	5	3.77	12.08
+best fiber optic internet near me	USD	500	0%	0%	High	85	5.39	22.70
+rural fiber internet	USD	500	0%	-90%	Medium	62	2.84	12.48
+internet lexington	USD	500	0%	0%	High	81	9.17	35.00
+check internet providers	USD	500	0%	0%	Medium	63	3.04	19.27
+fastest internet available in my area	USD	500	0%	-90%	Low	28	3.97	20.46
+altafiber tv	USD	500	0%	0%	Low	26	0.94	3.66
+internet install	USD	500	0%	0%	Medium	48	5.71	31.56
+fiber address check	USD	500	0%	900%	High	70	2.94	13.18
+internet bellevue	USD	500	0%	0%	Medium	48	8.07	27.00
+best wifi providers near me	USD	500	0%	0%	High	69	8.02	31.31
+internet providers in	USD	500	0%	-90%	Medium	55	7.00	27.00
+internet lookup by address	USD	500	900%	0%	High	73	3.20	15.42
+fiber cable near me	USD	500	0%	-90%	High	95	3.45	14.00
+wifi in columbus ohio	USD	500	0%	-90%	High	82	11.14	50.35
+wifi networks in my area	USD	500	-90%	0%	High	68	7.00	25.00
+internet providers vista	USD	500	0%	-90%	Medium	52	4.44	13.94
+fioptics tv	USD	500	0%	0%	Medium	35	1.43	7.74
+isp deals	USD	500	0%	0%	Medium	45	6.23	18.85
+best wifi services in my area	USD	500	0%	0%	High	87	6.98	28.01
+internet grand rapids	USD	500	0%	-90%	Medium	55	10.00	62.35
+internet in fayetteville nc	USD	500	0%	0%	Medium	64	10.00	41.26
+charlotte internet	USD	500	0%	0%	High	68	9.24	35.01
+internet providers st cloud fl	USD	500	900%	0%	High	88	5.76	16.30
+fast fiber	USD	500	0%	0%	Low	31	5.05	15.58
+california internet providers	USD	500	0%	0%	Medium	36	3.62	14.00
+check fiber internet availability	USD	500	0%	0%	High	75	2.84	13.00
+fiber internet greenville sc	USD	500	-90%	0%	High	78	6.49	16.58
+alabama internet providers	USD	500	900%	0%	Low	32	3.46	12.75
+look up internet providers by address	USD	500	0%	0%	High	67	3.10	17.90
+fiber internet nyc	USD	500	0%	0%	Medium	49	4.50	20.52
+fiber optic installation near me	USD	500	0%	-90%	Medium	39	2.91	12.75
+fiber internet ohio	USD	500	0%	0%	Low	30	2.97	12.48
+wifi service available in my area	USD	500	0%	0%	High	71	9.94	29.21
+louisville internet	USD	500	0%	0%	Medium	64	8.28	38.18
+check for fiber in my area	USD	500	-90%	-90%	High	79	3.71	13.92
+my home internet	USD	500	0%	-90%	High	70	8.36	38.05
+internet providers in my zip code	USD	500	-90%	-90%	High	74	3.83	20.30
+internet providers florence sc	USD	500	900%	0%	High	73	5.33	20.19
+internet and tv near me	USD	500	-90%	-90%	High	74	3.76	20.46
+fiber companies	USD	500	900%	900%	Low	19	3.85	22.65
+fiber internet availability by address	USD	500	900%	9900%	High	75	3.44	18.57
+good wifi companies near me	USD	500	0%	0%	High	71	9.44	35.01
+fiber optic internet availability	USD	500	0%	900%	Medium	35	2.46	15.82
+fiber internet hawaii	USD	500	900%	900%	Low	24	4.68	14.00
+internet pr	USD	500	0%	0%	Medium	35	1.59	6.77
+fast and cheap internet	USD	500	0%	-90%	High	74	6.55	25.95
+live oak internet	USD	500	900%	900%	Medium	50	3.45	16.32
+cheap internet companies near me	USD	500	0%	-90%	High	89	5.90	24.00
+most reliable internet provider in my area	USD	500	0%	900%	High	75	2.39	16.62
+internet providers near my location	USD	500	0%	-90%	Medium	53	6.35	24.66
+best internet provider in california	USD	500	0%	-90%	Medium	59	2.53	12.75
+address internet check	USD	500	0%	0%	Medium	61	3.30	16.21
+wifi companies that service my area	USD	500	-90%	-90%	High	80	12.38	36.78
+phone and internet providers in my area	USD	500	0%	0%	Medium	57	5.17	20.46
+call altafiber	USD	500	0%	0%	Medium	48	1.07	7.93
+internet providers oregon city	USD	500	0%	-90%	High	71	7.11	30.26
+dayton fiber internet	USD	500	900%	0%	High	72	4.93	20.92
+home business internet	USD	500	900%	0%	Medium	36	9.20	47.36
+all internet services	USD	500	0%	0%	Medium	50	5.93	24.00
+home internet solutions	USD	500	900%	900%	Low	15	8.79	35.74
+the best wifi provider	USD	500	-90%	0%	High	76	6.20	23.90
+altafiber prices	USD	500	0%	900%	Medium	51	0.58	4.83
+middletown internet providers	USD	500	0%	-90%	High	76	9.00	44.35
+best wifi internet deals	USD	500	0%	0%	Medium	52	5.67	18.46
+wifi services available at my address	USD	500	0%	0%	High	90	11.30	35.45
+internet companies for my address	USD	500	0%	900%	High	84	7.93	27.00
+dayton ohio fiber internet	USD	500	900%	0%	High	72	4.93	20.92
+fiber optic services near me	USD	500	900%	0%	Low	32	8.01	32.54
+community internet	USD	500	0%	-90%	Medium	41	3.07	12.38
+the best wifi service	USD	500	-90%	0%	High	76	6.20	23.90
+best broadband internet	USD	500	0%	0%	Medium	54	3.87	16.01
+cable companies in cincinnati ohio	USD	500	0%	0%	Medium	58	2.04	12.36
+green bay internet providers	USD	500	0%	0%	High	87	6.97	21.84
+fiber optic internet price	USD	500	0%	0%	Medium	41	1.99	12.00
+dayton internet	USD	500	0%	-90%	High	69	8.34	30.72
+cary nc internet providers	USD	500	0%	-90%	High	86	6.32	20.11
+best internet provider at my address	USD	500	0%	0%	High	76	5.85	26.08
+buy home wifi	USD	500	0%	0%	High	75	6.87	34.20
+best internet provider colorado	USD	500	900%	0%	Medium	62	4.84	22.00
+fast speed internet in my area	USD	500	0%	-90%	Medium	35	3.21	17.50
+fastest wifi service	USD	500	0%	-90%	Low	23	8.13	43.02
+internet providers in clermont fl	USD	500	0%	0%	High	80	5.58	15.00
+internet specials for home	USD	500	0%	0%	High	80	5.48	19.23
+cheap wifi and internet	USD	500	0%	0%	High	77	7.59	30.26
+internet colorado	USD	500	900%	0%	Medium	53	6.21	30.01
+internet in louisville ky	USD	500	0%	0%	Medium	64	8.28	38.18
+fiber prices	USD	500	-90%	-90%	Medium	55	2.63	15.00
+wifi in charlotte nc	USD	500	900%	0%	High	70	10.00	50.74
+high speed internet available at my address	USD	500	0%	900%	High	82	3.97	17.66
+york pa internet providers	USD	500	0%	0%	High	70	6.92	27.77
+internet provider reviews	USD	500	0%	0%	Low	33	1.38	11.17
+cheap home wifi service	USD	500	0%	0%	Low	33	6.65	26.47
+address check for internet	USD	500	0%	0%	Medium	61	3.30	16.21
+fiber fast internet	USD	500	900%	900%	Medium	45	5.92	29.40
+fiber optic service	USD	500	0%	0%	Low	18	5.79	27.00
+cheapest wifi providers near me	USD	500	0%	0%	Medium	50	6.55	25.00
+my altafiber	USD	500	0%	0%	Low	12	1.21	2.06
+wired internet company	USD	500	-90%	-90%	Medium	67	3.84	19.15
+find internet providers near me	USD	500	0%	-90%	Medium	49	5.05	27.00
+fastest wifi company	USD	500	0%	0%	Medium	55	6.26	28.19
+1 gig internet providers	USD	500	0%	900%	Low	22	4.08	22.70
+fioptics hawaiian telcom	USD	500	0%	0%	Medium	38	4.02	12.56
+fiber optic internet cost	USD	500	0%	0%	Medium	55	1.61	13.26
+no internet providers in my area	USD	500	0%	0%	Medium	39	2.07	11.02
+internet providers in illinois	USD	500	0%	0%	Medium	40	3.61	18.14
+best wifi san diego	USD	500	0%	0%	High	82	7.28	43.67
+wifi stores near me	USD	500	0%	0%	High	70	8.13	25.95
+st cloud internet providers	USD	500	0%	0%	High	78	2.96	15.47
+wilmington internet providers	USD	500	0%	0%	High	71	6.00	26.28
+wifi availability near me	USD	500	0%	0%	Medium	64	7.06	30.50
+fiber optic connection	USD	500	0%	0%	High	81	2.38	18.48
+internet by zip	USD	500	0%	0%	Medium	66	2.13	14.88
+home cable internet	USD	500	0%	0%	Low	31	5.26	20.24
+internet companies in ohio	USD	500	0%	0%	Low	33	4.15	15.20
+internet new haven ct	USD	500	0%	0%	Medium	50	8.51	50.55
+internet provider companies	USD	500	0%	0%	Low	29	6.46	26.51
+internet providers in paducah ky	USD	500	0%	0%	High	83	4.63	28.43
+fiber gig internet	USD	500	0%	0%	Low	23	4.59	23.68
+home internet access	USD	500	0%	0%	Medium	44	4.30	17.81
+internet wifi companies	USD	500	0%	0%	Medium	55	8.60	32.13
+internet companies in florida	USD	500	0%	-90%	Medium	53	4.89	21.02
+fiber optic providers	USD	500	0%	0%	Low	24	5.22	21.81
+all internet companies	USD	500	0%	0%	Medium	50	5.93	24.00
+internet providers in orange county	USD	500	0%	0%	Medium	48	4.24	14.76
+q internet	USD	500	0%	0%	Low	24	5.01	115.23
+fiber options	USD	500	0%	0%	Medium	62	1.23	17.95
+high speed internet options for my address	USD	500	-90%	-90%	High	71	4.15	18.51
+fiber 2 gig internet	USD	500	0%	0%	High	67	4.36	21.95
+new internet company	USD	500	0%	-90%	Medium	57	6.58	21.08
+fast internet at my address	USD	500	0%	0%	High	77	4.50	20.46
+fiber network in my area	USD	500	0%	0%	High	69	4.80	22.95
+best home wifi company	USD	500	0%	0%	Medium	66	6.12	26.30
+louisville fiber internet	USD	500	0%	0%	High	68	5.48	22.20
+purchase wifi for home	USD	500	0%	0%	High	75	6.87	34.20
+albany oregon internet providers	USD	500	0%	-90%	High	88	6.64	27.33
+internet in oklahoma	USD	500	0%	-90%	Medium	56	6.96	30.21
+best wifi service for my area	USD	500	0%	0%	High	87	6.98	28.01
+best deal for wifi at home	USD	500	0%	0%	High	72	6.08	23.71
+internet options at my home	USD	500	0%	0%	High	69	4.60	22.07
+fiber internet charlotte	USD	500	0%	0%	Medium	66	7.48	22.00
+fastest speed internet in my area	USD	500	0%	-90%	Medium	35	3.21	17.50
+internet fees	USD	500	0%	0%	Medium	40	2.77	12.48
+wifi isp	USD	500	0%	0%	Medium	39	3.93	15.24
+internet companies springfield mo	USD	500	0%	-90%	High	72	8.92	55.09
+check what internet providers are in my area	USD	500	0%	0%	Medium	65	4.71	20.89
+wifi special	USD	500	0%	0%	Medium	56	7.34	24.55
+internet order online	USD	500	0%	0%	Medium	50	15.56	59.23
+columbus ohio wifi	USD	500	0%	-90%	High	82	11.14	50.35
+best fiber provider	USD	500	0%	0%	Medium	63	5.15	22.70
+alta fiber outage	USD	500	0%	0%	Low	1	5.00	7.68
+isp options in my area	USD	500	0%	0%	High	67	3.79	18.89
+charlotte wifi	USD	500	900%	0%	High	70	10.00	50.74
+internet provider promotions	USD	500	0%	0%	Medium	52	7.52	24.04
+hawaii fiber internet	USD	500	900%	900%	Low	24	4.68	14.00
+fiber internet florida	USD	500	0%	0%	Medium	40	3.74	15.00
+names of internet providers	USD	500	0%	0%	Medium	42	3.80	19.55
+top rated internet providers near me	USD	500	0%	0%	Medium	64	5.61	21.69
+high speed internet my address	USD	500	0%	0%	High	79	4.85	19.49
+internet services near my location	USD	500	0%	-90%	Medium	53	6.35	24.66
+dublin internet providers	USD	500	0%	0%	Low	23	9.54	21.79
+fiber internet cost per month	USD	500	900%	900%	Low	4	1.96	7.13
+connect fiber internet	USD	500	0%	0%	Medium	66	3.55	20.00
+ultra fiber customer service	USD	500	0%	-90%	Medium	52	1.75	5.71
+fast and cheap wifi	USD	500	0%	0%	High	75	8.03	28.58
+best wifi for the price	USD	500	0%	0%	High	73	5.87	20.17
+us fiber	USD	500	0%	0%	Low	14	2.48	14.27
+internet new	USD	500	0%	0%	Medium	56	8.29	31.47
+internet kentucky	USD	500	0%	0%	Medium	37	6.20	29.41
+altafiber modem	USD	500	-90%	-90%	Medium	47		
+fastest home internet provider	USD	500	-90%	0%	High	68	3.93	22.76
+most popular internet providers	USD	500	0%	0%	Medium	38	4.53	20.00
+loveland internet providers	USD	500	0%	0%	High	86	5.60	26.62
+internet providers loveland co	USD	500	0%	0%	High	86	5.60	26.62
+internet springfield	USD	500	0%	0%	High	69	8.83	44.51
+internet check by address	USD	500	0%	0%	Medium	61	3.30	16.21
+internet companies fayetteville nc	USD	500	0%	-90%	High	73	7.87	30.85
+internet providers lake city fl	USD	500	0%	-90%	High	81	5.59	26.55
+fastest wifi providers	USD	500	0%	0%	Medium	55	6.26	28.19
+internet in springfield	USD	500	0%	0%	High	69	8.83	44.51
+colorado springs high speed internet	USD	500	0%	0%	Low	16	6.80	31.59
+local wifi providers near me	USD	500	0%	0%	High	74	7.78	26.87
+free fiber internet	USD	500	-90%	0%	Medium	62	2.39	10.30
+internet providers at my home	USD	500	0%	0%	High	71	6.33	32.51
+fiber wifi plans	USD	500	0%	0%	Medium	38	5.93	21.16
+residential internet plans	USD	500	0%	900%	Low	3	4.67	13.19
+fiber internet oklahoma city	USD	500	-90%	-90%	High	78	3.90	23.05
+internet companies in lexington ky	USD	500	0%	0%	High	79	7.92	35.00
+fiber optic speeds	USD	500	0%	0%	Low	23	1.99	10.00
+connect fiber	USD	500	0%	0%	Low	25	4.34	17.94
+price of wifi per month	USD	500	0%	0%	Medium	52	2.10	12.04
+list internet providers	USD	500	900%	0%	Medium	44	2.93	21.04
+internet providers in cleveland tn	USD	500	0%	0%	High	87	5.97	15.59
+good deals on wifi	USD	500	0%	-90%	High	78	7.36	27.60
+fiber optic internet options	USD	500	0%	0%	Medium	65	4.48	19.62
+internet in pa	USD	500	0%	0%	Medium	45	7.39	23.30
+wireless internet company	USD	500	0%	0%	High	69	6.78	24.75
+internet providers lookup	USD	500	0%	0%	Medium	66	2.78	20.43
+internet companies colorado	USD	500	0%	0%	Medium	53	5.53	25.98
+i need an internet provider	USD	500	0%	0%	High	95	12.48	48.45
+best rated internet provider	USD	500	0%	0%	High	76	2.25	16.34
+internet provider options in my area	USD	500	0%	0%	High	67	3.79	18.89
+internet en florida	USD	500	0%	0%	Medium	51	5.34	20.56
+best home wifi internet providers	USD	500	0%	0%	Medium	66	6.12	26.30
+internet speed provider	USD	500	-90%	-90%	Medium	35	2.63	12.00
+search internet by address	USD	500	900%	0%	High	73	3.20	15.42
+new fiber internet	USD	500	0%	900%	Medium	65	4.38	19.94
+fiber optic internet cable near me	USD	500	-90%	-90%	High	97	2.63	13.03
+google fiber internet prices	USD	500	0%	0%	Low	22	2.42	15.00
+internet in illinois	USD	500	0%	0%	Low	29	6.21	20.00
+internet providers in saint cloud fl	USD	500	900%	0%	High	88	5.76	16.30
+find fiber internet near me	USD	500	-90%	0%	High	82	4.61	22.96
+all internet services in my area	USD	500	0%	0%	High	70	4.38	22.39
+internet services and prices	USD	500	0%	0%	Medium	43	2.84	13.03
+need home wifi	USD	500	0%	0%	Medium	66	8.98	46.38
+fiber optic tv	USD	500	0%	0%	Low	8	1.28	7.17
+best internet providers columbus ohio	USD	500	0%	0%	High	75	4.68	18.87
+fiber optic cost	USD	500	-90%	-90%	Medium	42	1.56	14.00
+speed test altafiber	USD	500	0%	0%	Low	6	0.04	2.05
+fiber internet nashville tn	USD	500	900%	0%	Medium	58	8.41	36.02
+internet i can get	USD	500	0%	-90%	Medium	64	3.72	23.92
+best home wifi internet	USD	500	0%	0%	High	86	3.68	17.27
+fast internet wifi	USD	500	0%	0%	Medium	64	4.91	15.47
+best high speed internet providers	USD	500	0%	0%	Medium	37	3.84	17.53
+home wifi deal	USD	500	0%	0%	Medium	66	7.80	30.94
+isp lexington ky	USD	500	0%	0%	High	79	7.92	35.00
+internet by the month	USD	500	0%	0%	Medium	54	3.03	13.56
+wireless wifi home	USD	500	0%	0%	High	70	6.07	22.67
+names of internet companies	USD	500	0%	-90%	Medium	37	5.30	20.55
+fiber internet reviews	USD	500	0%	0%	Medium	40	2.10	14.69
+internet tyler	USD	500	0%	0%	Medium	66	7.80	37.77
+cheap wifi for home near me	USD	500	0%	0%	Medium	62	7.24	33.11
+fiber optic internet deals	USD	500	0%	900%	Low	10	2.64	14.15
+wifi cost monthly	USD	500	0%	0%	Medium	49	2.05	10.48
+1 gbps internet plans	USD	500	0%	900%	Low	20	3.00	11.63
+internet coverage for my area	USD	500	0%	0%	High	72	4.25	22.23
+fiber wireless	USD	500	-90%	-90%	Medium	41	4.45	19.27
+internet services in california	USD	500	0%	0%	Medium	36	3.62	14.00
+fiber optic prices	USD	500	0%	0%	Medium	35	1.85	12.00
+fiber location	USD	500	0%	0%	Low	33	1.62	12.15
+fiber internet grand rapids mi	USD	500	0%	0%	High	68	4.15	27.61
+cable companies in ohio	USD	500	0%	-90%	Low	32	2.61	12.75
+internet place near me	USD	500	0%	0%	Low	29	8.44	21.85
+purchase internet online	USD	500	0%	-90%	Medium	63	6.47	29.99
+fiber internet box	USD	500	0%	0%	Low	24	5.16	28.29
+fiber internet installation cost	USD	500	0%	900%	Low	8	2.04	10.80
+wifi router and service	USD	500	-90%	0%	High	76	6.80	20.21
+internet in new haven	USD	500	0%	0%	Medium	50	8.51	50.55
+altafiber logo	USD	500	900%	0%	Low	0		
+fiberoptics near me	USD	500	0%	0%	High	79	6.57	26.36
+speedtest altafiber	USD	500	0%	0%	Low	6	0.04	2.05
+cinti bell tele	USD	500	0%	0%	Low	22	1.87	9.76
+alter fiber	USD	500	0%	900%	Medium	57	2.70	12.75
+alra fiber	USD	500	0%	0%	High	68	2.21	12.75
+altafiber down	USD	500	0%	900%	Low	3	3.87	9.70
+altafiber outage map	USD	500	0%	0%	Low	1		
+best internet provider charlotte	USD	500	0%	0%	High	73	6.10	15.41
+high speed internet cincinnati	USD	500	900%	900%	Low	5	4.55	13.17
+www altafiber	USD	500	0%	0%	Low	21	1.15	4.18
+fiber optic internet cincinnati	USD	500	0%	900%	Low	8	3.44	12.75
+cincinnati bell home	USD	500	0%	0%	Low	2	9.08	13.82
+bellfiber	USD	500	0%	0%	Low	5	2.84	14.76
+cincinnati bell website	USD	500	0%	0%	Low	0		
+altafiber com	USD	500	0%	0%	Low	31	0.96	2.88
+altafiber speedtest	USD	500	0%	0%	Low	2	0.03	3.07
+cincinnati bell home page	USD	500	0%	-90%	Low	1		
+altafiber internet plans by address	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber fiber availability by zip code	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet pricing for new customers	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet no contract plans	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet upload speeds	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber 2 gig internet plan	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber 1 gig internet plan	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber 500 mbps internet plan	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet for gaming and streaming	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet installation fee	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber modem and router options	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet only packages	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet in cincinnati	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet in northern kentucky	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet service area map	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet customer reviews	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet latency for gaming	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber fiber internet for apartments	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber business internet pricing	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet check availability	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet speed tiers	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet deals for new customers	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber wifi plans for home	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber fiber vs cable internet	USD	500	0%	0%	Medium	45	2.00	12.00
+altafiber internet promos	USD	500	0%	0%	Medium	45	2.00	12.00

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // ============================================================
 // Internet 4 ALL — Sitemap Index Generator
-// Handles 50K+ pages by splitting into multiple sitemap files (10K per file)
-// Pages: 31K ZIP + 19K city + 50 state + 220 dynamic + 35 static ≈ 50,500
+// Handles 70K+ pages by splitting into multiple sitemap files (10K per file)
+// Pages: 31K ZIP + 19K city + 19K neighborhood + 50 state + 220 dynamic + 35 static ≈ 69,500
 // Run after `npm run build`: node scripts/generate-sitemap.mjs
 // ============================================================
 
@@ -16,8 +16,10 @@ const MAX_URLS_PER_SITEMAP = 10000;
 // Recursively find all index.html files
 function findPages(dir, pages = []) {
   for (const entry of readdirSync(dir)) {
+    if (!entry.endsWith('.html') && !entry.endsWith('/') && entry.includes('.')) continue;
     const full = join(dir, entry);
-    const stat = statSync(full);
+    let stat;
+    try { stat = statSync(full); } catch { continue; }
     if (stat.isDirectory()) {
       findPages(full, pages);
     } else if (entry === 'index.html') {
@@ -38,9 +40,11 @@ function getPriority(path) {
   if (!path) return '1.0'; // homepage
   if (path === 'providers' || path === 'compare') return '0.9';
   if (path.startsWith('internet-providers/') && !path.includes('/zip/')) {
-    // State pages (no dash in the last segment = state name)
     const seg = path.replace('internet-providers/', '');
+    // State pages: single segment, no trailing -XX abbreviation
     if (!seg.includes('/') && !/\-[a-z]{2}$/.test(seg)) return '0.8'; // state
+    // Neighborhood pages: 2-letter-state/slug (e.g., oh/forest-park)
+    if (/^[a-z]{2}\//.test(seg)) return '0.6'; // neighborhood
     return '0.7'; // city
   }
   if (path.startsWith('internet-providers/zip/')) return '0.5';

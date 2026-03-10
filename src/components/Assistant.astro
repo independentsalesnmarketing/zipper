@@ -360,6 +360,17 @@ EXAMPLES:
     });
   }
 
+  function formatBandwidth(value){
+    const n = Number(value) || 0;
+    if(!n) return 'N/A';
+    if(n >= 1000){
+      const gig = n / 1000;
+      const shown = Number.isInteger(gig) ? String(gig) : gig.toFixed(1).replace(/\.0$/, '');
+      return `${shown} Gig`;
+    }
+    return `${n} MB`;
+  }
+
   function buildProviderGrid(slugs){
     const provs = slugs
       .map(s => partners.find(x => x.slug === s.trim()))
@@ -372,14 +383,18 @@ EXAMPLES:
       const topPlan = plans[0] || { name: 'Best Plan' };
       html += `<div class="ast-provider-card" data-slug="${esc(p.slug)}" data-plan="${esc(topPlan.name)}" role="button" tabindex="0" aria-label="Order from ${esc(p.name)}">
         <div class="ast-prov-hdr">
-          ${p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.name)}" class="ast-prov-logo">` : ''}
-          <span class="ast-prov-name">${esc(p.name)}</span>
+          <div class="ast-prov-logo-wrap">
+            ${p.logo
+              ? `<img src="${esc(p.logo)}" alt="${esc(p.name)}" class="ast-prov-logo">`
+              : `<span class="ast-prov-logo-fallback">${esc(p.name.charAt(0))}</span>`}
+          </div>
+          <span class="ast-prov-name" title="${esc(p.name)}">${esc(p.name)}</span>
         </div>
         <div class="ast-prov-plans">`;
       plans.forEach(pl => {
         html += `<div class="ast-prov-plan-row">
           <span class="ast-prov-plan-name">${esc(pl.name)}</span>
-          <span class="ast-prov-plan-speed">${pl.download || ''}${pl.download ? ' Mbps' : ''}</span>
+          <span class="ast-prov-plan-speed">${formatBandwidth(pl.speed)}</span>
           <span class="ast-prov-plan-price">$${esc(String(pl.price))}<small>/mo</small></span>
         </div>`;
       });
@@ -421,7 +436,7 @@ EXAMPLES:
         return `<div class="ast-plan-card">
           <div class="ast-plan-hdr"><span class="ast-plan-provider">${esc(p ? p.name : slug)}</span><span class="ast-plan-price">$${esc(price)}<small>/mo</small></span></div>
           <div class="ast-plan-name">${esc(name)}</div>
-          <div class="ast-plan-speed">${down} Mbps${up ? ' ↓ / '+up+' Mbps ↑' : ''}</div>
+          <div class="ast-plan-speed">${formatBandwidth(down)} down${up ? ' / ' + formatBandwidth(up) + ' up' : ''}</div>
           <div class="ast-plan-meta">${contract && contract !== 'None' ? contract : 'No contract'} · ${cap && cap !== 'Unlimited' ? cap : 'Unlimited'}</div>
           <button class="ast-order-btn" data-slug="${esc(slug)}" data-plan="${esc(name)}"><span class="ast-order-icon">&#x2192;</span> Order Now</button>
         </div>`;
@@ -1531,13 +1546,13 @@ EXAMPLES:
   /* ── Provider grid — max 3, each with all plans + CTA ──────── */
   .ast-provider-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 6px; margin: 7px 0 3px; width: 100%;
+    grid-template-columns: 1fr;
+    gap: 8px; margin: 8px 0 4px; width: 100%;
   }
   .ast-provider-card {
     background: linear-gradient(135deg, #131b32 0%, #172041 100%) !important;
     border: 1px solid rgba(102,126,234,0.2) !important;
-    border-radius: 11px; padding: 8px 8px 7px;
+    border-radius: 11px; padding: 10px;
     display: flex; flex-direction: column; gap: 6px;
     transition: border-color 0.15s, transform 0.15s;
     cursor: pointer;
@@ -1548,12 +1563,39 @@ EXAMPLES:
   }
   .ast-provider-card:focus-visible { outline: 2px solid #818cf8; outline-offset: 1px; }
   .ast-prov-hdr {
-    display: flex; align-items: center; gap: 5px; margin-bottom: 1px;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 2px;
   }
-  .ast-prov-logo { height: 16px; width: auto; object-fit: contain; flex-shrink: 0; }
+  .ast-prov-logo-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid rgba(255,255,255,0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ast-prov-logo {
+    max-height: 30px;
+    max-width: 34px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .ast-prov-logo-fallback {
+    color: #111827 !important;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1;
+  }
   .ast-prov-name {
-    font-size: 10px; font-weight: 800; color: #e0e4ee !important;
-    letter-spacing: 0.02em;
+    font-size: 13px;
+    font-weight: 800;
+    color: #e0e4ee !important;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
   .ast-prov-plans { display: flex; flex-direction: column; gap: 2px; flex: 1; }
   .ast-prov-plan-row {
@@ -1562,17 +1604,17 @@ EXAMPLES:
     padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
   }
   .ast-prov-plan-row:last-child { border-bottom: none; }
-  .ast-prov-plan-name { font-size: 9px; font-weight: 600; color: #c4c9e0 !important; }
-  .ast-prov-plan-speed { font-size: 8px; color: #818cf8 !important; font-weight: 700; white-space: nowrap; }
-  .ast-prov-plan-price { font-size: 9px; font-weight: 800; color: #34d399 !important; white-space: nowrap; }
+  .ast-prov-plan-name { font-size: 10px; font-weight: 600; color: #c4c9e0 !important; min-width: 0; overflow-wrap: anywhere; }
+  .ast-prov-plan-speed { font-size: 9px; color: #818cf8 !important; font-weight: 700; white-space: nowrap; }
+  .ast-prov-plan-price { font-size: 10px; font-weight: 800; color: #34d399 !important; white-space: nowrap; }
   .ast-prov-plan-price small { font-size: 9px; font-weight: 600; color: #6ee7b7 !important; }
-  .ast-prov-cta { margin-top: 5px !important; font-size: 10px !important; padding: 6px 8px !important; }
+  .ast-prov-cta { margin-top: 6px !important; font-size: 11px !important; padding: 8px 10px !important; }
 
   @media (max-width: 520px){
-    .ast-provider-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .ast-prov-name { font-size: 9px; }
-    .ast-prov-plan-name { font-size: 8px; }
-    .ast-prov-plan-speed, .ast-prov-plan-price { font-size: 7px; }
+    .ast-provider-grid { grid-template-columns: 1fr; }
+    .ast-prov-name { font-size: 12px; }
+    .ast-prov-plan-name { font-size: 9px; }
+    .ast-prov-plan-speed, .ast-prov-plan-price { font-size: 8px; }
     .ast-prov-cta { font-size: 9px !important; }
   }
 

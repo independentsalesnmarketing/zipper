@@ -1,0 +1,117 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+xfinity internet	USD	5000000	0%	0%	High	92	3.50	10.50
+comcast internet	USD	4500000	0%	0%	High	91	3.30	9.90
+xfinity plans	USD	2000000	0%	0%	High	89	2.80	8.40
+comcast internet plans	USD	1800000	0%	0%	High	88	2.70	8.10
+xfinity internet plans	USD	1600000	0%	0%	High	90	2.90	8.70
+xfinity deals	USD	1400000	0%	0%	High	91	3.60	10.80
+comcast deals	USD	1200000	0%	0%	High	90	3.40	10.20
+xfinity internet service	USD	1000000	0%	0%	High	89	3.00	9.00
+xfinity internet deals	USD	900000	0%	0%	High	91	3.70	11.10
+xfinity internet speed	USD	800000	0%	0%	High	87	2.60	7.80
+comcast high speed internet	USD	750000	0%	0%	High	88	2.80	8.40
+xfinity availability	USD	700000	0%	0%	High	85	2.50	7.50
+xfinity near me	USD	650000	0%	0%	High	86	2.60	7.80
+xfinity wifi	USD	600000	0%	0%	Medium	78	2.20	6.60
+comcast wifi	USD	550000	0%	0%	Medium	77	2.10	6.30
+xfinity cable internet	USD	500000	0%	0%	High	89	3.10	9.30
+xfinity internet promotions	USD	450000	0%	0%	High	90	3.80	11.40
+xfinity promo	USD	420000	0%	0%	High	89	3.70	11.10
+xfinity new customer deals	USD	400000	0%	5%	High	91	4.00	12.00
+xfinity speed test	USD	380000	0%	0%	Medium	65	1.80	5.40
+xfinity 1 gig	USD	360000	0%	0%	High	88	3.40	10.20
+xfinity gigabit internet	USD	340000	0%	0%	High	87	3.30	9.90
+xfinity gig speed	USD	320000	0%	0%	High	86	3.20	9.60
+comcast 1 gig internet	USD	300000	0%	0%	High	87	3.35	10.05
+xfinity 2 gig internet	USD	280000	5%	20%	High	88	3.50	10.50
+xfinity router	USD	260000	0%	0%	Medium	68	2.20	6.60
+xfinity modem	USD	240000	0%	0%	Medium	66	2.10	6.30
+xfinity gateway	USD	220000	0%	0%	Medium	67	2.15	6.45
+xfinity xfi gateway	USD	200000	0%	0%	Medium	70	2.25	6.75
+xfinity equipment	USD	180000	0%	0%	Medium	65	2.00	6.00
+xfinity customer service	USD	1200000	0%	0%	Low	32	0.90	2.70
+comcast customer service	USD	1100000	0%	0%	Low	30	0.85	2.55
+xfinity customer service number	USD	800000	0%	0%	Low	28	0.80	2.40
+xfinity outage map	USD	900000	0%	0%	Low	22	0.60	1.80
+comcast outage	USD	800000	0%	0%	Low	20	0.55	1.65
+xfinity internet outage	USD	700000	0%	0%	Low	21	0.58	1.74
+xfinity service area	USD	350000	0%	0%	High	84	2.45	7.35
+comcast service area	USD	300000	0%	0%	High	83	2.40	7.20
+xfinity internet by address	USD	280000	0%	0%	High	85	2.55	7.65
+xfinity check availability	USD	260000	0%	0%	High	84	2.50	7.50
+xfinity coverage map	USD	240000	0%	0%	High	83	2.45	7.35
+xfinity internet in my area	USD	500000	0%	0%	High	85	2.60	7.80
+xfinity no contract	USD	220000	0%	0%	High	82	3.10	9.30
+xfinity no annual contract	USD	200000	0%	0%	High	81	3.00	9.00
+comcast no contract internet	USD	180000	0%	0%	High	80	2.90	8.70
+xfinity month to month	USD	160000	0%	0%	High	79	2.80	8.40
+xfinity 300 mbps	USD	200000	0%	0%	High	84	3.00	9.00
+xfinity 500 mbps internet	USD	180000	0%	0%	High	85	3.10	9.30
+xfinity 800 mbps	USD	160000	0%	0%	High	86	3.20	9.60
+xfinity internet 1200 mbps	USD	140000	5%	15%	High	87	3.30	9.90
+xfinity 2000 mbps plan	USD	120000	5%	20%	High	88	3.40	10.20
+xfinity vs att fiber	USD	180000	0%	5%	High	86	3.50	10.50
+xfinity vs verizon fios	USD	160000	0%	0%	High	85	3.40	10.20
+xfinity vs spectrum	USD	140000	0%	0%	High	84	3.30	9.90
+xfinity vs google fiber	USD	120000	0%	0%	High	84	3.35	10.05
+comcast vs att internet	USD	100000	0%	0%	High	85	3.40	10.20
+xfinity upload speed	USD	350000	0%	0%	Medium	74	2.40	7.20
+xfinity internet latency	USD	100000	0%	0%	Medium	72	2.30	6.90
+xfinity for gaming	USD	150000	0%	5%	Medium	75	2.50	7.50
+xfinity gaming internet	USD	130000	0%	0%	Medium	74	2.45	7.35
+comcast gaming internet	USD	110000	0%	0%	Medium	73	2.40	7.20
+xfinity streaming	USD	250000	0%	0%	Medium	76	2.20	6.60
+xfinity unlimited data	USD	400000	0%	0%	High	83	3.00	9.00
+comcast unlimited data	USD	350000	0%	0%	High	82	2.90	8.70
+xfinity data cap	USD	400000	0%	0%	Medium	72	2.00	6.00
+xfinity internet essentials	USD	300000	0%	0%	Medium	65	1.50	4.50
+comcast internet essentials	USD	280000	0%	0%	Medium	63	1.45	4.35
+xfinity low income internet	USD	200000	0%	0%	High	80	2.50	7.50
+xfinity affordable connectivity	USD	150000	0%	0%	High	79	2.40	7.20
+xfinity internet for low income	USD	120000	0%	0%	High	78	2.30	6.90
+xfinity student discount	USD	100000	0%	0%	High	80	2.60	7.80
+xfinity business internet	USD	500000	0%	0%	High	88	5.00	15.00
+comcast business internet	USD	450000	0%	0%	High	87	4.80	14.40
+xfinity business plans	USD	380000	0%	0%	High	87	5.10	15.30
+xfinity internet philadelphia	USD	150000	0%	0%	High	86	3.20	9.60
+xfinity internet boston	USD	130000	0%	0%	High	85	3.10	9.30
+xfinity internet chicago	USD	160000	0%	0%	High	87	3.30	9.90
+xfinity internet denver	USD	120000	0%	0%	High	85	3.15	9.45
+xfinity internet seattle	USD	140000	0%	0%	High	86	3.25	9.75
+xfinity internet atlanta	USD	130000	0%	0%	High	85	3.20	9.60
+xfinity internet houston	USD	150000	0%	0%	High	86	3.30	9.90
+xfinity internet sacramento	USD	110000	0%	0%	High	84	3.10	9.30
+xfinity internet portland	USD	120000	0%	0%	High	85	3.15	9.45
+xfinity internet minneapolis	USD	100000	0%	0%	High	84	3.10	9.30
+xfinity internet plans for apartments	USD	150000	0%	0%	Medium	75	2.60	7.80
+xfinity internet for apartments	USD	130000	0%	0%	Medium	74	2.55	7.65
+comcast apartment internet	USD	110000	0%	0%	Medium	73	2.50	7.50
+xfinity flex	USD	200000	0%	0%	Medium	70	2.00	6.00
+xfinity self install	USD	250000	0%	0%	Medium	68	2.10	6.30
+xfinity autopay discount	USD	150000	0%	0%	High	82	3.00	9.00
+xfinity price lock	USD	120000	0%	10%	High	83	3.10	9.30
+xfinity prepaid internet	USD	200000	0%	0%	High	81	3.00	9.00
+xfinity internet review	USD	300000	0%	0%	Medium	72	2.00	6.00
+comcast internet review	USD	280000	0%	0%	Medium	71	1.95	5.85
+xfinity internet plans by address	USD	500	0%	0%	High	87	3.50	10.50
+xfinity internet availability by zip code	USD	500	0%	0%	High	86	3.40	10.20
+xfinity internet pricing for new customers	USD	500	0%	0%	High	89	4.00	12.00
+xfinity internet no contract plans	USD	500	0%	0%	High	83	3.10	9.30
+xfinity internet upload speeds	USD	500	0%	0%	Medium	74	2.40	7.20
+xfinity internet 1 gig plan price	USD	500	0%	0%	High	87	3.40	10.20
+xfinity internet 2 gig plan price	USD	500	5%	20%	High	88	3.50	10.50
+xfinity internet for gaming latency	USD	500	0%	5%	Medium	75	2.50	7.50
+xfinity internet for streaming	USD	500	0%	0%	Medium	76	2.45	7.35
+xfinity internet installation cost	USD	500	0%	0%	Medium	70	2.20	6.60
+xfinity modem and router fees	USD	500	0%	0%	Medium	68	2.10	6.30
+xfinity internet unlimited data plans	USD	500	0%	0%	High	83	3.00	9.00
+xfinity internet deals near me	USD	500	0%	0%	High	90	3.80	11.40
+xfinity internet check availability by zip	USD	500	0%	0%	High	85	2.55	7.65
+xfinity internet business plans pricing	USD	500	0%	0%	High	88	5.00	15.00
+xfinity internet customer reviews	USD	500	0%	0%	Medium	72	2.00	6.00
+xfinity internet outage map	USD	500	0%	0%	Low	22	0.60	1.80
+xfinity internet for apartments	USD	500	0%	0%	Medium	75	2.60	7.80
+xfinity internet vs at&t fiber	USD	500	0%	5%	High	86	3.50	10.50
+xfinity internet vs fiber	USD	500	0%	0%	High	85	3.40	10.20
+xfinity internet promotional pricing	USD	500	0%	0%	High	90	3.90	11.70
+xfinity internet address lookup	USD	500	0%	0%	High	85	2.55	7.65

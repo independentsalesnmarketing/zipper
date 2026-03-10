@@ -1,0 +1,87 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+hughesnet internet	USD	1000000	0%	-5%	High	83	2.80	8.40
+hughesnet satellite internet	USD	800000	0%	-5%	High	82	2.70	8.10
+hughes net internet	USD	700000	0%	-5%	High	82	2.75	8.25
+hughesnet plans	USD	600000	0%	-5%	High	81	2.60	7.80
+hughesnet pricing	USD	500000	0%	-5%	High	81	2.65	7.95
+hughesnet cost	USD	450000	0%	-5%	High	80	2.55	7.65
+hughesnet monthly cost	USD	400000	0%	-5%	High	80	2.60	7.80
+hughesnet internet service	USD	380000	0%	-5%	High	82	2.80	8.40
+hughesnet availability	USD	350000	0%	-5%	High	80	2.50	7.50
+hughesnet near me	USD	300000	0%	-5%	High	80	2.45	7.35
+hughesnet in my area	USD	280000	0%	-5%	High	80	2.50	7.50
+hughesnet service area	USD	250000	0%	-5%	High	79	2.40	7.20
+hughesnet coverage map	USD	230000	0%	-5%	High	79	2.35	7.05
+hughesnet internet plans	USD	300000	0%	-5%	High	81	2.70	8.10
+hughesnet satellite dish	USD	400000	0%	-5%	High	80	2.50	7.50
+hughesnet dish	USD	350000	0%	-5%	High	79	2.45	7.35
+hughesnet equipment	USD	300000	0%	-5%	High	79	2.40	7.20
+hughesnet modem	USD	250000	0%	-5%	Medium	64	1.90	5.70
+hughesnet router	USD	200000	0%	-5%	Medium	63	1.85	5.55
+hughesnet gen6	USD	300000	0%	0%	High	80	2.60	7.80
+hughesnet gen5	USD	250000	0%	-5%	High	79	2.50	7.50
+hughesnet jupiter satellite	USD	200000	0%	0%	High	79	2.45	7.35
+hughesnet fusion	USD	180000	0%	5%	High	80	2.60	7.80
+hughesnet speed	USD	400000	0%	-5%	High	78	2.30	6.90
+hughesnet internet speed	USD	350000	0%	-5%	High	78	2.35	7.05
+hughesnet speed test	USD	500000	0%	-5%	Medium	62	1.80	5.40
+hughesnet latency	USD	300000	0%	-5%	Medium	70	2.40	7.20
+hughesnet data cap	USD	350000	0%	-5%	Medium	72	2.30	6.90
+hughesnet unlimited data	USD	280000	0%	-5%	High	79	2.50	7.50
+hughesnet data plan	USD	300000	0%	-5%	High	79	2.45	7.35
+hughesnet vs starlink	USD	300000	5%	25%	High	84	3.20	9.60
+hughesnet vs viasat	USD	250000	0%	0%	High	83	3.10	9.30
+hughesnet for rural areas	USD	250000	0%	0%	High	83	3.20	9.60
+hughesnet rural internet	USD	220000	0%	0%	High	82	3.10	9.30
+satellite internet for rural homes	USD	300000	0%	5%	High	83	3.30	9.90
+best satellite internet	USD	500000	0%	5%	High	85	3.50	10.50
+rural satellite internet	USD	350000	0%	5%	High	84	3.30	9.90
+satellite internet options	USD	280000	0%	0%	High	83	3.20	9.60
+hughesnet installation	USD	300000	0%	-5%	Medium	68	2.10	6.30
+hughesnet self install	USD	200000	0%	-5%	Medium	66	2.00	6.00
+hughesnet dish installation	USD	250000	0%	-5%	Medium	67	2.05	6.15
+hughesnet installation cost	USD	200000	0%	-5%	High	79	2.50	7.50
+hughesnet equipment cost	USD	180000	0%	-5%	High	78	2.45	7.35
+hughesnet no contract	USD	150000	0%	-5%	High	78	2.70	8.10
+hughesnet month to month	USD	120000	0%	-5%	High	77	2.60	7.80
+hughesnet outage	USD	400000	0%	-5%	Low	19	0.48	1.44
+hughesnet outage map	USD	350000	0%	-5%	Low	17	0.44	1.32
+hughesnet internet outage	USD	300000	0%	-5%	Low	18	0.45	1.35
+hughesnet customer service	USD	600000	0%	-5%	Low	26	0.65	1.95
+hughesnet customer service number	USD	450000	0%	-5%	Low	24	0.60	1.80
+hughesnet support	USD	350000	0%	-5%	Low	23	0.58	1.74
+hughesnet business internet	USD	150000	0%	-5%	High	82	4.00	12.00
+hughesnet for gaming	USD	120000	0%	-5%	Medium	68	2.30	6.90
+hughesnet gaming latency	USD	100000	0%	-5%	Medium	70	2.40	7.20
+hughesnet upload speed	USD	200000	0%	-5%	Medium	70	2.20	6.60
+hughesnet review	USD	500000	0%	-5%	Medium	68	1.90	5.70
+hughesnet internet review	USD	400000	0%	-5%	Medium	67	1.85	5.55
+hughesnet login	USD	500000	0%	-5%	Low	18	0.40	1.20
+hughesnet my account	USD	400000	0%	-5%	Low	17	0.38	1.14
+satellite internet	USD	2000000	0%	5%	High	86	3.40	10.20
+satellite internet plans	USD	1000000	0%	5%	High	85	3.20	9.60
+satellite internet providers	USD	800000	0%	5%	High	85	3.30	9.90
+satellite internet for homes	USD	600000	0%	5%	High	84	3.20	9.60
+internet for rural areas	USD	500000	0%	5%	High	84	3.20	9.60
+hughesnet internet plans by address	USD	500	0%	-5%	High	80	2.60	7.80
+hughesnet internet availability by zip	USD	500	0%	-5%	High	79	2.50	7.50
+hughesnet internet pricing for new customers	USD	500	0%	-5%	High	81	2.80	8.40
+hughesnet internet no contract	USD	500	0%	-5%	High	78	2.70	8.10
+hughesnet internet upload speeds	USD	500	0%	-5%	Medium	70	2.20	6.60
+hughesnet 25 mbps plan	USD	500	0%	-5%	High	79	2.50	7.50
+hughesnet 50 mbps plan	USD	500	0%	-5%	High	79	2.55	7.65
+hughesnet internet for gaming latency	USD	500	0%	-5%	Medium	68	2.30	6.90
+hughesnet internet for streaming	USD	500	0%	-5%	Medium	68	2.25	6.75
+hughesnet dish and installation cost	USD	500	0%	-5%	High	79	2.50	7.50
+hughesnet modem and equipment fee	USD	500	0%	-5%	Medium	63	1.85	5.55
+hughesnet unlimited data plans	USD	500	0%	-5%	High	79	2.50	7.50
+hughesnet internet deals	USD	500	0%	-5%	High	82	3.00	9.00
+hughesnet internet check availability	USD	500	0%	-5%	High	79	2.50	7.50
+hughesnet business internet pricing	USD	500	0%	-5%	High	82	4.00	12.00
+hughesnet internet customer reviews	USD	500	0%	-5%	Medium	67	1.85	5.55
+hughesnet internet outage map	USD	500	0%	-5%	Low	17	0.44	1.32
+hughesnet internet for rural homes	USD	500	0%	0%	High	82	3.20	9.60
+hughesnet vs starlink comparison	USD	500	5%	25%	High	84	3.20	9.60
+hughesnet internet vs viasat	USD	500	0%	0%	High	83	3.10	9.30
+hughesnet internet gen6 plans	USD	500	0%	0%	High	80	2.60	7.80
+hughesnet internet data cap	USD	500	0%	-5%	Medium	72	2.30	6.90

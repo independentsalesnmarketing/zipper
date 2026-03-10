@@ -1,0 +1,83 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+uscellular internet	USD	300000	0%	5%	High	78	2.40	7.20
+us cellular internet	USD	280000	0%	5%	High	78	2.35	7.05
+uscellular home internet	USD	250000	0%	8%	High	79	2.50	7.50
+us cellular home internet	USD	230000	0%	8%	High	78	2.45	7.35
+uscellular internet service	USD	200000	0%	5%	High	78	2.40	7.20
+uscellular internet plans	USD	180000	0%	5%	High	77	2.30	6.90
+us cellular internet plans	USD	160000	0%	5%	High	77	2.25	6.75
+uscellular wireless plans	USD	300000	0%	5%	High	76	2.20	6.60
+us cellular wireless	USD	350000	0%	5%	High	76	2.25	6.75
+uscellular plans	USD	400000	0%	5%	High	76	2.20	6.60
+uscellular internet near me	USD	200000	0%	5%	High	77	2.30	6.90
+uscellular coverage	USD	350000	0%	5%	High	77	2.35	7.05
+us cellular coverage map	USD	300000	0%	5%	High	76	2.30	6.90
+uscellular service area	USD	200000	0%	5%	High	76	2.25	6.75
+uscellular internet availability	USD	180000	0%	5%	High	76	2.20	6.60
+uscellular 5g	USD	250000	5%	20%	High	79	2.60	7.80
+us cellular 5g	USD	200000	5%	18%	High	78	2.55	7.65
+uscellular 5g home internet	USD	150000	5%	20%	High	80	2.70	8.10
+uscellular home internet plans	USD	130000	0%	8%	High	79	2.50	7.50
+uscellular home internet pricing	USD	110000	0%	8%	High	78	2.45	7.35
+uscellular internet deals	USD	100000	0%	5%	High	80	2.80	8.40
+uscellular deals	USD	200000	0%	5%	High	79	2.70	8.10
+us cellular promotions	USD	150000	0%	5%	High	78	2.60	7.80
+uscellular home internet deals	USD	80000	0%	8%	High	80	2.80	8.40
+uscellular rural internet	USD	100000	0%	5%	High	80	2.90	8.70
+us cellular rural coverage	USD	90000	0%	5%	High	79	2.80	8.40
+uscellular internet for rural areas	USD	80000	0%	5%	High	80	2.90	8.70
+uscellular home internet gateway	USD	100000	0%	8%	High	78	2.40	7.20
+uscellular home internet device	USD	90000	0%	8%	High	77	2.35	7.05
+uscellular home internet modem	USD	80000	0%	5%	Medium	62	1.90	5.70
+uscellular home internet router	USD	70000	0%	5%	Medium	61	1.85	5.55
+uscellular internet no contract	USD	70000	0%	5%	High	76	2.50	7.50
+us cellular home internet no contract	USD	60000	0%	5%	High	75	2.40	7.20
+uscellular home internet unlimited data	USD	80000	0%	8%	High	78	2.50	7.50
+uscellular internet speed	USD	100000	0%	5%	High	75	2.20	6.60
+uscellular home internet speed	USD	80000	0%	8%	High	76	2.30	6.90
+uscellular home internet speed test	USD	70000	0%	5%	Medium	60	1.70	5.10
+uscellular home internet latency	USD	50000	0%	5%	Medium	67	2.10	6.30
+uscellular home internet for gaming	USD	50000	0%	5%	Medium	68	2.20	6.60
+uscellular home internet for streaming	USD	50000	0%	5%	Medium	68	2.20	6.60
+uscellular customer service	USD	400000	0%	5%	Low	24	0.58	1.74
+us cellular customer service	USD	350000	0%	5%	Low	23	0.55	1.65
+uscellular customer service number	USD	280000	0%	5%	Low	22	0.52	1.56
+uscellular support	USD	200000	0%	5%	Low	21	0.50	1.50
+uscellular outage	USD	250000	0%	5%	Low	18	0.45	1.35
+uscellular outage map	USD	200000	0%	5%	Low	16	0.42	1.26
+uscellular internet outage	USD	150000	0%	5%	Low	17	0.44	1.32
+uscellular vs tmobile	USD	80000	0%	5%	High	79	2.70	8.10
+uscellular vs verizon	USD	70000	0%	5%	High	79	2.70	8.10
+uscellular vs att	USD	65000	0%	5%	High	78	2.65	7.95
+uscellular vs tmo	USD	50000	0%	5%	High	78	2.60	7.80
+uscellular business internet	USD	100000	0%	5%	High	80	3.80	11.40
+us cellular business plans	USD	80000	0%	5%	High	79	3.60	10.80
+uscellular iowa	USD	80000	0%	5%	High	76	2.30	6.90
+uscellular wisconsin	USD	80000	0%	5%	High	76	2.30	6.90
+uscellular indiana	USD	70000	0%	5%	High	75	2.25	6.75
+uscellular oklahoma	USD	70000	0%	5%	High	75	2.25	6.75
+uscellular illinois	USD	70000	0%	5%	High	75	2.25	6.75
+uscellular oregon	USD	60000	0%	5%	High	74	2.20	6.60
+uscellular north carolina	USD	60000	0%	5%	High	74	2.20	6.60
+uscellular west virginia	USD	50000	0%	5%	High	73	2.15	6.45
+uscellular internet plans by address	USD	500	0%	5%	High	77	2.30	6.90
+uscellular home internet availability by zip	USD	500	0%	8%	High	76	2.25	6.75
+uscellular home internet pricing for new customers	USD	500	0%	8%	High	80	2.80	8.40
+uscellular home internet no contract plans	USD	500	0%	5%	High	76	2.50	7.50
+uscellular home internet upload speeds	USD	500	0%	5%	Medium	68	2.10	6.30
+uscellular home internet 5g plan	USD	500	5%	20%	High	80	2.70	8.10
+uscellular home internet for gaming latency	USD	500	0%	5%	Medium	68	2.20	6.60
+uscellular home internet for streaming	USD	500	0%	5%	Medium	68	2.20	6.60
+uscellular home internet device cost	USD	500	0%	8%	High	77	2.40	7.20
+uscellular home internet equipment fee	USD	500	0%	5%	Medium	62	1.90	5.70
+uscellular home internet unlimited data plans	USD	500	0%	8%	High	78	2.50	7.50
+uscellular home internet deals near me	USD	500	0%	8%	High	80	2.80	8.40
+uscellular home internet coverage check	USD	500	0%	5%	High	76	2.25	6.75
+uscellular business internet pricing	USD	500	0%	5%	High	80	3.80	11.40
+uscellular home internet customer reviews	USD	500	0%	5%	Medium	63	1.85	5.55
+uscellular home internet outage map	USD	500	0%	5%	Low	16	0.42	1.26
+uscellular home internet for rural areas	USD	500	0%	5%	High	80	2.90	8.70
+uscellular vs tmobile home internet	USD	500	0%	5%	High	79	2.70	8.10
+uscellular 5g home internet review	USD	500	5%	20%	Medium	70	2.30	6.90
+uscellular home internet vs cable	USD	500	0%	5%	High	78	2.65	7.95
+uscellular home internet data cap	USD	500	0%	5%	Medium	68	2.20	6.60

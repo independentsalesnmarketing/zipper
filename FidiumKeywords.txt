@@ -1,0 +1,87 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+fidium fiber	USD	200000	5%	20%	High	83	3.00	9.00
+fidium internet	USD	180000	5%	20%	High	82	2.90	8.70
+fidium fiber internet	USD	160000	5%	20%	High	82	2.95	8.85
+consolidated communications internet	USD	150000	0%	0%	High	80	2.60	7.80
+fidium fiber plans	USD	130000	5%	20%	High	82	2.80	8.40
+fidium internet plans	USD	120000	5%	18%	High	81	2.70	8.10
+fidium fiber cost	USD	110000	5%	18%	High	81	2.75	8.25
+fidium internet price	USD	100000	5%	18%	High	81	2.80	8.40
+fidium fiber availability	USD	90000	5%	18%	High	80	2.60	7.80
+fidium internet near me	USD	140000	5%	20%	High	81	2.65	7.95
+fidium internet in my area	USD	130000	5%	18%	High	80	2.60	7.80
+fidium service area	USD	120000	5%	18%	High	80	2.55	7.65
+fidium coverage map	USD	100000	5%	18%	High	79	2.50	7.50
+fidium internet availability check	USD	80000	5%	18%	High	79	2.55	7.65
+fidium fiber internet deals	USD	80000	5%	20%	High	83	3.10	9.30
+fidium internet promotions	USD	70000	5%	18%	High	82	3.00	9.00
+fidium fiber new customer	USD	60000	5%	18%	High	83	3.20	9.60
+fidium internet 1 gig	USD	80000	5%	20%	High	82	2.90	8.70
+fidium fiber 1 gig plan	USD	70000	5%	20%	High	82	2.95	8.85
+fidium fiber 500 mbps	USD	60000	5%	18%	High	81	2.80	8.40
+fidium fiber 200 mbps	USD	50000	5%	18%	High	80	2.70	8.10
+fidium fiber 2 gig plan	USD	50000	5%	20%	High	83	3.10	9.30
+fidium gigabit internet	USD	60000	5%	20%	High	81	2.80	8.40
+fidium internet speed test	USD	100000	5%	18%	Medium	60	1.70	5.10
+fidium internet speed	USD	120000	5%	18%	High	79	2.40	7.20
+fidium outage	USD	150000	5%	18%	Low	18	0.45	1.35
+fidium outage map	USD	130000	5%	18%	Low	16	0.42	1.26
+fidium internet outage	USD	110000	5%	18%	Low	17	0.44	1.32
+fidium customer service	USD	200000	5%	18%	Low	25	0.62	1.86
+fidium customer service number	USD	150000	5%	18%	Low	23	0.58	1.74
+fidium support	USD	120000	5%	18%	Low	22	0.55	1.65
+fidium fiber router	USD	100000	5%	18%	Medium	60	1.90	5.70
+fidium fiber modem	USD	90000	5%	18%	Medium	59	1.85	5.55
+fidium internet equipment	USD	80000	5%	18%	Medium	58	1.80	5.40
+fidium fiber no contract	USD	60000	5%	18%	High	79	2.70	8.10
+fidium fiber month to month	USD	50000	5%	18%	High	78	2.60	7.80
+fidium internet no contract	USD	55000	5%	18%	High	78	2.65	7.95
+fidium fiber unlimited data	USD	70000	5%	18%	High	79	2.60	7.80
+fidium fiber upload speed	USD	80000	5%	18%	Medium	70	2.20	6.60
+fidium fiber symmetrical speeds	USD	70000	5%	18%	Medium	69	2.15	6.45
+fidium fiber for gaming	USD	60000	5%	18%	Medium	71	2.30	6.90
+fidium internet gaming latency	USD	40000	5%	18%	Medium	69	2.20	6.60
+fidium fiber for streaming	USD	50000	5%	18%	Medium	70	2.20	6.60
+fidium fiber for apartments	USD	50000	5%	18%	Medium	68	2.20	6.60
+fidium fiber review	USD	80000	5%	18%	Medium	66	1.95	5.85
+fidium internet review	USD	70000	5%	18%	Medium	65	1.90	5.70
+fidium fiber vs att fiber	USD	40000	5%	18%	High	83	3.20	9.60
+fidium fiber vs comcast	USD	35000	5%	18%	High	82	3.10	9.30
+fidium fiber vs xfinity	USD	35000	5%	18%	High	82	3.10	9.30
+fidium business internet	USD	80000	5%	18%	High	83	4.20	12.60
+fidium fiber new hampshire	USD	60000	5%	20%	High	81	2.80	8.40
+fidium fiber vermont	USD	50000	5%	18%	High	80	2.75	8.25
+fidium fiber maine	USD	50000	5%	18%	High	80	2.70	8.10
+fidium fiber illinois	USD	50000	5%	18%	High	80	2.70	8.10
+fidium fiber kansas	USD	40000	5%	18%	High	79	2.65	7.95
+fidium fiber minnesota	USD	40000	5%	18%	High	79	2.65	7.95
+fidium fiber texas	USD	50000	5%	18%	High	80	2.70	8.10
+fidium fiber california	USD	50000	5%	18%	High	80	2.70	8.10
+consolidated communications fiber	USD	80000	0%	0%	High	79	2.50	7.50
+consolidated fiber internet	USD	70000	0%	0%	High	78	2.45	7.35
+fidium fiber installation	USD	80000	5%	18%	Medium	63	1.90	5.70
+fidium fiber install	USD	70000	5%	18%	Medium	62	1.85	5.55
+fidium installation cost	USD	60000	5%	18%	Medium	61	1.80	5.40
+fidium self install	USD	50000	5%	18%	Medium	60	1.75	5.25
+fidium internet plans by address	USD	500	5%	18%	High	81	2.75	8.25
+fidium fiber availability by zip	USD	500	5%	18%	High	80	2.60	7.80
+fidium fiber pricing for new customers	USD	500	5%	18%	High	83	3.20	9.60
+fidium fiber no contract plans	USD	500	5%	18%	High	78	2.70	8.10
+fidium fiber upload speeds	USD	500	5%	18%	Medium	70	2.20	6.60
+fidium fiber 1 gig plan price	USD	500	5%	20%	High	82	2.95	8.85
+fidium fiber 2 gig plan price	USD	500	5%	20%	High	83	3.10	9.30
+fidium fiber for gaming latency	USD	500	5%	18%	Medium	71	2.30	6.90
+fidium fiber for streaming	USD	500	5%	18%	Medium	70	2.20	6.60
+fidium fiber installation fee	USD	500	5%	18%	Medium	61	1.80	5.40
+fidium fiber equipment cost	USD	500	5%	18%	Medium	58	1.80	5.40
+fidium fiber unlimited data plans	USD	500	5%	18%	High	79	2.60	7.80
+fidium fiber deals near me	USD	500	5%	18%	High	83	3.10	9.30
+fidium fiber check availability	USD	500	5%	18%	High	80	2.60	7.80
+fidium business internet pricing	USD	500	5%	18%	High	83	4.20	12.60
+fidium fiber customer reviews	USD	500	5%	18%	Medium	65	1.90	5.70
+fidium fiber outage map	USD	500	5%	18%	Low	16	0.42	1.26
+fidium fiber for apartments	USD	500	5%	18%	Medium	68	2.20	6.60
+fidium vs at&t fiber	USD	500	5%	18%	High	83	3.20	9.60
+fidium fiber vs cable internet	USD	500	5%	18%	High	82	3.10	9.30
+fidium fiber internet by zip code	USD	500	5%	18%	High	80	2.60	7.80
+fidium fiber symmetrical upload download	USD	500	5%	18%	Medium	69	2.15	6.45

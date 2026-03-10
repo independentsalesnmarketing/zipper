@@ -1,0 +1,90 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+viasat internet	USD	800000	0%	0%	High	82	2.80	8.40
+viasat satellite internet	USD	600000	0%	0%	High	81	2.70	8.10
+exede internet	USD	300000	0%	-10%	High	79	2.40	7.20
+viasat internet plans	USD	500000	0%	0%	High	81	2.60	7.80
+viasat pricing	USD	400000	0%	0%	High	80	2.55	7.65
+viasat cost	USD	380000	0%	0%	High	80	2.50	7.50
+viasat monthly cost	USD	350000	0%	0%	High	79	2.45	7.35
+viasat internet service	USD	320000	0%	0%	High	81	2.70	8.10
+viasat availability	USD	300000	0%	0%	High	79	2.40	7.20
+viasat near me	USD	350000	0%	0%	High	80	2.45	7.35
+viasat in my area	USD	320000	0%	0%	High	79	2.45	7.35
+viasat service area	USD	280000	0%	0%	High	78	2.35	7.05
+viasat coverage map	USD	250000	0%	0%	High	78	2.30	6.90
+viasat internet availability check	USD	200000	0%	0%	High	79	2.40	7.20
+viasat satellite dish	USD	350000	0%	0%	High	79	2.50	7.50
+viasat dish	USD	300000	0%	0%	High	78	2.45	7.35
+viasat equipment	USD	250000	0%	0%	High	78	2.40	7.20
+viasat modem	USD	200000	0%	0%	Medium	63	1.90	5.70
+viasat router	USD	180000	0%	0%	Medium	62	1.85	5.55
+viasat speed	USD	350000	0%	0%	High	77	2.30	6.90
+viasat internet speed	USD	300000	0%	0%	High	77	2.35	7.05
+viasat speed test	USD	400000	0%	0%	Medium	62	1.75	5.25
+viasat latency	USD	250000	0%	0%	Medium	70	2.40	7.20
+viasat data plans	USD	280000	0%	0%	High	78	2.50	7.50
+viasat unlimited data	USD	250000	0%	0%	High	78	2.45	7.35
+viasat data cap	USD	300000	0%	0%	Medium	71	2.20	6.60
+viasat vs hughesnet	USD	220000	0%	0%	High	82	3.00	9.00
+viasat vs starlink	USD	250000	5%	25%	High	83	3.10	9.30
+viasat for rural areas	USD	200000	0%	0%	High	82	3.00	9.00
+viasat rural internet	USD	180000	0%	0%	High	81	2.90	8.70
+viasat home internet	USD	250000	0%	0%	High	80	2.60	7.80
+viasat plans for rural homes	USD	180000	0%	0%	High	81	2.90	8.70
+viasat installation	USD	250000	0%	0%	Medium	67	2.00	6.00
+viasat self install	USD	180000	0%	0%	Medium	65	1.90	5.70
+viasat installation cost	USD	200000	0%	0%	High	78	2.50	7.50
+viasat equipment cost	USD	180000	0%	0%	High	77	2.40	7.20
+viasat dish cost	USD	200000	0%	0%	High	78	2.45	7.35
+viasat no contract	USD	130000	0%	0%	High	77	2.60	7.80
+viasat month to month	USD	110000	0%	0%	High	76	2.50	7.50
+viasat outage	USD	350000	0%	0%	Low	18	0.45	1.35
+viasat outage map	USD	300000	0%	0%	Low	17	0.43	1.29
+viasat internet outage	USD	250000	0%	0%	Low	18	0.45	1.35
+viasat customer service	USD	500000	0%	0%	Low	25	0.62	1.86
+viasat customer service number	USD	400000	0%	0%	Low	23	0.58	1.74
+viasat support	USD	300000	0%	0%	Low	22	0.55	1.65
+viasat business internet	USD	150000	0%	0%	High	82	4.00	12.00
+viasat business plans	USD	120000	0%	0%	High	81	3.80	11.40
+viasat for gaming	USD	100000	0%	0%	Medium	68	2.30	6.90
+viasat gaming latency	USD	80000	0%	0%	Medium	70	2.40	7.20
+viasat upload speed	USD	180000	0%	0%	Medium	70	2.20	6.60
+viasat for streaming	USD	100000	0%	0%	Medium	70	2.20	6.60
+viasat global internet	USD	80000	0%	0%	High	79	2.40	7.20
+viasat aviation internet	USD	60000	0%	0%	High	85	5.00	15.00
+viasat review	USD	400000	0%	0%	Medium	67	1.90	5.70
+viasat internet review	USD	350000	0%	0%	Medium	66	1.85	5.55
+viasat 12 mbps plan	USD	80000	0%	0%	High	77	2.40	7.20
+viasat 25 mbps plan	USD	80000	0%	0%	High	78	2.45	7.35
+viasat 50 mbps plan	USD	80000	0%	0%	High	78	2.50	7.50
+viasat 100 mbps plan	USD	90000	0%	0%	High	79	2.55	7.65
+viasat liberty plan	USD	100000	0%	0%	High	79	2.55	7.65
+viasat unlimited plan	USD	120000	0%	0%	High	79	2.55	7.65
+wildblue internet	USD	100000	0%	-15%	High	75	2.20	6.60
+exede satellite internet	USD	80000	0%	-15%	High	77	2.30	6.90
+satellite internet providers	USD	800000	0%	5%	High	85	3.30	9.90
+best satellite internet	USD	500000	0%	5%	High	85	3.50	10.50
+rural internet options	USD	350000	0%	5%	High	84	3.20	9.60
+satellite internet for homes	USD	300000	0%	5%	High	84	3.20	9.60
+viasat internet plans by address	USD	500	0%	0%	High	79	2.45	7.35
+viasat internet availability by zip	USD	500	0%	0%	High	79	2.40	7.20
+viasat internet pricing for new customers	USD	500	0%	0%	High	80	2.70	8.10
+viasat internet no contract plans	USD	500	0%	0%	High	77	2.60	7.80
+viasat internet upload speeds	USD	500	0%	0%	Medium	70	2.20	6.60
+viasat 50 mbps plan price	USD	500	0%	0%	High	78	2.50	7.50
+viasat 100 mbps plan price	USD	500	0%	0%	High	79	2.55	7.65
+viasat internet for gaming latency	USD	500	0%	0%	Medium	68	2.30	6.90
+viasat internet for streaming	USD	500	0%	0%	Medium	70	2.20	6.60
+viasat installation and equipment cost	USD	500	0%	0%	High	78	2.50	7.50
+viasat equipment fee	USD	500	0%	0%	High	77	2.40	7.20
+viasat unlimited data plans	USD	500	0%	0%	High	78	2.45	7.35
+viasat internet deals	USD	500	0%	0%	High	80	2.70	8.10
+viasat internet check availability	USD	500	0%	0%	High	79	2.40	7.20
+viasat business internet pricing	USD	500	0%	0%	High	82	4.00	12.00
+viasat internet customer reviews	USD	500	0%	0%	Medium	66	1.85	5.55
+viasat internet outage map	USD	500	0%	0%	Low	17	0.43	1.29
+viasat internet for rural homes	USD	500	0%	0%	High	81	2.90	8.70
+viasat vs starlink comparison	USD	500	5%	25%	High	83	3.10	9.30
+viasat vs hughesnet comparison	USD	500	0%	0%	High	82	3.00	9.00
+viasat internet data cap	USD	500	0%	0%	Medium	71	2.20	6.60
+viasat internet service area check	USD	500	0%	0%	High	79	2.40	7.20

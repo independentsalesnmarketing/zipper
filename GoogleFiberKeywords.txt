@@ -1,0 +1,96 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+google fiber	USD	2000000	0%	5%	High	89	3.60	10.80
+google fiber internet	USD	1500000	0%	5%	High	88	3.40	10.20
+google fiber plans	USD	800000	0%	5%	High	87	3.20	9.60
+google fiber cost	USD	700000	0%	5%	High	87	3.30	9.90
+google fiber price	USD	650000	0%	5%	High	87	3.25	9.75
+google fiber availability	USD	600000	0%	5%	High	86	3.00	9.00
+google fiber service area	USD	550000	0%	5%	High	85	2.90	8.70
+google fiber internet service	USD	500000	0%	5%	High	88	3.50	10.50
+google fiber 1 gig	USD	450000	0%	5%	High	88	3.60	10.80
+google fiber gigabit	USD	400000	0%	5%	High	87	3.50	10.50
+google fiber 2 gig	USD	350000	5%	20%	High	88	3.70	11.10
+google fiber gig	USD	300000	0%	5%	High	87	3.40	10.20
+google fiber review	USD	400000	0%	5%	Medium	74	2.20	6.60
+google fiber speed	USD	350000	0%	5%	High	85	2.80	8.40
+google fiber speed test	USD	300000	0%	5%	Medium	65	1.80	5.40
+google fiber near me	USD	500000	0%	5%	High	86	2.90	8.70
+google fiber in my area	USD	450000	0%	5%	High	86	2.95	8.85
+google fiber coverage map	USD	350000	0%	5%	High	85	2.80	8.40
+google fiber availability check	USD	300000	0%	5%	High	85	2.85	8.55
+is google fiber available in my area	USD	400000	0%	5%	High	85	2.85	8.55
+google fiber cities	USD	400000	0%	5%	High	84	2.70	8.10
+google fiber locations	USD	350000	0%	5%	High	84	2.65	7.95
+google fiber kansas city	USD	200000	0%	0%	High	85	3.00	9.00
+google fiber austin	USD	180000	0%	5%	High	85	3.10	9.30
+google fiber nashville	USD	160000	0%	5%	High	84	3.00	9.00
+google fiber charlotte	USD	150000	0%	5%	High	84	2.95	8.85
+google fiber atlanta	USD	160000	0%	5%	High	85	3.00	9.00
+google fiber san antonio	USD	140000	0%	5%	High	84	2.95	8.85
+google fiber salt lake city	USD	130000	0%	5%	High	84	2.90	8.70
+google fiber phoenix	USD	150000	0%	10%	High	84	2.95	8.85
+google fiber louisville	USD	120000	0%	5%	High	83	2.85	8.55
+google fiber raleigh	USD	130000	0%	10%	High	84	2.90	8.70
+google fiber durham	USD	110000	0%	5%	High	83	2.85	8.55
+google fiber provo	USD	100000	0%	0%	High	82	2.80	8.40
+google fiber deals	USD	300000	0%	5%	High	87	3.40	10.20
+google fiber promotions	USD	250000	0%	5%	High	86	3.30	9.90
+google fiber new customer deal	USD	200000	0%	5%	High	87	3.50	10.50
+google fiber no contract	USD	200000	0%	5%	High	83	3.10	9.30
+google fiber month to month	USD	150000	0%	5%	High	82	3.00	9.00
+google fiber upload speed	USD	300000	0%	5%	Medium	74	2.40	7.20
+google fiber symmetrical speeds	USD	200000	0%	5%	Medium	73	2.35	7.05
+google fiber upload download speed	USD	180000	0%	5%	Medium	72	2.30	6.90
+google fiber for gaming	USD	200000	0%	5%	Medium	75	2.60	7.80
+google fiber latency	USD	150000	0%	5%	Medium	73	2.50	7.50
+google fiber gaming latency	USD	120000	0%	5%	Medium	74	2.55	7.65
+google fiber ping	USD	180000	0%	5%	Medium	70	2.20	6.60
+google fiber for streaming	USD	180000	0%	5%	Medium	74	2.40	7.20
+google fiber 4k streaming	USD	150000	0%	5%	Medium	73	2.45	7.35
+google fiber unlimited data	USD	250000	0%	5%	High	83	3.00	9.00
+google fiber no data cap	USD	200000	0%	5%	High	82	2.90	8.70
+google fiber router	USD	250000	0%	5%	Medium	68	2.20	6.60
+google fiber modem	USD	200000	0%	5%	Medium	66	2.10	6.30
+google fiber equipment	USD	180000	0%	5%	Medium	65	2.00	6.00
+google fiber wifi	USD	300000	0%	5%	Medium	74	2.30	6.90
+google fiber installation	USD	300000	0%	5%	Medium	70	2.20	6.60
+google fiber install	USD	250000	0%	5%	Medium	68	2.15	6.45
+google fiber installation cost	USD	200000	0%	5%	Medium	68	2.20	6.60
+google fiber self install	USD	150000	0%	5%	Medium	67	2.10	6.30
+google fiber outage	USD	300000	0%	5%	Low	22	0.60	1.80
+google fiber outage map	USD	250000	0%	5%	Low	20	0.55	1.65
+google fiber customer service	USD	400000	0%	5%	Low	28	0.75	2.25
+google fiber support	USD	300000	0%	5%	Low	26	0.70	2.10
+google fiber vs att fiber	USD	200000	0%	5%	High	87	3.60	10.80
+google fiber vs xfinity	USD	180000	0%	5%	High	86	3.50	10.50
+google fiber vs spectrum	USD	160000	0%	5%	High	85	3.40	10.20
+google fiber vs fios	USD	150000	0%	5%	High	85	3.40	10.20
+google fiber vs comcast	USD	140000	0%	5%	High	85	3.35	10.05
+google fiber vs frontier fiber	USD	120000	0%	5%	High	84	3.30	9.90
+google fiber business internet	USD	200000	0%	5%	High	87	5.20	15.60
+google fiber for business	USD	180000	0%	5%	High	86	5.00	15.00
+google fiber home office	USD	150000	0%	5%	Medium	74	2.80	8.40
+google fiber for apartments	USD	130000	0%	5%	Medium	73	2.60	7.80
+google fiber 1 gig plan price	USD	250000	0%	5%	High	87	3.60	10.80
+google fiber 2 gig plan price	USD	200000	5%	20%	High	88	3.70	11.10
+google fiber gig plus plan	USD	180000	0%	5%	High	86	3.50	10.50
+google fiber internet plans by address	USD	500	0%	5%	High	86	3.20	9.60
+google fiber internet availability by zip	USD	500	0%	5%	High	85	2.85	8.55
+google fiber internet pricing for new customers	USD	500	0%	5%	High	87	3.50	10.50
+google fiber internet no contract plans	USD	500	0%	5%	High	83	3.10	9.30
+google fiber internet upload speeds	USD	500	0%	5%	Medium	73	2.40	7.20
+google fiber 1 gig plan details	USD	500	0%	5%	High	87	3.60	10.80
+google fiber 2 gig plan details	USD	500	5%	20%	High	88	3.70	11.10
+google fiber for gaming latency	USD	500	0%	5%	Medium	74	2.55	7.65
+google fiber for streaming 4k	USD	500	0%	5%	Medium	73	2.45	7.35
+google fiber installation fee	USD	500	0%	5%	Medium	68	2.20	6.60
+google fiber equipment fee	USD	500	0%	5%	Medium	65	2.00	6.00
+google fiber unlimited data plans	USD	500	0%	5%	High	83	3.00	9.00
+google fiber deals near me	USD	500	0%	5%	High	87	3.50	10.50
+google fiber check availability by address	USD	500	0%	5%	High	86	2.95	8.85
+google fiber business internet pricing	USD	500	0%	5%	High	87	5.20	15.60
+google fiber customer reviews	USD	500	0%	5%	Medium	73	2.20	6.60
+google fiber outage status	USD	500	0%	5%	Low	22	0.60	1.80
+google fiber for apartments availability	USD	500	0%	5%	Medium	73	2.60	7.80
+google fiber vs at&t fiber comparison	USD	500	0%	5%	High	87	3.60	10.80
+google fiber symmetrical upload download	USD	500	0%	5%	Medium	73	2.35	7.05

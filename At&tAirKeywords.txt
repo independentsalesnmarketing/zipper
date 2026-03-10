@@ -1,0 +1,768 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+att stores	USD	5000000	0%	0%	Low	10	0.70	6.00
+at &t store	USD	5000000	0%	0%	Low	10	0.70	6.00
+at&t superstore	USD	5000000	0%	0%	Low	10	0.70	6.00
+att prepaid	USD	500000	0%	0%	Medium	58	1.66	20.07
+att wireless	USD	500000	0%	0%	Medium	60	3.50	14.97
+at and t prepaid	USD	500000	0%	0%	Medium	58	1.66	20.07
+at t prepaid	USD	500000	0%	0%	Medium	58	1.66	20.07
+at&t help number	USD	500000	0%	0%	Medium	34	0.32	1.26
+at&t number customer service	USD	500000	0%	0%	Medium	34	0.32	1.26
+at & t prepaid	USD	500000	0%	0%	Medium	58	1.66	20.07
+at& t near me	USD	500000	0%	0%	Low	32	1.20	5.55
+at at prepaid	USD	500000	0%	0%	Medium	58	1.66	20.07
+attstore near me	USD	500000	0%	0%	Low	29	0.44	3.08
+at&t & t near me	USD	500000	0%	0%	Low	32	1.20	5.55
+att and wireless	USD	500000	0%	0%	Medium	60	3.50	14.97
+at&t prepaidsm	USD	500000	0%	0%	Medium	58	1.66	20.07
+at & t pre paid	USD	500000	0%	0%	Medium	58	1.66	20.07
+customer care att number	USD	500000	0%	0%	Medium	34	0.32	1.26
+att and t stores near me	USD	500000	0%	0%	Low	29	0.44	3.08
+prepaid at & t	USD	500000	0%	0%	Medium	58	1.66	20.07
+at&t and customer service number	USD	500000	0%	0%	Medium	34	0.32	1.26
+at&t internet customer service	USD	50000	0%	0%	Medium	40	0.83	3.86
+att prepaid plans	USD	50000	0%	0%	Medium	49	3.51	21.59
+att internet customer service	USD	50000	0%	0%	Medium	41	1.15	3.65
+at&t phones	USD	50000	0%	0%	High	100	1.72	10.08
+at&t new customer deals	USD	50000	0%	900%	High	100	2.43	12.98
+att phone deals	USD	50000	0%	0%	High	100	1.13	6.92
+att support	USD	50000	0%	0%	Medium	37	0.26	0.80
+att deals	USD	50000	0%	0%	High	74	0.22	6.41
+att prepaid phones	USD	50000	0%	0%	High	95	0.39	11.60
+at&t promotions	USD	50000	0%	0%	Medium	57	0.76	3.78
+call at&t customer service	USD	50000	0%	0%	Medium	39	0.30	1.21
+att promotion	USD	50000	0%	0%	Medium	57	0.76	3.78
+at&t customer support	USD	50000	0%	0%	Low	33	0.32	1.02
+at&t cell phone deals	USD	50000	0%	900%	High	74	1.07	6.13
+att locations	USD	50000	-90%	0%	Low	30	0.79	5.00
+att cell phones	USD	50000	0%	0%	High	93	1.57	9.07
+at&t support number	USD	50000	0%	0%	Low	28	0.29	0.91
+at&t unlimited plans	USD	50000	0%	0%	Low	21	1.51	10.98
+at&t atencion al cliente	USD	50000	0%	0%	Medium	51	0.57	1.42
+at&t prepaid phone plans	USD	50000	0%	0%	Low	18	2.61	19.50
+at&t location	USD	50000	-90%	0%	Low	30	0.79	5.00
+att help phone number	USD	50000	0%	0%	Low	28	0.29	0.91
+at & t deals	USD	50000	0%	0%	High	74	0.22	6.41
+at&t prepaid cell phone plans	USD	50000	0%	0%	Low	18	2.61	19.50
+at&tmobile	USD	50000	0%	0%	High	90	2.37	12.91
+cell phones att	USD	50000	0%	0%	High	93	1.57	9.07
+at & t promotions	USD	50000	0%	0%	Medium	57	0.76	3.78
+at & t prepaid plans	USD	50000	0%	0%	Medium	49	3.51	21.59
+att contact phone	USD	50000	0%	0%	Medium	40	0.51	1.74
+at&t it support	USD	50000	0%	0%	Medium	37	0.26	0.80
+at&t internet customer care	USD	50000	0%	0%	Medium	40	0.83	3.86
+att and t deals	USD	50000	0%	0%	High	74	0.22	6.41
+at&t prepaid cellular plans	USD	50000	0%	0%	Low	18	2.61	19.50
+att prepaid cell plans	USD	50000	0%	0%	Low	18	2.61	19.50
+att mobiles	USD	50000	0%	0%	High	90	2.37	12.91
+att locator	USD	50000	-90%	0%	Low	30	0.79	5.00
+at&t store locations	USD	50000	-90%	0%	Low	15	0.67	17.14
+attprepaid plans	USD	50000	0%	0%	Medium	49	3.51	21.59
+servicio al cliente en at&t	USD	50000	0%	0%	Medium	51	0.57	1.42
+at&t mobile deal	USD	50000	0%	900%	High	74	1.07	6.13
+at&t mobile phone specials	USD	50000	0%	0%	High	100	1.13	6.92
+at&t number customer support	USD	50000	0%	0%	Low	28	0.29	0.91
+at&t customer service for wireless	USD	50000	0%	0%	Low	16	1.19	5.47
+at&t mobile phones deals	USD	50000	0%	0%	High	100	1.13	6.92
+att hrs	USD	50000	0%	0%	Low	20	1.23	7.16
+at &t prepaid phones	USD	50000	0%	0%	High	95	0.39	11.60
+at&t it support number	USD	50000	0%	0%	Low	28	0.29	0.91
+at & t unlimited plan	USD	50000	0%	0%	Low	21	1.51	10.98
+hours of at&t customer service	USD	50000	0%	0%	Low	19	0.30	1.80
+at&t internet customer service number	USD	5000	0%	0%	Medium	41	0.79	3.37
+att new customer	USD	5000	0%	0%	High	85	2.63	10.58
+at&t servicio al cliente	USD	5000	-90%	0%	Medium	48	0.54	1.31
+att tv and internet	USD	5000	0%	0%	Medium	39	2.07	5.56
+at&t cable and internet	USD	5000	0%	0%	Medium	52	2.65	8.00
+at&t cable packages	USD	5000	0%	0%	Medium	53	1.82	4.92
+att help	USD	5000	0%	0%	Medium	41	0.51	1.70
+att sales	USD	5000	0%	0%	Medium	61	1.91	8.04
+att go phone	USD	5000	0%	0%	High	69	1.22	17.31
+att bundles	USD	5000	-90%	-90%	Medium	49	2.05	8.61
+contact att	USD	5000	0%	0%	Medium	41	0.35	1.03
+att specials	USD	5000	0%	0%	High	69	0.59	3.00
+at&t fiber customer service	USD	5000	0%	0%	Medium	45	0.60	3.52
+at&t customer care	USD	5000	0%	0%	Low	30	0.45	1.05
+at and t phones	USD	5000	0%	0%	High	100	1.65	7.25
+att offers	USD	5000	0%	0%	Medium	58	0.44	7.60
+at&t first responder discount	USD	5000	0%	0%	Low	28	1.43	13.14
+att customer	USD	5000	0%	0%	Medium	46	0.34	1.41
+att military discount	USD	5000	0%	0%	Low	15	1.92	18.06
+at&t free phones	USD	5000	0%	0%	High	100	1.33	9.38
+att internet and tv	USD	5000	0%	-90%	Medium	41	2.44	4.69
+at&t unlimited plans for 1 line	USD	5000	0%	0%	High	93	1.21	6.65
+at&t pay as you go	USD	5000	0%	0%	Medium	50	1.65	21.58
+at t phones	USD	5000	0%	0%	High	100	1.65	7.25
+att help line	USD	5000	0%	0%	Low	7	0.64	4.55
+at and t deals	USD	5000	-90%	0%	High	87	1.13	6.00
+att home internet customer service	USD	5000	0%	0%	Medium	49	0.88	4.53
+att cellular	USD	5000	0%	0%	High	83	2.48	11.63
+at&t internet and tv	USD	5000	0%	-90%	Medium	41	2.44	4.69
+at&t deals for existing customers	USD	5000	0%	900%	High	99	0.78	3.13
+at&t bundles tv and internet	USD	5000	-90%	-90%	Low	24	2.71	4.44
+at&t new customer phone deals	USD	5000	0%	-90%	High	99	2.20	10.86
+at&t mobile near me	USD	5000	-90%	0%	High	94	0.61	6.00
+at&t samsung phones	USD	5000	0%	0%	High	100	0.49	4.12
+att service number	USD	5000	0%	0%	Medium	41	0.29	1.62
+customer service for at&t	USD	5000	0%	0%	Medium	39	0.37	1.01
+at&t wireless near me	USD	5000	0%	0%	Medium	59	1.82	6.89
+at&t plans prepaid	USD	5000	0%	0%	Medium	52	2.78	20.29
+att near	USD	5000	-90%	-90%	Low	31	0.85	4.72
+at&t close to me	USD	5000	0%	0%	Medium	36	0.83	4.72
+at&t locations near me	USD	5000	0%	0%	Medium	36	0.62	3.45
+contact att customer service	USD	5000	0%	0%	Medium	42	0.30	1.01
+att and t customer service	USD	5000	0%	0%	Medium	39	0.37	1.70
+att next up	USD	5000	0%	0%	Medium	45	3.47	14.39
+att bundle deals	USD	5000	0%	900%	High	77	1.72	5.39
+att fiber bundle	USD	5000	-90%	0%	Low	4	1.81	9.51
+att internet bundle	USD	5000	0%	900%	Low	10	2.00	8.35
+at&t support phone number	USD	5000	0%	0%	Low	25	0.31	1.20
+att phone support	USD	5000	0%	0%	Low	23	0.50	1.70
+at&t wireless phones	USD	5000	0%	0%	High	94	1.74	7.96
+at&t near	USD	5000	0%	0%	Medium	52	0.84	5.00
+at&t phone specials	USD	5000	0%	0%	High	100	0.76	3.95
+att prepaid hotspot	USD	5000	0%	0%	High	72	0.73	13.39
+att service phone number	USD	5000	0%	0%	Medium	45	0.36	2.37
+att customer service phone	USD	5000	0%	0%	Medium	37	0.35	1.35
+at&t helpline	USD	5000	0%	0%	Medium	41	0.51	1.70
+att internet tv bundle	USD	5000	-90%	-90%	Low	24	2.71	4.44
+att prepaid family plan	USD	5000	0%	0%	Medium	34	2.84	15.00
+att teacher discount	USD	5000	0%	0%	Low	24	1.62	12.35
+at&t prepaid service	USD	5000	0%	-90%	Medium	50	3.78	28.46
+att customer service number internet	USD	5000	0%	0%	Medium	41	1.06	2.67
+at&t prepaid cell phones	USD	5000	-90%	0%	High	95	0.30	9.27
+at&t business unlimited plans	USD	5000	-90%	0%	Low	23	5.48	42.00
+at&t deals right now	USD	5000	-90%	0%	High	100	1.03	5.64
+at&t tv internet	USD	5000	0%	0%	Low	20	2.30	12.57
+iphones att	USD	5000	0%	0%	High	100	0.77	6.00
+at&t prepaid unlimited	USD	5000	0%	0%	Medium	42	2.23	15.00
+att prepaid wireless plans	USD	5000	-90%	0%	Low	17	3.01	21.73
+at&t prepaid hotspot plans	USD	5000	0%	0%	Low	31	3.13	15.00
+at and t cell phone deals	USD	5000	-90%	0%	High	100	0.94	5.91
+att signature program	USD	5000	0%	0%	Low	6	4.41	24.51
+at&t apple phone	USD	5000	0%	0%	High	100	0.67	4.13
+att unlimited	USD	5000	0%	-90%	Medium	58	2.03	11.19
+at&t cable deals	USD	5000	0%	0%	Medium	53	1.82	4.92
+att fiber customer service number	USD	5000	0%	900%	Medium	44	0.90	5.06
+att smartphones	USD	5000	-90%	-90%	High	94	0.90	4.67
+att new iphone	USD	5000	0%	0%	High	100	0.74	6.02
+at&t prepaid phone service	USD	5000	-90%	0%	Low	21	2.50	19.77
+at&t unlimited data plan	USD	5000	0%	0%	Low	27	1.49	10.14
+att unlimited elite plan	USD	5000	0%	0%	Low	8	1.45	7.92
+att to go	USD	5000	0%	0%	Medium	44	2.19	21.77
+at&t unlimited starter plan	USD	5000	0%	0%	Low	11	1.22	11.55
+at&t support line	USD	5000	0%	0%	Low	23	0.50	1.70
+at & t bundles	USD	5000	0%	0%	Medium	50	2.13	10.18
+at & t cellular	USD	5000	0%	0%	High	83	2.48	11.63
+at&t online chat	USD	5000	0%	0%	Low	23	0.24	1.15
+att customer service cell phone	USD	5000	-90%	-90%	Low	3	0.17	3.62
+att deals for current customers	USD	5000	0%	900%	High	99	0.78	3.13
+corporate store att	USD	5000	0%	0%	Low	20	0.74	6.09
+at&t installment plan	USD	5000	0%	0%	Low	33	2.41	17.11
+att free phone deals	USD	5000	0%	900%	High	73	1.30	6.02
+att customer support internet	USD	5000	0%	0%	Medium	36	0.60	1.53
+att mobile phone	USD	5000	-99%	0%	High	100	1.29	7.39
+att cable specials	USD	5000	0%	0%	Medium	53	1.82	4.92
+at t offers	USD	5000	0%	0%	Medium	58	0.44	7.60
+at&t online customer service	USD	5000	0%	0%	Low	30	0.28	1.11
+att on the go	USD	5000	0%	0%	Medium	44	2.19	21.77
+at&t cable & internet	USD	5000	0%	0%	Medium	52	2.65	8.00
+at&t customer assistance	USD	5000	0%	0%	Medium	39	0.37	1.70
+at&t internet & tv	USD	5000	0%	-90%	Medium	41	2.44	4.69
+at&t phone store near me	USD	5000	-90%	0%	High	78	0.43	3.50
+local at&t store	USD	5000	0%	-90%	High	73	0.49	3.43
+closest at&t store	USD	5000	0%	0%	Medium	38	0.43	3.50
+att corporate store locator	USD	5000	-90%	0%	Low	25	1.03	6.51
+att prepaid phones and plans	USD	5000	-90%	0%	Medium	64	3.57	21.39
+atand t cell	USD	5000	0%	0%	High	83	2.48	11.63
+att unlimited your way	USD	5000	-90%	0%	Low	14	2.26	14.72
+at&t offices near me	USD	5000	0%	0%	Medium	41	0.50	3.64
+at&t unlimited premium plan	USD	5000	0%	0%	Low	5	1.17	6.66
+at & t cell phone	USD	5000	0%	0%	High	100	1.65	7.25
+att cable tv and internet	USD	5000	0%	0%	Medium	52	2.65	8.00
+at&t prepaid wireless service	USD	5000	-90%	0%	Low	21	2.50	19.77
+att employer discount	USD	5000	0%	0%	Low	6	5.01	24.06
+byod att	USD	5000	0%	0%	Medium	47	6.50	73.54
+at&t store prepaid phones	USD	5000	-90%	0%	High	95	0.30	9.27
+at&t signature program discount	USD	5000	0%	900%	Low	3	1.63	17.74
+att offices	USD	5000	0%	0%	Low	27	1.54	8.83
+at t go phone	USD	5000	0%	0%	High	69	1.22	17.31
+att phone offer	USD	5000	-90%	0%	High	100	0.99	6.00
+at&t prepaid cell phone service	USD	5000	-90%	0%	Low	21	2.50	19.77
+at &t specials	USD	5000	0%	0%	High	69	0.59	3.00
+att up next	USD	5000	0%	0%	Medium	45	3.47	14.39
+at&t sales on phones	USD	5000	0%	0%	High	100	0.42	3.70
+at&t cell customer service	USD	5000	0%	0%	Low	28	0.73	2.55
+at&t corporate store locator	USD	5000	-90%	0%	Low	25	1.03	6.51
+at&t prepaid cell service	USD	5000	-90%	0%	Low	21	2.50	19.77
+att wireless stores near me	USD	5000	-90%	-90%	Medium	66	0.55	4.37
+bring your own device att	USD	5000	0%	0%	Medium	47	6.50	73.54
+att help and support	USD	5000	0%	0%	Low	11	0.44	2.26
+at&t stores nearby	USD	5000	0%	0%	Medium	56	0.46	3.75
+att unlimited your way plan	USD	5000	0%	0%	Low	3	1.58	11.84
+att shops	USD	5000	0%	0%	Medium	35	0.83	6.28
+at & t free phones	USD	5000	0%	0%	High	100	1.33	9.38
+att customer contact	USD	5000	0%	0%	Medium	39	0.37	1.70
+at&t avpn	USD	5000	0%	-90%	Medium	45	2.34	12.82
+atencion al cliente de at&t	USD	5000	0%	0%	Medium	47	0.52	1.10
+at&t stores near me that are open	USD	5000	0%	0%	Medium	59	1.47	4.05
+at&t cell phone store near me	USD	5000	-90%	0%	High	97	0.51	3.48
+att corp store	USD	5000	0%	0%	Low	20	0.74	6.09
+at t free phone	USD	5000	0%	0%	High	100	1.53	7.65
+at&t unlimited phone plan	USD	5000	0%	900%	Low	27	1.42	10.07
+nearest at&t store near me	USD	5000	0%	0%	Medium	35	0.44	3.07
+att online chat support	USD	5000	0%	0%	Low	25	0.26	1.31
+att esupport chat	USD	5000	0%	0%	Low	25	0.26	1.31
+att customer service number mobile	USD	5000	0%	0%	Low	9	0.76	4.46
+online chat att	USD	5000	0%	0%	Low	23	0.24	1.15
+at&t mobile store near me	USD	5000	-90%	0%	High	97	0.51	3.48
+at&t store corporate store	USD	5000	0%	0%	Low	20	0.74	6.09
+att customer assistance	USD	5000	0%	0%	Medium	39	0.37	1.70
+att device deals	USD	5000	-90%	900%	Low	27	1.79	9.79
+at&t chat customer service	USD	5000	0%	0%	Low	29	0.21	1.24
+at&t store near me open now	USD	5000	0%	0%	Medium	51	0.43	2.39
+customer service at&t telephone number	USD	5000	0%	0%	Medium	37	0.37	1.34
+customer service line for at&t	USD	5000	0%	900%	Low	3	1.10	3.80
+at&t office close to me	USD	5000	0%	0%	Medium	41	0.50	3.64
+at&t store cerca de mi	USD	5000	0%	0%	Low	17	0.47	5.00
+call at&t customer service wireless	USD	5000	-90%	0%	Low	7	0.77	3.30
+at&t special phone deals	USD	5000	0%	0%	High	100	0.76	3.95
+at&t stores that are open	USD	5000	0%	900%	Low	7	0.70	3.50
+at&t customer support number internet	USD	5000	0%	0%	Medium	36	0.60	1.53
+new cell phones at&t	USD	5000	0%	0%	High	100	1.47	13.78
+at&t installment plan with next up	USD	5000	0%	0%	Low	6		
+corporate at&t store near me	USD	5000	0%	0%	Medium	34	0.67	6.28
+att customer care email	USD	5000	-90%	-90%	Low	2	1.10	3.50
+att store finder	USD	5000	-90%	0%	Low	17	3.59	20.87
+at&t kiosk	USD	5000	0%	0%	Low	5	0.74	7.50
+at&t open now near me	USD	5000	0%	0%	High	79	0.60	4.37
+at&t store open near me	USD	5000	0%	0%	Medium	59	1.47	4.05
+at&t stores near me now	USD	5000	-90%	0%	Medium	40	0.47	2.12
+at&t unlimited wireless plan	USD	5000	-90%	900%	Low	2	1.20	10.25
+at&t wireless unlimited data plans	USD	5000	0%	0%	Low	3	0.92	11.35
+att cor	USD	5000	0%	0%	Low	33	5.42	33.91
+att instalment plan	USD	5000	0%	0%	Low	33	2.41	17.11
+att store hrs	USD	5000	0%	0%	Low	15	0.61	2.93
+att store search	USD	5000	-90%	0%	Low	17	3.59	20.87
+att stores hours	USD	5000	0%	0%	Low	15	0.61	2.93
+att packages	USD	500	0%	-90%	Medium	41	1.11	7.10
+att fleet complete	USD	500	0%	0%	Medium	45	7.97	131.10
+att first responder	USD	500	0%	0%	Low	26	1.59	19.59
+at and t prepaid plans	USD	500	0%	0%	High	71	3.30	23.84
+att go phone plans	USD	500	0%	0%	High	68	2.34	16.14
+att business hotspot	USD	500	0%	0%	Medium	48	4.72	27.55
+att help support	USD	500	0%	0%	Medium	43	0.90	1.44
+att pay as you go plans	USD	500	-90%	0%	Medium	61	2.04	17.06
+at t prepaid plans	USD	500	0%	0%	High	79	3.06	21.42
+att dedicated fiber	USD	500	900%	900%	Medium	60	13.35	175.29
+att new service deals	USD	500	-90%	-90%	High	99	3.60	15.08
+att voip business	USD	500	900%	0%	Medium	47	7.20	111.86
+at7t customer service	USD	500	-90%	-90%	Medium	40	1.04	2.52
+att dedicated internet	USD	500	0%	0%	Low	29	7.79	56.49
+att fiber internet customer service	USD	500	0%	0%	Medium	50	1.28	5.66
+att near ne	USD	500	0%	0%	Low	25	1.19	5.87
+att prepaid deals	USD	500	0%	0%	Medium	39	3.43	17.02
+at and t cell phones	USD	500	-90%	-90%	High	98	1.70	6.12
+att puerto rico	USD	500	0%	0%	Low	10	1.76	8.56
+at and t bundles	USD	500	-90%	-90%	Medium	52	2.20	7.11
+at&t bundle packages	USD	500	0%	0%	Medium	47	1.67	4.00
+att paygo	USD	500	0%	-90%	Low	15	0.95	21.31
+at&t service center	USD	500	0%	0%	Medium	60	0.46	2.27
+at and t prepaid phones	USD	500	0%	0%	High	100	0.47	11.74
+join att	USD	500	0%	0%	High	100	4.41	25.10
+at and t cellular	USD	500	0%	0%	Medium	64	2.86	12.01
+at and t new customer deals	USD	500	0%	900%	High	100	2.43	10.79
+att wireless prepaid	USD	500	0%	0%	Medium	61	2.93	23.44
+att help desk	USD	500	0%	0%	Medium	48	0.90	2.40
+at&t around me	USD	500	0%	0%	Medium	47	1.46	6.00
+att next up plan	USD	500	0%	0%	Medium	47	2.67	12.47
+at&t offers for new customers	USD	500	0%	0%	High	100	1.78	7.72
+attws	USD	500	0%	0%	Medium	36	4.76	18.56
+att shop phones	USD	500	-90%	0%	High	100	1.40	11.92
+at&t special offers	USD	500	0%	0%	High	100	1.74	6.00
+att prepaid wireless	USD	500	0%	0%	Medium	41	2.50	22.46
+att bundle plans	USD	500	0%	0%	Medium	50	2.19	8.86
+at and t specials	USD	500	-90%	-90%	High	100	1.36	6.00
+at&t by me	USD	500	0%	0%	High	71	1.26	3.91
+att new cell service	USD	500	0%	900%	High	85	4.75	20.54
+att wifi and cable	USD	500	0%	0%	Medium	47	2.98	10.26
+at and t plans prepaid	USD	500	0%	0%	High	71	3.30	23.84
+at&t telephones	USD	500	0%	0%	High	100	0.90	4.54
+att wireless prepaid plans	USD	500	900%	900%	Low	3	3.28	24.10
+att business internet and phone	USD	500	0%	0%	Medium	41	10.00	64.24
+att go phones	USD	500	0%	0%	High	97	0.22	8.52
+att go plans	USD	500	0%	0%	Medium	59	2.68	16.22
+ofertas de at&t	USD	500	0%	0%	High	100	0.58	2.83
+at&t military discount internet	USD	500	0%	0%	Low	27	1.74	8.75
+att fiber customer support	USD	500	0%	0%	Medium	44	0.65	2.25
+at&t no contract plans	USD	500	0%	0%	Medium	55	2.35	22.00
+closest at&t	USD	500	0%	0%	Medium	37	0.67	4.27
+at & t phone	USD	500	0%	0%	High	97	1.13	6.60
+at&t galaxy phones	USD	500	0%	0%	High	100	0.42	4.00
+att phone plans prepaid	USD	500	-90%	-90%	High	69	2.55	15.00
+at&t current promotions	USD	500	0%	0%	High	100	1.16	5.80
+att samsung	USD	500	0%	-90%	High	100	1.22	7.39
+att unlimited prepaid	USD	500	0%	-90%	Medium	66	3.92	17.74
+at&t prepaid phones for sale	USD	500	0%	0%	High	100	0.19	4.44
+att dealer near me	USD	500	0%	0%	High	76	0.74	4.23
+att military	USD	500	0%	0%	Low	26	4.08	26.31
+at&t package deals	USD	500	0%	0%	High	75	1.02	4.00
+list of at&t corporate stores	USD	500	0%	0%	Low	23	2.64	15.56
+att law enforcement discount	USD	500	-90%	-90%	Low	12	7.04	36.42
+cheapest att prepaid plan	USD	500	0%	0%	High	79	2.40	13.27
+closest at&t near me	USD	500	0%	0%	Low	31	0.73	4.06
+at&t veterans discount	USD	500	0%	0%	Low	32	1.05	11.32
+at&t wireless broadband	USD	500	0%	0%	Low	18	4.11	358.81
+at&t new customer promotions	USD	500	0%	0%	High	100	1.57	8.30
+at&t pay as you go phones	USD	500	0%	0%	High	100	0.52	11.91
+at&t service center near me	USD	500	0%	0%	Medium	54	0.82	3.00
+att fleet tracker	USD	500	900%	900%	Low	19	13.98	481.76
+at&t specials for new customers	USD	500	0%	900%	High	100	1.55	6.60
+nearest at&t near me	USD	500	0%	0%	Low	31	0.73	4.06
+at&t buy phone	USD	500	0%	0%	High	100	2.20	27.72
+att premium plan	USD	500	0%	0%	Low	24	0.92	3.94
+att phone help	USD	500	0%	0%	Medium	35	0.51	1.86
+att instant on	USD	500	0%	0%	Low	27	3.67	46.82
+at&t new cell phone service	USD	500	0%	0%	High	99	4.00	35.60
+at and t free phones	USD	500	0%	0%	High	100	1.22	6.00
+att starter plan	USD	500	0%	0%	Medium	40	1.23	10.20
+att pre	USD	500	0%	0%	Medium	59	2.29	23.19
+at&t prepaid sim card plans	USD	500	0%	0%	Low	21	5.09	20.45
+att for first responders	USD	500	0%	0%	Low	18	1.41	25.68
+at&t cable and internet packages	USD	500	0%	0%	Medium	49	2.31	6.76
+at&t fiber optic customer service	USD	500	0%	0%	Medium	51	0.98	3.72
+att fiber military discount	USD	500	0%	0%	Low	17	1.40	8.00
+iphone prices at&t	USD	500	0%	0%	High	100	0.63	3.00
+customer service de at&t	USD	500	0%	900%	Medium	50	0.51	1.28
+at&t cable prices	USD	500	0%	0%	Medium	33	1.03	4.00
+att no contract phones	USD	500	-90%	-90%	High	97	1.61	12.15
+at&t samsung galaxy phones	USD	500	0%	0%	High	100	0.36	3.32
+at&t internet and tv packages	USD	500	0%	0%	Medium	34	2.62	4.45
+att current deals	USD	500	0%	0%	High	100	1.16	6.00
+att military plans	USD	500	-90%	0%	Low	20	1.81	18.40
+att wireless locations	USD	500	-90%	-90%	Medium	46	1.67	9.70
+apply for at&t phone	USD	500	0%	0%	High	100	3.40	31.59
+samsung at&t	USD	500	0%	0%	High	99	0.94	5.75
+at&t ofertas	USD	500	0%	0%	High	100	0.91	4.82
+att elite plan	USD	500	0%	0%	Low	17	1.03	4.57
+att corporate store near me now	USD	500	0%	0%	Low	24	0.59	3.40
+at&t cell phone promotions	USD	500	-90%	0%	High	98	1.02	6.00
+at&t open account	USD	500	0%	0%	Medium	43	10.00	72.20
+at&t internet contact	USD	500	0%	0%	Medium	46	1.42	10.00
+at and t military discount	USD	500	900%	0%	Low	33	2.37	14.94
+at&t bundle services	USD	500	-90%	0%	Medium	42	2.77	8.69
+att no contract	USD	500	0%	0%	High	70	3.72	18.52
+contact att support	USD	500	0%	0%	Medium	37	0.43	1.65
+att cable and internet bundle	USD	500	0%	0%	Medium	43	2.79	6.56
+the closest at&t	USD	500	0%	0%	Medium	47	1.14	5.00
+att fiber help	USD	500	0%	0%	Low	28	0.51	3.31
+at&t wireless new customer deals	USD	500	-90%	0%	High	96	2.13	10.89
+att online support	USD	500	0%	0%	Low	32	0.20	1.38
+at and t new phone deals	USD	500	-90%	0%	High	96	1.19	9.29
+att corporate discount	USD	500	0%	0%	Low	7	6.54	28.39
+at&t mobile offers	USD	500	0%	0%	High	98	1.09	6.44
+att customer care phone	USD	500	0%	0%	Medium	38	0.37	1.50
+at&t cell phone specials	USD	500	0%	0%	High	99	0.85	4.57
+att service call	USD	500	0%	0%	Medium	44	0.70	1.50
+gophone plans	USD	500	0%	0%	High	68	2.34	16.14
+at&t fiber tv packages	USD	500	0%	0%	Low	19	0.97	4.29
+att push to talk	USD	500	0%	0%	Medium	39	1.54	12.54
+the number for at&t customer service	USD	500	0%	0%	Medium	37	0.37	1.50
+at&t near my location	USD	500	0%	0%	Medium	45	0.64	3.25
+at&t internet for small business	USD	500	0%	0%	Medium	47	11.57	244.76
+at&t near by	USD	500	0%	0%	High	70	0.69	5.00
+att cell deals	USD	500	0%	0%	High	89	1.15	7.42
+at&t mobile deals for new customers	USD	500	0%	900%	High	91	1.40	8.63
+att 300 prepaid	USD	500	-90%	-90%	Medium	35	2.28	15.04
+at&t offers for existing customers	USD	500	0%	900%	High	99	1.27	4.46
+att call support	USD	500	0%	0%	Low	33	0.66	1.98
+att online deals	USD	500	900%	0%	Low	13	3.00	13.43
+att internet cable bundle	USD	500	0%	0%	Medium	43	2.79	6.56
+at&t prepaid monthly plans	USD	500	0%	0%	Low	18	3.01	16.49
+at&t prepaid service plans	USD	500	0%	0%	Medium	58	3.82	17.36
+give me the number to at&t customer service	USD	500	0%	0%	Medium	37	0.37	1.50
+att service request	USD	500	0%	0%	Medium	43	1.28	7.96
+att new service wireless	USD	500	0%	900%	High	85	4.75	20.54
+at&t dealer	USD	500	0%	0%	High	86	1.73	10.63
+at&t cellular near me	USD	500	0%	0%	High	90	1.31	4.45
+at&t mobile prepaid	USD	500	0%	0%	Medium	65	3.89	30.83
+att union discount	USD	500	0%	0%	Low	13	2.07	12.32
+att tv and internet bundle	USD	500	0%	0%	Low	18	2.54	4.95
+at&t mobile prepaid plans	USD	500	-90%	-90%	Medium	61	2.87	30.84
+at&t new deals	USD	500	0%	0%	High	98	1.52	6.17
+att office phones	USD	500	0%	0%	High	99	3.71	39.78
+at&t promotions phones	USD	500	-90%	-90%	High	87	2.19	6.00
+at&t near here	USD	500	0%	-90%	Medium	41	0.58	5.00
+at&t help center	USD	500	0%	0%	Medium	37	1.10	2.39
+att unlimited data	USD	500	0%	0%	Medium	64	1.89	11.39
+at prepaid	USD	500	0%	0%	Medium	54	1.84	22.72
+att tv internet bundle	USD	500	0%	0%	Low	18	2.54	4.95
+at&t first responder plan	USD	500	0%	0%	Low	30	1.33	17.16
+att prepaid wifi	USD	500	0%	0%	Medium	55	2.02	9.32
+at&t stores in my area	USD	500	0%	0%	Medium	56	0.90	3.44
+att smartphone deals	USD	500	0%	0%	High	75	1.15	6.64
+at&t fleet tracker	USD	500	900%	900%	Low	19	13.98	481.76
+at&t fiber contact	USD	500	0%	0%	Medium	46	1.15	5.42
+att new samsung phone	USD	500	0%	0%	High	99	0.79	4.36
+the nearest at&t	USD	500	0%	0%	Medium	47	1.14	5.00
+att 25 dollar plan	USD	500	0%	900%	High	70	3.76	17.08
+at&t unlimited extra plan	USD	500	0%	0%	Low	5	1.10	5.00
+att prequalify	USD	500	0%	0%	Medium	62	9.67	66.83
+first responder discount att	USD	500	0%	0%	Low	23	1.75	15.49
+att and t prepaid	USD	500	0%	0%	Medium	48	1.83	19.33
+at&t unlimited elite	USD	500	0%	0%	Low	13	1.37	10.51
+at&t unlimited prepaid plans	USD	500	0%	0%	Medium	60	2.04	14.52
+new galaxy phone at&t	USD	500	0%	0%	High	100	0.83	4.60
+at&t plans with free phones	USD	500	0%	900%	High	94	1.36	6.51
+at&t new account deals	USD	500	0%	900%	High	100	2.00	12.90
+att service line	USD	500	0%	0%	Low	30	1.26	6.20
+att bulk services	USD	500	-90%	0%	Medium	44	8.00	64.41
+unlimited your way at&t	USD	500	-99%	0%	Low	19	1.75	6.92
+att prepaid prices	USD	500	0%	0%	Medium	46	1.37	18.25
+at&t phone prices	USD	500	0%	0%	High	94	0.64	4.19
+at&t finance phone	USD	500	0%	900%	High	93	5.00	40.34
+next up at&t	USD	500	0%	0%	Medium	39	2.45	11.44
+at&t close by	USD	500	0%	0%	High	70	0.69	5.00
+at&t promos for existing customers	USD	500	0%	0%	High	94	1.40	3.50
+at&t prepaid hotspot refill	USD	500	0%	0%	High	93	0.50	2.67
+att unlimited family plan	USD	500	0%	0%	Low	15	1.49	11.62
+ofertas en at&t	USD	500	0%	0%	High	100	0.91	4.82
+att internet and tv plans	USD	500	0%	0%	Medium	39	2.81	5.83
+att unlimited starter	USD	500	0%	0%	Low	19	1.46	10.20
+first responder at&t	USD	500	0%	0%	Low	28	1.60	22.47
+at&t burner phone	USD	500	0%	0%	High	100	0.13	3.13
+att prepaid cost	USD	500	0%	0%	Medium	46	1.37	18.25
+pay as you go phone plans at&t	USD	500	900%	900%	Low	18	1.24	16.01
+att company discount	USD	500	-90%	-90%	Low	9	3.09	23.89
+att at hand	USD	500	-90%	0%	Low	26	5.86	141.23
+at&t internet and tv deals	USD	500	0%	0%	Medium	34	2.62	4.45
+att prepaid line	USD	500	0%	0%	Medium	52	6.50	37.45
+att broadband customer service	USD	500	0%	-90%	Medium	44	0.38	2.56
+at&t prepaid pay as you go	USD	500	-90%	-90%	Medium	37	1.65	28.94
+at&t internet and tv service	USD	500	0%	0%	Low	9	2.07	6.34
+att fiber support number	USD	500	0%	0%	Medium	37	0.43	1.97
+att prepaid promotions	USD	500	0%	0%	Medium	52	2.53	15.76
+at&t prepaid options	USD	500	-90%	0%	Medium	46	2.18	29.34
+at&t customer support phone	USD	500	0%	0%	Medium	46	0.42	1.70
+att free phone with new line	USD	500	-90%	0%	High	99	2.53	9.02
+at&t prepaid mobile hotspot	USD	500	0%	0%	Medium	64	0.55	11.98
+att prepaid plan prices	USD	500	0%	0%	High	69	1.23	12.35
+at & t cell	USD	500	0%	0%	Medium	64	2.86	12.01
+at&t houston tx	USD	500	0%	-90%	Medium	40	1.94	5.17
+att wireless stores	USD	500	0%	0%	High	79	0.75	6.00
+at&t stores around me	USD	500	0%	0%	Medium	56	0.55	4.00
+att new offers	USD	500	0%	0%	High	100	1.29	7.20
+att basic phones	USD	500	0%	0%	High	100	0.62	5.00
+unlimited elite att	USD	500	0%	0%	Low	18	1.41	8.56
+att service support	USD	500	0%	0%	Medium	41	0.65	2.21
+at&t mobile new customer deals	USD	500	0%	900%	High	91	1.40	8.63
+at&t internet tv plans	USD	500	0%	0%	Medium	39	2.81	5.83
+current at&t phone deals	USD	500	0%	0%	High	100	0.89	4.01
+unlimited starter plan at&t	USD	500	0%	0%	Low	25	1.29	9.29
+at&t internet & tv services	USD	500	0%	0%	Low	9	2.07	6.34
+first responder att discount	USD	500	-90%	0%	Low	29	1.29	18.18
+at&t mobile specials	USD	500	0%	0%	High	99	0.85	4.57
+at&t locations nearby	USD	500	0%	0%	Low	31	0.56	4.45
+att new phones deals	USD	500	-90%	0%	High	100	0.87	5.20
+at&t wireless phone deals	USD	500	0%	0%	High	74	1.15	6.00
+att prepaid plans unlimited	USD	500	900%	900%	Medium	35	1.37	9.76
+att signature discount	USD	500	0%	0%	Low	7	5.71	20.49
+at&t hotspot plans prepaid	USD	500	0%	0%	Medium	50	2.76	14.80
+at&t authorized dealer near me	USD	500	0%	0%	Medium	52	0.60	3.35
+att galaxy	USD	500	0%	0%	High	100	1.00	5.51
+att starter	USD	500	0%	0%	Low	5	5.94	44.47
+at&t corporate near me	USD	500	0%	0%	Low	33	0.74	4.28
+at at wireless	USD	500	0%	0%	Medium	56	3.20	13.48
+att online help	USD	500	0%	0%	Low	32	0.20	1.38
+at&t wireless mobile	USD	500	-90%	-90%	Medium	60	2.11	7.80
+call at&t internet customer service	USD	500	0%	900%	Medium	41	0.97	2.30
+att customer support chat	USD	500	0%	0%	Low	27	0.23	1.38
+at&t support center	USD	500	0%	900%	Low	8	0.90	1.96
+att prepaid smartphones	USD	500	0%	0%	High	100	0.27	6.76
+att service help	USD	500	0%	0%	Medium	44	0.37	1.92
+att new line offers	USD	500	-90%	0%	High	100	2.00	10.37
+att educator discount	USD	500	0%	0%	Low	25	1.95	10.45
+at&t corded phones	USD	500	0%	0%	High	99	0.10	0.50
+at&t text support	USD	500	0%	0%	Low	4	3.09	15.28
+att unlimited extra	USD	500	0%	0%	Low	14	1.48	9.96
+at&t customer service support	USD	500	0%	0%	Low	19	0.51	1.50
+at&t wifi bundle	USD	500	0%	0%	Low	23	3.30	17.68
+att retailer near me	USD	500	-90%	-90%	High	72	0.64	6.00
+at&t retailer	USD	500	0%	0%	Medium	47	0.91	6.00
+phones at at&t stores	USD	500	-90%	0%	High	100	1.40	11.92
+contact us att	USD	500	0%	0%	Low	28	0.61	1.12
+at&t live support	USD	500	0%	900%	Low	30	0.65	1.47
+att tv and internet packages	USD	500	0%	0%	Low	31	1.46	4.20
+at&t cellular promotions	USD	500	-90%	0%	High	100	1.70	5.48
+att medical discount	USD	500	0%	0%	Low	12	2.00	11.44
+at&t available phones	USD	500	-90%	0%	High	76	1.13	3.69
+at&t wireless prepaid phones	USD	500	0%	0%	Medium	61	2.93	23.44
+att next up program	USD	500	0%	0%	Low	19	3.38	10.73
+att tv bundle	USD	500	0%	-90%	Medium	36	1.13	4.00
+at&t phone systems	USD	500	-90%	-90%	High	100	0.73	9.03
+att wifi cable	USD	500	0%	0%	Medium	47	2.98	10.26
+closest at&t to my location	USD	500	0%	0%	Medium	45	0.64	3.25
+email at&t customer service	USD	500	0%	0%	Low	4	0.91	3.40
+at at phone	USD	500	-90%	-90%	High	99	1.55	8.50
+at&t prepaid plans with hotspot	USD	500	0%	900%	Medium	43	4.50	17.27
+att business unlimited	USD	500	-90%	0%	Low	32	5.52	86.35
+at&t customer chat	USD	500	0%	0%	Low	30	0.25	1.38
+call att help	USD	500	0%	0%	Medium	41	0.69	1.70
+numero de at&t servicio al cliente	USD	500	0%	0%	Medium	47	0.49	1.32
+at&t stores close to me	USD	500	0%	0%	Medium	49	0.58	3.00
+att servicio al cliente usa	USD	500	0%	0%	Medium	40	0.44	1.30
+att signature	USD	500	0%	0%	Low	13	4.41	15.16
+at&t new line promotion	USD	500	0%	0%	High	100	2.67	13.59
+contact at&t internet customer service	USD	500	0%	900%	Medium	41	0.97	2.30
+at and t unlimited plans	USD	500	0%	0%	High	73	1.77	11.02
+at&t wireless internet customer service	USD	500	0%	0%	Low	3	1.96	6.19
+at&t prepaid cellular	USD	500	-90%	-90%	Medium	55	1.75	18.17
+at&t prepaid sim plans	USD	500	0%	0%	Low	21	5.09	20.45
+att iphone purchase	USD	500	0%	0%	High	99	0.77	11.98
+at&t cable internet packages	USD	500	0%	0%	Medium	49	2.31	6.76
+at&t eptt	USD	500	0%	0%	Low	4	1.59	14.44
+at&t prepaid android phones	USD	500	0%	0%	High	100	0.15	2.91
+att prepaid 12 month plan	USD	500	0%	900%	Low	10	3.62	25.11
+at&t company store	USD	500	0%	0%	Medium	57	1.05	5.09
+free at&t cell phones	USD	500	0%	0%	High	100	0.91	4.82
+at&t tv & internet packages	USD	500	0%	0%	Low	31	1.46	4.20
+at&t phone deals right now	USD	500	0%	900%	High	100	0.97	5.54
+att wireless pay as you go	USD	500	0%	0%	Medium	61	2.93	23.44
+at&t w	USD	500	-90%	0%	Low	24	1.72	12.16
+phones at and t	USD	500	0%	0%	High	77	0.88	4.32
+at&t wireless cell phones	USD	500	-90%	-90%	Medium	60	2.11	7.80
+att memorial day sale	USD	500	0%	0%	High	100		
+att next plan	USD	500	0%	0%	Medium	36	3.33	9.47
+servicio al cliente de att	USD	500	-90%	0%	Medium	43	0.33	1.17
+at&t starter plans	USD	500	0%	0%	Medium	40	1.23	10.20
+at&t cell phone deals for new customers	USD	500	0%	900%	High	86	1.41	7.10
+att veterans	USD	500	0%	0%	Medium	35	1.50	15.41
+att prepaid cell	USD	500	-90%	-90%	Medium	55	1.75	18.17
+at&t pay as u go plans	USD	500	-90%	0%	Medium	61	2.04	17.06
+unlimited starter att	USD	500	-90%	-90%	Low	28	1.28	13.09
+at&t starter	USD	500	0%	0%	Low	5	5.94	44.47
+at&t fiber contact number	USD	500	0%	0%	Medium	54	1.39	8.00
+at&t internet tv packages	USD	500	0%	0%	Medium	34	2.62	4.45
+att extra plan	USD	500	-90%	-90%	Low	21	1.29	6.04
+art phones	USD	500	0%	0%	High	81	0.27	5.22
+att store deals	USD	500	0%	0%	High	100	1.86	11.31
+at&t prepaid store near me	USD	500	0%	900%	Medium	52	0.91	17.82
+att call help	USD	500	0%	0%	Medium	41	0.69	1.70
+att wireless military discount	USD	500	0%	0%	Low	18	1.94	21.76
+ofertas de att celulares	USD	500	-90%	-90%	High	99	0.80	2.53
+at&t prepaid wifi hotspot	USD	500	0%	900%	Medium	58	0.33	9.81
+local at&t office	USD	500	0%	0%	Medium	60	1.22	3.59
+att authorized dealer near me	USD	500	0%	0%	Medium	52	0.60	3.35
+att support hours	USD	500	0%	0%	Low	17	1.20	2.35
+att shops near me	USD	500	0%	0%	High	88	0.54	4.37
+netbond	USD	500	0%	0%	Low	9	10.25	71.36
+att teacher discount verification	USD	500	0%	900%	Low	20	1.34	6.79
+at&t stores by me	USD	500	0%	0%	Medium	42	0.46	3.00
+att doctor discount	USD	500	0%	0%	Low	9	7.05	20.70
+at&t tv internet packages	USD	500	0%	0%	Low	31	1.46	4.20
+at&t prepaid mobile hotspot plans	USD	500	0%	0%	Low	16	2.57	16.17
+at&t military phone plans	USD	500	0%	0%	Low	16	1.66	15.13
+at&t mobile pay as you go	USD	500	0%	0%	Medium	65	3.89	30.83
+at&t yearly plan	USD	500	0%	0%	Medium	65	3.13	16.18
+buy a phone from at&t	USD	500	0%	0%	High	100	2.20	27.72
+unlimited elite	USD	500	-90%	-90%	Low	19	1.78	9.70
+att work discount	USD	500	0%	0%	Low	6	3.10	13.64
+att free phone offer	USD	500	0%	900%	High	97	0.84	4.80
+at&t unlimited cell phone plans	USD	500	-90%	-90%	Low	27	1.21	11.18
+nearest at&t office	USD	500	0%	0%	Medium	51	0.57	5.00
+4 lines att	USD	500	0%	0%	Medium	58	1.52	8.50
+att unlimited plan cost	USD	500	0%	0%	Medium	39	1.01	9.14
+at&t stores near me hours	USD	500	0%	0%	Low	20	0.64	1.89
+unlimited elite plan at&t	USD	500	0%	900%	Low	16	1.10	5.76
+at&t kennewick	USD	500	0%	0%	Low	32	1.60	4.25
+att fan discount	USD	500	0%	0%	Low	3	2.13	30.54
+at&t plans free phones	USD	500	0%	900%	High	94	1.36	6.51
+att prepaid phones near me	USD	500	0%	0%	High	100	0.28	6.63
+at&t internet store	USD	500	0%	0%	Low	27	0.95	7.34
+at&t prepaid store	USD	500	0%	900%	Low	30	1.75	17.84
+at&t connected communities	USD	500	0%	0%	Low	15	3.00	10.00
+at&t next	USD	500	0%	0%	Medium	53	3.54	11.83
+at&t outlets	USD	500	-90%	0%	High	76	1.91	5.95
+prepaid at&t wireless	USD	500	0%	0%	Medium	61	2.93	23.44
+samsung galaxy phones at at&t	USD	500	0%	0%	High	100	0.52	4.21
+at&t centers near me	USD	500	0%	0%	Low	25	0.85	4.42
+my att customer service number	USD	500	900%	900%	Low	23	0.49	2.08
+at&t new customer deals cell phone	USD	500	0%	900%	High	86	1.41	7.10
+at&t phone deals near me	USD	500	-90%	0%	High	98	1.41	6.56
+at&t login customer service	USD	500	0%	900%	Low	16	1.03	4.28
+signature discount att	USD	500	0%	0%	Low	5	12.50	23.58
+unlimited starter	USD	500	0%	0%	Medium	43	2.12	12.18
+att service hours	USD	500	0%	0%	Low	32	1.21	4.10
+at&t prepaid plans online	USD	500	-99%	0%	Low	24		
+att annual plan	USD	500	0%	900%	Medium	63	2.96	15.13
+at&t stores near here	USD	500	-90%	-90%	Medium	41	0.44	3.50
+att wireless teacher discount	USD	500	-90%	0%	Low	16	3.13	18.23
+at&t free phone promotion	USD	500	0%	900%	High	87	1.12	4.88
+at&t kennewick wa	USD	500	0%	900%	Medium	46	1.50	3.49
+att iphone installment plan	USD	500	-90%	0%	Medium	52	3.50	12.09
+at&t cell phones samsung	USD	500	0%	-90%	High	100	0.49	2.21
+att hotspot sim card	USD	500	-90%	0%	High	96	1.10	8.74
+att unlimited plan price	USD	500	0%	0%	Medium	39	1.01	9.14
+at&t prepaid telephone	USD	500	0%	0%	High	94	0.27	4.39
+at&t internet store near me	USD	500	0%	0%	Medium	38	0.58	5.18
+att unlimited plus multi line	USD	500	0%	0%	Low	2	1.85	12.97
+att customer service text	USD	500	0%	0%	Low	22	0.29	1.28
+att family plan unlimited data	USD	500	0%	0%	Low	19	1.26	9.40
+nurse discount att	USD	500	0%	0%	Low	8	8.67	27.09
+att tv internet deals	USD	500	0%	0%	Low	31	1.46	4.20
+at&t packages tv and internet	USD	500	0%	0%	Medium	34	2.62	4.45
+att prepaid tablet plans	USD	500	-90%	0%	Low	15	3.85	14.68
+at&t branches near me	USD	500	0%	900%	Medium	37	1.03	3.69
+att phones apple	USD	500	0%	0%	High	100	0.77	5.15
+call att for help	USD	500	0%	0%	Medium	41	0.69	1.70
+at&t mobile promotion	USD	500	-90%	0%	High	98	1.02	6.00
+authorized at&t stores near me	USD	500	0%	0%	Medium	47	0.54	2.50
+at&t fiber internet and tv bundles	USD	500	-90%	0%	Low	1		
+at&t kiosk near me	USD	500	0%	0%	Medium	36	0.67	5.00
+at&t stores near my location	USD	500	0%	0%	Medium	38	0.51	2.50
+at&t and iphone	USD	500	0%	0%	High	100	0.70	4.56
+att prepaid go phones	USD	500	0%	900%	Medium	41	1.22	15.00
+at&t next up phone upgrade feature	USD	500	0%	0%	Low	21	1.12	12.21
+at&t u verse tv and internet packages	USD	500	0%	0%	Low	31	1.46	4.20
+att signature program benefits	USD	500	-90%	0%	Low	5		
+at&t prepaid mobile phone plans	USD	500	0%	900%	Low	0		
+closest at&t office	USD	500	0%	0%	Medium	51	0.57	5.00
+at&t mobile phone promotions	USD	500	-90%	0%	High	98	1.02	6.00
+att unlimited max	USD	500	0%	0%	Medium	35	1.83	9.49
+at&t owned stores near me	USD	500	0%	0%	Medium	46	0.80	3.11
+closest at&t store to my location	USD	500	0%	0%	Medium	38	0.45	2.98
+att official store	USD	500	0%	0%	Medium	60	1.16	5.00
+at&t store iphone	USD	500	0%	0%	High	100	0.70	5.06
+at&t recharge plan	USD	500	0%	-90%	High	100	0.76	2.03
+att 4 lines deal	USD	500	0%	900%	High	95	1.48	7.79
+nearest at&t phone store	USD	500	0%	0%	High	68	0.39	2.50
+at&t store number	USD	500	0%	0%	Low	23	0.45	4.84
+instant on at&t	USD	500	0%	-90%	Low	30	3.21	51.03
+family plan at&t unlimited data	USD	500	0%	0%	Low	19	1.26	9.40
+at&t mobile free phones	USD	500	0%	0%	High	100	0.91	4.82
+at&t phones prepaid phones	USD	500	0%	0%	High	94	0.27	4.39
+at&t mobile hotspot plans prepaid	USD	500	0%	0%	Low	16	2.57	16.17
+samsung android phones at&t	USD	500	0%	0%	High	99	0.18	1.88
+att prepaid hotspot device	USD	500	-90%	0%	High	90	0.26	7.60
+at&t next program	USD	500	0%	0%	Medium	36	3.33	9.47
+at&t account customer service	USD	500	0%	0%	Medium	36	0.95	4.24
+at&t cost for unlimited data plan	USD	500	0%	0%	Medium	35	0.91	8.73
+att open on sunday	USD	500	0%	0%	Low	19	2.00	4.47
+closest at&t store near me	USD	500	0%	900%	Medium	38	0.45	3.00
+customer service phone at&t	USD	500	0%	0%	Medium	42	0.60	3.44
+att phone payment plans	USD	500	-90%	0%	Medium	59	2.33	7.09
+at&t offers cell phones	USD	500	0%	0%	High	98	1.09	6.44
+at&t cell stores near me	USD	500	-90%	-90%	High	87	0.55	3.84
+at&t mobile stores	USD	500	0%	-90%	High	79	0.50	4.46
+at&t customer support email	USD	500	0%	0%	Low	3		
+at&t phone customer	USD	500	0%	900%	Medium	56	1.00	2.75
+at&t prepaid hotspot login	USD	500	0%	0%	Low	0		
+at&t small phones	USD	500	0%	0%	High	100	0.38	3.85
+at&t prepaid mobile hotspot device	USD	500	-90%	0%	High	90	0.26	7.60
+at&t unlimited data plan cost	USD	500	0%	0%	Medium	35	0.91	8.73
+at&t phone shop near me	USD	500	-90%	0%	High	76		
+at&t unlimited elite plan price	USD	500	-90%	-90%	Low	13	1.00	3.09
+find at&t store near me	USD	500	0%	0%	Medium	40	0.59	3.60
+find att store	USD	500	0%	0%	Medium	35	0.51	13.23
+att unlimited price	USD	500	0%	-90%	Medium	46	1.17	9.35
+at&t com customer service number	USD	500	0%	0%	Medium	41	0.53	2.20
+att in puerto rico	USD	500	0%	0%	Low	4		
+at&t and t customer service number	USD	500	-90%	0%	Medium	43	0.32	1.50
+at&t 4 lines unlimited	USD	500	-90%	-90%	Medium	42	1.11	6.04
+local at&t stores near me	USD	500	0%	0%	High	68	0.42	4.08
+at&t authorized retailers near me	USD	500	0%	0%	Medium	58	0.72	3.54
+official at&t store near me	USD	500	0%	0%	Medium	57	0.72	3.44
+att unlimited cost	USD	500	0%	-90%	Medium	46	1.17	9.35
+closest at&t phone store	USD	500	0%	0%	High	68	0.39	2.50
+at&t internet of things	USD	500	0%	-90%	Medium	38	8.57	291.91
+at&t unlimited data plan price	USD	500	0%	0%	Medium	35	0.91	8.73
+price for at&t unlimited data plan	USD	500	0%	0%	Medium	35	0.91	8.73
+att add a line promotions	USD	500	0%	900%	High	84	2.25	10.99
+at&t phone locations	USD	500	0%	0%	Medium	53	1.68	3.15
+att cell phone stores	USD	500	0%	-90%	High	79	0.50	4.46
+at&t phone installment plan	USD	500	-90%	0%	Low	25	2.66	16.00
+at & t next	USD	500	0%	0%	Medium	53	3.54	11.83
+at t next	USD	500	0%	0%	Medium	53	3.54	11.83
+at&t and samsung	USD	500	0%	-90%	High	100	1.22	7.39
+at&t at&t store near me	USD	500	0%	0%	Medium	49	0.58	3.00
+at&t bundles tv internet phone	USD	500	0%	0%	Low	32	1.10	3.29
+at&t cell phone locations	USD	500	0%	-90%	High	79	0.50	4.46
+at&t closing time	USD	500	0%	0%	Low	13	2.10	7.07
+at&t complaint customer service	USD	500	0%	0%	Low	9	1.15	2.16
+at&t customer service locations	USD	500	-90%	0%	Low	7	1.28	3.00
+at&t customer store near me	USD	500	-90%	0%	High	100	0.36	2.50
+at&t factory store near me	USD	500	0%	900%	High	72	0.54	1.37
+at&t gsms	USD	500	0%	-90%	Low	11	5.79	34.05
+at&t headquarters near me	USD	500	900%	900%	Low	15		
+at&t how much is unlimited data	USD	500	0%	0%	Low	32	1.08	9.85
+at&t job discount	USD	500	0%	0%	Low	6	3.10	13.64
+at&t main store near me	USD	500	0%	900%	Medium	46	0.62	2.48
+at&t mobile hotspot pay as you go	USD	500	0%	0%	Medium	64	0.55	11.98
+at&t mobility cell phone	USD	500	-90%	-90%	Medium	60	2.11	7.80
+at&t next up charge	USD	500	0%	-90%	Low	3		
+at&t official store near me	USD	500	0%	900%	Medium	59	0.57	2.50
+at&t opening hours	USD	500	0%	0%	Low	21	1.67	6.60
+at&t prepaid hotspot data plans	USD	500	0%	900%	Low	10	2.66	14.06
+at&t prepaid wireless hotspot	USD	500	0%	0%	Medium	64	0.55	11.98
+at&t retail store locations	USD	500	0%	-90%	Low	24	0.38	1.90
+at&t store close by me	USD	500	0%	0%	Medium	49	0.58	3.00
+at&t store corporate near me	USD	500	0%	900%	Low	17	0.87	5.63
+at&t store hours today	USD	500	0%	0%	Low	15	0.53	1.59
+at&t store location near me	USD	500	0%	0%	Medium	33	0.47	4.00
+at&t store locator by zip code	USD	500	0%	900%	Low	21	0.59	6.00
+at&t store near me open	USD	500	0%	0%	Medium	46	0.49	3.77
+at&t store open now	USD	500	0%	0%	Medium	57	0.58	5.00
+at&t store open sunday	USD	500	-90%	-90%	Low	21	1.36	4.04
+at&t store store near me	USD	500	0%	0%	Medium	38	0.58	5.18
+at&t stores open today	USD	500	0%	900%	Medium	57	1.21	3.86
+at&t unlimited 4 lines	USD	500	-90%	-90%	Medium	42	1.11	6.04
+at&t unlimited elite wireless plan	USD	500	0%	0%	Low	1		
+at7t stores near me	USD	500	0%	0%	Medium	56	1.25	10.50
+att byod deals	USD	500	0%	900%	Low	19	6.00	37.70
+att closest store	USD	500	0%	0%	Medium	44	0.52	3.52
+att job discounts	USD	500	0%	0%	Low	6	3.10	13.64
+att main store	USD	500	0%	0%	Medium	44	0.82	6.06
+att next up sm phone upgrade feature	USD	500	0%	0%	Low	9	2.32	28.42
+att open now	USD	500	0%	0%	Medium	53	1.01	6.53
+att port protection	USD	500	0%	900%	Low	5		
+att retail locations	USD	500	0%	-90%	Low	24	0.38	1.90
+att store me	USD	500	0%	0%	Medium	42	0.46	3.00
+att unlimited 2 lines	USD	500	0%	0%	Medium	51	1.36	8.39
+closest att store near me	USD	500	0%	900%	Medium	38	0.45	3.00
+corporate owned at&t store near me	USD	500	0%	900%	Low	27	0.59	1.74
+directions to the nearest at&t store	USD	500	900%	900%	Low	17	0.69	3.54
+find an at&t store	USD	500	0%	0%	Medium	35	0.51	13.23
+nearest at&t shop	USD	500	0%	0%	Medium	44	0.52	3.52
+nurse att	USD	500	0%	0%	Low	5	3.00	23.79
+signature att	USD	500	0%	0%	Low	13	4.41	15.16
+the closest at&t store to me	USD	500	0%	0%	Medium	42	0.52	3.93
+the nearest at&t store near me	USD	500	0%	0%	Medium	36	0.58	4.67
+the nearest at&t store to me	USD	500	0%	0%	Medium	42	0.52	3.93
+the nearest att store	USD	500	0%	0%	Medium	44	0.56	4.00
+unlimited plus multi line att	USD	500	0%	0%	Low	2	1.85	12.97
+unlimited svc	USD	500	0%	0%	Low	2	5.52	10.89
+at&t internet air plans	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air availability by address	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air pricing	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air setup process	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air speed test	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air upload speed	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air for gaming	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air for streaming	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air no contract	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air equipment fee	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air unlimited data	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air customer reviews	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air latency	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air vs cable	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air vs fiber	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air in my area	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air for rural areas	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air installation time	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air signal strength	USD	500	0%	0%	Medium	45	2.00	12.00
+at&t internet air modem and gateway	USD	500	0%	0%	Medium	45	2.00	12.00
+att internet air plans for home	USD	500	0%	0%	Medium	45	2.00	12.00
+att internet air business plan	USD	500	0%	0%	Medium	45	2.00	12.00
+att internet air outage	USD	500	0%	0%	Medium	45	2.00	12.00
+att internet air check availability	USD	500	0%	0%	Medium	45	2.00	12.00
+att internet air price for new customers	USD	500	0%	0%	Medium	45	2.00	12.00

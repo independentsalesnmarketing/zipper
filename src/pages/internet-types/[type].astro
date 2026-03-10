@@ -140,6 +140,40 @@ const schemas = [
   ]),
   generateFAQSchema(faqs),
 ];
+
+const audienceMap: Record<string, { slug: string; label: string; icon: string }[]> = {
+  fiber: [
+    { slug: 'gaming', label: 'Internet for Gaming', icon: '🎮' },
+    { slug: 'work-from-home', label: 'Internet for Remote Work', icon: '💼' },
+    { slug: 'streaming', label: 'Internet for Streaming', icon: '📺' },
+    { slug: 'small-business', label: 'Small Business Internet', icon: '🏢' },
+  ],
+  cable: [
+    { slug: 'streaming', label: 'Internet for Streaming', icon: '📺' },
+    { slug: 'work-from-home', label: 'Internet for Remote Work', icon: '💼' },
+    { slug: 'gaming', label: 'Internet for Gaming', icon: '🎮' },
+  ],
+  dsl: [
+    { slug: 'seniors', label: 'Internet for Seniors', icon: '👴' },
+    { slug: 'rural', label: 'Rural Internet', icon: '🌾' },
+    { slug: 'low-income', label: 'Low-Income Internet', icon: '💚' },
+  ],
+  satellite: [
+    { slug: 'rural', label: 'Rural Internet', icon: '🌾' },
+    { slug: 'low-income', label: 'Low-Income Internet', icon: '💚' },
+  ],
+  '5g': [
+    { slug: 'apartments', label: 'Internet for Apartments', icon: '🏠' },
+    { slug: 'students', label: 'Internet for Students', icon: '🎓' },
+    { slug: 'work-from-home', label: 'Internet for Remote Work', icon: '💼' },
+  ],
+  'fixed-wireless': [
+    { slug: 'rural', label: 'Rural Internet', icon: '🌾' },
+    { slug: 'low-income', label: 'Low-Income Internet', icon: '💚' },
+    { slug: 'seniors', label: 'Internet for Seniors', icon: '👴' },
+  ],
+};
+const audienceLinks = audienceMap[typeSlug] || [];
 ---
 <Base
   title={`${td.title} — Plans, Speeds & Availability (${year})`}
@@ -200,8 +234,10 @@ const schemas = [
         <h2 style="margin-bottom: var(--space-xl);">Top {td.h1} Providers ({year})</h2>
         {typeProviders.length > 0 ? (
           <div style="display: flex; flex-direction: column; gap: var(--space-md);">
-            {typeProviders.map((p, i) => (
-              <div class="card" style={`padding: var(--space-xl); ${p.isPartner ? 'border-color: rgba(0, 213, 132, 0.3); background: rgba(0, 213, 132, 0.02);' : ''}`}>
+            {typeProviders.map((p, i) => {
+              const cardStyle = "padding: var(--space-xl);" + (p.isPartner ? ' border-color: rgba(0, 213, 132, 0.3); background: rgba(0, 213, 132, 0.02);' : '');
+              return (
+              <div class="card" style={cardStyle}>
                 <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md);">
                   <div>
                     <div style="display: flex; align-items: center; gap: var(--space-sm);">
@@ -219,11 +255,12 @@ const schemas = [
                     {p.isPartner && (
                       <a href="#get-connected" class="btn btn-cta" style="font-size: var(--text-sm);">Get {p.name}</a>
                     )}
-                    <a href={`/provider/${p.slug}`} class="btn btn-secondary" style="font-size: var(--text-sm);">View Plans</a>
+                    <a href={"/provider/" + p.slug} class="btn btn-secondary" style="font-size: var(--text-sm);">View Plans</a>
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         ) : (
           <div class="card" style="padding: var(--space-2xl); text-align: center;">
@@ -240,7 +277,7 @@ const schemas = [
           {typeKeys.filter(k => k !== typeSlug).map(k => {
             const t = typeData[k];
             return (
-              <a href={`/internet-types/${t.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none;">
+              <a href={"/internet-types/" + t.slug} class="card" style="padding: var(--space-lg); text-decoration: none;">
                 <h4 style="margin-top: var(--space-sm); color: var(--text-primary);">{t.h1}</h4>
                 <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">{t.speedRange}</p>
               </a>
@@ -250,58 +287,22 @@ const schemas = [
       </div>
 
       <!-- Best For: Audience Links -->
-      {(() => {
-        const audienceMap = {
-          fiber: [
-            { slug: 'gaming', label: 'Internet for Gaming', icon: '🎮' },
-            { slug: 'work-from-home', label: 'Internet for Remote Work', icon: '💼' },
-            { slug: 'streaming', label: 'Internet for Streaming', icon: '📺' },
-            { slug: 'small-business', label: 'Small Business Internet', icon: '🏢' },
-          ],
-          cable: [
-            { slug: 'streaming', label: 'Internet for Streaming', icon: '📺' },
-            { slug: 'work-from-home', label: 'Internet for Remote Work', icon: '💼' },
-            { slug: 'gaming', label: 'Internet for Gaming', icon: '🎮' },
-          ],
-          dsl: [
-            { slug: 'seniors', label: 'Internet for Seniors', icon: '👴' },
-            { slug: 'rural', label: 'Rural Internet', icon: '🌾' },
-            { slug: 'low-income', label: 'Low-Income Internet', icon: '💚' },
-          ],
-          satellite: [
-            { slug: 'rural', label: 'Rural Internet', icon: '🌾' },
-            { slug: 'low-income', label: 'Low-Income Internet', icon: '💚' },
-          ],
-          '5g': [
-            { slug: 'apartments', label: 'Internet for Apartments', icon: '🏠' },
-            { slug: 'students', label: 'Internet for Students', icon: '🎓' },
-            { slug: 'work-from-home', label: 'Internet for Remote Work', icon: '💼' },
-          ],
-          'fixed-wireless': [
-            { slug: 'rural', label: 'Rural Internet', icon: '🌾' },
-            { slug: 'low-income', label: 'Low-Income Internet', icon: '💚' },
-            { slug: 'seniors', label: 'Internet for Seniors', icon: '👴' },
-          ],
-        };
-        const links = (audienceMap as Record<string, { slug: string; label: string; icon: string }[]>)[typeSlug] || [];
-        if (!links.length) return null;
-        return (
-          <div class="reveal" style="margin-top: var(--space-3xl);">
-            <h2 style="margin-bottom: var(--space-sm);">{td.h1} — Who Is It Best For?</h2>
-            <p style="color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-xl);">See our expert guides tailored to specific internet needs.</p>
-            <div class="grid grid-3" style="gap: var(--space-md);">
-              {links.map((a: { slug: string; label: string; icon: string }) => (
-                <a href={`/internet-for/${a.slug}`} class="card" style="padding: var(--space-lg); text-decoration: none; display: flex; gap: var(--space-sm); align-items: flex-start;">
-                  <div>
-                    <div style="font-weight: 600; color: var(--text-primary);">{a.label}</div>
-                    <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Expert picks & tips →</div>
-                  </div>
-                </a>
-              ))}
-            </div>
+      {audienceLinks.length > 0 && (
+        <div class="reveal" style="margin-top: var(--space-3xl);">
+          <h2 style="margin-bottom: var(--space-sm);">{td.h1} — Who Is It Best For?</h2>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-xl);">See our expert guides tailored to specific internet needs.</p>
+          <div class="grid grid-3" style="gap: var(--space-md);">
+            {audienceLinks.map(a => (
+              <a href={"/internet-for/" + a.slug} class="card" style="padding: var(--space-lg); text-decoration: none; display: flex; gap: var(--space-sm); align-items: flex-start;">
+                <div>
+                  <div style="font-weight: 600; color: var(--text-primary);">{a.label}</div>
+                  <div style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Expert picks & tips →</div>
+                </div>
+              </a>
+            ))}
           </div>
-        );
-      })()}
+        </div>
+      )}
 
       <!-- FAQs -->
       <div class="reveal" style="margin-top: var(--space-3xl);">
@@ -317,5 +318,5 @@ const schemas = [
     </div>
   </section>
 
-  <StickyCallBar text={`Looking for ${td.h1.toLowerCase()}? Our experts can help you find the best plan.`} />
+  <StickyCallBar text={"Looking for " + td.h1.toLowerCase() + "? Our experts can help you find the best plan."} />
 </Base>

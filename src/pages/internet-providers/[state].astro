@@ -774,12 +774,14 @@ const schemas = [
        STEP 10: CITIES (internal link density)
        ═══════════════════════════════════════════ -->
   {cities.length > 0 && (
-    <div class="reveal" style="margin-bottom:var(--space-2xl);">
-      <h2 style="margin-bottom:var(--space-md);">Internet Providers by City in {stateData.name}</h2>
-      <p style="color:var(--text-secondary);margin-bottom:var(--space-xl);">
-        Browse internet availability for {cities.length} cities in {stateData.name}.
-        {census ? ` ${formatPercent(census.urbanPct)} of the state's population lives in urban areas with the most options.` : ''}
-      </p>
+    <div style="margin-bottom:var(--space-2xl);">
+      <div class="reveal">
+        <h2 style="margin-bottom:var(--space-md);">Internet Providers by City in {stateData.name}</h2>
+        <p style="color:var(--text-secondary);margin-bottom:var(--space-xl);">
+          Browse internet availability for {cities.length} cities in {stateData.name}.
+          {census ? ` ${formatPercent(census.urbanPct)} of the state's population lives in urban areas with the most options.` : ''}
+        </p>
+      </div>
       {metroCities.length > 0 && (
         <div style="margin-bottom:var(--space-lg);">
           <h3 style="font-size:var(--text-md);margin-bottom:var(--space-sm);color:var(--text-tertiary);">Major Cities</h3>
@@ -892,6 +894,7 @@ const schemas = [
         e.preventDefault();
         const zip = input.value.trim();
         if (/^\d{5}$/.test(zip)) {
+          if (typeof window.showPageLoader === 'function') window.showPageLoader('Finding providers in ' + zip + '…');
           window.location.href = `/internet-providers/zip/${zip}`;
         }
       });

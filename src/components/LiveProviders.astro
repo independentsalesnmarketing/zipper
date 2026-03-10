@@ -337,12 +337,17 @@ for (const p of allProviders.filter(p => p.isPartner)) {
     const cached = getCache(cacheKey);
     if (cached) return cached;
 
-    const resp = await fetch(`https://broadbandmap.com/api/v1/location/internet?lat=${lat}&lng=${lng}`);
-    if (resp.status === 429) throw new Error('RATE_LIMITED');
-    if (!resp.ok) throw new Error(`HTTP_${resp.status}`);
-    const data = await resp.json();
-    setCache(cacheKey, data);
-    return data;
+    try {
+      const resp = await fetch(`https://broadbandmap.com/api/v1/location/internet?lat=${lat}&lng=${lng}`, { signal: AbortSignal.timeout(10000) });
+      if (resp.status === 429) throw new Error('RATE_LIMITED');
+      if (!resp.ok) throw new Error(`HTTP_${resp.status}`);
+      const data = await resp.json();
+      setCache(cacheKey, data);
+      return data;
+    } catch (err: any) {
+      if (err.name === 'AbortError') throw new Error('TIMEOUT');
+      throw err;
+    }
   }
 
   async function fetchCellCoverage(lat: number, lng: number): Promise<any> {
@@ -350,12 +355,14 @@ for (const p of allProviders.filter(p => p.isPartner)) {
     const cached = getCache(cacheKey);
     if (cached) return cached;
 
-    const resp = await fetch(`https://broadbandmap.com/api/v1/location/cell?lat=${lat}&lng=${lng}`);
-    if (resp.status === 429) return null;
-    if (!resp.ok) return null;
-    const data = await resp.json();
-    setCache(cacheKey, data);
-    return data;
+    try {
+      const resp = await fetch(`https://broadbandmap.com/api/v1/location/cell?lat=${lat}&lng=${lng}`, { signal: AbortSignal.timeout(10000) });
+      if (resp.status === 429) return null;
+      if (!resp.ok) return null;
+      const data = await resp.json();
+      setCache(cacheKey, data);
+      return data;
+    } catch { return null; }
   }
 
   // --- Geocode via Nominatim (OpenStreetMap) ---
@@ -364,17 +371,19 @@ for (const p of allProviders.filter(p => p.isPartner)) {
     const cached = getCache(cacheKey);
     if (cached) return cached;
 
-    const resp = await fetch(
-      `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&countrycodes=us`,
-      { headers: { 'User-Agent': 'Internet4ALL/1.0 (internet4all.com)' } }
-    );
-    if (!resp.ok) return null;
-    const results = await resp.json();
-    if (!results.length) return null;
-    const r = results[0];
-    const result = { lat: parseFloat(r.lat), lng: parseFloat(r.lon), display: r.display_name };
-    setCache(cacheKey, result);
-    return result;
+    try {
+      const resp = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&countrycodes=us`,
+        { headers: { 'User-Agent': 'Internet4ALL/1.0 (internet4all.com)' }, signal: AbortSignal.timeout(8000) }
+      );
+      if (!resp.ok) return null;
+      const results = await resp.json();
+      if (!results.length) return null;
+      const r = results[0];
+      const result = { lat: parseFloat(r.lat), lng: parseFloat(r.lon), display: r.display_name };
+      setCache(cacheKey, result);
+      return result;
+    } catch { return null; }
   }
 
   // --- Address autocomplete via Nominatim ---
@@ -388,7 +397,7 @@ for (const p of allProviders.filter(p => p.isPartner)) {
     try {
       const resp = await fetch(
         `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=5&countrycodes=us&addressdetails=1`,
-        { headers: { 'User-Agent': 'Internet4ALL/1.0 (internet4all.com)' } }
+        { headers: { 'User-Agent': 'Internet4ALL/1.0 (internet4all.com)' }, signal: AbortSignal.timeout(8000) }
       );
       if (!resp.ok) return [];
       const results = await resp.json();

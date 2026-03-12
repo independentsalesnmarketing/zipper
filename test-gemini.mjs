@@ -3,7 +3,7 @@
  * Run: node test-gemini.mjs
  */
 
-const KEY = 'AIzaSyDq8NVtj8Oe3co_mDuR0bBqS-0ONn_Hz6I';
+const KEY = 'AIzaSyAaa7GXk5eW4jBfvmqCCnMUzn5uQTz_q4E';
 const CHAT_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${KEY}`;
 const TTS_URL  = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${KEY}`;
 
@@ -112,7 +112,7 @@ async function run() {
 
   console.log('\n══ SUMMARY ═══════════════════════════════════════');
   console.log(`Chat API: ${chatOk ? '✅ Working' : '❌ Errors detected'}`);
-  console.log('Key: AIzaSyBMJ6NqtVAhhjZa19hD_yFuRvm_ag8pFcE');
+  console.log('Key: AIzaSyAaa7GXk5eW4jBfvmqCCnMUzn5uQTz_q4E');
 }
 
 run().catch(e => console.error('Fatal:', e));

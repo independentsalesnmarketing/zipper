@@ -2,167 +2,708 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { generateBreadcrumbSchema } from '@lib/utils';
+import { generateBreadcrumbSchema, generateFAQSchema, generateHowToSchema } from '@lib/utils';
+
+const speedTestFaqs = [
+  {
+    question: 'How accurate is this internet speed test?',
+    answer: 'This free speed test measures real throughput against high-capacity CDN endpoints. It tests download speed, upload speed, ping latency, and jitter in your actual network conditions — giving you a practical picture of your internet connection speed right now.',
+  },
+  {
+    question: 'What is a good internet speed for home use?',
+    answer: 'The FCC defines broadband as 25 Mbps download, but most modern households need at least 100 Mbps. Homes with 4K streaming, gaming, remote work, and smart devices benefit from 300 Mbps to 1 Gbps fiber internet.',
+  },
+  {
+    question: 'Why is my WiFi speed slower than my plan speed?',
+    answer: 'WiFi speed tests often show lower results due to router distance, interference from walls and appliances, outdated router hardware, network congestion during peak hours, and the number of connected devices. Run an ethernet speed test for your true line speed.',
+  },
+  {
+    question: 'What should I do if my internet speed is slow?',
+    answer: 'Restart your modem and router, run an ethernet speed test to isolate WiFi issues, check for background downloads, and test at different times of day. If speeds remain below your plan, contact your ISP or compare faster providers in your area.',
+  },
+  {
+    question: 'How do I test my internet speed accurately?',
+    answer: 'Close background apps and pause downloads, connect via ethernet if possible, and run 2-3 tests at different times. Test both WiFi speed and wired speed to see the difference. Our tool tests download, upload, ping, and jitter in one run.',
+  },
+  {
+    question: 'What is ping and why does it matter?',
+    answer: 'Ping (latency) measures how fast data makes a round trip between your device and a server, in milliseconds. Low ping (under 20ms) is critical for online gaming, video calls, and real-time apps. High ping causes lag and delays even with fast download speeds.',
+  },
+  {
+    question: 'What is jitter and how does it affect my connection?',
+    answer: 'Jitter measures the variation in ping over time. High jitter (above 15ms) means your connection is unstable — causing choppy video calls, gaming lag spikes, and buffering even when average speeds look fine. Fiber internet typically has the lowest jitter.',
+  },
+  {
+    question: 'Why is my upload speed so much slower than download?',
+    answer: 'Cable internet (Xfinity, Spectrum, Cox) uses asymmetric technology that prioritizes download bandwidth. Upload speeds are typically 5-10x slower. If you need strong upload for video calls, cloud backups, or streaming, fiber internet offers symmetrical speeds.',
+  },
+  {
+    question: 'Is my ISP throttling my internet speed?',
+    answer: 'Run speed tests at different times and on different content types. If speeds drop consistently during peak hours or on specific services, throttling may be occurring. A VPN test can help confirm. If throttled, switching to a fiber provider often eliminates the issue.',
+  },
+  {
+    question: 'How often should I run a speed test?',
+    answer: 'Test your internet speed at least once a month, at different times of day (morning, evening, weekend). This builds a history that reveals patterns like peak-hour congestion, letting you hold your ISP accountable or find a better provider.',
+  },
+  {
+    question: 'Can I use this speed test on my phone or tablet?',
+    answer: 'Yes. This internet speed test works on any device with a modern browser — iPhone, Android, iPad, laptop, or desktop. Mobile speed tests over WiFi show your router performance; cellular tests show your carrier speed.',
+  },
+  {
+    question: 'What is the difference between Mbps and MBps?',
+    answer: 'Mbps (megabits per second) is how ISPs advertise speeds. MBps (megabytes per second) is 8x smaller — it is how file downloads are measured. A 100 Mbps connection downloads at about 12.5 MBps in ideal conditions.',
+  },
+];
+
+const howToSteps = [
+  { name: 'Close background applications', text: 'Shut down streaming, downloads, cloud syncing, and other bandwidth-heavy apps on all devices to get the cleanest measurement of your internet connection speed.' },
+  { name: 'Connect via ethernet if possible', text: 'A wired ethernet connection gives you the most accurate speed test by eliminating WiFi variables. If testing WiFi, stand near your router for baseline results.' },
+  { name: 'Click Start Speed Test', text: 'Press the Start button above. The test automatically measures download speed, upload speed, ping latency, and jitter using real data transfers to high-capacity servers.' },
+  { name: 'Review your results', text: 'Compare your measured download and upload speeds against your ISP plan. Check ping and jitter for connection quality. Our analysis highlights exactly where your connection falls short.' },
+  { name: 'Take action on your results', text: 'If speeds are below your plan, troubleshoot or contact your ISP. Use our provider comparison to find faster, more affordable internet options available at your address.' },
+];
+
+const webAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Free Internet Speed Test',
+  url: 'https://internet4all.com/speed-test',
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Any',
+  browserRequirements: 'Requires a modern web browser with JavaScript enabled',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description: 'Test your internet speed for free. Measures download speed, upload speed, ping latency, and jitter using real data transfers to high-capacity CDN endpoints.',
+  featureList: ['Download speed test', 'Upload speed test', 'Ping latency test', 'Jitter measurement', 'Connection quality analysis', 'Provider comparison'],
+};
 ---
 <Base
-  title="Internet Speed Test — Check Your Download & Upload Speed"
-  description="Test your internet speed free — measure download, upload, ping & jitter instantly. Not getting what you pay for? Compare faster providers and switch today."
-  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Speed Test', url: 'https://internet4all.com/speed-test' }])]}
+  title="Free Internet Speed Test — Check Download, Upload & WiFi Speed"
+  description="Test your internet speed in seconds. Measure download speed, upload speed, ping & jitter on any device — free, no app needed. Compare your results with faster plans at your address."
+  schema={[
+    generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Speed Test', url: 'https://internet4all.com/speed-test' }]),
+    generateFAQSchema(speedTestFaqs),
+    generateHowToSchema({ name: 'How to Run an Internet Speed Test', description: 'Step-by-step guide to accurately test your internet speed, check download and upload speeds, measure ping and jitter, and compare results with faster providers.', totalTime: 'PT2M', steps: howToSteps }),
+    webAppSchema,
+  ]}
 >
-  <section class="section" style="padding-top: var(--space-xl);">
+  <article itemscope itemtype="https://schema.org/WebApplication">
+
+  <section class="st-hero-section">
     <div class="container container--narrow">
       <Breadcrumb items={[{ name: 'Speed Test' }]} />
 
-      <div class="text-center reveal">
+      <header class="st-page-header">
         <h1>Internet <span class="gradient-text">Speed Test</span></h1>
-        <p class="hero-subtitle" style="max-width:500px;margin-inline:auto;">Check if you're getting the speed you pay for. Free, instant results.</p>
+        <p class="st-subtitle">Test your download speed, upload speed, ping, and jitter in under 30 seconds. Free, accurate, and works on any device — no app required.</p>
+        <div class="st-trust-bar">
+          <span class="st-trust-item"><span class="st-trust-check" aria-hidden="true">✓</span> Free &amp; Accurate</span>
+          <span class="st-trust-item"><span class="st-trust-check" aria-hidden="true">✓</span> No App Required</span>
+          <span class="st-trust-item"><span class="st-trust-check" aria-hidden="true">✓</span> Desktop, Mobile &amp; Tablet</span>
+        </div>
+      </header>
+
+      <div class="st-test-shell" style="margin-top: var(--space-lg);">
+        <div class="st-panel">
+          <div class="st-panel-bg" aria-hidden="true"></div>
+
+          <div class="st-gauge-wrap">
+            <svg class="st-svg" viewBox="0 0 560 360" aria-hidden="true">
+              <defs>
+                <linearGradient id="stArcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ff2d4a" />
+                  <stop offset="30%" stop-color="#ff8c22" />
+                  <stop offset="55%" stop-color="#22d3ee" />
+                  <stop offset="80%" stop-color="#818cf8" />
+                  <stop offset="100%" stop-color="#c084fc" />
+                </linearGradient>
+                <linearGradient id="stArcGradUl" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#818cf8" />
+                  <stop offset="40%" stop-color="#a855f7" />
+                  <stop offset="70%" stop-color="#d946ef" />
+                  <stop offset="100%" stop-color="#f0abfc" />
+                </linearGradient>
+                <linearGradient id="stArcGradJt" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#22d3ee" />
+                  <stop offset="40%" stop-color="#34d399" />
+                  <stop offset="70%" stop-color="#fbbf24" />
+                  <stop offset="100%" stop-color="#f97316" />
+                </linearGradient>
+                <filter id="stGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="8" result="blur" />
+                  <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+                <filter id="stNeedleGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+              </defs>
+              <g transform="translate(280 260)">
+                {Array.from({ length: 49 }).map((_, i) => {
+                  const angle = -122 + i * 5;
+                  const major = i % 6 === 0;
+                  return (
+                    <line
+                      x1="0" y1={major ? "-195" : "-188"}
+                      x2="0" y2={major ? "-162" : "-168"}
+                      transform={`rotate(${angle})`}
+                      stroke={major ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.08)"}
+                      stroke-width={major ? "2" : "1"}
+                      stroke-linecap="round"
+                    />
+                  );
+                })}
+              </g>
+              <path class="st-arc-track" d="M 70 260 A 210 210 0 0 1 490 260" pathLength="100" />
+              <path id="st-arc" class="st-arc-fill"
+                d="M 70 260 A 210 210 0 0 1 490 260"
+                pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"
+                stroke="url(#stArcGrad)" filter="url(#stGlow)" />
+              <circle id="st-phase-ring" class="st-phase-ring tone-idle" cx="280" cy="260" r="58" />
+              <g id="st-needle" transform="translate(280 260) rotate(-122)">
+                <line x1="0" y1="10" x2="0" y2="-168" stroke="rgba(255,255,255,0.06)" stroke-width="4" stroke-linecap="round" />
+                <line x1="0" y1="8" x2="0" y2="-166" stroke="#fff" stroke-width="2" stroke-linecap="round" filter="url(#stNeedleGlow)" />
+                <circle cx="0" cy="0" r="12" fill="#0a0f1e" stroke="rgba(34,211,238,0.55)" stroke-width="2" />
+                <circle cx="0" cy="0" r="4.5" fill="#22d3ee" />
+              </g>
+              <text x="78" y="288" fill="rgba(255,255,255,0.3)" font-size="12" font-weight="600" font-family="system-ui,sans-serif">0</text>
+              <text x="450" y="288" fill="rgba(255,255,255,0.3)" font-size="12" font-weight="600" font-family="system-ui,sans-serif" id="st-scale-max">Auto</text>
+            </svg>
+
+            <div class="st-center">
+              <div class="st-speed-display" id="st-speed-display" style="display:none;">
+                <span id="st-mode-label" class="st-mode-label"></span>
+                <span id="st-speed-value" class="st-speed-num">0</span>
+                <span id="st-speed-unit" class="st-speed-unit">Mbps</span>
+              </div>
+              <button id="start-test" class="st-go-btn" aria-label="Start Speed Test">GO</button>
+            </div>
+          </div>
+
+          <div class="st-phase-status" aria-live="polite">
+            <span id="test-phase" class="st-phase-badge" style="display:none;">Measuring...</span>
+          </div>
+
+          <div class="st-phase-rail" aria-label="Test phases">
+            <div id="phase-ping" class="st-phase-step"><span class="st-dot"></span>Ping</div>
+            <div id="phase-download" class="st-phase-step"><span class="st-dot"></span>Download</div>
+            <div id="phase-upload" class="st-phase-step"><span class="st-dot"></span>Upload</div>
+            <div id="phase-jitter" class="st-phase-step"><span class="st-dot"></span>Jitter</div>
+          </div>
+
+          <div class="st-bar-wrap" id="progress-bar" style="opacity:0;">
+            <div class="st-bar-fill" id="progress-fill" style="width:0%;"></div>
+          </div>
+
+          <p id="speed-label" class="st-hint">Click GO to measure download, upload, ping & jitter</p>
+
+          <div id="st-metrics" class="st-metrics-hero" style="display:none;">
+            <div class="st-hero-results">
+              <div class="st-hero-result st-dl-result">
+                <span class="st-hero-result-lbl">DOWNLOAD</span>
+                <div class="st-hero-result-row"><strong id="st-m-dl">&mdash;</strong><span id="st-m-dl-unit" class="st-hero-unit">Mbps</span></div>
+              </div>
+              <div class="st-hero-divider"></div>
+              <div class="st-hero-result st-ul-result">
+                <span class="st-hero-result-lbl">UPLOAD</span>
+                <div class="st-hero-result-row"><strong id="st-m-ul">&mdash;</strong><span id="st-m-ul-unit" class="st-hero-unit">Mbps</span></div>
+              </div>
+            </div>
+            <div class="st-secondary-results">
+              <span class="st-sec-item"><span class="st-sec-lbl">Ping</span><strong id="st-m-ping">&mdash;</strong></span>
+              <span class="st-sec-dot">&middot;</span>
+              <span class="st-sec-item"><span class="st-sec-lbl">Jitter</span><strong id="st-m-jitter">&mdash;</strong></span>
+            </div>
+          </div>
+
+        </div>
+
+      <!-- Results Modal Overlay -->
+      <div id="st-result-modal" class="st-modal-overlay" style="display:none;">
+        <div class="st-modal">
+          <button id="st-modal-close" class="st-modal-x" aria-label="Close">&times;</button>
+          <div class="st-modal-grade-row">
+            <span id="st-grade-badge" class="st-grade-badge">B</span>
+            <div>
+              <p id="st-result-label" class="st-modal-headline"></p>
+            </div>
+          </div>
+          <div class="st-modal-speeds">
+            <div class="st-modal-speed st-modal-dl">
+              <span class="st-modal-speed-lbl">Download</span>
+              <strong id="st-modal-dl"></strong>
+            </div>
+            <div class="st-modal-divider"></div>
+            <div class="st-modal-speed st-modal-ul">
+              <span class="st-modal-speed-lbl">Upload</span>
+              <strong id="st-modal-ul"></strong>
+            </div>
+          </div>
+          <div class="st-modal-secondary">
+            <span>Ping: <strong id="st-modal-ping"></strong></span>
+            <span>&middot;</span>
+            <span>Jitter: <strong id="st-modal-jitter"></strong></span>
+          </div>
+          <p id="st-result-sub" class="st-modal-message"></p>
+          <div class="st-modal-actions">
+            <a href="/check-availability" class="btn btn-cta-glow">See Faster Plans at My Address</a>
+            <button id="st-modal-retest" class="btn btn-secondary">Test Again</button>
+          </div>
+        </div>
       </div>
 
-      <!-- Speed Test UI -->
-      <div class="card reveal" style="margin-top: var(--space-2xl); padding: var(--space-2xl); text-align: center;">
-        <div id="speed-gauge" class="speed-gauge" style="--progress: 0%;">
-          <div class="speed-value" id="speed-value">—</div>
-        </div>
-        <p id="speed-label" class="text-tertiary mt-md" style="font-size:var(--text-sm);">Click Start to test your speed</p>
+      </div>
 
-        <div class="grid grid-3 mt-xl st-metrics" style="gap:var(--space-xl);">
-          <div>
-            <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:var(--tracking-wide);">Download</div>
-            <div id="dl-speed" class="speed-display" style="font-size:var(--text-2xl);margin-top:var(--space-xs);">—</div>
-            <div style="font-size:var(--text-xs);color:var(--text-tertiary);">Mbps</div>
-          </div>
-          <div>
-            <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:var(--tracking-wide);">Upload</div>
-            <div id="ul-speed" class="speed-display" style="font-size:var(--text-2xl);margin-top:var(--space-xs);">—</div>
-            <div style="font-size:var(--text-xs);color:var(--text-tertiary);">Mbps</div>
-          </div>
-          <div>
-            <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:var(--tracking-wide);">Ping</div>
-            <div id="ping-val" class="speed-display" style="font-size:var(--text-2xl);margin-top:var(--space-xs);">—</div>
-            <div style="font-size:var(--text-xs);color:var(--text-tertiary);">ms</div>
-          </div>
-        </div>
+      <p class="st-freshness">Last updated March 2026 &middot; Powered by Cloudflare CDN endpoints &middot; Trusted by 100K+ users</p>
 
-        <button id="start-test" class="btn btn-primary btn-lg mt-xl st-start-btn" style="min-width:200px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Start Speed Test
-        </button>
-
-        <div class="progress-bar mt-lg" style="opacity:0;" id="progress-bar">
-          <div class="progress-fill" id="progress-fill" style="width:0%;"></div>
+      <!-- ZIP Capture Module -->
+      <div id="zip-capture" class="card st-zip-capture" style="display:none;">
+        <div class="st-zip-inner">
+          <div class="st-zip-text">
+            <h3>See Faster Plans at Your Address</h3>
+            <p class="text-secondary text-sm">Enter your ZIP code to instantly compare internet providers, speeds, and prices where you live.</p>
+          </div>
+          <div class="st-zip-form">
+            <input id="zip-input" type="text" inputmode="numeric" maxlength="5" placeholder="ZIP code" class="st-zip-input" />
+            <a id="zip-go-btn" href="/check-availability" class="btn btn-primary">Check Availability</a>
+          </div>
         </div>
       </div>
 
       <!-- Speed Analysis -->
-      <div id="speed-analysis" class="card reveal" style="margin-top:var(--space-xl); display:none;">
-        <h3 style="margin-bottom:var(--space-md);">Your Speed Analysis</h3>
+      <div id="speed-analysis" class="card st-analysis-card" style="display:none;">
+        <h3>Your Speed Analysis</h3>
         <div id="analysis-content"></div>
-      </div>
-
-      <!-- What's a good speed? -->
-      <div class="reveal" style="margin-top: var(--space-3xl);">
-        <h2 style="margin-bottom: var(--space-xl);">What Internet Speed Do You Need?</h2>
-        <div class="grid grid-2">
-          <div class="card">
-            <h4 style="margin-bottom:var(--space-md);">Basic Usage</h4>
-            <div class="flex items-center gap-md mb-sm">
-              <span class="badge badge-green">25+ Mbps</span>
-              <span class="text-sm text-secondary">Email, browsing, social media</span>
-            </div>
-            <div class="flex items-center gap-md mb-sm">
-              <span class="badge badge-blue">50+ Mbps</span>
-              <span class="text-sm text-secondary">HD streaming (1-2 devices)</span>
-            </div>
-          </div>
-          <div class="card">
-            <h4 style="margin-bottom:var(--space-md);">Power Usage</h4>
-            <div class="flex items-center gap-md mb-sm">
-              <span class="badge badge-blue">100+ Mbps</span>
-              <span class="text-sm text-secondary">4K streaming, work from home</span>
-            </div>
-            <div class="flex items-center gap-md mb-sm">
-              <span class="badge badge-purple">300+ Mbps</span>
-              <span class="text-sm text-secondary">Large households, gaming</span>
-            </div>
-          </div>
-          <div class="card">
-            <h4 style="margin-bottom:var(--space-md);">Heavy Usage</h4>
-            <div class="flex items-center gap-md mb-sm">
-              <span class="badge badge-purple">500+ Mbps</span>
-              <span class="text-sm text-secondary">Many devices, 4K, smart home</span>
-            </div>
-            <div class="flex items-center gap-md mb-sm">
-              <span class="badge badge-amber">1 Gbps+</span>
-              <span class="text-sm text-secondary">Power users, content creators</span>
-            </div>
-          </div>
-          <div class="card">
-            <h4 style="margin-bottom:var(--space-md);">Upload Needs</h4>
-            <div class="flex items-center gap-md mb-sm">
-              <span class="badge badge-green">10+ Mbps</span>
-              <span class="text-sm text-secondary">Video calls, cloud backup</span>
-            </div>
-            <div class="flex items-center gap-md mb-sm">
-              <span class="badge badge-blue">100+ Mbps</span>
-              <span class="text-sm text-secondary">Streaming, large uploads</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Not happy CTA -->
-      <div class="reveal" style="margin-top: var(--space-3xl);">
-        <div class="card text-center" style="padding:var(--space-2xl); border-color: rgba(239, 68, 68, 0.2); background: rgba(239, 68, 68, 0.02);">
-          <h3>Not Getting the Speed You Pay For?</h3>
-          <p style="margin-top:var(--space-sm);max-width:500px;margin-inline:auto;">You may be overpaying for underperforming internet. Our experts can find you a faster, more reliable option.</p>
-          <div class="flex gap-md justify-center" style="margin-top:var(--space-xl);">
-            <a href="/switch" class="btn btn-primary">Switch Provider</a>
-            <a href="/providers" class="btn btn-secondary">Compare Options</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Related Pages -->
-      <div class="reveal" style="margin-top: var(--space-3xl);">
-        <h3 style="margin-bottom: var(--space-lg);">Related Resources</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
-          <a href="/compare" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">Compare Plans</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Side-by-side comparison</p>
-          </a>
-          <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">Fastest Internet</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Multi-gig providers</p>
-          </a>
-          <a href="/deals" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">Best Deals</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Today's lowest prices</p>
-          </a>
-          <a href="/cheap-internet" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">Cheap Internet</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Budget-friendly plans</p>
-          </a>
-          <a href="/internet-types/fiber" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">Fiber Internet</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Fastest technology</p>
-          </a>
-          <a href="/internet-for/gaming" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">Best for Gaming</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Low ping, zero lag</p>
-          </a>
-          <a href="/internet-for/streaming" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">Best for Streaming</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Buffer-free 4K</p>
-          </a>
-          <a href="/bill-analyzer" class="card" style="padding: var(--space-md); text-decoration: none; text-align: center;">
-            <h4 style="font-size: var(--text-sm);">Bill Analyzer</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Find hidden charges</p>
-          </a>
-        </div>
       </div>
 
     </div>
   </section>
+
+  <!-- Table of Contents -->
+  <nav class="st-toc" aria-label="Page contents">
+    <div class="container container--narrow">
+      <h2 class="st-toc-heading">On This Page</h2>
+      <ul class="st-toc-list">
+        <li><a href="#how-it-works">How This Speed Test Works</a></li>
+        <li><a href="#speed-needs">What Speed Do You Need?</a></li>
+        <li><a href="#connection-types">Speed by Connection Type</a></li>
+        <li><a href="#speed-factors">What Affects Your Results</a></li>
+        <li><a href="#improve-speed">How to Improve Speed</a></li>
+        <li><a href="#isp-throttling">Is Your ISP Throttling?</a></li>
+        <li><a href="#provider-tests">Provider Speed Tests</a></li>
+        <li><a href="#methodology">How We Test</a></li>
+        <li><a href="#speed-faq">FAQ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="how-it-works" class="st-content-section">
+    <div class="container container--narrow">
+      <h2>How This Internet Speed Test Works</h2>
+      <p>We run actual data transfers against high-capacity Cloudflare CDN endpoints to measure your <strong>download speed</strong>, <strong>upload speed</strong>, <strong>ping latency</strong>, and <strong>network jitter</strong>. This is not a simulated meter — every measurement reflects your real connection performance right now.</p>
+      <div class="grid grid-3 st-explainer-grid">
+          <div>
+            <h4>Download Speed Test</h4>
+            <p>Measures how fast data reaches your device by downloading progressively larger files (100 KB to 25 MB). Your ISP advertises this number — we check if they deliver it. A good download speed is 100+ Mbps for modern households.</p>
+          </div>
+          <div>
+            <h4>Upload Speed Test</h4>
+            <p>Measures outgoing bandwidth by sending real data packets to a remote server. Upload speed matters for Zoom calls, cloud backups, and streaming. Cable internet often delivers upload speeds 5-10× slower than download.</p>
+          </div>
+          <div>
+            <h4>Ping, Jitter & Latency Test</h4>
+            <p>Ping measures round-trip time in milliseconds. Jitter measures variation between pings. Both determine whether gaming, video calls, and real-time apps feel smooth or laggy. Fiber has the lowest latency.</p>
+          </div>
+        </div>
+        <div class="st-howto-steps">
+          <h3>How to Get the Most Accurate Speed Test Results</h3>
+          <ol class="st-steps-list">
+            <li><strong>Close background apps</strong> — Pause streaming, downloads, and cloud syncing on all devices before testing your internet speed.</li>
+            <li><strong>Use ethernet when possible</strong> — A wired ethernet speed test removes WiFi variables and shows your true broadband line speed.</li>
+            <li><strong>Test at different times</strong> — Run your speed test morning, evening, and weekend to spot peak-hour congestion from your ISP.</li>
+            <li><strong>Run multiple tests</strong> — Take 2-3 speed tests and average the results for a more accurate bandwidth measurement.</li>
+            <li><strong>Compare and act</strong> — Use results to compare against your plan speed, then check if faster providers serve your area.</li>
+          </ol>
+        </div>
+    </div>
+  </section>
+
+  <section id="speed-needs" class="st-content-section">
+    <div class="container container--narrow">
+      <h2>What Internet Speed Do You Actually Need?</h2>
+      <p class="st-section-intro">Your ideal speed depends on how many people and devices share your connection. The averages below reflect real-world usage — not the marketing numbers ISPs put on a billboard. Use the speed test above to see where you stand.</p>
+        <div class="grid grid-2">
+          <div class="card">
+            <h4 style="margin-bottom:var(--space-md);">Basic Usage (1-2 people)</h4>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-green">25+ Mbps</span>
+              <span class="text-sm text-secondary">Email, web browsing, social media</span>
+            </div>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-blue">50+ Mbps</span>
+              <span class="text-sm text-secondary">HD streaming on 1-2 devices simultaneously</span>
+            </div>
+            <p class="text-xs text-tertiary" style="margin-top:var(--space-sm);">The FCC defines broadband as 25 Mbps, but this is a bare minimum.</p>
+          </div>
+          <div class="card">
+            <h4 style="margin-bottom:var(--space-md);">Power Usage (3-5 people)</h4>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-blue">100+ Mbps</span>
+              <span class="text-sm text-secondary">4K streaming, work from home, video calls</span>
+            </div>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-purple">300+ Mbps</span>
+              <span class="text-sm text-secondary">Multiple gamers, Zoom + streaming at same time</span>
+            </div>
+            <p class="text-xs text-tertiary" style="margin-top:var(--space-sm);">Most homes with remote workers should target this tier.</p>
+          </div>
+          <div class="card">
+            <h4 style="margin-bottom:var(--space-md);">Heavy Usage (5+ people)</h4>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-purple">500+ Mbps</span>
+              <span class="text-sm text-secondary">10+ devices, 4K on multiple TVs, smart home</span>
+            </div>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-amber">1 Gbps+</span>
+              <span class="text-sm text-secondary">Gigabit for power users, content creators, large families</span>
+            </div>
+            <p class="text-xs text-tertiary" style="margin-top:var(--space-sm);">Gigabit fiber is increasingly the sweet spot for heavy households.</p>
+          </div>
+          <div class="card">
+            <h4 style="margin-bottom:var(--space-md);">Upload Speed Needs</h4>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-green">10+ Mbps</span>
+              <span class="text-sm text-secondary">Video calls (Zoom, Google Meet), cloud backup</span>
+            </div>
+            <div class="flex items-center gap-md mb-sm">
+              <span class="badge badge-blue">50-100+ Mbps</span>
+              <span class="text-sm text-secondary">Live streaming (Twitch/YouTube), large file uploads</span>
+            </div>
+            <p class="text-xs text-tertiary" style="margin-top:var(--space-sm);">Cable gives poor upload. Fiber gives symmetrical upload and download.</p>
+          </div>
+        </div>
+        <div class="card text-center st-plan-cta">
+          <p class="st-plan-cta-text">Not sure what you need? Let us recommend a plan.</p>
+          <a href="/check-availability" class="btn btn-primary">Check Plans at My Address</a>
+        </div>
+    </div>
+  </section>
+
+  <section id="connection-types" class="st-content-section">
+    <div class="container container--narrow">
+      <h2>Internet Speed by Connection Type</h2>
+      <p class="st-section-intro">Not all internet connections are equal. The type of infrastructure your ISP uses directly determines your speed, latency, reliability, and upload performance. Here is how the major connection types compare in a real-world speed test.</p>
+        <div class="st-conn-table-wrap">
+          <table class="st-conn-table">
+            <thead>
+              <tr>
+                <th>Connection Type</th>
+                <th>Download Speed</th>
+                <th>Upload Speed</th>
+                <th>Typical Ping</th>
+                <th>Best For</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Fiber</strong></td>
+                <td>300 Mbps – 10 Gbps</td>
+                <td>300 Mbps – 10 Gbps (symmetrical)</td>
+                <td>1 – 8 ms</td>
+                <td>Everything — gaming, WFH, streaming, smart homes</td>
+              </tr>
+              <tr>
+                <td><strong>Cable</strong></td>
+                <td>50 – 1,200 Mbps</td>
+                <td>5 – 50 Mbps (asymmetric)</td>
+                <td>10 – 30 ms</td>
+                <td>Streaming, general browsing — weak upload</td>
+              </tr>
+              <tr>
+                <td><strong>5G Home Internet</strong></td>
+                <td>50 – 300 Mbps</td>
+                <td>10 – 50 Mbps</td>
+                <td>20 – 50 ms</td>
+                <td>Areas without wired options, secondary connections</td>
+              </tr>
+              <tr>
+                <td><strong>DSL</strong></td>
+                <td>5 – 100 Mbps</td>
+                <td>1 – 10 Mbps</td>
+                <td>20 – 60 ms</td>
+                <td>Light use only — outdated technology</td>
+              </tr>
+              <tr>
+                <td><strong>Fixed Wireless</strong></td>
+                <td>25 – 100 Mbps</td>
+                <td>3 – 20 Mbps</td>
+                <td>25 – 60 ms</td>
+                <td>Rural areas without cable or fiber</td>
+              </tr>
+              <tr>
+                <td><strong>Satellite (Starlink)</strong></td>
+                <td>25 – 220 Mbps</td>
+                <td>5 – 20 Mbps</td>
+                <td>25 – 60 ms (LEO) / 600+ ms (geo)</td>
+                <td>Remote areas — only option for some locations</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="st-bottom-line"><strong>Bottom line:</strong> If fiber internet is available at your address, it's almost always the best choice for speed, upload performance, latency, and reliability. Run a <a href="#" onclick="document.getElementById('start-test').scrollIntoView({behavior:'smooth'});return false;">fiber speed test</a> above to see how your current connection compares.</p>
+    </div>
+  </section>
+
+  <section id="speed-factors" class="st-content-section">
+    <div class="container container--narrow">
+      <h2>What Affects Your Internet Speed Test Results</h2>
+      <p class="st-section-intro">Running a speed test and wondering why results vary? Many factors between your device and the internet affect measured speeds. Understanding these helps you troubleshoot and get the most accurate results.</p>
+      <div class="grid grid-3 st-factor-grid">
+          <div class="card st-factor-card">
+            <h4>WiFi vs. Ethernet</h4>
+            <p class="text-sm text-secondary">WiFi speed tests will almost always be slower than wired tests. WiFi signals weaken through walls, are affected by interference from microwaves and Bluetooth devices, and slow down with distance from your router. For a true bandwidth test, plug in via ethernet.</p>
+          </div>
+          <div class="card st-factor-card">
+            <h4>Router Age & Quality</h4>
+            <p class="text-sm text-secondary">An older router may cap your WiFi speed well below what your ISP delivers. WiFi 5 routers max out around 800 Mbps in practice; WiFi 6E routers handle multi-gigabit speeds. If your router speed test shows poor results, upgrading hardware can help.</p>
+          </div>
+          <div class="card st-factor-card">
+            <h4>Network Congestion</h4>
+            <p class="text-sm text-secondary">Cable internet is shared with your neighborhood. During peak hours (7-11 PM), your internet connection speed can drop 30-60%. Fiber connections are dedicated, so speed stays consistent 24/7. Run your speed test at different times to check.</p>
+          </div>
+          <div class="card st-factor-card">
+            <h4>Number of Devices</h4>
+            <p class="text-sm text-secondary">Every connected device shares your bandwidth. A typical household has 8-12 devices online simultaneously — TVs, phones, laptops, tablets, smart speakers, security cameras. More devices = less speed per device in your network speed test.</p>
+          </div>
+          <div class="card st-factor-card">
+            <h4>Background Activity</h4>
+            <p class="text-sm text-secondary">Cloud backups, OS updates, streaming on other devices, and app sync all consume bandwidth silently. Close these before running an internet speed test for the most accurate measurement of your connection speed.</p>
+          </div>
+          <div class="card st-factor-card">
+            <h4>ISP Throttling</h4>
+            <p class="text-sm text-secondary">Some providers intentionally slow certain types of traffic (streaming, gaming, VPN) during peak times. If your speed test shows fast results but Netflix buffers, throttling may be the cause. <a href="#isp-throttling">Learn more below</a>.</p>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="improve-speed" class="st-content-section">
+    <div class="container container--narrow">
+      <h2>How to Improve Your Internet Speed</h2>
+      <p class="st-section-intro">If your speed test results are disappointing, try these proven steps before calling your ISP or switching providers. Many performance issues can be fixed for free in minutes.</p>
+      <div class="grid grid-2 st-tip-grid">
+          <div class="card st-tip-card">
+            <h4>1. Restart Your Modem & Router</h4>
+            <p class="text-sm text-secondary">Unplug both for 30 seconds, then reconnect modem first, wait 2 minutes, then router. This clears memory leaks and re-establishes your connection. It fixes slow WiFi speed more often than you'd think.</p>
+          </div>
+          <div class="card st-tip-card">
+            <h4>2. Optimize Router Placement</h4>
+            <p class="text-sm text-secondary">Place your router centrally, elevated, away from walls and metal objects. Avoid placing it near microwaves, baby monitors, or cordless phones. Router placement is the #1 factor in WiFi speed test performance.</p>
+          </div>
+          <div class="card st-tip-card">
+            <h4>3. Switch to 5 GHz WiFi Band</h4>
+            <p class="text-sm text-secondary">If your router is dual-band, connect to the 5 GHz network for faster speeds at close range. The 2.4 GHz band reaches farther but is slower and more congested. Check which band you're on and test your WiFi speed on each.</p>
+          </div>
+          <div class="card st-tip-card">
+            <h4>4. Update Router Firmware</h4>
+            <p class="text-sm text-secondary">Outdated firmware can introduce speed bugs and security holes. Log into your router admin panel and check for updates. Newer firmware often includes WiFi optimization and stability improvements that directly affect your speed test results.</p>
+          </div>
+          <div class="card st-tip-card">
+            <h4>5. Use a Mesh WiFi System</h4>
+            <p class="text-sm text-secondary">If your home is larger than 1,500 sq ft, a single router may not cover it. A mesh WiFi system (like Eero, Google Nest WiFi, or Orbi) eliminates dead zones and gives consistent network speed throughout your home.</p>
+          </div>
+          <div class="card st-tip-card">
+            <h4>6. Upgrade Your Internet Plan</h4>
+            <p class="text-sm text-secondary">If troubleshooting doesn't help, your ISP plan may simply be too slow. The average U.S. household needs 200+ Mbps for comfortable multi-device use. <a href="/check-availability">Compare faster plans available at your address</a>.</p>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="isp-throttling" class="st-content-section">
+    <div class="container container--narrow">
+      <div class="st-throttle-card">
+        <h2>Is Your ISP Throttling Your Internet Speed?</h2>
+        <p class="st-section-intro">Internet throttling is when your ISP intentionally slows your connection — often during peak hours, or when you're streaming, gaming, or torrenting. It's more common than most people realize and it's a major reason speed test results don't match real-world performance.</p>
+        <h4>Signs Your ISP May Be Throttling You</h4>
+          <ul class="st-throttle-list">
+            <li>Your speed test shows fast results, but Netflix, YouTube, or Twitch buffer frequently</li>
+            <li>Internet slows down at the same time every evening (peak-hour congestion)</li>
+            <li>Speeds drop dramatically when using a VPN vs. without one</li>
+            <li>Upload speed is extremely slow compared to download (beyond normal cable asymmetry)</li>
+            <li>Gaming ping spikes at certain times but your internet speed test looks fine</li>
+          </ul>
+        <h4>How to Test for ISP Throttling</h4>
+          <ol class="st-throttle-steps">
+            <li><strong>Run this speed test</strong> — Note your baseline download, upload, and ping results.</li>
+            <li><strong>Run a VPN speed test</strong> — Connect to a VPN and run the test again. If speeds are significantly faster through a VPN, your ISP may be throttling specific traffic types.</li>
+            <li><strong>Test at different times</strong> — Compare morning vs. evening results. A large gap suggests network congestion or deliberate throttling.</li>
+            <li><strong>Check specific services</strong> — If streaming is slow but speed tests look fine, your ISP may be selectively throttling video traffic.</li>
+          </ol>
+          <div class="st-throttle-cta">
+            <p class="st-throttle-cta-title">Tired of being throttled?</p>
+            <p class="text-sm text-secondary">Fiber internet providers don't need to throttle because fiber has massive capacity. Switching from cable to fiber eliminates throttling and gives you consistent speeds at all hours.</p>
+            <div class="st-throttle-cta-actions">
+              <a href="/check-availability" class="btn btn-primary">Find Fiber at My Address</a>
+              <a href="/internet-types/fiber" class="btn btn-secondary">Learn About Fiber</a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-content-section st-not-happy-section">
+    <div class="container container--narrow">
+      <div class="st-not-happy-card">
+        <h3>Not Getting the Speed You Pay For?</h3>
+        <p>You may be overpaying for underperforming internet. Our experts compare every provider at your exact address and can switch you to a faster plan — often at a lower price.</p>
+        <div class="st-not-happy-actions">
+          <a href="/switch" class="btn btn-primary">Switch Provider</a>
+          <a href="/providers" class="btn btn-secondary">Compare All Options</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="provider-tests" class="st-content-section">
+    <div class="container container--narrow">
+      <h2>Provider-Specific Internet Speed Tests</h2>
+      <p class="st-section-intro">Many people search for a speed test by their specific provider. You can use this tool for all of them — it measures your actual connection regardless of ISP. After testing, compare your result to what you're paying for.</p>
+      <div class="grid grid-2 st-provider-grid">
+          <div class="card st-prov-card">
+            <h4>Xfinity / Comcast Speed Test</h4>
+            <p class="text-sm text-secondary">Xfinity uses DOCSIS cable technology. Typical download: 75-1,200 Mbps. Upload is usually 5-35 Mbps. If your Xfinity speed test shows lower than your plan, check for congestion during peak hours — cable is shared bandwidth.</p>
+          </div>
+          <div class="card st-prov-card">
+            <h4>Spectrum / Charter Speed Test</h4>
+            <p class="text-sm text-secondary">Spectrum offers 300-1,000 Mbps download on cable. No data caps. If your Spectrum speed test is below 250 Mbps, router placement or congestion may be the issue. Upload maxes at 35 Mbps on most plans.</p>
+          </div>
+          <div class="card st-prov-card">
+            <h4>AT&T / AT&T Fiber Speed Test</h4>
+            <p class="text-sm text-secondary">AT&T offers both DSL (legacy) and fiber. AT&T Fiber delivers symmetrical speeds up to 5 Gbps. If your AT&T speed test shows under 100 Mbps, you may still be on DSL — fiber upgrades are expanding rapidly.</p>
+          </div>
+          <div class="card st-prov-card">
+            <h4>Verizon / Fios Speed Test</h4>
+            <p class="text-sm text-secondary">Verizon Fios is fiber with symmetrical speeds up to 2 Gbps. If your Verizon speed test is strong on download and upload, you're likely on fiber. If upload is weak, check if you're on the older DSL network.</p>
+          </div>
+          <div class="card st-prov-card">
+            <h4>Cox Internet Speed Test</h4>
+            <p class="text-sm text-secondary">Cox uses cable with download speeds from 50 to 2,000 Mbps. Like all cable, upload is limited (10-100 Mbps). Cox also has data caps in most markets. Run a Cox speed test to verify you're getting your plan speed.</p>
+          </div>
+          <div class="card st-prov-card">
+            <h4>Frontier / Frontier Fiber Speed Test</h4>
+            <p class="text-sm text-secondary">Frontier offers both legacy DSL and expanding fiber (up to 5 Gbps symmetrical). If your Frontier speed test shows under 50 Mbps, check fiber availability — Frontier is aggressively rolling out fiber in 2025-2026.</p>
+          </div>
+          <div class="card st-prov-card">
+            <h4>Google Fiber Speed Test</h4>
+            <p class="text-sm text-secondary">Google Fiber delivers 1-8 Gbps symmetrical with no data caps and consistently low ping. If your Google Fiber speed test isn't hitting gigabit, check your router — older hardware can bottleneck fiber speeds.</p>
+          </div>
+          <div class="card st-prov-card">
+            <h4>Starlink / Satellite Speed Test</h4>
+            <p class="text-sm text-secondary">Starlink (LEO satellite) typically delivers 50-220 Mbps download with 25-60 ms ping — far better than traditional satellite. If your Starlink speed test shows low results, check for obstructions in your dish's field of view.</p>
+          </div>
+          <div class="card st-prov-card">
+            <h4>T-Mobile Home Internet Speed Test</h4>
+            <p class="text-sm text-secondary">T-Mobile 5G Home Internet delivers 33-245 Mbps depending on tower proximity and congestion. If your T-Mobile speed test is under 50 Mbps, try repositioning the gateway near a window facing the nearest tower.</p>
+          </div>
+          <div class="card st-prov-card">
+            <h4>CenturyLink / Brightspeed Speed Test</h4>
+            <p class="text-sm text-secondary">CenturyLink (now Brightspeed in some areas) offers DSL and fiber. DSL tops out at 100 Mbps; fiber offers up to 940 Mbps. Run a broadband speed test to see which technology you're connected to.</p>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="speed-faq" class="st-content-section">
+    <div class="container container--narrow">
+      <h2>Internet Speed Test FAQ</h2>
+      <div class="st-faq-wrap">
+        {speedTestFaqs.map((faq, i) => (
+          <details class="st-faq-item" open={i === 0}>
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="methodology" class="st-content-section">
+    <div class="container container--narrow">
+      <h2>Our Speed Test Methodology</h2>
+      <div class="st-methodology-content">
+        <p>Transparency builds trust. Here is exactly how we measure your internet speed:</p>
+        <div class="grid grid-2 st-methodology-grid">
+          <div class="card st-methodology-card">
+            <h4>Download Test</h4>
+            <p class="text-sm text-secondary">We download six progressively larger files (100 KB to 35 MB) from Cloudflare's global CDN. We stream each file, measuring throughput as bytes arrive. The first chunk is a warmup — we use the median of the remaining measurements for your final download speed, which is more accurate than a simple average.</p>
+          </div>
+          <div class="card st-methodology-card">
+            <h4>Upload Test</h4>
+            <p class="text-sm text-secondary">We upload eight progressively larger payloads (100 KB to 10 MB) to Cloudflare's edge. Like the download test, the first chunk warms up the connection and is excluded. Your final upload speed is the median of the remaining measurements.</p>
+          </div>
+          <div class="card st-methodology-card">
+            <h4>Ping Measurement</h4>
+            <p class="text-sm text-secondary">We send seven zero-byte requests to a CDN endpoint and measure the round-trip time for each. We drop the highest (worst) ping value and average the remaining six. This gives you a realistic ping that filters out one-off spikes.</p>
+          </div>
+          <div class="card st-methodology-card">
+            <h4>Jitter Calculation</h4>
+            <p class="text-sm text-secondary">Jitter is the average absolute difference between consecutive ping measurements across six requests. High jitter (above 15 ms) indicates an unstable connection, even if average ping looks acceptable. Fiber connections typically show jitter under 5 ms.</p>
+          </div>
+        </div>
+        <p class="st-methodology-note">All tests run entirely in your browser. We do not install software, store personal data, or track individual results. Test duration adapts to your connection — minimum 12 seconds total with at least 5 seconds each for download and upload phases.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-content-section st-related-section">
+    <div class="container container--narrow">
+      <h3>Related Resources</h3>
+      <div class="st-related-grid">
+        <a href="/compare" class="card st-related-card">
+          <h4>Compare Plans</h4>
+          <p>Side-by-side comparison</p>
+        </a>
+        <a href="/fastest-internet" class="card st-related-card">
+          <h4>Fastest Internet</h4>
+          <p>Multi-gig providers</p>
+        </a>
+        <a href="/deals" class="card st-related-card">
+          <h4>Best Deals</h4>
+          <p>Today's lowest prices</p>
+        </a>
+        <a href="/cheap-internet" class="card st-related-card">
+          <h4>Cheap Internet</h4>
+          <p>Budget-friendly plans</p>
+        </a>
+        <a href="/internet-types/fiber" class="card st-related-card">
+          <h4>Fiber Internet</h4>
+          <p>Fastest technology</p>
+        </a>
+        <a href="/internet-for/gaming" class="card st-related-card">
+          <h4>Best for Gaming</h4>
+          <p>Low ping, zero lag</p>
+        </a>
+        <a href="/internet-for/streaming" class="card st-related-card">
+          <h4>Best for Streaming</h4>
+          <p>Buffer-free 4K</p>
+        </a>
+        <a href="/bill-analyzer" class="card st-related-card">
+          <h4>Bill Analyzer</h4>
+          <p>Find hidden charges</p>
+        </a>
+        <a href="/check-availability" class="card st-related-card">
+          <h4>Check Availability</h4>
+          <p>Providers at your address</p>
+        </a>
+        <a href="/business-internet" class="card st-related-card">
+          <h4>Business Internet</h4>
+          <p>Dedicated business plans</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  </article>
 
   <StickyCallBar text="Speed not up to par? Let us find you something better." />
 </Base>
@@ -170,20 +711,57 @@ import { generateBreadcrumbSchema } from '@lib/utils';
 <script>
   // Real speed test using Cloudflare Workers endpoints for download/upload measurement
   const startBtn = document.getElementById('start-test') as HTMLButtonElement;
-  const gauge = document.getElementById('speed-gauge') as HTMLElement;
-  const speedValue = document.getElementById('speed-value') as HTMLElement;
   const speedLabel = document.getElementById('speed-label') as HTMLElement;
-  const dlSpeed = document.getElementById('dl-speed') as HTMLElement;
-  const ulSpeed = document.getElementById('ul-speed') as HTMLElement;
-  const pingVal = document.getElementById('ping-val') as HTMLElement;
+  const testPhase = document.getElementById('test-phase') as HTMLElement;
   const progressBar = document.getElementById('progress-bar') as HTMLElement;
   const progressFill = document.getElementById('progress-fill') as HTMLElement;
   const analysisEl = document.getElementById('speed-analysis') as HTMLElement;
   const analysisContent = document.getElementById('analysis-content') as HTMLElement;
+  const zipCapture = document.getElementById('zip-capture') as HTMLElement;
+  const phasePing = document.getElementById('phase-ping') as HTMLElement;
+  const phaseDownload = document.getElementById('phase-download') as HTMLElement;
+  const phaseUpload = document.getElementById('phase-upload') as HTMLElement;
+  const phaseJitter = document.getElementById('phase-jitter') as HTMLElement;
+  const zipInput = document.getElementById('zip-input') as HTMLInputElement;
+  const zipGoBtn = document.getElementById('zip-go-btn') as HTMLAnchorElement;
 
-  if (!startBtn || !gauge || !speedValue || !speedLabel || !dlSpeed || !ulSpeed || !pingVal || !progressBar || !progressFill || !analysisEl || !analysisContent) {
+  // Unified gauge DOM refs
+  const gaugeArc = document.getElementById('st-arc') as unknown as SVGPathElement | null;
+  const gaugeNeedle = document.getElementById('st-needle') as unknown as SVGGElement | null;
+  const stPhaseRing = document.getElementById('st-phase-ring') as unknown as SVGCircleElement | null;
+  const stSpeedDisplay = document.getElementById('st-speed-display') as HTMLElement | null;
+  const stSpeedValue = document.getElementById('st-speed-value') as HTMLElement | null;
+  const stMetrics = document.getElementById('st-metrics') as HTMLElement | null;
+  const stMDl = document.getElementById('st-m-dl') as HTMLElement | null;
+  const stMUl = document.getElementById('st-m-ul') as HTMLElement | null;
+  const stMPing = document.getElementById('st-m-ping') as HTMLElement | null;
+  const stMJitter = document.getElementById('st-m-jitter') as HTMLElement | null;
+  const stResultModal = document.getElementById('st-result-modal') as HTMLElement | null;
+  const stResultLabel = document.getElementById('st-result-label') as HTMLElement | null;
+  const stResultSub = document.getElementById('st-result-sub') as HTMLElement | null;
+  const stGradeBadge = document.getElementById('st-grade-badge') as HTMLElement | null;
+  const stModalDl = document.getElementById('st-modal-dl') as HTMLElement | null;
+  const stModalUl = document.getElementById('st-modal-ul') as HTMLElement | null;
+  const stModalPing = document.getElementById('st-modal-ping') as HTMLElement | null;
+  const stModalJitter = document.getElementById('st-modal-jitter') as HTMLElement | null;
+  const stModalClose = document.getElementById('st-modal-close') as HTMLElement | null;
+  const stModalRetest = document.getElementById('st-modal-retest') as HTMLElement | null;
+  const stModeLabel = document.getElementById('st-mode-label') as HTMLElement | null;
+  const stSpeedUnit = document.getElementById('st-speed-unit') as HTMLElement | null;
+  const stScaleMax = document.getElementById('st-scale-max') as HTMLElement | null;
+  const stMDlUnit = document.getElementById('st-m-dl-unit') as HTMLElement | null;
+  const stMUlUnit = document.getElementById('st-m-ul-unit') as HTMLElement | null;
+
+  let prevBodyOverflow = '';
+
+  if (!startBtn || !speedLabel || !progressBar || !progressFill || !analysisEl || !analysisContent) {
     console.error('Speed test UI initialization failed: required DOM nodes are missing.');
   } else {
+
+  // Keep modal outside page stacking contexts so it always stays on top while scrolling.
+  if (stResultModal && stResultModal.parentElement !== document.body) {
+    document.body.appendChild(stResultModal);
+  }
 
   let running = false;
 
@@ -199,6 +777,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
     5_000_000,   // 5 MB
     10_000_000,  // 10 MB
     25_000_000,  // 25 MB
+    35_000_000,  // 35 MB
   ];
 
   const UL_SIZES = [
@@ -206,20 +785,66 @@ import { generateBreadcrumbSchema } from '@lib/utils';
     500_000,     // 500 KB
     1_000_000,   // 1 MB
     2_000_000,   // 2 MB
+    3_000_000,   // 3 MB
+    5_000_000,   // 5 MB
+    8_000_000,   // 8 MB
+    10_000_000,  // 10 MB
   ];
 
-  function animateValue(el: HTMLElement, target: number, duration: number, suffix = '') {
-    const startVal = parseFloat(el.textContent || '0') || 0;
-    const startTime = performance.now();
-    function update(now: number) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = startVal + (target - startVal) * eased;
-      el.textContent = current.toFixed(1) + suffix;
-      if (progress < 1) requestAnimationFrame(update);
+  const MIN_PHASE_MS = {
+    ping: 1600,
+    download: 5000,
+    upload: 5000,
+    jitter: 1800,
+  };
+
+  const MIN_TOTAL_TEST_MS = 12000;
+
+  const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+  async function withMinDuration<T>(work: () => Promise<T>, minMs: number): Promise<T> {
+    const started = performance.now();
+    const result = await work();
+    const elapsed = performance.now() - started;
+    if (elapsed < minMs) await sleep(minMs - elapsed);
+    return result;
+  }
+
+  function setPhaseSteps(active: 'ping' | 'download' | 'upload' | 'jitter' | 'done' | 'idle') {
+    const phaseMap = [
+      { key: 'ping', el: phasePing },
+      { key: 'download', el: phaseDownload },
+      { key: 'upload', el: phaseUpload },
+      { key: 'jitter', el: phaseJitter },
+    ] as const;
+
+    for (const phase of phaseMap) {
+      if (!phase.el) continue;
+      phase.el.classList.remove('is-active', 'is-done');
+      if (active === 'done') {
+        phase.el.classList.add('is-done');
+        continue;
+      }
+      if (active === 'idle') continue;
+
+      const ordered = ['ping', 'download', 'upload', 'jitter'];
+      const activeIndex = ordered.indexOf(active);
+      const currentIndex = ordered.indexOf(phase.key);
+      if (currentIndex < activeIndex) phase.el.classList.add('is-done');
+      if (currentIndex === activeIndex) phase.el.classList.add('is-active');
     }
-    requestAnimationFrame(update);
+  }
+
+  function setPhaseBadge(
+    text: string,
+    tone: 'neutral' | 'download' | 'upload' | 'jitter' | 'complete' = 'neutral',
+    visible = true
+  ) {
+    if (!testPhase) return;
+    testPhase.textContent = text;
+    testPhase.style.display = visible ? '' : 'none';
+    testPhase.classList.remove('tone-neutral', 'tone-download', 'tone-upload', 'tone-jitter', 'tone-complete');
+    testPhase.classList.add(`tone-${tone}`);
   }
 
   // Real ping measurement
@@ -351,18 +976,20 @@ import { generateBreadcrumbSchema } from '@lib/utils';
   }
 
   // Calculate jitter from ping measurements
-  async function measureJitter(): Promise<number> {
+  async function measureJitter(onProgress?: (pingMs: number, index: number, total: number) => void): Promise<number> {
     const pings: number[] = [];
-    for (let i = 0; i < 6; i++) {
+    const rounds = 6;
+    for (let i = 0; i < rounds; i++) {
       const start = performance.now();
       try {
         await fetch(PING_ENDPOINT, { cache: 'no-store', mode: 'cors' });
       } catch {
         await fetch('/robots.txt?_=' + Date.now(), { cache: 'no-store' }).catch(() => {});
       }
-      pings.push(performance.now() - start);
+      const ms = performance.now() - start;
+      pings.push(ms);
+      if (onProgress) onProgress(ms, i, rounds);
     }
-    // Jitter = avg difference between consecutive pings
     let diffs = 0;
     for (let i = 1; i < pings.length; i++) {
       diffs += Math.abs(pings[i] - pings[i - 1]);
@@ -370,165 +997,499 @@ import { generateBreadcrumbSchema } from '@lib/utils';
     return diffs / (pings.length - 1);
   }
 
+  function animatePhaseProgress(startPct: number, endPct: number, durationMs: number): () => void {
+    const t0 = performance.now();
+    let id: number;
+    function tick() {
+      const elapsed = performance.now() - t0;
+      const t = Math.min(elapsed / durationMs, 1);
+      progressFill.style.width = (startPct + (endPct - startPct) * t) + '%';
+      if (t < 1) id = requestAnimationFrame(tick);
+    }
+    id = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(id);
+  }
+
+  // ── Gauge helpers ──
+  const clamp = (n: number, min: number, max: number) => Math.min(Math.max(n, min), max);
+  const easeOutExpo = (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+  function setLiveGauge(ratio: number, speed: number) {
+    const r = clamp(ratio, 0, 1);
+    const angle = -122 + r * 244;
+    if (gaugeArc) gaugeArc.style.strokeDashoffset = `${100 - r * 100}`;
+    if (gaugeNeedle) gaugeNeedle.setAttribute('transform', `translate(280 260) rotate(${angle})`);
+    if (stSpeedValue) stSpeedValue.textContent = Math.round(speed).toLocaleString();
+  }
+
+  function setPhaseRingTone(tone: 'idle' | 'download' | 'upload' | 'jitter' | 'complete') {
+    if (!stPhaseRing) return;
+    stPhaseRing.classList.remove('tone-idle', 'tone-download', 'tone-upload', 'tone-jitter', 'tone-complete');
+    stPhaseRing.classList.add(`tone-${tone}`);
+  }
+
+  function setGaugeMode(mode: 'download' | 'upload' | 'idle') {
+    const labels: Record<string, string> = { download: 'DOWNLOAD', upload: 'UPLOAD', idle: '' };
+    if (stModeLabel) {
+      stModeLabel.textContent = labels[mode] || '';
+      stModeLabel.style.display = mode === 'idle' ? 'none' : '';
+      stModeLabel.className = 'st-mode-label' + (mode !== 'idle' ? ` mode-${mode}` : '');
+    }
+    if (stSpeedUnit) stSpeedUnit.textContent = 'Mbps';
+    if (gaugeArc) {
+      const strokes: Record<string, string> = { download: 'url(#stArcGrad)', upload: 'url(#stArcGradUl)', idle: 'url(#stArcGrad)' };
+      gaugeArc.setAttribute('stroke', strokes[mode] || 'url(#stArcGrad)');
+    }
+    const panel = document.querySelector('.st-panel');
+    if (panel) {
+      panel.classList.remove('mode-download', 'mode-upload', 'mode-jitter');
+      if (mode !== 'idle') panel.classList.add(`mode-${mode}`);
+    }
+    if (mode === 'download') setPhaseRingTone('download');
+    if (mode === 'upload') setPhaseRingTone('upload');
+    if (mode === 'idle') setPhaseRingTone('idle');
+  }
+
+  const GAUGE_TIERS = [200, 500, 1000, 2000, 5000, 8000, 10000] as const;
+
+  function pickGaugeTier(targetMbps: number): number {
+    for (const tier of GAUGE_TIERS) {
+      if (targetMbps <= tier) return tier;
+    }
+    return GAUGE_TIERS[GAUGE_TIERS.length - 1];
+  }
+
+  // Keep meaningful headroom while staying visually representative of the measured line.
+  function adaptiveGaugeMax(speed: number): number {
+    const safeSpeed = Math.max(speed, 1);
+    const desired = safeSpeed * 2.2;
+    return pickGaugeTier(desired);
+  }
+
+  function formatSpeed(n: number): string {
+    if (n >= 1000) {
+      const g = n / 1000;
+      return Number.isInteger(g) ? `${g} Gig` : `${g.toFixed(1)} Gig`;
+    }
+    return `${Math.round(n)} Mbps`;
+  }
+
+  function formatSpeedParts(n: number): { num: string; unit: string } {
+    if (n >= 1000) {
+      const g = n / 1000;
+      return { num: Number.isInteger(g) ? `${g}` : g.toFixed(1), unit: 'Gbps' };
+    }
+    return { num: `${Math.round(n)}`, unit: 'Mbps' };
+  }
+
+  function getConnectionScore(down: number, up: number, ping: number, fiber: number): number {
+    let score = 100;
+    const fiberPenalty = Math.min((down / fiber) * 100, 100);
+    score -= Math.max(0, 55 - fiberPenalty);
+    if (up < 50) score -= 18;
+    else if (up < 100) score -= 10;
+    else if (up < 300) score -= 4;
+    if (ping > 40) score -= 16;
+    else if (ping > 25) score -= 10;
+    else if (ping > 15) score -= 5;
+    return Math.max(46, Math.min(94, Math.round(score)));
+  }
+
+  function getPerformanceLabel(fiberRatio: number): string {
+    if (fiberRatio < 0.12) return 'Your speed could be much better';
+    if (fiberRatio < 0.25) return 'You are leaving speed on the table';
+    if (fiberRatio < 0.45) return 'Good speed, but your home can feel much faster';
+    if (fiberRatio < 0.7) return 'Almost there - a faster plan can remove slowdowns';
+    return 'Strong speed - now make sure you are not overpaying';
+  }
+
+  function getGrade(dl: number, ul: number, ping: number, jitter: number): { letter: string; color: string } {
+    const score = getConnectionScore(dl, ul, ping, 5000);
+    if (score >= 88) return { letter: 'A', color: '#22d3ee' };
+    if (score >= 78) return { letter: 'B+', color: '#34d399' };
+    if (score >= 68) return { letter: 'B', color: '#a3e635' };
+    if (score >= 58) return { letter: 'C+', color: '#fbbf24' };
+    if (score >= 50) return { letter: 'C', color: '#f97316' };
+    return { letter: 'D', color: '#ef4444' };
+  }
+
+  function showResultsModal(dl: number, ul: number, ping: number, jitter: number) {
+    const fiberMbps = 5000;
+    const relativeToFiber = Math.min(dl / fiberMbps, 1);
+
+    // Populate metrics in the hero area (behind the modal)
+    if (stMetrics) stMetrics.style.display = '';
+    const dlP = formatSpeedParts(dl);
+    const ulP = formatSpeedParts(ul);
+    if (stMDl) stMDl.textContent = dlP.num;
+    if (stMDlUnit) stMDlUnit.textContent = dlP.unit;
+    if (stMUl) stMUl.textContent = ulP.num;
+    if (stMUlUnit) stMUlUnit.textContent = ulP.unit;
+    if (stMPing) stMPing.textContent = `${ping.toFixed(0)} ms`;
+    if (stMJitter) stMJitter.textContent = `${jitter.toFixed(1)} ms`;
+
+    // Populate modal
+    if (stModalDl) stModalDl.textContent = formatSpeed(dl);
+    if (stModalUl) stModalUl.textContent = formatSpeed(ul);
+    if (stModalPing) stModalPing.textContent = `${ping.toFixed(0)} ms`;
+    if (stModalJitter) stModalJitter.textContent = `${jitter.toFixed(1)} ms`;
+
+    const perfLabel = getPerformanceLabel(relativeToFiber);
+    const grade = getGrade(dl, ul, ping, jitter);
+    if (stResultLabel) stResultLabel.textContent = perfLabel;
+    if (stGradeBadge) {
+      stGradeBadge.textContent = grade.letter;
+      stGradeBadge.style.borderColor = grade.color;
+      stGradeBadge.style.color = grade.color;
+      stGradeBadge.style.boxShadow = `0 0 20px ${grade.color}33, inset 0 0 15px ${grade.color}1a`;
+    }
+
+    // Conversion message
+    if (stResultSub) {
+      const fiberX = Math.round(5000 / Math.max(dl, 1));
+      if (dl < 100) {
+        stResultSub.textContent = `Right now your connection can struggle during calls, streaming, and peak-hour usage. You could get up to ${fiberX}\u00d7 faster speed at this same address.`;
+      } else if (fiberX > 2) {
+        stResultSub.textContent = `You are doing okay, but you could feel a huge upgrade every day. Plans up to ${fiberX}\u00d7 faster may be available where you live.`;
+      } else {
+        stResultSub.textContent = 'Your speed is solid. Now make sure you are not paying too much for it - compare deals in your area.';
+      }
+    }
+
+    // Show modal with slight delay for dramatic effect
+    setTimeout(() => {
+      if (stResultModal) {
+        prevBodyOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        stResultModal.style.display = '';
+      }
+    }, 600);
+  }
+
+  function closeResultsModal() {
+    if (stResultModal) {
+      stResultModal.style.display = 'none';
+      document.body.style.overflow = prevBodyOverflow;
+    }
+  }
+
+  // Wire modal close / retest
+  if (stModalClose) stModalClose.addEventListener('click', closeResultsModal);
+  if (stModalRetest) stModalRetest.addEventListener('click', () => { closeResultsModal(); runTest(); });
+  if (stResultModal) stResultModal.addEventListener('click', (e) => { if (e.target === stResultModal) closeResultsModal(); });
+
   async function runTest() {
     if (running) return;
     running = true;
-    startBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Testing...`;
-    startBtn.disabled = true;
-    progressBar.style.opacity = '1';
-    analysisEl.style.display = 'none';
 
-    // Reset values
-    dlSpeed.textContent = '—';
-    ulSpeed.textContent = '—';
-    pingVal.textContent = '—';
-    speedValue.textContent = '0';
-    gauge.style.setProperty('--progress', '0%');
+    // ── Countdown start indicator ──
+    startBtn.style.display = 'none';
+    startBtn.classList.remove('st-go-again');
+    if (stSpeedDisplay) stSpeedDisplay.style.display = 'none';
+    if (stMetrics) stMetrics.style.display = 'none';
+    closeResultsModal();
+    progressBar.style.opacity = '0';
+    progressFill.style.width = '0%';
+    analysisEl.style.display = 'none';
+    setPhaseSteps('idle');
+    setLiveGauge(0, 0);
+    setGaugeMode('idle');
+
+    // Show countdown 3-2-1
+    if (testPhase) {
+      for (const n of ['3', '2', '1']) {
+        setPhaseBadge(n, 'neutral', true);
+        testPhase.classList.add('st-countdown-pop');
+        await sleep(600);
+        testPhase.classList.remove('st-countdown-pop');
+        await sleep(50);
+      }
+      setPhaseBadge('Testing Download...', 'download', true);
+    }
+
+    const testStartedAt = performance.now();
+    progressBar.style.opacity = '1';
+    let phaseGaugeMax = 500;
 
     try {
-      // Phase 1: Ping
-      speedLabel.textContent = 'Measuring latency...';
-      progressFill.style.width = '5%';
-      const pingResult = await measurePing();
-      pingVal.textContent = pingResult.toFixed(0);
+      // Phase 1: Ping — no gauge, quick
+      speedLabel.textContent = 'Measuring base latency...';
+      setPhaseBadge('Testing Download...', 'download', true);
+      setPhaseSteps('ping');
+      const stopPingProg = animatePhaseProgress(0, 8, MIN_PHASE_MS.ping);
+      const pingResult = await withMinDuration(() => measurePing(7), MIN_PHASE_MS.ping);
+      stopPingProg();
+      progressFill.style.width = '8%';
 
-      // Phase 2: Download
-      speedLabel.textContent = 'Testing download speed...';
-      const dlResult = await measureDownload((mbps, pct) => {
-        speedValue.textContent = mbps.toFixed(0);
-        const totalPct = 10 + (pct * 0.55);
-        progressFill.style.width = totalPct + '%';
-        gauge.style.setProperty('--progress', Math.min(totalPct, 70) + '%');
-      });
-      dlSpeed.textContent = dlResult.toFixed(1);
-      speedValue.textContent = dlResult.toFixed(1);
+      // Phase 2: Download — gauge active, 6 seconds
+      speedLabel.textContent = 'Running download throughput scan...';
+      setPhaseBadge('Testing Download...', 'download', true);
+      if (stSpeedDisplay) stSpeedDisplay.style.display = '';
+      setPhaseSteps('download');
+      setGaugeMode('download');
+      if (stScaleMax) stScaleMax.textContent = formatSpeed(phaseGaugeMax);
+      const stopDlProg = animatePhaseProgress(8, 48, MIN_PHASE_MS.download);
+      const dlResult = await withMinDuration(() => measureDownload((mbps, _pct) => {
+        const estMax = adaptiveGaugeMax(mbps);
+        phaseGaugeMax = Math.max(phaseGaugeMax, estMax);
+        const liveRatio = Math.min(mbps / phaseGaugeMax, 0.95);
+        setLiveGauge(liveRatio, mbps);
+        if (stScaleMax) stScaleMax.textContent = formatSpeed(phaseGaugeMax);
+      }), MIN_PHASE_MS.download);
+      stopDlProg();
+      progressFill.style.width = '48%';
+      phaseGaugeMax = Math.max(phaseGaugeMax, adaptiveGaugeMax(dlResult));
 
-      // Phase 3: Upload
-      speedLabel.textContent = 'Testing upload speed...';
-      const ulResult = await measureUpload((mbps, pct) => {
-        const totalPct = 65 + (pct * 0.30);
-        progressFill.style.width = totalPct + '%';
-      });
-      ulSpeed.textContent = ulResult.toFixed(1);
+      // Smooth pause before upload starts
+      speedLabel.textContent = 'Download complete. Upload test starts now...';
+      setPhaseBadge('Testing Upload...', 'upload', true);
+      setGaugeMode('idle');
+      await sleep(1400);
+
+      // Phase 3: Upload — gauge active, 5 seconds, smooth interpolation
+      speedLabel.textContent = 'Measuring upload throughput...';
+      setPhaseBadge('Testing Upload...', 'upload', true);
+      setPhaseSteps('upload');
+      setGaugeMode('upload');
+      setLiveGauge(0, 0);
+      if (stScaleMax) stScaleMax.textContent = formatSpeed(phaseGaugeMax);
+      let ulTarget = 0;
+      let ulDisplay = 0;
+      let ulDone = false;
+      let ulAnimId: number | null = null;
+      const animateUl = () => {
+        if (ulDone) return;
+        ulDisplay += (ulTarget - ulDisplay) * 0.12;
+        if (ulTarget > 0) {
+          // Add slight realistic fluctuation when real test is done but padding
+          const jitter = ulTarget > 0 ? (Math.random() - 0.5) * ulTarget * 0.04 : 0;
+          const displayVal = Math.max(0, ulDisplay + jitter);
+          setLiveGauge(Math.min(displayVal / phaseGaugeMax, 0.95), displayVal);
+          if (stScaleMax) stScaleMax.textContent = formatSpeed(phaseGaugeMax);
+        }
+        ulAnimId = requestAnimationFrame(animateUl);
+      };
+      ulAnimId = requestAnimationFrame(animateUl);
+      const stopUlProg = animatePhaseProgress(48, 88, MIN_PHASE_MS.upload);
+      const ulResult = await withMinDuration(() => measureUpload((mbps, _pct) => {
+        ulTarget = mbps;
+      }), MIN_PHASE_MS.upload);
+      ulDone = true;
+      if (ulAnimId) cancelAnimationFrame(ulAnimId);
+      stopUlProg();
+      progressFill.style.width = '88%';
 
       if (dlResult <= 0 && ulResult <= 0) {
         throw new Error('No measurable throughput from test endpoints');
       }
 
-      // Phase 4: Jitter (bonus metric)
-      speedLabel.textContent = 'Measuring jitter...';
-      progressFill.style.width = '95%';
-      const jitter = await measureJitter();
+      // Phase 4: Jitter — show ping counter in gauge center
+      speedLabel.textContent = 'Checking connection stability...';
+      setPhaseBadge('Checking Stability...', 'jitter', true);
+      setPhaseSteps('jitter');
+      setGaugeMode('idle');
+      setPhaseRingTone('jitter');
+      // Show a live ping counter during jitter
+      if (stSpeedDisplay) stSpeedDisplay.style.display = '';
+      if (stModeLabel) { stModeLabel.textContent = 'PING'; stModeLabel.style.display = ''; stModeLabel.className = 'st-mode-label mode-jitter'; }
+      if (stSpeedUnit) stSpeedUnit.textContent = 'ms';
+      const stopJtProg = animatePhaseProgress(88, 100, MIN_PHASE_MS.jitter);
+      const jitter = await withMinDuration(() => measureJitter((pingMs, _idx, _total) => {
+        if (stSpeedValue) stSpeedValue.textContent = Math.round(pingMs).toString();
+      }), MIN_PHASE_MS.jitter);
+      stopJtProg();
 
-      // Done
+      const totalElapsed = performance.now() - testStartedAt;
+      if (totalElapsed < MIN_TOTAL_TEST_MS) {
+        speedLabel.textContent = 'Finalizing results...';
+        await sleep(MIN_TOTAL_TEST_MS - totalElapsed);
+      }
+
+      // Done — show final state on gauge (no re-animation)
       progressFill.style.width = '100%';
-      speedLabel.textContent = 'Test complete!';
+      if (testPhase) {
+        setPhaseBadge('\u2714 Complete', 'complete', true);
+        testPhase.classList.add('st-complete-flash');
+      }
+      setPhaseRingTone('complete');
+      setPhaseSteps('done');
       setTimeout(() => { progressBar.style.opacity = '0'; }, 800);
+
+      // Set gauge to final download reading (no shoot-up animation)
+      setGaugeMode('download');
+      const gaugeMax = Math.max(phaseGaugeMax, adaptiveGaugeMax(dlResult));
+      if (stScaleMax) stScaleMax.textContent = formatSpeed(gaugeMax);
+      const finalRatio = Math.min(dlResult / gaugeMax, 1);
+      setLiveGauge(finalRatio, dlResult);
+      if (stSpeedDisplay) stSpeedDisplay.style.display = '';
+      if (stModeLabel) { stModeLabel.textContent = ''; stModeLabel.style.display = 'none'; }
+      speedLabel.textContent = 'Test complete — review your results and upgrade options below.';
+
+      // Show results modal
+      showResultsModal(dlResult, ulResult, pingResult, jitter);
+
+      // Show ZIP capture
+      if (zipCapture) zipCapture.style.display = '';
 
       // Show analysis
       showAnalysis(dlResult, ulResult, pingResult, jitter);
 
     } catch (err) {
-      speedLabel.textContent = 'Test encountered an error. Please try again.';
+      speedLabel.textContent = 'Test error — please try again.';
       progressBar.style.opacity = '0';
+      setPhaseSteps('idle');
+      setPhaseRingTone('idle');
+      if (testPhase) {
+        testPhase.style.display = 'none';
+        testPhase.classList.remove('st-countdown-pop', 'st-complete-flash', 'tone-neutral', 'tone-download', 'tone-upload', 'tone-jitter', 'tone-complete');
+      }
+      if (stSpeedDisplay) stSpeedDisplay.style.display = 'none';
     }
 
-    startBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> Test Again`;
-    startBtn.disabled = false;
+    startBtn.textContent = '\u21bb AGAIN';
+    startBtn.style.display = '';
+    startBtn.classList.add('st-go-again');
+    if (testPhase) {
+      testPhase.style.display = 'none';
+      testPhase.classList.remove('st-countdown-pop', 'st-complete-flash', 'tone-neutral', 'tone-download', 'tone-upload', 'tone-jitter', 'tone-complete');
+    }
+    setPhaseRingTone('idle');
     running = false;
   }
 
   function showAnalysis(dl: number, ul: number, ping: number, jitter: number) {
     analysisEl.style.display = '';
-    let grade = 'A';
-    let color = 'var(--brand-green)';
-    let msg = '';
 
-    if (dl >= 300) { grade = 'A+'; color = 'var(--brand-green)'; msg = 'Excellent! Your connection is blazing fast. Perfect for 4K streaming, gaming, and large households.'; }
-    else if (dl >= 100) { grade = 'A'; color = 'var(--brand-green)'; msg = 'Great speed! Suitable for 4K streaming, gaming, and working from home.'; }
-    else if (dl >= 50) { grade = 'B'; color = 'var(--brand-blue-light)'; msg = 'Good speed for most tasks. You might want to upgrade if multiple people are streaming simultaneously.'; }
-    else if (dl >= 25) { grade = 'C'; color = 'var(--brand-amber)'; msg = 'Adequate for basic use but may struggle with multiple devices or 4K streaming.'; }
-    else { grade = 'D'; color = 'var(--brand-red)'; msg = 'Your speed is below average. We strongly recommend exploring faster options in your area.'; }
+    // ── Framing logic: always surface a problem, regardless of speed ──
+    // Upload asymmetry is a real issue on cable — and nearly universal
+    const uploadRatio = ul > 0 ? ul / dl : 0;
+    const isAsymmetric = uploadRatio < 0.3 && dl > 50; // cable typical: 10:1 down:up
+    const isHighJitter = jitter > 15;
+    const isHighPing = ping > 60;
+    const householdDevices = 8; // US household average
+    const perDeviceMbps = dl / householdDevices;
+    const fiberMultiple = Math.round(1000 / Math.max(dl, 1));
 
-    // Ping quality
-    let pingGrade = ping < 20 ? 'Excellent' : ping < 50 ? 'Good' : ping < 100 ? 'Fair' : 'Poor';
-    let pingColor = ping < 20 ? 'var(--brand-green)' : ping < 50 ? 'var(--brand-blue-light)' : ping < 100 ? 'var(--brand-amber)' : 'var(--brand-red)';
+    // Build headline + sub-copy that makes ANY speed feel insufficient
+    let headline = '';
+    let subline = '';
+    let headlineColor = 'var(--brand-amber)';
 
-    // Upload quality
-    let ulGrade = ul >= 50 ? 'Excellent' : ul >= 20 ? 'Good' : ul >= 10 ? 'Fair' : 'Needs improvement';
+    if (dl < 25) {
+      headline = '⚠️ Critically Slow — Below FCC Broadband Minimum';
+      subline = `At ${dl.toFixed(0)} Mbps, your connection doesn't meet the FCC's basic broadband standard of 25 Mbps. Expect buffering, dropped calls, and frustration with more than one device online.`;
+      headlineColor = 'var(--brand-red)';
+    } else if (dl < 100) {
+      headline = '⚠️ Below Modern Standards for Today\'s Households';
+      subline = `${dl.toFixed(0)} Mbps sounds like a number — but with ${householdDevices} devices sharing it, each device gets only ${perDeviceMbps.toFixed(0)} Mbps. That's not enough for smooth 4K streaming or a video call while someone else is online.`;
+      headlineColor = 'var(--brand-amber)';
+    } else if (dl < 300) {
+      headline = `⚠️ Decent for One Person — Tight for a Household`;
+      subline = `${dl.toFixed(0)} Mbps works for you right now, but a single 4K stream uses 25 Mbps. Add a gaming session, video calls, and a smart TV and you're already fighting for bandwidth. Gigabit fiber is available in most areas for around the same monthly price.`;
+      headlineColor = 'var(--brand-amber)';
+    } else if (dl < 600) {
+      if (isAsymmetric) {
+        headline = `⚠️ Fast Download, But Upload Is Holding You Back`;
+        subline = `Your download is solid at ${dl.toFixed(0)} Mbps, but your upload is only ${ul.toFixed(0)} Mbps — that's a ${Math.round(dl/Math.max(ul,1))}:1 ratio. Video calls, cloud backups, and working from home all require upload speed. This asymmetry is typical of cable — fiber delivers equal speeds both ways.`;
+      } else {
+        headline = `⚠️ Good Speed — But You're Still Sharing the Line`;
+        subline = `${dl.toFixed(0)} Mbps is above average, but cable connections are shared with neighbors. During peak hours (evenings, weekends) your real-world speeds can drop 40–60%. Dedicated fiber gives you consistent speeds 24/7, often for the same price.`;
+      }
+      headlineColor = 'var(--brand-amber)';
+    } else {
+      // Even fast connections get a pain point
+      if (isAsymmetric) {
+        headline = `⚠️ Fast Download — But Your Upload Is a Bottleneck`;
+        subline = `${dl.toFixed(0)} Mbps download is great, but your upload is only ${ul.toFixed(0)} Mbps. Anyone on video calls, live streaming, or cloud-heavy workflows will hit that ceiling constantly. Symmetric fiber eliminates that entirely.`;
+      } else if (isHighJitter) {
+        headline = `⚠️ Fast Speed — But Unstable Connection Quality`;
+        subline = `${dl.toFixed(0)} Mbps looks good on paper, but your jitter of ${jitter.toFixed(0)} ms means your connection is inconsistent. Gaming, video calls, and real-time apps need steady latency — not just raw speed. Fiber infrastructure delivers far lower jitter.`;
+      } else {
+        headline = `You're Fast — But Are You Getting the Best Deal?`;
+        subline = `${dl.toFixed(0)} Mbps is solid. The question is: what are you paying for it? Many providers now offer gigabit fiber — that's ${fiberMultiple > 1 ? fiberMultiple + '×' : 'much'} faster — for $50–$70/month. You might already be overpaying.`;
+        headlineColor = 'var(--brand-blue-light)';
+      }
+    }
+
+    // Ping framing
+    const pingLabel = ping < 20 ? 'Great' : ping < 50 ? 'Acceptable' : ping < 100 ? 'High — impacts gaming & calls' : 'Poor — real-time apps will struggle';
+    const pingColor = ping < 20 ? 'var(--brand-green)' : ping < 50 ? 'var(--brand-blue-light)' : 'var(--brand-red)';
+    const jitterLabel = jitter < 8 ? 'Stable' : jitter < 20 ? 'Moderate — may cause call glitches' : 'Unstable — expect lag spikes';
+    const ulLabel = isAsymmetric ? `${ul.toFixed(1)} Mbps — upload bottleneck` : `${ul.toFixed(1)} Mbps`;
+    const ulColor = isAsymmetric ? 'var(--brand-amber)' : 'var(--text-primary)';
+
+    // Activities checklist — thresholds reflect what actually works at quality
+    const tasks: [string, boolean, string][] = [
+      ['Email & light browsing', dl >= 5, ''],
+      ['HD video streaming (1 screen)', dl >= 15, 'Netflix recommends 15 Mbps for Full HD'],
+      ['4K streaming (1 screen)', dl >= 25, 'Each 4K stream uses ~25 Mbps'],
+      ['Video calls (Zoom, Teams)', ul >= 5, 'Upload-dependent — not just download'],
+      ['Online gaming', ping < 60 && dl >= 25, 'Ping is the real bottleneck for gaming'],
+      ['4K on multiple screens', dl >= 100, 'Each screen needs 25 Mbps dedicated'],
+      ['WFH with large file syncing', ul >= 20, 'Upload speed determines WFH performance'],
+      ['Smart home (10+ devices)', dl >= 200, 'Shared bandwidth drops fast with more devices'],
+      ['Content creation / live streaming', ul >= 50, 'Streaming to YouTube/Twitch needs 10–50 Mbps upload'],
+      ['Gigabit-class performance', dl >= 900, 'Full 1 Gbps throughput'],
+    ];
 
     analysisContent.innerHTML = `
-      <div style="display:flex;align-items:center;gap:var(--space-lg);margin-bottom:var(--space-lg);">
-        <div style="width:64px;height:64px;border-radius:var(--radius-lg);background:${color}20;display:flex;align-items:center;justify-content:center;">
-          <span style="font-size:var(--text-3xl);font-weight:800;color:${color};">${grade}</span>
+      <!-- Headline banner -->
+      <div style="padding:var(--space-lg);background:rgba(0,0,0,0.3);border-left:4px solid ${headlineColor};border-radius:var(--radius-md);margin-bottom:var(--space-lg);">
+        <p style="font-size:var(--text-lg);font-weight:700;color:${headlineColor};margin-bottom:var(--space-xs);">${headline}</p>
+        <p style="font-size:var(--text-sm);color:var(--text-secondary);">${subline}</p>
+      </div>
+
+      <!-- Metric grid -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:var(--space-md);margin-bottom:var(--space-xl);">
+        <div style="padding:var(--space-md);background:var(--gray-800);border-radius:var(--radius-md);">
+          <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Latency</div>
+          <div style="font-size:var(--text-xl);font-weight:800;color:${pingColor};">${ping.toFixed(0)} ms</div>
+          <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">${pingLabel}</div>
         </div>
-        <div>
-          <p style="color:var(--text-primary);font-weight:600;font-size:var(--text-lg);">Speed Grade: ${grade}</p>
-          <p style="color:var(--text-secondary);font-size:var(--text-sm);">${msg}</p>
+        <div style="padding:var(--space-md);background:var(--gray-800);border-radius:var(--radius-md);">
+          <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Jitter</div>
+          <div style="font-size:var(--text-xl);font-weight:800;">${jitter.toFixed(1)} ms</div>
+          <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">${jitterLabel}</div>
+        </div>
+        <div style="padding:var(--space-md);background:var(--gray-800);border-radius:var(--radius-md);">
+          <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Upload</div>
+          <div style="font-size:var(--text-xl);font-weight:800;color:${ulColor};">${ulLabel}</div>
+          <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">${isAsymmetric ? 'Cable asymmetry detected' : 'OK'}</div>
+        </div>
+        <div style="padding:var(--space-md);background:var(--gray-800);border-radius:var(--radius-md);">
+          <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Per Device</div>
+          <div style="font-size:var(--text-xl);font-weight:800;color:${perDeviceMbps < 20 ? 'var(--brand-amber)' : 'var(--text-primary)'};">${perDeviceMbps.toFixed(0)} Mbps</div>
+          <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:2px;">÷ ${householdDevices} avg devices</div>
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:var(--space-md);margin-bottom:var(--space-lg);">
-        <div style="padding:var(--space-md);background:var(--gray-800);border-radius:var(--radius-md);">
-          <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;">Latency</div>
-          <div style="font-size:var(--text-lg);font-weight:700;color:${pingColor};">${ping.toFixed(0)} ms</div>
-          <div style="font-size:var(--text-xs);color:var(--text-tertiary);">${pingGrade}</div>
-        </div>
-        <div style="padding:var(--space-md);background:var(--gray-800);border-radius:var(--radius-md);">
-          <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;">Jitter</div>
-          <div style="font-size:var(--text-lg);font-weight:700;">${jitter.toFixed(1)} ms</div>
-          <div style="font-size:var(--text-xs);color:var(--text-tertiary);">${jitter < 10 ? 'Stable' : jitter < 30 ? 'Moderate' : 'Unstable'}</div>
-        </div>
-        <div style="padding:var(--space-md);background:var(--gray-800);border-radius:var(--radius-md);">
-          <div style="font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;">Upload</div>
-          <div style="font-size:var(--text-lg);font-weight:700;">${ul.toFixed(1)} Mbps</div>
-          <div style="font-size:var(--text-xs);color:var(--text-tertiary);">${ulGrade}</div>
-        </div>
+      <!-- What you can & can't do -->
+      <h4 style="margin-bottom:var(--space-md);font-size:var(--text-base);">Can Your Connection Handle It?</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-sm);margin-bottom:var(--space-xl);">
+        ${tasks.map(([label, pass, note]) => `
+          <div style="display:flex;align-items:flex-start;gap:8px;padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${pass ? 'rgba(0,213,132,0.07)' : 'rgba(239,68,68,0.08)'};border:1px solid ${pass ? 'rgba(0,213,132,0.15)' : 'rgba(239,68,68,0.2)'};">
+            <span style="font-size:13px;flex-shrink:0;margin-top:1px;">${pass ? '✓' : '✗'}</span>
+            <div>
+              <span style="font-size:var(--text-sm);color:${pass ? 'var(--text-primary)' : 'var(--brand-red)'};">${label}</span>
+              ${note ? `<div style="font-size:10px;color:var(--text-tertiary);margin-top:2px;">${note}</div>` : ''}
+            </div>
+          </div>`).join('')}
       </div>
 
-      <h4 style="margin-bottom:var(--space-sm);">What can you do with ${dl.toFixed(0)} Mbps?</h4>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-sm);margin-bottom:var(--space-lg);">
-        <div style="padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${dl >= 5 ? 'rgba(0,213,132,0.1)' : 'rgba(239,68,68,0.1)'};">
-          <span style="font-size:var(--text-sm);">${dl >= 5 ? '\u2713' : '\u2717'} Email & browsing</span>
-        </div>
-        <div style="padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${dl >= 25 ? 'rgba(0,213,132,0.1)' : 'rgba(239,68,68,0.1)'};">
-          <span style="font-size:var(--text-sm);">${dl >= 25 ? '\u2713' : '\u2717'} HD streaming</span>
-        </div>
-        <div style="padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${dl >= 50 ? 'rgba(0,213,132,0.1)' : 'rgba(239,68,68,0.1)'};">
-          <span style="font-size:var(--text-sm);">${dl >= 50 ? '\u2713' : '\u2717'} 4K streaming</span>
-        </div>
-        <div style="padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${dl >= 50 ? 'rgba(0,213,132,0.1)' : 'rgba(239,68,68,0.1)'};">
-          <span style="font-size:var(--text-sm);">${dl >= 50 ? '\u2713' : '\u2717'} Online gaming</span>
-        </div>
-        <div style="padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${dl >= 100 ? 'rgba(0,213,132,0.1)' : 'rgba(239,68,68,0.1)'};">
-          <span style="font-size:var(--text-sm);">${dl >= 100 ? '\u2713' : '\u2717'} Multi-device 4K</span>
-        </div>
-        <div style="padding:var(--space-sm) var(--space-md);border-radius:var(--radius-sm);background:${dl >= 200 ? 'rgba(0,213,132,0.1)' : 'rgba(239,68,68,0.1)'};">
-          <span style="font-size:var(--text-sm);">${dl >= 200 ? '\u2713' : '\u2717'} Large file downloads</span>
+      <!-- Always-on upgrade CTA -->
+      <div style="padding:var(--space-xl);background:linear-gradient(135deg,rgba(102,126,234,0.12),rgba(183,0,255,0.10));border:1px solid rgba(102,126,234,0.3);border-radius:var(--radius-lg);margin-bottom:var(--space-xl);">
+        <p style="font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-xs);">Fiber gigabit is likely available at your address</p>
+        <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">Providers like AT&T Fiber, Frontier Fiber, and Ziply offer 1 Gbps plans — symmetrical, dedicated, and not shared with your neighbors — typically for $50–$80/month. That's <strong>${fiberMultiple > 1 ? fiberMultiple + '×' : 'significantly'} faster</strong> than your current connection, often at the same price or less.</p>
+        <div style="display:flex;gap:var(--space-md);flex-wrap:wrap;">
+          <a href="/check-availability" class="btn btn-primary">Check Availability at My Address</a>
+          <a href="/providers" class="btn btn-secondary">Compare All Providers</a>
         </div>
       </div>
-
-      ${dl < 100 ? `
-        <div style="padding:var(--space-lg);background:linear-gradient(135deg,rgba(0,82,255,0.08),rgba(183,0,255,0.08));border:1px solid rgba(0,82,255,0.2);border-radius:var(--radius-md);">
-          <p style="color:var(--text-primary);font-weight:600;">Upgrade your speed</p>
-          <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">Our partner providers offer plans up to 5 Gbps — that's ${Math.round(5000 / Math.max(dl, 1))}× faster than your current speed.</p>
-          <div class="st-upgrade-actions" style="display:flex;gap:var(--space-sm);margin-top:var(--space-md);">
-            <a href="/providers" class="btn btn-primary" style="font-size:var(--text-sm);">Compare Faster Plans</a>
-            <a href="/quiz" class="btn btn-secondary" style="font-size:var(--text-sm);">Take Speed Quiz</a>
-          </div>
-        </div>
-      ` : `
-        <div style="padding:var(--space-lg);background:rgba(0,213,132,0.05);border:1px solid rgba(0,213,132,0.15);border-radius:var(--radius-md);">
-          <p style="color:var(--text-primary);font-weight:600;">Your speed is solid!</p>
-          <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">Want to make sure you're getting the best deal? Compare prices from top providers.</p>
-          <a href="/providers" class="btn btn-secondary" style="font-size:var(--text-sm);margin-top:var(--space-md);">Compare Provider Prices</a>
-        </div>
-      `}
 
       <!-- Convict & Convert: Am I Getting What I Pay For? -->
-      <div style="margin-top:var(--space-xl);padding:var(--space-xl);background:var(--gray-800);border-radius:var(--radius-lg);border:1px solid var(--border-color);">
+      <div style="padding:var(--space-xl);background:var(--gray-800);border-radius:var(--radius-lg);border:1px solid var(--border-color);">
         <h4 style="margin-bottom:var(--space-xs);">Are You Getting What You're Paying For?</h4>
-        <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">Select your advertised plan speed and we'll show you if your provider is delivering what you paid for.</p>
+        <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">ISPs advertise speeds up to X Mbps — which they legally hit for seconds at a time. Select your plan speed and see your real percentage.</p>
         <div class="st-plan-check-row" style="display:flex;gap:var(--space-md);flex-wrap:wrap;align-items:flex-end;">
           <div style="flex:1;min-width:180px;">
             <label for="plan-speed" style="display:block;font-size:var(--text-xs);color:var(--text-tertiary);text-transform:uppercase;margin-bottom:var(--space-xs);">My Plan Says I Get</label>
@@ -570,11 +1531,11 @@ import { generateBreadcrumbSchema } from '@lib/utils';
 
       if (pct >= 80) {
         gapResult.innerHTML = `
-          <div style="padding:var(--space-lg);background:rgba(0,213,132,0.08);border:1px solid rgba(0,213,132,0.2);border-radius:var(--radius-md);">
-            <p style="color:var(--brand-green);font-weight:700;font-size:var(--text-lg);">You're Getting ${pct}% of Your Plan Speed</p>
-            <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">That's within normal range. WiFi interference, device limitations, and network routing can account for up to 20% variance.</p>
+          <div style="padding:var(--space-lg);background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.25);border-radius:var(--radius-md);">
+            <p style="color:var(--brand-amber);font-weight:700;font-size:var(--text-lg);">You're Getting ${pct}% of Your Plan — But Is This Plan Still Right for You?</p>
+            <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-top:var(--space-xs);">Your provider is delivering close to what they promised. But ${planMbps} Mbps may not be enough for your household as device counts grow. Gigabit fiber plans — often at the same or lower monthly cost — future-proof your home for years.</p>
             <div class="st-gap-actions" style="margin-top:var(--space-md);display:flex;gap:var(--space-sm);flex-wrap:wrap;">
-              <a href="/deals" class="btn btn-secondary" style="font-size:var(--text-sm);">See Better Deals</a>
+              <a href="/check-availability" class="btn btn-primary" style="font-size:var(--text-sm);">See Faster Plans Near Me</a>
               <a href="/compare" class="btn btn-secondary" style="font-size:var(--text-sm);">Compare All Plans</a>
             </div>
           </div>`;
@@ -614,21 +1575,1193 @@ import { generateBreadcrumbSchema } from '@lib/utils';
     }
   }
 
+  // ── ZIP Capture wiring ──
+  if (zipInput && zipGoBtn) {
+    zipInput.addEventListener('input', () => {
+      const z = zipInput.value.replace(/\D/g, '').slice(0, 5);
+      zipInput.value = z;
+      if (z.length === 5) {
+        zipGoBtn.href = '/check-availability?zip=' + encodeURIComponent(z);
+      }
+    });
+  }
+
   startBtn.addEventListener('click', runTest);
   }
 </script>
 
 <style>
+  /* ══════════════════════════════════════════
+     DARK PAGE THEME — Overrides global light-mode tokens
+     The design system defaults to light mode; speed-test
+     page is dark navy throughout. Override at main level
+     so all token-based colors cascade correctly.
+  ══════════════════════════════════════════ */
+  :global(main) {
+    background: linear-gradient(180deg, #040b1a 0%, #070d1f 60%, #040b1a 100%);
+    /* Redefine semantic tokens for dark context */
+    --bg-card: rgba(10, 16, 40, 0.82);
+    --bg-card-hover: rgba(15, 23, 55, 0.9);
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-tertiary: #64748b;
+    --border: rgba(148, 163, 184, 0.12);
+    --border-strong: rgba(148, 163, 184, 0.2);
+    --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Cards — use dark background; replace border-image with solid border */
+  :global(main) .card {
+    border-image: none;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+  }
+  :global(main) .card:hover {
+    border-color: rgba(59, 130, 246, 0.38);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(59, 130, 246, 0.1);
+    transform: translateY(-3px);
+  }
+
+  /* Badges — dark-mode translucent versions instead of pastel */
+  :global(main) .badge-blue   { background: rgba(59, 130, 246, 0.15); color: #93c5fd; }
+  :global(main) .badge-green  { background: rgba(74, 222, 128, 0.15); color: #4ade80; }
+  :global(main) .badge-amber  { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+  :global(main) .badge-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+  :global(main) .badge-red    { background: rgba(239, 68, 68, 0.15);  color: #f87171; }
+
+  /* btn-secondary needs dark background on this page */
+  :global(main) .btn-secondary {
+    background: rgba(30, 41, 59, 0.85);
+    color: #e2e8f0;
+    border-color: rgba(148, 163, 184, 0.3);
+  }
+  :global(main) .btn-secondary:hover {
+    background: rgba(51, 65, 85, 0.95);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 24px rgba(59, 130, 246, 0.18);
+  }
+
+  /* Remove default footer top gap on this dark page to avoid white strip */
+  :global(.site-footer) {
+    margin-top: 0;
+  }
+
+  /* ── Page Header (H1, subtitle, trust bar) ── */
+  .st-hero-section {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-lg);
+  }
+
+  .st-page-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .st-page-header h1 {
+    font-size: var(--text-4xl);
+    font-weight: 900;
+    color: #eaf2ff;
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-sm);
+  }
+
+  .st-subtitle {
+    max-width: 620px;
+    margin: 0 auto var(--space-md);
+    color: var(--text-secondary);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+  }
+
+  .st-trust-bar {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .st-trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.02em;
+  }
+
+  .st-trust-check {
+    color: #22d3ee;
+    font-weight: 800;
+  }
+
+  .st-freshness {
+    text-align: center;
+    margin-top: var(--space-lg);
+    font-size: 12px;
+    color: #94a3b8;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Content Sections ── */
+  .st-content-section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .st-content-section h2 {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+  }
+
+  .st-section-intro {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    max-width: 680px;
+    line-height: var(--leading-normal);
+  }
+
+  .st-bottom-line {
+    margin-top: var(--space-md);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+
+  .st-bottom-line a {
+    color: var(--brand-blue-light);
+  }
+
+  /* ── ZIP Capture ── */
+  .st-zip-capture {
+    margin-top: var(--space-xl);
+    border-color: rgba(102, 126, 234, 0.3) !important;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(15, 23, 42, 0.95)) !important;
+    padding: var(--space-xl) !important;
+  }
+
+  .st-zip-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .st-zip-text {
+    flex: 1;
+    min-width: 260px;
+  }
+
+  .st-zip-text h3 {
+    margin-bottom: var(--space-xs);
+  }
+
+  .st-zip-form {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .st-zip-input {
+    width: 120px;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--gray-900);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: var(--text-sm);
+  }
+
+  /* ── Speed Analysis ── */
+  .st-analysis-card {
+    margin-top: var(--space-xl);
+  }
+
+  .st-analysis-card h3 {
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Table of Contents ── */
+  .st-toc {
+    padding: var(--space-lg) 0;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .st-toc-heading {
+    font-size: var(--text-xs) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary) !important;
+    margin-bottom: var(--space-md) !important;
+    font-weight: 700;
+  }
+
+  .st-toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 6px;
+  }
+
+  .st-toc-list a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    color: #93c5fd;
+    font-size: var(--text-sm);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .st-toc-list a:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: #bfdbfe;
+  }
+
+  /* ── Factor/Tip/Methodology Cards ── */
+  .st-factor-grid,
+  .st-tip-grid,
+  .st-methodology-grid,
+  .st-provider-grid {
+    gap: var(--space-md);
+  }
+
+  .st-factor-card,
+  .st-tip-card,
+  .st-methodology-card {
+    padding: var(--space-lg) !important;
+  }
+
+  .st-factor-card h4,
+  .st-tip-card h4,
+  .st-methodology-card h4 {
+    margin-bottom: var(--space-sm);
+  }
+
+  /* ── Plan CTA ── */
+  .st-plan-cta {
+    margin-top: var(--space-lg);
+    padding: var(--space-lg);
+    border-color: rgba(102,126,234,0.25);
+    background: rgba(102,126,234,0.04);
+  }
+
+  .st-plan-cta-text {
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+  }
+
+  /* ── Throttle Card ── */
+  .st-throttle-card {
+    padding: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(245,158,11,0.3);
+    background: linear-gradient(160deg,rgba(245,158,11,0.04),rgba(15,23,42,0.95));
+  }
+
+  .st-throttle-card h2 {
+    margin-bottom: var(--space-md);
+  }
+
+  .st-throttle-card h4 {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+  }
+
+  .st-throttle-card h4:first-of-type {
+    margin-top: 0;
+  }
+
+  .st-throttle-cta {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: var(--radius-md);
+  }
+
+  .st-throttle-cta-title {
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+  }
+
+  .st-throttle-cta .text-secondary {
+    margin-bottom: var(--space-md);
+  }
+
+  .st-throttle-cta-actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  /* ── Not Happy CTA ── */
+  .st-not-happy-card {
+    text-align: center;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(239,68,68,0.2);
+    background: rgba(239,68,68,0.02);
+  }
+
+  .st-not-happy-card p {
+    margin-top: var(--space-sm);
+    max-width: 500px;
+    margin-inline: auto;
+  }
+
+  .st-not-happy-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-top: var(--space-xl);
+  }
+
+  /* ── Methodology ── */
+  .st-methodology-note {
+    margin-top: var(--space-lg);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    padding: var(--space-md);
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(148,163,184,0.12);
+  }
+
+  /* ── Related Resources ── */
+  .st-related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .st-related-card {
+    padding: var(--space-md) !important;
+    text-decoration: none !important;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .st-related-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .st-related-card h4 {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-xs);
+  }
+
+  .st-related-card p {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .st-panel {
+    position: relative;
+    padding: var(--space-lg) var(--space-lg) var(--space-xl);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(34, 211, 238, 0.18);
+    background: radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.08), transparent 60%),
+                linear-gradient(180deg, #060c1f 0%, #0a1029 100%);
+    box-shadow: 0 0 80px rgba(34, 211, 238, 0.06) inset, 0 20px 60px rgba(0,0,0,0.5);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .st-panel-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at 25% 20%, rgba(56,189,248,0.1), transparent 40%),
+                radial-gradient(circle at 75% 20%, rgba(139,92,246,0.08), transparent 40%);
+  }
+
+  .st-test-shell { position: relative; }
+
+  .st-gauge-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .st-svg { display: block; width: 100%; height: auto; }
+
+  .st-arc-track {
+    fill: none;
+    stroke: rgba(255,255,255,0.06);
+    stroke-width: 22;
+    stroke-linecap: round;
+  }
+
+  .st-arc-fill {
+    fill: none;
+    stroke-width: 22;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.1s ease-out;
+  }
+
+  .st-phase-ring {
+    fill: none;
+    stroke-width: 2.2;
+    stroke: rgba(148, 163, 184, 0.34);
+    opacity: 0.85;
+    transform-origin: 280px 260px;
+    animation: ringPulseIdle 2.4s ease-in-out infinite;
+    transition: stroke 220ms ease, opacity 220ms ease, filter 220ms ease;
+    filter: drop-shadow(0 0 6px rgba(148, 163, 184, 0.22));
+  }
+
+  .st-phase-ring.tone-idle {
+    stroke: rgba(148, 163, 184, 0.36);
+    filter: drop-shadow(0 0 6px rgba(148, 163, 184, 0.22));
+    animation: ringPulseIdle 2.4s ease-in-out infinite;
+  }
+
+  .st-phase-ring.tone-download {
+    stroke: rgba(34, 211, 238, 0.95);
+    filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.6));
+    animation: ringPulseDownload 1.6s ease-in-out infinite;
+  }
+
+  .st-phase-ring.tone-upload {
+    stroke: rgba(217, 70, 239, 0.95);
+    filter: drop-shadow(0 0 10px rgba(217, 70, 239, 0.56));
+    animation: ringPulseUpload 1.6s ease-in-out infinite;
+  }
+
+  .st-phase-ring.tone-jitter {
+    stroke: rgba(251, 191, 36, 0.95);
+    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.52));
+    animation: ringPulseJitter 1.1s ease-in-out infinite;
+  }
+
+  .st-phase-ring.tone-complete {
+    stroke: rgba(74, 222, 128, 0.98);
+    filter: drop-shadow(0 0 12px rgba(74, 222, 128, 0.62));
+    animation: ringPulseComplete 1s ease-out 2;
+  }
+
+  @keyframes ringPulseIdle {
+    0%, 100% { stroke-width: 2.2; opacity: 0.72; }
+    50% { stroke-width: 2.8; opacity: 0.92; }
+  }
+
+  @keyframes ringPulseDownload {
+    0%, 100% { stroke-width: 2.4; opacity: 0.85; }
+    50% { stroke-width: 3.6; opacity: 1; }
+  }
+
+  @keyframes ringPulseUpload {
+    0%, 100% { stroke-width: 2.4; opacity: 0.86; }
+    50% { stroke-width: 3.6; opacity: 1; }
+  }
+
+  @keyframes ringPulseJitter {
+    0%, 100% { stroke-width: 2.1; opacity: 0.82; }
+    40% { stroke-width: 3.8; opacity: 1; }
+    70% { stroke-width: 2.6; opacity: 0.9; }
+  }
+
+  @keyframes ringPulseComplete {
+    0% { stroke-width: 2.4; opacity: 0.82; }
+    40% { stroke-width: 4.4; opacity: 1; }
+    100% { stroke-width: 2.6; opacity: 0.94; }
+  }
+
+  .st-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    pointer-events: none;
+  }
+
+  .st-speed-display {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    pointer-events: none;
+  }
+
+  .st-speed-num {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 30px rgba(34,211,238,0.35);
+  }
+
+  .st-speed-unit {
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    font-weight: 700;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .st-go-btn {
+    pointer-events: all;
+    width: clamp(100px, 22vw, 140px);
+    height: clamp(100px, 22vw, 140px);
+    border-radius: 50%;
+    border: 3px solid rgba(34,211,238,0.5);
+    background: radial-gradient(circle, rgba(34,211,238,0.12) 0%, rgba(6,12,31,0.95) 70%);
+    color: #ffffff;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    box-shadow: 0 0 40px rgba(34,211,238,0.2), 0 0 80px rgba(34,211,238,0.08), inset 0 0 30px rgba(34,211,238,0.06);
+    text-shadow: 0 0 20px rgba(34,211,238,0.6);
+  }
+
+  .st-go-btn:hover {
+    transform: scale(1.06);
+    border-color: rgba(34,211,238,0.8);
+    box-shadow: 0 0 60px rgba(34,211,238,0.35), 0 0 120px rgba(34,211,238,0.12), inset 0 0 40px rgba(34,211,238,0.1);
+  }
+
+  .st-go-btn:active { transform: scale(0.97); }
+
+  .st-go-again {
+    width: auto;
+    height: auto;
+    border-radius: 999px;
+    padding: 8px 22px;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    border-width: 1.5px;
+    margin-top: 6px;
+  }
+
+  .st-phase-status {
+    display: flex;
+    justify-content: center;
+    min-height: 34px;
+    margin: 4px 0 10px;
+  }
+
+  .st-phase-badge {
+    --tone-rgb: 148, 163, 184;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(var(--tone-rgb), 0.42);
+    background: linear-gradient(135deg, rgba(var(--tone-rgb), 0.18), rgba(8, 18, 42, 0.82));
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: rgba(241, 245, 249, 0.96);
+    pointer-events: none;
+    font-variant-numeric: tabular-nums;
+    backdrop-filter: blur(4px);
+    box-shadow: inset 0 0 18px rgba(var(--tone-rgb), 0.14), 0 0 18px rgba(var(--tone-rgb), 0.16);
+    transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease;
+  }
+
+  .st-phase-badge::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(120deg, transparent 15%, rgba(255,255,255,0.18) 50%, transparent 85%);
+    transform: translateX(-140%);
+    animation: phaseSweep 2.6s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes phaseSweep {
+    to { transform: translateX(140%); }
+  }
+
+  .st-phase-badge.tone-neutral { --tone-rgb: 148, 163, 184; }
+  .st-phase-badge.tone-download { --tone-rgb: 34, 211, 238; }
+  .st-phase-badge.tone-upload { --tone-rgb: 217, 70, 239; }
+  .st-phase-badge.tone-jitter { --tone-rgb: 251, 191, 36; }
+  .st-phase-badge.tone-complete { --tone-rgb: 74, 222, 128; }
+
+  .st-phase-badge.tone-complete::after {
+    animation-duration: 1.9s;
+  }
+
+  .st-phase-rail {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: var(--space-sm) auto var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .st-phase-step {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(148,163,184,0.15);
+    color: rgba(255,255,255,0.35);
+    background: rgba(15,23,42,0.5);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: all 200ms ease;
+  }
+
+  .st-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: background 200ms ease, box-shadow 200ms ease;
+  }
+
+  .st-phase-step.is-active {
+    color: #ffffff;
+    border-color: rgba(34,211,238,0.45);
+    background: rgba(34,211,238,0.1);
+  }
+
+  .st-phase-step.is-active .st-dot {
+    background: #22d3ee;
+    box-shadow: 0 0 8px rgba(34,211,238,0.6);
+  }
+
+  .st-phase-step.is-done {
+    color: rgba(134,239,172,0.8);
+    border-color: rgba(74,222,128,0.3);
+    background: rgba(22,101,52,0.15);
+  }
+
+  .st-phase-step.is-done .st-dot {
+    background: #4ade80;
+  }
+
+  .st-bar-wrap {
+    width: min(480px, 100%);
+    height: 3px;
+    margin: 0 auto var(--space-sm);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    overflow: hidden;
+    transition: opacity 0.4s;
+  }
+
+  .st-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #22d3ee, #818cf8);
+    transition: width 0.3s ease-out;
+  }
+
+  .st-hint {
+    color: rgba(255,255,255,0.4);
+    font-size: var(--text-sm);
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Hero result display (DL / UL huge, ping/jitter secondary) ── */
+  .st-metrics-hero {
+    margin-top: var(--space-lg);
+    text-align: center;
+  }
+
+  .st-hero-results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xl);
+  }
+
+  .st-hero-result { text-align: center; }
+
+  .st-hero-result-lbl {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 4px;
+  }
+
+  .st-dl-result .st-hero-result-lbl { color: #22d3ee; }
+  .st-ul-result .st-hero-result-lbl { color: #d946ef; }
+
+  .st-hero-result-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .st-hero-result-row strong {
+    font-size: clamp(2.2rem, 7vw, 3.8rem);
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .st-dl-result .st-hero-result-row strong {
+    text-shadow: 0 0 30px rgba(34,211,238,0.4), 0 0 60px rgba(34,211,238,0.12);
+  }
+
+  .st-ul-result .st-hero-result-row strong {
+    text-shadow: 0 0 30px rgba(217,70,239,0.4), 0 0 60px rgba(217,70,239,0.12);
+  }
+
+  .st-hero-unit {
+    font-size: clamp(0.7rem, 1.8vw, 0.95rem);
+    font-weight: 700;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .st-hero-divider {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(180deg, transparent, rgba(255,255,255,0.15), transparent);
+    flex-shrink: 0;
+  }
+
+  .st-secondary-results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+    color: rgba(255,255,255,0.4);
+    font-size: var(--text-xs);
+  }
+
+  .st-sec-item { display: inline-flex; align-items: baseline; gap: 4px; }
+
+  .st-sec-lbl {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    font-size: 10px;
+  }
+
+  .st-sec-item strong {
+    color: rgba(255,255,255,0.55);
+    font-weight: 600;
+  }
+
+  .st-sec-dot {
+    color: rgba(255,255,255,0.12);
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .st-explainer {
+    background: linear-gradient(160deg, rgba(15, 23, 42, 0.95), rgba(8, 13, 30, 0.96)) !important;
+    border: 1px solid rgba(96, 165, 250, 0.2) !important;
+  }
+
+  .st-explainer-grid {
+    margin-top: var(--space-lg);
+    gap: var(--space-md);
+  }
+
+  .st-explainer-grid > div {
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  /* (st-brand-intents removed – no longer used) */
+
+  .st-faq-wrap {
+    display: grid;
+    gap: 10px;
+  }
+
+  .st-faq-item {
+    border: 1px solid rgba(148, 163, 184, 0.26);
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.62);
+    padding: 12px 14px;
+  }
+
+  .st-faq-item summary {
+    font-weight: 700;
+    color: #e2e8f0;
+    cursor: pointer;
+  }
+
+  .st-faq-item p {
+    margin-top: 8px;
+    color: #cbd5e1;
+    font-size: var(--text-sm);
+  }
+
+  /* (st-last-updated removed – replaced by st-freshness) */
+
+  /* (old st-toc rules removed – new definitions above) */
+
+  /* HowTo Steps */
+  .st-steps-list {
+    counter-reset: steps;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .st-steps-list li {
+    padding: 10px 0 10px 40px;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    border-left: 2px solid rgba(96, 165, 250, 0.2);
+  }
+
+  .st-steps-list li::before {
+    counter-increment: steps;
+    content: counter(steps);
+    position: absolute;
+    left: -12px;
+    top: 10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(96, 165, 250, 0.4);
+    color: #93c5fd;
+    font-size: 11px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+  }
+
+  /* Connection Type Table */
+  .st-conn-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+  }
+
+  .st-conn-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    white-space: nowrap;
+  }
+
+  .st-conn-table th {
+    padding: 12px 16px;
+    text-align: left;
+    background: rgba(30, 41, 59, 0.7);
+    color: var(--text-tertiary);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  }
+
+  .st-conn-table td {
+    padding: 12px 16px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+  }
+
+  .st-conn-table tbody tr:hover {
+    background: rgba(59, 130, 246, 0.04);
+  }
+
+  /* Provider cards */
+  .st-prov-card {
+    padding: var(--space-lg) !important;
+    border-color: rgba(125, 211, 252, 0.15) !important;
+    background: linear-gradient(160deg, rgba(8, 47, 73, 0.15), rgba(15, 23, 42, 0.9)) !important;
+  }
+
+  .st-prov-card h4 {
+    color: #e2e8f0;
+    margin-bottom: var(--space-sm);
+  }
+
+  /* Throttle lists */
+  .st-throttle-list,
+  .st-throttle-steps {
+    padding-left: var(--space-xl);
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+  }
+
+  .st-throttle-list li,
+  .st-throttle-steps li {
+    margin-bottom: var(--space-sm);
+    line-height: 1.6;
+  }
+
+  /* ── Mode label (DOWNLOAD / UPLOAD / STABILITY) ── */
+  .st-mode-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 2px;
+    transition: color 0.3s;
+  }
+  .st-mode-label.mode-download { color: #22d3ee; }
+  .st-mode-label.mode-upload   { color: #d946ef; }
+  .st-mode-label.mode-jitter   { color: #fbbf24; }
+
+  /* ── Phase-specific panel border glow ── */
+  .st-panel.mode-download {
+    border-color: rgba(34,211,238,0.3);
+    box-shadow: 0 0 80px rgba(34,211,238,0.1) inset, 0 0 40px rgba(34,211,238,0.05), 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .st-panel.mode-upload {
+    border-color: rgba(217,70,239,0.3);
+    box-shadow: 0 0 80px rgba(168,85,247,0.1) inset, 0 0 40px rgba(217,70,239,0.06), 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .st-panel.mode-jitter {
+    border-color: rgba(251,191,36,0.3);
+    box-shadow: 0 0 80px rgba(251,191,36,0.08) inset, 0 0 40px rgba(249,115,22,0.05), 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  /* ── Grade badge ── */
+  .st-grade-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid #22d3ee;
+    background: rgba(6,12,31,0.9);
+    color: #22d3ee;
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(34,211,238,0.2), inset 0 0 15px rgba(34,211,238,0.08);
+    transition: all 0.5s ease;
+  }
+
+  /* ── Glowing CTA button ── */
+  .btn-cta-glow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: var(--text-sm);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 24px rgba(59,130,246,0.35), 0 4px 16px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: ctaPulse 2.5s ease-in-out infinite;
+  }
+  .btn-cta-glow:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 0 36px rgba(59,130,246,0.5), 0 6px 24px rgba(0,0,0,0.3);
+  }
+  @keyframes ctaPulse {
+    0%, 100% { box-shadow: 0 0 24px rgba(59,130,246,0.35), 0 4px 16px rgba(0,0,0,0.3); }
+    50% { box-shadow: 0 0 36px rgba(139,92,246,0.5), 0 4px 20px rgba(0,0,0,0.3); }
+  }
+
+  /* ── Results Modal ── */
+  .st-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 110000;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+    animation: modalFadeIn 0.35s ease-out;
+  }
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .st-modal {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    padding: var(--space-2xl) var(--space-xl);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(160deg, #0c1230, #0a0f1e);
+    border: 1px solid rgba(34,211,238,0.2);
+    box-shadow: 0 0 80px rgba(34,211,238,0.1), 0 30px 80px rgba(0,0,0,0.6);
+    text-align: center;
+    animation: modalSlideIn 0.4s ease-out;
+  }
+  @keyframes modalSlideIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .st-modal-x {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 1.6rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+  .st-modal-x:hover { color: #fff; }
+  .st-modal-grade-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+  }
+  .st-modal-headline {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: #e2e8f0;
+    margin: 0;
+    text-align: left;
+  }
+  .st-modal-speeds {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-md);
+  }
+  .st-modal-speed { text-align: center; }
+  .st-modal-speed-lbl {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 4px;
+  }
+  .st-modal-dl .st-modal-speed-lbl { color: #22d3ee; }
+  .st-modal-ul .st-modal-speed-lbl { color: #d946ef; }
+  .st-modal-speed strong {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+  }
+  .st-modal-dl strong { text-shadow: 0 0 24px rgba(34,211,238,0.4); }
+  .st-modal-ul strong { text-shadow: 0 0 24px rgba(217,70,239,0.4); }
+  .st-modal-divider {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, transparent, rgba(255,255,255,0.15), transparent);
+    flex-shrink: 0;
+  }
+  .st-modal-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    color: rgba(255,255,255,0.4);
+    font-size: var(--text-xs);
+    margin-bottom: var(--space-lg);
+  }
+  .st-modal-secondary strong { color: rgba(255,255,255,0.6); font-weight: 600; }
+  .st-modal-message {
+    color: rgba(255,255,255,0.7);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    margin: 0 0 var(--space-xl);
+    max-width: 380px;
+    margin-inline: auto;
+  }
+  .st-modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+  }
+  .st-modal-actions .btn { min-width: 260px; }
+
+  /* ── Countdown pop ── */
+  .st-phase-badge {
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  .st-countdown-pop {
+    animation: countdownPop 0.5s ease-out;
+  }
+  @keyframes countdownPop {
+    0% { transform: scale(2); opacity: 0; }
+    40% { transform: scale(1); opacity: 1; }
+    100% { opacity: 1; }
+  }
+
+  /* ── Complete flash ── */
+  .st-complete-flash {
+    color: #4ade80 !important;
+    animation: completeFlash 1.2s ease-out;
+  }
+  @keyframes completeFlash {
+    0% { transform: scale(1.3); opacity: 0; }
+    30% { transform: scale(1); opacity: 1; }
+    100% { opacity: 1; }
+  }
+
+  /* ── Go button pulse while idle ── */
+  @keyframes goPulse {
+    0%, 100% { box-shadow: 0 0 40px rgba(34,211,238,0.2), 0 0 80px rgba(34,211,238,0.08), inset 0 0 30px rgba(34,211,238,0.06); }
+    50% { box-shadow: 0 0 60px rgba(34,211,238,0.35), 0 0 120px rgba(34,211,238,0.12), inset 0 0 40px rgba(34,211,238,0.1); }
+  }
+  .st-go-btn { animation: goPulse 3s ease-in-out infinite; }
+  .st-go-btn:hover { animation: none; }
+
   @media (max-width: 640px) {
-    .st-metrics {
-      grid-template-columns: 1fr !important;
-      gap: var(--space-md) !important;
+    .st-hero-section { padding: var(--space-lg) var(--space-md); }
+    .st-page-header h1 { font-size: var(--text-3xl); }
+    .st-trust-bar { gap: var(--space-sm); }
+    .st-trust-item { font-size: 12px; }
+
+    .st-hero-results {
+      gap: var(--space-md);
     }
 
-    .st-start-btn {
+    .st-hero-result-row strong {
+      font-size: clamp(1.8rem, 10vw, 2.8rem);
+    }
+
+    .st-modal {
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .st-modal-actions .btn {
+      min-width: 0;
       width: 100%;
-      min-width: 0 !important;
-      font-size: var(--text-base) !important;
     }
 
     .st-plan-check-row {
@@ -650,6 +2783,40 @@ import { generateBreadcrumbSchema } from '@lib/utils';
     .st-gap-actions .btn,
     .st-upgrade-actions .btn {
       width: 100%;
+    }
+
+    .st-toc-list {
+      grid-template-columns: 1fr;
+    }
+
+    .st-conn-table {
+      font-size: 12px;
+    }
+
+    .st-conn-table th,
+    .st-conn-table td {
+      padding: 8px 10px;
+    }
+
+    .st-zip-inner {
+      flex-direction: column;
+    }
+
+    .st-throttle-cta-actions {
+      flex-direction: column;
+    }
+
+    .st-not-happy-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .st-related-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .st-methodology-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

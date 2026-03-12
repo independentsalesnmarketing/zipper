@@ -67,7 +67,7 @@ const partners = getPartnerProviders().map(p => ({
 <script>
 (function(){
   /* ── Config ───────────────────────────────────────────────────── */
-  const GEMINI_KEY = 'AIzaSyB0ew_Pmhtfdnqz4VOLSP6W66ngKMst5EE';
+  const GEMINI_KEY = import.meta.env.PUBLIC_GEMINI_KEY;
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
 
   const partners = JSON.parse(document.getElementById('ai-chat-data').textContent);

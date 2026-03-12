@@ -107,6 +107,27 @@ export function generateOrganizationSchema() {
   };
 }
 
+export function generateHowToSchema(opts: {
+  name: string;
+  description: string;
+  totalTime?: string;
+  steps: { name: string; text: string }[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: opts.name,
+    description: opts.description,
+    ...(opts.totalTime ? { totalTime: opts.totalTime } : {}),
+    step: opts.steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  };
+}
+
 export function generateProviderSchema(provider: {
   name: string;
   description: string;

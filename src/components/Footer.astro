@@ -6,7 +6,28 @@ const year = new Date().getFullYear();
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="/" class="logo" aria-label="Internet 4 ALL Home">
-          <img src="/logo.svg" alt="Internet 4 ALL" width="240" height="64" style="height:64px;width:auto;display:block;filter:brightness(0) invert(1);" />
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" fill="none" role="img" aria-label="Internet 4 ALL" class="logo-svg" width="200" height="52" style="height:64px;width:auto;display:block;filter:brightness(0) invert(1);">
+            <defs>
+              <linearGradient id="fPinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#0052FF"/>
+                <stop offset="50%" style="stop-color:#3d7eff"/>
+                <stop offset="100%" style="stop-color:#b700ff"/>
+              </linearGradient>
+              <linearGradient id="fTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#0052FF"/>
+                <stop offset="50%" style="stop-color:#3d7eff"/>
+                <stop offset="100%" style="stop-color:#b700ff"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(2, 1)">
+              <path d="M24 3C16.3 3 10 9.3 10 17c0 10.5 14 28 14 28s14-17.5 14-28c0-7.7-6.3-14-14-14z" fill="url(#fPinGrad)"/>
+              <circle cx="24" cy="17" r="2.5" fill="white"/>
+              <path d="M19.2 13.5a6.5 6.5 0 0 1 9.6 0" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M16.6 11a10 10 0 0 1 14.8 0" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+            </g>
+            <text x="60" y="20" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.5" fill="url(#fTextGrad)">INTERNET</text>
+            <text x="60" y="38" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="900" letter-spacing="-0.5" fill="#0A0E1E">4 ALL</text>
+          </svg>
         </a>
         <p>Helping Americans find affordable internet since 2024. Compare providers, plans, and prices — completely free.</p>
         <p class="footer-hours">Available 7 days a week</p>

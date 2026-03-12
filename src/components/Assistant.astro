@@ -67,7 +67,8 @@ const partners = getPartnerProviders().map(p => ({
       <span id="ast-vtxt">One moment…</span>
     </div>
 
-    <div id="ast-msgs" class="ast-msgs"></div>
+    <div id="ast-msgs-chat" class="ast-msgs"></div>
+    <div id="ast-msgs-talk" class="ast-msgs" style="display:none"></div>
 
     <form id="ast-form" class="ast-form" autocomplete="off">
       <input type="text" id="ast-inp" class="ast-inp" placeholder="Ask about plans, speeds, pricing..." />
@@ -101,7 +102,7 @@ const partners = getPartnerProviders().map(p => ({
 <script>
 (function(){
   /* ── Config ─────────────────────────────────────────────────── */
-  const GEMINI_KEY = 'AIzaSyBMJ6NqtVAhhjZa19hD_yFuRvm_ag8pFcE';
+  const GEMINI_KEY = import.meta.env.PUBLIC_GEMINI_KEY;
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
   const TTS_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${GEMINI_KEY}`;
   const partners = JSON.parse(document.getElementById('ast-data').textContent);
@@ -180,8 +181,9 @@ const partners = getPartnerProviders().map(p => ({
   const vbar      = document.getElementById('ast-vbar');
   const vdot      = document.getElementById('ast-vdot');
   const vtxt      = document.getElementById('ast-vtxt');
-  const msgs      = document.getElementById('ast-msgs');
-  /* sug is now rendered inline inside #ast-msgs, not a fixed element */
+  const chatMsgs  = document.getElementById('ast-msgs-chat');
+  const talkMsgs  = document.getElementById('ast-msgs-talk');
+  function getMsgs(){ return mode === 'chat' ? chatMsgs : talkMsgs; }
   const chatForm  = document.getElementById('ast-form');
   const chatInput = document.getElementById('ast-inp');
   const vctrl     = document.getElementById('ast-vctrl');
@@ -192,7 +194,8 @@ const partners = getPartnerProviders().map(p => ({
   /* ── State ──────────────────────────────────────────────────── */
   let mode = 'chat';
   let isOpen = false;
-  let hasGreeted = false;
+  let hasGreetedChat = false;
+  let hasGreetedTalk = false;
   let sending = false;
   let isSpeaking = false;
   let isListening = false;
@@ -205,7 +208,9 @@ const partners = getPartnerProviders().map(p => ({
   let lastZip = null;
   let lastZipProviders = [];
   let collectedData = {};
-  const history = [];
+  const chatHistory = [];
+  const talkHistory = [];
+  function getHistory(){ return mode === 'chat' ? chatHistory : talkHistory; }
 
   /* ── System Instruction ─────────────────────────────────────── */
   const sysInstruction = `You are a friendly internet advisor at Internet4All.com. Talk like a real person — warm, helpful, and to the point. Never sound like a bot or a script.
@@ -224,6 +229,7 @@ HOW TO TALK:
 - This is conversion-focused: guide users to tap Order Now and start signup.
 - Always finish your full sentence before adding any tags.
 - Never use your own knowledge of provider availability — only use what's given to you.
+- After presenting cards with [[SHOW:]], always end with a short warm close like "Tap Order Now on any of those to get started — or let me know if you have questions!" Then stop. Do not volunteer more information unless the user asks.
 
 TAGS — use these in [chat] mode only:
   [[SHOW:slug1|slug2|slug3]] — display provider cards with all plans (use whenever recommending providers, up to 3 slugs)
@@ -234,15 +240,22 @@ TAGS — use these in [chat] mode only:
 
 In [voice] mode: speak naturally in 1-2 sentences. No tags whatsoever.
 
+CHIP SELECTIONS — when the message starts with [CHIP], follow the exact script for that chip:
+  [CHIP:check-area]   → Greet the user warmly (e.g., "Hey, welcome to Internet4All!"), say you'll find out what's available in their area, then ask: "What's your ZIP code?"
+  [CHIP:cheapest]     → Greet warmly, say you'll track down the most affordable plans near them, then ask: "What's your ZIP code?"
+  [CHIP:fast]         → Greet warmly, say you've got great high-speed picks for gaming and streaming, then ask: "What ZIP code are you in?"
+  [CHIP:compare]      → Greet warmly, say you're happy to walk through the providers that serve their area, then ask: "What's your ZIP code so I can see who's available?"
+  Always keep chip replies to 2 short sentences. Do not answer the question yet — just greet, acknowledge, and ask for ZIP.
+
 EXAMPLES:
-  User gives ZIP → "Here's what's available in your area:" [[SHOW:altafiber|spectrum|earthlink]]
-  "what do you recommend?" → "For most households I'd go with the gig plan — fastest and most reliable." [[SHOW:altafiber|att-fiber]]
-  "what's the cheapest?" → "Here are the most affordable options:" [[SHOW:spectrum|earthlink|att-air]]
-  "tell me about the plans" → "Here's a breakdown of what's in your area:" [[SHOW:altafiber|spectrum|earthlink]]`;
+  User gives ZIP → "Here's what's available in your area:" [[SHOW:altafiber|spectrum|earthlink]] "Tap Order Now on any of those to get started — or let me know if you have questions!"
+  "what do you recommend?" → "For most households I'd go with the gig plan — fastest and most reliable." [[SHOW:altafiber|att-fiber]] "Hit Order Now to get signed up, or ask me anything else!"
+  "what's the cheapest?" → "Here are the most affordable options:" [[SHOW:spectrum|earthlink|att-air]] "Let me know if you'd like more details on any of those, otherwise tap Order Now to continue!"
+  "tell me about the plans" → "Here's a breakdown of what's in your area:" [[SHOW:altafiber|spectrum|earthlink]] "Any questions, or ready to pick one?"`;
 
   /* ── Helpers ────────────────────────────────────────────────── */
   function esc(s){ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-  function scroll(){ msgs.scrollTop = msgs.scrollHeight; }
+  function scroll(){ const m = getMsgs(); m.scrollTop = m.scrollHeight; }
 
   /* Pre-create AudioContext on first user gesture */
   function ensureAudioCtx(){
@@ -291,7 +304,7 @@ EXAMPLES:
   function addMsg(html, role, animate = false){
     const div = document.createElement('div');
     div.className = `ast-msg ${role === 'user' ? 'ast-msg-user' : 'ast-msg-bot'}`;
-    msgs.appendChild(div);
+    getMsgs().appendChild(div);
     scroll();
 
     if(role !== 'user' && animate){
@@ -348,7 +361,7 @@ EXAMPLES:
     const d = document.createElement('div');
     d.className = 'ast-msg ast-msg-bot ast-typing'; d.id = 'ast-typing';
     d.innerHTML = '<span></span><span></span><span></span>';
-    msgs.appendChild(d); scroll();
+    getMsgs().appendChild(d); scroll();
   }
   function removeTyping(){ document.getElementById('ast-typing')?.remove(); }
 
@@ -379,8 +392,13 @@ EXAMPLES:
     if(!provs.length) return '';
     let html = '<div class="ast-provider-grid">';
     rankProviders(provs).forEach(p => {
-      const plans = (p.plans || []).slice(0, 3);
+      const plans = p.plans || [];
       const topPlan = plans[0] || { name: 'Best Plan' };
+      const minPrice = plans.length ? Math.min(...plans.map(pl => pl.price)) : null;
+      const maxSpeed = plans.length ? Math.max(...plans.map(pl => pl.speed)) : null;
+      const startingLine = minPrice != null
+        ? `Starting at <strong class="ast-prov-start-price">$${minPrice}<small>/mo</small></strong>${maxSpeed ? `<br><span class="ast-prov-start-speed">Up to ${formatBandwidth(maxSpeed)}</span>` : ''}`
+        : '';
       html += `<div class="ast-provider-card" data-slug="${esc(p.slug)}" data-plan="${esc(topPlan.name)}" role="button" tabindex="0" aria-label="Order from ${esc(p.name)}">
         <div class="ast-prov-hdr">
           <div class="ast-prov-logo-wrap">
@@ -390,15 +408,7 @@ EXAMPLES:
           </div>
           <span class="ast-prov-name" title="${esc(p.name)}">${esc(p.name)}</span>
         </div>
-        <div class="ast-prov-plans">`;
-      plans.forEach(pl => {
-        html += `<div class="ast-prov-plan-row">
-          <span class="ast-prov-plan-name">${esc(pl.name)}</span>
-          <span class="ast-prov-plan-speed">${formatBandwidth(pl.speed)}</span>
-          <span class="ast-prov-plan-price">$${esc(String(pl.price))}<small>/mo</small></span>
-        </div>`;
-      });
-      html += `</div>
+        ${startingLine ? `<div class="ast-prov-starting">${startingLine}</div>` : ''}
         <button class="ast-order-btn ast-prov-cta" data-slug="${esc(p.slug)}" data-plan="${esc(topPlan.name)}">
           Order Now <span class="ast-order-icon">&#x2192;</span>
         </button>
@@ -488,10 +498,6 @@ EXAMPLES:
     const sel = document.getElementById('su-provider');
     if(sel && slug){ sel.value = slug; sel.dispatchEvent(new Event('change')); }
     setTimeout(() => {
-      const ps = document.getElementById('su-plan');
-      if(ps && planName){
-        for(const o of ps.options){ if(o.textContent.includes(planName)){ ps.value = o.value; ps.dispatchEvent(new Event('change')); break; } }
-      }
       for(const [id, val] of Object.entries({
         'su-name': collectedData.name, 'su-email': collectedData.email,
         'su-phone': collectedData.phone, 'su-address': collectedData.address,
@@ -504,7 +510,7 @@ EXAMPLES:
 
   /* ── Suggestions (rendered inline in message stream) ─────── */
   function clearSuggestions(){
-    msgs.querySelectorAll('.ast-sug-row').forEach(el => el.remove());
+    getMsgs().querySelectorAll('.ast-sug-row,.ast-talk-sug').forEach(el => el.remove());
   }
 
   function showSuggestions(){ /* no-op — chip suggestions removed */ }
@@ -512,13 +518,13 @@ EXAMPLES:
 
   /* ── Gemini API ─────────────────────────────────────────────── */
   async function callGemini(text){
-    history.push({ role: 'user', parts: [{ text }] });
+    getHistory().push({ role: 'user', parts: [{ text }] });
     const res = await fetch(GEMINI_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         system_instruction: { parts: [{ text: sysInstruction }] },
-        contents: history,
+        contents: getHistory(),
         generationConfig: { temperature: 0.6, topP: 0.9, maxOutputTokens: 1800 },
         safetySettings: [
           { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_ONLY_HIGH' },
@@ -532,7 +538,7 @@ EXAMPLES:
     if(!res.ok) throw new Error(`Gemini ${res.status}`);
     const data = await res.json();
     const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    if(reply) history.push({ role: 'model', parts: [{ text: reply }] });
+    if(reply) getHistory().push({ role: 'model', parts: [{ text: reply }] });
     return reply;
   }
 
@@ -673,10 +679,10 @@ EXAMPLES:
         if(!pendingMicMsg){
           pendingMicMsg = document.createElement('div');
           pendingMicMsg.className = 'ast-msg ast-msg-user ast-msg-pending';
-          msgs.appendChild(pendingMicMsg);
+          getMsgs().appendChild(pendingMicMsg);
         }
         pendingMicMsg.textContent = liveText;
-        msgs.scrollTop = msgs.scrollHeight;
+        scroll();
       }
 
       if(final){
@@ -1012,7 +1018,7 @@ EXAMPLES:
   }
 
   /* ── Send message ───────────────────────────────────────────── */
-  async function send(text){
+  async function send(text, geminiOverride){
     if(sending || !text.trim()) return;
     sending = true;
     stopSpeaking(); /* interrupt any current TTS so new message can proceed */
@@ -1030,7 +1036,7 @@ EXAMPLES:
 
     try {
       const modeTag = mode === 'talk' ? '[voice] ' : '[chat] ';
-      let geminiText = modeTag + userText;
+      let geminiText = modeTag + (geminiOverride || userText);
 
       const zipMatch = userText.match(/\b(\d{5})\b/);
       if(zipMatch){
@@ -1039,7 +1045,7 @@ EXAMPLES:
         const ctx = buildZipContext(zipMatch[1]);
         lastZipProviders = rankProviders(ctx.providers || []);
         reply = buildZipResultReply(lastZip, lastZipProviders);
-        history.push({ role: 'model', parts: [{ text: reply }] });
+        getHistory().push({ role: 'model', parts: [{ text: reply }] });
         geminiOk = true;
       }
 
@@ -1141,6 +1147,10 @@ EXAMPLES:
     }
     mode = newMode;
 
+    /* Swap message panes */
+    chatMsgs.style.display = newMode === 'chat' ? 'flex' : 'none';
+    talkMsgs.style.display = newMode === 'talk' ? 'flex' : 'none';
+
     tabs.querySelectorAll('.ast-tab').forEach(t => {
       t.classList.toggle('ast-tab-on', t.dataset.mode === newMode);
     });
@@ -1156,31 +1166,23 @@ EXAMPLES:
       vbar.style.display = 'flex';
       if(!recognition) recognition = initRecognition();
       ensureAudioCtx();
-      setVoiceStatus('think', 'Connecting you to a live agent…');
-      setMicHint('');
-      /* Request mic for audio-level VAD + auto-start listening */
-      if(recognition && !recognition._fallback){
-        requestMic().then(() => {
-          setVoiceStatus('listen', '');
-          setMicHint('Tap the mic and speak');
-          if(!isListening && !isSpeaking && !sending){
+
+      if(!hasGreetedTalk){
+        /* First time in talk mode — show suggestions */
+        hasGreetedTalk = true;
+        loadZipCoverage();
+        showTalkSuggestions();
+        setVoiceStatus('idle', '');
+        setMicHint('');
+      } else {
+        /* Returning to talk — resume listening */
+        setVoiceStatus('listen', '');
+        setMicHint('Tap the mic and speak');
+        requestMic().then(stream => {
+          if(stream && !isListening && !isSpeaking && !sending){
             setTimeout(() => { startListening(); }, 300);
           }
         });
-      } else if(recognition && recognition._fallback){
-        setVoiceStatus('idle', '');
-        setMicHint('Requesting mic access…');
-        requestMic().then(stream => {
-          if(stream){
-            setVoiceStatus('listen', '');
-            setMicHint('Tap the mic and speak');
-            if(!isListening && !isSpeaking && !sending){
-              setTimeout(() => { startListening(); }, 300);
-            }
-          }
-        });
-      } else {
-        setVoiceStatus('idle', 'Voice not supported — type below');
       }
     }
   }
@@ -1196,13 +1198,14 @@ EXAMPLES:
 
     if(targetMode && targetMode !== mode) switchMode(targetMode);
 
-    if(!hasGreeted){
-      hasGreeted = true;
+    if(mode === 'chat' && !hasGreetedChat){
+      hasGreetedChat = true;
       loadZipCoverage();
       greet();
     } else if(mode === 'chat'){
       chatInput.focus();
     }
+    /* talk mode first-entry is handled entirely by switchMode() */
   }
 
   function close(){
@@ -1218,48 +1221,82 @@ EXAMPLES:
     }
   }
 
+  /* ── Talk-mode suggestion chips ────────────────────────────── */
+  function showTalkSuggestions(){
+    if(document.getElementById('ast-talk-sug')) return;
+    const wrap = document.createElement('div');
+    wrap.id = 'ast-talk-sug';
+    wrap.className = 'ast-talk-sug';
+    wrap.innerHTML = `
+      <p class="ast-sug-prompt">Hi! What can I help you with today?</p>
+      <div class="ast-sug-chips">
+        <button class="ast-sug-chip" data-chip="check-area">📍 Check my area</button>
+        <button class="ast-sug-chip" data-chip="cheapest">💰 Find cheapest plans</button>
+        <button class="ast-sug-chip" data-chip="fast">⚡ Fast internet options</button>
+        <button class="ast-sug-chip" data-chip="compare">📊 Compare providers</button>
+      </div>
+    `;
+    wrap.querySelectorAll('.ast-sug-chip').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const label = btn.textContent.trim();
+        const chipKey = btn.dataset.chip;
+        wrap.remove();
+        await showConnectingBanner();
+        send(label, `[CHIP:${chipKey}]`);
+      });
+    });
+    talkMsgs.appendChild(wrap);
+  }
+
+  /* ── Prominent connecting banner ────────────────────────────── */
+  async function showConnectingBanner(){
+    const banner = document.createElement('div');
+    banner.className = 'ast-connecting-prominent';
+    banner.innerHTML = `
+      <div class="ast-connecting-prominent-dot"></div>
+      <span class="ast-connecting-prominent-text">Connecting to a live agent…</span>
+    `;
+    talkMsgs.appendChild(banner);
+    talkMsgs.scrollTop = talkMsgs.scrollHeight;
+    setVoiceStatus('think', 'Connecting…');
+    setOrbState('thinking');
+    if(!recognition) recognition = initRecognition();
+    ensureAudioCtx();
+    requestMic().catch(() => {});
+    await new Promise(r => setTimeout(r, 2600));
+    banner.remove();
+  }
+
   /* ── Greeting ───────────────────────────────────────────────── */
   async function greet(){
+    /* Talk mode: show suggestion chips instead of auto-speaking */
+    if(mode === 'talk'){
+      showTalkSuggestions();
+      setVoiceStatus('idle', '');
+      setMicHint('');
+      return;
+    }
+
+    /* Chat greeting */
     const greetings = [
       "Hi there — I can help you find the fastest internet plans available in your area and compare the best options. What ZIP code should I check for you?",
       "Hey! I'm here to help you find the right internet plan. I can pull up what's available at your address if you share your ZIP code.",
       "Hi — welcome! Let me find the best internet options in your area. What's your ZIP code?",
     ];
     const msg = greetings[Math.floor(Math.random() * greetings.length)];
-    history.push({ role: 'model', parts: [{ text: msg }] });
+    getHistory().push({ role: 'model', parts: [{ text: msg }] });
 
-    if(mode === 'talk'){
-      /* Show flashing "Connecting to an agent" until speech begins */
-      setVoiceStatus('think', 'Connecting you to a live agent…');
-      setOrbState('thinking');
-      const connectingDiv = document.createElement('div');
-      connectingDiv.className = 'ast-msg ast-msg-bot ast-connecting';
-      connectingDiv.textContent = 'Connecting to an agent....';
-      msgs.appendChild(connectingDiv);
-      msgs.scrollTop = msgs.scrollHeight;
-      await new Promise(r => setTimeout(r, 300));
-      /* Remove connecting bubble exactly when speech starts */
-      let msgShown = false;
-      const showGreeting = () => {
-        if(connectingDiv.isConnected) connectingDiv.remove();
-        if(!msgShown){ msgShown = true; addMsg(msg, 'bot'); }
-      };
-      await speak(msg, { onStart: showGreeting });
-      showGreeting();
-    } else {
-      /* Chat: "Connecting you to a live agent…" system message then greeting */
-      const connectDiv = document.createElement('div');
-      connectDiv.className = 'ast-msg ast-msg-system';
-      connectDiv.textContent = 'Connecting you to a live agent\u2026';
-      msgs.appendChild(connectDiv);
-      msgs.scrollTop = msgs.scrollHeight;
-      await new Promise(r => setTimeout(r, 900));
-      addTyping();
-      await new Promise(r => setTimeout(r, 700));
-      removeTyping();
-      connectDiv.remove();
-      addMsg(msg, 'bot');
-    }
+    const connectDiv = document.createElement('div');
+    connectDiv.className = 'ast-msg ast-msg-system';
+    connectDiv.textContent = 'Connecting you to a live agent\u2026';
+    getMsgs().appendChild(connectDiv);
+    scroll();
+    await new Promise(r => setTimeout(r, 900));
+    addTyping();
+    await new Promise(r => setTimeout(r, 700));
+    removeTyping();
+    connectDiv.remove();
+    addMsg(msg, 'bot');
   }
 
   /* ── Mic toggle ─────────────────────────────────────────────── */
@@ -1546,16 +1583,16 @@ EXAMPLES:
   /* ── Provider grid — max 3, each with all plans + CTA ──────── */
   .ast-provider-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px; margin: 8px 0 4px; width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px; margin: 8px 0 4px; width: 100%;
   }
   .ast-provider-card {
     background: linear-gradient(135deg, #131b32 0%, #172041 100%) !important;
     border: 1px solid rgba(102,126,234,0.2) !important;
-    border-radius: 11px; padding: 10px;
-    display: flex; flex-direction: column; gap: 6px;
+    border-radius: 11px; padding: 8px 6px;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
     transition: border-color 0.15s, transform 0.15s;
-    cursor: pointer;
+    cursor: pointer; text-align: center;
   }
   .ast-provider-card:hover {
     border-color: rgba(102,126,234,0.45) !important;
@@ -1563,59 +1600,56 @@ EXAMPLES:
   }
   .ast-provider-card:focus-visible { outline: 2px solid #818cf8; outline-offset: 1px; }
   .ast-prov-hdr {
-    display: flex; align-items: center; gap: 10px; margin-bottom: 2px;
+    display: flex; flex-direction: column; align-items: center; gap: 5px; width: 100%;
   }
   .ast-prov-logo-wrap {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
+    width: 100%;
+    height: 52px;
+    border-radius: 8px;
     background: #ffffff;
     border: 1px solid rgba(255,255,255,0.28);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    padding: 4px;
+    box-sizing: border-box;
   }
   .ast-prov-logo {
-    max-height: 30px;
-    max-width: 34px;
+    max-height: 44px;
+    max-width: 100%;
+    width: auto;
     object-fit: contain;
     flex-shrink: 0;
   }
   .ast-prov-logo-fallback {
     color: #111827 !important;
-    font-size: 16px;
+    font-size: 22px;
     font-weight: 800;
     line-height: 1;
   }
   .ast-prov-name {
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 800;
     color: #e0e4ee !important;
     letter-spacing: 0.01em;
     line-height: 1.2;
-    min-width: 0;
     overflow-wrap: anywhere;
+    width: 100%;
   }
-  .ast-prov-plans { display: flex; flex-direction: column; gap: 2px; flex: 1; }
-  .ast-prov-plan-row {
-    display: grid; grid-template-columns: 1fr auto auto;
-    align-items: center; gap: 4px;
-    padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+  .ast-prov-starting {
+    font-size: 10px; color: #9ca3af !important;
+    line-height: 1.4; width: 100%;
   }
-  .ast-prov-plan-row:last-child { border-bottom: none; }
-  .ast-prov-plan-name { font-size: 10px; font-weight: 600; color: #c4c9e0 !important; min-width: 0; overflow-wrap: anywhere; }
-  .ast-prov-plan-speed { font-size: 9px; color: #818cf8 !important; font-weight: 700; white-space: nowrap; }
-  .ast-prov-plan-price { font-size: 10px; font-weight: 800; color: #34d399 !important; white-space: nowrap; }
-  .ast-prov-plan-price small { font-size: 9px; font-weight: 600; color: #6ee7b7 !important; }
-  .ast-prov-cta { margin-top: 6px !important; font-size: 11px !important; padding: 8px 10px !important; }
+  .ast-prov-start-price { font-size: 12px; color: #34d399 !important; font-weight: 800; }
+  .ast-prov-start-price small { font-size: 8px; color: #6ee7b7 !important; font-weight: 600; }
+  .ast-prov-start-speed { font-size: 9px; color: #818cf8 !important; font-weight: 600; }
+  .ast-prov-cta { margin-top: 2px !important; font-size: 10px !important; padding: 6px 8px !important; width: 100%; }
 
   @media (max-width: 520px){
-    .ast-provider-grid { grid-template-columns: 1fr; }
-    .ast-prov-name { font-size: 12px; }
-    .ast-prov-plan-name { font-size: 9px; }
-    .ast-prov-plan-speed, .ast-prov-plan-price { font-size: 8px; }
-    .ast-prov-cta { font-size: 9px !important; }
+    .ast-provider-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .ast-prov-name { font-size: 10px; }
+    .ast-prov-cta { font-size: 9px !important; padding: 5px 4px !important; }
   }
 
   /* ── System / connecting message ───────────────────────────── */
@@ -1781,5 +1815,58 @@ EXAMPLES:
     .ast-btn { width: 52px; height: 52px; }
     .ast-msgs { max-height: 42vh; }
     .ast-mic { width: 50px; height: 50px; }
+  }
+
+  /* ── Talk-mode suggestion chips ────────────────────────────── */
+  .ast-talk-sug {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 12px; padding: 18px 4px 8px; width: 100%;
+  }
+  .ast-sug-prompt {
+    font-size: 13.5px; font-weight: 600; color: #c4c9e0 !important;
+    text-align: center; margin: 0; line-height: 1.4;
+  }
+  .ast-sug-chips { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+  .ast-sug-chip {
+    background: #1a2240 !important;
+    border: 1px solid rgba(102,126,234,0.28) !important;
+    border-radius: 10px; color: #d4d8f0 !important;
+    font-size: 13px; padding: 11px 14px;
+    text-align: left; cursor: pointer; width: 100%;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    line-height: 1.35;
+  }
+  .ast-sug-chip:hover {
+    background: #1e2a4d !important;
+    border-color: rgba(102,126,234,0.55) !important;
+    transform: translateX(2px);
+  }
+
+  /* ── Prominent connecting banner ────────────────────────────── */
+  .ast-connecting-prominent {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 14px;
+    padding: 36px 20px 28px; width: 100%;
+    animation: astMsgIn 0.3s ease-out;
+  }
+  .ast-connecting-prominent-dot {
+    width: 16px; height: 16px; border-radius: 50%;
+    background: linear-gradient(135deg, #818cf8, #667eea) !important;
+    box-shadow: 0 0 0 0 rgba(129,140,248,0.5);
+    animation: astConnectDotPulse 1s ease-in-out infinite;
+  }
+  .ast-connecting-prominent-text {
+    font-size: 15px; font-weight: 700; letter-spacing: 0.04em;
+    color: #a5b4fc !important; text-align: center;
+    animation: astConnectFlash 0.8s ease-in-out infinite;
+  }
+  @keyframes astConnectDotPulse {
+    0%   { transform: scale(1);    box-shadow: 0 0 0 0    rgba(129,140,248,0.6); }
+    50%  { transform: scale(1.15); box-shadow: 0 0 0 12px rgba(129,140,248,0); }
+    100% { transform: scale(1);    box-shadow: 0 0 0 0    rgba(129,140,248,0); }
+  }
+  @keyframes astConnectFlash {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
   }
 </style>

@@ -1288,6 +1288,13 @@
     font-weight: 800;
     color: var(--brand-blue);
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+  }
+  .site-header .logo .logo-svg {
+    display: block;
+    height: 52px;
+    width: auto;
   }
   .site-header nav {
     display: flex;
@@ -2408,7 +2415,7 @@
       padding-block: 0.55rem;
     }
 
-    .site-header .logo img {
+    .site-header .logo .logo-svg {
       height: 52px !important;
       width: auto !important;
       max-width: min(72vw, 240px);
@@ -2612,7 +2619,7 @@
     }
 
     /* ── Footer logo ── */
-    .site-footer .logo img {
+    .site-footer .logo .logo-svg {
       height: 48px !important;
     }
   }
@@ -2621,7 +2628,7 @@
      SMALL MOBILE (≤480px) — compact everything
      ════════════════════════════════════════════ */
   @media (max-width: 480px) {
-    .site-header .logo img {
+    .site-header .logo .logo-svg {
       height: 44px !important;
       max-width: min(66vw, 210px);
     }

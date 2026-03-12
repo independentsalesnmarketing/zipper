@@ -62,7 +62,7 @@ const partners = getPartnerProviders().map(p => ({
 
 <script>
 (function(){
-  const GEMINI_KEY = 'AIzaSyDq8NVtj8Oe3co_mDuR0bBqS-0ONn_Hz6I';
+  const GEMINI_KEY = import.meta.env.PUBLIC_GEMINI_KEY;
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
   const TTS_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${GEMINI_KEY}`;
   const partners = JSON.parse(document.getElementById('va-provider-data').textContent);

@@ -6,7 +6,7 @@ import { defineConfig } from 'astro/config';
 // import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://internet4all.com',
+  site: 'https://internet-4-all.com',
   output: 'static',
   integrations: [],
   vite: {

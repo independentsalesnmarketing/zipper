@@ -18,12 +18,12 @@ const faqs = [
 ];
 ---
 <Base
-  title="Get Internet Today After Being Disconnected — No Credit Check Options"
-  description="Disconnected from Spectrum, Xfinity, or AT&T? Get WiFi today with a new provider. No credit check options, same-day 5G service, clean slate with a fresh start."
+  title="Internet Disconnected? Get Home Internet Today"
+  description="Internet cut off? Find providers at your address with same-day setup. Affordable home internet options available now — get back online today, no long wait."
   schema={[
     generateBreadcrumbSchema([
-      { name: 'Home', url: 'https://internet4all.com' },
-      { name: 'Get Internet After Disconnection', url: 'https://internet4all.com/disconnected-internet' }
+      { name: 'Home', url: 'https://internet-4-all.com' },
+      { name: 'Get Internet After Disconnection', url: 'https://internet-4-all.com/disconnected-internet' }
     ]),
     generateFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })))
   ]}
@@ -41,10 +41,10 @@ const faqs = [
 
       <!-- Urgency CTA block -->
       <div class="reveal" style="margin-top:var(--space-xl);display:flex;flex-direction:column;align-items:center;gap:var(--space-md);">
-          <a href="#chat" class="btn btn-cta" style="font-size:var(--text-xl);padding:var(--space-md) var(--space-2xl);">
+          <a href="#get-connected" class="btn btn-cta" style="font-size:var(--text-xl);padding:var(--space-md) var(--space-2xl);">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat with us — Get Online Today
           </a>
-          <p style="font-size:var(--text-sm);color:var(--text-muted);">Fastest help: chat or fill out our form. Phone support available if needed.</p>
+          <p style="font-size:var(--text-sm);color:var(--text-muted);">Fastest help: chat or fill out our form. A live agent will assist you end-to-end.</p>
       </div>
 
       <!-- Trust signals -->
@@ -124,7 +124,7 @@ const faqs = [
             <span class="badge">✓ Up to 245 Mbps</span>
             <span class="badge">✓ No contract</span>
           </div>
-          <a href="#chat" class="btn btn-primary" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat to Sign Up for T-Mobile 5G</a>
+          <a href="#get-connected" class="btn btn-primary" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat to Sign Up for T-Mobile 5G</a>
         </div>
 
         <!-- Option 2: Verizon 5G -->
@@ -148,7 +148,7 @@ const faqs = [
             <span class="badge">✓ Up to 1 Gbps</span>
             <span class="badge">✓ No contract</span>
           </div>
-          <a href="#chat" class="btn btn-primary" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat to Sign Up for Verizon 5G</a>
+          <a href="#get-connected" class="btn btn-primary" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat to Sign Up for Verizon 5G</a>
         </div>
 
         <!-- Option 3: Partner providers -->
@@ -171,7 +171,7 @@ const faqs = [
                 <span class="badge">{best.contract}</span>
                 <span class="badge">{best.dataCap}</span>
               </div>
-              <a href="#chat" class="btn btn-primary" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat to Get {p.name} Today</a>
+              <a href="#get-connected" class="btn btn-primary" style="width:100%;text-align:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat to Get {p.name} Today</a>
             </div>
           );
         })}
@@ -179,7 +179,7 @@ const faqs = [
 
       <div class="text-center reveal" style="margin-top:var(--space-xl);">
         <p style="color:var(--text-secondary);margin-bottom:var(--space-md);">Not sure which provider serves your area?</p>
-        <a href="#chat" class="btn btn-primary btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat — We'll Check Instantly</a>
+        <a href="#get-connected" class="btn btn-primary btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat — We'll Check Instantly</a>
       </div>
     </div>
   </section>

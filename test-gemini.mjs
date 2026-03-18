@@ -3,13 +3,14 @@
  * Run: node test-gemini.mjs
  */
 
-const KEY = 'AIzaSyAaa7GXk5eW4jBfvmqCCnMUzn5uQTz_q4E';
+const KEY = process.env.GEMINI_API_KEY || process.env.PUBLIC_GEMINI_KEY;
+if (!KEY) { console.error('Set GEMINI_API_KEY or PUBLIC_GEMINI_KEY env var'); process.exit(1); }
 const CHAT_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${KEY}`;
 const TTS_URL  = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${KEY}`;
 
-const SYSTEM = `You are a friendly internet broadband advisor for Internet4All.com. 
+const SYSTEM = `You are a friendly internet broadband advisor for Internet-4-All.com. 
 Available partners: Spectrum (from $30/mo, up to 2Gbps), AT&T Fiber (from $35/mo, fiber), 
-Verizon Fios (from $35/mo, fiber), Altafiber (from $30/mo, fiber, serves Cincinnati OH area).
+Verizon 5G Home Internet (from $50/mo, 5G nationwide, $35/mo with Verizon mobile), Altafiber (from $30/mo, fiber, serves Cincinnati OH area).
 STRICT RULE: Only recommend providers listed above. Never recommend others.
 Keep responses concise (2-4 sentences). Include [[ORDER:slug:Plan Name]] when recommending a plan.`;
 
@@ -112,7 +113,6 @@ async function run() {
 
   console.log('\n══ SUMMARY ═══════════════════════════════════════');
   console.log(`Chat API: ${chatOk ? '✅ Working' : '❌ Errors detected'}`);
-  console.log('Key: AIzaSyAaa7GXk5eW4jBfvmqCCnMUzn5uQTz_q4E');
 }
 
 run().catch(e => console.error('Fatal:', e));

@@ -7,6 +7,7 @@ import { getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, ge
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import { getStatePages, getCitiesInState, getStateSlug, type StatePageData } from '@data/locations';
 import { getStateCensus, getBroadbandGrade, getRankAmongStates, getStateComparison, getNationalAverage, formatPercent, formatPopulation, formatIncome } from '@data/census';
+import { buildStateMeta } from '@lib/location-meta';
 import type { Provider, Plan } from '@lib/providers';
 
 export function getStaticPaths() {
@@ -160,9 +161,9 @@ const productSchemas = providers.slice(0, 8).map(p => ({
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Internet Providers', url: 'https://internet4all.com/providers' },
-    { name: stateData.name, url: `https://internet4all.com/internet-providers/${stateData.slug}` },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Internet Providers', url: 'https://internet-4-all.com/providers' },
+    { name: stateData.name, url: `https://internet-4-all.com/internet-providers/${stateData.slug}` },
   ]),
   generateFAQSchema(faqs),
   {
@@ -170,14 +171,17 @@ const schemas = [
     '@type': 'WebPage',
     name: `Internet Providers in ${stateData.name}`,
     dateModified: lastUpdated,
-    url: `https://internet4all.com/internet-providers/${stateData.slug}`,
+    url: `https://internet-4-all.com/internet-providers/${stateData.slug}`,
   },
   ...productSchemas,
 ];
+
+const meta = buildStateMeta(`/internet-providers/${stateData.slug}`, stateData.name);
 ---
 <Base
-  title={`${providers.length} Best Internet Providers in ${stateData.name} (${year}) — Compare Plans & Prices`}
-  description={`Compare ${providers.length} internet providers in ${stateData.name}. ${census ? `${formatPercent(census.broadbandPct)} broadband adoption, avg ${census.avgDownload} Mbps.` : ''} Speeds to ${formatSpeed(maxSpd)}, from ${formatPrice(minPrc)}/mo. Fiber, cable, 5G & satellite.`}
+  noSuffix
+  title={meta.title}
+  description={meta.description}
   schema={schemas}
 >
 <StickyCallBar text={`Find the best internet deal in ${stateData.name}`} />
@@ -725,7 +729,7 @@ const schemas = [
         <strong>1. Compare all options.</strong> Use our free comparison tool — we regularly find savings of $20–50/mo.
         <strong>2. Watch for promo rates.</strong> Know the regular price before signing up.
         <strong>3. Buy your own equipment.</strong> Skip the $10–15/mo rental fee.
-        <strong>4. Check low-income programs.</strong> The FCC's Affordable Connectivity Program, Spectrum Internet Assist, and AT&T Access can help qualifying households.
+        <strong>4. Check low-income programs.</strong> FCC Lifeline, Spectrum Internet Assist, and AT&T Access can help qualifying households. <a href="/low-income-internet">See all programs</a>.
       </p>
     </div>
   </div>
@@ -739,8 +743,8 @@ const schemas = [
       <p style="color:var(--text-secondary);margin-bottom:var(--space-lg);">Programs to help {stateData.name} residents get connected at reduced rates.</p>
       <div class="grid grid-2" style="gap:var(--space-lg);">
         <div>
-          <h4 style="margin-bottom:var(--space-xs);">📋 FCC Affordable Connectivity Program</h4>
-          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Up to $30/mo off internet ($75/mo on tribal lands). Participating {stateData.name} providers include {providers.slice(0, 3).map(p => p.name).join(', ')}.</p>
+          <h4 style="margin-bottom:var(--space-xs);">📋 FCC Lifeline Program</h4>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">$9.25/mo discount on phone or internet for qualifying low-income households. Participating {stateData.name} providers include {providers.slice(0, 3).map(p => p.name).join(', ')}. <a href="/low-income-internet">Check eligibility</a>.</p>
         </div>
         <div>
           <h4 style="margin-bottom:var(--space-xs);">Lifeline Program</h4>
@@ -904,13 +908,6 @@ const schemas = [
     document.querySelectorAll('.plan-acc-header').forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.closest('.plan-acc-item');
-        if (item) item.classList.toggle('open');
-      });
-    });
-    // FAQ accordion
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.faq-item');
         if (item) item.classList.toggle('open');
       });
     });

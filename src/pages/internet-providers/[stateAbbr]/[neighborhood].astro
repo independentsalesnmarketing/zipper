@@ -8,6 +8,7 @@ import { getProvidersByState, formatSpeed, formatPrice, getMinPrice, getMaxSpeed
 import { generateBreadcrumbSchema, generateFAQSchema, generateItemListSchema } from '@lib/utils';
 import { getStateName, getStateSlug, cities } from '@data/locations';
 import { getStateCensus, formatPercent, formatPopulation } from '@data/census';
+import { buildNeighborhoodMeta } from '@lib/location-meta';
 import { getConfirmedProviders, getConfirmedFiberProviders, getZipCoverageSummary } from '@lib/zip-lookup';
 import { neighborhoodPages, getNeighborhoodsByState, type NeighborhoodPage } from '@data/neighborhood-pages';
 import { zipNeighborhoods } from '@data/neighborhoods';
@@ -298,10 +299,10 @@ const productSchemas = (hasConfirmedData ? confirmedProviders : providers).slice
 }));
 
 const breadcrumbItems = [
-  { name: 'Home', url: 'https://internet4all.com' },
-  { name: stateName, url: `https://internet4all.com/internet-providers/${stateSlug}` },
-  ...(parentCity ? [{ name: parentCityName, url: `https://internet4all.com/internet-providers/${nhData.pcs}` }] : []),
-  { name: nhData.n, url: `https://internet4all.com/internet-providers/${nhData.st.toLowerCase()}/${nhData.s}` },
+  { name: 'Home', url: 'https://internet-4-all.com' },
+  { name: stateName, url: `https://internet-4-all.com/internet-providers/${stateSlug}` },
+  ...(parentCity ? [{ name: parentCityName, url: `https://internet-4-all.com/internet-providers/${nhData.pcs}` }] : []),
+  { name: nhData.n, url: `https://internet-4-all.com/internet-providers/${nhData.st.toLowerCase()}/${nhData.s}` },
 ];
 
 const schemas = [
@@ -309,7 +310,7 @@ const schemas = [
   generateFAQSchema(faqs),
   generateItemListSchema(providerComparisonRows.map((r) => ({
     name: `${r.name} internet in ${nhData.n}`,
-    url: `https://internet4all.com/provider/${providers.find(p => p.id === r.id)?.slug || ''}`,
+    url: `https://internet-4-all.com/provider/${providers.find(p => p.id === r.id)?.slug || ''}`,
     description: `${r.confirmedInPrimaryZip ? 'Confirmed in ZIP ' + primaryZip : 'Not FCC-confirmed in ZIP ' + primaryZip} • Up to ${formatSpeed(r.maxSpeed)} • from ${formatPrice(r.minPrice)}/mo`,
   })).filter((r) => !r.url.endsWith('/'))),
   {
@@ -330,7 +331,7 @@ const schemas = [
     '@type': 'WebPage',
     name: `Internet Providers in ${nhData.n}, ${stateName}`,
     dateModified: lastUpdated,
-    url: `https://internet4all.com/internet-providers/${nhData.st.toLowerCase()}/${nhData.s}`,
+    url: `https://internet-4-all.com/internet-providers/${nhData.st.toLowerCase()}/${nhData.s}`,
     about: {
       '@type': 'Place',
       name: nhData.n,
@@ -359,12 +360,13 @@ const schemas = [
   },
   ...productSchemas,
 ];
+
+const meta = buildNeighborhoodMeta(`/internet-providers/${nhData.st.toLowerCase()}/${nhData.s}`, nhData.n, nhData.st, parentCityName);
 ---
 <Base
-  title={`Internet Providers in ${nhData.n}, ${stateName} (${year}) — Compare Plans & Save`}
-  description={hasConfirmedData
-    ? `${confirmedProviders.length} confirmed internet providers in ${nhData.n}, ${stateName} (ZIP ${primaryZip}). ${providers.length} total options. Speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. ${hasConfirmedFiber ? 'Fiber available. ' : ''}Compare & save.`
-    : `Find ${providers.length} internet providers in ${nhData.n}, ${stateName}. Speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. ${fiberProviders.length} fiber, ${cableProviders.length} cable options. Compare & save.`}
+  noSuffix
+  title={meta.title}
+  description={meta.description}
   schema={schemas}
 >
 <StickyCallBar text={`Best internet deals in ${nhData.n} — get connected`} />
@@ -1114,7 +1116,7 @@ const schemas = [
     ps.geocodeZip(selectedZip).then((geo: any) => {
       if (!geo) return;
       const loc = `ZIP ${selectedZip}` + (geo.city ? ` — ${geo.city}, ${geo.state}` : '');
-      ps.runSearch(geo.lat, geo.lng, loc, ps.locals, ps.mainPhone, ps.container);
+      ps.runSearch(geo.lat, geo.lng, loc, ps.locals, ps.container);
     });
     return true;
   }
@@ -1125,14 +1127,6 @@ const schemas = [
       if (runSelectedZipSearch() || tries > 30) clearInterval(t);
     }, 150);
   }
-
-  // FAQ accordion
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.parentElement;
-      if (item) item.classList.toggle('active');
-    });
-  });
 
   // Reveal on scroll
   const obs = new IntersectionObserver((entries) => {

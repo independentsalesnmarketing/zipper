@@ -37,14 +37,14 @@ Frontier doesn't do contracts on any plan. 500 Mbps symmetrical at $49.99/mo is 
 
 Spectrum pioneered the no-contract model for cable internet. Every plan is month-to-month. The tradeoff: promotional pricing increases after 12 months, but you're free to negotiate or switch.
 
-### 4. [Verizon Fios](/provider/verizon)
+### 4. [Verizon 5G Home Internet](/provider/verizon)
 | Price | Speed | Technology | Data Cap |
 |-------|-------|-----------|----------|
-| $49.99/mo | 300/300 Mbps | Fiber | None |
+| $50/mo ($35 with Verizon wireless) | 100–1000 Mbps | Fixed Wireless | None |
 
-All Fios plans are contract-free. Fiber reliability plus no-contract flexibility makes it an easy recommendation in the Northeast.
+All Verizon 5G Home plans are contract-free with a built-in 4-year price lock. Nationwide availability and self-install in minutes — no technician required.
 
-### 5. [AT&T Fiber](/provider/att)
+### 5. [AT&T Fiber](/provider/att-fiber)
 | Price | Speed | Technology | Data Cap |
 |-------|-------|-----------|----------|
 | $55/mo | 300/300 Mbps | Fiber | None |
@@ -90,7 +90,7 @@ Over a 24-month contract, these costs can add up to **$500+** in fees and inflat
 ## Tips for Making the Most of No-Contract Service
 
 ### 1. Set Calendar Reminders for Price Increases
-Even without contracts, many providers increase rates after promotional periods (usually 12 months). Set a reminder to call and negotiate when your promo expires.
+Even without contracts, many providers increase rates after promotional periods (usually 12 months). Set a reminder to contact support and negotiate when your promo expires.
 
 ### 2. Keep Track of Competitor Offers
 When your rate increases, check what competitors are offering new customers. Use that information as leverage: "T-Mobile is offering $50/mo for comparable speeds — can you match that?"

@@ -40,9 +40,9 @@ Cable uses coaxial lines shared among neighborhood nodes. During peak evening ho
 
 Fiber has reached price parity with cable in most markets. Here's what our partner providers charge:
 
-- **[AT&T Fiber](/provider/att)**: Starting at $55/mo for 300 Mbps symmetrical
+- **[AT&T Fiber](/provider/att-fiber)**: Starting at $55/mo for 300 Mbps symmetrical
 - **[Frontier Fiber](/provider/frontier)**: Starting at $49.99/mo for 500 Mbps
-- **[Verizon Fios](/provider/verizon)**: Starting at $49.99/mo for 300 Mbps symmetrical
+- **[Optimum Fiber](/provider/optimum)**: Starting at $40/mo for 300 Mbps
 
 Cable providers like [Spectrum](/provider/spectrum) start around $49.99/mo for 300 Mbps download — but with only 10 Mbps upload.
 
@@ -56,6 +56,6 @@ This is where cable still wins. Cable internet is available to ~90% of U.S. hous
 
 1. **Choose fiber if it's available** — it's better in almost every way
 2. **Choose cable if fiber isn't available** — it's still excellent for most households
-3. **Call us** for exclusive deals on both fiber and cable providers in your area
+3. **Use chat or Talk to Agent** for exclusive deals on both fiber and cable providers in your area
 
-Ready to switch? [Compare providers at your address](/check-availability) or call us for expert guidance. Also check out our guide to [cheap internet providers](/blog/cheapest-internet-providers) if budget is your priority.
+Ready to switch? [Compare providers at your address](/check-availability) or use chat for expert guidance. Also check out our guide to [cheap internet providers](/blog/cheapest-internet-providers) if budget is your priority.

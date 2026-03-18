@@ -30,24 +30,24 @@ const noContractPlans = getAllProviders()
 
 const faqs = [
   { question: 'Which internet providers have no contracts?', answer: `Most modern providers now offer no-contract plans. ${noContractProviders.slice(0, 5).map(p => p.name).join(', ')}, and more all offer month-to-month service. Sign up above to find no-contract options at your address.` },
-  { question: 'Is no-contract internet more expensive?', answer: 'Not anymore. Most providers have moved away from contracts entirely. Spectrum, Verizon Fios, T-Mobile, and Frontier all offer their best prices without any contract requirement. Some providers like AT&T may offer an additional discount for price-lock commitments, but the base price is still competitive.' },
+  { question: 'Is no-contract internet more expensive?', answer: 'Not anymore. Most providers have moved away from contracts entirely. Spectrum, Verizon 5G Home, AT&T Fiber, and Frontier all offer their best prices without any contract requirement. Verizon 5G Home even offers a 4-year price lock — no contract required.' },
   { question: 'What happens if I cancel no-contract internet?', answer: 'You can cancel anytime without early termination fees. You may need to return rented equipment (modem/router). Some providers bill for the final partial month; others offer prorated billing. There are no penalties for leaving a no-contract plan.' },
-  { question: 'Do no-contract plans have data caps?', answer: 'Data caps are independent of contract status. Fiber plans (Verizon, AT&T, Frontier) are typically unlimited regardless of contract. Cable plans (Xfinity) may have 1.2 TB caps. 5G plans (T-Mobile) are generally unlimited. Always check data cap policy separately from contract terms.' },
+  { question: 'Do no-contract plans have data caps?', answer: 'Data caps are independent of contract status. Fiber plans (AT&T Fiber, Frontier, Brightspeed) and 5G wireless plans (Verizon 5G Home, AT&T Air) are unlimited with no contracts. Cable plans (Xfinity) may have 1.2 TB caps. Always check data cap policy separately from contract terms.' },
   { question: 'Can I get a good deal without a contract?', answer: `Absolutely. Many of the best internet deals in ${year} are no-contract. Spectrum starts at $49.99/mo, T-Mobile 5G at $50/mo, Frontier Fiber at $49.99/mo — all without any commitment. Sign up above for the best no-contract deal at your address.` },
   { question: 'Why do some providers still require contracts?', answer: 'Satellite providers (Viasat, HughesNet) often require 2-year contracts due to expensive equipment installation. Some cable providers offer contract-based discounts. However, the trend is strongly toward no-contract plans — especially from fiber and 5G providers.' },
 ];
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'No-Contract Internet', url: 'https://internet4all.com/no-contract-internet' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'No-Contract Internet', url: 'https://internet-4-all.com/no-contract-internet' },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`No-Contract Internet Providers (${year}) — Month-to-Month Plans`}
-  description={`Find no-contract internet plans in ${year}. ${noContractProviders.length}+ providers with month-to-month service, no early termination fees. Cancel anytime. Plans from ${formatPrice(noContractPlans[0]?.plan.promoPrice || 25)}/mo.`}
+  title="No-Contract Internet Plans — Month to Month Internet"
+  description="Find no-contract internet plans near you. Month-to-month home internet, prepaid options, and no-commitment plans from top providers — cancel anytime, no fees."
   schema={schemas}
 >
   <section class="section" style="padding-top: var(--space-xl);">
@@ -61,7 +61,7 @@ const schemas = [
           No-Contract <span class="gradient-text">Internet Providers</span>
         </h1>
         <p class="hero-subtitle" style="max-width: 680px; margin-inline: auto;">
-          Never get locked in again. {noContractProviders.length} providers offer month-to-month internet with no commitments,
+          Never get locked in again. Top providers offer month-to-month internet with no commitments,
           no early termination fees, and full flexibility to cancel or switch anytime.
         </p>
         <a href="#get-connected" class="btn btn-cta mt-xl" style="font-size: var(--text-lg);">
@@ -72,8 +72,8 @@ const schemas = [
       <!-- Quick Stats -->
       <div class="grid grid-3 reveal" style="margin-bottom: var(--space-3xl);">
         <div class="card text-center" style="padding: var(--space-xl);">
-          <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-green);">{noContractProviders.length}</div>
-          <div class="text-secondary" style="font-size: var(--text-sm);">No-Contract Providers</div>
+          <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-green);">100%</div>
+          <div class="text-secondary" style="font-size: var(--text-sm);">Month-to-Month Flexibility</div>
         </div>
         <div class="card text-center" style="padding: var(--space-xl);">
           <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-green);">{noContractPlans.length}+</div>

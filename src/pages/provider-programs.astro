@@ -4,23 +4,25 @@ import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 
+const year = new Date().getFullYear();
+
 const faqs = [
   { q: 'What is the Lifeline program?', a: 'Lifeline is a permanent FCC program that provides $9.25 per month off qualifying internet or phone service for low-income households. You qualify if your household income is at or below 135% of the Federal Poverty Guidelines, or if you receive SNAP, Medicaid, SSI, Federal Public Housing Assistance, or Veterans Pension/Survivors Benefit. Apply at lifelinesupport.org.' },
   { q: 'Is the Affordable Connectivity Program (ACP) still available?', a: 'No. ACP funding ended in May 2024 and the program has been discontinued. However, Lifeline ($9.25/mo) is still active and permanent. Additionally, many providers run their own low-income programs that fill part of the gap left by ACP.' },
   { q: 'How do I apply for Lifeline internet?', a: 'You can apply for Lifeline at lifelinesupport.org or through your internet provider. Eligibility is based on income or participation in qualifying government assistance programs. Once approved, the $9.25/month discount applies automatically to your internet or phone bill.' },
-  { q: 'What is Spectrum Internet Assist?', a: 'Spectrum Internet Assist offers internet service at $19.99/month for qualifying households. You may qualify if a household member receives SNAP, SSI, Medicaid, or participates in the National School Lunch Program (NSLP). Call Spectrum at their low-income program line or call us or sign up above to apply.' },
+  { q: 'What is Spectrum Internet Assist?', a: 'Spectrum Internet Assist offers internet service at $19.99/month for qualifying households. You may qualify if a household member receives SNAP, SSI, Medicaid, or participates in the National School Lunch Program (NSLP). Use Spectrum support or sign up above to apply.' },
   { q: 'What is Xfinity Internet Essentials?', a: 'Xfinity Internet Essentials provides 50-100 Mbps internet for $9.95-$29.95 per month for qualifying households. Eligible programs include SNAP, SSI, WIC, Medicaid, National School Lunch Program, housing assistance, and others. Apply at internetessentials.com.' },
   { q: 'What is AT&T Access?', a: 'AT&T Access offers guaranteed $30/month internet service (fiber or fixed wireless) for households receiving SNAP or SSI benefits. Apply at att.com/access. No credit check, no data cap. Speed varies by location (10-25 Mbps on most plans).' },
   { q: 'Can I combine Lifeline with a provider low-income program?', a: 'Yes! Lifeline can be stacked on top of provider discount programs. For example, Spectrum Internet Assist at $19.99 combined with Lifeline at $9.25 off brings your monthly cost to about $10.74. This is the most effective way to minimize your bill.' },
 ];
 ---
 <Base
-  title="Internet Assistance Programs (2026) — Lifeline, Spectrum Assist, Xfinity Essentials"
-  description="Low-income internet programs available in 2026. Lifeline ($9.25/mo off), Spectrum Internet Assist ($19.99/mo), Xfinity Internet Essentials ($9.95/mo), AT&T Access ($30/mo). Find programs at your address."
+  title={`Internet Assistance Programs (${year}) — Lifeline & More`}
+  description={`Low-income internet programs in ${year}: Lifeline ($9.25/mo off), Spectrum Assist ($19.99/mo), Xfinity Essentials ($9.95/mo), AT&T Access ($30/mo). Find programs at your address.`}
   schema={[
     generateBreadcrumbSchema([
-      { name: 'Home', url: 'https://internet4all.com' },
-      { name: 'Internet Assistance Programs', url: 'https://internet4all.com/provider-programs' }
+      { name: 'Home', url: 'https://internet-4-all.com' },
+      { name: 'Internet Assistance Programs', url: 'https://internet-4-all.com/provider-programs' }
     ]),
     generateFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })))
   ]}

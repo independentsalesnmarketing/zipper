@@ -67,14 +67,15 @@ Starlink has revolutionized satellite internet. Unlike traditional satellite (Hu
 
 Brightspeed (formerly CenturyLink's rural operations) is building fiber in underserved communities across 20 states. Their fiber deployment prioritizes areas with poor existing broadband — exactly where it's needed most.
 
-### 6. Verizon Home Internet (5G/4G LTE)
+### 6. Verizon 5G Home Internet
 | Feature | Details |
-|---------|---------|
-| Price | $50/mo |
-| Speed | 50-300 Mbps (5G) / 25-50 Mbps (LTE) |
+|---------|----------|
+| Price | $50/mo (or $35/mo with Verizon wireless plan) |
+| Speed | 100–300 Mbps (5G) / 25–50 Mbps (LTE fallback) |
 | Data Cap | None |
+| Price Lock | 4-year guarantee |
 
-Verizon's fixed wireless service uses their 5G/4G network. Less rural coverage than T-Mobile, but where available, it's a solid alternative.
+Verizon 5G Home Internet is a partner provider with nationwide 5G/LTE coverage. The 4-year price lock and $200–$300 prepaid reward card make it one of the most compelling fixed wireless options for rural households. Where Verizon 5G signal is strong, download speeds hit 300+ Mbps. In LTE-only areas, expect 25–100 Mbps — still a major upgrade over satellite or DSL.
 
 ## Rural Internet Types Compared
 

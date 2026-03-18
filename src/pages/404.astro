@@ -1,27 +1,74 @@
 ---
 import Base from '@layouts/Base.astro';
 import SearchBar from '@components/SearchBar.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
 ---
 <Base
   title="Page Not Found"
-  description="The page you're looking for doesn't exist. Search for internet providers in your area."
+  description="The page you're looking for doesn't exist. Search for internet providers in your area or browse our guides."
   noindex={true}
 >
   <section style="min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: var(--space-3xl) var(--container-pad);">
-    <div style="max-width: 560px; width: 100%; text-align: center;">
-      <div style="font-size: 6rem; font-weight: 900; color: var(--brand-blue); line-height: 1; margin-bottom: var(--space-md); opacity: 0.15;">404</div>
-      <h1 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-md);">Page Not Found</h1>
-      <p style="font-size: var(--text-lg); color: var(--text-secondary); margin-bottom: var(--space-2xl); line-height: 1.6;">
-        That page doesn't exist, but we can still find the best internet in your area.
-      </p>
+    <div style="max-width: 580px; width: 100%; text-align: center;">
 
-      <SearchBar size="large" placeholder="Enter your ZIP code" />
-
-      <div style="margin-top: var(--space-2xl); display: flex; flex-wrap: wrap; gap: var(--space-md); justify-content: center;">
-        <a href="/" class="btn btn-primary">Go Home</a>
-        <a href="/providers" class="btn btn-secondary">Browse Providers</a>
-        <a href="/check-availability" class="btn btn-secondary">Check Availability</a>
+      <div id="notfound-default">
+        <div style="font-size: 5rem; font-weight: 900; color: var(--brand-blue); line-height: 1; margin-bottom: var(--space-md); opacity: 0.12;">404</div>
+        <h1 id="notfound-heading" style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-md);">We couldn't find that page</h1>
+        <p id="notfound-msg" style="font-size: var(--text-lg); color: var(--text-secondary); margin-bottom: var(--space-2xl); line-height: 1.6;">
+          But we can still find the best internet options in your area.
+        </p>
+        <SearchBar size="large" placeholder="Enter your ZIP code" />
+        <div style="margin-top: var(--space-2xl); display: flex; flex-wrap: wrap; gap: var(--space-md); justify-content: center;">
+          <a href="/" class="btn btn-primary">Go Home</a>
+          <a href="/providers" class="btn btn-secondary">Browse Providers</a>
+          <a href="/check-availability" class="btn btn-secondary">Check Availability</a>
+        </div>
       </div>
+
     </div>
   </section>
+
+  <StickyCallBar text="Need help finding internet? We're here 24/7." />
 </Base>
+
+<script>
+(function () {
+  const path = window.location.pathname.toLowerCase();
+  const heading = document.getElementById('notfound-heading');
+  const msg = document.getElementById('notfound-msg');
+
+  // ZIP pattern in URL — redirect with ZIP context
+  const zipMatch = path.match(/\b(\d{5})\b/);
+  if (zipMatch) {
+    window.location.replace('/check-availability?zip=' + zipMatch[1]);
+    return;
+  }
+
+  // Provider slug in URL  e.g. /internet-providers/zip/xxxxx or /provider/xxxxx
+  const providerMatch = path.match(/\/provider\/([a-z0-9-]+)/);
+  if (providerMatch) {
+    if (heading) heading.textContent = 'That provider page isn\'t available';
+    if (msg) msg.innerHTML = 'We may not carry that provider in your area. Search below and we\'ll show you what\'s actually available.';
+  }
+
+  // State/city URL pattern
+  const locationMatch = path.match(/\/internet-providers\/([a-z-]+)/);
+  if (locationMatch && !zipMatch) {
+    const loc = locationMatch[1].replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+    if (heading) heading.textContent = 'No dedicated page for ' + loc + ' yet';
+    if (msg) msg.innerHTML = 'Enter your ZIP code below and we\'ll show you every provider available in your area — including ' + loc + '.';
+  }
+
+  // Blog/guide pattern
+  if (path.startsWith('/blog/') || path.startsWith('/guides/')) {
+    if (heading) heading.textContent = 'That guide doesn\'t exist';
+    if (msg) msg.innerHTML = 'Browse our <a href="/blog" style="color:var(--brand-blue);">Resource Center</a> for internet guides, tips, and comparisons.';
+  }
+
+  // Deal/promo pattern
+  if (path.startsWith('/deals/') || path.startsWith('/promo/')) {
+    if (heading) heading.textContent = 'That deal may have expired';
+    if (msg) msg.innerHTML = 'Check our <a href="/deals" style="color:var(--brand-blue);">current deals page</a> for the latest internet offers.';
+  }
+})();
+</script>

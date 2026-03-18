@@ -8,6 +8,7 @@ import { getProvidersByState, formatSpeed, formatPrice, getMinPrice, getMaxSpeed
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import { getZipPages, getStateName, getStateSlug, cities, type ZipData } from '@data/locations';
 import { getStateCensus } from '@data/census';
+import { buildZipMeta } from '@lib/location-meta';
 import { getConfirmedProviders, getConfirmedFiberProviders, getOptimumTier, getOptimumRegion, getNearestFiberZip } from '@lib/zip-lookup';
 import { zipNeighborhoods } from '@data/neighborhoods';
 import type { Provider, Plan } from '@lib/providers';
@@ -289,10 +290,10 @@ const productSchemas = schemaProviders.map(p => ({
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: stateName, url: `https://internet4all.com/internet-providers/${stateSlug}` },
-    { name: zipData.city, url: `https://internet4all.com/internet-providers/${zipData.citySlug}` },
-    { name: `ZIP ${zipData.zip}`, url: `https://internet4all.com/internet-providers/zip/${zipData.zip}` },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: stateName, url: `https://internet-4-all.com/internet-providers/${stateSlug}` },
+    { name: zipData.city, url: `https://internet-4-all.com/internet-providers/${zipData.citySlug}` },
+    { name: `ZIP ${zipData.zip}`, url: `https://internet-4-all.com/internet-providers/zip/${zipData.zip}` },
   ]),
   generateFAQSchema(faqs),
   {
@@ -300,16 +301,17 @@ const schemas = [
     '@type': 'WebPage',
     name: `Internet Providers in ${zipData.zip} — ${zipData.city}, ${zipData.state}`,
     dateModified: lastUpdated,
-    url: `https://internet4all.com/internet-providers/zip/${zipData.zip}`,
+    url: `https://internet-4-all.com/internet-providers/zip/${zipData.zip}`,
   },
   ...productSchemas,
 ];
+
+const meta = buildZipMeta(`/internet-providers/zip/${zipData.zip}`, zipData.zip, zipData.city, zipData.state, stateName);
 ---
 <Base
-  title={`Internet Providers in ${zipData.zip} — ${zipData.city}, ${stateName} (${year}) | Compare & Save`}
-  description={hasConfirmedData
-    ? `${confirmedProviders.length} confirmed internet providers in ${zipData.zip}, ${zipData.city}, ${stateName}. ${allProviders.length} total options. Speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. Fiber, cable, 5G & satellite.`
-    : `Find ${allProviders.length} internet providers in ${zipData.zip}, ${zipData.city}, ${stateName}. Verified FCC coverage data, speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. Fiber, cable, 5G & satellite.`}
+  noSuffix
+  title={meta.title}
+  description={meta.description}
   schema={schemas}
 >
 <StickyCallBar text={`Best deals in ${zipData.zip} — get connected`} />
@@ -891,8 +893,8 @@ const schemas = [
       <p style="color:var(--text-secondary);margin-bottom:var(--space-lg);">Programs to help {zipData.city} residents in {zipData.zip} get connected at reduced rates.</p>
       <div class="grid grid-2" style="gap:var(--space-lg);">
         <div>
-          <h4 style="margin-bottom:var(--space-xs);">📋 FCC Affordable Connectivity Program</h4>
-          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Up to $30/mo off internet ($75/mo on tribal lands). Many providers near {zipData.zip} participate.</p>
+          <h4 style="margin-bottom:var(--space-xs);">📋 FCC Lifeline Program</h4>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">$9.25/mo discount on phone or internet for qualifying low-income households near {zipData.zip}. <a href="/low-income-internet">Check eligibility</a>.</p>
         </div>
         <div>
           <h4 style="margin-bottom:var(--space-xs);">Lifeline Program</h4>
@@ -1213,14 +1215,6 @@ const schemas = [
         if (item) item.classList.toggle('open');
       });
     });
-    // FAQ accordion
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.faq-item');
-        if (item) item.classList.toggle('open');
-      });
-    });
-
     // Update badge count when ProviderSearch returns live results
     window.addEventListener('ps:results', ((e: CustomEvent) => {
       const { count, location } = e.detail;
@@ -1241,7 +1235,7 @@ const schemas = [
         return;
       }
 
-      const { geocodeZip, geocodeAddr, runSearch, mainPhone, locals, container } = (window as any).psGeocode;
+      const { geocodeZip, geocodeAddr, runSearch, locals, container } = (window as any).psGeocode;
       let heroAcTimer: ReturnType<typeof setTimeout>;
       let heroAcItems: {display:string,zip:string,lat:number,lng:number}[] = [];
       let heroAcIdx = -1;
@@ -1253,7 +1247,7 @@ const schemas = [
           const controller = new AbortController();
           const timeoutId = setTimeout(() => controller.abort(), 5000);
           const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=6&countrycodes=us&addressdetails=1`,{
-            headers:{'User-Agent':'Internet4ALL/1.0'},
+            headers:{'User-Agent':'Internet-4-ALL/1.0'},
             signal: controller.signal
           });
           clearTimeout(timeoutId);

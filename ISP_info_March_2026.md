@@ -12,7 +12,6 @@ This document provides an exhaustive, up-to-date comparison of 25 major internet
     *   [Mediacom](#mediacom)
 2.  [Major Telecom Fiber Providers](#major-telecom-fiber-providers)
     *   [AT&T Fiber](#att-fiber)
-    *   [Verizon Fios](#verizon-fios)
     *   [Frontier Fiber](#frontier-fiber)
     *   [Google Fiber (GFiber)](#google-fiber-gfiber)
     *   [Ziply Fiber](#ziply-fiber)
@@ -156,21 +155,6 @@ AT&T Fiber offers a robust fiber-optic internet service with symmetrical speeds 
 
 **Top 50 Serviceable Cities:**
 Houston, TX; Chicago, IL; Los Angeles, CA; Miami, FL; San Antonio, TX; Las Vegas, NV; Philadelphia, PA; Phoenix, AZ; Dallas, TX; San Diego, CA; Austin, TX; Minneapolis, MN; Denver, CO; Orlando, FL; Atlanta, GA; San Jose, CA; Seattle, WA; Indianapolis, IN; Fort Worth, TX; Charlotte, NC; Raleigh, NC; Nashville, TN; Oklahoma City, OK; Milwaukee, WI; Louisville, KY; Memphis, TN; El Paso, TX; Detroit, MI; Columbus, OH; Jacksonville, FL; San Francisco, CA; New Orleans, LA; Cleveland, OH; Kansas City, MO; Sacramento, CA; Mesa, AZ; Tulsa, OK; Wichita, KS; Arlington, TX; Bakersfield, CA; Aurora, CO; Anaheim, CA; Santa Ana, CA; Riverside, CA; Corpus Christi, TX; Lexington, KY; Stockton, CA; Saint Paul, MN; Cincinnati, OH; Henderson, NV.
-
-### Verizon Fios
-Verizon Fios is a leading fiber-optic internet provider, renowned for its 100% fiber network and competitive pricing with multi-year price lock guarantees. They offer a variety of plans with symmetrical speeds and attractive promotions, including a choice of premium gifts or monthly discounts. Verizon Fios also provides additional savings for Verizon Wireless customers through their Mobile + Home Discount. All plans include a router, and there are no data caps or contracts, ensuring a premium and predictable internet experience.
-
-**Key Offerings & Details (March 2026):**
-
-| Plan Name | Speed (Download/Upload) | Monthly Price | Price Lock | Key Features & Promotions                                    |
-| :-------- | :---------------------- | :------------ | :--------- | :----------------------------------------------------------- |
-| 300 Mbps  | 300 Mbps / 300 Mbps     | $34.99/mo     | 3 years    | Choice of gift (Samsung TV, Galaxy Tab, or $15/mo discount), Mobile + Home Discount, router included, no data caps, no contracts |
-| 500 Mbps  | 500 Mbps / 500 Mbps     | $59.99/mo     | 4 years    | Choice of gift, Mobile + Home Discount, router included, no data caps, no contracts |
-| 1 Gig     | 940 Mbps / 880 Mbps     | $74.99/mo     | 5 years    | Choice of gift, perks (Netflix/Max, Disney Bundle, Apple One), Mobile + Home Discount, router included, no data caps, no contracts |
-| 2 Gig     | 2 Gbps / 2 Gbps         | $94.99/mo     | 5 years    | Choice of gift, perks (Netflix/Max, Disney Bundle, Apple One), Mobile + Home Discount, router included, no data caps, no contracts |
-
-**Top 50 Serviceable Cities:**
-New York, NY; Philadelphia, PA; Washington, DC; Baltimore, MD; Boston, MA; Providence, RI; Richmond, VA; Norfolk, VA; Buffalo, NY; Jersey City, NJ; Newark, NJ; Pittsburgh, PA; Alexandria, VA; Arlington, VA; Silver Spring, MD; Bethesda, MD; Yonkers, NY; Syracuse, NY; Albany, NY; Worcester, MA; Springfield, MA; Lowell, MA; Cambridge, MA; New Bedford, MA; Brockton, MA; Quincy, MA; Lynn, MA; Fall River, MA; Newton, MA; Somerville, MA; Lawrence, MA; Framingham, MA; Waltham, MA; Haverhill, MA; Malden, MA; Brookline, MA; Medford, MA; Taunton, MA; Weymouth, MA; Revere, MA; Peabody, MA; Methuen, MA; Barnstable, MA; Pittsfield, MA; Attleboro, MA; Salem, MA; Westfield, MA; Leominster, MA; Fitchburg, MA; Holyoke, MA.
 
 ### Frontier Fiber
 Frontier Fiber offers a 100% fiber-optic network with various speed tiers and promotional offers, often including discounts for bundling with Verizon Mobile and for Auto Pay. They emphasize no data caps, no overage charges, and include a premium Wi-Fi router. Frontier is actively expanding its fiber footprint, particularly in areas previously served by older DSL infrastructure, bringing high-speed internet to more communities.

@@ -132,30 +132,30 @@ const faqs = [
   },
   {
     question: 'How do I check if I live in a single-provider area?',
-    answer: 'The FCC\'s Broadband Map at broadbandmap.fcc.gov shows provider availability at the address level. Enter your address to see which ISPs are mapped as available. Note: FCC maps are based on provider self-reporting, which has historically overstated coverage. If a provider shows as available but you can\'t actually get service, you can file a challenge at the same site. Our tool at internet4all.com also cross-references multiple sources and may show different results.',
+    answer: 'The FCC\'s Broadband Map at broadbandmap.fcc.gov shows provider availability at the address level. Enter your address to see which ISPs are mapped as available. Note: FCC maps are based on provider self-reporting, which has historically overstated coverage. If a provider shows as available but you can\'t actually get service, you can file a challenge at the same site. Our tool at internet-4-all.com also cross-references multiple sources and may show different results.',
   },
 ];
 
 const schema = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Internet Monopoly Report', url: 'https://internet4all.com/internet-monopoly-report' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Internet Monopoly Report', url: 'https://internet-4-all.com/internet-monopoly-report' },
   ]),
   generateArticleSchema({
     title: `The Internet Monopoly Report: ${(totalUnderservedPop / 1000000).toFixed(1)} Million Americans Have No Real Internet Choice (${year})`,
     description: `We analyzed FCC broadband data for all 50 states and estimated how many Americans live in areas with zero or one internet provider.`,
-    url: 'https://internet4all.com/internet-monopoly-report',
+    url: 'https://internet-4-all.com/internet-monopoly-report',
     datePublished: '2026-03-01',
-    dateModified: '2026-03-05',
+    dateModified: new Date().toISOString().split('T')[0],
     authorName: 'Internet 4 ALL Research Team',
-    authorUrl: 'https://internet4all.com/methodology',
+    authorUrl: 'https://internet-4-all.com/methodology',
   }),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`The Internet Monopoly Report: ${(totalUnderservedPop / 1000000).toFixed(1)} Million Americans Have No Real Internet Choice (${year})`}
-  description={`Original research: We analyzed FCC broadband data across 31,043 ZIP codes to find where Americans have zero or one internet option. State rankings, notable examples, and what's being done about it.`}
+  title="Internet Provider Monopoly Report — ISP Competition Data"
+  description="See which cities and ZIP codes have limited internet provider competition. Data on internet monopolies, ISP market share, and service availability nationwide."
   schema={schema}
 >
   <section class="section" style="padding-top:var(--space-xl);">
@@ -270,7 +270,7 @@ const schema = [
         <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">
           Sources: FCC Broadband Data Collection 2025 (underserved %); US Census Bureau ACS 2024 (population); 
           Internal ZIP code database (ZIP totals). "Est. ZIPs Affected" = state ZIP count × underserved %.
-          Methodology: <a href="/methodology" style="color:var(--brand-blue-light);">internet4all.com/methodology</a>
+          Methodology: <a href="/methodology" style="color:var(--brand-blue-light);">internet-4-all.com/methodology</a>
         </p>
       </div>
 
@@ -404,7 +404,7 @@ const schema = [
           <strong>ZIP code estimates:</strong> Based on our internal database of {(31043).toLocaleString()} ZIP codes. State ZIP totals are from our database; we apply the state underservedPct to estimate how many ZIPs are likely in single-provider territory.
         </p>
         <p style="font-size:var(--text-sm);line-height:1.9;color:var(--text-secondary);margin:0;">
-          <strong>Full methodology:</strong> <a href="/methodology" style="color:var(--brand-blue-light);">internet4all.com/methodology</a> · 
+          <strong>Full methodology:</strong> <a href="/methodology" style="color:var(--brand-blue-light);">internet-4-all.com/methodology</a> · 
           Last updated: March {year} · 
           Data refreshed quarterly.
         </p>
@@ -450,13 +450,4 @@ const schema = [
   <StickyCallBar text="Find out if you're in a monopoly broadband market — and what your real options are." />
 </Base>
 
-<script>
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const isOpen = item?.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item?.classList.add('open');
-    });
-  });
-</script>
+

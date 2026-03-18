@@ -53,25 +53,25 @@ const faqs = [
   { question: 'What internet speed does my business need?', answer: `A general rule: 25 Mbps per employee for basic use, 50 Mbps per employee for heavy use. A 10-person office doing video calls and cloud computing needs 300–500 Mbps. Factor in: VoIP phones, security cameras, POS systems, and customer WiFi. Sign up above for a free business speed assessment.` },
   { question: 'Do I need a static IP address for my business?', answer: 'You need a static IP if you: host a website or email server on-premises, use a VPN for remote employees, run security cameras accessible remotely, operate a point-of-sale system, or need consistent remote desktop access. Most business plans include at least one static IP.' },
   { question: 'What is an SLA and why does it matter for business?', answer: 'An SLA (Service Level Agreement) is a contractual guarantee of uptime and performance. A 99.9% uptime SLA means max 8.7 hours of downtime per year. A 99.99% SLA allows only 52 minutes. If the provider fails, you get service credits. SLAs are critical for businesses where downtime means lost revenue.' },
-  { question: 'Can I use residential internet for my small business?', answer: `Yes, many home offices and micro-businesses use residential internet successfully. However, you miss out on SLAs, static IPs, and priority support. If internet downtime would cost you money or clients, upgrade to a business plan. Fiber plans like AT&T Fiber and Verizon Fios offer great residential speeds that work well for small businesses.` },
+  { question: 'Can I use residential internet for my small business?', answer: `Yes, many home offices and micro-businesses use residential internet successfully. However, you miss out on SLAs, static IPs, and priority support. If internet downtime would cost you money or clients, upgrade to a business plan. Fiber plans like AT&T Fiber and Frontier Fiber offer great residential speeds that work well for small businesses.` },
   { question: 'What is dedicated internet access (DIA)?', answer: 'Dedicated Internet Access means your bandwidth is not shared with any other customers. You always get the full speed you pay for, unlike shared connections that slow down during peak usage. DIA is essential for businesses with consistent high-bandwidth needs and is typically delivered over fiber.' },
   { question: 'How do I set up internet for a new business location?', answer: `1) Check availability at your business address. 2) Determine your speed and feature needs. 3) Compare business plans from available providers. 4) Schedule installation (typically 2–4 weeks for business fiber). 5) Plan your internal network setup. Sign up above — our business specialists handle everything from quote to installation.` },
 ];
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Business Internet', url: 'https://internet4all.com/business-internet' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Business Internet', url: 'https://internet-4-all.com/business-internet' },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`Business Internet Providers — Plans, Pricing & SLAs (${year})`}
-  description={`Compare business internet providers for ${year}. Find dedicated fiber, cable, and wireless plans with SLAs, static IPs, and priority support. ${businessProviders.length}+ providers. Get a free business quote.`}
+  title="Business Internet Providers — Plans & SLAs"
+  description="Find business internet providers near you. Dedicated fiber, cable, and wireless plans with SLAs, static IPs, and priority support. Get a free quote today."
   schema={schemas}
 >
-  <StickyCallBar text="Business internet experts — call for a free quote" />
+  <StickyCallBar text="Business internet experts — use chat or Talk to Agent for a free quote" />
 
   <section class="section" style="padding-top: var(--space-xl);">
     <div class="container">
@@ -84,7 +84,7 @@ const schemas = [
           <span class="gradient-text">Business Internet</span> Providers & Plans
         </h1>
         <p class="hero-subtitle" style="max-width: 720px; margin-inline: auto;">
-          Enterprise-grade internet for businesses of every size. Compare {businessProviders.length}+ providers offering dedicated fiber,
+          Enterprise-grade internet for businesses of every size. Compare top providers offering dedicated fiber,
           SLA-backed connections, static IPs, and priority support. Plans from $50/mo to multi-gigabit enterprise circuits.
         </p>
         <div style="margin-top: var(--space-xl);">

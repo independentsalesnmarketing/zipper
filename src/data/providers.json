@@ -1,5 +1,4 @@
 {
-  "mainPhone": "1-888-555-0123",
   "providers": [
     {
       "id": "spectrum",
@@ -16,7 +15,6 @@
       "pros": ["No data caps on any plan", "No contracts required", "Free modem included", "WiFi 7 router on Gig plans", "$500 contract buyout for new customers", "Spectrum Mobile included (1 yr) on Gig+", "Wide nationwide availability", "30-day money-back guarantee"],
       "cons": ["Price increases after 1-year guarantee", "Upload speeds limited on cable plans", "Fiber not available everywhere"],
       "coverage": ["NY","TX","CA","FL","OH","NC","WI","MO","KY","SC","GA","TN","AL","IN","LA","MS","ME","MA","MN","NE","NV","NH","NJ","NM","OR","WA","WV","HI","IL"],
-      "phone": "1-888-555-0101",
       "promo": "$500 contract buyout + WiFi 7 router + FREE Spectrum Mobile on Gig plans",
       "topCities": ["New York, NY","Los Angeles, CA","Dallas, TX","San Antonio, TX","Austin, TX","Orlando, FL","Tampa, FL","Charlotte, NC","Raleigh, NC","Indianapolis, IN","St. Louis, MO","Cincinnati, OH","Cleveland, OH","Columbus, OH","Milwaukee, WI","Louisville, KY","Kansas City, MO","Buffalo, NY","Rochester, NY","Syracuse, NY","Bakersfield, CA","Riverside, CA","Lexington, KY","Greensboro, NC","Durham, NC","Winston-Salem, NC","Madison, WI","Reno, NV","Myrtle Beach, SC","Columbia, SC","Greenville, SC","Birmingham, AL","Montgomery, AL","Mobile, AL","Corpus Christi, TX","Laredo, TX","McAllen, TX","Brownsville, TX","Portland, ME","Manchester, NH","Worcester, MA","Springfield, MA","Honolulu, HI","Long Beach, CA","Anaheim, CA","Santa Ana, CA","Irvine, CA","Glendale, CA","Huntington Beach, CA","Santa Clarita, CA"],
       "plans": [
@@ -29,30 +27,25 @@
     },
     {
       "id": "verizon",
-      "name": "Verizon",
+      "name": "Verizon 5G Home Internet",
       "slug": "verizon",
       "logo": "/verizon-logo.webp",
-      "types": ["fiber","5g"],
-      "rating": 4.5,
-      "reviewCount": 72340,
+      "types": ["5g"],
+      "rating": 4.3,
+      "reviewCount": 48200,
       "reviewSource": "PCMag Editors' Rating",
-      "reviewUrl": "https://www.pcmag.com/reviews/verizon-fios-home-internet",
+      "reviewUrl": "https://www.pcmag.com/reviews/verizon-5g-home-internet",
       "isPartner": true,
-      "description": "Verizon Fios delivers 100% fiber-optic internet with symmetrical speeds, a 3–5 year price lock, and a Mobile + Home Discount saving qualified customers up to $25/mo. The 5G Home Internet line brings wireless broadband with 4-year price locks starting at $35/mo with qualifying mobile plans — all with a router included, no data caps, and no annual contracts.",
-      "pros": ["Fios: True symmetrical fiber speeds", "3\u20135 year price lock guarantee", "Choose a FREE Samsung TV, Galaxy Tab, or $15/mo discount", "Mobile + Home Discount saves up to $25/mo", "Streaming perks (Netflix, Max, Disney) on Gig+", "5G Home: No installation needed", "No data caps on all plans"],
-      "cons": ["Fios availability limited to Northeast", "5G Home speeds vary by location"],
-      "coverage": ["NY","NJ","CT","PA","MA","RI","VA","MD","DC","DE"],
-      "phone": "1-888-555-0110",
-      "promo": "Choose FREE Samsung TV, Galaxy Tab, or $15/mo discount + up to 5-year price lock",
-      "topCities": ["New York, NY","Philadelphia, PA","Washington, DC","Baltimore, MD","Boston, MA","Providence, RI","Richmond, VA","Norfolk, VA","Buffalo, NY","Jersey City, NJ","Newark, NJ","Pittsburgh, PA","Alexandria, VA","Arlington, VA","Yonkers, NY","Syracuse, NY","Albany, NY","Worcester, MA","Springfield, MA","Cambridge, MA"],
+      "description": "Verizon 5G Home Internet delivers wireless broadband over Verizon's nationwide 5G and LTE network — no wires, no technician, no installation hassle. Plans start at $50/mo with a 4-year price lock guarantee, and bundle pricing drops as low as $35/mo with a qualifying Verizon mobile plan. The gateway device ships directly to your door; just plug in and you're online in minutes. No data caps, no annual contracts, no equipment fees.",
+      "pros": ["Available nationwide over Verizon 5G & LTE", "4-year price lock guarantee", "No annual contracts", "No equipment fees", "No data caps", "Self-setup — no technician needed", "As low as $35/mo with qualifying Verizon mobile plan", "$200–$300 Prepaid Mastercard for new customers", "30-day money-back guarantee"],
+      "cons": ["Speeds vary by 5G/LTE tower proximity and congestion", "Not a wired connection — fiber is faster where available", "Requires coverage at your specific address"],
+      "coverage": ["Nationwide"],
+      "promo": "$200–$300 Prepaid Mastercard + 4-year price lock — as low as $35/mo with Verizon mobile plan",
+      "topCities": ["New York, NY","Los Angeles, CA","Chicago, IL","Houston, TX","Phoenix, AZ","Philadelphia, PA","San Antonio, TX","San Diego, CA","Dallas, TX","San Jose, CA","Austin, TX","Jacksonville, FL","Fort Worth, TX","Columbus, OH","Charlotte, NC","San Francisco, CA","Indianapolis, IN","Seattle, WA","Denver, CO","Washington, DC","Boston, MA","El Paso, TX","Nashville, TN","Detroit, MI","Oklahoma City, OK","Portland, OR","Las Vegas, NV","Memphis, TN","Louisville, KY","Baltimore, MD","Milwaukee, WI","Albuquerque, NM","Tucson, AZ","Fresno, CA","Sacramento, CA","Kansas City, MO","Mesa, AZ","Atlanta, GA","Omaha, NE","Colorado Springs, CO","Raleigh, NC","Long Beach, CA","Virginia Beach, VA","Miami, FL","Oakland, CA","Minneapolis, MN","Tulsa, OK","Bakersfield, CA","Wichita, KS","Arlington, TX"],
       "plans": [
-        { "name": "Fios 300", "speed": 300, "uploadSpeed": 300, "price": 34.99, "promoPrice": 34.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["3-year price lock", "Choice of gift (Samsung TV, Galaxy Tab, or $15/mo off)", "Router included", "Mobile + Home Discount"] },
-        { "name": "Fios 500", "speed": 500, "uploadSpeed": 500, "price": 59.99, "promoPrice": 59.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["4-year price lock", "Choice of gift", "Router included", "Mobile + Home Discount"] },
-        { "name": "Fios 1 Gig", "speed": 940, "uploadSpeed": 880, "price": 74.99, "promoPrice": 74.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Perks: Netflix/Max, Disney Bundle, Apple One", "Choice of gift", "Router included"] },
-        { "name": "Fios 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 94.99, "promoPrice": 94.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Perks: Netflix/Max, Disney Bundle, Apple One", "Premium Wi-Fi 6E router", "Mobile + Home Discount"] },
-        { "name": "5G Home", "speed": 300, "uploadSpeed": 50, "price": 50.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "type": "5g", "features": ["4-year price lock", "$35/mo with qualifying mobile plan", "No equipment fees", "Self-setup in minutes"] },
-        { "name": "5G Home Plus", "speed": 1000, "uploadSpeed": 100, "price": 70.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "type": "5g", "features": ["4-year price lock", "$45/mo with qualifying mobile plan", "Premium streaming perks", "Wi-Fi Cloud storage"] },
-        { "name": "5G Home Ultimate", "speed": 1000, "uploadSpeed": 100, "price": 85.00, "promoPrice": 85.00, "contract": "None", "dataCap": "Unlimited", "type": "5g", "features": ["5-year price lock", "$60/mo with qualifying mobile plan", "Premium hardware included", "Best 5G experience"] }
+        { "name": "5G Home", "speed": 300, "uploadSpeed": 50, "price": 50.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "type": "5g", "features": ["4-year price lock", "$35/mo with qualifying Verizon mobile plan", "No equipment fees", "Self-setup in minutes", "$200–$300 Prepaid Mastercard"] },
+        { "name": "5G Home Plus", "speed": 1000, "uploadSpeed": 100, "price": 70.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "type": "5g", "features": ["4-year price lock", "$45/mo with qualifying Verizon mobile plan", "Premium streaming perks", "Wi-Fi Cloud storage", "$200–$300 Prepaid Mastercard"] },
+        { "name": "5G Home Ultimate", "speed": 1000, "uploadSpeed": 100, "price": 85.00, "promoPrice": 85.00, "contract": "None", "dataCap": "Unlimited", "type": "5g", "features": ["5-year price lock", "$60/mo with qualifying Verizon mobile plan", "Premium hardware included", "Best 5G experience", "$300 Prepaid Mastercard"] }
       ]
     },
     {
@@ -70,7 +63,6 @@
       "pros": ["Symmetrical upload/download speeds", "No data caps", "No equipment fees", "$100\u2013$200 Reward Card on every plan", "All-Fi Pro Wi-Fi 7 on 2 Gig+ plans", "ActiveArmor internet security included", "No annual contracts"],
       "cons": ["Fiber not available in all areas", "Professional installation required in most cases"],
       "coverage": ["TX","CA","FL","IL","GA","MI","OH","NC","TN","AL","AR","IN","KS","KY","LA","MO","MS","NV","OK","SC","WI","AZ","PA","CO","MN","WA"],
-      "phone": "1-888-555-0102",
       "promo": "$100\u2013$200 Reward Card + Wi-Fi 7 on premium plans \u2014 no equipment fees, no data caps",
       "topCities": ["Houston, TX","Dallas, TX","Chicago, IL","Los Angeles, CA","Atlanta, GA","Miami, FL","San Antonio, TX","San Diego, CA","Austin, TX","Orlando, FL","Charlotte, NC","Raleigh, NC","Nashville, TN","Oklahoma City, OK","Milwaukee, WI","Louisville, KY","Memphis, TN","El Paso, TX","Detroit, MI","Columbus, OH","Jacksonville, FL","San Francisco, CA","New Orleans, LA","Cleveland, OH","Kansas City, MO","Sacramento, CA","Mesa, AZ","Tulsa, OK","Wichita, KS","Arlington, TX","Bakersfield, CA","Aurora, CO","Anaheim, CA","Santa Ana, CA","Riverside, CA","Corpus Christi, TX","Lexington, KY","Stockton, CA","Saint Paul, MN","Cincinnati, OH","Henderson, NV","Greensboro, NC","Plano, TX","Newark, NJ","Lincoln, NE","Toledo, OH","Irvine, CA","Fort Wayne, IN","Jersey City, NJ","Durham, NC"],
       "plans": [
@@ -96,7 +88,6 @@
       "pros": ["Speeds from 200 Mbps to 7 Gbps", "No annual contracts", "No data caps or overage charges", "Premium WiFi router included", "Verizon Mobile bundle discount", "YouTube TV discount", "Auto Pay discount"],
       "cons": ["Fiber not available everywhere", "Limited TV bundle options"],
       "coverage": ["CA","TX","FL","CT","NY","WV","IN","OH","PA","AZ","AL","IL","SC","TN","NM","GA","NC","MN","WI","MS","NE","IA","OR","WA"],
-      "phone": "1-888-555-0107",
       "promo": "🔥 Extreme Bundle: $0/mo for 6 months with Verizon Mobile + Free Eero Pro router — Fiber 1 Gig just $49.99/mo",
       "topCities": ["Los Angeles, CA","Tampa, FL","Dallas, TX","Fort Worth, TX","Hartford, CT","New Haven, CT","Rochester, NY","Fort Wayne, IN","Long Beach, CA","Sarasota, FL","Bradenton, FL","St. Petersburg, FL","Clearwater, FL","Lakeland, FL","Durham, NC","Beaverton, OR","Gresham, OR","Hillsboro, OR","Everett, WA","Kirkland, WA","Redmond, WA","Bothell, WA","Denton, TX","Plano, TX","Irving, TX","Garland, TX","Carrollton, TX","Lewisville, TX","Frisco, TX","McKinney, TX"],
       "plans": [
@@ -122,7 +113,6 @@
       "pros": ["Quick self-install \u2014 no technician needed", "No annual contract", "No equipment fees", "No data caps", "No price increases after 12 months", "$35/mo with wireless plan bundle"],
       "cons": ["Speeds vary by location and congestion", "Requires compatible wireless coverage at your address"],
       "coverage": ["Nationwide"],
-      "phone": "1-888-555-0102",
       "promo": "$100 Reward Card + no equipment fees, no contracts — only $47/mo with AT&T Wireless",
       "topCities": ["Los Angeles, CA","Chicago, IL","Philadelphia, PA","Detroit, MI","Las Vegas, NV","Phoenix, AZ","Houston, TX","Dallas, TX","Atlanta, GA","Miami, FL","San Francisco, CA","Seattle, WA","Denver, CO","Boston, MA","Washington, DC","San Diego, CA","Austin, TX","Indianapolis, IN","Charlotte, NC","Nashville, TN"],
       "plans": [
@@ -145,14 +135,13 @@
       "pros": ["Cheapest fiber in the US \u2014 from $20/mo", "Symmetrical speeds up to 10 Gbps", "No contracts", "No data caps", "WiFi equipment included", "Excellent uptime"],
       "cons": ["Limited to Pacific Northwest (WA, OR, ID)", "Newer provider in some neighborhoods"],
       "coverage": ["WA","OR","ID"],
-      "phone": "1-888-555-0126",
       "promo": "Fiber from just $20/mo \u2014 no contracts, no data caps",
       "topCities": ["Seattle, WA","Portland, OR","Beaverton, OR","Redmond, WA","Everett, WA","Kennewick, WA","Coeur d'Alene, ID","Kirkland, WA","Bellevue, WA","Bothell, WA","Tacoma, WA","Olympia, WA","Vancouver, WA","Hillsboro, OR","Tigard, OR"],
       "plans": [
         { "name": "Ziply Fiber 100", "speed": 100, "uploadSpeed": 100, "price": 20.00, "promoPrice": 20.00, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical speeds", "No data caps", "WiFi equipment included"] },
         { "name": "Ziply Fiber 300", "speed": 300, "uploadSpeed": 300, "price": 35.00, "promoPrice": 35.00, "contract": "None", "dataCap": "Unlimited", "features": ["Symmetrical speeds", "No data caps", "WiFi equipment included"] },
         { "name": "Ziply Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 60.00, "promoPrice": 60.00, "contract": "None", "dataCap": "Unlimited", "features": ["1 Gig symmetrical", "No data caps", "WiFi equipment included"] },
-        { "name": "Ziply Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 90.00, "promoPrice": 90.00, "contract": "None", "dataCap": "Unlimited", "features": ["2 Gig symmetrical", "FREE first month (through Mar 31, 2026)", "Free professional installation", "No data caps"] },
+        { "name": "Ziply Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 90.00, "promoPrice": 90.00, "contract": "None", "dataCap": "Unlimited", "features": ["2 Gig symmetrical", "FREE first month — limited time offer", "Free professional installation", "No data caps"] },
         { "name": "Ziply Fiber 10 Gig", "speed": 10000, "uploadSpeed": 10000, "price": 300.00, "promoPrice": 300.00, "contract": "None", "dataCap": "Unlimited", "features": ["10 Gig symmetrical", "Free professional installation", "Fastest residential fiber available", "No data caps"] },
         { "name": "Ziply Fiber 50 Gig", "speed": 50000, "uploadSpeed": 50000, "price": 900.00, "promoPrice": 900.00, "contract": "None", "dataCap": "Unlimited", "features": ["50 Gig symmetrical", "Free professional installation", "Extreme speeds for power users", "No data caps"] }
       ]
@@ -172,7 +161,6 @@
       "pros": ["Symmetrical fiber speeds", "Wi-Fi 6 router included", "No contracts", "No data caps", "$200 back promo for new customers", "Managed by T-Mobile"],
       "cons": ["Available in select markets only", "Fewer plan options than competitors"],
       "coverage": ["CO","FL","IL","CA"],
-      "phone": "1-888-555-0103",
       "promo": "$200 back + $750 contract buyout + free install — Fiber 2 Gig just $70/mo with T-Mobile voice line",
       "topCities": ["Pueblo, CO","North Port, FL","Rockford, IL","Palmdale, CA","Lancaster, CA","Victorville, CA","Hesperia, CA","Apple Valley, CA","Barstow, CA","Ridgecrest, CA"],
       "plans": [
@@ -196,7 +184,6 @@
       "pros": ["Multi-year price locks (up to 2 years)", "Panoramic WiFi included on 500 Mbps+", "Speeds up to 2 Gbps", "No annual contracts", "Reliable service"],
       "cons": ["1.25 TB data cap on most plans", "Unlimited data costs extra ($50/mo)", "Higher starting prices than some competitors"],
       "coverage": ["AZ","NV","CA","OK","NE","LA","KS","VA","RI","FL","AL","GA"],
-      "phone": "1-888-555-0127",
       "promo": "ConnectAssist $30/mo for qualifying households + Panoramic WiFi (2 yrs) on 500 Mbps+",
       "topCities": ["Phoenix, AZ","Las Vegas, NV","San Diego, CA","Oklahoma City, OK","Omaha, NE","New Orleans, LA","Baton Rouge, LA","Tucson, AZ","Wichita, KS","Virginia Beach, VA","Norfolk, VA","Providence, RI","Pensacola, FL","Mobile, AL","Macon, GA","Gainesville, FL","Scottsdale, AZ","Mesa, AZ","Chandler, AZ","Gilbert, AZ","Glendale, AZ","Tempe, AZ","Henderson, NV","North Las Vegas, NV","Irvine, CA","Oceanside, CA","Escondido, CA","Chula Vista, CA","El Cajon, CA","Vista, CA","Carlsbad, CA","San Marcos, CA","Encinitas, CA","National City, CA","Poway, CA","Santee, CA","La Mesa, CA","Tulsa, OK","Broken Arrow, OK","Norman, OK","Edmond, OK","Moore, OK","Midwest City, OK","Enid, OK","Lawton, OK","Corpus Christi, TX","Lexington, KY","Stockton, CA","Bakersfield, CA","Fresno, CA"],
       "plans": [
@@ -223,7 +210,6 @@
       "pros": ["No contracts", "No data caps", "No equipment fees", "Price lock guarantee", "$200\u2013$300 Virtual Prepaid Mastercard", "As low as $30/mo with phone bundle", "15-day test drive"],
       "cons": ["Speed varies by location (133\u2013415 Mbps typical)", "Requires 5G/LTE coverage at your address"],
       "coverage": ["Nationwide"],
-      "phone": "1-888-555-0103",
       "promo": "$200\u2013$300 Prepaid Mastercard + streaming perks \u2014 price lock guarantee",
       "topCities": ["New York, NY","Los Angeles, CA","Chicago, IL","Houston, TX","Phoenix, AZ","Philadelphia, PA","San Antonio, TX","San Diego, CA","Dallas, TX","San Jose, CA","Austin, TX","Jacksonville, FL","Fort Worth, TX","Columbus, OH","Charlotte, NC","San Francisco, CA","Indianapolis, IN","Seattle, WA","Denver, CO","Washington, DC","Boston, MA","El Paso, TX","Nashville, TN","Detroit, MI","Oklahoma City, OK","Portland, OR","Las Vegas, NV","Memphis, TN","Louisville, KY","Baltimore, MD","Milwaukee, WI","Albuquerque, NM","Tucson, AZ","Fresno, CA","Sacramento, CA","Kansas City, MO","Mesa, AZ","Atlanta, GA","Omaha, NE","Colorado Springs, CO","Raleigh, NC","Long Beach, CA","Virginia Beach, VA","Miami, FL","Oakland, CA","Minneapolis, MN","Tulsa, OK","Bakersfield, CA","Wichita, KS","Arlington, TX"],
       "plans": [
@@ -233,9 +219,9 @@
       ]
     },
     {
-      "id": "windstream",
+      "id": "kinetic",
       "name": "Kinetic by Windstream",
-      "slug": "windstream",
+      "slug": "kinetic",
       "logo": "/kinetic-logo.webp",
       "types": ["fiber","dsl"],
       "rating": 3.9,
@@ -247,7 +233,6 @@
       "pros": ["$20/mo off with AT&T Wireless bundle", "No contracts", "Free installation for fiber upgrades", "Speeds up to 2 Gbps", "No data caps on fiber", "Available in rural areas"],
       "cons": ["Fiber still expanding to new areas", "DSL speeds vary by distance from node"],
       "coverage": ["AR","GA","KY","NE","NM","NY","NC","OH","OK","PA","SC","TX","FL","IA","MN","AL","MS","WV"],
-      "phone": "1-888-555-0104",
       "promo": "💰 $200 Reward Card on 2 Gig + save $20/mo with AT&T Wireless — Fiber 100 just $24.99/mo",
       "topCities": ["Lexington, KY","Lincoln, NE","Richmond, TX","Sugar Land, TX","Broken Arrow, OK","Concord, NC","Lexington, SC","Canton, GA","Dalton, GA","Moultrie, GA","Valdosta, GA","Waycross, GA","Albemarle, NC","Asheboro, NC","Kannapolis, NC","Matthews, NC","Monroe, NC","Mooresville, NC","Salisbury, NC","Statesville, NC","Nicholasville, KY","Somerset, KY","Winchester, KY","Beatrice, NE","Columbus, NE","Fremont, NE","Kearney, NE","Norfolk, NE","Pflugerville, TX","Bastrop, TX"],
       "plans": [
@@ -272,7 +257,6 @@
       "pros": ["5-year price lock on all plans", "No annual contracts", "No data caps", "Up to $200 Visa Prepaid Card", "Free installation for online orders", "Speeds up to 8 Gbps"],
       "cons": ["Limited to select regions (Northeast, NV, TX, WV)", "Cable plans being phased out in favor of fiber"],
       "coverage": ["NY","NJ","CT","PA","NV","TX","WV"],
-      "phone": "1-888-555-0106",
       "promo": "5-year price lock + up to $200 Visa Prepaid Card + FREE HBO Max (1 yr on Gig+) — Fiber 300 just $25/mo, 1 Gig just $45/mo",
       "topCities": ["New York, NY","Newark, NJ","Jersey City, NJ","Henderson, NV","Amarillo, TX","Lubbock, TX","Stamford, CT","Bridgeport, CT","Norwalk, CT","Waterbury, CT","Danbury, CT","Milford, CT","Stratford, CT","Fairfield, CT","Greenwich, CT","Westport, CT","Bryan, TX","College Station, TX","Charleston, WV","Parkersburg, WV"],
       "plans": [
@@ -299,7 +283,6 @@
       "pros": ["No data caps", "No speed throttling", "Nationwide availability", "$100\u2013$200 Mastercard Reward Cards", "Intro rate: Fiber 1 Gig from $39.95/mo", "24/7 customer support", "Wireless Home Internet option"],
       "cons": ["Uses partner networks (availability varies)", "One-time professional installation fee"],
       "coverage": ["Nationwide"],
-      "phone": "1-888-555-0105",
       "promo": "Fiber 1 Gig from $39.95/mo intro + $100\u2013$200 Mastercard Reward \u2014 no data caps",
       "topCities": ["Chicago, IL","Los Angeles, CA","Atlanta, GA","Dallas, TX","Houston, TX","Miami, FL","New York, NY","Philadelphia, PA","Phoenix, AZ","San Antonio, TX","San Diego, CA","Austin, TX","Jacksonville, FL","Charlotte, NC","San Francisco, CA","Indianapolis, IN","Seattle, WA","Denver, CO","Washington, DC","Nashville, TN"],
       "plans": [
@@ -326,7 +309,6 @@
       "pros": ["Fiber from just $30/mo", "Speeds up to 8 Gbps", "$100\u2013$200 Prepaid Cards for new customers", "Free installation on higher tiers", "No data caps", "Aggressive fiber expansion in underserved areas"],
       "cons": ["Fiber still limited in many areas", "DSL speeds on legacy network are slower"],
       "coverage": ["NC","SC","OH","PA","FL","TX","MN","WI","IL","IN","VA","TN","AL","MS","MO","KS","OK","AR","LA","NM"],
-      "phone": "1-888-555-0108",
       "promo": "🎁 $100–$200 Prepaid Mastercard + free installation on top tiers — Fiber 500 from $39.99, Fiber 1 Gig just $49.99/mo",
       "topCities": ["Columbia, MO","Jefferson City, MO","Fayetteville, NC","Mansfield, OH","Charlottesville, VA","Greenville, NC","Rocky Mount, NC","Wilson, NC","Goldsboro, NC","Kinston, NC","New Bern, NC","Jacksonville, NC","Wilmington, NC","Burlington, NC","High Point, NC","Salisbury, NC","Concord, NC","Gastonia, NC","Hickory, NC","Lenoir, NC","Morganton, NC","Shelby, NC","Statesville, NC","Mooresville, NC","Kannapolis, NC","Albemarle, NC","Asheboro, NC","Sanford, NC","Southern Pines, NC","Pinehurst, NC"],
       "plans": [
@@ -347,12 +329,11 @@
       "reviewSource": "PCMag Editors' Rating",
       "reviewUrl": "https://www.pcmag.com/reviews/altafiber-cincinnati-bell",
       "isPartner": true,
-      "description": "altafiber (formerly Cincinnati Bell) is the Greater Cincinnati tri-state area's hometown fiber provider. An exclusive $100 e-gift card (claim by April 11, 2026), free activation, and eero Gateway on 1 Gig+ plans make it a compelling local choice. Fioptics 1 Gig is just $50/mo for 2 full years.",
+      "description": "altafiber (formerly Cincinnati Bell) is the Greater Cincinnati tri-state area's hometown fiber provider. An exclusive $100 e-gift card, free activation, and eero Gateway on 1 Gig+ plans make it a compelling local choice. Fioptics 1 Gig is just $50/mo for 2 full years.",
       "pros": ["True fiber to the home", "Symmetrical speeds", "No data caps", "Local customer service in Cincinnati area", "Competitive pricing from $40/mo"],
       "cons": ["Limited to Cincinnati tri-state area (OH, KY, IN)", "Smaller service footprint"],
       "coverage": ["OH","KY","IN"],
-      "phone": "1-888-555-0109",
-      "promo": "$100 e-gift card (claim by Apr 11, 2026) + free activation + eero Gateway on 1 Gig+ — Fioptics 1 Gig from $50/mo",
+      "promo": "$100 e-gift card + free activation + eero Gateway on 1 Gig+ — Fioptics 1 Gig from $50/mo — limited time",
       "topCities": ["Cincinnati, OH","Dayton, OH","Covington, KY","Newport, KY","Florence, KY","Independence, KY","Erlanger, KY","Burlington, KY","Alexandria, KY","Fort Thomas, KY","Fort Mitchell, KY","Highland Heights, KY","Cold Spring, KY","Bellevue, KY","Ludlow, KY"],
       "plans": [
         { "name": "Fioptics 100", "speed": 100, "uploadSpeed": 100, "price": 45.00, "promoPrice": 30.00, "contract": "None", "dataCap": "Unlimited", "features": ["$30/mo for first 12 months", "Free activation", "No data caps", "No contracts"] },
@@ -375,8 +356,7 @@
       "description": "Xfinity by Comcast offers one of the widest ranges of internet plans in the industry \u2014 from $20/mo budget plans to a 10 Gbps premium fiber service. Their 5-year price guarantees, Peacock Premium streaming, and a free Xfinity Mobile line on Gigabit plans make it a compelling all-in-one value.",
       "pros": ["Plans from $20/mo to 10 Gbps", "5-year price guarantee on most plans", "Peacock Premium included (2 yrs) on 300 Mbps+", "Free Xfinity Mobile line (1 yr) on 300 Mbps+", "Wide nationwide availability", "Self-install available"],
       "cons": ["1.2 TB data cap on most plans", "Price increases after guarantee period", "Equipment rental fee applies"],
-      "coverage": ["Nationwide"],
-      "phone": "1-888-555-0123",
+      "coverage": ["AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","ID","IL","IN","KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","NC","NH","NJ","NM","NV","NY","OH","OR","PA","RI","SC","TN","TX","UT","VA","VT","WA","WI","WV"],
       "promo": "5-year price lock + Peacock Premium (2 yrs) + FREE Xfinity Mobile (1 yr)",
       "topCities": ["Houston, TX","Chicago, IL","Philadelphia, PA","Miami, FL","Atlanta, GA","Denver, CO","Seattle, WA","San Jose, CA","San Francisco, CA","Jacksonville, FL","Indianapolis, IN","Washington, DC","Boston, MA","Detroit, MI","Nashville, TN","Memphis, TN","Portland, OR","Baltimore, MD","Milwaukee, WI","Albuquerque, NM","Tucson, AZ","Fresno, CA","Sacramento, CA","Kansas City, MO","Mesa, AZ","Colorado Springs, CO","Raleigh, NC","Long Beach, CA","Virginia Beach, VA","Oakland, CA","Minneapolis, MN","Tulsa, OK","Arlington, TX","Wichita, KS","New Orleans, LA","Bakersfield, CA","Aurora, CO","Anaheim, CA","Santa Ana, CA","Riverside, CA","Corpus Christi, TX","Lexington, KY","Stockton, CA","Saint Paul, MN","Cincinnati, OH","Henderson, NV","Pittsburgh, PA","Saint Louis, MO","Orlando, FL","Tampa, FL"],
       "plans": [
@@ -406,7 +386,6 @@
       "pros": ["Available almost anywhere in the US", "Low latency for satellite (20\u201340ms)", "No contracts", "Self-install kit", "Multiple plan tiers", "Speeds up to 500 Mbps on Priority"],
       "cons": ["Equipment purchase required ($299\u2013$599)", "Speeds vary with network congestion", "Weather can affect signal"],
       "coverage": ["Nationwide"],
-      "phone": "1-888-555-0123",
       "promo": "🚀 As low as $39/mo for first 6 months in select areas — no contracts, no data caps",
       "topCities": ["Austin, TX","Denver, CO","Seattle, WA","Portland, OR","Boise, ID","Salt Lake City, UT","Reno, NV","Sacramento, CA","Phoenix, AZ","Albuquerque, NM","Houston, TX","Oklahoma City, OK","Kansas City, MO","Des Moines, IA","Minneapolis, MN","Indianapolis, IN","Columbus, OH","Charlotte, NC","Atlanta, GA","Orlando, FL"],
       "plans": [
@@ -430,7 +409,6 @@
       "pros": ["Available almost everywhere", "Speeds up to 100\u2013150 Mbps", "Introductory rates for 3 months", "Built-in WiFi modem"],
       "cons": ["Data caps (60\u2013500 GB)", "Higher latency than wired", "Speeds throttled after data cap", "Equipment lease fees apply"],
       "coverage": ["Nationwide"],
-      "phone": "1-888-555-0123",
       "promo": "$30/mo off first 3 months on Essentials — or go Unlimited with Unleashed at $119/mo",
       "topCities": ["Austin, TX","Denver, CO","Seattle, WA","Portland, OR","Boise, ID","Salt Lake City, UT","Reno, NV","Sacramento, CA","Phoenix, AZ","Albuquerque, NM"],
       "plans": [
@@ -453,7 +431,6 @@
       "pros": ["Available everywhere in the US", "No hard data caps", "Built-in WiFi", "$25/mo discount for first 12 months", "Fusion plan: lower latency"],
       "cons": ["Max speed 25 Mbps", "Higher latency (satellite)", "Speeds reduced after data threshold", "2-year contract required"],
       "coverage": ["Nationwide"],
-      "phone": "1-888-555-0123",
       "promo": "$25/mo off for 12 months + $100 Prepaid Mastercard — Fusion plan offers lower latency",
       "topCities": ["Austin, TX","Denver, CO","Seattle, WA","Portland, OR","Boise, ID","Salt Lake City, UT","Reno, NV","Sacramento, CA","Phoenix, AZ","Albuquerque, NM"],
       "plans": [
@@ -477,7 +454,6 @@
       "pros": ["No annual contracts", "No data caps on all plans", "No equipment fees", "Visa Rewards Cards up to $300 on Gig+ plans", "WiFi included on fiber plans", "Affordable pricing from $30/mo"],
       "cons": ["Limited availability (Midwest/Southeast)", "Upload speeds limited on cable tier"],
       "coverage": ["AR","FL","GA","IL","IN","KY","MI","MO","MS","OH","SC","TN"],
-      "phone": "1-888-555-0128",
       "promo": "No contracts + No data caps + Up to $300 Visa Rewards Card",
       "topCities": ["Detroit, MI","Chicago, IL","Cleveland, OH","Columbus, OH","Montgomery, AL","Auburn, AL","Huntsville, AL","Evansville, IN","Knoxville, TN","Charleston, SC","Augusta, GA","Marietta, GA","Alpharetta, GA","Roswell, GA","Sandy Springs, GA","Duluth, GA","Lawrenceville, GA","Cumming, GA","Canton, GA","Woodstock, GA"],
       "plans": [
@@ -503,7 +479,6 @@
       "pros": ["True fiber to the home", "Symmetrical upload/download", "No data caps", "No annual contracts", "WiFi equipment included", "From just $30/mo for 100 Mbps"],
       "cons": ["Limited to select regions (NH, ME, CA, TX)", "Expanding but still new in many areas"],
       "coverage": ["ME","NH","CA","TX"],
-      "phone": "1-888-555-0129",
       "promo": "🎁 $150 Streaming Bonus Card on 1 Gig+ — free professional install + WiFi included on ALL plans",
       "topCities": ["Manchester, NH","Portland, ME","Sacramento, CA","Roseville, CA","Katy, TX","Conroe, TX","Nashua, NH","Concord, NH","Dover, NH","Rochester, NH","Keene, NH","Portsmouth, NH","Laconia, NH","Claremont, NH","Somersworth, NH","South Portland, ME","Lewiston, ME","Bangor, ME","Auburn, ME","Biddeford, ME","Augusta, ME","Saco, ME","Westbrook, ME","Waterville, ME","Elk Grove, CA","Citrus Heights, CA","Folsom, CA","Berlin, NH","Franklin, NH","Laconia, NH"],
       "plans": [
@@ -527,7 +502,6 @@
       "pros": ["Flat pricing \u2014 no promo tricks or annual hikes", "Wi-Fi 6E router + mesh extenders included", "Free installation", "No equipment fees", "No data caps", "Industry-best customer service", "Speeds up to 8 Gbps"],
       "cons": ["Limited to specific cities/neighborhoods", "Premium pricing on lower tiers"],
       "coverage": ["AL","AZ","CA","CO","GA","IL","IN","IA","KS","MO","NC","NE","OH","OK","OR","TN","TX","UT","VA","WA"],
-      "phone": "1-888-555-0130",
       "promo": "Flat pricing + Free install + Wi-Fi 6E router & mesh extenders included",
       "topCities": ["Austin, TX","Atlanta, GA","Charlotte, NC","Kansas City, MO","Nashville, TN","Raleigh, NC","Durham, NC","Salt Lake City, UT","San Antonio, TX","Seattle, WA","Des Moines, IA","Omaha, NE","Mesa, AZ","Miami, FL","San Francisco, CA","Oakland, CA","San Diego, CA","Los Angeles, CA","Portland, OR","Denver, CO"],
       "plans": [
@@ -551,7 +525,6 @@
       "pros": ["ClearFiber fixed wireless technology", "Speeds up to 10 Gbps", "Custom business solutions", "No data caps", "Scalable bandwidth"],
       "cons": ["Primarily business/enterprise focused", "Limited residential availability", "Custom pricing (not always transparent)"],
       "coverage": ["CA","TX","NV","UT","AZ","CO","WY","MT"],
-      "phone": "1-888-555-0131",
       "promo": "Free site survey + Custom pricing for your business needs",
       "topCities": ["Ventura, CA","Los Angeles, CA","Santa Barbara, CA","Las Vegas, NV","Phoenix, AZ","Oxnard, CA","Simi Valley, CA","Thousand Oaks, CA","Camarillo, CA","San Luis Obispo, CA"],
       "plans": [
@@ -575,7 +548,6 @@
       "pros": ["No annual contracts", "No equipment fees", "$10/mo discount for first 12 months", "Only $30/mo with mobile plan bundle", "Strong Midwest/rural coverage"],
       "cons": ["Speeds vary by location", "5G coverage still expanding"],
       "coverage": ["WI","IA","TN","ME","Nationwide"],
-      "phone": "1-888-555-0132",
       "promo": "Only $34.99/mo for 24 months with $15/mo credit + 5-year price guarantee",
       "topCities": ["Milwaukee, WI","Madison, WI","Des Moines, IA","Cedar Rapids, IA","Knoxville, TN","Portland, ME","Green Bay, WI","Kenosha, WI","Racine, WI","Appleton, WI","Eau Claire, WI","Janesville, WI","Oshkosh, WI","La Crosse, WI","Sheboygan, WI"],
       "plans": [
@@ -598,7 +570,6 @@
       "pros": ["3-year price lock on 1 Gig plan", "Xtream Connect low-income program ($14.99/mo)", "2 Gig rolling out in 2026", "Flexible plans", "Wide Midwest coverage"],
       "cons": ["Data caps on lower tiers", "Upload speeds limited on cable", "Price varies significantly by tier"],
       "coverage": ["AL","AR","FL","GA","IA","IL","IN","KS","KY","LA","MO","MS","NC","OH","TN","TX","UT","WI"],
-      "phone": "1-888-555-0133",
       "promo": "1 Gig for $50/mo with 3-year price lock \u2014 Xtream Connect from $14.99/mo",
       "topCities": ["Des Moines, IA","Cedar Rapids, IA","Davenport, IA","Columbia, MO","Springfield, MO","Gulf Shores, AL","Mobile, AL","Ames, IA","Waterloo, IA","Iowa City, IA","Ankeny, IA","Urbandale, IA","West Des Moines, IA","Council Bluffs, IA","Sioux City, IA"],
       "plans": [
@@ -607,6 +578,127 @@
         { "name": "1 Gig Internet", "speed": 1000, "uploadSpeed": 100, "price": 50.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "features": ["3-year price lock", "eero 7 router included", "Unlimited data", "Gaming optimized"] },
         { "name": "2 Gig Internet", "speed": 2000, "uploadSpeed": 200, "price": 70.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Rolling out in 2026", "Unlimited data", "Next-gen speeds"] },
         { "name": "Xtream Connect", "speed": 100, "uploadSpeed": 10, "price": 29.99, "promoPrice": 14.99, "contract": "None", "dataCap": "600 GB", "features": ["For qualifying low-income households", "From $14.99/mo", "Digital inclusion program"] }
+      ]
+    },
+    {
+      "id": "astound",
+      "name": "Astound Broadband",
+      "slug": "astound",
+      "logo": "/astound-logo.webp",
+      "types": ["cable", "fiber"],
+      "rating": 3.8,
+      "reviewCount": 28400,
+      "reviewSource": "PCMag Editors' Rating",
+      "reviewUrl": "https://www.pcmag.com/reviews/rcn-internet",
+      "isPartner": false,
+      "description": "Astound Broadband — formed from the merger of Wave, RCN, Grande, and enTouch — delivers cable and expanding fiber internet across select markets in California, the Pacific Northwest, Midwest, Mid-Atlantic, and Texas. Plans include no annual contracts, no data caps on upper tiers, and competitive gig speeds starting at just $20/mo for the first year.",
+      "pros": ["No annual contracts", "Competitive introductory pricing", "Speeds up to 1.5 Gbps", "No data caps on Gig plans", "eero Wi-Fi 6 router option", "Strong regional cable network"],
+      "cons": ["Limited geographic footprint", "Price increases after first year", "Data caps on lower-tier plans"],
+      "coverage": ["CA","WA","OR","IL","NY","NJ","TX","MD","VA","PA","DC"],
+      "promo": "Internet starting at $20/mo for 12 months — Gig plan with no data caps",
+      "topCities": ["Sacramento, CA","Stockton, CA","Modesto, CA","Chicago, IL","Evanston, IL","New York, NY","Hoboken, NJ","Jersey City, NJ","Washington, DC","Silver Spring, MD","Austin, TX","San Marcos, TX","Seattle, WA","Bellingham, WA","Tacoma, WA","Eugene, OR","Corvallis, OR","Philadelphia, PA","Allentown, PA","Pittsburgh, PA"],
+      "plans": [
+        { "name": "Internet 200", "speed": 200, "uploadSpeed": 10, "price": 35.00, "promoPrice": 20.00, "contract": "None", "dataCap": "1 TB", "features": ["$20/mo promo for 12 months", "No contracts", "Good for streaming"] },
+        { "name": "Internet 400", "speed": 400, "uploadSpeed": 20, "price": 50.00, "promoPrice": 35.00, "contract": "None", "dataCap": "1 TB", "features": ["$35/mo promo for 12 months", "No contracts", "Multiple devices"] },
+        { "name": "Internet 1 Gig", "speed": 1000, "uploadSpeed": 50, "price": 65.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "features": ["No data caps", "No contracts", "eero Wi-Fi 6 router available"] },
+        { "name": "Internet 1.5 Gig", "speed": 1500, "uploadSpeed": 1500, "price": 85.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical fiber speeds", "No data caps", "No contracts", "eero Pro 6E router"] }
+      ]
+    },
+    {
+      "id": "consolidated-communications",
+      "name": "Consolidated Communications",
+      "slug": "consolidated-communications",
+      "logo": "/consolidated-communications-logo.webp",
+      "types": ["fiber", "dsl"],
+      "rating": 3.7,
+      "reviewCount": 9200,
+      "reviewSource": "PCMag Editors' Rating",
+      "reviewUrl": "https://www.pcmag.com/reviews/consolidated-communications",
+      "isPartner": false,
+      "description": "Consolidated Communications is a regional broadband provider serving rural and suburban communities across 24 states, with an aggressive fiber buildout bringing symmetrical Gig speeds to more neighborhoods every year. Their consumer fiber brand, Fidium, offers flat-rate pricing from $49.99/mo with no contracts, no data caps, and free installation. DSL plans serve areas still awaiting fiber upgrades.",
+      "pros": ["Flat-rate fiber pricing — no surprises", "No annual contracts", "No data caps on fiber", "Free installation", "Wi-Fi 6E router and mesh extenders included", "Expanding fiber footprint"],
+      "cons": ["DSL service in non-fiber areas", "Fiber not yet available everywhere they serve", "Limited geographic footprint"],
+      "coverage": ["NH","ME","VT","MA","TX","CA","OR","WA","ND","MN","KS","IL","MO","SD","NE","IA","ID","MT","WI","PA","NY","OH","IN","FL"],
+      "promo": "Fiber 1 Gig at $49.99/mo flat — no contracts, no data caps, free install + Wi-Fi 6E router",
+      "topCities": ["Mankato, MN","Fargo, ND","Bismarck, ND","Wichita, KS","Topeka, KS","Concord, NH","Manchester, NH","Portland, ME","Burlington, VT","Lubbock, TX","Amarillo, TX","Medford, OR","Springfield, OR","Fresno, CA","Bakersfield, CA","Spokane, WA","Yakima, WA","Sioux Falls, SD","Lincoln, NE","Peoria, IL"],
+      "plans": [
+        { "name": "DSL Starter", "speed": 25, "uploadSpeed": 3, "price": 34.99, "promoPrice": 34.99, "contract": "None", "dataCap": "Unlimited", "type": "dsl", "features": ["Available in non-fiber areas", "No contracts", "Basic broadband"] },
+        { "name": "Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 39.99, "promoPrice": 39.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical speeds", "No contracts", "No data caps", "Free installation"] },
+        { "name": "Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 49.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Flat-rate pricing", "Wi-Fi 6E router + mesh extenders", "Free installation", "No data caps"] },
+        { "name": "Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 79.99, "promoPrice": 79.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical 2 Gig", "Wi-Fi 6E router + mesh extenders", "Free installation", "No data caps"] }
+      ]
+    },
+    {
+      "id": "lumen",
+      "name": "Lumen",
+      "slug": "lumen",
+      "logo": "/lumen-logo.svg",
+      "types": ["fiber", "dsl"],
+      "rating": 3.6,
+      "reviewCount": 11800,
+      "reviewSource": "PCMag Editors' Rating",
+      "reviewUrl": "https://www.pcmag.com/reviews/centurylink-internet",
+      "isPartner": false,
+      "description": "Lumen (formerly CenturyLink) delivers fiber and DSL internet to residential customers in select markets, alongside its large-scale enterprise network. Residential fiber — marketed as Quantum Fiber in many areas — offers symmetrical Gig speeds with price-for-life guarantees and no data caps. DSL plans provide affordable access in thousands of communities nationwide.",
+      "pros": ["Price-for-life guarantee on select plans", "Symmetrical fiber speeds", "No data caps on fiber", "Nationwide DSL footprint", "No annual contracts on most plans", "AutoPay discount saves $5/mo"],
+      "cons": ["DSL speeds significantly lower than fiber alternatives", "Fiber availability limited to select markets", "Customer service ratings lag behind competitors"],
+      "coverage": ["AZ","CO","FL","IA","ID","IN","LA","MN","MO","MT","ND","NE","NM","NV","OR","SD","TN","TX","UT","WA","WI","WY","AL","AR"],
+      "promo": "Price-for-life Fiber Gig — $75/mo forever, no contracts, no data caps",
+      "topCities": ["Denver, CO","Phoenix, AZ","Las Vegas, NV","Seattle, WA","Portland, OR","Salt Lake City, UT","Boise, ID","Omaha, NE","Des Moines, IA","Minneapolis, MN","St. Paul, MN","Albuquerque, NM","Tucson, AZ","Spokane, WA","Madison, WI","Fargo, ND","Sioux Falls, SD","Billings, MT","Cheyenne, WY","Provo, UT"],
+      "plans": [
+        { "name": "Simply Unlimited Internet", "speed": 100, "uploadSpeed": 10, "price": 50.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "type": "dsl", "features": ["Price-for-life guarantee", "No contracts", "No data caps", "AutoPay saves $5/mo"] },
+        { "name": "Fiber Internet 500", "speed": 500, "uploadSpeed": 500, "price": 65.00, "promoPrice": 65.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical speeds", "Price-for-life", "No data caps", "No contracts"] },
+        { "name": "Fiber Internet 940", "speed": 940, "uploadSpeed": 940, "price": 75.00, "promoPrice": 75.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Price-for-life guarantee", "Symmetrical Gig speeds", "No data caps", "No contracts"] },
+        { "name": "Fiber Internet 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 130.00, "promoPrice": 130.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical 2 Gig", "Price-for-life", "No data caps", "Multi-gig home network"] }
+      ]
+    },
+    {
+      "id": "metronet",
+      "name": "Metronet",
+      "slug": "metronet",
+      "logo": "/metronet-logo.webp",
+      "types": ["fiber"],
+      "rating": 4.3,
+      "reviewCount": 18600,
+      "reviewSource": "PCMag Editors' Rating",
+      "reviewUrl": "https://www.pcmag.com/reviews/metronet",
+      "isPartner": false,
+      "description": "Metronet is a rapidly expanding pure-fiber ISP bringing symmetrical Gig speeds to Midwest communities — often as the first and only fiber provider in their markets. With flat-rate pricing, no contracts, no data caps, and a free router included on all plans, Metronet consistently earns top marks for customer satisfaction and reliability.",
+      "pros": ["100% fiber-optic network", "Symmetrical upload/download speeds", "No contracts", "No data caps", "Free router included", "Flat-rate pricing — no hidden fees", "Top-rated customer service", "Rapid expansion across the Midwest"],
+      "cons": ["Limited to select Midwest markets", "Fiber buildout still ongoing in many areas"],
+      "coverage": ["IN","IL","IA","KY","OH","MI","KS","MO","MN","TN","GA","OK","TX","WI","NE","AR"],
+      "promo": "Pure fiber from $49.95/mo — no contracts, no data caps, free router included",
+      "topCities": ["Indianapolis, IN","Fort Wayne, IN","Lafayette, IN","Terre Haute, IN","Bloomington, IN","Muncie, IN","Kokomo, IN","Anderson, IN","Noblesville, IN","Fishers, IN","Carmel, IN","Greenwood, IN","Evansville, IN","Peoria, IL","Bloomington, IL","Springfield, IL","Champaign, IL","Rockford, IL","Iowa City, IA","Davenport, IA","Lexington, KY","Bowling Green, KY","Owensboro, KY","Dayton, OH","Akron, OH","Canton, OH","Kalamazoo, MI","Lansing, MI","Wichita, KS","Overland Park, KS","Columbia, MO","Springfield, MO","Knoxville, TN","Chattanooga, TN"],
+      "plans": [
+        { "name": "Fiber 100", "speed": 100, "uploadSpeed": 100, "price": 24.95, "promoPrice": 24.95, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical speeds", "Free router", "No contracts", "No data caps"] },
+        { "name": "Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 49.95, "promoPrice": 49.95, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical speeds", "Free router", "No contracts", "No data caps"] },
+        { "name": "Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 69.95, "promoPrice": 69.95, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical Gig speeds", "Free router", "No contracts", "No data caps", "Best value pick"] },
+        { "name": "Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 99.95, "promoPrice": 99.95, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical 2 Gig", "Free router", "No contracts", "No data caps"] }
+      ]
+    },
+    {
+      "id": "sparklight",
+      "name": "Sparklight",
+      "slug": "sparklight",
+      "logo": "/sparklight-logo.webp",
+      "types": ["cable", "fiber"],
+      "rating": 3.7,
+      "reviewCount": 16900,
+      "reviewSource": "PCMag Editors' Rating",
+      "reviewUrl": "https://www.pcmag.com/reviews/sparklight",
+      "isPartner": false,
+      "description": "Sparklight (formerly Cable One) delivers cable and expanding fiber internet to communities across 21 states, with a focus on smaller markets and rural towns. Their Xtream-powered Gig plan carries a 3-year price guarantee, and all plans include a free modem. Sparklight's Value internet program offers discounted service for qualifying low-income households.",
+      "pros": ["3-year price guarantee on Gig plan", "Free modem included on all plans", "No data caps on Gig plan", "Available in smaller Midwest/Southwest markets", "Sparklight Value low-income program", "Expanding fiber footprint"],
+      "cons": ["Data caps on lower-tier plans", "Upload speeds limited on cable", "Cable speeds vary by neighborhood load"],
+      "coverage": ["TX","ID","NM","ND","SD","MN","NE","WY","OK","MS","KS","MT","AZ","MO","WI","AL","AR","IA","WA","OR","CO"],
+      "promo": "Gig Internet with 3-year price guarantee — free modem, no data caps",
+      "topCities": ["Boise, ID","Nampa, ID","Meridian, ID","Caldwell, ID","Twin Falls, ID","Great Falls, MT","Billings, MT","Missoula, MT","Rapid City, SD","Sioux Falls, SD","Bismarck, ND","Fargo, ND","Casper, WY","Laramie, WY","Amarillo, TX","Lubbock, TX","Midland, TX","Odessa, TX","Albuquerque, NM","Wichita, KS","Topeka, KS","Tulsa, OK","Oklahoma City, OK","Gulfport, MS","Hattiesburg, MS","Joplin, MO","Columbia, MO","Eau Claire, WI","Appleton, WI"],
+      "plans": [
+        { "name": "Internet 100", "speed": 100, "uploadSpeed": 10, "price": 55.00, "promoPrice": 40.00, "contract": "None", "dataCap": "300 GB", "features": ["Free modem", "No contracts", "Good for basic use"] },
+        { "name": "Internet 300", "speed": 300, "uploadSpeed": 30, "price": 65.00, "promoPrice": 55.00, "contract": "None", "dataCap": "1 TB", "features": ["Free modem", "No contracts", "4K streaming ready"] },
+        { "name": "Internet 1 Gig", "speed": 1000, "uploadSpeed": 50, "price": 80.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "features": ["3-year price guarantee", "Free modem", "No data caps", "No contracts"] },
+        { "name": "Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 85.00, "promoPrice": 75.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical fiber speeds", "3-year price guarantee", "Free modem", "No data caps"] },
+        { "name": "Sparklight Value", "speed": 50, "uploadSpeed": 5, "price": 30.00, "promoPrice": 19.99, "contract": "None", "dataCap": "150 GB", "features": ["For qualifying low-income households", "From $19.99/mo", "Digital equity program"] }
       ]
     }
   ]

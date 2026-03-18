@@ -17,7 +17,7 @@ This now runs two steps automatically:
 ## Google Search Console: One-Time Setup
 
 ### Step 1 — Verify ownership
-Go to https://search.google.com/search-console → add property `https://internet4all.com`
+Go to https://search.google.com/search-console → add property `https://internet-4-all.com`
 
 Choose **HTML file verification**:
 1. Download the verification file (e.g. `googleXXXXXXXXXXXXXXXX.html`)
@@ -35,13 +35,13 @@ GSC will crawl the sitemap index, discover all child sitemaps, and begin indexin
 
 ### Step 3 — Request indexing for priority pages
 For the highest-value pages, manually request indexing via the URL Inspection tool:
-- `https://internet4all.com/` (homepage)
-- `https://internet4all.com/providers`
-- `https://internet4all.com/affordable-internet`
-- `https://internet4all.com/low-income-internet`
-- `https://internet4all.com/bill-shock`
-- `https://internet4all.com/internet-affordability-index`
-- `https://internet4all.com/internet-monopoly-report`
+- `https://internet-4-all.com/` (homepage)
+- `https://internet-4-all.com/providers`
+- `https://internet-4-all.com/affordable-internet`
+- `https://internet-4-all.com/low-income-internet`
+- `https://internet-4-all.com/bill-shock`
+- `https://internet-4-all.com/internet-affordability-index`
+- `https://internet-4-all.com/internet-monopoly-report`
 - Top 10 state pages (e.g. `/internet-providers/texas`)
 
 ---
@@ -64,7 +64,7 @@ Total expected: ~50,000+ URLs across 5–6 sitemap files.
 
 - [ ] Run `npm run build` (auto-runs sitemap generator)
 - [ ] Verify `dist/sitemap.xml` is a sitemap index (not a single-file)
-- [ ] Verify `dist/robots.txt` references `https://internet4all.com/sitemap.xml`
+- [ ] Verify `dist/robots.txt` references `https://internet-4-all.com/sitemap.xml`
 - [ ] Deploy `dist/` to production host
 - [ ] In GSC → Sitemaps → re-submit `sitemap.xml` if you get "Couldn't fetch" errors
 - [ ] Check GSC Coverage report 48hrs later for indexing progress

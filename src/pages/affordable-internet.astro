@@ -28,12 +28,12 @@ const plans = [
 ];
 ---
 <Base
-  title={`Affordable Internet Plans (${year}) — Affordable Home Internet Providers`}
-  description={`Find affordable internet plans in ${year}. Compare affordable internet providers from $9.95/mo. No contract options, 5G home internet, and income-based programs for affordable home internet.`}
+  title="Affordable Internet Plans — Low Cost Home Internet"
+  description="Search affordable internet plans and low-cost providers near you. Find affordable ISPs, budget-friendly home internet, and cheap internet options by ZIP."
   schema={[
     generateBreadcrumbSchema([
-      { name: 'Home', url: 'https://internet4all.com' },
-      { name: 'Affordable Internet', url: 'https://internet4all.com/affordable-internet' }
+      { name: 'Home', url: 'https://internet-4-all.com' },
+      { name: 'Affordable Internet', url: 'https://internet-4-all.com/affordable-internet' }
     ]),
     generateFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })))
   ]}
@@ -116,9 +116,9 @@ const plans = [
       <h2 class="text-center reveal">5 Ways to Get <span class="gradient-text">More Affordable Internet</span></h2>
       <div class="grid grid-1" style="gap:var(--space-md);max-width:700px;margin:var(--space-xl) auto 0;">
         {[
-          { n: '1', title: 'Apply for Lifeline ($9.25/mo off)', body: 'If your household income is at or below 135% of the Federal Poverty Level — or you receive SNAP, Medicaid, or SSI — you qualify for the FCC Lifeline discount. It permanently reduces your bill by $9.25/month. Apply at lifelinesupport.org or call us for help.', link: '/provider-programs', cta: 'Learn About Lifeline' },
+          { n: '1', title: 'Apply for Lifeline ($9.25/mo off)', body: 'If your household income is at or below 135% of the Federal Poverty Level — or you receive SNAP, Medicaid, or SSI — you qualify for the FCC Lifeline discount. It permanently reduces your bill by $9.25/month. Apply at lifelinesupport.org or use chat for help.', link: '/provider-programs', cta: 'Learn About Lifeline' },
           { n: '2', title: 'Switch to 5G Home Internet', body: 'T-Mobile 5G Home ($40-50/mo) and Verizon 5G Home ($50/mo) are genuinely affordable internet options with no contract, no credit check, and up to 245 Mbps. Often cheaper than cable after promo periods end.', link: '/wireless-internet', cta: 'Compare 5G Plans' },
-          { n: '3', title: 'Negotiate With Your Current Provider', body: 'Call and ask for the retention department. Say you\'ve seen lower rates elsewhere and are considering switching. Most providers have unpublished loyalty discounts — but you have to ask. The worst they can say is no.' },
+          { n: '3', title: 'Negotiate With Your Current Provider', body: 'Use provider support/chat and ask for the retention department. Say you\'ve seen lower rates elsewhere and are considering switching. Most providers have unpublished loyalty discounts — but you have to ask. The worst they can say is no.' },
           { n: '4', title: 'Look for New Customer Promotions', body: 'New customers always get the best deal. If you haven\'t switched providers in 2+ years, you\'re almost certainly paying above-promotional-period rates. A fresh signup with a new provider resets your promotional pricing.', link: '/deals', cta: 'See Current Deals' },
           { n: '5', title: 'Check Provider-Specific Income Programs', body: 'Spectrum Internet Assist ($19.99/mo), Xfinity Internet Essentials ($9.95/mo), and AT&T Access ($30/mo) serve qualifying low-income households regardless of ACP status. Enrollment is open year-round.', link: '/provider-programs', cta: 'See All Programs' },
         ].map((tip, i) => (
@@ -126,7 +126,7 @@ const plans = [
             <div style="width:40px;height:40px;border-radius:50%;background:var(--gradient-primary);display:grid;place-items:center;font-weight:800;font-size:var(--text-lg);flex-shrink:0;">{tip.n}</div>
             <div style="flex:1;">
               <h4 style="margin-bottom:var(--space-xs);">{tip.title}</h4>
-              <p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:tip.link ? 'var(--space-sm)' : '0';">{tip.body}</p>
+              <p style={`font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:${tip.link ? 'var(--space-sm)' : '0'};`}>{tip.body}</p>
               {tip.link && <a href={tip.link} class="btn btn-secondary" style="font-size:var(--text-xs);margin-top:var(--space-sm);">{tip.cta} →</a>}
             </div>
           </div>

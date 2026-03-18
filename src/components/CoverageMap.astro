@@ -1,0 +1,447 @@
+---
+interface Props {
+  preselect?: string;   // tile slug to pre-select (e.g. 'frontier'). Empty = all visible.
+  height?: string;      // CSS height value, default '520px'
+  showSidebar?: boolean; // show/hide sidebar controls
+}
+
+const { preselect = '', height = '520px', showSidebar = true } = Astro.props;
+
+// Stable per-render unique ID (SSG: stable per build per page)
+const uid = `cm${Math.random().toString(36).slice(2, 8)}`;
+
+const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN;
+
+const providers = [
+  // Partners — show brand color + "Sign Up" CTA
+  { tileSlug: 'frontier',      name: 'Frontier Fiber',    siteSlug: 'frontier',     color: '#FF0037', isPartner: true  },
+  { tileSlug: 'windstream',    name: 'Kinetic Fiber',     siteSlug: 'kinetic',      color: '#6A3FB0', isPartner: true  },
+  { tileSlug: 'charter',       name: 'Spectrum',          siteSlug: 'spectrum',     color: '#0052FF', isPartner: true  },
+  { tileSlug: 'optimum',       name: 'Optimum',           siteSlug: 'optimum',      color: '#F66608', isPartner: true  },
+  { tileSlug: 'att',           name: 'AT&T Fiber',        siteSlug: 'att-fiber',    color: '#009FDB', isPartner: true  },
+  { tileSlug: 'cincinnati-bell', name: 'altafiber',       siteSlug: 'altafiber',    color: '#004B8D', isPartner: true  },
+  // Non-partners — grey label + info link
+  { tileSlug: 'xfinity',       name: 'Xfinity',           siteSlug: 'xfinity',      color: '#6023E1', isPartner: false },
+  { tileSlug: 'cox-cable',     name: 'Cox',               siteSlug: 'cox',          color: '#0D47A1', isPartner: false },
+  { tileSlug: 'google-fiber',  name: 'Google Fiber',      siteSlug: 'google-fiber', color: '#4285F4', isPartner: false },
+  { tileSlug: 'mediacom',      name: 'Mediacom',          siteSlug: 'mediacom',     color: '#00529B', isPartner: false },
+  { tileSlug: 'wow',           name: 'WOW!',              siteSlug: 'wow',          color: '#0077C8', isPartner: false },
+  { tileSlug: 'rcn',           name: 'Astound',           siteSlug: 'astound',      color: '#1B3C7C', isPartner: false },
+  { tileSlug: 'tds',           name: 'TDS',               siteSlug: null,           color: '#007ABC', isPartner: false },
+  { tileSlug: 'centurylink',   name: 'Lumen/CenturyLink', siteSlug: 'lumen',        color: '#CC0000', isPartner: false },
+  { tileSlug: 'gci-broadband', name: 'GCI Broadband',     siteSlug: null,           color: '#009933', isPartner: false },
+];
+---
+
+<div
+  class="cmap-outer"
+  id={`wrap-${uid}`}
+  data-uid={uid}
+  data-preselect={preselect}
+  data-show-sidebar={showSidebar ? 'true' : 'false'}
+  data-mapbox-token={MAPBOX_TOKEN}
+  data-providers={JSON.stringify(providers)}
+>
+  {showSidebar && (
+    <div class="cmap-sidebar" id={`sidebar-${uid}`}>
+      <div class="cmap-sidebar-head">
+        <span class="cmap-sidebar-label">Providers</span>
+        <span class="cmap-sidebar-hint">Select 1</span>
+      </div>
+
+      <div class="cmap-sidebar-scroll">
+        <div class="cmap-section-label">Our Partners</div>
+        {providers.filter(p => p.isPartner).map(p => (
+          <div class="cmap-row" id={`row-${uid}-${p.tileSlug}`}>
+            <label class="cmap-label">
+              <span class="cmap-dot" style={`background:${p.color};`}></span>
+              <input
+                type="checkbox"
+                class="cmap-chk"
+                data-tile={p.tileSlug}
+                checked={preselect ? preselect === p.tileSlug : p.tileSlug === providers[0].tileSlug}
+              />
+              <span class="cmap-name">{p.name}</span>
+            </label>
+            <a href={`/provider/${p.siteSlug}`} class="cmap-cta-link">Sign Up →</a>
+          </div>
+        ))}
+
+        <div class="cmap-section-label" style="margin-top:10px;">Other Major Providers</div>
+        {providers.filter(p => !p.isPartner).map(p => (
+          <div class="cmap-row" id={`row-${uid}-${p.tileSlug}`}>
+            <label class="cmap-label">
+              <span class="cmap-dot" style={`background:${p.color};`}></span>
+              <input
+                type="checkbox"
+                class="cmap-chk"
+                data-tile={p.tileSlug}
+                checked={preselect ? preselect === p.tileSlug : p.tileSlug === providers[0].tileSlug}
+              />
+              <span class="cmap-name">{p.name}</span>
+            </label>
+            {p.siteSlug
+              ? <a href={`/provider/${p.siteSlug}`} class="cmap-info-link">Details →</a>
+              : <span></span>
+            }
+          </div>
+        ))}
+      </div>
+
+      <p class="cmap-disclaimer">
+        Coverage areas are approximate. Confirm exact availability at your address above.
+      </p>
+    </div>
+  )}
+
+  <div class="cmap-map-wrap" style={`height:${height};`}>
+    <div class="cmap-map" id={uid}></div>
+    <div class="cmap-loading" id={`loading-${uid}`}>
+      <div class="cmap-spinner"></div>
+      <span>Loading coverage map…</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cmap-outer {
+    display: flex;
+    border-radius: var(--radius-lg, 12px);
+    overflow: hidden;
+    border: 1px solid var(--border, #2a2f4a);
+    background: #0d1117;
+    min-height: 320px;
+  }
+
+  /* ---- Sidebar ---- */
+  .cmap-sidebar {
+    width: 210px;
+    flex-shrink: 0;
+    background: var(--bg-secondary, #141824);
+    border-right: 1px solid var(--border, #2a2f4a);
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+  }
+  .cmap-sidebar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px 8px;
+    border-bottom: 1px solid var(--border, #2a2f4a);
+  }
+  .cmap-sidebar-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary, #6b7280);
+  }
+  .cmap-sidebar-hint {
+    font-size: 0.6rem;
+    color: var(--text-tertiary, #6b7280);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .cmap-sidebar-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 6px 0 4px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border, #2a2f4a) transparent;
+  }
+  .cmap-section-label {
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-tertiary, #6b7280);
+    padding: 6px 12px 3px;
+  }
+  .cmap-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 12px;
+    gap: 4px;
+  }
+  .cmap-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    flex: 1;
+    min-width: 0;
+    line-height: 1.3;
+  }
+  .cmap-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .cmap-chk {
+    cursor: pointer;
+    flex-shrink: 0;
+    accent-color: var(--brand-blue, #0052ff);
+    width: 12px;
+    height: 12px;
+  }
+  .cmap-name {
+    font-size: 0.7rem;
+    color: var(--text-primary, #e2e8f0);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cmap-cta-link {
+    font-size: 0.6rem;
+    color: var(--brand-green, #00d584);
+    text-decoration: none;
+    white-space: nowrap;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .cmap-cta-link:hover { text-decoration: underline; }
+  .cmap-info-link {
+    font-size: 0.6rem;
+    color: var(--text-tertiary, #6b7280);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .cmap-info-link:hover { color: var(--brand-blue, #0052ff); }
+
+  .cmap-disclaimer {
+    font-size: 0.58rem;
+    color: var(--text-tertiary, #6b7280);
+    padding: 7px 12px;
+    border-top: 1px solid var(--border, #2a2f4a);
+    line-height: 1.4;
+  }
+
+  /* ---- Map ---- */
+  .cmap-map-wrap {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+  }
+  .cmap-map {
+    width: 100%;
+    height: 100%;
+  }
+  :global(.cmap-map .mapboxgl-canvas) { display: block; }
+
+  .cmap-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #0d1117;
+    color: var(--text-secondary, #94a3b8);
+    font-size: 0.8rem;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .cmap-loading.hidden { opacity: 0; pointer-events: none; }
+  .cmap-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--border, #2a2f4a);
+    border-top-color: var(--brand-blue, #0052ff);
+    border-radius: 50%;
+    animation: cmap-spin 0.8s linear infinite;
+  }
+  @keyframes cmap-spin { to { transform: rotate(360deg); } }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 640px) {
+    .cmap-outer { flex-direction: column; }
+    .cmap-sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid var(--border, #2a2f4a);
+      max-height: 188px;
+    }
+    .cmap-sidebar-scroll { max-height: 130px; }
+    .cmap-map-wrap { height: 300px !important; }
+  }
+</style>
+
+<script is:inline define:vars={{ uid, preselect, MAPBOX_TOKEN, providers }}>
+(function () {
+  var MAPBOX_CSS_ID = 'mapbox-gl-v2-css';
+  var MAPBOX_JS_ID  = 'mapbox-gl-v2-js';
+  var MAPBOX_CSS_HREF = 'https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css';
+  var MAPBOX_JS_SRC   = 'https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js';
+
+  function injectCSS() {
+    if (document.getElementById(MAPBOX_CSS_ID)) return;
+    var link = document.createElement('link');
+    link.id   = MAPBOX_CSS_ID;
+    link.rel  = 'stylesheet';
+    link.href = MAPBOX_CSS_HREF;
+    document.head.appendChild(link);
+  }
+
+  function loadJS(cb) {
+    if (window.mapboxgl) { cb(); return; }
+    var existing = document.getElementById(MAPBOX_JS_ID);
+    if (existing) {
+      // Script tag exists but not loaded yet — wait for it
+      existing.addEventListener('load', cb);
+      return;
+    }
+    var s = document.createElement('script');
+    s.id  = MAPBOX_JS_ID;
+    s.src = MAPBOX_JS_SRC;
+    s.onload = cb;
+    document.head.appendChild(s);
+  }
+
+  function initMap() {
+    var el = document.getElementById(uid);
+    if (!el || el._cmapInit) return;
+    el._cmapInit = true;
+
+    var loadingEl = document.getElementById('loading-' + uid);
+
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+
+    var map = new mapboxgl.Map({
+      container: uid,
+      style: 'mapbox://styles/mapbox/dark-v9',
+      center: [-96, 37.8],
+      zoom: 3,
+    });
+
+    map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
+
+    // One selected provider at a time.
+    var activeTile = preselect || (providers[0] && providers[0].tileSlug) || null;
+
+    map.on('error', function (e) {
+      console.error('[CoverageMap] Mapbox error:', e && e.error ? e.error : e);
+    });
+
+    function waitForSourceLayer(srcId, done) {
+      var tries = 0;
+      var maxTries = 60;
+      var timer = setInterval(function () {
+        tries += 1;
+        var src = map.getSource(srcId);
+        if (src && Array.isArray(src.vectorLayerIds) && src.vectorLayerIds.length > 0) {
+          clearInterval(timer);
+          done(src.vectorLayerIds[0]);
+          return;
+        }
+        if (tries >= maxTries) {
+          clearInterval(timer);
+          done(null);
+        }
+      }, 100);
+    }
+
+    map.on('load', function () {
+      var pending = providers.length;
+
+      providers.forEach(function (p) {
+        var srcId   = 'cmap-src-'     + p.tileSlug;
+        var layerId = 'cmap-layer-'   + p.tileSlug;
+        var lineId  = 'cmap-outline-' + p.tileSlug;
+        var vis     = activeTile === p.tileSlug ? 'visible' : 'none';
+
+        map.addSource(srcId, {
+          type: 'vector',
+          url:  'mapbox://inmyarea.' + p.tileSlug,
+        });
+
+        waitForSourceLayer(srcId, function (sourceLayerId) {
+          pending -= 1;
+          if (!sourceLayerId) {
+            console.warn('[CoverageMap] Could not resolve source-layer for', p.tileSlug);
+            if (pending <= 0 && loadingEl) loadingEl.classList.add('hidden');
+            return;
+          }
+
+          try {
+            map.addLayer({
+              id: layerId,
+              type: 'fill',
+              source: srcId,
+              'source-layer': sourceLayerId,
+              paint: {
+                'fill-color':   p.color,
+                'fill-opacity': 0.30,
+              },
+              layout: { visibility: vis },
+            });
+
+            map.addLayer({
+              id: lineId,
+              type: 'line',
+              source: srcId,
+              'source-layer': sourceLayerId,
+              paint: {
+                'line-color':   p.color,
+                'line-width':   0.8,
+                'line-opacity': 0.55,
+              },
+              layout: { visibility: vis },
+            });
+          } catch (err) {
+            console.error('[CoverageMap] Failed to add layer for', p.tileSlug, err);
+          }
+
+          if (pending <= 0 && loadingEl) loadingEl.classList.add('hidden');
+        });
+      });
+
+      // Wire up sidebar checkboxes
+      var wrapEl = document.getElementById('wrap-' + uid);
+      if (!wrapEl) return;
+
+      var checkboxes = wrapEl.querySelectorAll('.cmap-chk');
+      checkboxes.forEach(function (chk) {
+        var tile = chk.getAttribute('data-tile');
+        // Sync visual state with active tile
+        chk.checked = tile === activeTile;
+
+        chk.addEventListener('change', function () {
+          if (!chk.checked) {
+            chk.checked = true;
+            return;
+          }
+          activeTile = tile;
+          checkboxes.forEach(function (other) {
+            var otherTile = other.getAttribute('data-tile');
+            var isActive = otherTile === activeTile;
+            other.checked = isActive;
+            setLayersVisible(otherTile, isActive);
+          });
+        });
+      });
+    });
+
+    function setLayersVisible(tileSlug, visible) {
+      var v = visible ? 'visible' : 'none';
+      ['cmap-layer-', 'cmap-outline-'].forEach(function (prefix) {
+        var lyr = prefix + tileSlug;
+        if (map.getLayer(lyr)) map.setLayoutProperty(lyr, 'visibility', v);
+      });
+    }
+  }
+
+  // Boot
+  injectCSS();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { loadJS(initMap); });
+  } else {
+    loadJS(initMap);
+  }
+}());
+</script>

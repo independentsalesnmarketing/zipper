@@ -21,7 +21,7 @@ const bundleProviders = getAllProviders()
 
 const bundleDeals = [
   { provider: 'Spectrum', bundle: 'Internet + TV', price: '$109.98/mo', savings: '$20/mo', speed: '300 Mbps', channels: '125+', features: ['Free modem', 'No contracts', 'DVR included'] },
-  { provider: 'Verizon Fios', bundle: 'Internet + TV', price: '$99.99/mo', savings: '$30/mo', speed: '300 Mbps', channels: '125+', features: ['Symmetrical fiber', 'Mix & Match plans', 'No annual contract'] },
+  { provider: 'Verizon 5G Home', bundle: 'Internet + Disney+ Bundle', price: '$84.99/mo', savings: '$20/mo', speed: '300 Mbps', channels: 'Disney+ Included', features: ['4-year price lock', 'Self-install', 'No data caps'] },
   { provider: 'AT&T', bundle: 'Fiber + DirecTV Stream', price: '$104.99/mo', savings: '$25/mo', speed: '300 Mbps', channels: '75+', features: ['Symmetrical fiber', 'Streaming TV', 'No data caps'] },
   { provider: 'Optimum', bundle: 'Internet + TV', price: '$89.99/mo', savings: '$30/mo', speed: '300 Mbps', channels: '220+', features: ['Smart WiFi 6', 'Free installation', 'Cloud DVR'] },
   { provider: 'Frontier', bundle: 'Fiber + YouTube TV', price: '$114.98/mo', savings: '$15/mo', speed: '500 Mbps', channels: '100+', features: ['Symmetrical fiber', 'Streaming-based', 'No DVR needed'] },
@@ -30,24 +30,24 @@ const bundleDeals = [
 
 const faqs = [
   { question: 'Are internet and TV bundles worth it?', answer: 'It depends. Bundles can save $10-30/mo compared to buying services separately from the same provider. However, internet + streaming services (Netflix, YouTube TV, Hulu Live) often costs less overall than a traditional cable bundle. For live sports fans, bundles may still offer the best value.' },
-  { question: 'What is the cheapest internet and TV bundle?', answer: `Current cheapest bundles start around $89.99/mo for 300 Mbps internet + 125+ channels. Optimum, Spectrum, and Verizon Fios offer competitive bundle pricing. Sign up above and we'll find the best bundle deal at your address.` },
-  { question: 'Can I bundle internet with streaming TV?', answer: 'Yes! Many providers offer discounts when you add streaming services. AT&T includes HBO Max with some plans. Frontier partners with YouTube TV. Verizon Fios offers Disney+ bundles. These "streaming bundles" are often cheaper than traditional cable TV bundles.' },
+  { question: 'What is the cheapest internet and TV bundle?', answer: `Current cheapest bundles start around $89.99/mo for 300 Mbps internet + 125+ channels. Optimum, Spectrum, and Frontier offer competitive bundle pricing. Sign up above and we'll find the best bundle deal at your address.` },
+  { question: 'Can I bundle internet with streaming TV?', answer: 'Yes! Many providers offer discounts when you add streaming services. AT&T includes HBO Max with some plans. Frontier partners with YouTube TV. Verizon 5G Home offers Disney+ bundles. These "streaming bundles" are often cheaper than traditional cable TV bundles.' },
   { question: 'Should I cut the cord or get a bundle?', answer: 'For most people, cutting the cord saves money. Internet-only ($40-80/mo) + streaming services ($15-65/mo) typically costs $60-145/mo — often less than a $100-180/mo cable bundle. The exception: heavy live sports viewers may still benefit from traditional TV bundles.' },
-  { question: 'Do bundles require contracts?', answer: 'Not always. Spectrum bundles are contract-free. Verizon Fios allows Mix & Match without contracts. However, some providers offer deeper discounts with 1-2 year agreements. Always ask about contract terms before signing up.' },
+  { question: 'Do bundles require contracts?', answer: 'Not always. Spectrum bundles are contract-free. Verizon 5G Home has a 4-year price lock with no contract. However, some providers offer deeper discounts with 1-2 year agreements. Always ask about contract terms before signing up.' },
   { question: 'Can I add TV later to my internet plan?', answer: 'Usually yes. Most providers let you add TV service to an existing internet plan. In fact, this can sometimes trigger bundle pricing retroactively. Sign up above and we can help you explore adding TV to your current internet plan.' },
 ];
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Internet & TV Bundles', url: 'https://internet4all.com/bundles' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Internet & TV Bundles', url: 'https://internet-4-all.com/bundles' },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`Cable and Internet Plans (${year}) — Compare Internet & TV Bundles & Bundle Deals`}
-  description={`Compare cable and internet plans from top providers in ${year}. Cable and internet providers including Spectrum, Xfinity, AT&T, Verizon. Save up to $30/mo on internet and TV bundles. No contracts available.`}
+  title="Cable & Internet Bundle Plans — TV + Internet Deals"
+  description="Find cable and internet bundle plans near you. TV and internet packages, cable TV deals, and the best bundle pricing from local providers — save when you bundle."
   schema={schemas}
 >
   <section class="section" style="padding-top: var(--space-xl);">

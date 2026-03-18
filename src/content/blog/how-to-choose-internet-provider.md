@@ -79,7 +79,7 @@ The advertised price is rarely the total price. Always ask: **"What will my actu
 |----------|------------------|
 | T-Mobile Home Internet | No |
 | Spectrum | No |
-| Verizon Fios | No |
+| Verizon 5G Home | No |
 | AT&T Fiber | No |
 | Frontier Fiber | No |
 | EarthLink | No |
@@ -92,7 +92,7 @@ Good news: most major providers have eliminated contracts. If a provider require
 |----------|----------|
 | T-Mobile | None |
 | Spectrum | None |
-| Verizon Fios | None |
+| Verizon 5G Home | None |
 | AT&T Fiber | None |
 | AT&T DSL | 1 TB |
 | Frontier Fiber | None |
@@ -115,8 +115,8 @@ Before signing up, verify:
 | If You Value… | Choose… | Why |
 |--------------|---------|-----|
 | Lowest price | [Optimum](/provider/optimum) ($40) or [T-Mobile](/provider/tmobile-5g) ($50) | Best starting prices |
-| Fastest speeds | [AT&T Fiber](/provider/att) or [Frontier Fiber](/provider/frontier) | Up to 5 Gbps |
-| Best reliability | [Verizon Fios](/provider/verizon) | Consistently top-rated |
+| Fastest speeds | [AT&T Fiber](/provider/att-fiber) or [Frontier Fiber](/provider/frontier) | Up to 5 Gbps |
+| Best no-install setup | [Verizon 5G Home](/provider/verizon) | Plug in and stream — 4-yr price lock |
 | Widest availability | [Spectrum](/provider/spectrum) | 41 states |
 | Easiest setup | [T-Mobile Home Internet](/provider/tmobile-5g) | Plug in and go |
 | Best value (speed/dollar) | [Frontier Fiber](/provider/frontier) | 500 Mbps for $49.99 |

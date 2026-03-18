@@ -87,7 +87,7 @@ The included **T-Mobile 5G Gateway** handles both modem and WiFi router function
 
 ## T-Mobile vs Traditional ISPs
 
-| Feature | [T-Mobile 5G](/provider/tmobile-5g) | [Spectrum Cable](/provider/spectrum) | [AT&T Fiber](/provider/att) | [Frontier Fiber](/provider/frontier) |
+| Feature | [T-Mobile 5G](/provider/tmobile-5g) | [Spectrum Cable](/provider/spectrum) | [AT&T Fiber](/provider/att-fiber) | [Frontier Fiber](/provider/frontier) |
 |---------|------------|----------------|-----------|----------------|
 | Price | $50/mo | $49.99/mo | $55/mo | $49.99/mo |
 | Typical Speed | 72-245 Mbps | 300 Mbps | 300 Mbps | 500 Mbps |

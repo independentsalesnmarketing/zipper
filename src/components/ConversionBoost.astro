@@ -27,7 +27,7 @@
   // ─── Trust Widget: show Trustpilot TrustBox after short delay ───
   setTimeout(() => {
     const badge = document.querySelector('.review-badge');
-    if (badge) (badge as HTMLElement).style.display = 'flex';
+    if (badge) badge.style.display = 'flex';
   }, 4000);
 
   // ─── Scroll-Depth Tracking ───
@@ -47,7 +47,6 @@
         if (typeof gtag !== 'undefined') {
           gtag('event', 'scroll_depth', { event_category: 'engagement', event_label: m + '%' });
         }
-        console.log('[Analytics] Scroll depth:', m + '%');
       }
     });
   }, { passive: true });

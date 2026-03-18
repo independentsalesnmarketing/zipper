@@ -4,9 +4,9 @@
  *
  * A professional sign-up modal that is the PRIMARY conversion path.
  * - Partner-specific branding when opened from a partner card/page
- * - Comprehensive fields: plan, address, email, phone, DOB, install date
+ * - Comprehensive fields: plan, address, email, DOB, install date
  * - Contact consent disclaimer
- * - Calling is secondary, sign-up is primary
+ * - Order and chat are primary
  *
  * Triggers: data-signup-modal, data-signup-provider="slug"
  */
@@ -24,7 +24,6 @@ const partnerData = providers
     slug: p.slug,
     name: p.name,
     logo: p.logo,
-    phone: p.phone,
     plans: p.plans.map(pl => ({
       name: pl.name,
       speed: pl.speed,
@@ -135,10 +134,6 @@ const partnerData = providers
             <label class="su-label" for="su-email">Email Address</label>
             <input id="su-email" name="email" type="email" class="su-input" required placeholder="john@example.com" autocomplete="email" />
           </div>
-          <div class="su-field">
-            <label class="su-label" for="su-phone">Phone Number</label>
-            <input id="su-phone" name="phone" type="tel" class="su-input" required placeholder="(555) 123-4567" autocomplete="tel" />
-          </div>
         </div>
 
         <div class="su-row">
@@ -174,7 +169,7 @@ const partnerData = providers
           <label class="su-checkbox-wrap">
             <input type="checkbox" id="su-consent" name="consent" required />
             <span class="su-checkbox-label">
-              I agree to be contacted by Internet 4 ALL and its partners via phone, email, and SMS regarding internet service options. I understand I can opt out at any time. By submitting, I confirm I am 18 years or older and agree to the <a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.
+              I agree to be contacted by Internet 4 ALL and its partners via email and in-app chat regarding internet service options. I understand I can opt out at any time. By submitting, I confirm I am 18 years or older and agree to the <a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.
             </span>
           </label>
         </div>
@@ -564,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Partner data from server
   interface PartnerPlan { name: string; speed: number; uploadSpeed: number; price: number; regularPrice: number; contract: string; dataCap: string; features: string[]; }
-  interface PartnerInfo { slug: string; name: string; logo: string | null; phone: string; plans: PartnerPlan[]; }
+  interface PartnerInfo { slug: string; name: string; logo: string | null; plans: PartnerPlan[]; }
   const partners: PartnerInfo[] = JSON.parse(modal.dataset.partners || '[]');
 
   let currentStep = 1;
@@ -726,7 +721,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ['Name', `${data.get('first_name')} ${data.get('last_name')}`],
       ['Address', data.get('address') as string],
       ['Email', data.get('email') as string],
-      ['Phone', data.get('phone') as string],
       ['Date of Birth', data.get('dob') as string || 'Not provided'],
       ['Preferred Install', data.get('install_date') as string || 'As soon as possible'],
     ].filter(r => r[1]);
@@ -750,16 +744,16 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('su-next-2')?.addEventListener('click', () => {
     // Validate required fields on step 2
     let valid = true;
-    ['su-fname', 'su-lname', 'su-address', 'su-email', 'su-phone'].forEach(id => {
+    ['su-fname', 'su-lname', 'su-address', 'su-email'].forEach(id => {
       const el = document.getElementById(id) as HTMLInputElement;
       if (!el.value.trim()) { el.classList.add('su-error'); valid = false; } else { el.classList.remove('su-error'); }
     });
     const emailEl = document.getElementById('su-email') as HTMLInputElement;
     if (emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) { emailEl.classList.add('su-error'); valid = false; }
-    const phoneEl = document.getElementById('su-phone') as HTMLInputElement;
-    if (phoneEl.value && !/^[\d\s\-\(\)\+\.]{7,15}$/.test(phoneEl.value.trim())) { phoneEl.classList.add('su-error'); valid = false; }
     const dobEl = document.getElementById('su-dob') as HTMLInputElement;
-    if (dobEl.value) {
+    if (!dobEl.value) {
+      dobEl.classList.add('su-error'); valid = false;
+    } else {
       const dob = new Date(dobEl.value);
       const minAge = new Date();
       minAge.setFullYear(minAge.getFullYear() - 18);
@@ -773,7 +767,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('su-back-3')?.addEventListener('click', () => goToStep(2));
 
   let lastSubmitTime = 0;
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const now = Date.now();
     if (now - lastSubmitTime < 10000) return; // 10-second cooldown
@@ -784,7 +778,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderRef = 'IA-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substring(2, 5).toUpperCase();
     const orderRefEl = document.getElementById('su-order-ref');
     if (orderRefEl) orderRefEl.textContent = 'Order #' + orderRef;
-    // In production, submit to API. For now, show success.
+
+    // Submit to Google Sheet
+    const { submitLead } = await import('@lib/client/submit-lead');
+    const providerSelect = document.getElementById('su-provider') as HTMLSelectElement;
+    const planSelect = document.getElementById('su-plan') as HTMLSelectElement;
+    const ok = await submitLead({
+      form_type: 'signup',
+      order_ref: orderRef,
+      first_name: (document.getElementById('su-fname') as HTMLInputElement).value,
+      last_name: (document.getElementById('su-lname') as HTMLInputElement).value,
+      email: (document.getElementById('su-email') as HTMLInputElement).value,
+      address: (document.getElementById('su-address') as HTMLInputElement).value,
+      provider: providerSelect.options[providerSelect.selectedIndex]?.text || '',
+      plan: planSelect.options[planSelect.selectedIndex]?.text || '',
+      need: (document.getElementById('su-need') as HTMLSelectElement).value,
+      dob: (document.getElementById('su-dob') as HTMLInputElement).value,
+      install_date: (document.getElementById('su-install-date') as HTMLInputElement).value,
+    });
+
+    if (!ok) {
+      alert('Something went wrong while submitting your order. Please try again.');
+      return;
+    }
+
     goToStep(totalSteps + 1);
   });
 

@@ -7,6 +7,7 @@ import { getProvidersByState, formatSpeed, formatPrice, getMinPrice, getMaxSpeed
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import { getCityPages, getNearbyCities, getStateName, getStateSlug, getCitiesInState, type CityData } from '@data/locations';
 import { getStateCensus, formatPercent, formatPopulation } from '@data/census';
+import { buildCityMeta } from '@lib/location-meta';
 import { getZipCoverageSummary } from '@lib/zip-lookup';
 import { zipNeighborhoods } from '@data/neighborhoods';
 import { getNeighborhoodsByState, type NeighborhoodPage } from '@data/neighborhood-pages';
@@ -192,9 +193,9 @@ const productSchemas = providers.slice(0, 8).map(p => ({
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: stateName, url: `https://internet4all.com/internet-providers/${stateSlug}` },
-    { name: cityData.name, url: `https://internet4all.com/internet-providers/${cityData.slug}` },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: stateName, url: `https://internet-4-all.com/internet-providers/${stateSlug}` },
+    { name: cityData.name, url: `https://internet-4-all.com/internet-providers/${cityData.slug}` },
   ]),
   generateFAQSchema(faqs),
   {
@@ -202,14 +203,17 @@ const schemas = [
     '@type': 'WebPage',
     name: `Internet Providers in ${cityData.name}, ${cityData.state}`,
     dateModified: lastUpdated,
-    url: `https://internet4all.com/internet-providers/${cityData.slug}`,
+    url: `https://internet-4-all.com/internet-providers/${cityData.slug}`,
   },
   ...productSchemas,
 ];
+
+const meta = buildCityMeta(`/internet-providers/${cityData.slug}`, cityData.name, cityData.state, stateName);
 ---
 <Base
-  title={`${providers.length} Best Internet Providers in ${cityData.name}, ${stateName} (${year}) — Compare Plans & Prices`}
-  description={`Compare ${providers.length} internet providers in ${cityData.name}, ${stateName}. Speeds to ${formatSpeed(maxSpd)}, plans from ${formatPrice(minPrc)}/mo. ${fiberProviders.length} fiber, ${cableProviders.length} cable${fiveGProviders.length > 0 ? `, ${fiveGProviders.length} 5G` : ''} options. Grade: ${grade}.`}
+  noSuffix
+  title={meta.title}
+  description={meta.description}
   schema={schemas}
 >
 <StickyCallBar text={`Best internet deals in ${cityData.name} — get connected`} />
@@ -708,7 +712,7 @@ const schemas = [
         <strong>4. Bring your own equipment.</strong> Many providers charge $10–15/mo for modem and router rental. Buying your own equipment pays for itself within a year.
       </p>
       <p>
-        <strong>5. Check for low-income programs.</strong> The FCC's Affordable Connectivity Program and provider-specific programs like Spectrum Internet Assist and AT&T Access offer discounted internet to qualifying households in {cityData.name}.
+        <strong>5. Check for low-income programs.</strong> Provider-specific programs like Spectrum Internet Assist, AT&T Access, and FCC Lifeline offer discounted internet to qualifying households in {cityData.name}. <a href="/low-income-internet">See all programs</a>.
       </p>
 
       <h3 style="margin-top:var(--space-lg);">Comparing Fiber vs. Cable vs. 5G in {cityData.name}</h3>
@@ -739,8 +743,8 @@ const schemas = [
       <p style="color:var(--text-secondary);margin-bottom:var(--space-lg);">Several programs help {cityData.name} residents get connected at reduced rates or for free.</p>
       <div class="grid grid-2" style="gap:var(--space-lg);">
         <div>
-          <h4 style="margin-bottom:var(--space-xs);">📋 FCC Affordable Connectivity Program (ACP)</h4>
-          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Eligible households can receive up to $30/mo off internet service ($75/mo on tribal lands). Many {cityData.name} providers participate including {providers.slice(0, 3).map(p => p.name).join(', ')}.</p>
+          <h4 style="margin-bottom:var(--space-xs);">📋 FCC Lifeline Program</h4>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Qualifying low-income households can receive $9.25/mo off internet or phone service. Many {cityData.name} providers participate including {providers.slice(0, 3).map(p => p.name).join(', ')}. <a href="/low-income-internet">Check eligibility</a>.</p>
         </div>
         <div>
           <h4 style="margin-bottom:var(--space-xs);">Lifeline Program</h4>
@@ -1086,13 +1090,6 @@ const schemas = [
       });
     });
 
-    // FAQ accordion
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.faq-item');
-        if (item) item.classList.toggle('open');
-      });
-    });
   });
 </script>
 </Base>

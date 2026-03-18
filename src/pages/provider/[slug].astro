@@ -2,6 +2,7 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
+import CoverageMap from '@components/CoverageMap.astro';
 import { existsSync, readFileSync } from 'node:fs';
 import { getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor, renderStars, stateNames } from '@lib/providers';
 import { getCityPages, getStateSlug } from '@data/locations';
@@ -27,7 +28,7 @@ const year = new Date().getFullYear();
 const keywordFileBySlug: Record<string, string> = {
   spectrum: 'SpectrumKeywords.txt',
   frontier: 'FrontierKeywords.txt',
-  windstream: 'KineticKeywords.txt',
+  kinetic: 'KineticKeywords.txt',
   brightspeed: 'BrightspeedKeywords.txt',
   altafiber: 'AltafiberKeywords.txt',
   'att-fiber': 'At&tFiberKeywords.txt',
@@ -35,7 +36,7 @@ const keywordFileBySlug: Record<string, string> = {
   earthlink: 'EarthlinkKeywords.txt',
   optimum: 'OptimumKeywords.txt',
   'tmobile-fiber': 'T-FiberKeywords.txt',
-  verizon: 'VerizonFiosKeywords.txt',
+  verizon: 'Verizon5GKeywords.txt',
   xfinity: 'XfinityKeywords.txt',
   cox: 'CoxKeywords.txt',
   starlink: 'StarlinkKeywords.txt',
@@ -54,7 +55,7 @@ const keywordFileBySlug: Record<string, string> = {
 const brandTokensBySlug: Record<string, string[]> = {
   spectrum: ['spectrum', 'charter'],
   frontier: ['frontier'],
-  windstream: ['kinetic', 'windstream'],
+  kinetic: ['kinetic', 'windstream'],
   brightspeed: ['brightspeed', 'bright speed'],
   altafiber: ['altafiber', 'cincinnati bell', 'fioptics', 'fi optics'],
   'att-fiber': ['at&t', 'att'],
@@ -62,7 +63,7 @@ const brandTokensBySlug: Record<string, string[]> = {
   earthlink: ['earthlink'],
   optimum: ['optimum', 'altice'],
   'tmobile-fiber': ['t mobile', 'tmobile'],
-  verizon: ['verizon', 'fios'],
+  verizon: ['verizon', '5g home internet', 'verizon 5g', 'verizon home internet'],
   xfinity: ['xfinity', 'comcast', 'xfi'],
   cox: ['cox', 'cox communications'],
   starlink: ['starlink', 'spacex'],
@@ -75,8 +76,11 @@ const brandTokensBySlug: Record<string, string[]> = {
   viasat: ['viasat', 'exede'],
   'tmobile-5g': ['tmobile home internet', 't mobile home internet', '5g home internet'],
   uscellular: ['uscellular', 'us cellular'],
-  geolinks: ['geolinks'],
-};
+  geolinks: ['geolinks'],  'astound': ['astound', 'wave broadband', 'rcn', 'grande communications', 'entouch'],
+  'consolidated-communications': ['consolidated communications', 'consolidated', 'fidium', 'consolidated telephone'],
+  'lumen': ['lumen', 'centurylink', 'century link', 'quantum fiber'],
+  'metronet': ['metronet'],
+  'sparklight': ['sparklight', 'cable one', 'cableone'],};
 
 function getProviderKeywordClusters(slug: string, providerName: string) {
   const keywordFile = keywordFileBySlug[slug];
@@ -115,6 +119,24 @@ const keywordClusters = getProviderKeywordClusters(provider.slug, provider.name)
 const primarySeoPhrase = keywordClusters.longTail[0] || `${provider.name.toLowerCase()} internet plans by address`;
 
 const _kw = [...keywordClusters.shortTail, ...keywordClusters.longTail];
+
+const tileSlugByProvider: Record<string, string> = {
+  'att-fiber':    'att',
+  'frontier':     'frontier',
+  'optimum':      'optimum',
+  'kinetic':      'windstream',
+  'altafiber':    'cincinnati-bell',
+  'spectrum':     'charter',
+  'xfinity':      'xfinity',
+  'cox':          'cox-cable',
+  'google-fiber': 'google-fiber',
+  'mediacom':     'mediacom',
+  'wow':          'wow',
+  'astound':      'rcn',
+  'lumen':        'centurylink',
+};
+const providerTileSlug = tileSlugByProvider[provider.slug] ?? null;
+const hasMap = !!providerTileSlug;
 const kwHasAvailability = _kw.some(t => /availab|zip|address|area|map/i.test(t));
 const kwHasDeals       = _kw.some(t => /deal|new customer|pricing|promo/i.test(t));
 const kwHasGaming      = _kw.some(t => /gaming|streaming|latency/i.test(t));
@@ -160,7 +182,7 @@ const researchHeadingBySlug: Record<string, string> = {
   'wow': 'WOW! (WideOpenWest)',
   'mediacom': 'Mediacom',
   'att-fiber': 'AT&T Fiber',
-  'verizon': 'Verizon Fios',
+  'verizon': 'Verizon 5G Home Internet',
   'frontier': 'Frontier Fiber',
   'google-fiber': 'Google Fiber (GFiber)',
   'ziply': 'Ziply Fiber',
@@ -175,8 +197,13 @@ const researchHeadingBySlug: Record<string, string> = {
   'geolinks': 'GeoLinks',
   'uscellular': 'U.S. Cellular',
   'tmobile-fiber': 'T-Mobile Fiber',
-  'windstream': 'Kinetic by Windstream',
+  'kinetic': 'Kinetic by Windstream',
   'earthlink': 'EarthLink',
+  'astound': 'Astound Broadband',
+  'consolidated-communications': 'Consolidated Communications',
+  'lumen': 'Lumen (CenturyLink)',
+  'metronet': 'Metronet',
+  'sparklight': 'Sparklight (Cable One)',
 };
 
 const researchMd = readFileSync(new URL('../../../ISP_info_March_2026.md', import.meta.url), 'utf-8');
@@ -245,7 +272,7 @@ const brandColors: Record<string, { primary: string; light: string; dark: string
   'att-air': { primary: '#009FDB', light: '#e0f4fc', dark: '#007bad' },
   'tmobile-fiber': { primary: '#E20074', light: '#fde0ef', dark: '#b5005c' },
   // Kinetic by Windstream — purple + teal direction
-  'windstream': { primary: '#6A3FB0', light: '#efe9fb', dark: '#0A8E9A' },
+  'kinetic': { primary: '#6A3FB0', light: '#efe9fb', dark: '#0A8E9A' },
   // Optimum brand palette
   'optimum': { primary: '#F66608', light: '#fff1e6', dark: '#002864' },
   'earthlink': { primary: '#009933', light: '#e0f5e8', dark: '#007526' },
@@ -265,6 +292,16 @@ const brandColors: Record<string, { primary: string; light: string; dark: string
   'geolinks': { primary: '#00AEEF', light: '#e0f5fd', dark: '#0089bd' },
   'uscellular': { primary: '#1A1A6C', light: '#e5e5f2', dark: '#121250' },
   'mediacom': { primary: '#00529B', light: '#e0edf7', dark: '#003d74' },
+  // Astound Broadband — navy blue
+  'astound': { primary: '#1B3C7C', light: '#e5eaf3', dark: '#122a58' },
+  // Consolidated Communications — blue
+  'consolidated-communications': { primary: '#004B8D', light: '#e0eaf4', dark: '#003568' },
+  // Lumen — bold red/black brand
+  'lumen': { primary: '#CC0000', light: '#fce0e0', dark: '#990000' },
+  // Metronet — green
+  'metronet': { primary: '#00A651', light: '#e0f5ec', dark: '#007A3D' },
+  // Sparklight — blue/teal
+  'sparklight': { primary: '#007ABC', light: '#e0f1f9', dark: '#005c8f' },
 };
 const brand = brandColors[provider.slug] || { primary: '#0052FF', light: '#e6eeff', dark: '#003bba' };
 const heroBg = provider.slug === 'brightspeed' ? '#1F1F1F' : brand.primary;
@@ -322,16 +359,16 @@ const faqs = [...baseFaqs, ...keywordFaqs];
 const schemas = [
   generateProductSchema(provider),
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Providers', url: 'https://internet4all.com/providers' },
-    { name: provider.name, url: `https://internet4all.com/provider/${provider.slug}` },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Providers', url: 'https://internet-4-all.com/providers' },
+    { name: provider.name, url: `https://internet-4-all.com/provider/${provider.slug}` },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`${provider.name} Internet Plans, Prices & Reviews (${year})`}
-  description={`${provider.name} offers internet speeds up to ${formatSpeed(maxSpeed)} starting at ${formatPrice(minPrice)}/mo. Compare ${primarySeoPhrase}, check availability by address, and find the best plan for your home.`}
+  title={`${provider.name} Internet Plans & Pricing (${year})`}
+  description={`${provider.name} internet: speeds up to ${formatSpeed(maxSpeed)}, plans from ${formatPrice(minPrice)}/mo. Compare ${primarySeoPhrase}, read reviews, check availability at your address, and sign up for the best deal.`}
   schema={schemas}
 >
   <style define:vars={{ brandPrimary: brand.primary, brandLight: brand.light, brandDark: brand.dark, brandHero: heroBg }}>
@@ -695,6 +732,16 @@ const schemas = [
       <!-- Coverage -->
       <div class="reveal" style="margin-bottom: var(--space-3xl);">
         <h2 style="margin-bottom: var(--space-xl);">{provider.name} Coverage & Availability</h2>
+
+        {hasMap && (
+          <div style="margin-bottom: var(--space-lg);">
+            <CoverageMap preselect={providerTileSlug!} height="440px" />
+            <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin-top: var(--space-sm); text-align: center;">
+              Coverage area shown is approximate. <a href="/coverage-map" style="color: var(--brand-blue);">View all providers on the full coverage map →</a>
+            </p>
+          </div>
+        )}
+
         <div class="card" style="padding: var(--space-xl);">
           <p style="margin-bottom: var(--space-md); line-height: 1.7;">{provider.name} is available in {provider.coverage.includes('Nationwide') ? 'all 50 states across the US, making it one of the most widely available providers.' : `${provider.coverage.length} states across the US.`} {provider.coverage.includes('Nationwide') ? 'Coverage quality and plan availability may vary by location.' : 'Service availability varies by address within covered states.'}</p>
           {!provider.coverage.includes('Nationwide') && (
@@ -704,7 +751,15 @@ const schemas = [
               ))}
             </div>
           )}
-          <p style="font-size: var(--text-sm); color: var(--text-tertiary);">Enter your ZIP code on our <a href="/providers" style="color:var(--brand-blue);">providers page</a> to check exact availability at your address.</p>
+          {provider.isPartner ? (
+            <p style="font-size: var(--text-sm); color: var(--brand-green); font-weight: 600;">
+              ✓ Your area may be covered — <a href="#get-connected" style="color: var(--brand-green);">sign up now to confirm availability at your address →</a>
+            </p>
+          ) : (
+            <p style="font-size: var(--text-sm); color: var(--text-tertiary);">
+              Enter your address to confirm availability, or <a href="/check-availability" style="color: var(--brand-blue);">compare alternative providers at your address →</a>
+            </p>
+          )}
         </div>
       </div>
 

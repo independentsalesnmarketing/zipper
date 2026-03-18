@@ -8,9 +8,9 @@ import { generateBreadcrumbSchema } from '@lib/utils';
 const partners = getPartnerProviders();
 ---
 <Base
-  title="Internet Bill Analyzer — Find Out If You're Overpaying"
-  description="Enter your current internet plan details and we'll show you if you're overpaying. Get personalized savings recommendations from cheaper providers."
-  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Bill Analyzer', url: 'https://internet4all.com/bill-analyzer' }])]}
+  title="Internet Bill Analyzer — Check & Lower Your Rate"
+  description="Check your internet bill and find out if you're overpaying. See current pricing from every provider at your address — find a cheaper plan and save monthly."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet-4-all.com' }, { name: 'Bill Analyzer', url: 'https://internet-4-all.com/bill-analyzer' }])]}
 >
   <section class="section" style="padding-top:var(--space-xl);">
     <div class="container" style="max-width:700px;">
@@ -38,7 +38,7 @@ const partners = getPartnerProviders();
               <option value="frontier">Frontier</option>
               <option value="cox">Cox</option>
               <option value="optimum">Optimum</option>
-              <option value="windstream">Windstream</option>
+              <option value="kinetic">Kinetic by Windstream</option>
               <option value="centurylink">CenturyLink</option>
               <option value="hughesnet">HughesNet</option>
               <option value="viasat">Viasat</option>
@@ -152,6 +152,7 @@ const partners = getPartnerProviders();
         if (plan.speed >= speed && planPrice < price) {
           betterDeals.push({
             provider: p.name,
+            slug: p.slug,
             phone: p.phone,
             plan: plan.name,
             speed: plan.speed,
@@ -223,7 +224,7 @@ const partners = getPartnerProviders();
               <div class="ba-deal-price" style="text-align:right;">
                 <div style="font-size:var(--text-xl);font-weight:900;color:var(--brand-green);">$${d.price.toFixed(2)}<span style="font-size:var(--text-xs);font-weight:400;">/mo</span></div>
                 <div style="font-size:var(--text-sm);color:var(--brand-green);">Save $${d.savings.toFixed(2)}/mo ($${d.annualSavings.toFixed(0)}/yr)</div>
-                <a href="#get-connected" class="btn btn-cta" style="margin-top:var(--space-xs);font-size:var(--text-sm);">Switch Now</a>
+                <a href="#get-connected" class="btn btn-cta" data-signup-provider="${d.slug}" style="margin-top:var(--space-xs);font-size:var(--text-sm);">Switch Now</a>
               </div>
             </div>
           </div>

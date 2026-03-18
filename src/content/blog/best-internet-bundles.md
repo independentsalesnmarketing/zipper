@@ -47,7 +47,7 @@ Let's break it down.
 
 Spectrum's bundle is competitive because it lacks the hidden fees many cable companies pile on. No broadcast fee, no regional sports fee — the price is closer to the actual cost.
 
-### [AT&T](/provider/att) Internet + DirecTV Stream
+### [AT&T](/provider/att-fiber) Internet + DirecTV Stream
 - **Internet**: AT&T Fiber 300 Mbps ($55/mo)
 - **TV**: DirecTV Stream Choice ($89.99/mo)
 - **Combined**: ~$145/mo
@@ -124,7 +124,7 @@ Adding a home phone line to your internet is increasingly rare but still availab
 Before accepting a bundle, calculate internet-only + streaming costs. More often than not, this approach wins.
 
 ### 2. Negotiate at Renewal Time
-When your bundle promo expires, call to negotiate. Say: "I'm considering internet-only with YouTube TV. Can you offer a better TV rate?" Retention departments often have unadvertised deals.
+When your bundle promo expires, contact support to negotiate. Say: "I'm considering internet-only with YouTube TV. Can you offer a better TV rate?" Retention departments often have unadvertised deals.
 
 ### 3. Watch for Hidden Fees
 Traditional TV bundles advertise one price but charge extras. Always ask: "What will my total monthly bill actually be, including ALL fees, taxes, and equipment?"

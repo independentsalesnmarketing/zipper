@@ -59,23 +59,23 @@ const overallWinner = aScore > bScore ? providerA : bScore > aScore ? providerB 
 const faqs = [
   { question: `Is ${providerA.name} or ${providerB.name} better?`, answer: `${overallWinner ? `Overall, ${overallWinner.name} edges ahead based on our analysis.` : `Both ${providerA.name} and ${providerB.name} are strong choices.`} ${speedWinner ? `${speedWinner.name} is faster (${formatSpeed(getMaxSpeed(speedWinner))}).` : 'They match on speed.'} ${priceWinner ? `${priceWinner.name} is cheaper (from ${formatPrice(getMinPrice(priceWinner))}/mo).` : 'They match on price.'} The best choice depends on what's available at your specific address.` },
   { question: `Which is faster — ${providerA.name} or ${providerB.name}?`, answer: `${speedWinner ? `${speedWinner.name} offers faster maximum download speeds at ${formatSpeed(getMaxSpeed(speedWinner))} vs ${formatSpeed(getMaxSpeed(speedWinner === providerA ? providerB : providerA))}.` : `Both offer comparable speeds up to ${formatSpeed(aMaxSpeed)}.`}` },
-  { question: `Which is cheaper — ${providerA.name} or ${providerB.name}?`, answer: `${priceWinner ? `${priceWinner.name} has more affordable plans starting at ${formatPrice(getMinPrice(priceWinner))}/mo compared to ${formatPrice(getMinPrice(priceWinner === providerA ? providerB : providerA))}/mo for ${priceWinner === providerA ? providerB.name : providerA.name}.` : `Both start at similar prices around ${formatPrice(aMinPrice)}/mo.`} Call us for exclusive promotional pricing not listed online.` },
+  { question: `Which is cheaper — ${providerA.name} or ${providerB.name}?`, answer: `${priceWinner ? `${priceWinner.name} has more affordable plans starting at ${formatPrice(getMinPrice(priceWinner))}/mo compared to ${formatPrice(getMinPrice(priceWinner === providerA ? providerB : providerA))}/mo for ${priceWinner === providerA ? providerB.name : providerA.name}.` : `Both start at similar prices around ${formatPrice(aMinPrice)}/mo.`} Use chat or Talk to Agent for exclusive promotional pricing not listed online.` },
   { question: `Can I get both ${providerA.name} and ${providerB.name} at my address?`, answer: `Both ${providerA.name} and ${providerB.name} are available in ${sharedStates.length > 10 ? 'many states' : sharedStates.length + ' states'}${sharedStates.length > 0 ? ', including ' + sharedStates.slice(0, 5).map(s => stateNames[s]).join(', ') : ''}. Enter your ZIP code at the top to check availability at your exact address.` },
   { question: `What type of internet do ${providerA.name} and ${providerB.name} offer?`, answer: `${providerA.name} offers ${providerA.types.map(t => getTypeLabel(t)).join(', ')} internet. ${providerB.name} offers ${providerB.types.map(t => getTypeLabel(t)).join(', ')} internet. ${providerA.types.includes('fiber') || providerB.types.includes('fiber') ? 'Fiber internet provides the fastest and most reliable connection.' : ''}` },
 ];
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Compare', url: 'https://internet4all.com/compare' },
-    { name: `${providerA.name} vs ${providerB.name}`, url: `https://internet4all.com/compare/${providerA.slug}-vs-${providerB.slug}` },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Compare', url: 'https://internet-4-all.com/compare' },
+    { name: `${providerA.name} vs ${providerB.name}`, url: `https://internet-4-all.com/compare/${providerA.slug}-vs-${providerB.slug}` },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`${providerA.name} vs ${providerB.name} (${year}) — Speed, Price & Plans Compared`}
-  description={`${providerA.name} vs ${providerB.name}: which is better? Compare speeds (${formatSpeed(aMaxSpeed)} vs ${formatSpeed(bMaxSpeed)}), prices ($${aMinPrice} vs $${bMinPrice}/mo), ratings, coverage & plans side by side.`}
+  title={`${providerA.name} vs ${providerB.name} — Which Is Better? (${year})`}
+  description={`${providerA.name} vs ${providerB.name}: compare speeds (${formatSpeed(aMaxSpeed)} vs ${formatSpeed(bMaxSpeed)}), prices ($${aMinPrice} vs $${bMinPrice}/mo), ratings & plans side by side. See which provider wins for your needs.`}
   schema={schemas}
 >
   <section class="section" style="padding-top: var(--space-xl);">

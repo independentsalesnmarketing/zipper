@@ -15,7 +15,7 @@ const federalPrograms = [
     discount: '$9.25/mo off',
     eligibility: 'Income ≤135% Federal Poverty Level, or participation in SNAP, Medicaid, SSI, Federal Public Housing, Veterans Pension/Survivors Benefit',
     notes: 'Maximum 1 benefit per household. Available nationwide through participating carriers. Enhanced benefit ($25/mo) available for Tribal lands residents.',
-    apply: 'lifelinesupport.org or call 888-641-8722',
+    apply: 'lifelinesupport.org',
     badge: 'Federal Program',
     color: 'var(--brand-blue)',
     active: true,
@@ -167,24 +167,24 @@ const faqs = [
 
 const schema = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Low Income Internet', url: 'https://internet4all.com/low-income-internet' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Low Income Internet', url: 'https://internet-4-all.com/low-income-internet' },
   ]),
   generateArticleSchema({
     title: 'Low Income Internet Providers & Programs — Complete Guide (2026)',
     description: 'Every government and provider low-income internet program in one place: Lifeline, ACP history, Xfinity Essentials, AT&T Access, Spectrum Assist, and more.',
-    url: 'https://internet4all.com/low-income-internet',
+    url: 'https://internet-4-all.com/low-income-internet',
     datePublished: '2026-03-01',
-    dateModified: '2026-03-05',
+    dateModified: new Date().toISOString().split('T')[0],
     authorName: 'Internet 4 ALL Research Team',
-    authorUrl: 'https://internet4all.com/methodology',
+    authorUrl: 'https://internet-4-all.com/methodology',
   }),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`Low Income Internet Programs — Complete Guide to Free & Discounted Internet (${year})`}
-  description={`Every low income internet provider program in one place: FCC Lifeline, ACP alternatives, Xfinity Essentials, AT&T Access, Spectrum Assist, Cox Connect2Compete, BEAD, and state programs. Apply today.`}
+  title="Free & Low-Income Internet Plans Near You"
+  description="Find free and low-cost internet plans for qualifying households. Discounted providers and free options at your address — check what you qualify for right now."
   schema={schema}
 >
   <!-- Hero -->
@@ -203,7 +203,7 @@ const schema = [
         Many households can get internet for <strong>under $10/month</strong> by stacking programs.
       </p>
       <div class="reveal" style="margin-top:var(--space-xl);display:flex;gap:var(--space-md);justify-content:center;flex-wrap:wrap;">
-        <a href="#programs" class="btn btn-primary btn-lg">See All Programs ↓</a>
+        <a href="#federal-programs" class="btn btn-primary btn-lg">See All Programs ↓</a>
         <a href="#get-connected" class="btn btn-cta btn-lg">Get Help Applying — Free</a>
       </div>
     </div>
@@ -314,7 +314,7 @@ const schema = [
       </div>
       <div class="text-center reveal" style="margin-top:var(--space-2xl);">
         <a href="#get-connected" class="btn btn-cta btn-lg">Need Help? We'll Walk You Through It</a>
-        <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">Free · No obligation · Available Mon–Fri 8am–9pm ET</p>
+        <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">Free · No obligation · Available 24/7</p>
       </div>
     </div>
   </section>
@@ -486,16 +486,7 @@ const schema = [
     </div>
   </section>
 
-  <StickyCallBar text="Get help finding the right low-income internet program — free call, no obligation." />
+  <StickyCallBar text="Get help finding the right low-income internet program — free, no obligation." />
 </Base>
 
-<script>
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const isOpen = item?.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item?.classList.add('open');
-    });
-  });
-</script>
+

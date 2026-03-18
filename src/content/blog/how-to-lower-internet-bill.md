@@ -14,9 +14,9 @@ The average U.S. household pays **$75/mo** for internet service — but comparab
 
 Here are 10 strategies to bring your bill down to what you should be paying.
 
-## 1. Call and Negotiate (Potential Savings: $10-40/mo)
+## 1. Contact Support and Negotiate (Potential Savings: $10-40/mo)
 
-This is the single most effective way to lower your bill. Call your provider and use this script:
+This is the single most effective way to lower your bill. Contact your provider support and use this script:
 
 **"Hi, I've been a customer for [X months/years]. I noticed my bill has gone up to [$current price] and I'm seeing offers from [competitor] for [$competitor price]. I'd like to see if there are any promotions or loyalty discounts available to keep me as a customer."**
 
@@ -25,9 +25,9 @@ This is the single most effective way to lower your bill. Call your provider and
 - **Be polite but firm** — You're not threatening — you're simply price-shopping
 - **Have a competitor offer ready** — Know exactly what T-Mobile, Frontier, or another competitor charges
 - **Be willing to switch** — The best deals come when you genuinely might leave
-- **Call at the end of your billing cycle** — Less urgency = reps are more willing to help
+- **Reach out at the end of your billing cycle** — Less urgency = reps are more willing to help
 
-**Success rate**: About 70% of callers who ask for a discount get one. Average savings: $15-30/mo.
+**Success rate**: About 70% of customers who ask for a discount get one. Average savings: $15-30/mo.
 
 ## 2. Drop the Equipment Rental (Savings: $5-20/mo)
 
@@ -41,7 +41,7 @@ Most providers charge $5-15/mo for a WiFi router and sometimes $10-15/mo for a m
 
 After the break-even point, you save every month. Plus, purchased equipment is often better quality than rental units.
 
-**Note**: Fiber customers (AT&T, Verizon Fios) typically must use the provider's gateway. Cable customers have the most flexibility with their own equipment.
+**Note**: Fiber customers (AT&T Fiber, Frontier Fiber) typically must use the provider's gateway. Cable customers have the most flexibility with their own equipment.
 
 ## 3. Downgrade Your Speed Plan (Savings: $10-40/mo)
 
@@ -65,7 +65,7 @@ If you have a TV+internet bundle, calculate the actual cost of the TV portion �
 | Internet only + YouTube TV | $123-140/mo |
 | Internet only + streaming mix | $70-100/mo |
 
-**How to split**: Call and ask: "I'd like to keep internet only and remove TV. What's my internet-only rate?"
+**How to split**: Contact support and ask: "I'd like to keep internet only and remove TV. What's my internet-only rate?"
 
 ## 5. Switch Providers (Savings: $10-30/mo)
 
@@ -76,7 +76,7 @@ New customer promotions are real money. If your rate has increased post-promo an
 3. Return old equipment
 4. Enjoy lower pricing for 12+ months
 
-With no-contract plans from [Spectrum](/provider/spectrum), [Frontier](/provider/frontier), [Verizon](/provider/verizon), [AT&T](/provider/att), and [T-Mobile](/provider/tmobile-5g), switching is painless.
+With no-contract plans from [Spectrum](/provider/spectrum), [Frontier](/provider/frontier), [Verizon](/provider/verizon), [AT&T](/provider/att-fiber), and [T-Mobile](/provider/tmobile-5g), switching is painless.
 
 ## 6. Set Up Autopay (Savings: $5-10/mo)
 
@@ -85,8 +85,8 @@ Most providers discount $5-10/mo for enrolling in automatic payments:
 | Provider | Autopay Discount |
 |----------|-----------------|
 | [Spectrum](/provider/spectrum) | $5/mo |
-| [AT&T](/provider/att) | $5/mo |
-| [Verizon Fios](/provider/verizon) | $10/mo |
+| [AT&T](/provider/att-fiber) | $5/mo |
+| [Verizon 5G Home](/provider/verizon) | $5/mo |
 | [Frontier](/provider/frontier) | $5/mo |
 | [Optimum](/provider/optimum) | $5/mo |
 
@@ -123,7 +123,7 @@ Go through your bill line by line. Common unnecessary charges:
 - **Static IP address**: $15-20/mo (you don't need this for home use)
 - **Premium tech support**: $10-15/mo (search online for free help)
 
-Call and remove any add-ons you don't recognize or use.
+Contact support and remove any add-ons you don't recognize or use.
 
 ## 10. Time Your Purchase Right
 
@@ -137,7 +137,7 @@ Internet deals follow patterns:
 
 | Strategy | Effort | Savings | How Often |
 |----------|--------|---------|-----------|
-| Negotiate by phone | 30 min | $10-40/mo | Annually |
+| Negotiate with support | 30 min | $10-40/mo | Annually |
 | Buy own equipment | 1 hour | $5-20/mo | One-time |
 | Downgrade speed | 5 min | $10-40/mo | One-time |
 | Drop TV bundle | 10 min | $30-80/mo | One-time |

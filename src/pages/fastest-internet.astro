@@ -38,20 +38,20 @@ const faqs = [
   { question: 'Is upload speed important?', answer: 'Yes, increasingly so. Video calls, cloud backups, uploading content, live streaming, and working from home all depend on upload speed. Fiber offers symmetrical upload (as fast as download). Cable upload is typically 10-35 Mbps. If you work from home or create content, prioritize upload speed.' },
   { question: 'What is the fastest type of internet?', answer: 'Fiber optic is the fastest, with speeds up to 10 Gbps (consumer plans up to 5 Gbps). Cable maxes out at ~2 Gbps. 5G reaches up to 1 Gbps. DSL tops out at ~100 Mbps. Satellite (Starlink) reaches ~500 Mbps. For the absolute fastest connection, fiber is the answer.' },
   { question: 'Why is my internet slower than advertised?', answer: 'Common reasons: 1) WiFi vs wired — WiFi is always slower. 2) Network congestion during peak hours (cable). 3) Outdated equipment. 4) Distance from router. 5) ISP throttling. 6) Too many devices. Run a speed test wired directly to your modem for the most accurate result.' },
-  { question: `What is the fastest internet for gaming?`, answer: `For gaming, latency matters more than raw speed. Fiber provides the best gaming experience: 3-10ms latency, symmetrical speeds, and no congestion. For the fastest gaming internet, choose Verizon Fios, AT&T Fiber, or Frontier Fiber. Gigabit plans aren't necessary for gaming — 100-300 Mbps is plenty — but low latency is critical.` },
+  { question: `What is the fastest internet for gaming?`, answer: `For gaming, latency matters more than raw speed. Fiber provides the best gaming experience: 3-10ms latency, symmetrical speeds, and no congestion. For the fastest gaming internet, choose AT&T Fiber, Frontier Fiber, or Brightspeed Fiber. Gigabit plans aren't necessary for gaming — 100-300 Mbps is plenty — but low latency is critical.` },
 ];
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Fastest Internet', url: 'https://internet4all.com/fastest-internet' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Fastest Internet', url: 'https://internet-4-all.com/fastest-internet' },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`Fastest Internet Providers in ${year} — Speeds Up to ${formatSpeed(fastestSpeed)}`}
-  description={`Compare the fastest internet providers in ${year}. Speeds up to ${formatSpeed(fastestSpeed)} from top providers. See gigabit, multi-gig, and fiber plans ranked by speed.`}
+  title="Fastest Internet Near Me — Highest Speed ISPs"
+  description="Find the fastest internet in your area — fiber, cable, and 5G ranked by max download speed. See the highest speed providers available at your address now."
   schema={schemas}
 >
   <section class="section" style="padding-top: var(--space-xl);">

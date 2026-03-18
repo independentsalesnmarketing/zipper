@@ -47,7 +47,7 @@ Optimum (owned by Altice USA) serves parts of **New York, New Jersey, and Connec
 - **8 Gbps** download / 8 Gbps upload
 - Fiber only — fastest residential tier in the U.S.
 
-**The $40/mo starting price** makes Optimum one of the cheapest entry points in the Northeast, undercutting Verizon Fios ($49.99) and AT&T Fiber ($55) at the 300 Mbps tier.
+**The $25/mo starting price** makes Optimum one of the cheapest entry points in the Northeast, undercutting AT&T Fiber at the 300 Mbps tier.
 
 ## Fiber vs Cable: Check Your Address
 
@@ -99,7 +99,7 @@ Fiber consistently outperforms cable, especially during prime-time hours when ca
 | Provider | Entry Price | Entry Speed | Max Speed | Upload |
 |----------|-----------|------------|-----------|--------|
 | **[Optimum Fiber](/provider/optimum)** | $40/mo | 300/300 | 8 Gbps | Symm. |
-| [Verizon Fios](/provider/verizon) | $49.99/mo | 300/300 | 2 Gbps | Symm. |
+| [Verizon 5G Home](/provider/verizon) | $50/mo | 100–300 Mbps | 1 Gbps (Plus) | Up to 100 Mbps |
 | [Spectrum](/provider/spectrum) | $49.99/mo | 300/10 | 1 Gbps | 35 Mbps |
 | [Frontier Fiber](/provider/frontier) | $49.99/mo | 500/500 | 5 Gbps | Symm. |
 
@@ -113,7 +113,7 @@ In the Northeast market, Optimum Fiber offers the best price-to-speed ratio at t
 - Households that want an 8 Gbps future-proof option
 
 **Consider alternatives if:**
-- You value customer service above all else (Verizon Fios rates higher)
+- You need the absolute fastest upload speeds (AT&T Fiber or Frontier Fiber offer symmetrical speeds)
 - Only Optimum cable (not fiber) is available and you need fast upload
 - You're outside the NY/NJ/CT service area
 
@@ -132,4 +132,4 @@ In the Northeast market, Optimum Fiber offers the best price-to-speed ratio at t
 
 Optimum serves select areas in New York, New Jersey, and Connecticut. Use our [availability checker](/check-availability) to see if Optimum Fiber or Cable is available at your address, or [compare Northeast providers](/check-availability) in your area.
 
-**Related guides:** [Verizon Fios Review](/blog/verizon-fios-review) · [Cheapest Internet Providers](/blog/cheapest-internet-providers) · [Fiber vs Cable Internet](/blog/fiber-vs-cable-internet)
+**Related guides:** [Verizon 5G Home Review](/blog/verizon-fios-review) · [Cheapest Internet Providers](/blog/cheapest-internet-providers) · [Fiber vs Cable Internet](/blog/fiber-vs-cable-internet)

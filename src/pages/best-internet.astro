@@ -21,13 +21,13 @@ const topPick = rankedProviders[0];
 const partners = rankedProviders.filter(p => p.isPartner);
 
 const categories = [
-  { title: 'Best Overall', icon: '🏆', provider: partners[0], reason: `Top-rated with ${formatSpeed(getMaxSpeed(partners[0]))} speeds and excellent customer satisfaction.` },
-  { title: 'Best Value', icon: '💰', provider: partners.find(p => getMinPrice(p) <= 40 && getMaxSpeed(p) >= 300) || partners[1], reason: 'Best balance of speed, features, and price.' },
+  { title: 'Best Overall', icon: '🏆', provider: partners[0], reason: `Top-rated with ${partners[0] ? formatSpeed(getMaxSpeed(partners[0])) : 'top'} speeds and excellent customer satisfaction.` },
+  { title: 'Best Value', icon: '💰', provider: partners.find(p => getMinPrice(p) <= 40 && getMaxSpeed(p) >= 300) || partners[1] || partners[0], reason: 'Best balance of speed, features, and price.' },
   { title: 'Best for Speed', icon: '⚡', provider: partners.reduce((a, b) => getMaxSpeed(a) > getMaxSpeed(b) ? a : b), reason: `Fastest available speeds up to ${formatSpeed(getMaxSpeed(partners.reduce((a, b) => getMaxSpeed(a) > getMaxSpeed(b) ? a : b)))}.` },
-  { title: 'Best for Rural', icon: '🌾', provider: partners.find(p => p.coverage.includes('Nationwide') && p.types.includes('satellite')) || partners.find(p => p.coverage.includes('Nationwide')) || partners[3], reason: 'Available virtually everywhere, including remote areas.' },
-  { title: 'Best No Contract', icon: '🔓', provider: partners.find(p => p.plans.every(plan => plan.contract === 'None') && getMaxSpeed(p) >= 300) || partners[2], reason: 'All plans are month-to-month with no early termination fees.' },
+  { title: 'Best for Rural', icon: '🌾', provider: partners.find(p => p.coverage.includes('Nationwide') && p.types.includes('satellite')) || partners.find(p => p.coverage.includes('Nationwide')) || partners[partners.length - 1], reason: 'Available virtually everywhere, including remote areas.' },
+  { title: 'Best No Contract', icon: '🔓', provider: partners.find(p => p.plans.every(plan => plan.contract === 'None') && getMaxSpeed(p) >= 300) || partners[2] || partners[0], reason: 'All plans are month-to-month with no early termination fees.' },
   { title: 'Best Budget', icon: '🏷️', provider: partners.reduce((a, b) => getMinPrice(a) < getMinPrice(b) ? a : b), reason: `Most affordable plans starting at ${formatPrice(getMinPrice(partners.reduce((a, b) => getMinPrice(a) < getMinPrice(b) ? a : b)))}/mo.` },
-];
+].filter(c => c.provider);
 
 const faqs = [
   { question: `What is the best internet provider in ${year}?`, answer: `Based on our analysis of speed, price, reliability, coverage, and customer satisfaction, ${topPick.name} ranks as the best overall internet provider in ${year}. However, the best provider for you depends on your address, budget, and needs. Sign up above for a personalized recommendation.` },
@@ -40,15 +40,15 @@ const faqs = [
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Best Internet Providers', url: 'https://internet4all.com/best-internet' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Best Internet Providers', url: 'https://internet-4-all.com/best-internet' },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`Best Internet Providers of ${year} — Expert Rankings & Reviews`}
-  description={`Compare the best internet providers in ${year}. Expert rankings of ${rankedProviders.length} providers by speed, price, reliability, and customer satisfaction. Updated ${month} ${year}.`}
+  title="Best Internet Provider in My Area — Top ISPs Ranked"
+  description="Find the best internet provider in your area. Top-rated home internet providers ranked by speed, reliability, and price. Search by ZIP to check availability."
   schema={schemas}
 >
   <section class="section" style="padding-top: var(--space-xl);">

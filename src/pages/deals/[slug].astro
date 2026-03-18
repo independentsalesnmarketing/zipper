@@ -33,16 +33,16 @@ const faqs = [
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Deals', url: 'https://internet4all.com/deals' },
-    { name: `${provider.name} Deals`, url: `https://internet4all.com/deals/${provider.slug}` },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Deals', url: 'https://internet-4-all.com/deals' },
+    { name: `${provider.name} Deals`, url: `https://internet-4-all.com/deals/${provider.slug}` },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`${provider.name} Deals & Promotions (${month} ${year}) — Save Up to $${savingsEstimate}/mo`}
-  description={`Exclusive ${provider.name} deals for ${month} ${year}. Plans from ${formatPrice(minPrice)}/mo, speeds up to ${formatSpeed(maxSpeed)}. Free installation available. Call for promotions you won't find online.`}
+  title={`${provider.name} Deals — ${month} ${year} Promotions`}
+  description={`${provider.name} deals & promotions for ${month} ${year}: plans from ${formatPrice(minPrice)}/mo, speeds to ${formatSpeed(maxSpeed)}. Save up to $${savingsEstimate}/mo with exclusive offers. Free install available.`}
   schema={schemas}
 >
   <section class="section" style="padding-top: var(--space-xl);">
@@ -127,7 +127,7 @@ const schemas = [
         </div>
       </div>
 
-      <!-- Why Call Us -->
+      <!-- Why Choose Us -->
       <div class="reveal" style="margin-bottom: var(--space-3xl);">
         <h2 style="margin-bottom: var(--space-xl);">Why Get {provider.name} Through Us?</h2>
         <div class="grid grid-3">

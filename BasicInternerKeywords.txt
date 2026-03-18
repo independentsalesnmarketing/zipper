@@ -1,0 +1,698 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+internet speed test	USD	5000000	0%	0%	Low	1	0.03	2.98
+speed test	USD	5000000	0%	0%	Low	1	0.02	3.26
+internet	USD	500000	0%	0%	Medium	42	6.26	25.57
+spectrum internet	USD	500000	0%	0%	Medium	51	3.00	10.78
+internet providers near me	USD	500000	0%	-90%	High	73	8.06	26.71
+xfinity internet	USD	500000	0%	0%	Medium	49	3.17	21.71
+tmobile home internet	USD	500000	0%	0%	Medium	46	2.99	301.10
+comcast xfinity	USD	500000	-90%	-90%	Medium	41	1.84	11.88
+verizon home internet	USD	500000	-90%	-90%	Medium	38	2.74	10.17
+t mobile internet	USD	500000	0%	0%	Medium	52	2.66	320.81
+att fiber	USD	500000	0%	0%	Medium	40	3.11	9.27
+optimum internet	USD	500000	0%	0%	Medium	65	1.55	15.35
+xfinity internet plans	USD	500000	0%	0%	Low	12	2.34	14.05
+starlink internet	USD	500000	0%	0%	High	97	0.25	5.68
+high speed internet	USD	500000	0%	900%	Low	1	5.02	20.70
+comcast internet plans	USD	500000	0%	0%	Low	12	2.34	14.05
+spectrum internet plans	USD	500000	0%	900%	Low	13	2.71	9.94
+fiber optic internet	USD	500000	900%	900%	Low	11	4.49	17.60
+internet companies near me	USD	500000	0%	-90%	High	73	8.06	26.71
+att fiber internet	USD	500000	0%	900%	Low	14	2.84	9.73
+wifi speed test	USD	500000	0%	0%	Low	4	0.04	6.14
+isp near me	USD	500000	0%	-90%	High	73	8.06	26.71
+test my internet speed	USD	500000	0%	0%	Low	6	0.04	5.42
+googlefiber	USD	500000	0%	0%	Low	29	6.04	15.00
+internet starlink	USD	500000	0%	0%	High	97	0.25	5.68
+star link	USD	500000	0%	0%	High	84	0.20	2.46
+at & t fiber	USD	500000	0%	0%	Medium	40	3.11	9.27
+google speed test	USD	500000	0%	0%	Low	0	0.27	9.66
+speed	USD	500000	0%	0%	Low	0	3.27	12.75
+xfinity speed test	USD	500000	0%	-90%	Low	0	5.70	30.37
+speed test comcast	USD	500000	0%	-90%	Low	0	5.70	30.37
+fiber internet	USD	50000	0%	0%	Medium	35	5.68	21.32
+internet providers	USD	50000	0%	0%	Medium	58	7.17	25.39
+home internet	USD	50000	0%	0%	High	82	9.03	32.58
+internet providers in my area	USD	50000	0%	0%	High	81	6.19	23.69
+comcast internet	USD	50000	0%	0%	Medium	52	3.20	19.03
+broadband	USD	50000	0%	0%	Low	22	3.40	14.00
+affordable connectivity program	USD	50000	0%	-90%	Medium	52	2.10	12.48
+internet near me	USD	50000	0%	0%	High	78	9.70	36.04
+wifi near me	USD	50000	0%	0%	Medium	59	10.49	47.35
+5g home internet	USD	50000	0%	0%	Low	23	3.44	13.64
+brightspeed internet	USD	50000	0%	0%	Medium	66	2.56	8.87
+home internet providers	USD	50000	0%	0%	Medium	58	7.25	26.34
+centurylink internet	USD	50000	0%	0%	Medium	47	1.82	11.88
+satellite internet	USD	50000	0%	0%	Medium	57	2.35	12.69
+internet in my area	USD	50000	0%	-90%	High	85	6.57	24.58
+cheap internet	USD	50000	0%	0%	High	81	6.09	21.13
+verizon internet plans	USD	50000	0%	0%	Medium	35	2.17	11.55
+fiber internet in my area	USD	50000	0%	0%	High	82	4.52	19.52
+best internet provider	USD	50000	0%	-90%	High	70	4.85	18.98
+xfinity wifi	USD	50000	0%	0%	Medium	48	3.79	28.38
+fios internet	USD	50000	0%	0%	Medium	52	3.45	15.63
+internet plans	USD	50000	900%	900%	Low	33	5.42	19.62
+business internet	USD	50000	0%	-90%	Medium	56	28.94	77.00
+wifi providers	USD	50000	0%	-90%	High	77	8.86	32.42
+att home internet	USD	50000	0%	0%	Medium	48	2.72	12.18
+spectrum wifi	USD	50000	0%	0%	Medium	53	2.85	12.78
+cheap wifi	USD	50000	0%	0%	High	82	7.44	28.56
+cox wifi	USD	50000	0%	0%	Medium	57	2.49	20.91
+earthlink internet	USD	50000	0%	0%	Medium	56	2.15	11.99
+windstream internet	USD	50000	0%	0%	Medium	48	3.00	10.83
+home wifi	USD	50000	0%	0%	High	77	8.61	37.13
+hughesnet internet	USD	50000	0%	-90%	Medium	50	4.00	17.98
+best internet provider in my area	USD	50000	0%	0%	High	83	5.83	20.74
+astound broadband	USD	50000	0%	0%	Low	29	5.52	59.92
+wifi services near me	USD	50000	0%	-90%	High	88	12.00	47.37
+at&t internet plans	USD	50000	0%	0%	Low	25	2.20	8.80
+verizon wifi	USD	50000	0%	0%	Medium	45	2.89	14.00
+wifi providers near me	USD	50000	0%	-90%	High	76	10.00	35.91
+sparklight internet	USD	50000	0%	0%	Medium	53	3.44	9.48
+dsl	USD	50000	0%	0%	Low	2	4.25	20.00
+breezeline internet	USD	50000	0%	0%	Medium	44	2.93	26.65
+xfinity internet deals	USD	50000	0%	0%	Low	15	2.97	18.39
+charter internet	USD	50000	0%	-90%	Medium	56	3.15	12.78
+free internet	USD	50000	-90%	-90%	Medium	56	2.75	12.75
+verizon home internet plans	USD	50000	0%	0%	Low	25	2.44	12.81
+internet companies	USD	50000	0%	-90%	Medium	65	7.33	26.07
+att fiber availability	USD	50000	0%	0%	Low	29	1.86	8.51
+cox communication	USD	50000	0%	0%	Low	33	0.76	7.46
+xfinity plans	USD	50000	0%	0%	Medium	41	3.03	13.95
+xfinity wifi plans	USD	50000	0%	0%	Low	29	3.10	17.57
+kinetic internet	USD	50000	0%	0%	Medium	56	3.00	11.32
+verizon 5g home internet	USD	50000	0%	0%	Low	18	2.22	7.95
+xfinity deals	USD	50000	0%	0%	Medium	46	3.31	14.78
+broadband internet	USD	50000	0%	0%	Low	30	3.29	14.38
+t mobile wifi	USD	50000	0%	0%	Medium	55	3.03	283.29
+verizon fios internet	USD	50000	0%	0%	Low	5	5.71	34.53
+cable companies	USD	50000	900%	0%	Medium	37	3.62	16.88
+free wifi	USD	50000	0%	0%	Medium	42	1.99	12.75
+isp in my area	USD	50000	0%	0%	High	81	6.19	23.69
+mediacom internet	USD	50000	-90%	-90%	Medium	58	3.00	10.66
+satellite internet providers	USD	50000	0%	0%	Low	24	2.39	12.80
+astound internet	USD	50000	0%	0%	Medium	58	1.89	20.12
+at&t wifi plans	USD	50000	0%	0%	Medium	36	2.63	12.77
+portable wifi	USD	50000	0%	0%	High	100	0.92	7.30
+metronet internet	USD	50000	0%	-90%	Medium	43	3.00	13.26
+xfinity cable packages	USD	50000	0%	0%	Low	30	1.30	9.82
+xfinity home internet	USD	50000	0%	0%	Medium	45	3.15	20.18
+cox internet plans	USD	50000	0%	0%	Low	19	1.13	9.05
+t mobile 5g home internet	USD	50000	0%	0%	Low	11	2.84	330.31
+isp	USD	50000	0%	0%	Low	10	4.74	20.00
+google internet	USD	50000	0%	-90%	Medium	42	2.74	15.00
+tds internet	USD	50000	0%	0%	Medium	51	1.50	8.59
+frontier wifi	USD	50000	0%	0%	Medium	50	2.90	18.04
+fidium fiber	USD	50000	0%	0%	Medium	61	2.20	23.13
+internet essentials	USD	50000	0%	0%	Medium	43	3.31	14.03
+tmobile wifi	USD	50000	0%	0%	Medium	55	3.03	283.29
+att cable	USD	50000	0%	-90%	Medium	52	1.59	5.85
+t mobile hotspot	USD	50000	0%	0%	High	99	0.93	4.95
+mobile hotspot device	USD	50000	0%	0%	High	100	1.18	7.08
+frontier internet plans	USD	50000	0%	0%	Low	27	0.89	19.41
+wifi hotspot	USD	50000	0%	0%	High	77	2.21	9.94
+cable internet	USD	50000	-90%	0%	Low	26	4.56	16.25
+xfinity prepaid internet	USD	50000	0%	0%	Low	16	2.47	10.00
+spectrum deals	USD	50000	-90%	-90%	Medium	54	2.57	8.83
+optimum internet plans	USD	50000	0%	0%	Low	30	2.00	103.79
+free wifi near me	USD	50000	0%	0%	Low	17	2.55	13.99
+portable wifi hotspot	USD	50000	0%	0%	High	93	1.06	6.96
+xfinity hotspot	USD	50000	0%	0%	Low	7	2.53	11.49
+att internet availability	USD	50000	0%	-90%	Low	21	2.51	12.00
+starlink internet plans	USD	50000	0%	0%	Low	27	0.17	5.12
+spectrum internet prices	USD	50000	0%	0%	Medium	50	2.36	9.94
+vexus fiber	USD	50000	-90%	-90%	Low	24	2.63	10.15
+spectrum fiber	USD	50000	0%	900%	Medium	57	2.85	9.94
+google fiber internet	USD	50000	0%	900%	Low	12	2.36	15.00
+point broadband	USD	50000	0%	0%	Low	12	1.89	12.82
+speedtest spectrum	USD	50000	0%	0%	Low	14	8.28	13.77
+frontier fiber internet	USD	50000	0%	900%	Medium	35	0.89	24.03
+internet test	USD	50000	0%	0%	Low	3	0.02	4.49
+portable hotspot	USD	50000	0%	0%	High	89	0.96	7.87
+at&t fiber in my area	USD	50000	0%	-90%	Medium	43	2.05	10.67
+t mobile internet plans	USD	50000	0%	0%	Medium	42	1.86	287.40
+wifi speed	USD	50000	0%	0%	Low	7	0.08	7.69
+frontier fiber optic internet	USD	50000	0%	900%	Medium	35	0.89	24.03
+wifi test	USD	50000	-90%	0%	Low	7	0.02	2.51
+my internet speed	USD	50000	0%	0%	Low	9	0.05	6.00
+frontier fiber optic	USD	50000	0%	0%	Medium	42	0.89	27.71
+internet fiber in my area	USD	50000	0%	0%	High	82	4.52	19.52
+verizon fiber internet	USD	50000	0%	0%	Low	13	2.87	19.57
+fiber internet providers	USD	50000	0%	900%	Low	5	5.00	20.34
+xfinity essentials	USD	50000	0%	0%	Low	26	4.88	20.40
+starlink satellite internet	USD	50000	0%	900%	Low	21	0.28	6.09
+starlink wifi	USD	50000	0%	900%	High	91	0.28	8.01
+network speed test	USD	50000	0%	0%	Low	2	0.03	4.02
+google fiber speed test	USD	50000	0%	0%	Low	2	8.75	15.00
+mbps	USD	50000	0%	0%	Low	4	1.71	17.65
+xfinity internet essentials	USD	50000	0%	0%	Low	9	4.08	18.17
+internet speed test free	USD	50000	0%	0%	Low	6	0.24	5.15
+test wifi speed	USD	50000	0%	0%	Low	9	0.03	3.82
+starlink cost	USD	50000	0%	0%	Medium	52	0.08	1.89
+network speed	USD	50000	0%	0%	Low	4	0.04	8.10
+bluestream fiber	USD	50000	0%	0%	Low	23	1.21	8.06
+att speedtest	USD	50000	0%	0%	Low	0	0.01	0.01
+internet connection test	USD	50000	0%	0%	Low	6	0.93	7.06
+bandwidth test	USD	50000	0%	0%	Low	2	0.03	5.05
+provider internet	USD	50000	0%	0%	Medium	58	7.17	25.39
+internet speed test google	USD	50000	0%	0%	Low	1	0.04	4.31
+starlink price	USD	50000	0%	0%	Medium	38	0.05	0.90
+t mobile fiber	USD	50000	0%	900%	Medium	34	4.20	605.62
+fiber optic internet providers	USD	50000	0%	900%	Low	2	4.51	23.76
+fast speed test	USD	50000	0%	0%	Low	2	0.04	2.31
+dsl speed test	USD	50000	-90%	-90%	Low	2	0.05	6.72
+test my speed	USD	50000	0%	0%	Low	2	0.03	6.33
+isp internet	USD	50000	0%	0%	Low	32	6.89	23.92
+starlink speed	USD	50000	0%	-90%	Low	15	0.13	5.87
+test my internet	USD	50000	0%	0%	Low	5	0.03	6.25
+verizon speed test	USD	50000	0%	0%	Low	5	10.04	14.16
+web speed test	USD	50000	0%	0%	Low	21	2.00	10.04
+fiberwire internet	USD	50000	0%	0%	Medium	35	5.68	21.32
+fiber internet companies	USD	50000	0%	900%	Low	5	5.00	20.34
+speakeasy speed test	USD	50000	0%	0%	Low	1	0.03	5.20
+t mobile fiber internet	USD	50000	0%	900%	Medium	41	2.34	524.48
+fiber isp	USD	50000	0%	900%	Low	6	5.55	23.45
+fiberglass internet	USD	50000	0%	0%	Medium	35	5.68	21.32
+spectrum internet speed test	USD	50000	0%	0%	Low	7	8.28	14.49
+internet speed test xfinity	USD	50000	0%	0%	Low	1	5.22	23.74
+online speed test	USD	50000	-90%	0%	Low	1	0.04	5.92
+cox internet speed test	USD	50000	0%	-90%	Low	2	1.70	14.74
+cox speed test	USD	50000	0%	-90%	Low	2	1.70	14.74
+internet deals	USD	5000	0%	0%	High	67	7.00	20.88
+wifi deals	USD	5000	0%	0%	High	81	7.52	24.66
+high speed internet near me	USD	5000	0%	0%	High	83	6.30	22.81
+wifi in my area	USD	5000	0%	0%	High	83	9.05	32.75
+directv internet	USD	5000	0%	0%	Medium	55	1.48	8.34
+wifi plans	USD	5000	0%	0%	High	74	6.69	26.99
+home internet plans	USD	5000	0%	0%	Low	24	5.78	20.77
+wireless internet	USD	5000	0%	-90%	High	86	5.97	20.25
+wifi companies	USD	5000	0%	0%	High	77	9.99	36.83
+wifi service	USD	5000	0%	0%	High	84	10.00	34.93
+fiber optic internet near me	USD	5000	0%	0%	High	80	4.14	18.09
+cable companies near me	USD	5000	0%	-90%	High	71	4.74	19.23
+dish internet	USD	5000	0%	0%	High	68	1.90	9.86
+wireless home internet	USD	5000	0%	0%	High	71	3.74	16.23
+cheap internet near me	USD	5000	0%	0%	High	87	7.50	25.90
+wireless internet providers	USD	5000	0%	0%	High	79	5.19	17.50
+rcn internet	USD	5000	0%	0%	Medium	40	3.79	10.00
+comcast wifi	USD	5000	0%	0%	Medium	53	3.25	21.86
+broadband speed test	USD	5000	0%	0%	Low	4	0.05	6.29
+best wifi in my area	USD	5000	0%	0%	High	75	6.90	32.50
+5g internet	USD	5000	0%	0%	Medium	64	4.65	14.00
+broadband providers	USD	5000	-90%	0%	Low	4	3.02	23.54
+prepaid internet	USD	5000	-90%	0%	Medium	35	5.03	18.68
+best internet deals	USD	5000	0%	0%	Medium	43	5.34	17.41
+fastest internet in my area	USD	5000	0%	0%	High	76	5.32	20.46
+wifi service provider near me	USD	5000	0%	0%	High	89	11.18	43.16
+best internet in my area	USD	5000	0%	0%	High	77	6.04	24.91
+internet options	USD	5000	0%	0%	Medium	64	5.35	19.36
+unlimited hotspot plans	USD	5000	0%	0%	High	100	2.86	10.00
+unlimited hotspot	USD	5000	0%	0%	High	100	3.36	9.88
+best internet	USD	5000	0%	0%	High	70	5.32	20.00
+best home internet	USD	5000	0%	0%	High	79	5.68	21.70
+verizon wifi plans	USD	5000	0%	0%	Medium	44	2.26	14.00
+internet wifi	USD	5000	0%	0%	High	81	7.36	26.97
+internet packages	USD	5000	900%	0%	Medium	55	5.00	18.23
+dsl internet	USD	5000	0%	0%	Low	27	4.52	14.97
+internet phone	USD	5000	0%	0%	High	83	2.76	22.23
+rural internet	USD	5000	900%	0%	Medium	42	4.30	16.89
+optimum wifi	USD	5000	0%	-90%	Medium	67	2.40	79.64
+unlimited internet plans	USD	5000	0%	0%	Medium	47	4.90	15.16
+cable providers	USD	5000	0%	0%	Medium	35	2.74	12.58
+internet connection	USD	5000	0%	0%	Medium	44	3.18	13.00
+verizon wireless internet	USD	5000	0%	0%	Medium	40	3.08	13.93
+mobile internet	USD	5000	0%	0%	High	91	2.77	10.78
+wifi connection	USD	5000	0%	0%	Medium	43	2.45	13.00
+free internet for low income	USD	5000	0%	0%	High	68	3.00	13.10
+dish network internet	USD	5000	0%	0%	Medium	60	1.80	6.91
+spectrum wifi plans	USD	5000	-90%	0%	Medium	38	2.85	11.83
+low income internet	USD	5000	0%	0%	High	70	4.10	17.28
+broadband near me	USD	5000	0%	-90%	Medium	65	4.46	20.46
+unlimited internet	USD	5000	0%	-90%	High	77	5.15	17.22
+google fiber availability	USD	5000	0%	0%	Low	33	1.94	15.00
+comcast fiber	USD	5000	0%	0%	Medium	48	4.03	15.51
+free government internet for low income	USD	5000	0%	0%	Medium	62	1.83	10.26
+fiber in my area	USD	5000	0%	0%	High	77	5.04	23.37
+wireless wifi	USD	5000	0%	0%	High	91	4.52	13.20
+fiber wifi	USD	5000	0%	0%	High	70	6.67	23.67
+verizon internet availability	USD	5000	0%	0%	Low	27	2.12	13.89
+gigabit internet	USD	5000	0%	0%	Medium	43	4.08	15.00
+fast internet	USD	5000	0%	0%	Medium	37	4.99	20.23
+xtream internet	USD	5000	0%	0%	Medium	51	3.33	20.36
+broadband plans	USD	5000	0%	0%	Low	4	3.95	14.00
+pocket wifi	USD	5000	0%	0%	High	92	0.58	4.25
+centurylink fiber	USD	5000	0%	0%	Low	22	1.32	9.87
+vyve internet	USD	5000	0%	0%	Medium	57	4.38	13.39
+verizon internet gateway	USD	5000	0%	0%	Low	18	4.20	15.00
+fiber near me	USD	5000	0%	0%	Medium	65	6.32	24.43
+broadband connection near me	USD	5000	0%	-99%	Medium	51	5.66	23.33
+hotspot internet	USD	5000	0%	0%	High	100	2.59	10.48
+shentel internet	USD	5000	0%	0%	Medium	48	2.30	11.53
+internet access	USD	5000	0%	0%	Medium	39	2.82	12.75
+vexus internet	USD	5000	0%	-90%	Medium	47	3.10	11.70
+fidium internet	USD	5000	0%	0%	Medium	67	2.00	24.12
+comcast fiber internet	USD	5000	0%	0%	Medium	53	4.06	21.95
+ziply internet	USD	5000	0%	0%	Medium	62	1.75	10.90
+wifi hotspot device	USD	5000	0%	0%	High	100	1.34	9.19
+at and t fiber	USD	5000	0%	0%	Medium	36	2.72	18.59
+verizon fios availability	USD	5000	0%	0%	Low	27	3.06	27.37
+prepaid wifi	USD	5000	0%	0%	High	88	5.04	22.19
+verizon fios plans	USD	5000	0%	0%	Low	20	7.94	14.25
+verizon 5g internet	USD	5000	0%	0%	Low	22	3.38	28.61
+portable internet	USD	5000	0%	0%	High	100	1.19	6.76
+lumos internet	USD	5000	0%	0%	Low	21	2.85	78.14
+t mobile 5g internet	USD	5000	0%	0%	Medium	35	2.96	441.71
+xfinity fiber	USD	5000	0%	0%	Medium	48	4.03	15.51
+service electric internet	USD	5000	0%	0%	Medium	59	1.91	12.75
+fastest internet speed	USD	5000	0%	0%	Medium	42	3.61	13.56
+att wireless internet	USD	5000	0%	0%	Medium	34	2.36	11.50
+elon musk internet	USD	5000	0%	-90%	Medium	50	0.20	7.92
+firefly internet	USD	5000	0%	0%	Low	25	2.50	9.66
+at&t fiber optic	USD	5000	0%	0%	Medium	40	2.53	9.03
+midco internet	USD	5000	0%	0%	Low	26	2.37	8.82
+peoples internet	USD	5000	0%	0%	Low	23	3.22	12.75
+fast wifi	USD	5000	0%	0%	Medium	65	4.81	20.49
+fidium fiber internet	USD	5000	0%	0%	Medium	53	2.00	26.97
+xfinity wireless	USD	5000	0%	0%	Medium	54	5.50	18.14
+frontier fiber availability	USD	5000	0%	0%	Medium	48	1.52	10.33
+xfinity fiber internet	USD	5000	0%	0%	Medium	53	4.06	21.95
+att hotspot plans	USD	5000	0%	0%	Medium	55	1.65	6.97
+personal wifi	USD	5000	0%	0%	Medium	65	3.35	12.44
+cox fiber	USD	5000	0%	0%	Medium	51	1.78	14.21
+at&t business fiber	USD	5000	0%	0%	Medium	44	7.97	81.96
+xtream mediacom	USD	5000	0%	0%	Medium	36	3.22	12.33
+at t fiber	USD	5000	0%	-90%	Medium	36	2.14	17.29
+quantum fiber internet	USD	5000	0%	0%	Medium	48	2.66	87.40
+prepaid xfinity	USD	5000	0%	0%	Low	14	2.11	8.28
+c spire internet	USD	5000	0%	0%	Medium	61	2.94	13.54
+verizon 5g home	USD	5000	0%	0%	Low	14	3.09	7.01
+verizon lte home internet	USD	5000	0%	0%	Low	5	3.05	11.98
+broadband connection	USD	5000	0%	0%	Low	14	4.03	14.86
+comcast fiber availability	USD	5000	0%	0%	Medium	50	3.29	12.44
+gigablast	USD	5000	900%	0%	Low	2	4.02	19.58
+at&t fiber optic internet	USD	5000	0%	0%	Low	14	2.40	8.00
+fiber availability	USD	5000	0%	0%	Medium	54	2.06	17.47
+tesla internet	USD	5000	0%	0%	Medium	35	0.24	10.00
+fiber optic internet in my area	USD	5000	0%	0%	High	73	4.45	20.00
+internet in rural areas	USD	5000	900%	0%	Medium	42	4.30	16.89
+fiber optic near me	USD	5000	0%	0%	Medium	59	6.40	23.31
+htc internet	USD	5000	0%	0%	Medium	38	0.29	6.30
+fiber net	USD	5000	0%	0%	Low	20	5.15	25.57
+fiber to the home	USD	5000	0%	-90%	Low	25	3.25	13.31
+cox fiber internet	USD	5000	0%	0%	Medium	58	1.61	13.76
+google fiber wifi	USD	5000	0%	900%	Medium	35	3.19	15.00
+glo fiber internet	USD	5000	0%	0%	Medium	54	2.92	14.74
+good internet speed	USD	5000	0%	0%	Low	30	4.36	20.00
+business fiber internet	USD	5000	0%	900%	Low	3	30.00	99.77
+speed internet	USD	5000	0%	0%	Low	24	1.22	8.02
+google fiber cost	USD	5000	0%	0%	Medium	34	4.56	15.00
+google fiber near me	USD	5000	0%	0%	Low	32	2.45	15.00
+at&t fiber near me	USD	5000	900%	0%	Medium	49	2.29	11.69
+at&t fiber internet availability	USD	5000	0%	0%	Low	20	1.84	8.37
+ziply fiber internet	USD	5000	0%	900%	Low	13	1.73	10.00
+fiber optic wifi	USD	5000	0%	0%	Medium	60	6.00	27.47
+fiber internet availability	USD	5000	0%	900%	Low	3	3.11	16.42
+spacex internet	USD	5000	0%	0%	Medium	48	0.16	8.65
+google fiber in my area	USD	5000	900%	0%	Medium	47	1.86	15.00
+verizon home 5g	USD	5000	0%	-90%	Low	26	3.34	8.30
+starlink internet speed	USD	5000	0%	-90%	Low	30	0.15	6.84
+centurylink speed test	USD	5000	0%	0%	Low	0		
+tds fiber internet	USD	5000	0%	0%	Medium	48	1.11	8.34
+c spire fiber	USD	5000	0%	0%	Medium	53	3.57	20.00
+cox panoramic wifi	USD	5000	0%	0%	Low	22	0.99	7.25
+altafiber internet	USD	5000	0%	900%	Medium	62	1.26	9.22
+optimum fiber internet	USD	5000	0%	0%	Medium	49	1.74	42.71
+fiber optic cable internet	USD	5000	0%	0%	High	84	0.97	13.50
+xfinity fiber availability	USD	5000	0%	0%	Medium	50	3.29	12.44
+comcast fiber optic	USD	5000	0%	900%	Medium	55	3.57	14.28
+sonic fiber	USD	5000	0%	0%	Medium	44	2.54	10.48
+clearwave internet	USD	5000	0%	0%	Medium	52	4.30	21.24
+kinetic fiber internet	USD	5000	0%	0%	Medium	44	3.00	10.93
+centurylink quantum fiber	USD	5000	0%	0%	Low	29	2.50	15.80
+centurylink fiber internet	USD	5000	0%	900%	Low	12	1.34	9.38
+2 gig internet	USD	5000	0%	0%	Medium	46	3.62	15.72
+wow fiber internet	USD	5000	0%	0%	Medium	61	3.87	17.15
+google fiber price	USD	5000	0%	0%	Medium	34	4.56	15.00
+my wifi speed	USD	5000	0%	0%	Low	14	0.04	3.75
+fiber connection	USD	5000	0%	0%	Low	23	3.97	16.39
+elon musk satellite internet	USD	5000	0%	0%	Medium	42	0.15	3.94
+kinetic fiber	USD	5000	0%	900%	Medium	44	3.00	11.61
+fiber home internet	USD	5000	0%	900%	Low	29	5.95	24.61
+earthlink fiber	USD	5000	-90%	0%	Medium	52	2.84	13.50
+cox fiber availability	USD	5000	0%	900%	Medium	49	1.15	9.12
+at&t fiber cost	USD	5000	0%	0%	Medium	37	0.96	5.78
+google home wifi	USD	5000	0%	0%	High	89	0.98	13.11
+astound wave	USD	5000	0%	-90%	Low	29	6.10	67.87
+spectrum self install	USD	5000	0%	0%	Low	30	8.28	14.49
+at&t fiber promo code	USD	5000	0%	0%	Low	28	2.00	8.00
+at&t fiber wifi	USD	5000	0%	900%	Low	14	3.60	13.51
+starlink internet cost	USD	5000	0%	0%	Medium	42	0.08	3.45
+xfinity fiber optic	USD	5000	0%	900%	Medium	55	3.57	14.28
+sonic fiber internet	USD	5000	0%	0%	Medium	49	2.18	9.79
+fibre optic internet near me	USD	5000	0%	0%	High	76	6.13	19.62
+conexon internet	USD	5000	0%	0%	Medium	52	2.87	11.52
+at&t fiber prices	USD	5000	0%	0%	Medium	37	0.96	5.78
+internet speed test online	USD	5000	900%	0%	Low	8	0.05	5.04
+elon musk wifi	USD	5000	0%	0%	Medium	58	0.23	10.00
+metronet fiber	USD	5000	0%	0%	Medium	36	2.33	12.81
+my internet	USD	5000	0%	0%	Low	27	2.10	9.49
+at&t fiber deals	USD	5000	0%	0%	Medium	44	2.00	5.55
+wi fi price	USD	5000	0%	0%	High	71	3.51	14.00
+at&t fiber speeds	USD	5000	0%	0%	Low	24	0.92	6.36
+2 gigabit internet	USD	5000	0%	0%	Medium	46	3.62	15.72
+at&t fiber promotions	USD	5000	0%	900%	Low	26	2.17	8.00
+mbps test	USD	5000	0%	0%	Low	4	0.03	5.83
+at&t internet 1000	USD	5000	0%	0%	Low	15	1.36	11.96
+verizon fiber optic internet	USD	5000	0%	0%	Medium	36	2.63	15.79
+fast speed	USD	5000	0%	0%	Low	6	3.34	13.00
+dsl speed	USD	5000	-90%	-90%	Low	8	1.78	12.48
+tachus fiber	USD	5000	0%	900%	Low	27	3.10	21.29
+metronet fiber internet	USD	5000	0%	0%	Medium	35	2.48	13.97
+earthlink fiber internet	USD	5000	0%	900%	Medium	35	2.43	12.88
+gigabyte internet	USD	5000	0%	0%	Medium	43	4.08	15.00
+verizon fiber optics	USD	5000	0%	0%	Low	30	3.47	24.45
+ting fiber internet	USD	5000	0%	0%	Medium	40	3.90	109.60
+fiber first internet	USD	5000	0%	900%	Medium	60	3.26	16.52
+computer speed test	USD	5000	0%	0%	Low	4	0.04	1.84
+test my wifi	USD	5000	0%	0%	Low	11	0.02	2.93
+internet connection speed	USD	5000	0%	0%	Low	9	0.96	7.34
+best internet speed test	USD	5000	0%	0%	Low	9	0.26	6.22
+epb fiber	USD	5000	0%	0%	Medium	35	3.16	12.48
+my isp	USD	5000	0%	0%	Low	12	2.83	13.22
+at&t internet 300	USD	5000	-90%	0%	Low	3	1.37	11.99
+fastest internet in the world	USD	5000	-90%	-90%	Low	6	2.23	10.48
+google fiber home internet	USD	5000	0%	900%	Low	2	2.76	15.00
+test my wifi speed	USD	5000	0%	0%	Low	10	0.03	3.93
+starlink service	USD	5000	0%	0%	Medium	47	0.26	5.74
+fiber internet price	USD	5000	0%	900%	Low	15	2.10	12.58
+fiber internet cost	USD	5000	0%	900%	Low	15	2.10	12.58
+wifi strength test	USD	5000	0%	0%	Low	15	0.03	1.99
+fiber speed test	USD	5000	0%	0%	Low	6	0.91	6.52
+test your internet speed	USD	5000	0%	0%	Low	14	0.05	4.76
+fiber connection internet	USD	5000	0%	900%	Low	8	3.77	18.85
+my speed	USD	5000	0%	0%	Low	6	0.06	4.71
+tdsfiber	USD	5000	0%	0%	Medium	50	1.04	6.19
+pc speed test	USD	5000	0%	0%	Low	2	0.82	3.29
+fiber internet speeds	USD	5000	0%	0%	Low	24	2.16	11.00
+at&t internet 500	USD	5000	-90%	-90%	Low	14	1.29	12.51
+connection speed	USD	5000	0%	0%	Low	5	0.96	8.08
+connection test	USD	5000	0%	0%	Low	4	1.40	5.13
+data speed test	USD	5000	0%	0%	Low	3	0.02	4.11
+fast com speed test	USD	5000	0%	0%	Low	2	0.05	3.70
+bandwidth speed test	USD	5000	0%	0%	Low	2	0.03	6.28
+data speed	USD	5000	-90%	-90%	Low	6	0.04	6.00
+connection speed test	USD	5000	0%	0%	Low	3	1.54	7.63
+starlink elon musk	USD	5000	0%	-90%	Low	18	0.15	3.16
+starlink speed test	USD	5000	0%	0%	Low	1	0.56	2.82
+wyyerd internet	USD	5000	0%	900%	Medium	56	2.75	9.50
+empire access internet	USD	5000	900%	0%	Medium	39	2.93	12.75
+my speed test	USD	5000	0%	0%	Low	5	0.03	4.35
+fiber optic internet speeds	USD	5000	0%	0%	Low	24	2.16	11.00
+t fiber	USD	5000	0%	900%	Medium	49	5.03	282.30
+windstream speed test	USD	5000	0%	0%	Low	0		
+optic cable internet	USD	5000	0%	0%	High	84	0.97	13.50
+fast internet speed test	USD	5000	0%	0%	Low	2	0.05	12.18
+home fibre internet	USD	5000	0%	900%	Low	29	5.95	24.61
+mbps speed test	USD	5000	0%	0%	Low	7	0.04	4.22
+google wifi speed test	USD	5000	0%	0%	Low	1	0.04	3.82
+isp speed test	USD	5000	0%	0%	Low	3	0.04	4.83
+frontier speed test	USD	5000	0%	-90%	Low	5	0.01	0.02
+free speed test	USD	5000	0%	0%	Low	3	0.42	5.23
+mediacom speed test	USD	5000	0%	0%	Low	1	4.70	13.24
+fiber optic internet connection	USD	5000	0%	900%	Low	8	3.77	18.85
+speed test mobile	USD	5000	0%	0%	Low	1	0.38	4.19
+optical fiber network	USD	5000	-90%	-90%	Low	15	4.53	18.00
+midco speed test	USD	5000	0%	0%	Low	1	2.10	6.45
+wow speed test	USD	5000	0%	0%	Low	2	4.50	6.19
+www fast com speed test	USD	5000	0%	0%	Low	4	0.04	3.35
+at&t fiber internet 300	USD	5000	-90%	0%	Low	7	3.51	240.55
+netflix speed test	USD	5000	0%	0%	Low	0		
+starlink com	USD	5000	0%	0%	High	76	0.26	4.63
+broadband deals	USD	500	0%	-90%	Low	24	2.10	10.87
+best broadband deals	USD	500	0%	-90%	Low	29	1.86	9.09
+compare broadband	USD	500	0%	-90%	Low	18	1.73	10.37
+rogers internet	USD	500	0%	-90%	Low	6	1.45	13.25
+best broadband in my area	USD	500	0%	-90%	Medium	55	4.65	20.46
+business broadband	USD	500	-90%	-90%	Low	21	16.18	66.21
+fibre broadband	USD	500	0%	0%	Low	22	4.00	20.25
+cheap broadband deals	USD	500	0%	-90%	Low	7	1.72	12.75
+home broadband	USD	500	0%	0%	Low	25	5.84	17.15
+best broadband deals in my area	USD	500	0%	-90%	Low	29	2.68	20.46
+talk talk broadband	USD	500	0%	0%	Low	2		
+cheap broadband	USD	500	0%	-90%	Low	27	2.76	12.75
+now broadband	USD	500	0%	-90%	Low	16	5.13	17.18
+best broadband	USD	500	0%	-90%	Low	27	2.35	10.14
+full fibre broadband	USD	500	0%	0%	Low	2	2.03	16.53
+time internet	USD	500	0%	0%	Low	7	2.54	10.53
+broadband only deals	USD	500	0%	-90%	Low	7		
+broadband in my area	USD	500	0%	0%	Medium	56	3.02	18.93
+broadband and phone deals	USD	500	0%	-90%	Low	11	1.27	12.18
+apply for affordable connectivity program	USD	500	0%	-90%	Medium	60	1.96	10.95
+fastest broadband in my area	USD	500	0%	-90%	Medium	33	2.82	16.77
+wifi connection near me	USD	500	0%	0%	High	67	6.09	27.55
+best broadband provider	USD	500	0%	-90%	Low	17	5.77	27.71
+mobile broadband	USD	500	0%	-90%	Low	33	2.71	8.92
+rogers home internet	USD	500	0%	0%	Low	31	2.64	14.92
+bell home internet	USD	500	0%	-90%	Low	26	2.77	12.27
+5g broadband	USD	500	0%	0%	Low	25	3.51	12.30
+wireless broadband	USD	500	0%	0%	Low	9	4.18	13.50
+bell fibe internet	USD	500	0%	0%	Low	11	4.62	17.97
+rogers internet plans	USD	500	0%	0%	Low	11	2.66	12.75
+bell internet plans	USD	500	0%	0%	Low	9	2.59	10.00
+spectrum affordable connectivity program	USD	500	0%	0%	Low	32	8.28	12.78
+bell wifi	USD	500	0%	0%	Low	27	2.97	14.66
+affordable connectivity program spectrum	USD	500	-90%	-90%	Low	31	4.83	13.77
+rogers wifi	USD	500	0%	0%	Low	21	3.52	20.00
+xfinity affordable connectivity program	USD	500	0%	-90%	Low	30	6.02	19.56
+3 broadband	USD	500	0%	-90%	Low	32	2.38	12.77
+fioptics internet	USD	500	0%	0%	High	73	1.82	12.48
+start internet	USD	500	0%	-90%	Medium	53	4.72	47.46
+telecom internet	USD	500	0%	0%	Medium	51	7.34	27.00
+internet connection near me	USD	500	0%	0%	Medium	54	5.90	27.00
+google fiber business	USD	500	0%	0%	Medium	57	10.00	50.12
+gigabit internet near me	USD	500	0%	0%	High	67	5.01	20.46
+unlimited wifi plans for home	USD	500	0%	0%	Medium	37	4.55	18.50
+best fiber optic internet in my area	USD	500	0%	0%	High	72	4.62	22.20
+fiber wifi near me	USD	500	0%	-90%	High	85	8.57	29.99
+fiber available in my area	USD	500	0%	0%	High	76	4.11	18.30
+fiber optic in my area	USD	500	0%	0%	High	79	4.53	20.00
+broadband speed	USD	500	0%	0%	Low	9	0.11	7.51
+cspire fiber internet	USD	500	0%	0%	Medium	40	3.23	13.67
+at and t fiber internet	USD	500	0%	900%	Medium	39	2.34	15.04
+fiber network near me	USD	500	0%	0%	High	69	5.39	20.69
+gonetspeed internet	USD	500	0%	0%	Medium	61	3.00	15.58
+fiber service in my area	USD	500	0%	0%	High	79	5.90	22.28
+fibre internet near me	USD	500	0%	0%	High	82	5.81	21.83
+best fiber internet	USD	500	0%	0%	High	76	5.30	22.39
+windstream fiber	USD	500	0%	0%	Medium	38	3.00	7.84
+kub fiber internet	USD	500	0%	0%	Medium	57	3.52	16.83
+gig internet	USD	500	0%	0%	Medium	62	5.01	19.22
+comcast business fiber	USD	500	0%	0%	Medium	46	9.39	31.00
+verizon fiber availability	USD	500	900%	900%	Low	32	2.63	35.93
+fiber cable internet	USD	500	0%	0%	High	74	4.74	18.62
+google fiber service	USD	500	0%	0%	Medium	39	5.52	15.00
+ting fiber	USD	500	0%	0%	Medium	34	3.57	132.52
+ultra fiber internet	USD	500	0%	900%	Medium	59	3.12	14.34
+internet elon musk	USD	500	0%	0%	High	82	0.16	5.26
+optic fiber internet near me	USD	500	-90%	-90%	High	77	5.68	24.44
+5 gig internet	USD	500	0%	0%	Medium	59	2.79	12.48
+at&t fiber optic in my area	USD	500	0%	0%	Medium	48	2.36	12.00
+ziply wifi	USD	500	0%	0%	High	69	3.87	16.31
+fiber internet providers near me	USD	500	-90%	-90%	Medium	49	6.53	25.76
+alta fiber internet	USD	500	0%	0%	Medium	56	2.11	10.00
+dedicated fiber internet	USD	500	0%	0%	Low	31	25.00	69.60
+at&t fiber service	USD	500	0%	0%	Low	29	3.04	8.84
+optimum fiber optic	USD	500	0%	0%	Medium	63	0.76	39.52
+best fiber internet in my area	USD	500	0%	0%	High	74	5.31	22.70
+fiber providers near me	USD	500	0%	0%	Medium	60	5.85	27.64
+consolidated fiber internet	USD	500	900%	0%	High	68	2.00	13.64
+centurylink fiber optic	USD	500	0%	0%	Medium	54	1.47	7.62
+comcast gigabit pro	USD	500	0%	0%	Low	21	2.90	22.70
+test my broadband speed	USD	500	0%	-90%	Low	11	0.05	12.75
+united fiber internet	USD	500	0%	0%	Medium	54	0.90	12.75
+metronet internet prices	USD	500	0%	0%	Medium	38	1.73	10.00
+sparklight fiber	USD	500	0%	0%	Medium	50	3.60	8.42
+glo fiber internet prices	USD	500	0%	0%	Medium	52	1.95	9.24
+tds fiber pricing	USD	500	0%	0%	Medium	41	0.55	2.95
+open internet	USD	500	0%	-90%	Low	12	2.70	12.66
+get fiber internet	USD	500	0%	0%	High	72	6.75	29.99
+google fiber com	USD	500	0%	0%	Medium	35	8.00	15.00
+ifiber internet	USD	500	0%	0%	Medium	59	2.39	10.31
+midsouth fiber internet	USD	500	0%	900%	Low	24	2.98	10.93
+best fiber internet provider in my area	USD	500	0%	0%	High	70	5.31	23.23
+gonetspeed prices	USD	500	0%	0%	Medium	57	1.71	9.75
+verizon fiber optic cable	USD	500	0%	0%	Medium	53	8.75	30.18
+go fiber internet	USD	500	0%	0%	Medium	66	4.25	18.84
+optic internet	USD	500	0%	0%	Medium	50	6.25	29.99
+go internet	USD	500	0%	0%	Medium	58	2.96	13.50
+at and t fiber availability	USD	500	0%	0%	Medium	38	2.04	10.95
+at&t fiber optics in my area	USD	500	0%	0%	Medium	48	2.36	12.00
+fiber optic wifi near me	USD	500	0%	0%	High	69	8.48	28.89
+fiber options in my area	USD	500	0%	0%	High	74	4.30	21.56
+get google fiber	USD	500	0%	0%	Medium	51	5.28	15.00
+google fiber cost per month	USD	500	0%	0%	Medium	36	4.50	15.00
+best fiber optic internet	USD	500	0%	0%	High	72	4.11	19.33
+fiber optic internet providers near me	USD	500	900%	0%	Medium	50	5.23	20.46
+astound fiber	USD	500	0%	0%	Medium	48	4.12	49.62
+broadband test	USD	500	0%	0%	Low	5	0.03	2.58
+best fiber internet provider	USD	500	0%	0%	Medium	63	5.15	22.70
+right fiber internet	USD	500	0%	0%	Medium	60	1.93	11.24
+gigabyte internet near me	USD	500	0%	0%	High	67	5.01	20.46
+google fiber speeds	USD	500	0%	-90%	Low	20	10.00	15.00
+google internet in my area	USD	500	0%	-90%	Medium	65	2.18	15.00
+ziply fiber near me	USD	500	0%	0%	Low	24	1.75	7.00
+google fiber deals	USD	500	0%	0%	Medium	50	3.72	15.00
+xfinity internet fiber	USD	500	0%	900%	Medium	53	3.50	13.22
+fiber providers	USD	500	0%	0%	Medium	50	5.95	22.70
+converge internet	USD	500	0%	0%	Low	13	3.32	9.93
+1 gig fiber internet	USD	500	0%	0%	Medium	43	5.80	24.51
+centurylink fiber availability	USD	500	0%	0%	Medium	55	1.15	8.26
+cheapest fiber internet	USD	500	0%	0%	High	80	4.27	19.12
+omni fiber internet	USD	500	0%	0%	Medium	51	3.25	13.85
+metronet availability	USD	500	0%	0%	Low	26	1.85	10.45
+internet fiber near me	USD	500	900%	0%	High	77	6.52	22.45
+gigabit fiber	USD	500	0%	0%	Low	29	3.89	18.73
+spire internet	USD	500	0%	0%	Medium	64	5.19	15.98
+google fiber test	USD	500	0%	-90%	Low	7	10.00	25.42
+vexus fiber prices	USD	500	0%	-90%	Medium	50	1.60	5.38
+frontier fiber internet availability	USD	500	900%	0%	Low	28	1.52	8.93
+fiber internet providers in my area	USD	500	0%	0%	Medium	61	5.42	23.25
+at&t gigabit	USD	500	-90%	-90%	Medium	42	2.60	12.00
+frontier internet fiber	USD	500	0%	0%	Medium	41	1.00	24.56
+metronet wifi	USD	500	0%	0%	Medium	62	3.81	18.79
+fast fiber internet	USD	500	-90%	0%	Medium	42	5.32	20.00
+at&t fiber optic availability	USD	500	0%	0%	Medium	38	2.15	12.00
+my broadband speed test	USD	500	0%	0%	Low	1		
+at&t internet fiber availability	USD	500	-90%	0%	Medium	41	2.38	8.00
+vexus wifi	USD	500	0%	0%	Medium	61	3.55	13.21
+metronet deals	USD	500	0%	0%	Medium	34	2.08	8.61
+cspire fiber availability	USD	500	900%	0%	Medium	47	2.43	8.79
+fiber companies near me	USD	500	0%	0%	Medium	63	5.15	29.99
+rogers speed test	USD	500	0%	-90%	Low	0		
+ting wifi	USD	500	0%	0%	Medium	45	4.68	105.53
+gigabit internet in my area	USD	500	0%	-90%	High	69	4.62	20.46
+windstream fiber optic	USD	500	0%	0%	Medium	38	3.00	7.84
+fiber optic internet frontier	USD	500	-90%	0%	Low	32	0.65	18.79
+optimum fiber availability	USD	500	0%	0%	Medium	53	1.63	37.29
+metronet service	USD	500	0%	0%	Medium	48	1.94	6.93
+fiberwave internet	USD	500	0%	0%	Medium	41	1.92	11.47
+google fiber internet cost	USD	500	0%	0%	Low	27	3.44	15.00
+rural fiber internet	USD	500	0%	-90%	Medium	62	2.84	12.48
+google fiber price per month	USD	500	0%	900%	Medium	40	3.98	15.00
+metronet service area	USD	500	0%	0%	Low	16	2.29	14.72
+at&t fiber coverage	USD	500	0%	900%	Low	18	2.88	18.25
+remc fiber	USD	500	0%	0%	Low	7	3.10	12.48
+at&t 1 gig internet	USD	500	0%	0%	Low	19	1.33	8.71
+best fiber internet near me	USD	500	-90%	0%	Medium	66	6.25	22.70
+at&t home internet availability	USD	500	0%	0%	Medium	43	2.43	8.04
+google fiber internet availability	USD	500	0%	900%	Medium	36	2.34	15.00
+wifi speed test online	USD	500	0%	0%	Low	11	0.03	4.09
+smart pocket wifi	USD	500	0%	-90%	Low	31	0.22	2.34
+google fiber internet price	USD	500	0%	0%	Low	22	2.42	15.00
+usi fiber	USD	500	0%	0%	Medium	35	1.19	8.87
+xfinity fiber internet availability	USD	500	0%	900%	Medium	55	3.20	20.25
+google fiber promotions	USD	500	0%	0%	Medium	36	5.49	17.92
+fiber optic companies near me	USD	500	0%	0%	Medium	44	3.69	29.99
+freedom fiber internet	USD	500	0%	0%	Medium	45	2.53	11.98
+local fiber internet	USD	500	0%	-90%	High	68	4.76	20.00
+fiber optic availability	USD	500	0%	-90%	Medium	63	2.48	13.14
+ziply fibre	USD	500	0%	0%	Medium	62	1.51	9.41
+tec fiber internet	USD	500	-90%	-90%	Medium	43	1.70	9.86
+my google fiber	USD	500	0%	0%	Low	18	10.00	10.00
+frontier fiber cost	USD	500	0%	0%	Low	29	1.48	14.98
+5 gigabit internet	USD	500	0%	0%	Medium	53	2.55	10.79
+google speed test website	USD	500	0%	-90%	Low	3	1.86	5.05
+at&t fiber 300	USD	500	-90%	0%	Low	28	1.60	45.04
+google fiber coverage	USD	500	0%	0%	Low	22	4.49	15.00
+ipoe	USD	500	0%	0%	Low	1		
+fiber optic internet xfinity	USD	500	0%	0%	Medium	51	3.97	17.92
+consolidated fiber	USD	500	0%	0%	Low	33	1.38	6.34
+google fiber monthly cost	USD	500	0%	0%	Low	31	10.00	15.00
+google fiber cable	USD	500	-90%	-90%	Low	22	10.00	15.00
+sonic fiber availability	USD	500	0%	0%	Medium	49	1.69	7.58
+allo fiber internet	USD	500	0%	0%	Medium	46	2.62	20.75
+fiber speeds	USD	500	0%	0%	Medium	35	2.18	12.00
+at&t 1000 mbps	USD	500	900%	900%	Low	23	1.11	7.46
+new fiber optic internet	USD	500	0%	900%	Medium	65	4.38	19.94
+mediacom fiber	USD	500	0%	0%	Medium	54	3.14	23.67
+at&t fiber 1000	USD	500	-90%	0%	Low	17	1.12	7.92
+at&t gigabit internet	USD	500	0%	0%	Low	32	2.38	8.64
+bell speed test	USD	500	0%	0%	Low	1		
+metronet cable	USD	500	-90%	-90%	Medium	41	2.88	12.17
+fiberlink internet	USD	500	0%	900%	Medium	57	3.43	16.85
+remc fiber internet	USD	500	-90%	-90%	Medium	42	2.89	10.20
+tombigbee internet	USD	500	0%	0%	Medium	34	3.38	13.73
+at&t 5 gig internet	USD	500	0%	900%	Low	23	1.51	6.68
+google fiber optic internet	USD	500	-90%	-90%	Medium	50	1.84	11.58
+fibre service providers	USD	500	-90%	0%	Low	29		
+gigabit fiber optic internet	USD	500	0%	-90%	Low	0		
+cox fiber optic	USD	500	0%	0%	Medium	47	1.22	9.30
+fiber line internet	USD	500	0%	0%	Medium	38	4.24	20.88
+earthlink fiber availability	USD	500	0%	0%	Medium	44	2.23	10.96
+at&t fiber internet cost	USD	500	0%	0%	Medium	35	1.40	5.74
+fiber prices	USD	500	-90%	-90%	Medium	55	2.63	15.00
+google fiber optic	USD	500	0%	0%	Medium	41	2.29	10.00
+tds fiber optic	USD	500	0%	0%	Medium	52	1.57	8.32
+fiber cable near me	USD	500	0%	-90%	High	95	3.45	14.00
+frontier fiber speeds	USD	500	0%	0%	Low	21	0.97	11.86
+fiber optic internet price	USD	500	0%	0%	Medium	41	1.99	12.00
+airfiber internet	USD	500	0%	0%	Medium	50	2.22	10.72
+internet speed meter	USD	500	0%	0%	Low	4	0.14	19.89
+lus fiber internet	USD	500	0%	0%	Medium	62	2.02	13.89
+gig wifi	USD	500	-90%	0%	Medium	62	2.78	13.24
+ziply fiber com	USD	500	0%	0%	Low	21	1.61	6.00
+at&t fiber network	USD	500	0%	0%	Low	29	3.62	10.48
+fiber optic internet cost	USD	500	0%	0%	Medium	55	1.61	13.26
+my network speed	USD	500	0%	0%	Low	13	0.03	4.60
+fibre to the premises providers	USD	500	0%	0%	Low	13	3.54	27.00
+fiber 2 gig	USD	500	0%	0%	Medium	49	4.20	25.00
+symmetrical internet	USD	500	900%	900%	Low	1	4.97	20.16
+at&t fiber cable	USD	500	0%	0%	High	99	0.41	6.78
+ipbb internet	USD	500	0%	-90%	Medium	45	4.89	20.00
+frontier 1 gig internet	USD	500	900%	900%	Low	9	2.25	22.33
+fiber network in my area	USD	500	0%	0%	High	69	4.80	22.95
+fiber optic service	USD	500	0%	0%	Low	18	5.79	27.00
+fiber optic providers	USD	500	0%	0%	Low	24	5.22	21.81
+at&t fiber optic cable	USD	500	0%	0%	High	98	0.46	6.04
+at&t fiber internet price	USD	500	0%	0%	Low	33	1.66	7.22
+fast fiber	USD	500	0%	0%	Low	31	5.05	15.58
+business fiber optic internet	USD	500	0%	0%	Low	6	31.00	104.78
+fiber services	USD	500	0%	-90%	Medium	48	7.27	26.98
+fiber fast internet	USD	500	900%	900%	Medium	45	5.92	29.40
+gigabit fiber internet	USD	500	0%	0%	Low	23	4.59	23.68
+sonic fiber optic	USD	500	0%	0%	Medium	41	2.41	8.98
+google fiber 1 gig	USD	500	0%	0%	Low	11	3.42	15.00
+gigabit fibe	USD	500	0%	0%	Low	29	3.89	18.73
+google fiber areas	USD	500	0%	0%	Low	23	9.58	15.00
+frontier gigabit internet	USD	500	0%	900%	Low	6	1.65	15.14
+wi fiber	USD	500	0%	0%	Low	14	3.87	12.48
+4g speed	USD	500	0%	-90%	Low	2	3.18	11.49
+fiber optic speeds	USD	500	0%	0%	Low	23	1.99	10.00
+rogers network	USD	500	0%	-90%	Low	4		
+frontier 2 gig	USD	500	0%	-90%	Low	13	1.80	6.56
+net fiber	USD	500	0%	0%	Medium	37	5.99	27.00
+home fiber network	USD	500	0%	0%	Medium	45	2.29	10.95
+midco fiber	USD	500	0%	0%	Low	17	3.36	12.52
+fiber optic price	USD	500	0%	0%	Medium	35	1.85	12.00
+google fiber michigan	USD	500	0%	-90%	Low	24	1.16	10.00
+fiber optic cost	USD	500	-90%	-90%	Medium	42	1.56	14.00
+fiber to the home providers	USD	500	0%	0%	Low	13	3.54	27.00
+4g speed test	USD	500	0%	-90%	Low	2		
+at&t get fiber	USD	500	0%	0%	Medium	40	3.90	11.31
+firefly fiber broadband	USD	500	0%	0%	Low	5	1.38	10.50
+mobile data speed test	USD	500	0%	0%	Low	2	0.60	8.31
+at&t 5 gig fiber	USD	500	0%	900%	Low	32	1.25	6.50
+nasa internet speed	USD	500	0%	0%	Low	1	1.84	10.16
+nt fiber	USD	500	0%	900%	Low	5	4.99	22.53
+at&t fiber data cap	USD	500	0%	0%	Low	5	2.03	9.30
+at&t fiber reddit	USD	500	0%	0%	Low	3	4.39	10.69
+optic network	USD	500	0%	0%	Low	5	3.02	16.00
+roming internet	USD	500	0%	0%	High	93	1.72	7.54
+at&t fiber commercial	USD	500	900%	0%	Low	7	2.93	145.41
+* * 4636 * * free internet	USD	500	0%	0%	Low	1		
+at&t fiber internet 1000	USD	500	0%	0%	Low	23	1.55	10.00
+at&t fiber internet 500	USD	500	0%	0%	Low	11	1.17	11.97
+frontier fiber reddit	USD	500	0%	0%	Low	0		
+gonetspeed com	USD	500	0%	-90%	Low	33	1.87	7.18
+internet org	USD	500	0%	0%	Low	1		
+optic net	USD	500	0%	0%	Low	5	3.02	16.00

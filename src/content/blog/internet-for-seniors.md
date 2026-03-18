@@ -46,7 +46,7 @@ T-Mobile's phone support is also rated above average, and you can get in-person 
 
 **Spectrum Internet Assist**: If you qualify for low-income assistance, Spectrum offers plans starting at **$17.99/mo** for 30 Mbps — enough for email, browsing, and video calls.
 
-### 3. [AT&T Fiber](/provider/att) — Most Reliable Option
+### 3. [AT&T Fiber](/provider/att-fiber) — Most Reliable Option
 
 | Feature | Details |
 |---------|---------|
@@ -59,16 +59,16 @@ T-Mobile's phone support is also rated above average, and you can get in-person 
 
 **AT&T Access**: Low-income qualifying households can get internet for **$30/mo** (100 Mbps).
 
-### 4. Verizon Fios — Best Northeast Option
+### 4. Verizon 5G Home Internet — Best No-Install Option
 
 | Feature | Details |
-|---------|---------|
-| Price | **$49.99/mo** |
-| Speed | 300/300 Mbps |
+|---------|---------|  
+| Price | **$50/mo** ($35/mo with Verizon mobile) |
+| Speed | 100–1000 Mbps |
 | Contract | None |
-| Setup | Professional installation available |
+| Setup | Self-install — gateway ships to your door |
 
-**Why it's great for seniors**: Fios is rock-solid reliable in the Northeast. Clean billing, no data caps, and consistent performance. Verizon stores are widespread for in-person support.
+**Why it's great for seniors**: Skip the technician visit entirely. The gateway ships to your door; plug it in near a window and you're online in minutes. Nationwide coverage, no data cap, and a 4-year price lock means your bill won't surprise you.
 
 ### 5. Frontier Fiber — Best Value
 
@@ -113,7 +113,7 @@ These programs are available to seniors who receive Medicaid, SNAP, SSI, or othe
 ## Tips for Choosing Internet as a Senior
 
 ### 1. Ask About Professional Installation
-If you're not tech-savvy, choose a provider that offers free professional installation. AT&T Fiber, Spectrum, and Verizon Fios all include this option.
+If you're not tech-savvy, choose a provider that offers free professional installation. AT&T Fiber, Spectrum, and Frontier all include professional technician setup.
 
 ### 2. Consider a Mesh WiFi System
 If your home has dead spots, ask your provider about mesh WiFi add-ons. These extend coverage throughout your home so you get signal in every room.

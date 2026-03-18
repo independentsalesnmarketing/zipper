@@ -26,9 +26,9 @@ const partners = getPartnerProviders();
 const audiences: Record<string, AudienceData> = {
   seniors: {
     slug: 'seniors',
-    title: `Cheaper Internet for Seniors (${year}) — Affordable Plans from $10/mo`,
-    h1: 'Affordable Internet for Seniors',
-    description: `Find cheaper internet for seniors in ${year}. Affordable internet plans from $10/mo, Lifeline discounts, no-contract options, and simplified setup. We help seniors on fixed incomes find the best internet deal.`,
+    title: 'Internet for Seniors — Cheap Senior Internet Plans',
+    h1: 'Internet for Seniors',
+    description: 'Find cheap internet plans for seniors near you. Affordable options, low-income programs, and no-contract plans — see every provider available at your address.',
     intro: `Internet prices keep going up — but seniors on fixed incomes shouldn't have to pay full price. Whether you want to video call the grandkids, stream your favorite shows, or just browse the news, you don't need a complicated or expensive plan. We specialize in finding the most affordable internet for seniors, including federal Lifeline discounts, provider assistance programs, and simple no-contract plans with easy setup.`,
 
     speedNeeded: '25–100 Mbps',
@@ -57,27 +57,27 @@ const audiences: Record<string, AudienceData> = {
     intro: `Everyone deserves internet access regardless of income. Multiple federal programs, state initiatives, and provider discounts make affordable internet available to qualifying households. From free internet through government programs to plans starting at $10/mo, we'll help you find the most affordable option.`,
     speedNeeded: '25–100 Mbps',
     budgetRange: '$0–$30/mo',
-    keyFeatures: ['ACP eligibility', 'Lifeline program', 'No credit check', 'No contracts', 'Free equipment', 'Low deposit options'],
+    keyFeatures: ['Lifeline eligibility', 'Provider discount programs', 'No credit check', 'No contracts', 'Free equipment', 'Low deposit options'],
     providerFilter: (p) => p.plans.some(plan => plan.promoPrice <= 45),
     buyingTips: [
-      { title: 'Apply for the Affordable Connectivity Program (ACP)', text: 'The ACP provides up to $30/mo toward internet service ($75/mo on Tribal lands). Most providers accept ACP. Apply at getinternet.gov.' },
-      { title: 'Check Lifeline eligibility', text: 'The FCC Lifeline program provides $9.25/mo toward phone or internet for qualifying low-income households.' },
+      { title: 'Check your Lifeline eligibility — $9.25/mo off permanently', text: 'The FCC Lifeline program provides $9.25/mo toward phone or internet for qualifying low-income households. If you receive SNAP, Medicaid, SSI, or have income at or below 135% of the Federal Poverty Guidelines, you qualify. Apply at lifelinesupport.org.' },
+      { title: 'Look into provider-specific discount programs', text: 'Comcast Internet Essentials ($9.95/mo), AT&T Access ($10/mo), and Spectrum Internet Assist ($17.99/mo) all serve low-income households. These programs remain open for enrollment year-round.' },
       { title: 'Ask about provider-specific programs', text: 'Comcast Internet Essentials ($9.95/mo), AT&T Access ($10/mo), and Spectrum Internet Assist ($17.99/mo) all serve low-income households.' },
       { title: 'No credit check plans', text: 'Many 5G and prepaid internet plans don\'t require credit checks. T-Mobile 5G Home and Mint Mobile are great options.' },
     ],
     faqs: [
-      { question: 'Can I get free internet?', answer: 'With the Affordable Connectivity Program (ACP), you can get up to $30/mo off internet service, which may cover the full cost of some plans. Combined with Lifeline ($9.25/mo discount), some households pay $0 for internet. Sign up to check eligibility.' },
-      { question: 'What is the Affordable Connectivity Program?', answer: 'The ACP is a federal program providing up to $30/mo toward internet service for qualifying low-income households. You may qualify if your household income is at or below 200% of the Federal Poverty Guidelines, or if you participate in SNAP, Medicaid, WIC, SSI, or other assistance programs.' },
+      { question: 'Can I get free internet?', answer: 'With the FCC Lifeline program ($9.25/mo discount) combined with provider discount programs like Xfinity Internet Essentials ($9.95/mo), some households can pay very little for internet. Sign up to check eligibility.' },
+      { question: 'What is the FCC Lifeline program?', answer: 'Lifeline is a permanent FCC program providing $9.25/month off internet or phone service for qualifying low-income households. You may qualify if your household income is at or below 135% of the Federal Poverty Guidelines, or if you participate in SNAP, Medicaid, SSI, or other assistance programs. Apply at lifelinesupport.org.' },
       { question: 'What internet plans don\'t require a credit check?', answer: 'T-Mobile 5G Home Internet, Mint Mobile, and most prepaid/5G home internet plans don\'t require credit checks. These are excellent options for households with no credit or poor credit.' },
-      { question: 'What is the cheapest internet without compromise?', answer: 'T-Mobile 5G Home starts at $50/mo (often $40 with Magenta plan), Mint Mobile at $25/mo, and WOW! at $29.99/mo. With ACP subsidy, costs can drop well below $20/mo.' },
-      { question: 'How do I apply for low-income internet?', answer: 'Start at getinternet.gov for the ACP. For Lifeline, apply at lifelinesupport.org. For provider programs, sign up above and we\'ll walk you through the application process for programs available at your address.' },
+      { question: 'What is the cheapest internet without compromise?', answer: 'T-Mobile 5G Home starts at $50/mo (often $40 with Magenta plan), Mint Mobile at $25/mo, and WOW! at $29.99/mo. With Lifeline subsidy, costs drop further.' },
+      { question: 'How do I apply for low-income internet?', answer: 'For Lifeline, apply at lifelinesupport.org. For provider programs, sign up above and we\'ll walk you through the application process for programs available at your address.' },
     ],
   },
   rural: {
     slug: 'rural',
-    title: `Best Internet for Rural Areas (${year})`,
-    h1: 'Best Internet for Rural Areas',
-    description: `Find internet in rural areas. Compare satellite, fixed wireless, 5G, and DSL options. Starlink, T-Mobile, Verizon available in remote regions.`,
+    title: 'Internet for Rural Areas — Rural Internet Providers',
+    h1: 'Internet for Rural Areas',
+    description: 'Find internet for rural areas near you. Satellite, fixed wireless, and high speed rural options — see what\'s actually available at your address right now.',
     intro: `Living in a rural area doesn't mean accepting slow, unreliable internet. The rural broadband landscape has transformed with Starlink's satellite constellation, 5G fixed wireless expansion, and new fiber buildouts from Brightspeed and Windstream. We'll help you compare every option available at your address — from modern satellite to emerging rural fiber.`,
     speedNeeded: '25–300 Mbps',
     budgetRange: '$30–$120/mo',
@@ -99,16 +99,16 @@ const audiences: Record<string, AudienceData> = {
   },
   gaming: {
     slug: 'gaming',
-    title: `Best Internet for Gaming (${year})`,
+    title: 'Best Internet for Gaming — Low-Latency Plans Near You',
     h1: 'Best Internet for Gaming',
-    description: `Find the best internet for gaming in ${year}. Low ping, fast download speeds, no data caps. Compare fiber, cable, and 5G plans optimized for gamers.`,
+    description: 'Find low-latency, high-speed internet for online gaming at your address. Fiber and cable plans with fast uploads and low ping — stop lagging, start winning.',
     intro: `For gamers, internet quality isn't just about download speed — it's about low latency (ping), minimal jitter, and consistent performance during peak hours. A fiber connection with symmetrical speeds is the gold standard, but modern cable and 5G options can also deliver excellent gaming experiences. We've ranked the best providers for gaming based on what actually matters.`,
     speedNeeded: '100–1000 Mbps',
     budgetRange: '$50–$100/mo',
     keyFeatures: ['Low ping/latency', 'No data caps', 'Fast upload speed', 'Consistent speeds', 'Gaming-optimized', 'Symmetrical fiber available'],
     providerFilter: (p) => getMaxSpeed(p) >= 300 && p.plans.some(plan => plan.dataCap === 'Unlimited'),
     buyingTips: [
-      { title: 'Fiber is king for gaming', text: 'Fiber delivers the lowest latency (3-10ms) and symmetrical speeds. If Verizon Fios, AT&T Fiber, or Frontier Fiber are available, they should be your first choice.' },
+      { title: 'Fiber is king for gaming', text: 'Fiber delivers the lowest latency (3-10ms) and symmetrical speeds. If AT&T Fiber, Frontier Fiber, or Brightspeed Fiber are available, they should be your first choice.' },
       { title: 'Upload speed matters for streaming', text: 'If you stream on Twitch or YouTube, you need at least 10 Mbps upload (25+ recommended). Fiber\'s symmetrical speeds are ideal; cable upload is often limited to 10-35 Mbps.' },
       { title: 'Avoid data caps', text: 'Modern games can be 100+ GB to download, and updates are frequent. Xfinity\'s 1.2 TB cap can be a problem. Choose providers with unlimited data.' },
       { title: 'Use ethernet, not WiFi', text: 'The best internet plan in the world won\'t help if you\'re gaming on WiFi 3 rooms away. Always use a wired ethernet connection for competitive gaming.' },
@@ -147,9 +147,9 @@ const audiences: Record<string, AudienceData> = {
   },
   apartments: {
     slug: 'apartments',
-    title: `Best Internet for Apartments (${year})`,
-    h1: 'Best Internet for Apartments',
-    description: `Find the best internet for your apartment in ${year}. No-contract plans, easy self-install, and speeds up to 1 Gbps. Compare apartment-friendly providers.`,
+    title: 'Internet for Apartments — Renters\' Internet Options',
+    h1: 'Internet for Apartments',
+    description: 'Find internet for your apartment or rental — no-contract plans, month-to-month options, and providers available at your exact address. No landlord needed.',
     intro: `Apartment internet comes with unique challenges: you may be limited to specific providers per building, need landlord approval for installations, and face congestion from neighboring units sharing the same cable node. The good news? 5G home internet and expanded fiber have given apartment dwellers more choices than ever — many with no installation required.`,
     speedNeeded: '100–500 Mbps',
     budgetRange: '$30–$70/mo',
@@ -171,9 +171,9 @@ const audiences: Record<string, AudienceData> = {
   },
   students: {
     slug: 'students',
-    title: `Best Internet for College Students (${year})`,
-    h1: 'Best Internet for College Students',
-    description: `Affordable internet for college students in ${year}. No-contract plans, budget-friendly prices, and speeds for online classes, streaming, and gaming.`,
+    title: 'Internet for Students — Cheap Student Internet Plans',
+    h1: 'Internet for Students',
+    description: 'Find cheap internet for students near you. No-contract plans, low-cost providers, and fast home internet options available at your dorm or apartment address.',
     intro: `College students need reliable internet for online classes, research, video calls with professors, streaming between study sessions, and yes — gaming. But student budgets are tight. The best student internet balances speed, reliability, and price, with no commitment contracts that match your semester schedule.`,
     speedNeeded: '50–300 Mbps',
     budgetRange: '$25–$60/mo',
@@ -195,9 +195,9 @@ const audiences: Record<string, AudienceData> = {
   },
   'work-from-home': {
     slug: 'work-from-home',
-    title: `Best Internet for Working from Home (${year})`,
-    h1: 'Best Internet for Working from Home',
-    description: `Reliable internet for remote workers in ${year}. Fast upload speeds, low latency for video calls, and consistent performance. Compare WFH-optimized plans.`,
+    title: 'Best Internet for Working From Home — Fast Plans Near You',
+    h1: 'Internet for Working From Home',
+    description: 'Find fast, reliable internet for working from home. Plans built for video calls and uploads — fiber and 5G options at your address. Don\'t let wifi kill your job.',
     intro: `Remote work demands more from your internet than casual browsing ever did. Zoom calls, VPN connections, cloud file syncing, and collaborative tools all run simultaneously — and they need consistent bandwidth, especially upload speed. A dropped call or frozen screen in a client meeting isn't just annoying; it's unprofessional. Here's how to choose internet that works as hard as you do.`,
     speedNeeded: '100–500 Mbps',
     budgetRange: '$50–$90/mo',
@@ -238,7 +238,7 @@ const audiences: Record<string, AudienceData> = {
       { question: 'Is business internet worth the extra cost?', answer: 'For most businesses, yes. Business plans include SLAs (guaranteed uptime), faster repair response (often same-day), static IP addresses, and priority technical support. If an hour of downtime costs you more than $50, business internet pays for itself.' },
       { question: 'Do I need a static IP for my business?', answer: 'You need a static IP if you: host a website or email server, use certain VPN configurations, run security cameras viewable remotely, or use specific POS systems. Most business plans include at least one static IP. Residential plans don\'t offer them.' },
       { question: 'Can I use residential internet for my small business?', answer: 'Technically yes, but you lose SLA guarantees, priority support, and may violate terms of service. For home-based businesses with 1-3 people, residential is usually fine. For retail/offices with employees, business internet\'s reliability justifies the premium.' },
-      { question: 'What is the best business internet provider?', answer: 'It depends on location. AT&T Business Fiber, Verizon Business Fios, and Spectrum Business are top choices nationally. For smaller markets, Frontier Business, Brightspeed, and Windstream/Kinetic serve well. Sign up above to compare options at your business address.' },
+      { question: 'What is the best business internet provider?', answer: 'It depends on location. AT&T Business Fiber, Spectrum Business, and Frontier Business are top choices nationally. For smaller markets, Brightspeed and Windstream/Kinetic serve well. Sign up above to compare options at your business address.' },
     ],
   },
   'large-households': {
@@ -304,6 +304,7 @@ const allProviders = getAllProviders();
 
 // Filter and sort providers for this audience (partners first)
 const relevantProviders = allProviders
+  .filter(audience.providerFilter)
   .sort((a, b) => {
     if (a.isPartner && !b.isPartner) return -1;
     if (!a.isPartner && b.isPartner) return 1;
@@ -313,8 +314,9 @@ const relevantProviders = allProviders
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: audience.title, url: `https://internet4all.com/internet-for/${audience.slug}` },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Internet Guides', url: 'https://internet-4-all.com/internet-for' },
+    { name: audience.title, url: `https://internet-4-all.com/internet-for/${audience.slug}` },
   ]),
   generateFAQSchema(audience.faqs),
 ];

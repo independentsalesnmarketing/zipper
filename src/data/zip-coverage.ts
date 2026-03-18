@@ -82,7 +82,7 @@ function buildCoverageMap(): Record<string, ZipCoverageEntry[]> {
       const zip = (rows[i][0] || '').trim().padStart(5, '0');
       if (!/^\d{5}$/.test(zip) || seen.has(zip)) continue;
       seen.add(zip);
-      add(zip, { id: 'windstream', fiber: false });
+      add(zip, { id: 'kinetic', fiber: false });
     }
   }
 

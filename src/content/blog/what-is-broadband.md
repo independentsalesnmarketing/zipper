@@ -26,7 +26,7 @@ In practical terms, broadband is any internet connection fast enough to handle m
 
 Fiber transmits data as light pulses through glass strands. It's the fastest, most reliable, and lowest-latency technology available. The only downside: availability. Fiber reaches roughly 50% of U.S. households, concentrated in urban and suburban areas.
 
-**Fiber providers**: AT&T Fiber, Verizon Fios, Frontier Fiber, EarthLink, Optimum, Brightspeed, AltaFiber
+**Fiber providers**: AT&T Fiber, Frontier Fiber, EarthLink, Optimum, Brightspeed, AltaFiber
 
 ### Cable
 | Feature | Details |
@@ -50,7 +50,7 @@ Cable internet uses the same coaxial cables as cable TV. It's widely available a
 
 Fixed wireless uses cell towers to deliver internet without wires. The biggest benefit: no physical installation required. Plug in a gateway and connect. Speeds vary based on tower proximity and congestion.
 
-**Fixed wireless providers**: T-Mobile Home Internet, Verizon Home Internet
+**Fixed wireless providers**: Verizon 5G Home Internet, AT&T Air, T-Mobile Home Internet, EarthLink
 
 ### DSL
 | Feature | Details |

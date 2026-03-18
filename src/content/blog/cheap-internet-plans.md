@@ -26,7 +26,7 @@ If you receive government assistance (Medicaid, SNAP, SSI, WIC, free school lunc
 |----------|---------|-------|-------|
 | [Spectrum](/provider/spectrum) | Internet Assist | **$17.99/mo** | 30 Mbps |
 | [Optimum](/provider/optimum) | Advantage Internet | **$14.99/mo** | 30 Mbps |
-| [AT&T](/provider/att) | Access | **$30/mo** | 100 Mbps |
+| [AT&T](/provider/att-fiber) | Access | **$30/mo** | 100 Mbps |
 | [Frontier](/provider/frontier) | Lifeline Discount | **Varies** | Varies |
 | Windstream | Kinetic Internet First | **$9.95/mo** | 25 Mbps |
 
@@ -78,8 +78,8 @@ Some providers offer prepaid home internet without credit checks:
 
 Already paying too much? Try these strategies:
 
-### 1. Call and Negotiate ($0 effort, potential $20-40/mo savings)
-Call your provider and say: "I've been a customer for X years. My bill has increased and I'm considering switching to [competitor]. Can you offer me a better rate?"
+### 1. Contact Support and Negotiate ($0 effort, potential $20-40/mo savings)
+Contact your provider support and say: "I've been a customer for X years. My bill has increased and I'm considering switching to [competitor]. Can you offer me a better rate?"
 
 **Key phrases that work**:
 - "I'd like to speak with the retention department"

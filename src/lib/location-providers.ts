@@ -243,13 +243,13 @@ function generateContent(
       `${location} is one of the best-connected areas in ${stateName}, with ${providerCount} providers competing for your business. That competition means better prices (from ${formatPrice(minPrice)}/mo) and faster speeds (up to ${formatSpeed(topSpeed)}) for ${cityName}'s ${popStr} residents. ${fiberProviders.length} fiber providers serve the area.`,
       `We searched every option in ${location} and found ${providerCount} providers — that's ${competitionLevel} competition working in your favor. ${cityName} residents can choose from ${fiberProviders.length} fiber, ${cableCount} cable, and ${fiveGCount} 5G providers. Speeds reach ${formatSpeed(topSpeed)}, starting at ${formatPrice(minPrice)}/mo.`,
       `With ${providerCount} providers, ${location} has more internet options than ${100 - stats.statePercentile}% of ${stateName}. ${cityName}'s ${popStr} residents benefit from fiber availability through ${fiberProviders.slice(0, 2).map(p => p.name).join(' and ')}. Our experts can match you with the best deal — plans from ${formatPrice(minPrice)}/mo.`,
-      `${cityName}, ${stateName} earns an internet grade of ${grade} with ${providerCount} active providers. Fiber reaches this area from ${fiberProviders.slice(0, 3).map(p => p.name).join(', ')}, delivering up to ${formatSpeed(topSpeed)}. Average starting price is $${avgPrice}/mo, but calling us often unlocks rates at ${formatPrice(minPrice)}/mo and lower.`,
+      `${cityName}, ${stateName} earns an internet grade of ${grade} with ${providerCount} active providers. Fiber reaches this area from ${fiberProviders.slice(0, 3).map(p => p.name).join(', ')}, delivering up to ${formatSpeed(topSpeed)}. Average starting price is $${avgPrice}/mo, but using chat or Talk to Agent often unlocks rates at ${formatPrice(minPrice)}/mo and lower.`,
     ];
     resultIntro = variants[introIdx % variants.length];
 
   } else if (fiberAvailable) {
     const variants = [
-      `We found ${providerCount} internet providers in ${location}. Fiber internet is available from ${fiberProviders.map(p => p.name).join(' and ')}, delivering speeds up to ${formatSpeed(topSpeed)} to ${cityName}'s ${popStr} residents. Plans start at ${formatPrice(minPrice)}/mo — call us for the best rate at your address.`,
+      `We found ${providerCount} internet providers in ${location}. Fiber internet is available from ${fiberProviders.map(p => p.name).join(' and ')}, delivering speeds up to ${formatSpeed(topSpeed)} to ${cityName}'s ${popStr} residents. Plans start at ${formatPrice(minPrice)}/mo — use chat for the best rate at your address.`,
       `${providerCount} options are available in ${location}, including fiber from ${fiberProviders.slice(0, 2).map(p => p.name).join(' and ')}. ${cityName} residents can get connected from ${formatPrice(minPrice)}/mo, with top speeds reaching ${formatSpeed(topSpeed)}. Our free comparison service finds the right plan for your household.`,
       `Fiber internet has arrived in ${cityName}. ${fiberProviders.slice(0, 2).map(p => p.name).join(' and ')} ${fiberProviders.length > 1 ? 'offer' : 'offers'} fiber among the ${providerCount} providers in ${location}. Speeds reach ${formatSpeed(topSpeed)} and plans start at ${formatPrice(minPrice)}/mo. Enter your ZIP below for address-level results.`,
       `${location} earns a ${grade} internet grade thanks to ${providerCount} providers including ${fiberProviders.length} fiber option${fiberProviders.length > 1 ? 's' : ''}. ${cityName}'s ${popStr} residents can access speeds up to ${formatSpeed(topSpeed)} starting at ${formatPrice(minPrice)}/mo. Competition level: ${competitionLevel}.`,
@@ -258,18 +258,18 @@ function generateContent(
 
   } else if (providerCount <= 3) {
     const variants = [
-      `${location} has ${providerCount} internet provider${providerCount !== 1 ? 's' : ''} available. While options are more limited than urban areas, ${cityName} residents can get connected from ${formatPrice(minPrice)}/mo with speeds to ${formatSpeed(topSpeed)}. ${partnerCount > 0 ? `We partner with ${partnerCount} provider${partnerCount > 1 ? 's' : ''} here for exclusive phone-only deals.` : ''}`,
-      `We found ${providerCount} internet option${providerCount !== 1 ? 's' : ''} for ${location}. ${cityName}'s ${popStr} residents can access speeds to ${formatSpeed(topSpeed)} from ${formatPrice(minPrice)}/mo. Our experts specialize in finding the best deals in less competitive markets — call for rates not listed online.`,
-      `Internet in ${location}: ${providerCount} provider${providerCount !== 1 ? 's' : ''} available, fastest at ${formatSpeed(topSpeed)}. For ${cityName}'s ${popStr} residents, we recommend calling to compare — our team finds promotions that make a real difference where options are limited.`,
+      `${location} has ${providerCount} internet provider${providerCount !== 1 ? 's' : ''} available. While options are more limited than urban areas, ${cityName} residents can get connected from ${formatPrice(minPrice)}/mo with speeds to ${formatSpeed(topSpeed)}. ${partnerCount > 0 ? `We partner with ${partnerCount} provider${partnerCount > 1 ? 's' : ''} here for exclusive order-only deals.` : ''}`,
+      `We found ${providerCount} internet option${providerCount !== 1 ? 's' : ''} for ${location}. ${cityName}'s ${popStr} residents can access speeds to ${formatSpeed(topSpeed)} from ${formatPrice(minPrice)}/mo. Our experts specialize in finding the best deals in less competitive markets — use chat for rates not listed online.`,
+      `Internet in ${location}: ${providerCount} provider${providerCount !== 1 ? 's' : ''} available, fastest at ${formatSpeed(topSpeed)}. For ${cityName}'s ${popStr} residents, we recommend using chat to compare — our team finds promotions that make a real difference where options are limited.`,
     ];
     resultIntro = variants[introIdx % variants.length];
 
   } else {
     const variants = [
-      `${providerCount} internet providers serve ${location}, giving ${cityName}'s ${popStr} residents options from ${formatPrice(minPrice)}/mo up to premium ${formatSpeed(topSpeed)} plans. ${partnerCount > 0 ? `We work with ${partnerCount} providers here to negotiate exclusive rates — call for the best deal.` : ''}`,
+      `${providerCount} internet providers serve ${location}, giving ${cityName}'s ${popStr} residents options from ${formatPrice(minPrice)}/mo up to premium ${formatSpeed(topSpeed)} plans. ${partnerCount > 0 ? `We work with ${partnerCount} providers here to negotiate exclusive rates — use chat for the best deal.` : ''}`,
       `We identified ${providerCount} providers for ${location}. In ${cityName}, speeds reach ${formatSpeed(topSpeed)} and plans start at ${formatPrice(minPrice)}/mo. ${fiveGCount > 0 ? `5G home internet is available, adding wireless options alongside traditional cable and DSL.` : 'Cable and DSL deliver the primary high-speed options.'}`,
       `Internet results for ${location}: ${providerCount} providers, speeds to ${formatSpeed(topSpeed)}, plans from ${formatPrice(minPrice)}/mo. ${cityName} has ${competitionLevel} competition, which ${competitionLevel === 'high' ? 'keeps prices aggressive' : competitionLevel === 'medium' ? 'gives solid options to compare' : 'means our experts can help find hidden deals'}.`,
-      `${cityName}, ${stateName} — ${providerCount} providers available. Competition level: ${competitionLevel}. Top speed: ${formatSpeed(topSpeed)}. Lowest price: ${formatPrice(minPrice)}/mo. Grade: ${grade}. ${partnerCount > 0 ? `Call to access exclusive partner pricing not listed on provider websites.` : ''}`,
+      `${cityName}, ${stateName} — ${providerCount} providers available. Competition level: ${competitionLevel}. Top speed: ${formatSpeed(topSpeed)}. Lowest price: ${formatPrice(minPrice)}/mo. Grade: ${grade}. ${partnerCount > 0 ? `Use chat or Talk to Agent to access exclusive partner pricing not listed on provider websites.` : ''}`,
     ];
     resultIntro = variants[introIdx % variants.length];
   }
@@ -280,24 +280,24 @@ function generateContent(
   let recommendation: string;
   if (topPartner) {
     const recs = [
-      `Our top pick for ${cityName} is ${topPartner.name} — rated ${topPartner.rating}/5 stars with plans from ${formatPrice(getMinPrice(topPartner))}/mo. Call to get their best current promotion.`,
-      `For most ${cityName} households, we recommend ${topPartner.name}. With ${topPartner.rating}/5 stars and speeds to ${formatSpeed(getMaxSpeed(topPartner))}, it's a reliable choice. Ask about phone-exclusive pricing.`,
+      `Our top pick for ${cityName} is ${topPartner.name} — rated ${topPartner.rating}/5 stars with plans from ${formatPrice(getMinPrice(topPartner))}/mo. Use chat to get their best current promotion.`,
+      `For most ${cityName} households, we recommend ${topPartner.name}. With ${topPartner.rating}/5 stars and speeds to ${formatSpeed(getMaxSpeed(topPartner))}, it's a reliable choice. Ask about exclusive order pricing.`,
       `Based on speed, price, and availability in ${location}, ${topPartner.name} is our #1 pick. ${topPartner.pros[0]}. Plans from ${formatPrice(getMinPrice(topPartner))}/mo.`,
       `${topPartner.name} leads our ${cityName} rankings with ${topPartner.rating}/5 stars across ${topPartner.reviewCount.toLocaleString()} reviews. Their ${topPartner.plans[0]?.name || 'starter plan'} begins at ${formatPrice(getMinPrice(topPartner))}/mo.`,
-      `For ${cityName}, ${topPartner.name} offers the best combination of speed, price, and reliability. Up to ${formatSpeed(getMaxSpeed(topPartner))}, from ${formatPrice(getMinPrice(topPartner))}/mo. Call for current promotions.`,
+      `For ${cityName}, ${topPartner.name} offers the best combination of speed, price, and reliability. Up to ${formatSpeed(getMaxSpeed(topPartner))}, from ${formatPrice(getMinPrice(topPartner))}/mo. Use chat for current promotions.`,
     ];
     recommendation = recs[recIdx];
   } else {
-    recommendation = `Call our experts for a personalized recommendation based on your ${cityName} address and usage needs.`;
+    recommendation = `Use chat or Talk to Agent for a personalized recommendation based on your ${cityName} address and usage needs.`;
   }
 
   // ── PRICE INSIGHT ──
   const priceIdx = (h >> 8) % 4;
   const priceInsights = [
-    `Internet in ${cityName} averages $${avgPrice}/mo to start — ${avgPrice < 50 ? 'below' : avgPrice < 60 ? 'near' : 'above'} the typical U.S. average of ~$55/mo. The most affordable plan is ${formatPrice(minPrice)}/mo. Our phone-only deals can reduce that further.`,
+    `Internet in ${cityName} averages $${avgPrice}/mo to start — ${avgPrice < 50 ? 'below' : avgPrice < 60 ? 'near' : 'above'} the typical U.S. average of ~$55/mo. The most affordable plan is ${formatPrice(minPrice)}/mo. Our order and chat deals can reduce that further.`,
     `Plans in ${location} range from ${formatPrice(minPrice)}/mo to premium tiers with ${formatSpeed(topSpeed)} speeds. Most entry-level plans fall between $${Math.max(Math.round(minPrice), 30)}-$${Math.min(Math.round(avgPrice + 15), 80)}/mo. ${partnerCount > 0 ? 'Partner deals can save $10-40/mo over online pricing.' : ''}`,
     `The cheapest internet in ${cityName} is ${formatPrice(minPrice)}/mo, average starting price is $${avgPrice}/mo across all ${providerCount} providers. ${competitionLevel === 'high' ? 'High competition keeps prices honest here.' : 'Calling our experts helps leverage competing offers.'}`,
-    `${cityName} pricing: ${formatPrice(minPrice)} to $100+/mo. For a typical household, expect $${Math.round(avgPrice * 0.9)}-$${Math.round(avgPrice * 1.15)}/mo for solid performance. We specialize in finding promotional rates below that range.`,
+    `${cityName} pricing: ${formatPrice(minPrice)} to $100+/mo. For a typical household, expect $${Math.round(avgPrice * 0.9)}-$${Math.round(avgPrice * 1.15)}/mo for solid performance. We specialize in finding promotional rates below that range via order and chat support.`,
   ];
   const priceInsight = priceInsights[priceIdx];
 

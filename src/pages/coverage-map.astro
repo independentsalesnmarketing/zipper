@@ -1,0 +1,428 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import SearchBar from '@components/SearchBar.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import CoverageMap from '@components/CoverageMap.astro';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+
+const allProviders = getAllProviders();
+const partners = getPartnerProviders();
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('default', { month: 'long' });
+
+const breadcrumbs = [{ name: 'Coverage Map' }];
+
+const faqs = [
+  {
+    question: 'What is an internet coverage map?',
+    answer: 'An internet coverage map shows the geographic areas where each ISP offers service. Providers build and maintain their own infrastructure, so coverage varies significantly by address. Our map layers coverage areas for 14 major providers so you can visually compare which ones reach your neighborhood.',
+  },
+  {
+    question: 'How do I check internet availability at my specific address?',
+    answer: 'Enter your ZIP code in the search bar above. Our tool cross-references FCC broadband availability data to show every provider that serves your address — including speeds, prices, and plan options. The coverage map gives an approximate overview; entering your ZIP gives exact results.',
+  },
+  {
+    question: 'Does fiber internet cover my area?',
+    answer: 'Fiber internet (AT&T Fiber, Frontier Fiber, Spectrum Fiber, Optimum Fiber, Kinetic Fiber) is available to roughly 50–60% of US households as of 2025, but coverage is expanding rapidly. Toggle the fiber providers on the map to see if coverage reaches your ZIP code, then enter your address above to confirm.',
+  },
+  {
+    question: 'What\'s the fastest internet available in rural areas?',
+    answer: 'For rural and remote locations, Starlink satellite internet is often the fastest option at up to 200–500 Mbps — a major improvement over traditional satellite. Fixed wireless providers like EarthLink, T-Mobile Home Internet, and Verizon 5G Home Internet also serve many rural areas without cable or fiber infrastructure.',
+  },
+  {
+    question: 'Why do different providers cover different areas?',
+    answer: 'Internet providers build their own physical infrastructure — fiber lines, cable networks, wireless towers, and satellite systems. Because building physical infrastructure is expensive, each company focuses on specific markets. Urban areas typically have the most choice; rural areas often have 1–2 options. This is why checking by address matters.',
+  },
+  {
+    question: 'Can I get cable internet and fiber internet at the same address?',
+    answer: 'Yes, in many markets. Cities like Atlanta, Dallas, Los Angeles, and Chicago often have multiple competitive fiber and cable providers at the same address. In these cases you can compare speeds, prices, and contract terms side-by-side. Enter your ZIP to see what\'s actually available at your address.',
+  },
+  {
+    question: 'Is the coverage map real-time?',
+    answer: 'The coverage layer data is updated periodically based on FCC broadband availability filings and direct provider data. While it shows approximate footprints, it may not reflect the most recent expansions. For a confirmed availability check, always enter your specific address using the search tool above.',
+  },
+];
+
+const states = [
+  { abbr: 'AL', name: 'Alabama' }, { abbr: 'AK', name: 'Alaska' }, { abbr: 'AZ', name: 'Arizona' },
+  { abbr: 'AR', name: 'Arkansas' }, { abbr: 'CA', name: 'California' }, { abbr: 'CO', name: 'Colorado' },
+  { abbr: 'CT', name: 'Connecticut' }, { abbr: 'DE', name: 'Delaware' }, { abbr: 'FL', name: 'Florida' },
+  { abbr: 'GA', name: 'Georgia' }, { abbr: 'HI', name: 'Hawaii' }, { abbr: 'ID', name: 'Idaho' },
+  { abbr: 'IL', name: 'Illinois' }, { abbr: 'IN', name: 'Indiana' }, { abbr: 'IA', name: 'Iowa' },
+  { abbr: 'KS', name: 'Kansas' }, { abbr: 'KY', name: 'Kentucky' }, { abbr: 'LA', name: 'Louisiana' },
+  { abbr: 'ME', name: 'Maine' }, { abbr: 'MD', name: 'Maryland' }, { abbr: 'MA', name: 'Massachusetts' },
+  { abbr: 'MI', name: 'Michigan' }, { abbr: 'MN', name: 'Minnesota' }, { abbr: 'MS', name: 'Mississippi' },
+  { abbr: 'MO', name: 'Missouri' }, { abbr: 'MT', name: 'Montana' }, { abbr: 'NE', name: 'Nebraska' },
+  { abbr: 'NV', name: 'Nevada' }, { abbr: 'NH', name: 'New Hampshire' }, { abbr: 'NJ', name: 'New Jersey' },
+  { abbr: 'NM', name: 'New Mexico' }, { abbr: 'NY', name: 'New York' }, { abbr: 'NC', name: 'North Carolina' },
+  { abbr: 'ND', name: 'North Dakota' }, { abbr: 'OH', name: 'Ohio' }, { abbr: 'OK', name: 'Oklahoma' },
+  { abbr: 'OR', name: 'Oregon' }, { abbr: 'PA', name: 'Pennsylvania' }, { abbr: 'RI', name: 'Rhode Island' },
+  { abbr: 'SC', name: 'South Carolina' }, { abbr: 'SD', name: 'South Dakota' }, { abbr: 'TN', name: 'Tennessee' },
+  { abbr: 'TX', name: 'Texas' }, { abbr: 'UT', name: 'Utah' }, { abbr: 'VT', name: 'Vermont' },
+  { abbr: 'VA', name: 'Virginia' }, { abbr: 'WA', name: 'Washington' }, { abbr: 'WV', name: 'West Virginia' },
+  { abbr: 'WI', name: 'Wisconsin' }, { abbr: 'WY', name: 'Wyoming' },
+];
+---
+
+<Base
+  title={`Internet Coverage Map — Check Providers at Your Address (${year})`}
+  description="See every internet provider's coverage area on one interactive map. Fiber, cable, 5G, and satellite — check internet availability by address and compare plans side-by-side."
+  schema={[
+    generateBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Coverage Map', url: '/coverage-map' }]),
+    generateFAQSchema(faqs),
+  ]}
+>
+  <StickyCallBar />
+
+  <!-- ===== HERO ===== -->
+  <section class="section" style="padding-top: var(--space-xl); padding-bottom: var(--space-lg);">
+    <div class="container">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="text-center reveal" style="margin-bottom: var(--space-xl);">
+        <div class="badge badge-blue reveal" style="margin-bottom: var(--space-md);">Updated {month} {year}</div>
+        <h1 class="reveal">
+          Internet Coverage Map
+          <span class="light-gradient-text"> — Check Availability at Your Address</span>
+        </h1>
+        <p class="hero-subtitle reveal" style="max-width: 660px; margin-inline: auto; margin-top: var(--space-md);">
+          See which fiber, cable, 5G, and satellite providers serve your neighborhood. Toggle providers on the map, then enter your ZIP code for exact availability and pricing.
+        </p>
+        <div class="reveal" style="display: flex; justify-content: center; margin-top: var(--space-lg);">
+          <SearchBar size="large" placeholder="Enter your ZIP code to check availability" />
+        </div>
+      </div>
+
+      <!-- Quick stats -->
+      <div class="reveal" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin-bottom: var(--space-xl); text-align: center;">
+        <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-lg);">
+          <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--brand-blue);">14</div>
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">Providers Mapped</div>
+        </div>
+        <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-lg);">
+          <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--brand-blue);">50+</div>
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">States Covered</div>
+        </div>
+        <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-lg);">
+          <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--brand-blue);">Free</div>
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">No Sign-Up Needed</div>
+        </div>
+        <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-lg);">
+          <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--brand-blue);">Live</div>
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">FCC Data</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERACTIVE MAP ===== -->
+  <section class="section" style="padding-top: 0; padding-bottom: var(--space-3xl);">
+    <div class="container">
+      <CoverageMap height="560px" />
+      <p style="margin-top: var(--space-md); font-size: var(--text-xs); color: var(--text-tertiary); text-align: center;">
+        Toggle providers using the sidebar. Coverage areas are approximate — <a href="/check-availability" style="color: var(--brand-blue);">enter your address</a> for exact availability.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== FIBER INTERNET COVERAGE (Comp 0-2 keywords) ===== -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="reveal" style="max-width: 800px; margin-inline: auto; text-align: center; margin-bottom: var(--space-2xl);">
+        <h2>Fiber Internet Coverage — The Fastest Internet Available</h2>
+        <p class="text-secondary" style="margin-top: var(--space-md); font-size: var(--text-base); line-height: 1.7;">
+          Fiber optic internet delivers symmetrical upload and download speeds via glass-fiber cables — with no throttling, no congestion, and latency as low as 1 ms. As of {year}, fiber high speed internet reaches approximately 55% of US households, with rapid expansion underway.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+        <div class="card reveal" style="padding: var(--space-xl);">
+          <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-md);">Fiber Internet Plans & Speeds</h3>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7; margin-bottom: var(--space-md);">
+            Fiber internet plans typically start at $35–$55/month for 500 Mbps and scale up to 5–8 Gbps multi-gig plans. Most fiber providers offer no contracts, no data caps, and free equipment — a major advantage over cable.
+          </p>
+          <ul style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.9; padding-left: 1.2em;">
+            <li>Speeds from 500 Mbps to 8 Gbps</li>
+            <li>Starting from $35–$55/month</li>
+            <li>No data caps on most plans</li>
+            <li>Symmetrical upload speeds</li>
+          </ul>
+        </div>
+
+        <div class="card reveal" style="padding: var(--space-xl);">
+          <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-md);">Fiber Optic Internet Providers</h3>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7; margin-bottom: var(--space-md);">
+            The major fiber optic internet providers expanding coverage in {year} are AT&T Fiber (26 states), Frontier Fiber (25 states), Spectrum Fiber, Optimum Fiber, and Kinetic Fiber by Windstream. Toggle each on the map above to see their coverage footprints.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-md);">
+            {[
+              { slug: 'att-fiber', name: 'AT&T Fiber' },
+              { slug: 'frontier', name: 'Frontier Fiber' },
+              { slug: 'spectrum', name: 'Spectrum Fiber' },
+              { slug: 'optimum', name: 'Optimum Fiber' },
+              { slug: 'kinetic', name: 'Kinetic Fiber' },
+            ].map(p => (
+              <a href={`/provider/${p.slug}`} class="badge badge-blue" style="text-decoration: none; font-size: var(--text-xs);">{p.name}</a>
+            ))}
+          </div>
+        </div>
+
+        <div class="card reveal" style="padding: var(--space-xl);">
+          <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-md);">Fiber Internet Availability by Address</h3>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7; margin-bottom: var(--space-md);">
+            Coverage maps show approximate service areas, but fiber availability is confirmed at the address level. A street on one side of a block may have fiber while the other side is still on DSL. Always verify by entering your exact address.
+          </p>
+          <a href="/check-availability" class="btn btn-cta" style="font-size: var(--text-sm); display: inline-block;">Check Fiber at My Address →</a>
+        </div>
+      </div>
+
+      <div class="reveal text-center">
+        <a href="/internet-types/fiber" style="color: var(--brand-blue); font-weight: 600;">Full fiber internet guide &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CABLE INTERNET COVERAGE (Comp 8, 11 keywords) ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal" style="max-width: 800px; margin-inline: auto; text-align: center; margin-bottom: var(--space-2xl);">
+        <h2>Cable Internet Coverage — Widely Available, Fast Speeds</h2>
+        <p class="text-secondary" style="margin-top: var(--space-md); font-size: var(--text-base); line-height: 1.7;">
+          Cable internet uses the same coaxial infrastructure as cable TV to deliver download speeds of 100 Mbps to 2 Gbps. Cable internet providers cover roughly 88% of US homes — making it the most widely available high-speed option outside rural areas.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-lg);">
+        {[
+          { slug: 'xfinity', name: 'Xfinity (Comcast)', desc: 'Largest US cable internet provider. Covers 40 states. Speeds up to 2 Gbps via Xfinity Gigabit Pro.' },
+          { slug: 'spectrum', name: 'Spectrum (Charter)', desc: 'No contracts, no data caps. Up to 1 Gbps in 41 states. Now expanding fiber footprint.' },
+          { slug: 'cox', name: 'Cox Communications', desc: '18 states, speeds up to 2 Gbps. Known for strong residential cable & internet bundles.' },
+          { slug: 'mediacom', name: 'Mediacom', desc: 'Primary cable internet provider for rural and mid-size markets in the Midwest and South.' },
+          { slug: 'wow', name: 'WOW! Internet', desc: 'Competitive cable internet covering select markets in the Southeast and Midwest.' },
+          { slug: 'astound', name: 'Astound (RCN)', desc: 'Covers select metro markets including NYC, Chicago, Boston, and Washington D.C.' },
+        ].map(p => (
+          <a href={`/provider/${p.slug}`} class="card reveal" style="padding: var(--space-lg); text-decoration: none; display: flex; flex-direction: column; gap: var(--space-sm);">
+            <span class="tag tag-cable" style="align-self: flex-start; font-size: var(--text-xs);">Cable</span>
+            <h4 style="font-size: var(--text-base); color: var(--text-primary);">{p.name}</h4>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.5;">{p.desc}</p>
+            <span style="color: var(--brand-blue); font-size: var(--text-sm); font-weight: 600; margin-top: auto;">View coverage →</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="reveal text-center" style="margin-top: var(--space-xl);">
+        <a href="/internet-types/cable" style="color: var(--brand-blue); font-weight: 600;">Full cable internet guide &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERNET AVAILABILITY BY ADDRESS (50K keyword) ===== -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="reveal" style="max-width: 800px; margin-inline: auto;">
+        <h2 class="text-center" style="margin-bottom: var(--space-xl);">Check Internet Availability by Address</h2>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl);">
+          <div class="reveal">
+            <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-md);">Why Address Matters</h3>
+            <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7;">
+              Internet availability is confirmed at the address level — not the ZIP code level. Two neighbors on the same block can have entirely different options. A provider's coverage area may end halfway down your street, or you may be one of the first homes in a newly expanded fiber zone.
+            </p>
+            <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7; margin-top: var(--space-md);">
+              Broadband providers by address are confirmed through FCC Form 477 data — the most comprehensive source of broadband availability information in the US, updated twice per year.
+            </p>
+          </div>
+
+          <div class="reveal">
+            <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-md);">What You'll See</h3>
+            <ul style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 2; padding-left: 1.2em;">
+              <li>Every provider that serves your specific address</li>
+              <li>Available internet types (fiber, cable, 5G, DSL)</li>
+              <li>Max advertised download and upload speeds</li>
+              <li>Starting monthly prices for each plan</li>
+              <li>Customer satisfaction ratings</li>
+              <li>Current promotions and sign-up offers</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="reveal text-center" style="margin-top: var(--space-2xl);">
+          <SearchBar size="large" placeholder="Enter ZIP code to check broadband providers at your address" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5G & RURAL INTERNET ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom: var(--space-xl);">
+        <h2>5G Home Internet & Rural Broadband Coverage</h2>
+        <p class="text-secondary" style="max-width: 660px; margin-inline: auto; margin-top: var(--space-md);">
+          For areas without cable or fiber, 5G home internet and fixed wireless services provide high-speed rural internet access without requiring physical cable infrastructure.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-lg);">
+        <div class="card reveal" style="padding: var(--space-xl);">
+          <span class="tag tag-5g" style="font-size: var(--text-xs);">5G Home Internet</span>
+          <h3 style="font-size: var(--text-lg); margin: var(--space-md) 0 var(--space-sm);">T-Mobile Home Internet</h3>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7;">
+            Available to 50+ million households nationwide. Plug-and-play router, no technician needed. Fixed $50/mo with autopay — one of the best value 5G home internet plans available.
+          </p>
+          <a href="/provider/tmobile-5g" style="color: var(--brand-blue); font-size: var(--text-sm); font-weight: 600; display: block; margin-top: var(--space-md);">Check T-Mobile availability →</a>
+        </div>
+
+        <div class="card reveal" style="padding: var(--space-xl);">
+          <span class="tag tag-5g" style="font-size: var(--text-xs);">5G Home Internet</span>
+          <h3 style="font-size: var(--text-lg); margin: var(--space-md) 0 var(--space-sm);">Verizon 5G Home Internet</h3>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7;">
+            Available nationwide with no annual contracts. Includes a 4-year price lock guarantee. $200–$300 Mastercard reward when you switch. Speeds up to 1 Gbps in 5G Ultra Wideband areas.
+          </p>
+          <a href="/provider/verizon" style="color: var(--brand-blue); font-size: var(--text-sm); font-weight: 600; display: block; margin-top: var(--space-md);">Check Verizon availability →</a>
+        </div>
+
+        <div class="card reveal" style="padding: var(--space-xl);">
+          <span class="tag tag-satellite" style="font-size: var(--text-xs);">Rural Internet</span>
+          <h3 style="font-size: var(--text-lg); margin: var(--space-md) 0 var(--space-sm);">High Speed Rural Internet</h3>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.7;">
+            Starlink delivers true high speed internet for rural areas at 100–500 Mbps — far exceeding traditional satellite. EarthLink's fixed wireless network also covers millions of rural and suburban addresses nationally.
+          </p>
+          <a href="/internet-types/satellite" style="color: var(--brand-blue); font-size: var(--text-sm); font-weight: 600; display: block; margin-top: var(--space-md);">Rural internet options →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PARTNER PROVIDERS (sign-up CTAs) ===== -->
+  <section class="section" id="get-connected" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom: var(--space-xl);">
+        <h2>Our Recommended Providers</h2>
+        <p class="text-secondary" style="max-width: 600px; margin-inline: auto; margin-top: var(--space-sm);">
+          These providers meet our standards for speed, pricing transparency, and customer satisfaction. Click through for current promotions and exclusive online pricing.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-lg);">
+        {partners.map(p => (
+          <a href={`/provider/${p.slug}`} class="card reveal" style="padding: var(--space-lg); text-decoration: none; display: flex; flex-direction: column; gap: var(--space-md); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <div style="display: flex; align-items: center; gap: var(--space-md);">
+              {p.logo && <img src={p.logo} alt={p.name} width="80" height="40" loading="lazy" style="object-fit: contain;" />}
+              <div>
+                <div style="font-weight: 700; font-size: var(--text-lg);">{p.name}</div>
+                <div style="display: flex; gap: var(--space-xs); margin-top: 4px; flex-wrap: wrap;">
+                  {p.types.map(t => (
+                    <span class={`tag tag-${t}`} style="font-size: 11px;">{t === '5g' ? '5G' : t.charAt(0).toUpperCase() + t.slice(1)}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding-top: var(--space-sm); border-top: 1px solid var(--border);">
+              <div>
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase;">From</div>
+                <div style="font-weight: 700; font-size: var(--text-lg);">{formatPrice(getMinPrice(p))}<span style="font-size: var(--text-sm); font-weight: 400;">/mo</span></div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase;">Up to</div>
+                <div style="font-weight: 700; font-size: var(--text-lg);">{formatSpeed(getMaxSpeed(p))}</div>
+              </div>
+            </div>
+            {p.promo && (
+              <div style="font-size: var(--text-xs); color: var(--brand-blue); background: rgba(0,82,255,0.08); padding: 6px 10px; border-radius: var(--radius-md); line-height: 1.4;">{p.promo}</div>
+            )}
+            <span class="btn btn-cta" style="text-align: center; font-size: var(--text-sm); margin-top: auto;">Check Availability →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BROWSE BY STATE ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom: var(--space-xl);">
+        <h2>Check Internet Availability by State</h2>
+        <p class="text-secondary" style="max-width: 600px; margin-inline: auto; margin-top: var(--space-sm);">
+          Find every provider available in your state — sorted by coverage, speed, and price.
+        </p>
+      </div>
+      <div class="reveal" style="display: flex; flex-wrap: wrap; gap: var(--space-sm); justify-content: center;">
+        {states.map(s => (
+          <a
+            href={`/state/${s.abbr.toLowerCase()}`}
+            style="padding: 6px 14px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 99px; font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; transition: all 0.15s;"
+            onmouseover="this.style.borderColor='var(--brand-blue)';this.style.color='var(--brand-blue)'"
+            onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'"
+          >
+            {s.abbr}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container" style="max-width: 800px;">
+      <div class="text-center reveal" style="margin-bottom: var(--space-xl);">
+        <h2>Internet Coverage Map — FAQ</h2>
+      </div>
+      {faqs.map(faq => (
+        <details class="faq-item reveal" style="border-bottom: 1px solid var(--border); padding: var(--space-lg) 0;">
+          <summary style="cursor: pointer; font-weight: 700; font-size: var(--text-base); list-style: none; display: flex; align-items: center; justify-content: space-between; gap: var(--space-md);">
+            {faq.question}
+            <span class="faq-toggle" style="flex-shrink: 0; font-size: var(--text-xl); color: var(--brand-blue); transition: transform 0.3s; opacity: 0.6;">+</span>
+          </summary>
+          <p style="margin-top: var(--space-md); color: var(--text-secondary); line-height: 1.7; font-size: var(--text-sm);">{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== RELATED RESOURCES ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom: var(--space-xl);">
+        <h2>More Internet Tools &amp; Guides</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
+        <a href="/check-availability" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <h4 style="font-size: var(--text-base);">Check by ZIP Code</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Exact providers at your address</p>
+        </a>
+        <a href="/internet-types/fiber" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <h4 style="font-size: var(--text-base);">Fiber Internet Guide</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Best fiber plans &amp; providers</p>
+        </a>
+        <a href="/internet-types/cable" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <h4 style="font-size: var(--text-base);">Cable Internet Guide</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Best cable internet providers</p>
+        </a>
+        <a href="/internet-types/5g" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <h4 style="font-size: var(--text-base);">5G Home Internet</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">T-Mobile, Verizon, AT&T Air</p>
+        </a>
+        <a href="/internet-types/satellite" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <h4 style="font-size: var(--text-base);">Rural Internet Options</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Starlink &amp; satellite providers</p>
+        </a>
+        <a href="/speed-test" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <h4 style="font-size: var(--text-base);">Speed Test</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Test your current connection</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  details[open] .faq-toggle {
+    transform: rotate(45deg) scale(1.2);
+    opacity: 1 !important;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::marker { display: none; content: ''; }
+</style>

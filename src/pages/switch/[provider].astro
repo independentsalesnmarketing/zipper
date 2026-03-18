@@ -101,19 +101,19 @@ const alternatives = allPartners
 const faqs = [
   { q: `How do I cancel ${config.name}?`, a: `${config.cancellationTip} Contact ${config.name} customer service or use their online cancellation portal. Have your account number ready. Note your cancellation confirmation number for records.` },
   { q: `What is ${config.name}'s early termination fee?`, a: config.etfNote },
-  { q: `Will I lose service during the switch?`, a: 'If you plan ahead, no. Sign up with your new provider and schedule installation before your ${config.name} cancellation. Keep your old service active until the new one is confirmed working. There may be 1-7 days of overlap in billing, but you\'ll have uninterrupted connectivity.' },
+  { q: `Will I lose service during the switch?`, a: `If you plan ahead, no. Sign up with your new provider and schedule installation before your ${config.name} cancellation. Keep your old service active until the new one is confirmed working. There may be 1-7 days of overlap in billing, but you'll have uninterrupted connectivity.` },
   { q: `What happens to my ${config.name} email after I cancel?`, a: `${config.name} typically deactivates provider email addresses (e.g., @spectrum.net, @comcast.net) shortly after cancellation. Before switching, migrate important contacts and subscriptions to a free email service like Gmail or Outlook. This is the most common regret people have when switching.` },
-  { q: 'What is the best alternative to ' + config.name + '?', a: `The best alternative depends on what's available at your address. Fiber options (AT&T Fiber, Verizon Fios, Frontier Fiber) offer the best performance. For no-contract flexibility, T-Mobile and Verizon 5G Home Internet are excellent. Sign up above and we'll compare every option at your specific address.` },
+  { q: 'What is the best alternative to ' + config.name + '?', a: `The best alternative depends on what's available at your address. Fiber options (AT&T Fiber, Frontier Fiber, Brightspeed Fiber) offer the best performance. For no-contract flexibility with nationwide reach, Verizon 5G Home Internet and AT&T Air are excellent self-install options. Sign up above and we'll compare every option at your specific address.` },
 ];
 ---
 <Base
-  title={`${config.name} Alternatives (${year}) — Switch From ${config.name} Today`}
-  description={`Tired of ${config.name}? Compare the best ${config.name} alternatives in ${year}. See real prices, speeds, and savings vs. ${config.name}'s post-promo rates. Switch in minutes.`}
+  title={`Switch From ${config.name} — Best Alternatives (${year})`}
+  description={`Tired of ${config.name}? Compare the best alternatives in ${year}. See real prices, speeds, and savings vs ${config.name}'s rates. Switch providers in minutes with zero downtime.`}
   schema={[
     generateBreadcrumbSchema([
-      { name: 'Home', url: 'https://internet4all.com' },
-      { name: 'Switch Provider', url: 'https://internet4all.com/switch' },
-      { name: `${config.name} Alternatives`, url: `https://internet4all.com/switch/${config.slug}` },
+      { name: 'Home', url: 'https://internet-4-all.com' },
+      { name: 'Switch Provider', url: 'https://internet-4-all.com/switch' },
+      { name: `${config.name} Alternatives`, url: `https://internet-4-all.com/switch/${config.slug}` },
     ]),
     generateFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })))
   ]}
@@ -188,7 +188,7 @@ const faqs = [
           </tbody>
         </table>
       </div>
-      <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:var(--space-sm);text-align:center;">Prices shown are promotional rates. Actual rates may vary by address. Call to confirm current pricing.</p>
+      <p style="font-size:var(--text-xs);color:var(--text-muted);margin-top:var(--space-sm);text-align:center;">Prices shown are promotional rates. Actual rates may vary by address. Use chat or Talk to Agent to confirm current pricing.</p>
     </div>
   </section>
 
@@ -233,7 +233,7 @@ const faqs = [
       <h2 class="text-center reveal">How to Switch From <span class="gradient-text">{config.name}</span></h2>
       <div class="grid grid-1" style="gap:var(--space-md);margin-top:var(--space-xl);">
         {[
-          { n: '1', title: 'Check What\'s Available at Your Address', body: 'Enter your ZIP or call us. We\'ll show you every provider available and their current promotional rates. Takes 2 minutes.' },
+          { n: '1', title: 'Check What\'s Available at Your Address', body: 'Enter your ZIP or use chat. We\'ll show you every provider available and their current promotional rates. Takes 2 minutes.' },
           { n: '2', title: 'Pick a Plan and Schedule Installation', body: 'Choose your preferred alternative. We schedule the install for you — often same-week. Most cable providers do self-install, so there\'s no wait for a technician.' },
           { n: '3', title: 'Cancel ' + config.name + ' After Your New Service Is Active', body: config.cancellationTip + ' Keep your old service running until new internet is confirmed working — usually just a day or two of overlap.' },
           { n: '4', title: 'Return ' + config.name + ' Equipment', body: 'Return any leased equipment (modem, router, boxes) within 30 days of cancellation to avoid charges. Get a receipt confirming return.' },

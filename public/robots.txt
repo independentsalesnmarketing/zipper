@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /*?*
 
-Sitemap: https://internet4all.com/sitemap.xml
+Sitemap: https://internet-4-all.com/sitemap.xml

@@ -1,0 +1,199 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+
+const allProviders = getAllProviders();
+const partners = getPartnerProviders();
+
+// High speed = 100+ Mbps plans, sorted by max speed then partner status
+const highSpeedProviders = allProviders
+  .filter(p => getMaxSpeed(p) >= 100)
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return getMaxSpeed(b) - getMaxSpeed(a);
+  });
+
+const fiberProviders = highSpeedProviders.filter(p => p.types.includes('fiber'));
+const cableProviders = highSpeedProviders.filter(p => p.types.includes('cable'));
+const fiveGProviders = highSpeedProviders.filter(p => p.types.includes('5g'));
+
+const speedTiers = [
+  { tier: 'Fast', speed: '100–300 Mbps', use: 'Streaming, browsing, remote work', price: '$40–60/mo' },
+  { tier: 'Very Fast', speed: '300–500 Mbps', use: 'Gaming, 4K streaming, large households', price: '$50–75/mo' },
+  { tier: 'Gigabit', speed: '500 Mbps–1 Gbps', use: 'Heavy multi-user, smart homes, no limits', price: '$60–100/mo' },
+  { tier: 'Multi-Gig', speed: '1–8 Gbps', use: 'Content creators, future-proof, power users', price: '$80–300/mo' },
+];
+
+const faqs = [
+  { question: 'What is considered high speed internet?', answer: 'The FCC defines broadband as 25 Mbps download / 3 Mbps upload, but most experts consider 100+ Mbps as true high speed internet in ' + year + '. For modern households with streaming, gaming, and remote work, 200-500 Mbps is the sweet spot.' },
+  { question: 'What is the fastest internet available?', answer: 'Fiber providers offer the fastest speeds — up to 8 Gbps from some providers. Cable internet tops out around 1.2 Gbps. 5G home internet can reach 1 Gbps in optimal conditions. Availability depends on your address.' },
+  { question: 'Is fiber internet faster than cable?', answer: 'Yes. Fiber offers speeds up to 8 Gbps with symmetrical upload, while cable maxes out at ~1.2 Gbps download with limited upload (10-35 Mbps). Fiber also has lower latency and no congestion during peak hours.' },
+  { question: 'How much does high speed internet cost?', answer: 'High speed internet (100+ Mbps) typically costs $40-100/mo depending on speed tier and provider. Gigabit plans run $60-100/mo. Many providers offer promotional pricing that can save 30-50% for the first year.' },
+  { question: 'Do I need gigabit internet?', answer: 'Most households do fine with 200-500 Mbps. Gigabit (1 Gbps) is worth it for 5+ person households, competitive gamers, content creators, or homes with many smart devices. The price difference vs. mid-tier plans is often small.' },
+  { question: 'What affects my internet speed?', answer: 'WiFi signal strength, router quality, number of connected devices, network congestion, and distance from your router all affect speed. Use ethernet for the fastest, most reliable connection. Upgrade to a WiFi 6 router for better wireless performance.' },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'High Speed Internet', url: 'https://internet-4-all.com/high-speed-internet' },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title="High Speed Internet Plans — Carriers & Providers Near Me"
+  description="Find high speed internet carriers and fast home internet plans near you. Fiber, cable, and 5G high speed options — see every provider available at your address."
+  schema={schemas}
+>
+  <StickyCallBar text="Find high speed internet at your address — talk to an expert" />
+
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'High Speed Internet' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">Updated {month} {year}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          High Speed Internet <span class="gradient-text">Plans Near You</span>
+        </h1>
+        <p class="hero-subtitle" style="max-width: 720px; margin-inline: auto;">
+          Find the fastest home internet plans at your address. Fiber, cable, and 5G high speed carriers — {highSpeedProviders.length} providers
+          with 100+ Mbps speeds available nationwide.
+        </p>
+        <div style="margin-top: var(--space-xl);">
+          <a href="#get-connected" class="btn btn-cta btn-lg">Find Plans at My Address</a>
+          <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check Availability</a>
+        </div>
+      </div>
+
+      <!-- All High Speed Providers Table -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">High Speed Internet Providers ({year})</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">Every provider with 100+ Mbps plans, ranked by maximum speed. Partners listed first.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Provider</th>
+                <th>Type</th>
+                <th>Max Speed</th>
+                <th>Starting Price</th>
+                <th>Rating</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {highSpeedProviders.map((p, i) => (
+                <tr>
+                  <td><strong>{i + 1}</strong></td>
+                  <td>
+                    <a href={`/provider/${p.slug}`} style="font-weight: 600;">{p.name}</a>
+                    {p.isPartner && <span class="badge badge-green" style="font-size:0.5rem;margin-left:4px;">Partner</span>}
+                  </td>
+                  <td>{p.types.map(t => getTypeLabel(t)).join(', ')}</td>
+                  <td>{formatSpeed(getMaxSpeed(p))}</td>
+                  <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
+                  <td>{p.rating.toFixed(1)}</td>
+                  <td><a href="#get-connected" class="btn btn-cta btn-sm">Get Plan</a></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Speed Tiers -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">High Speed Internet Tiers</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">
+          Which speed tier is right for you? Here's what each level handles.
+        </p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Speed Range</th>
+                <th>Best For</th>
+                <th>Typical Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              {speedTiers.map(tier => (
+                <tr>
+                  <td style="font-weight: 600;">{tier.tier}</td>
+                  <td style="color: var(--brand-blue); font-weight: 600;">{tier.speed}</td>
+                  <td>{tier.use}</td>
+                  <td>{tier.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div class="card" style="padding: var(--space-lg); margin-top: var(--space-lg); text-align: center; background: var(--surface-2);">
+          <p style="margin-bottom: var(--space-sm);">Not sure which speed you need? Talk to an expert for a free recommendation.</p>
+          <a href="#get-connected" class="btn btn-cta">Get a Free Speed Recommendation</a>
+        </div>
+      </div>
+
+      <!-- High Speed by Connection Type -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">High Speed Internet by Connection Type</h2>
+        <div class="grid grid-3" style="gap: var(--space-md);">
+          <a href="/internet-types/fiber" class="card" style="padding: var(--space-lg); text-decoration: none;">
+            <h3 style="margin-bottom: var(--space-xs);">⚡ High Speed Fiber Internet</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-xs);">Up to 8 Gbps · Lowest latency</p>
+            <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin: 0;">{fiberProviders.length} fiber providers available</p>
+          </a>
+          <a href="/internet-types/cable" class="card" style="padding: var(--space-lg); text-decoration: none;">
+            <h3 style="margin-bottom: var(--space-xs);">📡 High Speed Cable Internet</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-xs);">Up to 1.2 Gbps · Most available</p>
+            <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin: 0;">{cableProviders.length} cable providers available</p>
+          </a>
+          <a href="/internet-types/5g" class="card" style="padding: var(--space-lg); text-decoration: none;">
+            <h3 style="margin-bottom: var(--space-xs);">📱 High Speed 5G Internet</h3>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--space-xs);">Up to 1 Gbps · No wires needed</p>
+            <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin: 0;">{fiveGProviders.length} 5G providers available</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Related Pages -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Explore More</h2>
+        <div class="grid grid-3" style="gap: var(--space-sm);">
+          <a href="/home-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Home Internet Plans</a>
+          <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Fastest Internet</a>
+          <a href="/cheap-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Cheap Internet</a>
+          <a href="/providers" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">All Providers</a>
+          <a href="/deals" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Best Deals</a>
+          <a href="/speed-test" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Speed Test</a>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">High Speed Internet FAQ</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Base>

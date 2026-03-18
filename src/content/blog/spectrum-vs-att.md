@@ -11,11 +11,11 @@ featured: true
 
 ## Spectrum vs AT&T: The Quick Answer
 
-**[AT&T Fiber](/provider/att)** wins on speed, upload performance, and reliability. **[Spectrum](/provider/spectrum)** wins on availability and simplicity. If AT&T Fiber is available at your address, choose AT&T. If only AT&T DSL is available, Spectrum cable is better. It's that straightforward.
+**[AT&T Fiber](/provider/att-fiber)** wins on speed, upload performance, and reliability. **[Spectrum](/provider/spectrum)** wins on availability and simplicity. If AT&T Fiber is available at your address, choose AT&T. If only AT&T DSL is available, Spectrum cable is better. It's that straightforward.
 
 ## Full Plan Comparison
 
-| Feature | [Spectrum](/provider/spectrum) | [AT&T Fiber](/provider/att) | AT&T DSL |
+| Feature | [Spectrum](/provider/spectrum) | [AT&T Fiber](/provider/att-fiber) | AT&T DSL |
 |---------|---------|-----------|---------|
 | Technology | Cable | Fiber | DSL |
 | Min Speed | 300 Mbps | 300 Mbps | 10 Mbps |
@@ -109,11 +109,11 @@ If you're in a market where both Spectrum and AT&T Fiber are available, you're l
 - You hate having any equipment restrictions (Spectrum lets you bring your own modem)
 
 ### Skip Both if:
-- Verizon Fios or Frontier Fiber is available — both offer competitive fiber plans
+- Verizon 5G Home Internet or Frontier Fiber is available — both offer competitive plans with no contracts
 - T-Mobile 5G Home Internet is available and you just need basic service
 
 ## The Bottom Line
 
 **AT&T Fiber is the better service** when available. Symmetrical speeds, better reliability, and competitive pricing at 500+ Mbps tiers make it the clear choice. But "when available" is the operative phrase — Spectrum's broader footprint means it's the default option in many areas.
 
-The smartest move? Check what's actually available at your specific address. Use our [availability checker](/check-availability) to see both providers' offerings at your home, or [compare Spectrum vs AT&T](/compare/spectrum-vs-att) side by side. Also check our [Spectrum Internet Review](/blog/spectrum-internet-review) and [fiber vs cable guide](/blog/fiber-vs-cable-internet).
+The smartest move? Check what's actually available at your specific address. Use our [availability checker](/check-availability) to see both providers' offerings at your home, or [compare Spectrum vs AT&T](/compare/att-fiber-vs-spectrum) side by side. Also check our [Spectrum Internet Review](/blog/spectrum-internet-review) and [fiber vs cable guide](/blog/fiber-vs-cable-internet).

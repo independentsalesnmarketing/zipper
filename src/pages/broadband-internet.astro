@@ -1,0 +1,156 @@
+---
+import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
+import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel } from '@lib/providers';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+
+const allProviders = getAllProviders();
+const partners = getPartnerProviders();
+
+// Broadband = 25+ Mbps (FCC definition), sorted by partner status then rating
+const broadbandProviders = allProviders
+  .filter(p => getMaxSpeed(p) >= 25)
+  .sort((a, b) => {
+    if (a.isPartner && !b.isPartner) return -1;
+    if (!a.isPartner && b.isPartner) return 1;
+    return b.rating - a.rating;
+  });
+
+const connectionTypes = [
+  { type: 'Fiber', speed: 'Up to 8 Gbps', pros: 'Fastest, lowest latency, symmetrical upload', cons: 'Limited availability', link: '/internet-types/fiber' },
+  { type: 'Cable', speed: 'Up to 1.2 Gbps', pros: 'Widely available, fast downloads', cons: 'Shared bandwidth, limited upload', link: '/internet-types/cable' },
+  { type: '5G Home', speed: 'Up to 1 Gbps', pros: 'No installation, no wires, no contract', cons: 'Coverage varies, signal dependent', link: '/internet-types/5g' },
+  { type: 'DSL', speed: 'Up to 100 Mbps', pros: 'Available in rural areas, affordable', cons: 'Slower speeds, distance dependent', link: '/internet-types/dsl' },
+  { type: 'Satellite', speed: 'Up to 500 Mbps', pros: 'Available everywhere', cons: 'Higher latency, weather affected', link: '/internet-types/satellite' },
+  { type: 'Fixed Wireless', speed: 'Up to 500 Mbps', pros: 'No cables, rural coverage', cons: 'Line of sight needed', link: '/internet-types/fixed-wireless' },
+];
+
+const faqs = [
+  { question: 'What is broadband internet?', answer: 'Broadband internet is high-speed internet access that is always on and faster than traditional dial-up. The FCC defines broadband as at least 25 Mbps download and 3 Mbps upload. Common broadband types include fiber, cable, DSL, 5G, satellite, and fixed wireless.' },
+  { question: 'What is the difference between broadband and WiFi?', answer: 'Broadband is your internet connection — the service from your ISP. WiFi is the wireless signal your router creates to connect your devices to that broadband connection. You need broadband first; WiFi is how you access it wirelessly inside your home.' },
+  { question: 'How fast is broadband internet?', answer: 'Broadband speeds range from 25 Mbps (minimum FCC definition) to 8 Gbps (top-tier fiber). Most households use 100-500 Mbps plans. The average US broadband speed is around 200 Mbps download.' },
+  { question: 'Who are the major broadband providers?', answer: 'Major broadband providers include fiber companies (AT&T Fiber, Frontier, Brightspeed), cable companies (Spectrum, Xfinity, Cox), 5G providers (T-Mobile, Verizon), and satellite providers (Starlink, Viasat). Availability depends on your address.' },
+  { question: 'How do I check broadband availability at my address?', answer: 'Enter your ZIP code or address in our availability checker to see every broadband provider and plan available at your specific location. Results include speeds, prices, and connection types.' },
+  { question: 'Is broadband internet available in rural areas?', answer: 'Yes, though options may be more limited. Satellite internet (Starlink, Viasat) is available nationwide. 5G home internet covers 98% of Americans. Fixed wireless and DSL serve many rural areas. New fiber buildouts are expanding into rural communities.' },
+];
+
+const schemas = [
+  generateBreadcrumbSchema([
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Broadband Internet', url: 'https://internet-4-all.com/broadband-internet' },
+  ]),
+  generateFAQSchema(faqs),
+];
+---
+<Base
+  title="Broadband Internet Providers Near Me — Fast Plans"
+  description="Find broadband internet providers near you. Browse broadband plans, internet access options, and the best broadband connection available at your address now."
+  schema={schemas}
+>
+  <StickyCallBar text="Find broadband internet at your address — talk to an expert" />
+
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <Breadcrumb items={[{ name: 'Broadband Internet' }]} />
+
+      <!-- Hero -->
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+        <div class="badge badge-blue" style="margin-bottom: var(--space-md);">Updated {month} {year}</div>
+        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
+          Broadband Internet <span class="gradient-text">Providers Near You</span>
+        </h1>
+        <p class="hero-subtitle" style="max-width: 720px; margin-inline: auto;">
+          Find every broadband internet provider at your address. Fiber, cable, 5G, and wireless broadband plans —
+          {broadbandProviders.length} providers with high-speed internet access available nationwide.
+        </p>
+        <div style="margin-top: var(--space-xl);">
+          <a href="#get-connected" class="btn btn-cta btn-lg">Find Broadband at My Address</a>
+          <a href="/check-availability" class="btn btn-outline" style="margin-left: var(--space-sm);">Check Availability</a>
+        </div>
+      </div>
+
+      <!-- All Broadband Providers Table -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-sm);">Broadband Internet Providers ({year})</h2>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">Every broadband provider with 25+ Mbps plans. Partners listed first.</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Provider</th>
+                <th>Type</th>
+                <th>Max Speed</th>
+                <th>Starting Price</th>
+                <th>Rating</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {broadbandProviders.map((p, i) => (
+                <tr>
+                  <td><strong>{i + 1}</strong></td>
+                  <td>
+                    <a href={`/provider/${p.slug}`} style="font-weight: 600;">{p.name}</a>
+                    {p.isPartner && <span class="badge badge-green" style="font-size:0.5rem;margin-left:4px;">Partner</span>}
+                  </td>
+                  <td>{p.types.map(t => getTypeLabel(t)).join(', ')}</td>
+                  <td>{formatSpeed(getMaxSpeed(p))}</td>
+                  <td style="color: var(--brand-green); font-weight: 700;">{formatPrice(getMinPrice(p))}/mo</td>
+                  <td>{p.rating.toFixed(1)}</td>
+                  <td><a href="#get-connected" class="btn btn-cta btn-sm">Get Plan</a></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Broadband Connection Types -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Types of Broadband Connections</h2>
+        <div class="grid grid-2" style="gap: var(--space-md);">
+          {connectionTypes.map(ct => (
+            <a href={ct.link} class="card" style="padding: var(--space-lg); text-decoration: none;">
+              <h3 style="margin-bottom: var(--space-xs);">{ct.type} Broadband</h3>
+              <p style="font-size: var(--text-sm); color: var(--brand-blue); font-weight: 600; margin-bottom: var(--space-xs);">{ct.speed}</p>
+              <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-bottom: var(--space-xs);"><strong>Pros:</strong> {ct.pros}</p>
+              <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin: 0;"><strong>Cons:</strong> {ct.cons}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Related Pages -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-lg);">Explore More</h2>
+        <div class="grid grid-3" style="gap: var(--space-sm);">
+          <a href="/high-speed-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">High Speed Internet</a>
+          <a href="/home-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Home Internet Plans</a>
+          <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Fastest Internet</a>
+          <a href="/cheap-internet" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Cheap Internet</a>
+          <a href="/providers" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">All Providers</a>
+          <a href="/internet-types" class="card" style="padding: var(--space-md); text-decoration: none; font-weight: 500;">Internet Types</a>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 style="margin-bottom: var(--space-xl);">Broadband Internet FAQ</h2>
+        {faqs.map(faq => (
+          <div class="faq-item">
+            <button class="faq-question">{faq.question}</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">{faq.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Base>

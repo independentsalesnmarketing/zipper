@@ -36,15 +36,15 @@ const faqs = [
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Cable TV Providers', url: 'https://internet4all.com/cable-tv' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Cable TV Providers', url: 'https://internet-4-all.com/cable-tv' },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`Cable TV Providers Near You — Cable Internet & TV Plans (${year})`}
-  description={`Compare cable TV providers and cable internet plans in your area for ${year}. Find cable options near you, compare cable vs streaming, and see prices by provider. Cable and internet bundles from ${year}'s top cable companies.`}
+  title="Cable TV Providers Near Me — Find Plans in My Area"
+  description="Find cable TV providers near you. Cable television plans, TV channel packages, and bundle deals — see every cable TV option available at your address."
   schema={schemas}
 >
   <section class="section" style="padding-top: var(--space-xl);">
@@ -58,8 +58,8 @@ const schemas = [
           Cable TV Providers & <span class="gradient-text">Alternatives</span>
         </h1>
         <p class="hero-subtitle" style="max-width: 680px; margin-inline: auto;">
-          Traditional cable TV or streaming? We compare {cableProviders.length} cable providers
-          and {streamingAlternatives.length} streaming alternatives to help you make the best choice and save money.
+          Traditional cable TV or streaming? We compare every cable provider
+          and streaming alternative to help you make the best choice and save money.
         </p>
         <a href="#get-connected" class="btn btn-cta mt-xl" style="font-size: var(--text-lg);">
           Get TV + Internet Deals

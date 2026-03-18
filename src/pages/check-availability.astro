@@ -3,6 +3,8 @@ import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import SearchBar from '@components/SearchBar.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
+import CoverageMap from '@components/CoverageMap.astro';
+import ProviderSearch from '@components/ProviderSearch.astro';
 import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel } from '@lib/providers';
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import { stateNames } from '@lib/providers';
@@ -31,7 +33,7 @@ const coverageTypes = [
 ];
 
 const faqs = [
-  { question: 'How do I check what internet providers are available at my address?', answer: `Enter your ZIP code in the search box above and we'll show you every provider available at your location. Our database uses real FCC broadband data covering ${allProviders.length}+ providers across all 50 states. For the most precise results, sign up and our experts can look up your exact street address.` },
+  { question: 'How do I check what internet providers are available at my address?', answer: `Enter your ZIP code in the search box above and we'll show you every provider available at your location. Our database uses real FCC broadband data covering every major provider across all 50 states. For the most precise results, sign up and our experts can look up your exact street address.` },
   { question: 'Why does internet availability vary by address?', answer: 'Internet infrastructure is built street by street. Even neighbors across the road may have different options. Fiber lines, cable networks, and wireless towers each have specific coverage footprints. That\'s why checking your exact address — not just your ZIP code — matters for accurate results.' },
   { question: 'What if no good internet providers serve my area?', answer: 'You still have options! Satellite internet (Starlink, Viasat, HughesNet) covers virtually every address in America. Fixed wireless and 5G home internet are expanding rapidly. T-Mobile 5G Home Internet is available to 300+ million people. Sign up for the best option at your address.' },
   { question: 'How accurate is your internet availability checker?', answer: `Our data comes from the FCC Broadband Map — the most comprehensive broadband database in America. We cross-reference provider service areas, coverage maps, and real customer data. For 100% accuracy, sign up and we'll verify availability at your exact address in real-time.` },
@@ -43,15 +45,15 @@ const faqs = [
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Check Availability', url: 'https://internet4all.com/check-availability' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Check Availability', url: 'https://internet-4-all.com/check-availability' },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title="Internet Providers Near Me — Check Availability at Your Address (2026)"
-  description="Find internet providers near you. Check internet availability at your address by ZIP code — see fiber, cable, 5G & satellite options. Compare 25+ ISPs in your area free — instant results."
+  title="Check Internet Availability — Providers at Your Address"
+  description="Enter your address and see every internet provider available. Fiber, cable, 5G, and high speed options — one search, all local providers, no runaround."
   schema={schemas}
 >
   <StickyCallBar text="Check internet at your address — get instant results" />
@@ -67,7 +69,7 @@ const schemas = [
           Check Internet <span class="gradient-text">Availability</span> at Your Address
         </h1>
         <p class="hero-subtitle" style="max-width: 700px; margin-inline: auto;">
-          Find every internet provider, plan, and price available where you live. Our free tool searches {allProviders.length}+ providers
+          Find every internet provider, plan, and price available where you live. Our free tool searches every major provider
           using real FCC broadband data — updated {month} {year}.
         </p>
 
@@ -85,6 +87,20 @@ const schemas = [
         </div>
       </div>
 
+      <!-- Live provider results when arriving with ?zip=XXXXX -->
+      <div id="ca-ps-wrap" style="display:none; margin-bottom:var(--space-3xl);">
+        <div id="ca-ps-heading" style="margin-bottom:var(--space-lg);">
+          <h2 id="ca-ps-title">Providers Available in Your Area</h2>
+          <p style="color:var(--text-secondary);">Live results from the FCC Broadband Map — updated in real time.</p>
+        </div>
+        <ProviderSearch
+          cityName="your area"
+          state=""
+          stateName=""
+          autoSearch
+        />
+      </div>
+
       <!-- How It Works -->
       <div class="reveal" style="margin-bottom: var(--space-3xl);">
         <h2 class="text-center" style="margin-bottom: var(--space-xl);">How the Internet Availability Checker Works</h2>
@@ -96,6 +112,18 @@ const schemas = [
               <p style="font-size: var(--text-sm); color: var(--text-secondary);">{step.desc}</p>
             </div>
           ))}
+        </div>
+      </div>
+
+      <!-- Coverage Map -->
+      <div class="reveal" style="margin-bottom: var(--space-3xl);">
+        <h2 class="text-center" style="margin-bottom: var(--space-md);">See Internet Coverage at Your Address</h2>
+        <p class="text-center" style="color: var(--text-secondary); max-width: 640px; margin-inline: auto; margin-bottom: var(--space-xl); font-size: var(--text-sm);">
+          Toggle providers to compare coverage areas nationwide. Enter your ZIP above for exact availability and pricing at your specific address.
+        </p>
+        <CoverageMap height="480px" />
+        <div class="text-center" style="margin-top: var(--space-lg);">
+          <a href="/coverage-map" style="color: var(--brand-blue); font-size: var(--text-sm); font-weight: 600;">View full coverage map with all 14 providers →</a>
         </div>
       </div>
 
@@ -206,11 +234,35 @@ const schemas = [
 </Base>
 
 <script>
-  // If redirected here with ?zip=XXXXX auto-forward to the ZIP page
+(function () {
   const params = new URLSearchParams(window.location.search);
   const zip = params.get('zip');
-  if (zip && /^[0-9]{5}$/.test(zip)) {
-    if (typeof window.showPageLoader === 'function') window.showPageLoader('Finding providers in ' + zip + '…');
-    window.location.replace(`/internet-providers/zip/${zip}`);
+  if (!zip || !/^[0-9]{5}$/.test(zip)) return;
+
+  // Update hero heading
+  const h1 = document.querySelector('h1');
+  if (h1) h1.innerHTML = 'Internet Providers Near <span class="gradient-text">' + zip + '</span>';
+
+  // Update section heading
+  const title = document.getElementById('ca-ps-title');
+  if (title) title.textContent = 'Providers Available in ' + zip;
+
+  // Pre-fill all search inputs
+  document.querySelectorAll('input[name="zip"]').forEach(function (el) {
+    (el as HTMLInputElement).value = zip;
+  });
+
+  // Show the ProviderSearch section and point it at this ZIP
+  const wrap = document.getElementById('ca-ps-wrap');
+  if (wrap) {
+    wrap.style.display = '';
+    // Inject ZIP into the ProviderSearch root so it auto-searches
+    const psRoot = wrap.querySelector('#ps-root');
+    if (psRoot) {
+      psRoot.setAttribute('data-zip', zip);
+      psRoot.setAttribute('data-auto', '1');
+    }
+    setTimeout(function () { wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
   }
+})();
 </script>

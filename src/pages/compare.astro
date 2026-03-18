@@ -3,15 +3,23 @@ import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel } from '@lib/providers';
-import { generateBreadcrumbSchema } from '@lib/utils';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 
 const partners = getPartnerProviders();
+const year = new Date().getFullYear();
 const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
+
+const faqs = [
+  { question: 'How do I compare internet providers?', answer: 'Use our comparison table above to view providers side by side. You can compare speeds, prices, contracts, data caps, and ratings. Enter your ZIP code to see which providers are available at your address.' },
+  { question: 'What is the fastest internet provider?', answer: 'Speeds vary by location. Fiber providers like AT&T Fiber, Frontier, and Google Fiber offer the fastest speeds up to 10 Gbps. Use our comparison tool to find the fastest option at your address.' },
+  { question: 'Which internet provider is cheapest?', answer: 'Many providers offer plans starting around $20–$30/mo. Spectrum, Xfinity, and EarthLink often have competitive entry-level pricing. Your best deal depends on what is available at your address.' },
+  { question: 'Should I choose fiber or cable internet?', answer: 'Fiber offers faster, more reliable speeds with symmetrical upload/download. Cable is more widely available and usually sufficient for most households. If fiber is available at your address, it is generally the better choice.' },
+];
 ---
 <Base
-  title="Compare Internet Providers (2026) — Plans, Prices & Speeds"
-  description="Compare top internet providers side by side. See speeds, prices, contracts, and ratings in one view. Find the best plan — order online for expert help."
-  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Compare', url: 'https://internet4all.com/compare' }])]}
+  title="Compare Internet Providers Near Me — Plans & Prices"
+  description="Compare every internet provider near you side by side — speed, price, contracts, and availability. Find the best ISP for your address with one search."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet-4-all.com' }, { name: 'Compare', url: 'https://internet-4-all.com/compare' }]), generateFAQSchema(faqs)]}
 >
   <section class="section" style="padding-top: var(--space-xl);">
     <div class="container container--wide">
@@ -231,6 +239,16 @@ const breadcrumbs = [{ name: 'Compare Providers', url: '/compare' }];
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Internet + TV packages</p>
           </a>
         </div>
+      </div>
+      <!-- FAQ -->
+      <div class="reveal" style="margin-top:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-xl);">Frequently Asked Questions</h2>
+        {faqs.map(f => (
+          <details class="card" style="padding:var(--space-lg);margin-bottom:var(--space-md);">
+            <summary style="cursor:pointer;font-weight:700;">{f.question}</summary>
+            <p style="margin-top:var(--space-sm);font-size:var(--text-sm);line-height:1.7;">{f.answer}</p>
+          </details>
+        ))}
       </div>
     </div>
   </section>

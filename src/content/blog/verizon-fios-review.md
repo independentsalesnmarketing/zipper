@@ -1,113 +1,145 @@
 ---
-title: "Verizon Fios Review 2026: Speeds, Plans & Availability"
-description: "Complete Verizon Fios review with plan comparisons, real-world speed tests, pricing analysis, and pros/cons. Find out if Verizon Fios is worth it."
+title: "Verizon 5G Home Internet Review 2026: Plans, Speeds & Availability"
+description: "Complete Verizon 5G Home Internet review: pricing, real-world speeds, self-install experience, price lock details, and how it compares to AT&T Air and cable alternatives."
 date: 2026-02-16
-updated: 2026-03-01
+updated: 2026-03-16
 author: "Jason Meyers, Senior Broadband Analyst"
 category: "comparisons"
-tags: ["verizon", "fios", "fiber internet", "provider review"]
+tags: ["verizon", "5g", "fixed wireless", "home internet", "provider review"]
 ---
 
-## Verizon Fios at a Glance
+## Verizon 5G Home Internet at a Glance
 
-Verizon Fios is a **100% fiber-optic** internet service delivering some of the fastest and most reliable residential broadband in the U.S. Available primarily in the Northeast and Mid-Atlantic states, Fios consistently ranks at the top for customer satisfaction and speed delivery.
+Verizon 5G Home Internet delivers wireless broadband directly to your home over Verizon's nationwide 5G and LTE network — no cable lines, no fiber trenches, no technician visit. The gateway device ships to your door; plug it in near a window and you're online in minutes. With a **4–5 year price lock guarantee**, **nationwide availability**, and plans starting at **$50/mo** (or as low as **$35/mo** with a qualifying Verizon wireless plan), it's one of the most competitively priced home internet options in the country.
 
 | Feature | Details |
 |---------|---------|
-| Technology | Fiber optic (GPON/XGS-PON) |
-| Speed Range | 300 Mbps – 2 Gbps |
-| Starting Price | $49.99/mo |
+| Technology | Fixed wireless (5G / 4G LTE) |
+| Speed Range | 100–1000 Mbps (by 5G signal at your address) |
+| Starting Price | $50/mo |
 | Contract Required | No |
 | Data Cap | None |
-| Equipment | Router included ($15/mo or purchase) |
+| Equipment Fee | None (gateway included) |
+| Installation | Self-install — ships to your door |
+| Availability | Nationwide |
 
-## Verizon Fios Plans
+## Verizon 5G Home Internet Plans
 
-### Fios 300 — $49.99/mo
-- **300 Mbps** download / **300 Mbps** upload
-- Symmetrical speeds for balanced performance
-- Best for: 1-3 person households, streaming, browsing
+### 5G Home — $50/mo
+- **Typical download**: 100–300 Mbps
+- **Upload**: Up to 50 Mbps
+- **4-year price lock guarantee**
+- **$35/mo with qualifying Verizon mobile plan**
+- $200–$300 Prepaid Mastercard for new customers
+- Best for: 1–4 person households, streaming, casual gaming, remote work
 
-### Fios 500 — $69.99/mo
-- **500 Mbps** download / **500 Mbps** upload
-- Best for: Families, multiple 4K streams, online gaming
+### 5G Home Plus — $70/mo
+- **Typical download**: 200–1000 Mbps
+- **Upload**: Up to 100 Mbps
+- **4-year price lock**
+- **$45/mo with qualifying Verizon mobile plan**
+- Premium streaming perks included
+- $200–$300 Prepaid Mastercard
+- Best for: Power users, competitive gaming, 4K multi-room streaming
 
-### Fios 1 Gig — $89.99/mo
-- **1 Gbps** download / **1 Gbps** upload
-- Best for: Power users, work-from-home, content creation
-
-### Fios 2 Gig — $119.99/mo
-- **2.3 Gbps** download / **1 Gbps** upload
-- Requires Fios WiFi 6E router
-- Best for: Tech enthusiasts, ultra-connected households
+### 5G Home Ultimate — $85/mo
+- **Typical download**: 200–1000 Mbps
+- **5-year price lock** — longest in the fixed wireless category
+- **$60/mo with qualifying Verizon mobile plan**
+- Premium gateway hardware included
+- $300 Prepaid Mastercard
+- Best for: Heavy households, those wanting maximum price certainty
 
 ## Speed Performance
 
-Fios has earned its reputation for delivering very close to advertised speeds. Fiber infrastructure doesn't share bandwidth with neighbors like cable, so performance stays consistent even during peak hours.
+Speeds depend on 5G coverage quality at your specific address:
 
-| Plan | Advertised | Avg. Actual Down | Avg. Actual Up | Peak Hour Drop |
-|------|-----------|-----------------|---------------|----------------|
-| 300 | 300/300 | 301 Mbps | 297 Mbps | <2% |
-| 500 | 500/500 | 498 Mbps | 491 Mbps | <2% |
-| 1 Gig | 1000/1000 | 948 Mbps | 937 Mbps | <3% |
+| Signal Quality | Typical Download | Typical Upload |
+|---------------|-----------------|---------------|
+| Strong 5G | 300–1000 Mbps | 50–100 Mbps |
+| Good 5G | 150–300 Mbps | 30–50 Mbps |
+| LTE fallback | 25–100 Mbps | 10–30 Mbps |
 
-The minimal peak-hour degradation is a standout feature. Cable providers often see 15-30% speed drops in the evening — Fios barely budges.
+Verizon's peer-reviewed median for 5G Home customers is approximately **245 Mbps download** and up to **442 Mbps on 5G Home Plus** in strong signal areas. During account setup, the Verizon app shows signal strength at your address so you know what tier to expect before you commit.
 
-## What Makes Fios Stand Out
+## The Price Lock Advantage
 
-### Symmetrical Upload Speeds
-Every Fios plan (except 2 Gig) delivers identical upload and download speeds. In 2026, with video calls, cloud storage, and content creation being standard activities, upload speed matters more than ever.
+This is Verizon 5G Home's single strongest differentiator in 2026:
 
-### Reliability
-Fiber optic cables are immune to electromagnetic interference and weather impacts that plague cable and DSL connections. Fios consistently reports fewer outages than cable competitors in the same markets.
+| Plan | Price Lock | Competitor Comparison |
+|------|-----------|----------------------|
+| 5G Home | **4 years** | Spectrum: 12 months |
+| 5G Home Plus | **4 years** | T-Mobile 5G Home: "price lock promise" (not contractual) |
+| 5G Home Ultimate | **5 years** | Xfinity: 5-year guarantee (but with 1.2 TB cap) |
 
-### No Data Caps
-Unlike some ISPs that impose 1-1.25 TB monthly limits, Fios is unlimited. Download a terabyte a day if you want — no throttling, no overage charges.
+Over a 4-year period, Verizon's locked rate saves a typical household **$480–$720** compared to a provider whose promotional rate expires after 12 months.
+
+## Self-Install Experience
+
+1. Order online — gateway ships in 1–2 business days
+2. Place the gateway near a window for best 5G signal (the Verizon app guides placement)
+3. Connect your devices via WiFi or ethernet
+4. Most customers are online within **15 minutes**
+
+No technician scheduling. No 4-hour wait windows. No drilling holes in walls. This is especially valuable for renters, apartment dwellers, and anyone who moves frequently — unplug the gateway and take it to your next address.
+
+## What We Like
+
+- **Nationwide reach** — Available wherever Verizon has 5G or LTE coverage
+- **Best-in-class price lock** — 4–5 years written into the agreement
+- **$200–$300 reward card** — Real new customer cash back
+- **No equipment fees** — Gateway device included, no monthly rental
+- **Bundle savings** — $35/mo with Verizon mobile plan is exceptional value
+- **Self-install** — Up and running in under 15 minutes
+- **No data caps** — Truly unlimited
 
 ## What Could Be Better
 
-- **Limited availability** — Only available in parts of CT, DE, DC, MD, MA, NJ, NY, PA, RI, VA. No national footprint.
-- **Router rental adds up** — $15/mo for the Fios router is steep. Buying your own router saves money long-term.
-- **No 5 Gbps tier** — AT&T Fiber and Frontier both offer 5 Gbps; Fios maxes at 2 Gbps.
-- **Mix & Match TV bundles are pricey** — Fios TV add-ons start at $30/mo on top of internet.
-- **Installation wait times** — In high-demand areas, installation can take 1-2 weeks.
+- **Speeds vary by address** — Unlike fiber, 5G performance depends on tower proximity and signal congestion
+- **Upload trails fiber** — 5G Home tops out around 100 Mbps upload; AT&T Fiber and Frontier deliver symmetrical speeds up to 5 Gbps
+- **Not ideal for signal dead zones** — Weak Verizon coverage means LTE fallback speeds
 
-## Verizon Fios vs Competitors
+## Verizon 5G Home vs Competitors
 
-| Provider | Min. Price | Max Speed | Upload Speed | Data Cap | Availability |
-|----------|-----------|-----------|-------------|----------|-------------|
-| **[Verizon Fios](/provider/verizon)** | $49.99 | 2 Gbps | Symmetrical | None | Northeast U.S. |
-| [AT&T Fiber](/provider/att) | $55 | 5 Gbps | Symmetrical | None | 25% of U.S. |
-| [Spectrum](/provider/spectrum) | $49.99 | 1 Gbps | 35 Mbps | None | 41 states |
-| [Frontier Fiber](/provider/frontier) | $49.99 | 5 Gbps | Symmetrical | None | 25 states |
-| [Optimum Fiber](/provider/optimum) | $40 | 8 Gbps | Symmetrical | None | CT, NJ, NY |
+| Provider | Price | Speed | Price Lock | Install | Availability |
+|----------|-------|-------|-----------|---------|-------------|
+| **[Verizon 5G Home](/provider/verizon)** | $50/mo | 100–1000 Mbps | **4–5 years** | Self | Nationwide |
+| [AT&T Air](/provider/att-air) | $60/mo ($47 w/ bundle) | ~200 Mbps | None stated | Self | Nationwide |
+| T-Mobile 5G Home | $50/mo | 133–415 Mbps | "Promise" | Self | Nationwide |
+| [Spectrum](/provider/spectrum) | $49.99/mo | 300 Mbps | 12 months | Technician | 41 states |
+| [AT&T Fiber](/provider/att-fiber) | $35/mo | 300 Mbps–5 Gbps | None | Technician | ~25% of U.S. |
 
-In the Northeast, Fios often competes directly with Optimum and Spectrum. Against Optimum Fiber, the decision is close — Optimum starts lower but Fios has a longer reliability track record.
+**Verizon 5G vs AT&T Air**: Both are nationwide, self-install wireless partners. AT&T Air is $60 standalone (or $47 with AT&T wireless bundle) and includes a $100 reward card. Verizon 5G wins on price lock length; AT&T Air wins with the lower bundled price.
 
-## Who Should Choose Verizon Fios?
+**Verizon 5G vs T-Mobile 5G**: Similar pricing and technology. Verizon has a written contractual price lock — T-Mobile's is a "promise." Verizon's network wins on reliability benchmarks in suburban areas.
 
-**Fios is ideal for:**
-- Anyone in the Fios service area who wants rock-solid reliability
-- Remote workers and gamers who need consistent speeds and low latency
-- Cord-cutters who need fast speeds for multiple streaming services
-- Families with 5+ devices connected simultaneously
+## Who Should Choose Verizon 5G Home Internet?
 
-**Consider alternatives if:**
-- You're outside the Fios coverage area (it's Northeast-only)
-- Budget is your #1 priority (T-Mobile or Frontier may start cheaper)
-- You need multi-gig speeds over 2 Gbps (AT&T or Frontier offer 5 Gbps)
+**Verizon 5G Home is ideal for:**
+- Anyone who wants self-install (no technician scheduling)
+- Renters and apartment dwellers (no cable wiring required)
+- Households already on a Verizon wireless plan ($35/mo is best-in-class value)
+- People moving frequently — unplug and take it to your next address
+- Areas where fiber hasn't arrived yet
+
+**Consider fiber alternatives if:**
+- AT&T Fiber, Frontier Fiber, or Brightspeed Fiber serves your address (symmetrical speeds, often similar pricing)
+- You need consistent upload speeds above 100 Mbps regularly
+- Your address has weak Verizon 5G/LTE signal
 
 ## Our Rating
 
 | Category | Score |
 |----------|-------|
-| Speed | 9/10 |
-| Pricing | 7/10 |
-| Reliability | 10/10 |
-| Customer Service | 7/10 |
-| Value | 8/10 |
-| **Overall** | **8.2/10** |
+| Speed | 7/10 |
+| Pricing | 9/10 |
+| Price Lock | 10/10 |
+| Setup Experience | 10/10 |
+| Availability | 9/10 |
+| **Overall** | **9/10** |
 
-## Check Fios Availability
+## Check Verizon 5G Home Availability
 
-Verizon Fios is only available in select markets. Enter your ZIP code on our [availability checker](/check-availability) to see if Fios reaches your address, or compare [Verizon vs Spectrum](/blog/verizon-vs-spectrum) to decide between them.
+Verizon 5G Home Internet is available nationwide. [Check availability at your ZIP code](/check-availability) to see coverage strength and which plan tier makes sense for your address.
+
+**Related guides:** [AT&T Air Internet Review](/blog/att-internet-review) · [Verizon 5G vs Spectrum](/blog/verizon-vs-spectrum) · [5G Home Internet Guide](/internet-types/5g)

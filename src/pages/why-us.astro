@@ -2,12 +2,19 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { generateBreadcrumbSchema } from '@lib/utils';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+
+const faqs = [
+  { question: 'Why should I use Internet 4 ALL instead of going directly to a provider?', answer: 'We compare every major provider at your address in one place, saving you hours of research. Our service is free, and you get the same prices as going direct — often with exclusive deals.' },
+  { question: 'Do I pay more using Internet 4 ALL?', answer: 'Never. You pay the same price as going directly to the provider. In many cases, our partner deals offer additional incentives like reward cards or waived fees.' },
+  { question: 'How is Internet 4 ALL different from other comparison sites?', answer: 'We use real FCC broadband data for address-level accuracy, offer 24/7 AI-powered assistance, and never let partnerships influence our rankings. Our tools like the speed test and bill analyzer are completely free.' },
+  { question: 'Is my personal information safe?', answer: 'Yes. We only collect what is needed to connect you with providers. We do not sell your data and use privacy-friendly analytics. See our Privacy Policy for full details.' },
+];
 ---
 <Base
-  title="Why Choose Internet 4 ALL — The Difference We Make"
-  description="Learn what sets Internet 4 ALL apart from competitors. Free service, real data, expert support, and exclusive deals."
-  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Why Us', url: 'https://internet4all.com/why-us' }])]}
+  title="Why Internet 4 ALL — Licensed ISP Retailer & Help"
+  description="Internet 4 ALL is an authorized internet service retailer. We help you find the right home internet provider, plan, and price — free, fast, no obligation."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet-4-all.com' }, { name: 'Why Us', url: 'https://internet-4-all.com/why-us' }]), generateFAQSchema(faqs)]}
 >
   <section class="section" style="padding-top:var(--space-xl);">
     <div class="container" style="max-width:900px;">
@@ -31,7 +38,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
             <li>No signup fees</li>
             <li>No processing fees</li>
             <li>No hidden charges</li>
-            <li>Same prices as calling direct</li>
+            <li>Same prices as going direct</li>
           </ul>
         </div>
 
@@ -57,7 +64,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
           <p>Not chatbots or outsourced reps. Our specialists live and breathe internet service. They know fiber, cable, 5G, satellite—and which is right for you.</p>
           <ul style="list-style:disc; padding-left:var(--space-lg); margin-top:var(--space-md); font-size:var(--text-sm); line-height:1.8;">
             <li>10+ years of industry experience</li>
-            <li>Available Mon-Fri 8AM-10PM EST</li>
+            <li>Available 24/7 via chat and AI assistant</li>
             <li>Average 2-minute wait time</li>
             <li>Speak to the same expert throughout</li>
           </ul>
@@ -68,7 +75,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--brand-amber)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
           </div>
           <h3>Exclusive Deals Only Here</h3>
-          <p>We've negotiated special rates with top providers that you literally cannot find anywhere else—online or by calling direct.</p>
+          <p>We've negotiated special rates with top providers that you literally cannot find anywhere else-online or by going direct.</p>
           <ul style="list-style:disc; padding-left:var(--space-lg); margin-top:var(--space-md); font-size:var(--text-sm); line-height:1.8;">
             <li>Save up to $50/month</li>
             <li>Free equipment/installation offers</li>
@@ -186,6 +193,16 @@ import { generateBreadcrumbSchema } from '@lib/utils';
         <h3>Ready to Experience the Difference?</h3>
         <p style="margin-top:var(--space-md); margin-bottom:var(--space-lg); color:var(--text-secondary);">Enter your ZIP code and see why people choose us.</p>
         <a href="/providers" class="btn btn-primary btn-lg">Compare Providers Now</a>
+      </div>
+      <!-- FAQ -->
+      <div class="reveal" style="margin-top:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-xl);">Frequently Asked Questions</h2>
+        {faqs.map(f => (
+          <details class="card" style="padding:var(--space-lg);margin-bottom:var(--space-md);">
+            <summary style="cursor:pointer;font-weight:700;">{f.question}</summary>
+            <p style="margin-top:var(--space-sm);font-size:var(--text-sm);line-height:1.7;">{f.answer}</p>
+          </details>
+        ))}
       </div>
     </div>
   </section>

@@ -23,7 +23,7 @@ const tvProviders = allProviders
 
 const tvTypes = [
   { name: 'Cable TV', desc: 'Traditional cable television with hundreds of channels. Usually bundled with cable internet for savings. Providers include Spectrum, Xfinity, Cox, and Optimum.', channels: '150–250+', price: '$50–120/mo', dvr: 'Yes (often included)', reliability: '5/5' },
-  { name: 'Fiber TV (IPTV)', desc: 'TV delivered over fiber optic lines. Superior picture quality with less compression. Available from AT&T, Verizon Fios, and Frontier.', channels: '100–300+', price: '$40–100/mo', dvr: 'Cloud DVR', reliability: '5/5' },
+  { name: 'Fiber TV (IPTV)', desc: 'TV delivered over fiber optic lines. Superior picture quality with less compression. Available from AT&T Fiber and Frontier.', channels: '100–300+', price: '$40–100/mo', dvr: 'Cloud DVR', reliability: '5/5' },
   { name: 'Satellite TV', desc: 'TV via satellite dish. Available everywhere in the US including rural areas. DIRECTV and DISH are the main providers.', channels: '200–330+', price: '$65–150/mo', dvr: 'Yes (included)', reliability: '4/5' },
   { name: 'Live TV Streaming', desc: 'Cable replacement services streamed over internet. YouTube TV, Hulu + Live TV, Sling TV, fuboTV. No equipment needed.', channels: '30–100+', price: '$35–75/mo', dvr: 'Cloud DVR (unlimited)', reliability: '4/5' },
 ];
@@ -40,7 +40,7 @@ const bundleDeals = [
   { provider: 'Spectrum', bundle: 'Internet + TV', internetSpeed: '300 Mbps', channels: '150+ channels', price: '$110/mo', highlight: 'No contract required' },
   { provider: 'AT&T', bundle: 'Internet + DIRECTV', internetSpeed: '300 Mbps', channels: '160+ channels', price: '$100/mo', highlight: 'Save $20/mo with bundle' },
   { provider: 'Xfinity', bundle: 'Internet + TV', internetSpeed: '400 Mbps', channels: '125+ channels', price: '$90/mo', highlight: 'Free Peacock Premium' },
-  { provider: 'Verizon Fios', bundle: 'Internet + TV', internetSpeed: '300 Mbps', channels: '125+ channels', price: '$95/mo', highlight: 'Fiber TV quality' },
+  { provider: 'EarthLink', bundle: 'Internet + Streaming', internetSpeed: '300 Mbps', channels: 'YouTube TV compatible', price: '$50/mo+', highlight: 'Works at any address nationwide' },
   { provider: 'Cox', bundle: 'Internet + TV', internetSpeed: '250 Mbps', channels: '140+ channels', price: '$105/mo', highlight: 'Contour TV with voice remote' },
   { provider: 'Optimum', bundle: 'Internet + TV', internetSpeed: '300 Mbps', channels: '220+ channels', price: '$100/mo', highlight: 'Stream on the go' },
 ];
@@ -58,15 +58,15 @@ const faqs = [
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'TV Providers', url: 'https://internet4all.com/tv-providers' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'TV Providers', url: 'https://internet-4-all.com/tv-providers' },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`Cable TV Providers in Your Area — Find Cable & TV Near You (${month} ${year})`}
-  description={`Find cable TV providers in your area for ${month} ${year}. Compare cable, satellite, fiber TV, and streaming options near you. Cable and internet bundles starting at $50/mo. ${tvProviders.length}+ cable TV providers compared.`}
+  title="TV Providers Near Me — Cable & Streaming TV Options"
+  description="Find TV providers near you — cable, satellite, and streaming TV options. Channel packages and internet bundle deals available at your address right now."
   schema={schemas}
 >
   <StickyCallBar text="Find TV providers in your area — get bundle deals" />
@@ -82,7 +82,7 @@ const schemas = [
           Best <span class="gradient-text">TV Providers</span> in Your Area
         </h1>
         <p class="hero-subtitle" style="max-width: 720px; margin-inline: auto;">
-          Find cable TV, satellite, fiber TV, and live streaming options at your address. Compare {tvProviders.length}+ providers,
+          Find cable TV, satellite, fiber TV, and live streaming options at your address. Compare all available providers,
           channels lineups, and bundle deals. Save up to $30/mo when you pair TV with internet.
         </p>
         <div style="margin-top: var(--space-xl);">

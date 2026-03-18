@@ -26,15 +26,15 @@ But availability varies dramatically by location. Here's who offers fiber, where
 
 AT&T is one of the most aggressive fiber builders, focusing expansion on underserved suburbs and mid-size cities in their existing footprint.
 
-### Verizon Fios
-| Coverage | ~35 million homes |
+### Verizon 5G Home Internet
+| Coverage | Nationwide (100M+ households) |
 |----------|---------------------|
-| States | CT, DE, DC, MD, MA, NJ, NY, PA, RI, VA |
-| Speeds | 300 Mbps – 2 Gbps |
-| Price | Starting at $49.99/mo |
-| Expansion | Moderate (mostly upgrading existing Fios areas) |
+| States | All 50 states |
+| Technology | 5G / 4G LTE fixed wireless |
+| Price | Starting at $50/mo ($35 with Verizon wireless) |
+| Price Lock | 4–5 years |
 
-Fios coverage is mature in the Northeast. Expansion is slower than AT&T or Frontier because Verizon is focused on upgrading existing areas.
+Verizon's fixed wireless product is nationwide, no-install, and backed by one of the longest price locks in the industry. Where 5G signal is strong, speeds hit 300–1000 Mbps. A compelling alternative for customers where fiber hasn't yet arrived.
 
 ### Frontier Fiber
 | Coverage | ~7+ million homes |
@@ -117,7 +117,7 @@ Enter your address in our [availability checker](/check-availability) to see all
 ### Step 2: Check Provider Websites Directly
 If you want to verify:
 - **AT&T**: att.com — Enter address for fiber check
-- **Verizon Fios**: verizon.com/fios — Enter address for availability
+- **Verizon 5G Home Internet**: verizon.com/home/internet — Check 5G coverage at your address
 - **Frontier**: frontier.com — Check by address
 - **Optimum**: optimum.com — Verify fiber or cable at your address
 

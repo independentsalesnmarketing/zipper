@@ -20,25 +20,17 @@ export function formatNumber(num: number): string {
   return num.toLocaleString('en-US');
 }
 
-export function formatPhoneForTel(phone: string): string {
-  return 'tel:+1' + phone.replace(/\D/g, '');
-}
-
-export function formatPhoneDisplay(phone: string): string {
-  return phone;
-}
-
 // Simple schema.org JSON-LD generators
 export function generateWebsiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Internet 4 ALL',
-    url: 'https://internet4all.com',
+    url: 'https://internet-4-all.com',
     description: 'Find the best internet providers in your area. Compare plans, prices, and speeds.',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://internet4all.com/providers?zip={search_term_string}',
+      target: 'https://internet-4-all.com/providers?zip={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   };
@@ -82,27 +74,14 @@ export function generateOrganizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Internet 4 ALL',
-    url: 'https://internet4all.com',
-    logo: 'https://internet4all.com/logo.png',
-    description: 'Find the best internet providers in your area. Compare plans, prices, and speeds from 24+ providers.',
-    sameAs: [
-      'https://facebook.com/internet4all',
-      'https://twitter.com/internet4all',
-    ],
+    url: 'https://internet-4-all.com',
+    logo: 'https://internet-4-all.com/logo.png',
+    description: 'Find the best internet providers in your area. Compare plans, prices, and speeds from every major provider.',
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Service',
-      telephone: '+1-888-555-0123',
       areaServed: 'US',
       availableLanguage: 'en',
-      hoursAvailable: 'Mon-Fri 8AM-10PM EST, Sat-Sun 9AM-8PM EST',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.5',
-      bestRating: '5',
-      worstRating: '1',
-      ratingCount: '500',
     },
   };
 }
@@ -140,7 +119,7 @@ export function generateProviderSchema(provider: {
     '@type': 'Organization',
     name: provider.name,
     description: provider.description,
-    url: `https://internet4all.com/provider/${provider.slug}`,
+    url: `https://internet-4-all.com/provider/${provider.slug}`,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: provider.rating.toFixed(1),
@@ -163,7 +142,7 @@ export function generateProductSchema(provider: {
     '@type': 'Product',
     name: `${provider.name} Internet Service`,
     description: provider.description,
-    url: `https://internet4all.com/provider/${provider.slug}`,
+    url: `https://internet-4-all.com/provider/${provider.slug}`,
     brand: {
       '@type': 'Brand',
       name: provider.name,
@@ -181,7 +160,7 @@ export function generateProductSchema(provider: {
       price: (plan.promoPrice < plan.price ? plan.promoPrice : plan.price).toFixed(2),
       priceCurrency: 'USD',
       availability: 'https://schema.org/InStock',
-      url: `https://internet4all.com/provider/${provider.slug}`,
+      url: `https://internet-4-all.com/provider/${provider.slug}`,
     })),
   };
 }
@@ -225,10 +204,10 @@ export function generateArticleSchema(opts: {
     publisher: {
       '@type': 'Organization',
       name: 'Internet 4 ALL',
-      url: 'https://internet4all.com',
+      url: 'https://internet-4-all.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://internet4all.com/logo.png',
+        url: 'https://internet-4-all.com/logo.png',
       },
     },
   };
@@ -247,11 +226,10 @@ export function generateLocalBusinessSchema(opts: {
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': `https://internet4all.com${opts.url}`,
+    '@id': `https://internet-4-all.com${opts.url}`,
     name: `Internet Providers in ${opts.city}, ${opts.state}`,
     description: `Compare ${opts.providerCount} internet providers in ${opts.city}, ${opts.state}. Speeds up to ${opts.topSpeed} Mbps, starting at $${opts.minPrice}/mo. Providers include ${opts.providerNames.slice(0, 5).join(', ')}.`,
-    url: `https://internet4all.com${opts.url}`,
-    telephone: '+1-888-555-0123',
+    url: `https://internet-4-all.com${opts.url}`,
     address: {
       '@type': 'PostalAddress',
       addressLocality: opts.city,

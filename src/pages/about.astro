@@ -2,12 +2,19 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { generateBreadcrumbSchema } from '@lib/utils';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+
+const faqs = [
+  { question: 'Is Internet 4 ALL really free?', answer: 'Yes. Our service is 100% free for consumers. We earn commissions from partner providers when you sign up through our site, but this never increases the cost to you.' },
+  { question: 'How does Internet 4 ALL make money?', answer: 'We earn referral commissions from partner internet providers. This keeps our service free for you. We always disclose partnerships and never let them influence rankings.' },
+  { question: 'Do you cover all 50 states?', answer: 'Yes. We track providers across all 50 states plus Washington D.C. Enter your ZIP code to see exactly what is available at your address.' },
+  { question: 'Are your recommendations unbiased?', answer: 'Yes. Our ratings are based on speed, price, reliability, and customer satisfaction data — not advertising dollars. We show all available options, not just partners.' },
+];
 ---
 <Base
-  title="About Internet 4 ALL — Our Mission to Connect America"
-  description="Internet 4 ALL helps Americans find and compare internet providers. Free, unbiased, and backed by real data. Learn about our mission and team."
-  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'About Us', url: 'https://internet4all.com/about' }])]}
+  title="About Us — Our Mission to Connect America"
+  description="Internet 4 ALL helps Americans find and compare internet providers. Free, unbiased, real FCC data. Learn about our mission to connect every household."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet-4-all.com' }, { name: 'About Us', url: 'https://internet-4-all.com/about' }]), generateFAQSchema(faqs)]}
 >
   <section class="section" style="padding-top:var(--space-xl);">
     <div class="container" style="max-width:740px;">
@@ -40,7 +47,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
 
       <div class="card gradient-border reveal" style="padding:var(--space-xl);text-align:center;">
         <h3 style="margin-bottom:var(--space-sm);">How We Make Money</h3>
-        <p style="font-size:var(--text-sm);max-width:500px;margin:0 auto;">We earn commissions when you sign up with one of our partner providers through our site or phone lines. This keeps everything free for you. We always disclose which providers are partners and never let partnerships influence our rankings or recommendations.</p>
+        <p style="font-size:var(--text-sm);max-width:500px;margin:0 auto;">We earn commissions when you sign up with one of our partner providers through our site, chat, or Talk to Agent flows. This keeps everything free for you. We always disclose which providers are partners and never let partnerships influence our rankings or recommendations.</p>
       </div>
 
       <div class="reveal" style="margin-top:var(--space-xl);">
@@ -65,7 +72,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
           <a href="/providers" class="card" style="padding: var(--space-md); text-decoration: none;">
             <h4 style="font-size: var(--text-sm);">Browse Providers</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">See all 25+ internet providers</p>
+            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">See all internet providers</p>
           </a>
           <a href="/compare" class="card" style="padding: var(--space-md); text-decoration: none;">
             <h4 style="font-size: var(--text-sm);">Compare Plans</h4>
@@ -96,6 +103,16 @@ import { generateBreadcrumbSchema } from '@lib/utils';
             <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">How we rank providers</p>
           </a>
         </div>
+      </div>
+      <!-- FAQ -->
+      <div class="reveal" style="margin-top:var(--space-3xl);">
+        <h2 style="margin-bottom:var(--space-xl);">Frequently Asked Questions</h2>
+        {faqs.map(f => (
+          <details class="card" style="padding:var(--space-lg);margin-bottom:var(--space-md);">
+            <summary style="cursor:pointer;font-weight:700;">{f.question}</summary>
+            <p style="margin-top:var(--space-sm);font-size:var(--text-sm);line-height:1.7;">{f.answer}</p>
+          </details>
+        ))}
       </div>
     </div>
   </section>

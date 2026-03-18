@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
 
 const guides = [
   { slug: 'seniors', title: 'Best Internet for Seniors', description: 'Simple, affordable plans with reliable service and great customer support. No contracts required.', speed: '25–100 Mbps', budget: '$25–$55/mo' },
-  { slug: 'low-income', title: 'Internet for Low-Income Households', description: 'Free and discounted internet programs including ACP, Lifeline, and provider discounts.', speed: '25–100 Mbps', budget: '$0–$30/mo' },
+  { slug: 'low-income', title: 'Internet for Low-Income Households', description: 'Free and discounted internet programs including Lifeline, provider discounts, and assistance programs.', speed: '25–100 Mbps', budget: '$0–$30/mo' },
   { slug: 'rural', title: 'Best Internet for Rural Areas', description: 'Satellite, fixed wireless, 5G, and DSL options for remote and underserved areas.', speed: '25–300 Mbps', budget: '$30–$120/mo' },
   { slug: 'gaming', title: 'Best Internet for Gaming', description: 'Low ping, fast download speeds, no data caps. Fiber, cable, and 5G plans for gamers.', speed: '100–1000 Mbps', budget: '$50–$100/mo' },
   { slug: 'streaming', title: 'Best Internet for Streaming', description: 'Enough speed for 4K, no data caps, and reliable WiFi for Netflix, Disney+, and more.', speed: '25–300 Mbps', budget: '$40–$80/mo' },
@@ -22,14 +22,14 @@ const guides = [
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Internet Guides by Need', url: 'https://internet4all.com/internet-for' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Internet Guides by Need', url: 'https://internet-4-all.com/internet-for' },
   ]),
 ];
 ---
 <Base
-  title={`Internet Guides by Need (${year}) — Find the Right Plan for You`}
-  description={`Find the best internet for your specific needs: gaming, streaming, work from home, seniors, students, rural areas, and more. Expert guides updated ${year}.`}
+  title="Home Internet for Every Household — Find Your Options"
+  description="Internet plans for every household — apartments, rural homes, renters, seniors, gamers, and students. Find providers available at your address right now."
   schema={schemas}
 >
   <section class="section" style="padding-top: var(--space-xl);">

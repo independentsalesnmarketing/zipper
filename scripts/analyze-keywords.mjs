@@ -12,7 +12,7 @@ const FILE_SETS = {
     'EarthlinkKeywords.txt',
     'OptimumKeywords.txt',
     'T-FiberKeywords.txt',
-    'VerizonFiosKeywords.txt',
+    'Verizon5GKeywords.txt',
     'XfinityKeywords.txt',
     'CoxKeywords.txt',
     'StarlinkKeywords.txt',

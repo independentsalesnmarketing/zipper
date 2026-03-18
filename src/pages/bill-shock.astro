@@ -24,7 +24,7 @@ const shockData: ShockEntry[] = [];
 
 const priceLockNotes: Record<string, string> = {
   'spectrum':    '1-year price guarantee',
-  'verizon':     '3–5 year Fios price lock; 4-year 5G lock',
+  'verizon':     '4-year price lock (5G Home & Plus); 5-year price lock (5G Home Ultimate)',
   'att-fiber':   'No price lock — rates can increase after promo',
   'frontier':    'No formal price lock',
   'xfinity':     'Price may increase after 24-month promo',
@@ -131,8 +131,8 @@ const providerSummaries = Object.values(providerMap).sort((a, b) => b.worstPct -
 
 const faqs = [
   { question: 'Why does my internet bill go up after the first year?', answer: 'ISPs advertise promotional rates that expire after 12 or 24 months. Once the promo ends, your bill automatically increases to the standard rate — often without a warning beyond fine print. This practice is legal but heavily criticized. Always read the standard price, not just the promotional price, before signing up.' },
-  { question: 'How much does the average internet bill increase after the promo?', answer: `Our analysis of ${totalPlansAnalyzed} plans from ${allProviders.length} providers found that ${plansWithIncrease} plans carry a price increase after the promotional period. The average monthly increase is $${avgIncrease.toFixed(2)} — or $${(avgIncrease * 12).toFixed(2)} per year in extra costs that customers don't expect.` },
-  { question: 'Which internet provider has the best price lock?', answer: 'Verizon Fios offers the strongest price protection — 3-year lock on 300 Mbps plans, 5-year lock on Gig and 2 Gig plans. T-Mobile 5G Home Internet offers a lifetime price lock on their All-In plan. Spectrum guarantees prices for 1 year. Most other providers offer no formal price lock.' },
+  { question: 'How much does the average internet bill increase after the promo?', answer: `Our analysis of ${totalPlansAnalyzed} plans across the industry found that ${plansWithIncrease} plans carry a price increase after the promotional period. The average monthly increase is $${avgIncrease.toFixed(2)} — or $${(avgIncrease * 12).toFixed(2)} per year in extra costs that customers don't expect.` },
+  { question: 'Which internet provider has the best price lock?', answer: 'Verizon 5G Home Internet offers the strongest written price lock — 4 years on 5G Home and Plus plans, 5 years on the Ultimate plan. T-Mobile 5G Home Internet offers a lifetime price lock on their All-In plan. Spectrum guarantees prices for 1 year. Most other providers offer no formal price lock.' },
   { question: 'Can I negotiate my internet bill after the promo ends?', answer: 'Yes, and it works more often than people expect. Call your provider\'s retention department (not general customer service) and mention that you\'ve seen better rates from competitors. ISPs typically have unpublished "save" offers worth $10–$30/month. Threatening to cancel triggers the best offers.' },
   { question: 'What is the FCC broadband label price increase rule?', answer: 'As of 2024, the FCC requires ISPs to disclose promotional vs. standard pricing on standardized broadband labels at point of sale. Providers must display the monthly price after the promo period ends. If your bill increases and you were not shown a broadband label, you may have grounds for an FCC complaint.' },
   { question: 'Should I switch providers every year to keep the promo rate?', answer: 'This is called "ISP churning" and it works — if competing providers are available at your address. Many customers save $300–$600/year by switching when their promo expires. The downside is installation hassle and equipment return. Services like Internet 4 ALL make this easy by finding current promos at your address instantly.' },
@@ -141,21 +141,22 @@ const faqs = [
 const year = new Date().getFullYear();
 ---
 <Base
-  title={`The Bill Shock Report (${year}) — What Your Internet Bill Becomes in Year 2`}
-  description={`We analyzed ${totalPlansAnalyzed} internet plans from ${allProviders.length} providers. The average bill jumps $${avgIncrease.toFixed(0)}/mo after the promo ends. See every provider's price increase — ranked worst to best.`}
+  title="Internet Bill Went Up? Find a Lower Rate Near You"
+  description="Your internet bill went up? Find out why your ISP raised rates and see lower-cost home internet options available from providers in your area right now."
   schema={[
     generateBreadcrumbSchema([
-      { name: 'Home', url: 'https://internet4all.com' },
-      { name: 'Bill Shock Report', url: 'https://internet4all.com/bill-shock' },
+      { name: 'Home', url: 'https://internet-4-all.com' },
+      { name: 'Bill Shock Report', url: 'https://internet-4-all.com/bill-shock' },
     ]),
     generateArticleSchema({
       title: `The Bill Shock Report (${year}) — What Your Internet Bill Becomes in Year 2`,
-      description: `We analyzed ${totalPlansAnalyzed} internet plans from ${allProviders.length} providers. See every provider's price increase after the promotional period — ranked worst to best.`,
-      url: 'https://internet4all.com/bill-shock',
+      description: `We analyzed ${totalPlansAnalyzed} internet plans across every major provider. See every provider's price increase after the promotional period — ranked worst to best.`,
+
+      url: 'https://internet-4-all.com/bill-shock',
       datePublished: '2026-03-01',
-      dateModified: '2026-03-05',
+      dateModified: new Date().toISOString().split('T')[0],
       authorName: 'Internet 4 ALL Research Team',
-      authorUrl: 'https://internet4all.com/methodology',
+      authorUrl: 'https://internet-4-all.com/methodology',
     }),
     generateFAQSchema(faqs),
   ]}
@@ -171,7 +172,7 @@ const year = new Date().getFullYear();
         </div>
         <h1>The Bill Shock Report</h1>
         <p style="font-size:var(--text-xl);color:var(--text-secondary);margin-top:var(--space-md);line-height:1.6;">
-          We analyzed <strong>{totalPlansAnalyzed} internet plans</strong> from <strong>{allProviders.length} providers</strong>.
+          We analyzed <strong>{totalPlansAnalyzed} internet plans</strong> from <strong>every major provider</strong>.
           Here's exactly what happens to your bill after the promotional period ends — and who's the worst offender.
         </p>
       </div>
@@ -320,9 +321,9 @@ const year = new Date().getFullYear();
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-lg);">
           {[
             { title: 'Always look at the standard price', body: 'Before signing up, ask: "What will I pay in month 13?" If the rep can\'t give a clear answer, find it in the broadband label — now legally required at point of sale.' },
-            { title: 'Choose providers with price locks', body: 'Verizon Fios (up to 5 years), T-Mobile 5G All-In, and Spectrum (1 year) offer the strongest price protection. Prioritize these when available at your address.' },
+            { title: 'Choose providers with price locks', body: 'Verizon 5G Home Internet (4–5 years), T-Mobile 5G All-In, and Spectrum (1 year) offer the strongest price protection. Prioritize these when available at your address.' },
             { title: 'Set a calendar reminder 60 days out', body: 'Mark your promo expiration date and set a reminder 60 days before. That gives you time to negotiate, switch, or at minimum threaten to switch before the rate hike hits.' },
-            { title: 'Call retention before the promo expires', body: 'ISPs have unpublished "save" offers for customers threatening to cancel. Call and say: "My promo ends in 60 days and I\'ve seen better rates elsewhere." Works in ~60% of cases.' },
+            { title: 'Contact retention before the promo expires', body: 'ISPs have unpublished "save" offers for customers threatening to cancel. Message support and say: "My promo ends in 60 days and I\'ve seen better rates elsewhere." Works in ~60% of cases.' },
             { title: 'Switch providers to keep promo pricing', body: 'If a competing provider is available, switching every 1–2 years keeps you on promo rates permanently. Our experts can find the best current deal at your address in 60 seconds.' },
             { title: 'Read the broadband label before you sign', body: 'FCC-mandated broadband labels (required since 2024) show the promo price, standard price, contract terms, and data caps. If you weren\'t shown one, ask for it in writing.' },
           ].map(tip => (
@@ -365,14 +366,4 @@ const year = new Date().getFullYear();
   <StickyCallBar text="Your promo ending? We'll find you a better deal." />
 </Base>
 
-<script>
-  // FAQ accordion (matches site-wide pattern)
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const isOpen = item?.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item?.classList.add('open');
-    });
-  });
-</script>
+

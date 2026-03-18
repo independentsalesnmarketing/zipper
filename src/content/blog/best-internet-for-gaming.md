@@ -21,17 +21,17 @@ Speed beyond 100 Mbps doesn't improve gaming performance. A 50 Mbps fiber connec
 
 ## Best Internet Providers for Gaming
 
-### 1. [Verizon Fios](/provider/verizon) — Best Overall for Gaming
-- **Latency**: 5-10ms (excellent)
-- **Plans**: 300-2000 Mbps, starting at $49.99/mo
-- **Why it's #1**: Fiber delivers the lowest, most consistent latency. Fios' network is known for near-zero jitter, which means no lag spikes during clutch moments.
-- **For gamers who**: Play competitive FPS/fighting games where milliseconds matter
-
-### 2. [AT&T Fiber](/provider/att) — Best Upload for Game Streaming
+### 1. [AT&T Fiber](/provider/att-fiber) — Best Overall for Gaming
 - **Latency**: 5-12ms (excellent)
-- **Plans**: 300-5000 Mbps, starting at $55/mo
-- **Why**: Symmetrical upload speeds make AT&T ideal if you stream gameplay on Twitch or YouTube while playing. 300 Mbps upload handles 1080p60 streaming without impacting your gameplay.
-- **For gamers who**: Stream on Twitch/YouTube while gaming
+- **Plans**: 300 Mbps–5 Gbps, starting at $55/mo
+- **Why it's #1**: Fiber delivers the lowest, most consistent latency with near-zero jitter. Symmetrical speeds up to 5 Gbps means zero lag spikes during clutch moments, even with a full household.
+- **For gamers who**: Play competitive FPS or fighting games where milliseconds matter
+
+### 2. [Frontier Fiber](/provider/frontier) — Best Upload for Game Streaming
+- **Latency**: 5-10ms (excellent)
+- **Plans**: 500 Mbps–5 Gbps, starting at $49.99/mo
+- **Why**: 500 Mbps symmetrical at $49.99 is the most speed per dollar from any fiber ISP. Handles 4K Twitch streaming plus a full gaming household without breaking a sweat.
+- **For gamers who**: Want top fiber performance without overpaying
 
 ### 3. [Frontier Fiber](/provider/frontier) — Best Value Fiber for Gaming
 - **Latency**: 5-10ms (excellent)

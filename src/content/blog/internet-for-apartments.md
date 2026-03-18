@@ -32,15 +32,15 @@ Here's how to navigate these challenges and get the best internet in your apartm
 
 **Why it's perfect for apartments**: No installation means no waiting for a technician, no drilling holes, and no wiring your landlord might complain about. When you move, unplug the gateway, take it to your new place, and plug it back in. T-Mobile's $50 price includes everything — no equipment fees, no hidden charges.
 
-### 2. [Verizon Fios](/provider/verizon) — Best Fiber for Apartments
+### 2. [Verizon 5G Home Internet](/provider/verizon) — Best No-Wires Option
 | Feature | Details |
-|---------|---------|
-| Price | $49.99/mo |
-| Speed | 300/300 Mbps |
+|---------|----------|
+| Price | $50/mo |
+| Speed | 100–300 Mbps (5G Home) |
 | Contract | None |
-| Setup | Self-install available if ONT exists |
+| Setup | Self-install — plug in and go |
 
-In the Northeast, many apartment buildings are wired for Fios. If your building already has the fiber terminal installed (common in newer construction), setup is quick. No contract means you can cancel when your lease ends.
+Verizon 5G Home Internet is ideal for apartment renters. No coax wiring required — the gateway uses Verizon's 5G/LTE network. Pack up and take it to your next apartment when you move. No technician, no appointment, no holes in the wall.
 
 ### 3. [Spectrum](/provider/spectrum) — Most Available
 | Feature | Details |
@@ -52,7 +52,7 @@ In the Northeast, many apartment buildings are wired for Fios. If your building 
 
 Most apartments have coax cable wiring already installed, making Spectrum activation simple. Wide availability in 41 states means it's likely an option at your complex.
 
-### 4. [AT&T Fiber](/provider/att) — Best for Newer Buildings
+### 4. [AT&T Fiber](/provider/att-fiber) — Best for Newer Buildings
 | Feature | Details |
 |---------|---------|
 | Price | $55/mo |
@@ -91,7 +91,7 @@ After signing up, run a [speed test](/speed-test) to verify you're getting adver
 
 Many apartment complexes have agreements that give one provider exclusive access to the building's wiring. This doesn't mean you have zero alternatives:
 
-- **T-Mobile/Verizon 5G Home Internet** doesn't use the building's wiring — it works through cellular networks. Even if your building has a cable exclusivity deal, you can still use fixed wireless.
+- **Verizon 5G Home Internet and AT&T Air** don't use the building's wiring — they work through cellular networks. Even if your building has a cable exclusivity deal, you can still use fixed wireless.
 - **Starlink** works in apartments with a balcony or window with southern sky exposure
 - **Mobile hotspot plans** from carriers can bridge the gap for light users
 

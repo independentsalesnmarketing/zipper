@@ -77,8 +77,8 @@ Upload speeds are Spectrum's weak point. The 10-35 Mbps upload range is adequate
 | Provider | Starting Price | Max Speed | Contract | Data Cap |
 |----------|---------------|-----------|----------|----------|
 | **[Spectrum](/provider/spectrum)** | $49.99/mo | 1 Gbps | No | None |
-| [AT&T Fiber](/provider/att) | $55/mo | 5 Gbps | No | None |
-| [Verizon Fios](/provider/verizon) | $49.99/mo | 2 Gbps | No | None |
+| [AT&T Fiber](/provider/att-fiber) | $55/mo | 5 Gbps | No | None |
+| [Verizon 5G Home](/provider/verizon) | $50/mo | 1 Gbps (Plus) | No | None |
 | [T-Mobile 5G Home](/provider/tmobile-5g) | $50/mo | 245 Mbps | No | None |
 | [Frontier Fiber](/provider/frontier) | $49.99/mo | 5 Gbps | No | None |
 
@@ -110,4 +110,4 @@ Spectrum competes well on simplicity and availability, but falls short against [
 
 ## Ready to Sign Up?
 
-Check if Spectrum is available at your address — enter your ZIP code on our [availability checker](/check-availability) or [compare all cable providers](/internet-types/cable) in your area. Also see our [Spectrum vs AT&T comparison](/compare/spectrum-vs-att) for a head-to-head breakdown.
+Check if Spectrum is available at your address — enter your ZIP code on our [availability checker](/check-availability) or [compare all cable providers](/internet-types/cable) in your area. Also see our [Spectrum vs AT&T comparison](/compare/att-fiber-vs-spectrum) for a head-to-head breakdown.

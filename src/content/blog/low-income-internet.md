@@ -21,7 +21,7 @@ Here's every option available and how to get started.
 |--------|------|
 | Discount | $9.25/mo off broadband |
 | Eligibility | Income at or below 135% of Federal Poverty Guidelines, or participation in SNAP, Medicaid, SSI, FPHA, Veterans Pension |
-| How to Apply | [lifelinesupport.org](https://www.lifelinesupport.org/) or call 1-800-234-9473 |
+| How to Apply | [lifelinesupport.org](https://www.lifelinesupport.org/) |
 | Availability | All states, all qualifying providers |
 
 Lifeline is the foundational federal broadband assistance program. It can be combined with participating providers' own low-income plans for maximum savings.
@@ -38,7 +38,7 @@ For rural areas specifically, the USDA funds broadband expansion through grants 
 | Speed | 30 Mbps download / 4 Mbps upload |
 | Data Cap | None |
 | Eligibility | Households with SSI, SNAP, or free/reduced school lunch |
-| How to Apply | Call Spectrum or visit a store with eligibility documentation |
+| How to Apply | Use Spectrum online support or visit a store with eligibility documentation |
 
 Spectrum's program is available in 41 states and offers no data caps with decent speeds for basic needs.
 
@@ -49,7 +49,7 @@ Spectrum's program is available in 41 states and offers no data caps with decent
 | Speed | Up to 100 Mbps (fiber where available) |
 | Data Cap | None |
 | Eligibility | SNAP, SSI, or income at 200% of federal poverty level |
-| How to Apply | att.com/access or call AT&T |
+| How to Apply | att.com/access or AT&T online support |
 
 AT&T Access offers higher speeds than most low-income programs, especially where fiber is available. 100 Mbps handles streaming, video calls, and online school.
 
@@ -70,7 +70,7 @@ The lowest-priced option from any major ISP, available in NY, NJ, and CT.
 | Price | **$9.95/mo** |
 | Speed | 25 Mbps |
 | Eligibility | SNAP, Medicaid, SSI, WIC |
-| How to Apply | windstream.com or call Windstream |
+| How to Apply | windstream.com or Windstream online support |
 
 At $9.95/mo, this is the cheapest broadband program in the country. Available in 18 states across Windstream's service area.
 
@@ -99,7 +99,7 @@ Check your state's public utility commission or broadband office website for loc
 
 ## Eligibility at a Glance
 
-| Qualifying Benefit | [Spectrum](/provider/spectrum) | [AT&T](/provider/att) | [Optimum](/provider/optimum) | Windstream | Lifeline |
+| Qualifying Benefit | [Spectrum](/provider/spectrum) | [AT&T](/provider/att-fiber) | [Optimum](/provider/optimum) | Windstream | Lifeline |
 |-------------------|---------|------|---------|------------|---------|
 | SNAP | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Medicaid | ✅ | ✅ | ✅ | ✅ | ✅ |

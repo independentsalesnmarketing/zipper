@@ -21,8 +21,8 @@ We track promotions from every major ISP to find the best deals for new and exis
 | [T-Mobile](/provider/tmobile-5g) | $10 off with phone plan | **$40/mo** | 72-245 Mbps |
 | [Frontier Fiber](/provider/frontier) | New customer rate | **$49.99/mo** | 500/500 Mbps |
 | [Spectrum](/provider/spectrum) | New customer pricing | **$49.99/mo** | 300 Mbps |
-| [Verizon Fios](/provider/verizon) | Mix & Match pricing | **$49.99/mo** | 300/300 Mbps |
-| [AT&T Fiber](/provider/att) | Online-only pricing | **$55/mo** | 300/300 Mbps |
+| [Verizon 5G Home](/provider/verizon) | $200–$300 Prepaid Mastercard | **$50/mo** ($35 w/ mobile) | 100–1000 Mbps |
+| [AT&T Fiber](/provider/att-fiber) | Online-only pricing | **$55/mo** | 300/300 Mbps |
 
 ## Featured Deals by Provider
 
@@ -62,12 +62,12 @@ When you factor in the zero equipment fees and zero hidden charges, T-Mobile's $
 
 Spectrum frequently runs additional promotions including waived installation fees and free WiFi router for the first month.
 
-### Verizon Fios — Best Reliability
-**$49.99/mo for 300/300 Mbps**
-- Symmetrical fiber speeds
+### Verizon 5G Home Internet — Best Price Lock Deal
+**$50/mo** ($35/mo with qualifying Verizon mobile plan)
+- **$200–$300 Prepaid Mastercard** for new customers
+- **4-year price lock** — your rate won't increase
 - No contract, no data cap
-- $10/mo autopay discount when combined with Verizon mobile
-- Northeast availability
+- Self-install nationwide — no technician
 
 ### AT&T Fiber — Premium with Perks
 **$55/mo for 300/300 Mbps**
@@ -80,13 +80,13 @@ Spectrum frequently runs additional promotions including waived installation fee
 
 Already have internet? You still have options:
 
-### 1. Call and Ask for Retention Deals
-Your provider has unadvertised deals for customers threatening to cancel. Call and say: "I'm seeing better offers from competitors. What can you offer to keep me?"
+### 1. Contact Support and Ask for Retention Deals
+Your provider has unadvertised deals for customers threatening to cancel. Use support chat and say: "I'm seeing better offers from competitors. What can you offer to keep me?"
 
 ### 2. Autopay Discounts
 | Provider | Autopay Savings |
 |----------|----------------|
-| Verizon Fios | $10/mo |
+| Verizon 5G Home | $5/mo (autopay) |
 | AT&T | $5/mo |
 | Spectrum | $5/mo |
 | Frontier | $5/mo |
@@ -95,7 +95,7 @@ Your provider has unadvertised deals for customers threatening to cancel. Call a
 Some providers offer credits for referring friends and family. Check your provider's website for current referral bonuses.
 
 ### 4. Loyalty Discounts
-If you've been with your provider for 2+ years, call and ask for a loyalty discount. Many providers have tier-based loyalty programs that aren't advertised.
+If you've been with your provider for 2+ years, contact support and ask for a loyalty discount. Many providers have tier-based loyalty programs that aren't advertised.
 
 ## Low-Income Deals
 
@@ -112,7 +112,7 @@ These programs are available to qualifying low-income households receiving SNAP,
 
 1. **Check availability first** — Use our [availability checker](/check-availability) to see all providers at your address
 2. **Compare total costs** — Include equipment fees, taxes, and expected post-promo pricing
-3. **Ask about unadvertised deals** — Call and mention competitor offers
+3. **Ask about unadvertised deals** — Use support chat and mention competitor offers
 4. **Don't forget autopay** — Easy $5-10/mo savings
 5. **Time your switch** — End of billing cycle is best for cancellation; sign up at the start of a new promo period
 

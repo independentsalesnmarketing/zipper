@@ -32,6 +32,9 @@ Thumbs.db
 *.njsproj
 *.sln
 
+# Test files (may contain API keys / PII)
+test-*.mjs
+
 # Cache
 .cache/
 .parcel-cache/

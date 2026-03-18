@@ -4,6 +4,7 @@ import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { getAllProviders, getProvidersByState, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, stateNames } from '@lib/providers';
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
+import { buildCheapStateMeta } from '@lib/location-meta';
 import type { Provider } from '@lib/providers';
 
 export function getStaticPaths() {
@@ -46,16 +47,19 @@ const faqs = [
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Cheap Internet', url: 'https://internet4all.com/cheap-internet' },
-    { name: `Cheap Internet in ${stateName}`, url: `https://internet4all.com/cheap-internet/${stateAbbr.toLowerCase()}` },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Cheap Internet', url: 'https://internet-4-all.com/cheap-internet' },
+    { name: `Cheap Internet in ${stateName}`, url: `https://internet-4-all.com/cheap-internet/${stateAbbr.toLowerCase()}` },
   ]),
   generateFAQSchema(faqs),
 ];
+
+const meta = buildCheapStateMeta(`/cheap-internet/${stateAbbr.toLowerCase()}`, stateName);
 ---
 <Base
-  title={`Cheap Internet in ${stateName} (${year}) — Plans from ${formatPrice(cheapestPrice)}/mo`}
-  description={`Find the cheapest internet plans in ${stateName}. ${cheapPlans.length}+ affordable plans from ${stateProviders.length} providers starting at ${formatPrice(cheapestPrice)}/mo. Compare prices and sign up for exclusive deals.`}
+  noSuffix
+  title={meta.title}
+  description={meta.description}
   schema={schemas}
 >
   <section class="section" style="padding-top: var(--space-xl);">
@@ -192,7 +196,7 @@ const schemas = [
           <li><strong>Compare all available providers</strong> — {stateName} has {stateProviders.length} providers competing for your business. Use that competition to your advantage.</li>
           <li><strong>Consider 5G home internet</strong> — T-Mobile and Verizon offer 5G home plans starting at $25-50/mo with no contracts in many parts of {stateName}.</li>
           <li><strong>Ask about promotional pricing</strong> — Sign up above to find exclusive deals not listed online.</li>
-          <li><strong>Check for assistance programs</strong> — {stateName} residents may qualify for the ACP, Lifeline, or provider-specific low-income programs.</li>
+          <li><strong>Check for assistance programs</strong> — {stateName} residents may qualify for Lifeline or provider-specific low-income programs. <a href="/low-income-internet">See all programs</a>.</li>
           <li><strong>Buy your own equipment</strong> — Skip modem rental fees ($10-15/mo) by purchasing a compatible modem and router.</li>
         </ol>
       </div>

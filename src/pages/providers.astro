@@ -5,7 +5,7 @@ import SearchBar from '@components/SearchBar.astro';
 import ProviderCard from '@components/ProviderCard.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { getAllProviders, getPartnerProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed } from '@lib/providers';
-import { generateBreadcrumbSchema, generateItemListSchema } from '@lib/utils';
+import { generateBreadcrumbSchema, generateItemListSchema, generateFAQSchema } from '@lib/utils';
 
 const allProviders = getAllProviders().sort((a, b) => {
   // Providers with logos first, then partners first, then by rating
@@ -16,6 +16,26 @@ const allProviders = getAllProviders().sort((a, b) => {
   return b.rating - a.rating;
 });
 const breadcrumbs = [{ name: 'Providers', url: '/providers' }];
+
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
+const partners = allProviders.filter(p => p.isPartner);
+const fiberProviders = allProviders.filter(p => p.types.includes('fiber'));
+const lowestPrice = Math.min(...allProviders.map(p => getMinPrice(p)));
+const fastestSpeed = Math.max(...allProviders.map(p => getMaxSpeed(p)));
+const totalStates = [...new Set(allProviders.flatMap(p => p.coverage))].length;
+
+const faqs = [
+  { question: 'How do I find internet providers at my address?', answer: 'Enter your 5-digit ZIP code in the search bar above. We check real-time FCC broadband data to show you every provider available at your exact location — including speeds, prices, and plan details.' },
+  { question: 'What types of internet are available?', answer: 'The main types are: Fiber (fastest, lowest latency, best for gaming/streaming), Cable (widely available, fast downloads), 5G Home Internet (wireless, no installation), DSL (available over phone lines), and Satellite (available everywhere, including rural). Use the filter buttons above to narrow by type.' },
+  { question: `What is the cheapest internet plan in ${year}?`, answer: `The most affordable plans start as low as $${lowestPrice.toFixed(2)}/mo. Budget-friendly options include Metronet Fiber 100 ($24.95/mo), Kinetic Fiber 100 ($24.99/mo), and Optimum Fiber 300 ($25/mo). Low-income households may qualify for even cheaper plans through provider discount programs.` },
+  { question: `What is the fastest internet available in ${year}?`, answer: `The fastest residential internet reaches up to ${formatSpeed(fastestSpeed)}. Providers like Optimum (8 Gig), AT&T Fiber (5 Gig), and Frontier (7 Gig) lead in raw speed. However, most households only need 100–300 Mbps. Fiber provides the most consistent real-world speeds.` },
+  { question: 'How many internet providers does the average American have access to?', answer: 'The FCC reports the average US address has access to 3–5 broadband providers. Urban areas typically have more options (5–8+), while rural areas may only have 1–2. Entering your ZIP above gives you the exact count for your location.' },
+  { question: 'Should I choose fiber or cable internet?', answer: 'Fiber is better in almost every way: symmetrical speeds, lower latency, no data caps, and no slowdowns during peak hours. The only downside is availability — fiber covers roughly 43% of US addresses. If fiber is available at your address, it\'s almost always the best choice. Cable is an excellent runner-up with wide availability.' },
+  { question: 'What internet speed do I need?', answer: '1–2 people, basic browsing: 25–50 Mbps. Small family, streaming + work from home: 100–200 Mbps. Large family, gaming + 4K streaming: 300–500 Mbps. Power users, content creators: 500–1000 Mbps. Most households are well-served by 100–300 Mbps.' },
+  { question: 'Are there internet plans with no contract?', answer: `Yes — the majority of providers now offer no-contract plans. All ${partners.length} of our recommended partners offer month-to-month options with no early termination fees. Spectrum, Frontier, AT&T Fiber, and Optimum are all fully contract-free.` },
+];
+
 // Pass serializable provider data to client script for API matching
 const providerDataForClient = allProviders.map(p => ({
   id: p.id, name: p.name, slug: p.slug, types: p.types, rating: p.rating,
@@ -88,38 +108,85 @@ const zip3ToState = {
 };
 ---
 <Base
-  title="Internet Providers in Your Area — Compare Plans & Prices (2026)"
-  description="Find and compare all internet providers at your address. See plans, speeds, prices, and ratings for 25+ providers. Order online or call for exclusive deals."
+  title="Internet Providers in My Area — All Local ISPs Near Me"
+  description="See every ISP and home internet carrier in your area. Fiber, cable, 5G, wireless — find the best local providers near you ranked by speed, price, and deals."
   schema={[
-    generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Providers', url: 'https://internet4all.com/providers' }]),
+    generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet-4-all.com' }, { name: 'Providers', url: 'https://internet-4-all.com/providers' }]),
     generateItemListSchema(allProviders.map(p => ({
       name: p.name,
-      url: `https://internet4all.com/provider/${p.slug}`,
+      url: `https://internet-4-all.com/provider/${p.slug}`,
       description: p.description,
     }))),
+    generateFAQSchema(faqs),
   ]}
 >
-  <section class="section" style="padding-top: var(--space-xl);">
+  <!-- ===== HERO + SEARCH ===== -->
+  <section class="section" style="padding-top: var(--space-xl); padding-bottom: var(--space-lg);">
     <div class="container">
       <Breadcrumb items={breadcrumbs} />
 
-      <div class="text-center" style="margin-bottom: var(--space-2xl);">
-        <h1 class="reveal">Find Internet Providers <span class="light-gradient-text">in Your Area</span></h1>
-        <p class="hero-subtitle reveal" style="max-width: 550px; margin-inline:auto;">Enter your ZIP code to see every provider, plan, and price at your address.</p>
-        <div class="reveal" style="display:flex; justify-content:center; margin-top: var(--space-xl);">
+      <div class="text-center" style="margin-bottom: var(--space-xl);">
+        <div class="badge badge-blue reveal" style="margin-bottom: var(--space-md);">Updated {month} {year}</div>
+        <h1 class="reveal">Compare Internet Providers <span class="light-gradient-text">in Your Area</span></h1>
+        <p class="hero-subtitle reveal" style="max-width: 640px; margin-inline:auto;">Enter your ZIP code to see every provider, plan, and price available at your address — powered by live FCC broadband data.</p>
+        <div class="reveal" style="display:flex; justify-content:center; margin-top: var(--space-lg);">
           <SearchBar size="large" placeholder="Enter your 5-digit ZIP code" />
         </div>
       </div>
 
+      <!-- Trust stats bar -->
+      <div class="reveal" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin-bottom: var(--space-xl); text-align: center;">
+        <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-lg);">
+          <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--brand-blue);">All</div>
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">Major Providers</div>
+        </div>
+        <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-lg);">
+          <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--brand-blue);">Live</div>
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">FCC Data</div>
+        </div>
+        <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-lg);">
+          <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--brand-blue);">{formatPrice(lowestPrice)}<span style="font-size: var(--text-sm); font-weight: 600;">/mo</span></div>
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">Lowest Price</div>
+        </div>
+        <div style="padding: var(--space-md); background: var(--bg-secondary); border-radius: var(--radius-lg);">
+          <div style="font-size: var(--text-2xl); font-weight: 800; color: var(--brand-blue);">{totalStates}</div>
+          <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em;">States Covered</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROVIDER LOGOS (visible immediately) ===== -->
+  <section style="padding: var(--space-lg) 0; background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom: var(--space-md);">
+        <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em;">Trusted by millions — every major provider, one place</p>
+      </div>
+      <div class="logos-grid reveal">
+        {allProviders.map((p) => (
+          <a href={`/provider/${p.slug}`} class="logo-item" title={p.name}>
+            {p.logo ? (
+              <img src={p.logo} alt={p.name} loading="lazy" />
+            ) : (
+              <span class="logo-fallback">{p.name.charAt(0)}</span>
+            )}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEARCH RESULTS (hidden until search) ===== -->
+  <section class="section" id="results-section">
+    <div class="container">
       <!-- Location banner (hidden until search) -->
       <div id="location-banner" class="card results-banner" style="display:none; text-align:center; margin-bottom: var(--space-xl); padding: var(--space-lg); animation: slideInDown 0.6s ease-out;">
         <h3 id="location-text" style="font-size: var(--text-xl);">Showing providers for <strong id="location-city" style="color: var(--brand-blue);"></strong></h3>
         <p id="location-count" class="text-secondary text-sm mt-sm"></p>
       </div>
 
-
       <!-- Loading state -->
-      <div id="loading-state" style="display:none; margin-top: var(--space-2xl);">
+      <div id="loading-state" style="display:none; margin-top: var(--space-lg);">
         <div style="text-align: center; padding: var(--space-2xl); background: var(--bg-secondary); border-radius: var(--radius-lg);">
           <div style="display: inline-block; margin-bottom: var(--space-lg);">
             <div style="width: 48px; height: 48px; border: 4px solid var(--border); border-top: 4px solid var(--brand-blue); border-radius: 50%; animation: spin 1s linear infinite;"></div>
@@ -173,10 +240,9 @@ const zip3ToState = {
     </div>
   </section>
 
-  <!-- Interactive Map Section (moved below providers) -->
+  <!-- ===== MAP (hidden until search) ===== -->
   <section class="section" style="background: var(--bg-secondary);">
     <div class="container">
-      <!-- Interactive Map -->
       <div id="map-container" style="display:none;">
         <div style="margin-bottom: var(--space-md); display: flex; align-items: center; justify-content: space-between;">
           <div>
@@ -193,39 +259,209 @@ const zip3ToState = {
     </div>
   </section>
 
+  <!-- Floating scroll-to-results button -->
+  <button id="scroll-to-results" class="scroll-btn" title="View results below" style="display:none; position:fixed; bottom:30px; right:30px; z-index:50; background:var(--brand-blue); color:white; border:none; border-radius:50%; width:64px; height:64px; font-size:24px; cursor:pointer; box-shadow:0 8px 24px rgba(0, 82, 255, 0.35); transition:all 0.3s ease; animation:pulse-btn 2s infinite;">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin:auto;">
+      <polyline points="6 15 12 9 18 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- ===== FEATURED PARTNERS — always visible ===== -->
   <section class="section">
     <div class="container">
-      <!-- Floating results indicator button -->
-      <button id="scroll-to-results" class="scroll-btn" title="View results below" style="display:none; position:fixed; bottom:30px; right:30px; z-index:50; background:var(--brand-blue); color:white; border:none; border-radius:50%; width:64px; height:64px; font-size:24px; cursor:pointer; box-shadow:0 8px 24px rgba(0, 82, 255, 0.35); transition:all 0.3s ease; animation:pulse-btn 2s infinite;">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin:auto;">
-          <polyline points="6 15 12 9 18 15"></polyline>
-        </svg>
-      </button>
-    </div>
-  </section>
-
-  <!-- Provider Logos -->
-  <section class="section" style="padding: var(--space-xl) 0;">
-    <div class="container">
-      <div class="text-center reveal" style="margin-bottom: var(--space-lg);">
-        <p style="font-size: var(--text-sm); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em;">Trusted by millions — compare 25+ providers</p>
+      <div class="text-center reveal" style="margin-bottom: var(--space-xl);">
+        <h2>Our Recommended Partners</h2>
+        <p class="text-secondary" style="max-width: 600px; margin-inline: auto; margin-top: var(--space-sm);">These {partners.length} providers meet our standards for speed, pricing transparency, and customer satisfaction. We may earn a commission when you sign up — at no extra cost to you.</p>
       </div>
-      <div class="logos-grid reveal">
-        {allProviders.map((p) => (
-          <a href={`/provider/${p.slug}`} class="logo-item" title={p.name}>
-            {p.logo ? (
-              <img src={p.logo} alt={p.name} loading="lazy" />
-            ) : (
-              <span class="logo-fallback">{p.name.charAt(0)}</span>
-            )}
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-lg);">
+        {partners.map(p => (
+          <a href={`/provider/${p.slug}`} class="card reveal" style="padding: var(--space-lg); text-decoration: none; display: flex; flex-direction: column; gap: var(--space-md); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <div style="display: flex; align-items: center; gap: var(--space-md);">
+              {p.logo && <img src={p.logo} alt={p.name} width="80" height="40" loading="lazy" style="object-fit: contain;" />}
+              <div>
+                <div style="font-weight: 700; font-size: var(--text-lg);">{p.name}</div>
+                <div style="display: flex; gap: var(--space-xs); margin-top: 4px;">
+                  {p.types.map(t => (
+                    <span class={`tag tag-${t}`} style="font-size: 11px;">{t === '5g' ? '5G' : t.charAt(0).toUpperCase() + t.slice(1)}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding-top: var(--space-sm); border-top: 1px solid var(--border);">
+              <div>
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase;">From</div>
+                <div style="font-weight: 700; font-size: var(--text-lg);">{formatPrice(getMinPrice(p))}<span style="font-size: var(--text-sm); font-weight: 400;">/mo</span></div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase;">Up to</div>
+                <div style="font-weight: 700; font-size: var(--text-lg);">{formatSpeed(getMaxSpeed(p))}</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase;">Rating</div>
+                <div style="font-weight: 700; font-size: var(--text-lg);">&#9733; {p.rating}</div>
+              </div>
+            </div>
+            {p.promo && <div style="font-size: var(--text-xs); color: var(--brand-blue-dark); background: var(--brand-blue-50); padding: 6px 10px; border-radius: var(--radius-md); line-height: 1.4;">{p.promo}</div>}
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Related Pages -->
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom: var(--space-xl);">
+        <h2>How Internet4All Helps You Choose</h2>
+        <p class="text-secondary" style="max-width: 600px; margin-inline: auto; margin-top: var(--space-sm);">Three steps to the right internet plan — no sales pressure, no bias.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-xl);">
+        <div class="reveal" style="text-align: center;">
+          <div style="width: 64px; height: 64px; background: var(--brand-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md); font-size: var(--text-2xl); font-weight: 800;">1</div>
+          <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-sm);">Enter Your ZIP Code</h3>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.6;">We query live FCC broadband data to identify every provider that actually serves your specific address — not just nationwide estimates.</p>
+        </div>
+        <div class="reveal" style="text-align: center;">
+          <div style="width: 64px; height: 64px; background: var(--brand-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md); font-size: var(--text-2xl); font-weight: 800;">2</div>
+          <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-sm);">Compare Plans Side-by-Side</h3>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.6;">See real speeds, real prices, and real customer ratings. Filter by technology (fiber, cable, 5G) or sort by what matters most to you.</p>
+        </div>
+        <div class="reveal" style="text-align: center;">
+          <div style="width: 64px; height: 64px; background: var(--brand-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md); font-size: var(--text-2xl); font-weight: 800;">3</div>
+          <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-sm);">Sign Up & Save</h3>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.6;">Click through to your chosen provider for exclusive online deals, contract buyouts, and promotional pricing you won't find anywhere else.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TECHNOLOGY BREAKDOWN ===== -->
   <section class="section">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom: var(--space-xl);">
+        <h2>Internet Types Explained</h2>
+        <p class="text-secondary" style="max-width: 600px; margin-inline: auto; margin-top: var(--space-sm);">Not all internet is created equal. Here's what to expect from each technology.</p>
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="reveal" style="width: 100%; border-collapse: collapse; font-size: var(--text-sm);">
+          <thead>
+            <tr style="background: var(--bg-secondary); text-align: left;">
+              <th style="padding: var(--space-md); font-weight: 700;">Type</th>
+              <th style="padding: var(--space-md); font-weight: 700;">Max Speed</th>
+              <th style="padding: var(--space-md); font-weight: 700;">Latency</th>
+              <th style="padding: var(--space-md); font-weight: 700;">Data Caps</th>
+              <th style="padding: var(--space-md); font-weight: 700;">Best For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: var(--space-md);"><span class="tag tag-fiber">Fiber</span></td>
+              <td style="padding: var(--space-md);">Up to 8 Gbps</td>
+              <td style="padding: var(--space-md);">1–5 ms</td>
+              <td style="padding: var(--space-md);">Usually none</td>
+              <td style="padding: var(--space-md);">Gaming, 4K streaming, large households, WFH</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: var(--space-md);"><span class="tag tag-cable">Cable</span></td>
+              <td style="padding: var(--space-md);">Up to 2 Gbps</td>
+              <td style="padding: var(--space-md);">10–30 ms</td>
+              <td style="padding: var(--space-md);">Sometimes (1–1.2 TB)</td>
+              <td style="padding: var(--space-md);">Streaming, families, general use</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: var(--space-md);"><span class="tag tag-5g">5G Home</span></td>
+              <td style="padding: var(--space-md);">Up to 1 Gbps</td>
+              <td style="padding: var(--space-md);">15–40 ms</td>
+              <td style="padding: var(--space-md);">Usually none</td>
+              <td style="padding: var(--space-md);">Quick setup, renters, no-contract needs</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: var(--space-md);"><span class="tag tag-dsl">DSL</span></td>
+              <td style="padding: var(--space-md);">Up to 100 Mbps</td>
+              <td style="padding: var(--space-md);">20–50 ms</td>
+              <td style="padding: var(--space-md);">Varies</td>
+              <td style="padding: var(--space-md);">Light browsing, rural bridge option</td>
+            </tr>
+            <tr>
+              <td style="padding: var(--space-md);"><span class="tag tag-satellite">Satellite</span></td>
+              <td style="padding: var(--space-md);">Up to 500 Mbps</td>
+              <td style="padding: var(--space-md);">20–600 ms</td>
+              <td style="padding: var(--space-md);">Varies (priority data)</td>
+              <td style="padding: var(--space-md);">Rural, remote, no other options</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="reveal text-center" style="margin-top: var(--space-lg); font-size: var(--text-sm); color: var(--text-secondary);">
+        <a href="/internet-types" style="color: var(--brand-blue); font-weight: 600;">Learn more about internet types &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== ALL PROVIDERS QUICK REFERENCE ===== -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom: var(--space-xl);">
+        <h2>Every Provider at a Glance</h2>
+        <p class="text-secondary" style="max-width: 600px; margin-inline: auto; margin-top: var(--space-sm);">Quick reference for every provider we track — click any row for full details.</p>
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="reveal" style="width: 100%; border-collapse: collapse; font-size: var(--text-sm);">
+          <thead>
+            <tr style="background: var(--bg-primary); text-align: left;">
+              <th style="padding: var(--space-sm) var(--space-md); font-weight: 700;">Provider</th>
+              <th style="padding: var(--space-sm) var(--space-md); font-weight: 700;">Type</th>
+              <th style="padding: var(--space-sm) var(--space-md); font-weight: 700;">Starting Price</th>
+              <th style="padding: var(--space-sm) var(--space-md); font-weight: 700;">Max Speed</th>
+              <th style="padding: var(--space-sm) var(--space-md); font-weight: 700;">Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allProviders.map(p => (
+              <tr style="border-bottom: 1px solid var(--border); cursor: pointer;" onclick={`window.location='/provider/${p.slug}'`}>
+                <td style="padding: var(--space-sm) var(--space-md);">
+                  <a href={`/provider/${p.slug}`} style="display: flex; align-items: center; gap: var(--space-sm); text-decoration: none; color: inherit; font-weight: 600;">
+                    {p.logo && <img src={p.logo} alt="" width="28" height="28" loading="lazy" style="object-fit: contain;" />}
+                    {p.name}
+                    {p.isPartner && <span style="font-size: 10px; background: var(--brand-blue); color: white; padding: 2px 6px; border-radius: 4px; font-weight: 600;">Partner</span>}
+                  </a>
+                </td>
+                <td style="padding: var(--space-sm) var(--space-md);">
+                  {p.types.map(t => (
+                    <span class={`tag tag-${t}`} style="font-size: 10px; margin-right: 2px;">{t === '5g' ? '5G' : t.charAt(0).toUpperCase() + t.slice(1)}</span>
+                  ))}
+                </td>
+                <td style="padding: var(--space-sm) var(--space-md); font-weight: 600;">{formatPrice(getMinPrice(p))}/mo</td>
+                <td style="padding: var(--space-sm) var(--space-md);">{formatSpeed(getMaxSpeed(p))}</td>
+                <td style="padding: var(--space-sm) var(--space-md);">&#9733; {p.rating}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section">
+    <div class="container" style="max-width: 800px;">
+      <div class="text-center reveal" style="margin-bottom: var(--space-xl);">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      {faqs.map(faq => (
+        <details class="faq-item reveal" style="border-bottom: 1px solid var(--border); padding: var(--space-lg) 0;">
+          <summary style="cursor: pointer; font-weight: 700; font-size: var(--text-base); list-style: none; display: flex; align-items: center; justify-content: space-between; gap: var(--space-md);">
+            {faq.question}
+            <span class="faq-toggle" style="flex-shrink: 0; font-size: var(--text-xl); color: var(--brand-blue); transition: transform 0.3s; opacity: 0.6;">+</span>
+          </summary>
+          <p style="margin-top: var(--space-md); color: var(--text-secondary); line-height: 1.7; font-size: var(--text-sm);">{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== RELATED PAGES ===== -->
+  <section class="section" style="background: var(--bg-secondary);">
     <div class="container">
       <div class="text-center reveal">
         <h2>More Ways to Find the Right Plan</h2>
@@ -251,6 +487,10 @@ const zip3ToState = {
           <h4 style="font-size: var(--text-base);">Speed Test</h4>
           <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Test your current connection</p>
         </a>
+        <a href="/coverage-map" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
+          <h4 style="font-size: var(--text-base);">Coverage Map</h4>
+          <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">See provider coverage areas</p>
+        </a>
         <a href="/internet-types" class="card text-center reveal" style="padding: var(--space-lg); text-decoration: none;">
           <h4 style="font-size: var(--text-base);">Internet Types</h4>
           <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-top: var(--space-xs);">Fiber vs Cable vs DSL vs 5G</p>
@@ -270,6 +510,18 @@ const zip3ToState = {
   <StickyCallBar />
 </Base>
 
+<style>
+  details[open] .faq-toggle {
+    transform: rotate(45deg) scale(1.2);
+    opacity: 1 !important;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::marker { display: none; content: ''; }
+  @media (max-width: 640px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+</style>
+
 <script define:vars={{ providerDataForClient, stateProvidersForClient, zip3ToState }}>
   // ========================================
   // BroadbandMap API Integration (ported)
@@ -282,11 +534,11 @@ const zip3ToState = {
     't-mobile fiber': 'tmobile', 'metronet': 'metronet', 'metronet holdings': 'metronet', 'metronet inc': 'metronet', 'metronet communications': 'metronet',
     't-mobile': 'tmobile-5g', 'tmobile': 'tmobile-5g', 't-mobile usa': 'tmobile-5g', 't-mobile us': 'tmobile-5g', 't-mobile home internet': 'tmobile-5g', 't-mobile 5g home internet': 'tmobile-5g',
     'verizon': 'verizon', 'verizon communications': 'verizon', 'verizon fios': 'verizon', 'verizon business': 'verizon', 'mci': 'verizon',
-    'windstream': 'windstream', 'windstream holdings': 'windstream', 'windstream communications': 'windstream', 'kinetic': 'windstream', 'kinetic by windstream': 'windstream',
+    'windstream': 'kinetic', 'windstream holdings': 'kinetic', 'windstream communications': 'kinetic', 'kinetic': 'kinetic', 'kinetic by windstream': 'kinetic',
     'altice': 'optimum', 'altice usa': 'optimum', 'optimum': 'optimum', 'optimum by altice': 'optimum', 'cablevision': 'optimum', 'suddenlink': 'optimum', 'suddenlink communications': 'optimum',
     'frontier': 'frontier', 'frontier communications': 'frontier', 'frontier communications corp': 'frontier',
     'earthlink': 'earthlink', 'earthlink inc': 'earthlink', 'earthlink llc': 'earthlink',
-    'brightspeed': 'brightspeed', 'lumen': 'brightspeed', 'lumen technologies': 'brightspeed', 'centurylink': 'brightspeed', 'centurytel': 'brightspeed',
+    'brightspeed': 'brightspeed', 'lumen': 'lumen', 'lumen technologies': 'lumen', 'centurylink': 'lumen', 'centurytel': 'lumen',
     'altafiber': 'altafiber', 'alta fiber': 'altafiber', 'cincinnati bell': 'altafiber', 'cincinnati bell inc': 'altafiber', 'hawaiian telcom': 'altafiber',
     'xfinity': 'xfinity', 'comcast': 'xfinity', 'comcast cable': 'xfinity', 'comcast communications': 'xfinity', 'xfinity internet': 'xfinity',
     'starlink': 'starlink', 'starlink services': 'starlink', 'spacex': 'starlink', 'space exploration technologies': 'starlink',
@@ -624,7 +876,6 @@ const zip3ToState = {
         if (resp.ok) {
           const data = await resp.json();
           apiProviders = normalizeApiResponse(data);
-          console.log('[API] BroadbandMap returned', apiProviders.length, 'providers');
         }
       } catch (e) {
         console.warn('[API] BroadbandMap failed:', e.message);

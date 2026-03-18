@@ -62,12 +62,12 @@ Internet providers love selling you the fastest plan. But if you're a couple who
 3. Run the test 2-3 times at different times of day
 4. Compare results to what you're paying for
 
-If your speeds are consistently below what you're paying for, call your provider — or call us to switch to a better option.
+If your speeds are consistently below what you're paying for, contact your provider support — or use our chat to switch to a better option.
 
 ## Our Recommendation
 
 Take our [Internet Quiz](/quiz) to get a personalized speed recommendation based on your household. Or [compare providers](/check-availability) at your address to see what speeds are available.
 
-Need help deciding? Call us — our experts will recommend the right plan for your household's needs and budget, at no cost to you.
+Need help deciding? Use chat or Talk to Agent — our experts will recommend the right plan for your household's needs and budget, at no cost to you.
 
 **Related guides:** [Best Internet for Gaming](/blog/best-internet-for-gaming) · [Best Internet for Working from Home](/blog/best-internet-for-working-from-home) · [How to Choose an Internet Provider](/blog/how-to-choose-internet-provider)

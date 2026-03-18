@@ -12,14 +12,14 @@ const statePages = getStatePages().sort((a, b) => a.name.localeCompare(b.name));
 
 const regions: Record<string, string[]> = {
   'Northeast': ['CT','DE','DC','ME','MD','MA','NH','NJ','NY','PA','RI','VT','VA','WV'],
-  'Southeast': ['AL','AR','FL','GA','KY','LA','MS','NC','SC','TN'],
+  'Southeast': ['AL','AR','FL','GA','KY','LA','MS','NC','OK','SC','TN'],
   'Midwest': ['IL','IN','IA','KS','MI','MN','MO','NE','ND','OH','SD','WI'],
-  'West': ['AK','AZ','CA','CO','HI','ID','MT','NV','NM','OK','OR','TX','UT','WA','WY'],
+  'West': ['AK','AZ','CA','CO','HI','ID','MT','NV','NM','OR','TX','UT','WA','WY'],
 };
 
 const schema = generateBreadcrumbSchema([
-  { name: 'Home', url: 'https://internet4all.com' },
-  { name: 'Internet Providers by State', url: 'https://internet4all.com/internet-providers' },
+  { name: 'Home', url: 'https://internet-4-all.com' },
+  { name: 'Internet Providers by State', url: 'https://internet-4-all.com/internet-providers' },
 ]);
 ---
 <Base

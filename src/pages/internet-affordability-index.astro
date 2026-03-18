@@ -2,7 +2,7 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
-import { getAllProviders } from '@lib/providers';
+import { getAllProviders, stateNames } from '@lib/providers';
 import { generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } from '@lib/utils';
 
 // Import raw census data
@@ -15,17 +15,6 @@ interface StateCensus {
   underservedPct: number;
   population: number;
 }
-
-const stateNames: Record<string, string> = {
-  AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',
-  DE:'Delaware',DC:'District of Columbia',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',
-  IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',
-  MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',
-  NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',
-  OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',
-  TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',
-  WI:'Wisconsin',WY:'Wyoming',
-};
 
 // Core census data needed for affordability calc (median income + broadband stats)
 const censusSnap: Record<string, StateCensus> = {
@@ -172,21 +161,21 @@ const faqs = [
 ];
 ---
 <Base
-  title={`Internet Affordability Index by State (${year}) — What % of Income Goes to Internet?`}
-  description={`We calculated internet affordability for all 51 states using real median income data and cheapest available plan prices. See which states pay the most and least of their income for internet.`}
+  title="Internet Affordability Index — Home Internet Price Data"
+  description="Track home internet prices and affordability by city and state. See average internet costs, price trends, and the most and least affordable internet markets."
   schema={[
     generateBreadcrumbSchema([
-      { name: 'Home', url: 'https://internet4all.com' },
-      { name: 'Internet Affordability Index', url: 'https://internet4all.com/internet-affordability-index' },
+      { name: 'Home', url: 'https://internet-4-all.com' },
+      { name: 'Internet Affordability Index', url: 'https://internet-4-all.com/internet-affordability-index' },
     ]),
     generateArticleSchema({
       title: `Internet Affordability Index by State (${year})`,
       description: `Which states pay the highest share of income for internet? We analyzed median income and cheapest plan pricing for all 51 US states.`,
-      url: 'https://internet4all.com/internet-affordability-index',
+      url: 'https://internet-4-all.com/internet-affordability-index',
       datePublished: '2026-03-01',
-      dateModified: '2026-03-05',
+      dateModified: new Date().toISOString().split('T')[0],
       authorName: 'Internet 4 ALL Research Team',
-      authorUrl: 'https://internet4all.com/methodology',
+      authorUrl: 'https://internet-4-all.com/methodology',
     }),
     generateFAQSchema(faqs),
   ]}
@@ -387,13 +376,4 @@ const faqs = [
   <StickyCallBar text="Find the most affordable internet plan at your address — free." />
 </Base>
 
-<script>
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const isOpen = item?.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item?.classList.add('open');
-    });
-  });
-</script>
+

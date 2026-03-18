@@ -24,7 +24,7 @@ const phoneProviders = allProviders
 const bundleOptions = [
   { provider: 'Spectrum', bundle: 'Internet + Phone', speed: '300 Mbps', phone: 'Unlimited local & long distance', price: '$70/mo', contract: 'No contract', highlight: 'Free modem + phone adapter' },
   { provider: 'AT&T Fiber', bundle: 'Internet + Phone', speed: '300 Mbps', phone: 'Unlimited nationwide calling', price: '$75/mo', contract: 'No contract', highlight: 'Symmetrical upload speeds' },
-  { provider: 'Verizon Fios', bundle: 'Internet + Phone', speed: '300 Mbps', phone: 'Unlimited US calling', price: '$70/mo', contract: 'No contract', highlight: 'Fiber reliability' },
+  { provider: 'Frontier', bundle: 'Internet + Phone', speed: '300 Mbps', phone: 'Unlimited US calling', price: '$65/mo', contract: 'No contract', highlight: 'Fiber + 4-year price lock' },
   { provider: 'Xfinity', bundle: 'Internet + Phone', speed: '400 Mbps', phone: 'Unlimited nationwide', price: '$65/mo', contract: '1 year', highlight: 'Most widely available' },
   { provider: 'Cox', bundle: 'Internet + Phone', speed: '250 Mbps', phone: 'Unlimited local + long distance', price: '$80/mo', contract: 'Varies', highlight: 'Voicemail + caller ID included' },
   { provider: 'Frontier', bundle: 'Internet + Phone', speed: '500 Mbps', phone: 'Unlimited calling', price: '$65/mo', contract: 'No contract', highlight: 'Fiber + digital phone' },
@@ -34,19 +34,19 @@ const triplePlayBundles = [
   { provider: 'Spectrum', bundle: 'Internet + TV + Phone', speed: '300 Mbps', channels: '150+', phone: 'Unlimited', price: '$130/mo', contract: 'No contract' },
   { provider: 'AT&T', bundle: 'Internet + DIRECTV + Phone', speed: '300 Mbps', channels: '160+', phone: 'Unlimited', price: '$120/mo', contract: '2 years' },
   { provider: 'Xfinity', bundle: 'Internet + TV + Phone', speed: '400 Mbps', channels: '125+', phone: 'Unlimited', price: '$110/mo', contract: '1 year' },
-  { provider: 'Verizon Fios', bundle: 'Internet + TV + Phone', speed: '300 Mbps', channels: '125+', phone: 'Unlimited', price: '$115/mo', contract: 'No contract' },
+  { provider: 'Frontier', bundle: 'Internet + TV + Phone', speed: '500 Mbps', channels: '100+ (YouTube TV)', phone: 'Unlimited', price: '$120/mo', contract: 'No contract' },
   { provider: 'Optimum', bundle: 'Internet + TV + Phone', speed: '300 Mbps', channels: '220+', phone: 'Unlimited', price: '$120/mo', contract: 'No contract' },
 ];
 
 const phoneTypes = [
   { type: 'VoIP (Voice over IP)', icon: '🌐', desc: 'Phone service delivered over your internet connection. Crystal-clear calls, advanced features, and much cheaper than traditional phone lines. This is what most providers now offer.', pros: ['Cheapest option', 'Advanced features (voicemail-to-email, call forwarding)', 'Works with existing phones', 'Portable — works from any internet connection'], cons: ['Requires internet connection', 'Goes down if internet goes down', 'Emergency 911 location may need manual setup'] },
   { type: 'Traditional Landline', icon: '☎️', desc: 'Copper-wire phone service through the phone company. Being phased out but still available in many areas. Works during power outages (with corded phone).', pros: ['Works during power outages', 'Extremely reliable', 'Clear 911 location data', 'No internet needed'], cons: ['Most expensive option', 'Limited features', 'Being phased out', 'No video calling'] },
-  { type: 'Digital Phone (Fiber)', icon: '⚡', desc: 'Phone service over fiber optic lines. HD voice quality that\'s noticeably better than traditional or cable VoIP. Available from fiber providers like AT&T, Verizon Fios, and Frontier.', pros: ['Best call quality', 'HD voice', 'Lowest latency', 'Most reliable VoIP option'], cons: ['Requires fiber availability', 'Still depends on power/internet', 'Limited providers'] },
+  { type: 'Digital Phone (Fiber)', icon: '⚡', desc: 'Phone service over fiber optic lines. HD voice quality that\'s noticeably better than traditional or cable VoIP. Available from fiber providers like AT&T Fiber, Frontier, and Brightspeed.', pros: ['Best call quality', 'HD voice', 'Lowest latency', 'Most reliable VoIP option'], cons: ['Requires fiber availability', 'Still depends on power/internet', 'Limited providers'] },
   { type: 'Wireless Home Phone', icon: '📱', desc: 'Uses cellular network to create a home phone line. T-Mobile and AT&T offer wireless home phone devices that connect to your existing home phones.', pros: ['No internet or cable needed', 'Works in rural areas', 'Easy setup', 'Backup if internet fails'], cons: ['Depends on cell coverage', 'Limited features vs VoIP', 'Additional monthly cost'] },
 ];
 
 const faqs = [
-  { question: 'Can I bundle internet and phone service together?', answer: `Yes! Most major internet providers offer internet + phone bundles. Cable providers (Spectrum, Xfinity, Cox) and fiber providers (AT&T, Verizon Fios, Frontier) all bundle phone service. Bundling typically saves $10–20/mo compared to buying separately. Sign up above for the best bundle deals in your area.` },
+  { question: 'Can I bundle internet and phone service together?', answer: `Yes! Most major internet providers offer internet + phone bundles. Cable providers (Spectrum, Xfinity, Cox) and fiber providers (AT&T Fiber, Frontier, EarthLink) all bundle phone service. Bundling typically saves $10–20/mo compared to buying separately. Sign up above for the best bundle deals in your area.` },
   { question: 'Is VoIP better than a traditional landline?', answer: 'For most people, yes. VoIP is cheaper ($10–20/mo vs $30–50/mo for landline), offers more features (voicemail-to-email, call forwarding, video calling), and call quality is excellent on a good internet connection. Traditional landlines are only better if you need a phone that works during power outages.' },
   { question: 'What internet speed do I need for VoIP phone service?', answer: 'Very little! A single VoIP call uses about 0.1 Mbps. Even a 25 Mbps internet plan can handle dozens of simultaneous VoIP calls. The key factor is reliability, not speed — look for a provider with consistent uptime. Fiber is best for VoIP due to its low latency and stability.' },
   { question: 'Do I need a landline for internet?', answer: 'No! Cable, fiber, 5G, fixed wireless, and satellite internet all work without a phone line. Only DSL internet uses phone lines, and even then you can have DSL without a voice phone plan. The "internet requires a phone line" era ended long ago.' },
@@ -58,18 +58,18 @@ const faqs = [
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Internet & Phone', url: 'https://internet4all.com/internet-and-phone' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Internet & Phone', url: 'https://internet-4-all.com/internet-and-phone' },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`Internet and Phone Bundles — Best Packages & Deals (${year})`}
-  description={`Compare internet and phone bundles for ${year}. Find VoIP + internet packages starting at $60/mo. Save up to $20/mo by bundling. ${phoneProviders.length} providers with phone service compared.`}
+  title="Internet & Phone Plans — Home Phone + Internet Bundles"
+  description="Find internet and home phone plans near you. Phone and internet bundles, landline packages, and TV + phone + internet deals — save when you bundle services."
   schema={schemas}
 >
-  <StickyCallBar text="Internet + Phone bundles — call for exclusive deals" />
+  <StickyCallBar text="Internet + Phone bundles — use chat or Talk to Agent for exclusive deals" />
 
   <section class="section" style="padding-top: var(--space-xl);">
     <div class="container">
@@ -153,7 +153,7 @@ const schemas = [
             </tbody>
           </table>
         </div>
-        <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin-top: var(--space-sm); text-align: center;">Prices are typical promotional rates. Exact pricing varies by location. Call for current offers.</p>
+        <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin-top: var(--space-sm); text-align: center;">Prices are typical promotional rates. Exact pricing varies by location. Use chat or Talk to Agent for current offers.</p>
       </div>
 
       <!-- Phone Service Types -->

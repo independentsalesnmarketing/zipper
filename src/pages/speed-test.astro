@@ -67,7 +67,7 @@ const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
   name: 'Free Internet Speed Test',
-  url: 'https://internet4all.com/speed-test',
+  url: 'https://internet-4-all.com/speed-test',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Any',
   browserRequirements: 'Requires a modern web browser with JavaScript enabled',
@@ -77,10 +77,10 @@ const webAppSchema = {
 };
 ---
 <Base
-  title="Free Internet Speed Test — Check Download, Upload & WiFi Speed"
-  description="Test your internet speed in seconds. Measure download speed, upload speed, ping & jitter on any device — free, no app needed. Compare your results with faster plans at your address."
+  title="Internet Speed Test — Check Your WiFi Speed"
+  description="Run a free internet speed test. Check download, upload, and wifi speed instantly. Slow? Find faster internet providers available at your address right now."
   schema={[
-    generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Speed Test', url: 'https://internet4all.com/speed-test' }]),
+    generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet-4-all.com' }, { name: 'Speed Test', url: 'https://internet-4-all.com/speed-test' }]),
     generateFAQSchema(speedTestFaqs),
     generateHowToSchema({ name: 'How to Run an Internet Speed Test', description: 'Step-by-step guide to accurately test your internet speed, check download and upload speeds, measure ping and jitter, and compare results with faster providers.', totalTime: 'PT2M', steps: howToSteps }),
     webAppSchema,
@@ -582,8 +582,8 @@ const webAppSchema = {
             <p class="text-sm text-secondary">AT&T offers both DSL (legacy) and fiber. AT&T Fiber delivers symmetrical speeds up to 5 Gbps. If your AT&T speed test shows under 100 Mbps, you may still be on DSL — fiber upgrades are expanding rapidly.</p>
           </div>
           <div class="card st-prov-card">
-            <h4>Verizon / Fios Speed Test</h4>
-            <p class="text-sm text-secondary">Verizon Fios is fiber with symmetrical speeds up to 2 Gbps. If your Verizon speed test is strong on download and upload, you're likely on fiber. If upload is weak, check if you're on the older DSL network.</p>
+            <h4>Verizon 5G Home Internet Speed Test</h4>
+            <p class="text-sm text-secondary">Verizon 5G Home Internet delivers wireless broadband via Verizon's 5G Ultra Wideband and LTE networks. Typical speeds range 85–300 Mbps on the base plan, up to 1 Gbps on Plus/Ultimate. If results are consistently below 50 Mbps, try repositioning your gateway near a window or to a higher floor for a stronger 5G signal.</p>
           </div>
           <div class="card st-prov-card">
             <h4>Cox Internet Speed Test</h4>

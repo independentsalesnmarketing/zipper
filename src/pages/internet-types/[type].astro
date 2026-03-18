@@ -2,17 +2,18 @@
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
+import CoverageMap from '@components/CoverageMap.astro';
 import { getAllProviders, getPartnerProviders, getProvidersByType, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getTypeLabel } from '@lib/providers';
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
 const typeData: Record<string, { title: string; slug: string; h1: string; description: string; intro: string; howItWorks: string; speedRange: string; priceRange: string; bestFor: string; icon: string }> = {
   fiber: {
-    title: 'Fiber Internet Providers',
+    title: 'Fiber Internet Near Me — Fiber Optic Providers & High Speed Plans',
     slug: 'fiber',
     h1: 'Fiber Internet',
-    description: 'Compare fiber optic internet providers, plans, speeds up to 8 Gbps, and availability. The fastest, most reliable internet technology available.',
-    intro: 'Fiber optic internet delivers data using light signals through ultra-thin glass strands, achieving the fastest speeds available to consumers — up to 8 Gbps symmetrical. With virtually zero latency and no signal degradation over distance, fiber is the gold standard for internet connectivity in 2025.',
+    description: 'Find fiber optic internet providers and plans near you. Explore fiber high speed internet options — the fastest low-latency connection available. Compare fiber internet plans, pricing, and availability at your address.',
+    intro: `Fiber optic internet delivers data using light signals through ultra-thin glass strands, achieving the fastest speeds available to consumers — up to 8 Gbps symmetrical. With virtually zero latency and no signal degradation over distance, fiber is the gold standard for internet connectivity in ${new Date().getFullYear()}.`,
     howItWorks: 'Fiber optic cables transmit data as pulses of light through thin glass or plastic fibers. Unlike copper-based connections (cable, DSL), light signals don\'t degrade over distance, don\'t suffer from electromagnetic interference, and can carry far more data simultaneously. There are three delivery methods: FTTH (Fiber to the Home) brings fiber directly to your residence for maximum speed; FTTC (Fiber to the Curb) uses fiber to a nearby junction box then copper for the last stretch; and FTTN (Fiber to the Node) brings fiber to a neighborhood node.',
     speedRange: '100 Mbps – 8 Gbps',
     priceRange: '$30 – $300/mo',
@@ -20,10 +21,10 @@ const typeData: Record<string, { title: string; slug: string; h1: string; descri
     icon: '⚡',
   },
   cable: {
-    title: 'Cable Internet Providers',
+    title: 'Cable Internet Providers Near Me — Plans & Prices in My Area',
     slug: 'cable',
     h1: 'Cable Internet',
-    description: 'Compare cable internet providers and plans. Fast speeds up to 1.2 Gbps using existing coaxial cable infrastructure. Widely available nationwide.',
+    description: 'Compare cable internet providers and plans near you. Cable & internet bundles, high speeds up to 2 Gbps — find every cable internet provider available at your address right now.',
     intro: 'Cable internet uses the same coaxial cable network that delivers cable TV to provide high-speed internet access. It\'s the most widely available broadband technology in the US, reaching over 88% of households. With speeds up to 1.2 Gbps download, cable offers an excellent balance of speed, reliability, and availability.',
     howItWorks: 'Cable internet transmits data over coaxial cables using DOCSIS (Data Over Cable Service Interface Specification) technology. The latest standard, DOCSIS 3.1, supports speeds up to 10 Gbps downstream and 1 Gbps upstream. Data travels from your ISP\'s head-end facility through neighborhood nodes to your home\'s coaxial connection, where a cable modem converts the signal for your router. Because cable is a shared medium, speeds can fluctuate during peak usage times in your neighborhood.',
     speedRange: '25 Mbps – 1.2 Gbps',
@@ -44,10 +45,10 @@ const typeData: Record<string, { title: string; slug: string; h1: string; descri
     icon: '📞',
   },
   satellite: {
-    title: 'Satellite Internet Providers',
+    title: 'Satellite Internet Plans — Rural Internet Providers',
     slug: 'satellite',
     h1: 'Satellite Internet',
-    description: 'Compare satellite internet providers including Starlink, Viasat, and HughesNet. Available everywhere — the solution for rural and remote areas.',
+    description: 'Find satellite internet plans for your address. High speed rural internet options including Starlink, Viasat & HughesNet. Compare rural internet providers, speeds, pricing, and nationwide availability — where cable and fiber don\'t reach.',
     intro: 'Satellite internet beams your connection from space, making it available virtually anywhere in the US — including remote rural areas where no ground-based infrastructure exists. With Starlink\'s low-earth orbit constellation dramatically improving speeds and latency, satellite internet has evolved from a last resort into a competitive broadband option.',
     howItWorks: 'Traditional satellite internet (Viasat, HughesNet) uses geostationary satellites orbiting 22,236 miles above Earth. Your dish sends signals to the satellite, which relays them to ground stations connected to the internet backbone. This high altitude creates ~600ms round-trip latency. Starlink uses low-earth orbit (LEO) satellites at just 340 miles altitude, with thousands of satellites forming a mesh network. LEO dramatically reduces latency to 20-50ms and enables much higher speeds, approaching ground-based broadband performance.',
     speedRange: '25 Mbps – 500 Mbps',
@@ -56,10 +57,10 @@ const typeData: Record<string, { title: string; slug: string; h1: string; descri
     icon: '🛰️',
   },
   '5g': {
-    title: '5G Home Internet Providers',
+    title: '5G Home Internet Plans — T-Mobile, Verizon & Wireless Providers Near Me',
     slug: '5g',
     h1: '5G Home Internet',
-    description: 'Compare 5G home internet from T-Mobile, Verizon, and more. No wires, no installation, just plug in and connect. Speeds up to 1 Gbps.',
+    description: 'Compare 5G home internet plans near you — including T-Mobile Home Internet plans, Verizon 5G Home Internet, and AT\'T Air. No contracts, no cables — see wireless home internet availability at your address.',
     intro: '5G home internet uses cellular tower signals to deliver broadband to your home without any wires, cables, or professional installation. Simply plug in a 5G gateway device, and you\'re online. With T-Mobile and Verizon leading the space, 5G home internet offers a compelling cable alternative with competitive speeds and no contracts.',
     howItWorks: '5G home internet works like a giant WiFi hotspot connected to the nearest 5G cell tower. Your provider sends a small indoor gateway device that receives the 5G signal and creates a WiFi network in your home. There are two types: 5G UC/UW (Ultra Capacity/Ultra Wideband) uses mmWave and mid-band spectrum for speeds up to 1+ Gbps; 5G (extended range) uses low-band spectrum for wider coverage at lower speeds. No installation appointment needed — it\'s literally plug-and-play.',
     speedRange: '50 Mbps – 1 Gbps',
@@ -127,16 +128,16 @@ const faqs = [
   { question: `What is ${td.h1.toLowerCase()}?`, answer: td.howItWorks },
   { question: `How fast is ${td.h1.toLowerCase()}?`, answer: `${td.h1} typically offers speeds ranging from ${td.speedRange}. Actual speeds depend on your provider, plan, and location. ${typeSlug === 'fiber' ? 'Fiber offers the fastest speeds available, with many providers offering symmetrical upload and download speeds.' : typeSlug === 'cable' ? 'Cable speeds are typically fast for downloads but slower for uploads due to the asymmetric nature of DOCSIS technology.' : typeSlug === 'satellite' ? 'Satellite speeds have improved dramatically with Starlink, but can be affected by weather and network congestion.' : 'Speeds vary by provider and your specific location.'}` },
   { question: `How much does ${td.h1.toLowerCase()} cost?`, answer: `${td.h1} plans typically range from ${td.priceRange}. Prices vary by provider, speed tier, and promotional periods. ${typeSlug === 'fiber' ? 'Fiber often provides the best value per Mbps, especially at higher speed tiers.' : typeSlug === 'dsl' ? 'DSL is generally the most affordable option, making it great for budget-conscious households.' : 'Sign up above for the latest pricing and promotions available in your area.'}` },
-  { question: `Is ${td.h1.toLowerCase()} available in my area?`, answer: `${typeSlug === 'fiber' ? 'Fiber availability is expanding rapidly but currently reaches about 43% of US households. Use our ZIP code search to check if fiber is available at your address.' : typeSlug === 'cable' ? 'Cable internet is the most widely available broadband, reaching about 88% of US households.' : typeSlug === 'satellite' ? 'Satellite internet is available virtually everywhere in the US — it\'s the one technology that has no geographic limitations.' : typeSlug === '5g' ? '5G home internet is expanding but availability depends on your distance from a 5G tower. Coverage is best in urban and suburban areas.' : 'Availability varies by provider and location. Enter your ZIP code or call us to check availability at your address.'}` },
+  { question: `Is ${td.h1.toLowerCase()} available in my area?`, answer: `${typeSlug === 'fiber' ? 'Fiber availability is expanding rapidly but currently reaches about 43% of US households. Use our ZIP code search to check if fiber is available at your address.' : typeSlug === 'cable' ? 'Cable internet is the most widely available broadband, reaching about 88% of US households.' : typeSlug === 'satellite' ? 'Satellite internet is available virtually everywhere in the US — it\'s the one technology that has no geographic limitations.' : typeSlug === '5g' ? '5G home internet is expanding but availability depends on your distance from a 5G tower. Coverage is best in urban and suburban areas.' : 'Availability varies by provider and location. Enter your ZIP code or use chat to check availability at your address.'}` },
   { question: `Who is ${td.h1.toLowerCase()} best for?`, answer: `${td.h1} is best for: ${td.bestFor}. ${typeSlug === 'fiber' ? 'If fiber is available at your address, it\'s almost always the best choice regardless of your usage.' : typeSlug === 'cable' ? 'Cable is an excellent all-around choice for most households.' : typeSlug === 'satellite' ? 'Satellite is the go-to option when ground-based broadband isn\'t available at your location.' : 'Consider your specific needs and check what\'s available at your address.'}` },
   { question: `${td.h1} vs other internet types — which is better?`, answer: `Every internet type has trade-offs. ${typeSlug === 'fiber' ? 'Fiber is the fastest and most reliable but has limited availability. Cable is the most common alternative with good speeds. 5G is the easiest to set up.' : typeSlug === 'cable' ? 'Cable offers a great balance of speed, price, and availability. Fiber is faster but less available. 5G is easier to install but less consistent.' : typeSlug === '5g' ? '5G offers no-contract, no-installation simplicity. Cable and fiber are faster and more consistent. Satellite works everywhere but has higher latency.' : 'The best choice depends on what\'s available at your address, your speed needs, and your budget. Sign up above for personalized advice.'}` },
 ];
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Internet Types', url: 'https://internet4all.com/internet-types' },
-    { name: td.title, url: `https://internet4all.com/internet-types/${td.slug}` },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Internet Types', url: 'https://internet-4-all.com/internet-types' },
+    { name: td.title, url: `https://internet-4-all.com/internet-types/${td.slug}` },
   ]),
   generateFAQSchema(faqs),
 ];
@@ -176,7 +177,7 @@ const audienceMap: Record<string, { slug: string; label: string; icon: string }[
 const audienceLinks = audienceMap[typeSlug] || [];
 ---
 <Base
-  title={`${td.title} — Plans, Speeds & Availability (${year})`}
+  title={td.title}
   description={td.description}
   schema={schemas}
 >
@@ -269,6 +270,20 @@ const audienceLinks = audienceMap[typeSlug] || [];
           </div>
         )}
       </div>
+
+      <!-- Coverage Map section (fiber, cable, 5g, satellite) -->
+      {['fiber','cable','5g','satellite'].includes(typeSlug) && (
+        <div class="reveal" style="margin-top: var(--space-3xl);">
+          <h2 style="margin-bottom: var(--space-md);">Check {td.h1} Coverage at Your Address</h2>
+          <p style="color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-lg); max-width: 640px;">
+            Toggle providers on the interactive map to compare {td.h1.toLowerCase()} coverage areas. Enter your ZIP code above for exact availability at your address.
+          </p>
+          <CoverageMap height="420px" />
+          <div class="text-center" style="margin-top: var(--space-md);">
+            <a href="/coverage-map" style="color: var(--brand-blue); font-size: var(--text-sm); font-weight: 600;">View full multi-provider coverage map →</a>
+          </div>
+        </div>
+      )}
 
       <!-- Compare types -->
       <div class="reveal" style="margin-top: var(--space-3xl);">

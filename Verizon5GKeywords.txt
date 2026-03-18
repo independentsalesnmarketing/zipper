@@ -1,0 +1,267 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)	Top of page bid (high range)
+verizon internet	USD	500000	0%	0%	Medium	41	2.78	12.95
+verizon home internet	USD	500000	-90%	-90%	Medium	38	2.74	10.17
+verizonhome internet	USD	500000	-90%	-90%	Medium	38	2.74	10.17
+vz internet	USD	500000	0%	0%	Medium	41	2.78	12.95
+verizon fios fios	USD	500000	0%	0%	Low	30	3.82	13.97
+verizon fios verizon fios	USD	500000	0%	0%	Low	30	3.82	13.97
+verizon customer service fios	USD	500000	0%	-90%	Low	6	0.02	3.84
+verizon fios customer assistance	USD	500000	0%	-90%	Low	6	0.02	3.84
+verizon fios fios customer service	USD	500000	0%	-90%	Low	6	0.02	3.84
+fios internet	USD	50000	0%	0%	Medium	52	3.45	15.63
+verizon wifi	USD	50000	0%	0%	Medium	45	2.89	14.00
+verizon home internet plans	USD	50000	0%	0%	Low	25	2.44	12.81
+verizon 5g home internet	USD	50000	0%	0%	Low	18	2.22	7.95
+verizon fios internet	USD	50000	0%	0%	Low	5	5.71	34.53
+fios internet plans	USD	50000	-90%	0%	Low	3	3.14	12.40
+fios home internet	USD	50000	0%	900%	Low	6	2.96	12.93
+verizon fios internet plans	USD	50000	-90%	0%	Low	3	3.14	12.40
+fios business internet	USD	50000	0%	9900%	Low	1	18.49	53.89
+verizon wi fi	USD	50000	0%	0%	Medium	45	2.89	14.00
+verizon fiber internet	USD	50000	0%	0%	Low	13	2.87	19.57
+verizon fios home internet	USD	50000	0%	900%	Low	6	2.96	12.93
+verizon fios business internet	USD	50000	0%	9900%	Low	1	18.49	53.89
+verizon fios tv packages	USD	50000	0%	900%	Low	5	7.00	10.56
+verizon internet packages	USD	50000	0%	0%	Medium	35	2.17	11.55
+fios internet packages	USD	50000	-90%	0%	Low	3	3.14	12.40
+verizon internet offers	USD	50000	0%	0%	Medium	35	2.17	11.55
+verizon wifi extender	USD	50000	-90%	0%	High	81	0.32	1.13
+verizon home internet 5g	USD	50000	0%	0%	Low	18	2.22	7.95
+verizon wireless home internet plans	USD	50000	0%	0%	Low	25	2.44	12.81
+verizon 5g home internet plans	USD	50000	0%	900%	Low	1	2.40	7.16
+verizon fios internet packages	USD	50000	-90%	0%	Low	3	3.14	12.40
+verizon speed test	USD	50000	0%	0%	Low	5	10.04	14.16
+verizon internet speed test	USD	50000	0%	0%	Low	5	10.04	14.16
+fios plans tv	USD	50000	0%	900%	Low	5	7.00	10.56
+speedtest verizon	USD	50000	0%	0%	Low	5	10.04	14.16
+fios fiber optic internet	USD	50000	-90%	0%	Low	3	2.49	32.11
+verizon tv fios	USD	50000	0%	0%	Low	6	2.23	12.75
+verizon fios internet offers	USD	50000	-90%	0%	Low	3	3.14	12.40
+verizon fios fiber internet	USD	50000	0%	0%	Low	13	2.87	19.57
+verizon test speed	USD	50000	0%	0%	Low	5	10.04	14.16
+verizon wifi repeater	USD	50000	-90%	0%	High	81	0.32	1.13
+verizon wireless wifi extender	USD	50000	-90%	0%	High	81	0.32	1.13
+verizon wifi range extender	USD	50000	-90%	0%	High	81	0.32	1.13
+log into verizon fios	USD	50000	0%	0%	Low	1	0.01	0.01
+verizon fios fiber optic internet	USD	50000	-90%	0%	Low	3	2.49	32.11
+verizon fios isp	USD	50000	900%	900%	Low	1	5.67	35.79
+test my speed verizon	USD	50000	0%	0%	Low	5	10.04	14.16
+verizon fios blackout	USD	50000	0%	0%	Low	0	0.01	0.05
+verizon network speed test	USD	50000	0%	0%	Low	5	10.04	14.16
+isp verizon fios	USD	50000	900%	900%	Low	1	5.67	35.79
+verizon fios internet providers	USD	50000	900%	900%	Low	1	5.67	35.79
+verizon business internet	USD	5000	0%	-90%	Medium	49	10.84	80.90
+verizon fios business	USD	5000	0%	-90%	Medium	52	17.07	50.74
+verizon wifi plans	USD	5000	0%	0%	Medium	44	2.26	14.00
+verizon wireless internet	USD	5000	0%	0%	Medium	40	3.08	13.93
+fios business	USD	5000	0%	-90%	Medium	52	17.07	50.74
+verizon internet availability	USD	5000	0%	0%	Low	27	2.12	13.89
+verizon home internet availability	USD	5000	0%	0%	Low	19	2.19	9.14
+verizon cable and internet	USD	5000	0%	0%	Medium	39	2.74	15.57
+fios availability	USD	5000	0%	0%	Low	27	3.48	11.48
+verizon internet plans for seniors	USD	5000	0%	0%	Low	22	1.74	5.29
+verizon fios availability	USD	5000	0%	0%	Low	27	3.06	27.37
+verizon 5g internet	USD	5000	0%	0%	Low	22	3.38	28.61
+verizon wireless home internet	USD	5000	0%	0%	Medium	35	2.85	8.59
+verizon 5g business internet	USD	5000	-90%	0%	Medium	40	16.49	45.23
+verizon tv and internet	USD	5000	-90%	-90%	Medium	36	2.24	8.00
+fios wifi	USD	5000	-90%	-90%	Medium	53	5.01	19.55
+fios near me	USD	5000	0%	0%	Medium	34	7.53	11.48
+verizon home	USD	5000	0%	0%	Low	28	5.00	8.00
+fios in my area	USD	5000	0%	0%	Medium	40	2.78	11.66
+verizon high speed internet	USD	5000	0%	0%	Low	29	2.38	12.00
+verizon home wifi	USD	5000	0%	0%	Medium	34	2.62	9.42
+verizon fiber	USD	5000	0%	0%	Low	30	3.47	24.45
+verizon internet deals	USD	5000	0%	0%	Low	28	3.50	9.50
+verizon 5g home	USD	5000	0%	0%	Low	14	3.09	7.01
+verizon lte home internet	USD	5000	0%	0%	Low	5	3.05	11.98
+verizon fios near me	USD	5000	0%	0%	Low	27	6.81	18.37
+verizon internet in my area	USD	5000	0%	0%	Medium	36	1.79	9.71
+fios deals	USD	5000	0%	0%	Low	27	8.00	18.82
+verizon fios deals	USD	5000	0%	0%	Low	27	8.00	18.82
+verizon residential	USD	5000	0%	0%	Low	25	3.29	8.00
+verizon cable company	USD	5000	0%	0%	Medium	38	3.02	11.65
+verizon home internet speed	USD	5000	0%	0%	Low	11	3.29	10.80
+fios plans	USD	5000	0%	0%	Low	20	7.94	14.25
+verizon tv packages prices	USD	5000	0%	0%	Low	24	4.00	11.34
+fios home internet plans	USD	5000	-90%	0%	Low	18	2.17	9.19
+fios internet availability	USD	5000	0%	900%	Low	3	2.86	27.37
+verizon 5g home internet speed	USD	5000	0%	0%	Low	7	4.37	8.43
+verizon tv and internet packages	USD	5000	0%	0%	Low	29	2.61	11.67
+verizon home 5g	USD	5000	0%	-90%	Low	26	3.34	8.30
+fios internet deals	USD	5000	0%	900%	Low	6	3.62	16.49
+verizon online	USD	5000	0%	0%	High	81	6.50	53.44
+verizon wireless internet plans	USD	5000	-90%	0%	Low	25	2.41	13.44
+fios service	USD	5000	-90%	-90%	Low	30	3.54	14.25
+fios fiber	USD	5000	0%	0%	Low	30	3.47	24.45
+verizon fios cable	USD	5000	0%	0%	Low	22	3.02	13.13
+verizon fios in my area	USD	5000	0%	0%	Medium	40	2.78	11.66
+5g home internet verizon	USD	5000	-90%	0%	Low	10	3.32	8.10
+verizon internet cost	USD	5000	0%	0%	Low	24	2.50	11.84
+verizon internet and cable tv	USD	5000	0%	0%	Medium	39	2.74	15.57
+verizon fios wifi	USD	5000	0%	0%	Low	17	4.74	16.30
+verizon mobile internet	USD	5000	0%	0%	Medium	46	1.86	15.00
+verizon internet prices	USD	5000	0%	0%	Low	27	2.42	19.00
+verizon wifi customer service	USD	5000	0%	0%	Low	15	0.02	3.75
+fios packages	USD	5000	0%	-90%	Low	24	3.02	21.81
+fios cost	USD	5000	0%	0%	Low	25	7.94	18.27
+verizon cable internet	USD	5000	0%	0%	Medium	39	2.74	15.57
+fios deals for new customers	USD	5000	0%	0%	Low	29	7.00	21.92
+verizon internet speeds	USD	5000	0%	0%	Low	14	7.00	15.00
+fios for home	USD	5000	0%	0%	Low	29	3.62	10.00
+verizon wireless wifi	USD	5000	0%	0%	Medium	55	3.22	18.99
+verizon tv internet	USD	5000	-90%	-90%	Medium	36	2.24	8.00
+verizon fios for home	USD	5000	0%	0%	Low	29	3.62	10.00
+verizon home service	USD	5000	0%	900%	Low	31	3.02	8.00
+verizon internet 5g	USD	5000	0%	0%	Low	22	3.38	28.61
+fios prices	USD	5000	0%	0%	Low	25	7.94	18.27
+verizon home internet deals	USD	5000	0%	900%	Low	14	3.61	9.71
+verizon portable wifi	USD	5000	0%	0%	High	98	0.40	2.82
+verizon fios packages	USD	5000	0%	-90%	Low	24	3.02	21.81
+verizon internet provider	USD	5000	0%	0%	Low	16	2.62	12.00
+fios bundles	USD	5000	0%	-90%	Low	10	2.50	15.55
+verizon fios service	USD	5000	-90%	-90%	Low	30	3.54	14.25
+fios tv and internet packages	USD	5000	0%	0%	Low	14	2.50	14.89
+verizon cellular internet	USD	5000	0%	0%	Medium	40	3.08	13.93
+fios speed test	USD	5000	0%	0%	Low	3	10.38	17.93
+verizon fios internet availability	USD	5000	0%	900%	Low	3	2.86	27.37
+verizon wifi prices	USD	5000	0%	0%	Low	26	2.63	17.80
+verizon fios offers	USD	5000	0%	0%	Low	27	8.00	18.82
+verizon fios home internet plans	USD	5000	-90%	900%	Low	1	5.85	11.81
+verizon fios internet deals	USD	5000	0%	900%	Low	6	3.62	16.49
+verizon fios specials	USD	5000	0%	0%	Low	27	8.00	18.82
+fios speeds	USD	5000	0%	0%	Low	17	9.19	23.53
+verizon fios deals for new customers	USD	5000	0%	0%	Low	29	7.00	21.92
+verizon mobile home discount	USD	5000	0%	0%	Low	1	5.00	5.00
+verizon internet rates	USD	5000	0%	0%	Low	24	2.50	11.84
+verizon fios cost	USD	5000	0%	0%	Low	25	7.94	18.27
+verizon com fios	USD	5000	0%	-90%	Low	29	2.12	4.21
+fios rates	USD	5000	0%	0%	Low	25	7.94	18.27
+verizon fiber optic internet	USD	5000	0%	0%	Medium	36	2.63	15.79
+verizon fiber optic	USD	5000	0%	0%	Low	30	3.47	24.45
+5g internet verizon	USD	5000	0%	0%	Low	22	3.38	28.61
+verizon 4g lte home internet	USD	5000	0%	0%	Low	5	3.05	11.98
+verizon fios contact	USD	5000	0%	0%	Low	24	6.41	9.92
+verizon wireless 5g home internet	USD	5000	900%	900%	Low	3	2.86	6.76
+verizon fios fiber	USD	5000	0%	0%	Low	30	3.47	24.45
+verizon home internet customer service	USD	5000	0%	0%	Low	28	1.50	4.65
+verizon home internet wireless	USD	5000	0%	0%	Medium	35	2.85	8.59
+fios wireless internet	USD	5000	-90%	-90%	Medium	53	5.01	19.55
+verizon wifi cost	USD	5000	0%	0%	Low	26	2.63	17.80
+verizon house wifi	USD	5000	0%	0%	Medium	34	2.62	9.42
+verizon whole home wifi	USD	5000	0%	900%	Low	8	5.00	10.09
+verizon fios prices	USD	5000	0%	0%	Low	25	7.94	18.27
+verizon fios rates	USD	5000	0%	0%	Low	25	7.94	18.27
+fios discount	USD	5000	0%	-90%	Low	18	9.19	18.13
+verizon portable internet	USD	5000	0%	0%	Medium	46	1.86	15.00
+fios wifi extender	USD	5000	-90%	0%	High	77	0.29	1.05
+verizon internet packages prices	USD	5000	0%	0%	Low	32	2.28	20.85
+verizon fios speeds	USD	5000	0%	0%	Low	17	9.19	23.53
+verizon fios bundles	USD	5000	0%	-90%	Low	10	2.50	15.55
+verizon telephone deals	USD	5000	0%	0%	High	88	3.00	40.35
+fios 300 mbps	USD	5000	0%	0%	Low	15	6.00	14.25
+verizon fios promotions for new customers	USD	5000	0%	0%	Low	29	7.00	21.92
+verizon wireless home wifi	USD	5000	0%	0%	Medium	34	2.62	9.42
+verizon fios discount	USD	5000	0%	-90%	Low	18	9.19	18.13
+verizon fios tv plans	USD	5000	0%	0%	Low	2	8.75	15.70
+verizon wireless network	USD	5000	0%	0%	Low	23	24.72	53.44
+verizon 5g network	USD	5000	0%	0%	Low	3	14.25	79.43
+verizon shop online	USD	5000	0%	900%	High	87	5.00	35.23
+verizon home internet lte	USD	5000	0%	0%	Low	5	3.05	11.98
+verizon fios landline	USD	5000	-90%	-90%	Low	15	2.80	12.43
+verizon fios speed test	USD	5000	0%	0%	Low	3	10.38	17.93
+verizon wireless internet speed	USD	5000	0%	0%	Low	14	7.00	15.00
+verizon fios internet speeds	USD	5000	0%	0%	Low	17	9.19	23.53
+verizon online shopping	USD	5000	0%	900%	High	87	5.00	35.23
+verizon fios wifi extender	USD	5000	-90%	0%	Medium	65	0.31	0.91
+verizon fios cable tv	USD	5000	0%	0%	Low	22	3.02	13.13
+verizon plans fios	USD	5000	0%	0%	Low	20	7.94	14.25
+verizon netflix deal	USD	5000	-90%	0%	Low	1	0.01	4.16
+verizoninternetgateway	USD	5000	0%	0%	Low	18	4.20	15.00
+wifi plans verizon	USD	5000	0%	0%	Medium	44	2.26	14.00
+verizon wireless lte home internet	USD	5000	0%	0%	Low	5	3.05	11.98
+verizon tv and internet deals	USD	5000	0%	0%	Low	29	2.61	11.67
+verizon wireless network extender	USD	5000	0%	0%	Medium	56	0.27	1.00
+fios tv bundles	USD	5000	0%	0%	Low	2	2.50	17.39
+verizon fios routers	USD	5000	0%	0%	Medium	51	5.79	11.07
+fios stores near me	USD	5000	0%	0%	Medium	34	7.53	11.48
+verizon internet boxes	USD	5000	0%	0%	High	72	3.29	15.00
+verizon wifi fios	USD	5000	0%	0%	Low	17	4.74	16.30
+verizon fios military discount	USD	5000	0%	-90%	Low	12	3.43	11.53
+fios internet speed test	USD	5000	0%	0%	Low	3	10.38	17.93
+verizon wireless wifi plans	USD	5000	0%	0%	Medium	44	2.26	14.00
+verizon mi fi	USD	5000	0%	0%	High	92	0.32	3.30
+verizon fios tv service	USD	5000	-90%	0%	Low	8	2.50	13.13
+verizon fios stores near me	USD	5000	0%	0%	Medium	34	7.53	11.48
+fios landline	USD	5000	-90%	-90%	Low	15	2.80	12.43
+verizon wireless phone promotions	USD	5000	0%	0%	High	86	5.43	75.07
+fios offers new customers	USD	5000	0%	0%	Low	29	7.00	21.92
+verizon wifi hotspots	USD	5000	0%	0%	High	92	0.54	6.62
+verizon wireless wireless internet	USD	5000	0%	0%	Medium	55	3.22	18.99
+verizon hot spot internet	USD	5000	0%	0%	High	84	1.34	9.06
+verizon fios tv internet packages	USD	5000	0%	0%	Low	14	2.50	14.89
+verizon fios office near me	USD	5000	0%	0%	Medium	34	7.53	11.48
+verizon wifi routers	USD	5000	0%	0%	High	86	2.56	10.56
+fios verizon wifi	USD	5000	-90%	-90%	Medium	53	5.01	19.55
+verizon fios television	USD	5000	0%	0%	Low	3	1.58	5.41
+verizon fios tv and internet packages	USD	5000	0%	0%	Low	14	2.50	14.89
+verizon web	USD	5000	0%	0%	Medium	49	24.72	53.44
+verizon wireless routers	USD	5000	0%	0%	High	95	2.43	15.23
+verizon wifi rates	USD	5000	0%	0%	Low	26	2.63	17.80
+verizon bundles deals	USD	5000	0%	0%	Medium	43	4.38	22.33
+verizon wifi speed test	USD	5000	-90%	-90%	Low	11	12.44	14.16
+verizon wireless at home internet	USD	5000	0%	0%	Medium	35	2.85	8.59
+fios verizon near me	USD	5000	0%	0%	Medium	34	7.53	11.48
+verizon com speed test	USD	5000	0%	0%	Low	7	4.49	10.24
+verizon fios internet customer service	USD	5000	0%	0%	Low	9	0.02	5.70
+verizon wifi hub	USD	5000	0%	0%	High	92	0.54	6.62
+verizon hsi	USD	5000	0%	0%	Low	29	2.38	12.00
+verizon fios tv and internet bundles	USD	5000	0%	900%	Low	2	2.50	23.43
+verizon fios new customer packages	USD	5000	0%	0%	Low	29	7.00	21.92
+home internet with verizon wireless	USD	5000	0%	0%	Medium	35	2.85	8.59
+verizon fios and internet deals	USD	5000	0%	900%	Low	6	3.62	16.49
+verizon fios wireless internet	USD	5000	-90%	-90%	Medium	53	5.01	19.55
+contact verizon fios by phone	USD	5000	0%	-90%	Low	21	6.03	9.71
+verizon wireless portable wifi	USD	5000	0%	0%	High	98	0.40	2.82
+verizon wireless wifi customer service	USD	5000	0%	0%	Low	15	0.02	3.75
+verizon fios internet discount	USD	5000	0%	900%	Low	9	2.00	22.07
+verizon fios tv bundles	USD	5000	0%	0%	Low	2	2.50	17.39
+verizon fios home phone	USD	5000	-90%	-90%	Low	15	2.80	12.43
+fios home phone	USD	5000	-90%	-90%	Low	15	2.80	12.43
+verizon fios modems	USD	5000	0%	0%	Medium	53	6.59	16.30
+verizon home 5 g	USD	5000	0%	-90%	Low	26	3.34	8.30
+verizon lte internet and home phone	USD	5000	0%	0%	Low	5	3.05	11.98
+verizon fios internet and tv plans	USD	5000	0%	0%	Low	14	2.50	14.89
+verizon fiber fios	USD	5000	0%	0%	Low	30	3.47	24.45
+verizon fios digital voice	USD	5000	0%	900%	Low	0	2.44	20.73
+verizon fios charges	USD	5000	0%	0%	Low	25	7.94	18.27
+verizon extender fios	USD	5000	0%	0%	Low	22	0.33	1.88
+my verizon web	USD	5000	0%	0%	Low	23	35.23	57.45
+landline phone service verizon	USD	5000	0%	0%	Low	27	1.59	8.00
+verizon fios internet bundles	USD	5000	0%	9900%	Low	1	11.52	29.10
+verizon fios internet wifi	USD	5000	0%	0%	Low	17	4.74	16.30
+verizon fios is it in my area	USD	5000	0%	0%	Medium	40	2.78	11.66
+verizon fios new customer offers	USD	5000	0%	0%	Low	29	7.00	21.92
+canceling verizon fios	USD	5000	0%	-90%	Low	1	0.01	5.09
+verizon fios network extender	USD	5000	0%	0%	Low	8	0.28	3.70
+verizon home phone and internet packages	USD	5000	0%	-90%	Low	28	3.41	16.31
+verizon fios range extender	USD	5000	0%	0%	Low	22	0.33	1.88
+verizon fios internet and tv deals	USD	5000	0%	0%	Low	14	2.50	14.89
+verizon fios packages tv and internet	USD	5000	0%	0%	Low	14	2.50	14.89
+fios test speed	USD	5000	0%	0%	Low	3	10.38	17.93
+verizon at home service	USD	5000	0%	900%	Low	31	3.02	8.00
+verizon customer home service	USD	5000	-90%	-90%	Low	8	0.01	2.95
+verizon fios package plans	USD	5000	0%	0%	Low	20	7.94	14.25
+verizon from home	USD	5000	0%	0%	Low	28	5.00	8.00
+verizon wifi log in	USD	5000	0%	0%	Low	1	0.01	0.02
+verizon fios trouble	USD	5000	0%	0%	Low	2	1.99	7.55
+verizon fios area availability	USD	5000	0%	0%	Low	27	3.06	27.37
+verizon fios wireless extender	USD	5000	0%	0%	Low	22	0.33	1.88
+verizon fios my fios	USD	5000	0%	0%	Low	2	0.01	13.00
+fios extender wifi	USD	5000	-90%	0%	High	77	0.29	1.05
+my verizon speed test	USD	5000	0%	0%	Low	6	12.30	16.55
+speedtest verizon com	USD	5000	0%	0%	Low	7	4.49	10.24
+verizon fios my verizon	USD	5000	0%	0%	Low	6	8.00	27.62
+verizon fios trouble shooting	USD	5000	0%	0%	Low	2	1.99	7.55
+verizon home internet log in	USD	5000	0%	0%	Low	1	0.01	0.01
+wifi portable verizon	USD	5000	0%	0%	High	98	0.40	2.82

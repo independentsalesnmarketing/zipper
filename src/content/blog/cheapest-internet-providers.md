@@ -21,7 +21,7 @@ You don't need to spend $80/mo for fast internet. Several major providers offer 
 | 2 | Frontier Fiber | $49.99/mo | 500/500 Mbps | Fiber |
 | 3 | Optimum | $40/mo | 300 Mbps | Cable/Fiber |
 | 4 | Spectrum | $49.99/mo | 300 Mbps | Cable |
-| 5 | Verizon Fios | $49.99/mo | 300/300 Mbps | Fiber |
+| 5 | Verizon 5G Home | $50/mo | 100–1000 Mbps | Fixed Wireless |
 | 6 | AT&T Fiber | $55/mo | 300/300 Mbps | Fiber |
 | 7 | EarthLink | $49.99/mo | 300 Mbps | Fiber/Cable |
 | 8 | Brightspeed | $49/mo | 200 Mbps | Fiber/DSL |
@@ -76,15 +76,15 @@ Spectrum's biggest advantage is reach — available in 41 states. The 300 Mbps p
 
 [Check Spectrum availability →](/check-availability)
 
-## 5. [Verizon Fios](/provider/verizon) — Best Fiber Under $50
+## 5. [Verizon 5G Home Internet](/provider/verizon) — Best Nationwide No-Install Deal
 
-**$49.99/mo** | 300/300 Mbps | Fiber, no contract
+**$50/mo** | 100–1000 Mbps | Fixed Wireless, no contract
 
-In the Northeast, Fios at $49.99 for symmetrical 300 Mbps is one of the best fiber values. Verizon's network is among the most reliable in the country, with consistently high speed-test scores.
+Verizon 5G Home is available nationwide and takes 15 minutes to self-install — no technician, no appointment. The real value: a **4-year price lock** at $50/mo (or **$35/mo** with a qualifying Verizon wireless plan) and a **$200–$300 Prepaid Mastercard** for new customers.
 
-[Check Verizon Fios availability →](/check-availability)
+[Check Verizon 5G Home availability →](/check-availability)
 
-## 6. [AT&T Fiber](/provider/att) — Premier Fiber Experience
+## 6. [AT&T Fiber](/provider/att-fiber) — Premier Fiber Experience
 
 **$55/mo** | 300/300 Mbps | Fiber, no contract, no data cap
 
@@ -116,7 +116,7 @@ AltaFiber (formerly Cincinnati Bell) offers fiber internet starting at just $39.
 
 [Check AltaFiber availability →](/check-availability)
 
-## 10. [Windstream Kinetic](/provider/windstream) — Rural Fiber Option
+## 10. [Windstream Kinetic](/provider/kinetic) — Rural Fiber Option
 
 **$39.99/mo** | 200 Mbps | Fiber/DSL, no contract
 
@@ -133,11 +133,11 @@ Windstream's Kinetic brand delivers fiber internet to many rural and underserved
 - **Lifeline Program**: $9.25/mo government discount on broadband
 
 ### Negotiation Tips
-1. **Call retention, not billing** — Ask to cancel, then listen to the retention offer
+1. **Contact retention, not billing** — Ask to cancel, then listen to the retention offer
 2. **Quote competitor prices** — Mention specific competitor deals available at your address
 3. **Skip the bundle** — Internet-only is almost always cheaper than TV+internet bundles
 4. **Bring your own equipment** — Save $5-15/mo by buying your own modem and router
-5. **Ask for a loyalty discount** — After your promo expires, call and ask for the new customer rate
+5. **Ask for a loyalty discount** — After your promo expires, contact support and ask for the new customer rate
 
 ## What Speed Do You Actually Need?
 

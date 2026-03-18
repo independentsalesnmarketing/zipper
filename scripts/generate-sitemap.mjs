@@ -9,7 +9,7 @@
 import { readdirSync, statSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, relative } from 'path';
 
-const SITE = 'https://internet4all.com';
+const SITE = 'https://internet-4-all.com';
 const DIST = 'dist';
 const MAX_URLS_PER_SITEMAP = 10000;
 

@@ -34,9 +34,9 @@ Before cutting cable TV, make sure your internet can handle streaming. You need:
 |----------|-------|-------|----------|
 | [Frontier Fiber](/provider/frontier) | 500/500 Mbps | $49.99/mo | None |
 | [Spectrum](/provider/spectrum) | 300 Mbps | $49.99/mo | None |
-| [Verizon Fios](/provider/verizon) | 300/300 Mbps | $49.99/mo | None |
+| [Verizon 5G Home](/provider/verizon) | 100–1000 Mbps | $50/mo | None |
 | [T-Mobile 5G Home](/provider/tmobile-5g) | 72-245 Mbps | $50/mo | None |
-| [AT&T Fiber](/provider/att) | 300/300 Mbps | $55/mo | None |
+| [AT&T Fiber](/provider/att-fiber) | 300/300 Mbps | $55/mo | None |
 
 ## Step 2: Choose Your Streaming Services
 
@@ -122,9 +122,9 @@ Sports are the #1 reason people hesitate to cut the cord. Here's how to watch ev
 ### Local Games
 A **digital antenna** ($20-40) gives you free HD broadcast of local channels (ABC, CBS, Fox, NBC, PBS). This covers most local sports broadcasts and is completely free after the antenna purchase.
 
-## Step 5: Call and Cancel Cable TV
+## Step 5: Contact Support and Cancel Cable TV
 
-When you call to cancel TV service:
+When you contact support to cancel TV service:
 
 1. **Say**: "I'd like to keep my internet service but cancel my TV package."
 2. **They will offer deals** — retention reps will try to keep you. Stay firm unless the deal is genuinely exceptional.

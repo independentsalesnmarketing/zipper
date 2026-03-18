@@ -1,0 +1,768 @@
+# Internet 4 ALL — Master Keyword File
+# Built from: Allconnect, BroadbandNow, BroadbandSearch, EasyConnect, SmartMove analysis
+# Format: Keyword | Approx Monthly Vol | Competition (indexed) | Top CPC | Notes
+# Date: March 2026
+# ============================================================
+# USAGE:
+#   Cluster A = foundation keywords (500K-50K vol) — always included
+#   Cluster B = mid-tier (50K-5K vol) — primary rotation targets
+#   Cluster C = long-tail (5K-500 vol) — high-intent, high-CPC, lower competition
+#   GAP = keyword NOT in any competitor file = our opportunity to own
+# ============================================================
+
+
+# ============================================================
+# CLUSTER 1: NEAR ME / IN MY AREA (Proximity Intent)
+# These are the highest-volume keywords across ALL competitor files
+# People typing these are READY to sign up — they just need to find who serves them
+# ============================================================
+
+internet providers near me | 500000 | 81 | $27.88 | Foundation — every city/zip page
+isp near me | 500000 | 81 | $27.88 | Foundation
+internet companies near me | 500000 | 81 | $27.88 | Foundation
+internet carriers near me | 500000 | 81 | $27.88 | Foundation
+internet suppliers near me | 500000 | 81 | $27.88 | Foundation
+home internet providers near me | 50000 | 76 | $30.75 | High CPC — home searchers
+wifi companies near me | 50000 | 82 | $39.50 | WiFi premium CPC
+wifi providers near me | 50000 | 82 | $39.50 | WiFi premium CPC
+wifi internet providers near me | 50000 | 82 | $39.50 | WiFi premium CPC
+internet near me | 50000 | 88 | $39.25 | Very high comp, very high CPC
+best internet providers near me | 5000 | 93 | $27.64 | Best modifier — still huge
+cheap internet providers near me | 5000 | 97 | $22.55 | Cheap + near me = highest conv
+local internet providers near me | 5000 | 93 | $26.49 | Local modifier
+internet plans near me | 5000 | 93 | $26.40 | Plans = comparison intent
+internet packages near me | 5000 | 96 | $27.50 | Packages — bundle seeker
+good internet providers near me | 500 | 93 | $26.49 | Quality seeker
+fast internet near me | 5000 | 92 | $26.69 | Speed seeker — near me
+top internet providers near me | 500 | 79 | $34.25 | Research intent
+residential internet providers near me | 500 | 98 | $26.49 | Home-specific, very high comp
+cable and internet near me | 5000 | 98 | $26.68 | Bundle + near me
+cable internet providers near me | 5000 | 86 | $22.84 | Cable specific
+internet and cable providers near me | 5000 | 86 | $22.84 | Cable bundle
+internet and tv providers near me | 5000 | 83 | $16.69 | TV bundle near me
+wifi service providers near me | 5000 | 98 | $39.96 | TOP CPC — wifi + service + near me
+internet available near me | 5000 | 88 | $26.49 | Availability check
+cable and internet near me | 5000 | 98 | $26.68 | Bundle near me
+home internet near me | 5000 | 77 | $40.57 | Home + near me — high CPC
+get internet near me | 500 | 85 | $40.45 | Action verb — urgency
+find internet near me | 500 | 85 | $40.45 | Discovery intent
+best wifi near me | 5000 | 86 | $40.53 | WiFi premium near me
+good wifi near me | 5000 | 86 | $40.53 | Quality wifi
+wifi near me | 50000 | 65 | $45.77 | MASSIVE — wifi intent
+internet services near me cheap | 500 | 86 | $34.52 | Cheap + services
+internet offers near me | 500 | 92 | $27.00 | Offer/deal seeker
+internet specials near me | 5000 | 96 | $27.50 | Specials — deal seeker
+top internet providers near me | 500 | 79 | $34.25 | Research intent
+internet around me | 500 | 97 | $36.79 | Geo-intent
+home internet options near me | 500 | 96 | $28.18 | Options seeker
+high speed internet providers near me | 500 | 85 | $22.54 | Speed + near me
+cheapest internet near me | 5000 | 94 | $28.56 | Cheapest + near me — very high comp
+cheap home internet near me | 500 | 96 | $28.67 | Home + cheap + near me
+affordable internet near me | 500 | 93 | $28.89 | Affordable modifier
+internet dealers near me | 5000 | 96 | $27.50 | Heavy transactional
+get wifi near me | 500 | 84 | $54.18 | HIGH CPC action intent
+cheap wifi near me | 5000 | 66 | $36.68 | Cheap wifi
+cheap wireless internet near me | 5000 | 66 | $36.68 | Wireless cheap
+wifi near me cheap | 500 | 62 | $43.07 | Ultra-specific cheap wifi
+home wifi near me | 500 | 65 | $45.09 | Home wifi proximity
+high speed wifi near me | 500 | 84 | $36.18 | Speed + wifi
+best internet deals near me | 500 | 88 | $25.38 | Deals near me
+cable deals near me | 500 | 65 | $14.86 | Cable deals
+internet and tv bundles near me | 500 | 78 | $18.85 | Bundles near me
+
+
+# ============================================================
+# CLUSTER 2: BY ADDRESS (Highest-Intent — They Want to Order)
+# Someone typing "internet for my address" is at the bottom of the funnel
+# These have HIGHEST competition index (90-94) = advertisers know they convert
+# ============================================================
+
+internet providers for my address | 50000 | 94 | $27.00 | HIGHEST INTENT — bottom funnel
+internet availability by address | 50000 | 89 | $20.26 | Availability check
+internet options by address | 50000 | 90 | $23.37 | Options — evaluating
+internet services for my address | 50000 | 94 | $27.00 | Services at address
+internet services by address | 50000 | 90 | $23.37 | Services lookup
+isp by address | 50000 | 90 | $23.37 | ISP check
+isp for my address | 50000 | 94 | $27.00 | ISP for specific address
+broadband providers by address | 50000 | 90 | $23.37 | Broadband by address
+internet providers by address | 50000 | 90 | $23.37 | Core address keyword
+internet at my address | 5000 | 91 | $28.99 | At my address
+find internet providers by address | 5000 | 89 | $26.50 | Find + address
+find internet providers for my address | 5000 | 91 | $28.99 | Direct find action
+check internet providers by address | 5000 | 87 | $22.20 | Check action
+internet options for my address | 5000 | 92 | $26.49 | Options for address
+internet choices by address | 5000 | 92 | $26.49 | Choices = comparison
+internet choices for my address | 5000 | 92 | $26.49 | Same intent
+internet option for my address | 5000 | 92 | $26.49 | Singular — specific
+internet available at my address | 50000 | 89 | $20.26 | Availability check
+wifi available at my address | 5000 | 86 | $27.44 | Wifi available check
+wifi for my address | 500 | 91 | $37.01 | WiFi premium + address
+wifi at my address | 500 | 91 | $37.01 | WiFi at address — premium CPC
+wifi providers for my address | 500 | 94 | $35.00 | WiFi provider at address
+wifi options for my address | 500 | 93 | $35.00 | WiFi options for address
+internet providers at my address | 50000 | 94 | $27.00 | Core — high comp
+internet providers available at my address | 5000 | 94 | $30.20 | Full phrase
+internet companies serving my address | 5000 | 94 | $30.20 | Serving = coverage
+internet near my address | 500 | 98 | $30.59 | Very high comp — near address
+search internet providers by address | 500 | 80 | $20.25 | Search action
+look up internet providers by address | 500 | 82 | $22.83 | Lookup action
+find isp by address | 500 | 82 | $22.83 | ISP by address
+check internet at address | 5000 | 80 | $18.89 | Check at address
+address check for internet | 5000 | 80 | $18.89 | Address check
+internet address check | 5000 | 80 | $18.89 | Same intent
+internet lookup by address | 500 | 82 | $18.32 | Lookup intent
+high speed internet by address | 5000 | 82 | $16.65 | Speed + address
+high speed internet availability by address | 500 | 84 | $16.50 | Full availability phrase
+high speed internet at my address | 500 | 90 | $20.66 | Speed specific
+cable internet providers for my address | 500 | 88 | $20.00 | Cable by address
+home internet providers for my address | 500 | 88 | $23.80 | Home + address
+internet for my house | 5000 | 89 | $36.65 | House-specific
+internet at my house | 5000 | 89 | $36.65 | At my house
+internet options for my house | 500 | 77 | $25.00 | House options
+internet for my home | 5000 | 89 | $36.65 | Home specific
+internet that services my address | 500 | 83 | $33.05 | Services my address
+wifi availability by address | 500 | 91 | $25.89 | Wifi availability
+cable provider by address | 500 | 79 | $17.65 | Cable address check
+isp search by address | 500 | 79 | $15.30 | ISP search
+isp in my area by address | 500 | 81 | $25.66 | ISP + area + address
+internet providers in my area by address | 500 | 81 | $25.66 | Full phrase
+internet near me by address | 500 | 87 | $28.51 | Near me + address combo
+fastest internet for my address | 500 | 86 | $24.00 | Fastest — address specific
+check internet availability by address | 500 | 80 | $20.46 | Full availability phrase
+check what internet is available at my address | 500 | 87 | $26.06 | Exact intent match
+internet plans for my address | 500 | 84 | $25.95 | Plans at address
+best internet for my address | 500 | 89 | $28.21 | Best at address
+best internet provider for my address | 500 | 91 | $29.43 | Best provider for address
+internet services available by address | 5000 | 81 | $20.46 | Services available
+internet providers for my location | 500 | 90 | $26.92 | Location fallback
+
+
+# ============================================================
+# CLUSTER 3: CHEAP / AFFORDABLE (Savings Intent)
+# CRITICAL: These users need internet but resist recurring costs
+# "Cheap" outperforms "affordable" 10:1 in search volume
+# Never filter these out — this is a massive segment
+# ============================================================
+
+cheap internet | 50000 | 92 | $25.89 | Core cheap keyword — EasyConnect's #1
+cheap home internet | 50000 | 34 | $24.82 | Cheap + home
+affordable home internet | 50000 | 34 | $24.82 | Either works
+affordable internet providers | 50000 | 72 | $24.20 | Affordable + providers
+inexpensive internet providers | 50000 | 72 | $24.20 | Same intent
+cheap internet plans | 50000 | 20 | $23.51 | Plans modifier — LOW comp!
+affordable internet plans | 50000 | 20 | $23.51 | Low comp — target this
+cheapest home internet | 50000 | 34 | $24.82 | Superlative saves money
+cheapest internet providers | 50000 | 72 | $24.20 | Core cheap provider intent
+cheap internet companies | 50000 | 72 | $24.20 | Companies = same as providers
+cheap wireless internet | 50000 | 95 | $31.51 | Wireless cheap — high comp+CPC
+wifi for cheap | 50000 | 95 | $31.51 | WiFi framing — high comp
+internet for cheap | 50000 | 92 | $25.89 | Internet for cheap — direct
+cheapest isp | 50000 | 72 | $24.20 | ISP framing
+cheap good wifi | 5000 | 93 | $30.26 | Quality + cheap
+best cheap wifi | 5000 | 93 | $30.26 | Best + cheap + wifi
+cheap good internet | 5000 | 88 | $30.26 | Quality + cheap
+best cheap internet | 5000 | 88 | $30.26 | Best + cheap
+best and cheapest internet | 5000 | 88 | $30.26 | Best AND cheapest = dual value
+best and cheapest internet provider | 5000 | 85 | $23.99 | Provider specific
+cheapest internet in my area | 5000 | 89 | $19.72 | Area specific cheap
+cheapest internet providers in my area | 5000 | 89 | $23.67 | Providers in area
+cheap internet near me | 5000 | 94 | $28.56 | Cheap + near me
+cheap internet providers near me | 5000 | 97 | $22.55 | Highest comp cheap keyword
+cheap home internet providers | 5000 | 63 | $25.96 | Home cheap providers
+cheapest wifi provider | 5000 | 92 | $30.65 | Provider superlative
+cheapest wifi plans | 5000 | 80 | $30.00 | Plans specific
+cheapest wifi for home | 5000 | 87 | $30.70 | Home wifi cheapest
+cheapest isp in my area | 5000 | 89 | $23.67 | ISP area cheap
+cheap wifi in my area | 5000 | 92 | $31.94 | Wifi area cheap
+most affordable internet providers | 5000 | 63 | $25.96 | Affordable superlative
+cheapest and fastest internet | 500 | 85 | $31.21 | Dual value — cheap + fast
+cheap and good internet | 5000 | 88 | $30.26 | Quality + price combo
+cheap reliable internet | 500 | 80 | $24.68 | Reliable + cheap
+best cheapest internet provider | 5000 | 85 | $23.99 | Best cheapest
+good cheap internet providers | 5000 | 85 | $23.99 | Good cheap
+cheap internet options | 5000 | 52 | $22.34 | Options framing
+cheap fast internet | 500 | 91 | $24.93 | Fast + cheap — value pair
+cheap fast wifi | 500 | 92 | $31.52 | Fast wifi cheap
+affordable internet | 5000 | 15 | $28.21 | GAP — rising trend (+900% YoY)
+inexpensive internet near me | 5000 | 94 | $28.56 | Inexpensive + near me
+cheapest internet near me | 5000 | 94 | $28.56 | Cheapest near me
+lowest internet cost | 5000 | 69 | $21.45 | Cost framing
+lowest internet prices | 500 | 84 | $18.65 | Price framing
+most affordable internet | 500 | 86 | $21.57 | Affordable superlative
+the cheapest internet | 500 | 93 | $22.25 | Superlative with article
+the cheapest internet provider | 500 | 90 | $20.00 | Provider superlative
+best and cheapest wifi | 5000 | 93 | $30.26 | WiFi dual value
+good and cheap wifi | 5000 | 93 | $30.26 | WiFi dual value variant
+cheap internet for house | 50000 | 34 | $24.82 | House framing
+cheap wifi for house | 5000 | 87 | $30.70 | House + wifi cheap
+cheap wifi for apartment | 500 | 91 | $25.49 | GAP — apartment searchers
+low cost internet providers | 500 | 26 | $20.58 | Low cost — lower comp
+cheap home internet providers near me | 500 | 59 | $23.91 | Full phrase
+inexpensive high speed internet | 5000 | 67 | $21.56 | Speed + cheap
+cheapest high speed internet | 5000 | 67 | $21.56 | Speed cheapest
+cheapest high speed internet provider | 5000 | 67 | $21.56 | Provider specific
+best affordable wifi | 5000 | 93 | $30.26 | WiFi affordable
+best affordable internet provider | 500 | 91 | $22.03 | Best affordable
+best budget internet provider | 500 | 91 | $22.03 | Budget framing
+affordable fast internet | 500 | 91 | $24.93 | Fast + affordable
+fast and affordable internet | 500 | 91 | $24.93 | Reversed order
+cheap internet plans for home | 5000 | 89 | $20.00 | Plans for home
+affordable home internet plans | 500 | 40 | $25.65 | Plans + home
+best cheap home internet | 500 | 95 | $25.64 | All three — best cheap home
+best and cheapest home internet | 500 | 95 | $25.64 | Best + cheapest + home
+internet for low income | 5000 | 81 | $21.23 | GAP — low income targeting
+internet for seniors | 500 | 78 | $12.75 | GAP — seniors underserved
+cheap internet for seniors | 5000 | 87 | $9.37 | GAP — seniors + cheap
+affordable internet for seniors | 500 | 61 | $10.83 | GAP — affordable seniors
+internet deals | 5000 | 87 | $25.44 | Deals framing
+internet deals near me | 500 | 88 | $25.38 | Deals + near me
+home internet deals | 5000 | 87 | $25.20 | Home + deals
+best internet deals | 5000 | 84 | $22.06 | Best deals
+best internet deals right now | 500 | 82 | $21.50 | Urgency modifier
+best deals on internet in my area | 500 | 89 | $21.94 | Full phrase
+cable and internet deals | 5000 | 46 | $18.47 | Bundle deals
+cheapest cable and internet | 5000 | 70 | $17.42 | Cable + cheapest
+cheapest internet and tv package | 500 | 75 | $10.34 | Package cheapest
+
+
+# ============================================================
+# CLUSTER 4: URGENCY / GET IT NOW (Highest CPC = Highest Intent)
+# These people are MOVING, just moved, or their internet is down
+# CPC of $50-82 means advertisers pay huge because they CONVERT
+# Competitors almost entirely miss this segment in their organic pages
+# ============================================================
+
+sign up for internet | 500 | 89 | $82.46 | HIGHEST CPC — ready to buy
+get home internet | 500 | 81 | $68.98 | Action = bottom funnel
+get home internet today | 500 | 84 | $58.56 | Today modifier = urgency peak
+get wifi today | 5000 | 93 | $59.51 | WiFi today — action + urgency
+same day internet provider | 500 | 100 | $52.35 | Same day = urgent mover
+get internet today | 500 | 89 | $51.68 | Today = urgent
+home internet today | 500 | 100 | $49.29 | Today + home
+same day home internet | 500 | 95 | $61.99 | Same day home — mover keyword
+internet same day installation | 500 | 79 | $59.74 | Installation urgency
+sign up to internet | 500 | 89 | $82.46 | Variant of sign up
+i need internet now | 500 | 74 | $39.21 | GAP — explicit urgency
+internet now | 500 | 76 | $19.50 | Right now intent
+internet today | 500 | low | varies | GAP — urgency keyword
+get internet near me | 500 | 85 | $40.45 | Get + near me action
+get wifi near me | 500 | 84 | $54.18 | Get + wifi + near me
+get home internet now | 500 | high | $50+ | GAP — explicit urgency combo
+new internet service | 500 | high | varies | GAP — switching/new home
+switching internet providers | 500 | high | varies | GAP — churning customers
+internet for new apartment | 500 | high | varies | GAP — movers
+internet when moving | 500 | high | varies | GAP — moving trigger
+internet for new home | 500 | high | varies | GAP — new home setup
+setting up internet in new home | 500 | medium | varies | GAP — setup intent
+internet setup today | 500 | high | $50+ | GAP — same day setup
+quick internet setup | 500 | high | varies | GAP — convenience
+no contract internet | 500 | 29 | varies | No lock-in = low risk
+no contract cable and internet | 500 | 29 | varies | Bundle no contract
+cheap no contract internet | 500 | 84 | $27.90 | Cheap + no contract
+
+
+# ============================================================
+# CLUSTER 5: WiFi SPECIFIC (40-60% CPC Premium Over Internet Keywords)
+# "WiFi" searches command dramatically higher CPCs than "internet" searches
+# This signals they are further down the buying funnel when using wifi language
+# Competitors target these far less than internet equivalent keywords
+# ============================================================
+
+wifi service providers near me | 5000 | 98 | $39.96 | TOP CPC — wifi tier
+wifi services near me | 5000 | 97 | $46.45 | HIGHEST CPC wifi near me
+wifi options near me | 5000 | 98 | $37.80 | Options = comparison intent
+wifi providers in my area | 5000 | 94 | $32.63 | Provider area
+wifi service in my area | 5000 | 99 | $43.36 | Service in area — top comp
+wifi service providers in my area | 5000 | 94 | $32.63 | Full phrase
+wifi carriers in my area | 5000 | 94 | $32.63 | Carriers framing
+wifi internet providers near me | 50000 | 82 | $39.50 | Near me wifi
+wifi near me | 50000 | 65 | $45.77 | Core wifi proximity
+wifi providers near me | 50000 | 82 | $39.50 | Core wifi providers
+wifi companies near me | 50000 | 82 | $39.50 | Companies framing
+wifi available at my address | 5000 | 86 | $27.44 | Address wifi check
+wifi for my address | 500 | 91 | $37.01 | Address specific wifi
+wifi at my address | 500 | 91 | $37.01 | At address wifi
+wifi providers for my address | 500 | 94 | $35.00 | Providers for address
+wifi options for my address | 500 | 93 | $35.00 | Options for address
+home wifi companies | 5000 | 91 | $40.51 | Home wifi companies
+home wifi service providers | 5000 | 91 | $40.51 | Home wifi full phrase
+wifi in my area | 5000 | 95 | $37.37 | Area wifi
+wifi available in my area | 5000 | 88 | $31.75 | Available in area
+wifi carriers near me | 500 | 95 | $38.39 | Carriers near me
+wifi that services my area | 500 | 76 | $44.00 | Services framing
+wifi internet near me | 500 | 67 | $40.28 | Internet + wifi near me
+wifi for home | 50000 | 91 | $39.53 | Home wifi — massive volume
+home wifi in my area | 500 | 93 | $37.56 | Home wifi area
+best wifi near me | 5000 | 86 | $40.53 | Best wifi
+best wifi providers | 5000 | 86 | $29.78 | Providers best wifi
+best wifi service near me | 500 | 90 | $36.16 | Service best near me
+best wifi service in my area | 500 | 94 | $33.41 | Service in area
+best wifi providers in my area | 500 | 90 | $29.34 | Providers in area
+best wifi for my address | 500 | 91 | $34.96 | Address best wifi
+wifi companies in my area | 500 | 92 | $38.98 | Companies in area
+wifi options in my area | 500 | 90 | $29.06 | Options in area
+wifi networks in my area | 500 | 85 | $27.17 | Networks framing
+wifi plans in my area | 500 | 87 | $30.84 | Plans specific
+local wifi providers | 500 | 79 | $27.83 | Local wifi
+different wifi providers | 500 | 77 | $29.05 | Different options
+wifi internet providers in my area | 500 | 47 | $27.83 | Lower comp — opportunity
+wifi availability by address | 500 | 91 | $25.89 | Availability
+wifi and cable | 500 | 77 | $25.59 | Bundle research
+wifi and cable near me | 500 | 100 | $49.20 | ULTRA HIGH — wifi + cable + near me
+wifi and cable deals | 500 | 82 | $25.14 | Bundle deals
+wifi packages | 500 | 79 | $22.26 | Packages intent
+wifi plans | 5000 | 83 | $26.94 | Plans medium-vol
+
+
+# ============================================================
+# CLUSTER 6: SPEED / FAST INTERNET (Performance Buyers — Higher ARPU)
+# Speed buyers often choose premium plans = higher commissions per conversion
+# ============================================================
+
+fastest internet in my area | 5000 | 89 | $24.09 | Fastest area
+fastest isp in my area | 50000 | 91 | $26.49 | Fastest ISP
+high speed internet in my area | 5000 | 90 | $23.30 | High speed area
+high speed internet providers in my area | 5000 | 90 | $23.30 | Providers + speed
+fast internet near me | 5000 | 92 | $26.69 | Fast near me
+fast internet providers near me | 5000 | 82 | $32.17 | Providers fast
+highest speed internet in my area | 5000 | 90 | $23.30 | Highest superlative
+high speed internet near me | 5000 | 95 | $25.24 | Speed + near me
+fastest internet near me | 5000 | 89 | $24.09 | Fastest near me
+fastest internet provider in my area | 500 | 82 | $28.60 | Provider specific
+fastest isp near me | 5000 | 82 | $32.17 | ISP fast near me
+high speed internet by address | 5000 | 82 | $16.65 | Speed + address
+high speed internet availability by address | 500 | 84 | $16.50 | Availability + speed
+best high speed internet near me | 500 | 91 | $26.41 | Best + speed + near me
+best high speed internet in my area | 500 | 84 | $23.74 | Best speed area
+high speed internet providers near me | 500 | 85 | $22.54 | Speed providers
+fast speed internet near me | 500 | 87 | $30.00 | Fast speed near me
+fastest internet speed in my area | 500 | 76 | $18.54 | Speed in area
+best internet speed in my area | 500 | 84 | $23.74 | Best speed
+fast internet available in my area | 500 | 63 | $16.66 | Fast available area
+fastest internet for my address | 500 | 86 | $24.00 | Address specific fastest
+fastest available internet in my area | 500 | 63 | $16.66 | Available + fastest
+internet for gaming | 500 | high | varies | GAP — gaming userbase
+internet for streaming | 500 | high | varies | GAP — streaming userbase
+best internet for working from home | 500 | 67 | $30.00 | WFH niche — growing
+internet for working from home | 500 | medium | varies | GAP — WFH intent
+internet speeds for working from home | 500 | 67 | $30.00 | WFH speeds
+internet for multiple devices | 500 | medium | varies | GAP — capacity buyers
+fast home internet | 5000 | 77 | $24.00 | Home + fast
+fastest home internet in my area | 5000 | 76 | $28.76 | Home fastest
+superfast internet | 500 | 16 | $20.65 | Superfast branding
+
+
+# ============================================================
+# CLUSTER 7: HOME / RESIDENTIAL (High ARPU — They Have a House)
+# Home searchers = homeowners or long-term renters = longer LTV
+# ============================================================
+
+home internet | 50000 | 96 | $34.99 | Core home keyword — HIGH CPC
+home internet providers | 50000 | 49 | $29.90 | Home providers
+home internet providers near me | 50000 | 76 | $30.75 | Proximity home
+home internet providers in my area | 5000 | 100 | $33.08 | HIGHEST COMP — in area
+home internet near me | 5000 | 77 | $40.57 | Near me home
+home internet in my area | 5000 | 91 | $30.48 | Area home
+home internet deals | 5000 | 87 | $25.20 | Home deals
+home internet plans | 5000 | 57 | $24.19 | Home plans
+home internet options near me | 500 | 96 | $28.18 | Home options near me
+home internet options by address | 500 | 86 | $23.97 | Address options
+home internet for my address | 500 | 88 | $26.81 | Address home
+home internet today | 500 | 100 | $49.29 | Today + home = URGENT
+home internet available in my area | 500 | 77 | $26.49 | Available home
+best home internet | 5000 | 94 | $25.59 | Best home
+best home internet provider | 5000 | 88 | $24.36 | Best home provider
+best home internet in my area | 500 | 90 | $27.37 | Best home area
+best home internet provider in my area | 500 | 92 | $27.68 | Full phrase
+best home internet near me | 500 | 97 | $25.61 | Best home near me
+residential internet | 500 | 68 | $28.97 | Residential specific
+at home internet providers | 500 | 99 | $37.90 | HIGHEST COMP residential
+in home internet providers | 500 | 86 | $32.75 | In home
+home internet companies | 500 | 90 | $31.76 | Companies home
+home internet check | 500 | 51 | $21.35 | Check home — availability
+
+
+# ============================================================
+# CLUSTER 8: PLANS / OPTIONS / COMPARISON (Research Phase)
+# These are mid-funnel — haven't decided yet — prime for persuasion
+# ============================================================
+
+internet plans | 50000 | 56 | $21.73 | Core plans keyword
+internet options | 5000 | 71 | $23.15 | Core options keyword
+internet options in my area | 50000 | 93 | $26.49 | Area options
+internet choices in my area | 50000 | 93 | $26.49 | Choices framing
+internet plans in my area | 5000 | 87 | $24.00 | Plans in area
+internet plans near me | 5000 | 93 | $26.40 | Plans near me
+home internet plans | 5000 | 57 | $24.19 | Home plans
+home internet plans near me | 500 | 89 | $20.46 | Near me plans
+best internet plans | 5000 | 73 | $17.56 | Best plans
+best internet plans in my area | 500 | 88 | $20.46 | Best plans area
+best internet plans near me | 500 | 93 | $20.46 | Best plans near me
+internet packages | 5000 | varies | $19.50 | General packages
+internet packages near me | 5000 | 96 | $27.50 | Packages near me
+internet and tv packages | 5000 | 81 | $16.16 | TV bundle packages
+tv and internet packages near me | 500 | 81 | $17.68 | Bundle near me
+comparing internet providers | 5000 | 48 | $25.09 | Comparison intent
+isp comparison | 5000 | 48 | $25.09 | ISP compare
+internet company comparison | 5000 | 48 | $25.09 | Company compare
+compare internet plans in my area | 500 | 88 | $20.63 | Compare area
+compare internet providers in my area | 500 | 69 | $20.51 | Compare providers
+compare home internet plans | 500 | 89 | $20.00 | Home compare
+best internet options in my area | 500 | 84 | $26.38 | Best options area
+best internet options | 50000 | 78 | $22.28 | Best options general
+internet comparison in my area | 500 | 93 | $26.90 | Comparison area
+internet prices in my area | 500 | 83 | $18.05 | Price comparison
+best deal for internet | 5000 | 84 | $22.06 | Deal seeking
+best deal in my area | 500 | 89 | $21.94 | Area deal
+best internet pricing | 5000 | 78 | $18.52 | Pricing intent
+internet pricing in my area | 500 | 83 | $18.05 | Pricing area
+shop internet providers | 500 | 88 | $31.46 | Shopping intent
+shop internet | 500 | 73 | $33.52 | Direct shop intent
+choose internet provider | 500 | 72 | $29.04 | Choose action
+find internet providers | 5000 | 80 | $29.08 | Find action
+find internet provider | 5000 | 80 | $29.08 | Find singular
+find isp | 5000 | 80 | $29.08 | Find ISP
+find me an internet provider | 5000 | 80 | $29.08 | Conversational find
+best internet | 5000 | 78 | $22.36 | General best
+top internet providers | 5000 | 83 | $25.00 | Top providers
+best isp | 50000 | 78 | $22.28 | Best ISP
+best isp in my area | 50000 | 91 | $26.49 | Best ISP area
+best internet provider in my area | 50000 | 91 | $26.49 | Best provider area
+top internet providers in my area | 500 | 92 | $24.00 | Top in area
+list of internet providers in my area | 500 | 90 | $20.46 | List intent
+all internet providers in my area | 500 | 84 | $25.31 | All providers
+
+
+# ============================================================
+# CLUSTER 9: CABLE + INTERNET BUNDLES (Bundle Buyers = Higher LTV)
+# ============================================================
+
+cable internet providers | 50000 | 11 | $21.92 | Cable providers — LOW COMP
+cable and internet providers | 50000 | 11 | $21.92 | Low comp — own this
+cable internet | 50000 | 8 | $18.48 | Low comp — big volume
+cable and internet plans | 50000 | 0 | $15.97 | Ultra-low comp — own this
+cable internet providers in my area | 5000 | 75 | $21.54 | Cable area
+cable and internet in my area | 5000 | 78 | $21.40 | Cable in area
+cable and internet near me | 5000 | 98 | $26.68 | Cable near me
+cable and internet providers near me | 5000 | 86 | $22.84 | Cable providers near me
+tv and internet packages | 5000 | 81 | $16.16 | TV packages
+tv and internet providers | 5000 | 76 | $14.04 | TV providers
+internet and tv bundles | 5000 | 81 | $16.16 | Bundles
+cable and internet bundle | 5000 | 69 | $19.20 | Bundle specific
+internet bundles | 5000 | 62 | $19.50 | General bundles
+best cable and internet deals | 5000 | 55 | $14.20 | Best cable deals
+cable and internet deals | 5000 | 46 | $18.47 | Deals — LOW COMP
+cable and internet services near me | 5000 | 98 | $26.68 | Services near me
+best internet and tv bundles | 5000 | 75 | $12.00 | TV bundles best
+cable internet deals | 5000 | 46 | $18.47 | Deals — LOW COMP
+internet and cable providers in my area | 5000 | 78 | $21.40 | Full phrase
+cheap cable and internet | 5000 | 70 | $17.42 | Cheap bundle
+
+
+# ============================================================
+# CLUSTER 10: STATE-LEVEL KEYWORDS (State Page Targets)
+# ============================================================
+
+internet providers in [State] | 5000 | 83 | $26-30 | State variation core
+best internet providers in [State] | 5000 | 78 | $22-27 | Best state
+cheap internet in [State] | 5000 | 89 | $20-28 | Cheap state
+home internet in [State] | 5000 | 77 | $25-30 | Home state
+internet options in [State] | 5000 | 71 | $20-25 | Options state
+wifi providers in [State] | 5000 | 86 | $29-35 | WiFi state
+fastest internet in [State] | 5000 | 82 | $22-28 | Speed state
+affordable internet in [State] | 5000 | 72 | $20-24 | Affordable state
+internet deals in [State] | 5000 | 84 | $22-25 | Deals state
+internet plans in [State] | 5000 | 73 | $17-24 | Plans state
+
+
+# ============================================================
+# CLUSTER 11: CITY-LEVEL KEYWORDS (City Page Targets)
+# Format: [action] + internet/wifi + [city] or [city] + internet
+# These drive direct navigational traffic at city level
+# ============================================================
+
+internet providers [city] | 5000 | 85-92 | $31-67 | Core city internet
+internet [city] | 500 | 73-97 | $32-60 | Direct city search
+wifi providers [city] | 500 | 88-98 | $42-60 | WiFi city premium
+best internet provider [city] | 500 | 81-92 | $20-49 | Best provider city
+cheapest internet in [city] | 500 | 75-98 | $18-40 | Cheapest city
+home internet providers [city] | 500 | 79-91 | $27-51 | Home city
+internet options [city] | 500 | 81-90 | $25-45 | Options city
+internet plans [city] | 500 | 80-90 | $28-50 | Plans city
+wifi [city] | 500 | 79-98 | $45-60 | WiFi + city — premium
+fast internet [city] | 500 | 82-90 | $25-45 | Fast city
+internet deals [city] | 500 | 80-88 | $22-40 | Deals city
+cable internet [city] | 500 | 70-87 | $18-35 | Cable city
+internet service [city] | 500 | 75-88 | $25-45 | Service city
+cheap internet [city] | 500 | 71-91 | $13-30 | Cheap city
+
+
+# ============================================================
+# CLUSTER 12: ZIP CODE KEYWORDS (ZIP Page Targets)
+# ============================================================
+
+internet providers by zip code | 5000 | 77 | $17.97 | Core zip keyword
+internet availability by zip code | 5000 | 77 | $17.97 | Availability zip
+internet in my area by zip code | 500 | 82 | $23.00 | Area + zip
+internet options by zip code | 5000 | 77 | $17.97 | Options zip
+zip code internet providers | 5000 | 77 | $17.97 | Zip first phrasing
+cable companies in my area by zip code | 500 | 72 | $15.57 | Cable zip
+isp by zip code | 5000 | 77 | $17.97 | ISP zip
+internet providers in my area by zip code | 5000 | 88 | $19.63 | Full phrase
+internet [zip code] | local | 85-94 | $22-30 | Direct zip search
+internet providers [zip code] | local | 85-94 | $22-30 | Providers for zip
+internet at [zip code] | local | 82-90 | $18-25 | At zip
+wifi at [zip code] | local | 86-92 | $25-35 | WiFi at zip
+best internet [zip code] | local | 80-90 | $20-28 | Best at zip
+cheap internet [zip code] | local | 82-90 | $18-28 | Cheap at zip
+
+
+# ============================================================
+# CLUSTER 13: NEIGHBORHOOD KEYWORDS (Neighborhood Page Targets)
+# Competitors DO NOT target neighborhood-level — 100% our opportunity
+# ============================================================
+
+internet in [neighborhood] | local | 75-88 | $22-35 | Core neighborhood
+internet providers in [neighborhood] | local | 78-90 | $25-37 | Providers
+wifi in [neighborhood] | local | 80-92 | $28-40 | WiFi neighborhood
+best internet in [neighborhood] | local | 76-88 | $20-32 | Best
+cheap internet in [neighborhood] | local | 78-89 | $18-30 | Cheap
+home internet in [neighborhood] | local | 75-85 | $25-35 | Home
+internet near [neighborhood] | local | 80-88 | $22-35 | Near
+internet service in [neighborhood] | local | 77-88 | $22-32 | Service
+internet deals in [neighborhood] | local | 76-85 | $20-30 | Deals
+wifi providers in [neighborhood] | local | 80-92 | $28-40 | WiFi providers
+internet plans in [neighborhood] | local | 75-84 | $18-28 | Plans
+internet for [neighborhood] | local | 78-88 | $25-35 | For neighborhood
+
+
+# ============================================================
+# CLUSTER 14: COMPETITOR GAPS — KEYWORDS NO ONE OWNS
+# These appear in NO competitor keyword file or are severely underrepresented
+# Own these NOW before someone else does
+# ============================================================
+
+# --- Moving / Relocation (highest urgency + highest LTV) ---
+internet when moving | 500 | low | $30+ | GAP — mover keyword
+internet for new home | 500 | medium | $35+ | GAP — new homeowner
+internet for new apartment | 500 | medium | $30+ | GAP — renter mover
+moving and need internet | 500 | low | $30+ | GAP — explicit mover
+setting up internet in new home | 500 | medium | $25+ | GAP — setup intent
+internet setup new apartment | 500 | medium | $25+ | GAP — apartment mover
+switching internet providers | 500 | medium | $30+ | GAP — churner keyword
+best internet for new movers | 500 | low | $30+ | GAP — relocation
+moving to [city] internet | 500 | medium | $35+ | GAP — city + moving
+
+# --- Apartment / Rental (underserved 30% of population) ---
+best internet for apartment | 500 | medium | $25+ | GAP — renter searcher
+internet for apartment | 500 | medium | $25+ | GAP — core renter
+best wifi for apartment | 500 | 91 | $25.49 | Partially covered (Allconnect)
+apartment internet service | 500 | medium | $25+ | GAP — service renter
+cheap internet for apartment | 500 | medium | $22+ | GAP — budget renter
+
+# --- Low Income / Free Internet (ACP is OVER — do not reference program) ---
+low income internet | 5000 | 70 | $17.28 | Core low-income keyword
+free internet for low income | 5000 | 68 | $13.10 | Free intent — high volume
+free internet | 50000 | 56 | $12.75 | ADDED — massive standalone, maps to low-income/deals pages
+free government internet for low income | 5000 | 62 | $10.26 | Government assistance search
+cheap internet for low income | 500 | medium | $15+ | GAP — savings + low income combo
+
+# --- Work From Home (growing segment post-2020) ---
+best internet for working from home | 500 | 67 | $30.00 | Barely covered
+internet for working from home | 500 | medium | $25+ | GAP — WFH primary
+work from home internet providers | 500 | medium | $25+ | GAP — WFH providers
+best internet for remote work | 500 | medium | $28+ | GAP — remote work
+reliable internet for home office | 500 | medium | $28+ | GAP — reliability WFH
+fast internet for video calls | 500 | low | $20+ | GAP — specific WFH use
+
+# --- Streaming / Gaming (high-speed premium buyers) ---
+best internet for streaming | 500 | medium | $25+ | GAP — streaming intent
+best internet for Netflix | 500 | medium | $22+ | GAP — Netflix specific
+best internet for gaming | 500 | medium | $28+ | GAP — gaming buyers
+internet for gaming in [city] | local | medium | $25+ | GAP — gaming + city
+internet speed for gaming | 500 | medium | $20+ | GAP — speed gaming
+internet for 4K streaming | 500 | low | $20+ | GAP — 4K specific
+
+# --- Rural / Underserved ---
+rural internet providers | 5000 | 49 | $19.51 | Partially covered
+rural internet near me | 5000 | 59 | $16.12 | Rural near me
+internet options for rural areas | 5000 | 49 | $19.51 | Rural options
+rural internet companies | 5000 | 49 | $19.51 | Rural companies
+satellite internet | 50000 | 57 | $12.69 | CORRECTED — standalone keyword is 50K, not 500
+satellite internet providers | 50000 | 24 | $12.80 | Satellite providers — same volume tier
+internet for rural areas | 5000 | 49 | $19.51 | Core rural
+internet in rural areas | 5000 | 42 | $16.89 | +900% YoY — rural exploding
+
+# --- Reliability / Trust signals ---
+most reliable internet provider | 500 | 75 | $15.99 | Reliability intent
+reliable internet providers | 500 | 25 | $23.76 | Reliability + providers
+best rated internet providers | 500 | 85 | $17.74 | Rated/reviewed intent
+top rated internet providers | 500 | 70 | $24.49 | Top rated
+reliable internet in [city] | local | medium | $20+ | GAP — reliability local
+
+
+# ============================================================
+# CLUSTER 15: CABLE TV ONLY (Lower intent but high volume path)
+# ============================================================
+
+cable tv providers | 50000 | 58 | $12.49 | Core cable TV
+cable tv providers in my area | 50000 | 87 | $14.86 | Cable TV area
+cable providers near me | 50000 | 79 | $15.89 | Cable near me
+cable companies in my area | 50000 | 87 | $14.86 | Cable companies
+cable providers in my area | 50000 | 87 | $14.86 | Providers area
+cable tv in my area | 50000 | 87 | $14.86 | TV in area
+cable providers | 5000 | 54 | $12.75 | Cable general
+cable companies near me | 5000 | 82 | $19.52 | Near me cable
+tv providers near me | 5000 | 85 | $12.75 | TV providers
+tv and internet providers | 5000 | 76 | $14.04 | TV + internet
+tv providers in my area | 5000 | 84 | $14.86 | TV area
+
+
+# ============================================================
+# CLUSTER 16: FIBER INTENT (Exploding — 900% YoY Growth)
+# People searching specifically for fiber by name
+# BasicInternerKeywords.txt reveals fiber optic internet at 500K vol +900% YoY
+# This is a standalone intent cluster, not just a data attribute
+# ============================================================
+
+fiber optic internet | 500000 | 11 | $17.60 | FOUNDATION — 500K vol, +900% YoY
+fiber internet | 50000 | 35 | $21.32 | Core fiber keyword
+fiber optic internet providers | 50000 | 2 | $23.76 | Providers — +900% YoY, LOW comp
+fiber internet providers | 50000 | 5 | $20.34 | Providers — +900% YoY
+fiber internet in my area | 50000 | 82 | $19.52 | Area fiber
+fiber optic internet in my area | 5000 | 73 | $20.00 | Optic + area
+fiber optic internet near me | 5000 | 80 | $18.09 | Near me fiber
+fiber in my area | 5000 | 77 | $23.37 | Fiber area
+fiber near me | 5000 | 65 | $24.43 | Near me
+fiber internet providers near me | 500 | 49 | $25.76 | Providers near me
+fiber internet providers in my area | 500 | 61 | $23.25 | Providers in area
+best fiber internet in my area | 500 | 74 | $22.70 | Best fiber area
+best fiber internet | 500 | 76 | $22.39 | Best fiber
+cheapest fiber internet | 500 | 80 | $19.12 | Cheap + fiber — deals angle
+fiber internet price | 5000 | 15 | $12.58 | Price intent — LOW comp
+fiber home internet | 5000 | 29 | $24.61 | Home + fiber — +900% YoY
+fiber wifi | 5000 | 70 | $23.67 | WiFi + fiber
+fiber wifi near me | 500 | 85 | $29.99 | WiFi + fiber + near me
+gigabit internet | 5000 | 43 | $15.00 | Speed tier search
+gigabit internet near me | 500 | 67 | $20.46 | Gigabit + near me
+
+
+# ============================================================
+# CLUSTER 17: SPEED + TECHNOLOGY (5G, Wireless, High Speed)
+# Primary: 5G home internet (50K vol) and high speed internet (500K vol +900% YoY)
+# Conversion focus: fiber-first, 5G backup — do NOT use DSL as a meta title signal
+# DSL excluded: declining product, not a strategic offering in 2026
+# Business internet excluded: out of meta scope (only one partner; not site-wide)
+# ============================================================
+
+5g home internet | 50000 | 23 | $13.64 | 5G home — massive volume, key backup product
+5g internet | 5000 | 64 | $14.00 | 5G general
+wireless internet | 5000 | 86 | $20.25 | Wireless home — not mobile
+wireless internet providers | 5000 | 79 | $17.50 | Wireless providers
+wireless home internet | 5000 | 71 | $16.23 | Fixed wireless
+high speed internet | 500000 | 1 | $20.70 | FOUNDATION — +900% YoY, LOW comp
+broadband | 50000 | 22 | $14.00 | Standalone broadband
+broadband near me | 5000 | 65 | $20.46 | Broadband + near me
+broadband internet | 50000 | 30 | $14.38 | Broadband internet
+prepaid internet | 5000 | 35 | $18.68 | No-credit, no-contract
+unlimited internet plans | 5000 | 47 | $15.16 | Unlimited qualifier
+
+
+# ============================================================
+# CLUSTER 18: FREE / LOW-INCOME INTERNET (High Volume Reality)
+# "free internet" = 50K vol. "free government internet" = 5K vol.
+# ACP is DEAD — do not reference the program name.
+# Frame as: free, low-cost, government help, low-income deals.
+# ============================================================
+
+free internet | 50000 | 56 | $12.75 | Core free intent — 50K vol
+free wifi | 50000 | 42 | $12.75 | Free wifi — same volume tier
+free internet for low income | 5000 | 68 | $13.10 | Free + low income
+free government internet for low income | 5000 | 62 | $10.26 | Government free
+low income internet | 5000 | 70 | $17.28 | Core low income
+internet for low income | 5000 | 81 | $21.23 | Low income internet
+cheap internet for low income | 500 | medium | $15+ | Budget + low income
+free wifi near me | 50000 | 17 | $13.99 | Free wifi proximity
+internet essentials | 50000 | 43 | $14.03 | Comcast program name — people search it generically
+
+
+# ============================================================
+# META TITLE INTENT-KEYWORD MAPPING
+# Maps keyword cluster → emotional human trigger → title approach
+# This is what the meta plan must follow
+# ============================================================
+#
+# CLUSTER 1 (Near me) → "I want providers near where I live"
+#   → Title must include geographic anchor + quantity or quality signal
+#
+# CLUSTER 2 (Address) → "I want to know what serves MY specific address"
+#   → Title must signal address-level specificity (ZIP/neighborhood)
+#
+# CLUSTER 3 (Cheap) → "I need internet but hate paying monthly bills"
+#   → Title must include savings language, not "compare" — use "save" "deals" "cheap"
+#
+# CLUSTER 4 (Urgency) → "I need internet RIGHT NOW — I moved / mine is broken"
+#   → Title must signal immediacy and ease — "Get Internet" / "Available Today"
+#
+# CLUSTER 5 (WiFi) → "I need internet and I call it WiFi"
+#   → Include WiFi language in descriptions even when title says "internet"
+#   → Some pages should flip title to WiFi language instead
+#
+# CLUSTER 6 (Speed) → "I want the fastest available option"
+#   → Title should include speed signal — not just fastest but "fast plans"
+#
+# CLUSTER 7 (Home) → "I need internet for my house, not mobile"
+#   → "Home internet" in title = qualification signal = right audience
+#
+# CLUSTER 8 (Plans/Compare) → "I'm researching, not ready to buy yet"
+#   → Title should show breadth of options, number of providers
+#
+# CLUSTER 16 (Fiber) → "I specifically want fiber internet"
+#   → Title must include "fiber" or "fiber optic" — these people know what they want
+#   → Pair with deals language in descriptions — fiber seekers still want value
+#
+# CLUSTER 17 (Technology) → "I want 5G / wireless / fast internet"
+#   → 5G and wireless are valid conversion titles — use when fiber is the unknown
+#   → DSL is excluded — declining product, not a 2026 selling point
+#   → Business internet is excluded — out of site-wide meta scope
+#   → Descriptions: bridge to address lookup + fiber/5G availability check
+#
+# CLUSTER 18 (Free/Low-Income) → "I can barely afford internet"
+#   → Frame as affordable, low-cost, free options — NOT program names
+#   → ACP is dead. Never reference it. Use "low-cost" and "deals" language.
+#   → Pair with deals/savings in descriptions — this is the most price-sensitive audience
+#
+# CROSS-CUTTING INSIGHT (Deals/Savings):
+#   Every searcher, regardless of primary intent, cares about price.
+#   Someone searching "fiber internet near me" still wants a deal.
+#   Someone searching "5g home internet" still wants affordable.
+#   Descriptions should ALWAYS include a savings or value signal —
+#   "compare prices", "find deals", "best value", "save on monthly bills"
+#   even when the title targets a non-price cluster.
+#
+# COMPETITIVE DIFFERENTIATOR INSIGHT:
+#   People searching internet could go directly to Xfinity.com, T-Mobile.com,
+#   or Frontier.com. The ONLY reason they choose internet-4-all.com instead:
+#   → They do not know what is available at their specific address
+#   → Provider sites only show their own service — I4A shows ALL providers
+#   → One address check beats visiting 5 carrier sites one-by-one
+#   Description hook: "See every provider available at your address in one search"
+#   or "One address check, all local options — no calls, no runaround."
+#   This is the CTR win over everyone else in the search results.
+#
+# INTENT VERB COVERAGE:
+#   Searchers use "find internet", "get internet", "check internet",
+#   "search for internet", "look up internet" interchangeably.
+#   Title families MUST include all of these action verbs across variants.
+#   No single action verb should dominate the entire pool for a page type.
+#   Goal: whichever word a person uses, a matching title variant exists.
+#
+# KEY INSIGHT:
+#   The most human-resonant titles combine:
+#   [Action verb] + [Location] + [Availability/ease signal]
+#   NOT: "Internet Providers in Dallas TX (2026)"
+#   YES: "Find Internet in Dallas TX — See All Providers at Your Address"
+#   YES: "Get Fast Internet in Dallas — Check Availability in 60 Seconds"
+#   YES: "Search Internet Providers in Dallas TX: Fiber and 5G Options"
+#
+# ============================================================

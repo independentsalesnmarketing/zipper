@@ -8,9 +8,9 @@ import { generateBreadcrumbSchema } from '@lib/utils';
 const partners = getPartnerProviders();
 ---
 <Base
-  title="Internet Needs Quiz — Find Your Perfect Plan in 60 Seconds"
-  description="Answer 5 quick questions and get a personalized internet plan recommendation based on your household size, usage, and budget."
-  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Internet Quiz', url: 'https://internet4all.com/quiz' }])]}
+  title="Find Your Best Internet Provider — Quick Quiz"
+  description="Answer a few quick questions about your home and usage — we'll match you with the best internet providers and plans available at your address. Takes 60 seconds."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet-4-all.com' }, { name: 'Internet Quiz', url: 'https://internet-4-all.com/quiz' }])]}
 >
   <section class="section" style="padding-top:var(--space-xl);">
     <div class="container" style="max-width:700px;">
@@ -28,9 +28,9 @@ const partners = getPartnerProviders();
         <div style="margin-bottom:var(--space-xl);">
           <div class="flex items-center" style="justify-content:space-between;margin-bottom:var(--space-xs);">
             <span id="quiz-step" style="font-size:var(--text-sm);font-weight:700;">Question 1 of 5</span>
-            <span id="quiz-pct" style="font-size:var(--text-sm);color:var(--text-muted);">0%</span>
+            <span id="quiz-pct" style="font-size:var(--text-sm);color:var(--text-muted);">20%</span>
           </div>
-          <div class="progress-bar"><div id="quiz-bar" class="progress-fill" style="width:0%;"></div></div>
+          <div class="progress-bar"><div id="quiz-bar" class="progress-fill" style="width:20%;"></div></div>
         </div>
 
         <!-- Questions -->
@@ -38,51 +38,51 @@ const partners = getPartnerProviders();
           <!-- Q1 -->
           <div class="quiz-question card" data-q="1">
             <h3 style="margin-bottom:var(--space-lg);">How many people are in your household?</h3>
-            <div class="grid grid-2" style="gap:var(--space-sm);">
-              <button class="quiz-opt btn btn-secondary" data-value="1">Just me</button>
-              <button class="quiz-opt btn btn-secondary" data-value="2">2 people</button>
-              <button class="quiz-opt btn btn-secondary" data-value="3">3-4 people</button>
-              <button class="quiz-opt btn btn-secondary" data-value="5">5+ people</button>
+            <div class="grid grid-2" style="gap:var(--space-sm);" role="radiogroup" aria-label="Household size">
+              <button class="quiz-opt btn btn-secondary" data-value="1" aria-pressed="false">Just me</button>
+              <button class="quiz-opt btn btn-secondary" data-value="2" aria-pressed="false">2 people</button>
+              <button class="quiz-opt btn btn-secondary" data-value="3" aria-pressed="false">3-4 people</button>
+              <button class="quiz-opt btn btn-secondary" data-value="5" aria-pressed="false">5+ people</button>
             </div>
           </div>
           <!-- Q2 -->
           <div class="quiz-question card" data-q="2" style="display:none;">
             <h3 style="margin-bottom:var(--space-lg);">What do you mainly use the internet for?</h3>
-            <div class="grid grid-2" style="gap:var(--space-sm);">
-              <button class="quiz-opt btn btn-secondary" data-value="basic">Email & browsing</button>
-              <button class="quiz-opt btn btn-secondary" data-value="streaming">Streaming (Netflix, YouTube)</button>
-              <button class="quiz-opt btn btn-secondary" data-value="gaming">Gaming</button>
-              <button class="quiz-opt btn btn-secondary" data-value="wfh">Work from home</button>
+            <div class="grid grid-2" style="gap:var(--space-sm);" role="radiogroup" aria-label="Primary internet use">
+              <button class="quiz-opt btn btn-secondary" data-value="basic" aria-pressed="false">Email & browsing</button>
+              <button class="quiz-opt btn btn-secondary" data-value="streaming" aria-pressed="false">Streaming (Netflix, YouTube)</button>
+              <button class="quiz-opt btn btn-secondary" data-value="gaming" aria-pressed="false">Gaming</button>
+              <button class="quiz-opt btn btn-secondary" data-value="wfh" aria-pressed="false">Work from home</button>
             </div>
           </div>
           <!-- Q3 -->
           <div class="quiz-question card" data-q="3" style="display:none;">
             <h3 style="margin-bottom:var(--space-lg);">How many devices connect to your WiFi?</h3>
-            <div class="grid grid-2" style="gap:var(--space-sm);">
-              <button class="quiz-opt btn btn-secondary" data-value="3">1-3 devices</button>
-              <button class="quiz-opt btn btn-secondary" data-value="7">4-7 devices</button>
-              <button class="quiz-opt btn btn-secondary" data-value="12">8-12 devices</button>
-              <button class="quiz-opt btn btn-secondary" data-value="20">13+ devices</button>
+            <div class="grid grid-2" style="gap:var(--space-sm);" role="radiogroup" aria-label="Number of devices">
+              <button class="quiz-opt btn btn-secondary" data-value="3" aria-pressed="false">1-3 devices</button>
+              <button class="quiz-opt btn btn-secondary" data-value="7" aria-pressed="false">4-7 devices</button>
+              <button class="quiz-opt btn btn-secondary" data-value="12" aria-pressed="false">8-12 devices</button>
+              <button class="quiz-opt btn btn-secondary" data-value="20" aria-pressed="false">13+ devices</button>
             </div>
           </div>
           <!-- Q4 -->
           <div class="quiz-question card" data-q="4" style="display:none;">
             <h3 style="margin-bottom:var(--space-lg);">Do multiple people stream or game at the same time?</h3>
-            <div class="grid grid-2" style="gap:var(--space-sm);">
-              <button class="quiz-opt btn btn-secondary" data-value="0">Almost never</button>
-              <button class="quiz-opt btn btn-secondary" data-value="1">Sometimes</button>
-              <button class="quiz-opt btn btn-secondary" data-value="2">Often</button>
-              <button class="quiz-opt btn btn-secondary" data-value="3">All the time</button>
+            <div class="grid grid-2" style="gap:var(--space-sm);" role="radiogroup" aria-label="Simultaneous usage">
+              <button class="quiz-opt btn btn-secondary" data-value="0" aria-pressed="false">Almost never</button>
+              <button class="quiz-opt btn btn-secondary" data-value="1" aria-pressed="false">Sometimes</button>
+              <button class="quiz-opt btn btn-secondary" data-value="2" aria-pressed="false">Often</button>
+              <button class="quiz-opt btn btn-secondary" data-value="3" aria-pressed="false">All the time</button>
             </div>
           </div>
           <!-- Q5 -->
           <div class="quiz-question card" data-q="5" style="display:none;">
             <h3 style="margin-bottom:var(--space-lg);">What's your monthly budget for internet?</h3>
-            <div class="grid grid-2" style="gap:var(--space-sm);">
-              <button class="quiz-opt btn btn-secondary" data-value="30">Under $30/mo</button>
-              <button class="quiz-opt btn btn-secondary" data-value="50">$30-$50/mo</button>
-              <button class="quiz-opt btn btn-secondary" data-value="75">$50-$75/mo</button>
-              <button class="quiz-opt btn btn-secondary" data-value="999">$75+/mo (I want the best)</button>
+            <div class="grid grid-2" style="gap:var(--space-sm);" role="radiogroup" aria-label="Monthly budget">
+              <button class="quiz-opt btn btn-secondary" data-value="30" aria-pressed="false">Under $30/mo</button>
+              <button class="quiz-opt btn btn-secondary" data-value="50" aria-pressed="false">$30-$50/mo</button>
+              <button class="quiz-opt btn btn-secondary" data-value="75" aria-pressed="false">$50-$75/mo</button>
+              <button class="quiz-opt btn btn-secondary" data-value="999" aria-pressed="false">$75+/mo (I want the best)</button>
             </div>
           </div>
         </div>
@@ -114,9 +114,11 @@ const partners = getPartnerProviders();
       this.closest('.quiz-question').querySelectorAll('.quiz-opt').forEach(b => {
         b.classList.remove('btn-primary');
         b.classList.add('btn-secondary');
+        b.setAttribute('aria-pressed', 'false');
       });
       this.classList.add('btn-primary');
       this.classList.remove('btn-secondary');
+      this.setAttribute('aria-pressed', 'true');
       
       setTimeout(() => {
         if (q < total) {
@@ -125,8 +127,8 @@ const partners = getPartnerProviders();
           document.querySelector(`.quiz-question[data-q="${q + 1}"]`).style.display = 'block';
           current = q + 1;
           document.getElementById('quiz-step').textContent = `Question ${current} of ${total}`;
-          document.getElementById('quiz-pct').textContent = Math.round((current - 1) / total * 100) + '%';
-          document.getElementById('quiz-bar').style.width = ((current - 1) / total * 100) + '%';
+          document.getElementById('quiz-pct').textContent = Math.round(current / total * 100) + '%';
+          document.getElementById('quiz-bar').style.width = (current / total * 100) + '%';
         } else {
           // Show results
           showResults();
@@ -213,7 +215,7 @@ const partners = getPartnerProviders();
               </div>
               <div style="text-align:right;">
                 <div style="font-size:var(--text-xl);font-weight:900;color:var(--brand-green);">$${price.toFixed(2)}<span style="font-size:var(--text-xs);font-weight:400;">/mo</span></div>
-                <a href="#get-connected" class="btn btn-cta" style="margin-top:var(--space-xs);font-size:var(--text-sm);">Get This Plan</a>
+                <a href="#get-connected" class="btn btn-cta" data-signup-provider="${m.provider.slug}" style="margin-top:var(--space-xs);font-size:var(--text-sm);">Get This Plan</a>
               </div>
             </div>
           </div>

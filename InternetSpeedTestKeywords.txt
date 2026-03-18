@@ -1,0 +1,593 @@
+Keyword	Currency	Avg. monthly searches	Three month change	YoY change	Competition	Competition (indexed value)	Top of page bid (low range)
+speed test	USD	5000000	0%	0%	Low	1	0.02
+internet speed test	USD	5000000	0%	0%	Low	1	0.03
+speedometer test	USD	5000000	0%	0%	Low	1	0.02
+speedy test	USD	5000000	0%	0%	Low	1	0.02
+speedtest internet speed	USD	5000000	0%	0%	Low	1	0.02
+speedcheck internet speed test	USD	5000000	0%	0%	Low	1	0.02
+speedtest nt	USD	5000000	0%	0%	Low	1	0.02
+speedtesttest	USD	5000000	0%	0%	Low	1	0.02
+inter internet speed test	USD	5000000	0%	0%	Low	1	0.03
+speed test test	USD	5000000	0%	0%	Low	1	0.02
+spéed test	USD	5000000	0%	0%	Low	1	0.02
+high speed internet	USD	500000	0%	900%	Low	1	5.02
+fiber optic internet	USD	500000	900%	900%	Low	11	4.49
+wifi speed test	USD	500000	0%	0%	Low	4	0.04
+test my internet speed	USD	500000	0%	0%	Low	6	0.04
+internet speeds	USD	500000	0%	0%	Low	7	0.11
+ookla speed test	USD	500000	0%	0%	Low	0	0.03
+google speed test	USD	500000	0%	0%	Low	0	0.27
+at&t fiber internet plans	USD	500000	0%	0%	Low	2	1.96
+high speed internet plans	USD	500000	0%	9900%	Low	0	3.31
+speed	USD	500000	0%	0%	Low	0	3.27
+check internet speed test	USD	500000	0%	0%	Low	6	0.04
+xfinityspeedtest	USD	500000	0%	-90%	Low	0	5.70
+ookla	USD	500000	0%	0%	Low	1	4.14
+measure my internet speed	USD	500000	0%	0%	Low	6	0.04
+check xfinity speed	USD	500000	0%	-90%	Low	0	5.70
+speedtest net ookla	USD	500000	-90%	-90%	Low	1	0.04
+wifi bandwidth test	USD	500000	0%	0%	Low	4	0.04
+speed test for wifi	USD	500000	0%	0%	Low	4	0.04
+internet speedometer	USD	500000	0%	0%	Low	7	0.11
+test my network speed	USD	500000	0%	0%	Low	6	0.04
+speed test comcast	USD	500000	0%	-90%	Low	0	5.70
+wireless internet speed test	USD	500000	0%	0%	Low	4	0.04
+comcast internet speed test	USD	500000	0%	-90%	Low	0	5.70
+bandwidth test google	USD	500000	0%	0%	Low	0	0.27
+comcast speed check	USD	500000	0%	-90%	Low	0	5.70
+test speed xfinity	USD	500000	0%	-90%	Low	0	5.70
+by speed test	USD	500000	-90%	0%	Low	1	0.04
+check my speed xfinity	USD	500000	0%	-90%	Low	0	5.70
+comcast test speed	USD	500000	0%	-90%	Low	0	5.70
+google speed meter	USD	500000	0%	0%	Low	0	0.27
+ookla bandwidth test	USD	500000	0%	0%	Low	0	0.03
+ookla s	USD	500000	0%	0%	Low	1	4.14
+ookla test speed test	USD	500000	0%	0%	Low	0	0.03
+s0eed test	USD	500000	0%	0%	Low	0	0.03
+speed test net speed test	USD	500000	0%	0%	Low	0	0.03
+speedmeter ookla	USD	500000	-90%	-90%	Low	1	0.04
+speedtest ookla speed test	USD	500000	0%	0%	Low	0	0.03
+spit test internet	USD	500000	0%	0%	Low	9	0.03
+test my speed xfinity	USD	500000	0%	-90%	Low	0	5.70
+xfinity internet speed check	USD	500000	0%	-90%	Low	0	5.70
+wifi speed	USD	50000	0%	0%	Low	7	0.08
+home internet providers	USD	50000	0%	0%	Medium	58	7.25
+fiber internet in my area	USD	50000	0%	0%	High	82	4.52
+internet services in my area	USD	50000	0%	0%	High	81	6.19
+website speed test	USD	50000	0%	0%	Low	21	2.00
+internet providers at my address	USD	50000	0%	-90%	High	83	5.31
+check internet speed	USD	50000	0%	0%	Low	11	0.04
+broad band	USD	50000	0%	0%	Low	22	3.40
+google fiber internet	USD	50000	0%	900%	Low	12	2.36
+speedtest spectrum	USD	50000	0%	0%	Low	14	8.28
+internet test	USD	50000	0%	0%	Low	3	0.02
+check my internet speed	USD	50000	0%	0%	Low	14	0.04
+wifi test	USD	50000	-90%	0%	Low	7	0.02
+my internet speed	USD	50000	0%	0%	Low	9	0.05
+internet fiber in my area	USD	50000	0%	0%	High	82	4.52
+pagespeed insights	USD	50000	0%	0%	Low	9	2.17
+fiber internet providers	USD	50000	0%	900%	Low	5	5.00
+speed check	USD	50000	0%	0%	Low	8	0.02
+google pagespeed insights	USD	50000	0%	0%	Low	12	2.76
+network speed test	USD	50000	0%	0%	Low	2	0.03
+google fiber speed test	USD	50000	0%	0%	Low	2	8.75
+internet speed test free	USD	50000	0%	0%	Low	6	0.24
+site speed test	USD	50000	0%	0%	Low	21	2.00
+test wifi speed	USD	50000	0%	0%	Low	9	0.03
+check internet connection	USD	50000	0%	0%	Low	6	0.93
+pagespeed	USD	50000	0%	0%	Low	7	1.91
+download speed test	USD	50000	0%	0%	Low	4	0.03
+network speed	USD	50000	0%	0%	Low	4	0.04
+att speedtest	USD	50000	0%	0%	Low	0	0.01
+internet connection test	USD	50000	0%	0%	Low	6	0.93
+bandwidth test	USD	50000	0%	0%	Low	2	0.03
+high speed internet providers	USD	50000	0%	900%	Low	0	5.74
+internet speed test google	USD	50000	0%	0%	Low	1	0.04
+check my internet	USD	50000	-90%	-90%	Low	4	0.06
+high speed internet for business	USD	50000	0%	9900%	Low	0	27.92
+network test	USD	50000	0%	0%	Low	26	0.04
+fiber internet plans	USD	50000	900%	9900%	Low	1	4.58
+fiber optic internet providers	USD	50000	0%	900%	Low	2	4.51
+spectrum internet gig	USD	50000	0%	0%	Low	6	2.85
+wifi internet providers near me	USD	50000	0%	-90%	High	76	10.00
+fast speed test	USD	50000	0%	0%	Low	2	0.04
+dsl speed test	USD	50000	-90%	-90%	Low	2	0.05
+test my speed	USD	50000	0%	0%	Low	2	0.03
+test my internet	USD	50000	0%	0%	Low	5	0.03
+internet providers my area	USD	50000	0%	0%	High	81	6.19
+upload speed test	USD	50000	0%	-90%	Low	7	0.02
+cox communications internet plans	USD	50000	0%	0%	Low	19	1.13
+verizon speed test	USD	50000	0%	0%	Low	5	10.04
+high speed fiber internet	USD	50000	900%	99900%	Low	0	6.03
+verizon internet speed test	USD	50000	0%	0%	Low	5	10.04
+web speed test	USD	50000	0%	0%	Low	21	2.00
+speed test by ookla	USD	50000	0%	900%	Low	0	0.03
+fiber internet companies	USD	50000	0%	900%	Low	5	5.00
+speakeasy speed test	USD	50000	0%	0%	Low	1	0.03
+run speed test	USD	50000	0%	0%	Low	3	0.03
+spectrum internet speed test	USD	50000	0%	0%	Low	7	8.28
+net test	USD	50000	0%	0%	Low	26	0.04
+speedtest verizon	USD	50000	0%	0%	Low	5	10.04
+internet s	USD	50000	0%	0%	High	78	8.73
+best internet provider my area	USD	50000	0%	0%	High	83	5.83
+internet speed test xfinity	USD	50000	0%	0%	Low	1	5.22
+cloudflare speed test	USD	50000	0%	0%	Low	0	0.19
+high speed cable internet	USD	50000	900%	999900%	Low	0	6.45
+internet bandwidth test	USD	50000	0%	0%	Low	11	0.04
+verizon speed check	USD	50000	0%	0%	Low	5	10.04
+check internet speed cox	USD	50000	0%	-90%	Low	2	1.70
+in my area internet providers	USD	50000	0%	0%	High	81	6.19
+wifi sp	USD	50000	0%	0%	Low	7	0.08
+business high speed internet service	USD	50000	0%	9900%	Low	0	27.92
+online speed test	USD	50000	-90%	0%	Low	1	0.04
+run internet speed	USD	50000	0%	0%	Low	3	0.03
+verizon test speed	USD	50000	0%	0%	Low	5	10.04
+cox internet speed test	USD	50000	0%	-90%	Low	2	1.70
+check upload speed	USD	50000	0%	-90%	Low	7	0.02
+cox speed test	USD	50000	0%	-90%	Low	2	1.70
+internet broadband speed test	USD	50000	0%	0%	Low	4	0.07
+dsl speed check	USD	50000	-90%	-90%	Low	2	0.05
+test your internet	USD	50000	0%	0%	Low	3	0.02
+google fiber internet speed test	USD	50000	0%	0%	Low	2	8.75
+runspeedtest	USD	50000	0%	0%	Low	3	0.03
+your internet speed	USD	50000	0%	0%	Low	9	0.05
+fiber google speed test	USD	50000	0%	0%	Low	2	8.75
+check your internet	USD	50000	0%	0%	Low	3	0.02
+free internet speed check	USD	50000	0%	0%	Low	6	0.24
+internet speed detector	USD	50000	0%	0%	Low	11	0.04
+internet speed check google	USD	50000	0%	0%	Low	1	0.04
+network speed test wifi	USD	50000	0%	0%	Low	10	0.02
+test my upload speed	USD	50000	0%	-90%	Low	7	0.02
+networkspeedtest	USD	50000	0%	0%	Low	2	0.03
+internet speed t	USD	50000	0%	0%	Low	9	0.04
+check spectrum internet speed	USD	50000	0%	0%	Low	7	8.28
+spectrum test speed	USD	50000	0%	0%	Low	11	6.90
+check internet speed spectrum	USD	50000	0%	0%	Low	11	6.90
+spectrum speed check	USD	50000	0%	0%	Low	11	6.90
+spectrum speed test internet	USD	50000	0%	0%	Low	7	8.28
+spectrum check internet speed	USD	50000	0%	0%	Low	11	6.90
+cox cable speed test	USD	50000	0%	-90%	Low	2	1.70
+wifi connection speed test	USD	50000	0%	0%	Low	10	0.02
+test your internet connection	USD	50000	0%	0%	Low	6	0.93
+speed internet test google	USD	50000	0%	0%	Low	1	0.04
+google speed internet test	USD	50000	0%	0%	Low	1	0.04
+test my internet speed free	USD	50000	0%	0%	Low	6	0.24
+test my internet speed google	USD	50000	0%	0%	Low	1	0.04
+internet test speed google	USD	50000	0%	0%	Low	1	0.04
+google check my internet speed	USD	50000	0%	0%	Low	0	0.04
+speakeasy internet speed test	USD	50000	0%	0%	Low	1	0.03
+check internet upload speed	USD	50000	0%	-90%	Low	7	0.02
+speedtest upload speed	USD	50000	0%	-90%	Low	7	0.02
+speed internet speed	USD	50000	0%	0%	Low	8	0.02
+check my internet speed test	USD	50000	0%	0%	Low	14	0.04
+fast test internet speed	USD	50000	0%	0%	Low	2	0.04
+speed test internet xfinity	USD	50000	0%	0%	Low	1	5.22
+dsl internet speed test	USD	50000	-90%	-90%	Low	2	0.05
+fastspeedtest	USD	50000	0%	0%	Low	2	0.04
+find my speed	USD	50000	0%	0%	Low	14	0.04
+inrwenwr speed test	USD	50000	0%	0%	Low	11	0.04
+inter test	USD	50000	0%	0%	Low	3	0.02
+internet internet speed test	USD	50000	0%	0%	Low	11	0.04
+my spectrum speed test	USD	50000	0%	0%	Low	11	6.90
+online speedometer test	USD	50000	-90%	0%	Low	1	0.04
+speed test xfinity internet	USD	50000	0%	0%	Low	1	5.22
+speedof me	USD	50000	0%	0%	Low	2	0.02
+test inte	USD	50000	-90%	0%	Low	5	0.02
+test my speed google	USD	50000	0%	0%	Low	0	0.04
+wifi speedometer	USD	50000	0%	0%	Low	7	0.08
+high speed internet near me	USD	5000	0%	0%	High	83	6.30
+home internet providers near me	USD	5000	0%	-90%	High	78	8.32
+fiber optic internet near me	USD	5000	0%	0%	High	80	4.14
+wireless internet providers	USD	5000	0%	0%	High	79	5.19
+broadband speed test	USD	5000	0%	0%	Low	4	0.05
+home internet providers in my area	USD	5000	0%	0%	High	88	8.13
+fastest internet in my area	USD	5000	0%	0%	High	76	5.32
+high speed internet in my area	USD	5000	0%	0%	High	80	5.53
+home wifi plans	USD	5000	0%	0%	Medium	55	7.44
+fiber wifi	USD	5000	0%	0%	High	70	6.67
+gigabit internet	USD	5000	0%	0%	Medium	43	4.08
+internet for rural areas	USD	5000	0%	-90%	High	68	4.00
+fast internet near me	USD	5000	-90%	-90%	High	84	8.26
+bright speed internet	USD	5000	0%	0%	Medium	63	3.25
+high speed internet by address	USD	5000	0%	0%	High	75	3.15
+comcast fiber internet	USD	5000	0%	0%	Medium	53	4.06
+broadband internet near me	USD	5000	0%	-90%	Medium	65	4.46
+wifi internet providers	USD	5000	0%	-90%	High	72	8.02
+home internet near me	USD	5000	0%	0%	High	78	8.58
+internet plans in my area	USD	5000	0%	-90%	High	68	5.26
+wireless internet providers near me	USD	5000	0%	-90%	High	69	5.95
+internet plans for home	USD	5000	0%	0%	Low	24	5.78
+xfinity internet only plans	USD	5000	0%	0%	Low	9	2.33
+fastest internet speed	USD	5000	0%	0%	Medium	42	3.61
+verizon high speed internet	USD	5000	0%	0%	Low	29	2.38
+att high speed internet	USD	5000	0%	0%	Medium	42	2.68
+spectrum internet speeds	USD	5000	0%	0%	Medium	43	2.75
+wireless internet for home	USD	5000	0%	0%	High	68	5.92
+fast wifi	USD	5000	0%	0%	Medium	65	4.81
+fidium fiber internet	USD	5000	0%	0%	Medium	53	2.00
+wireless internet plans	USD	5000	-90%	0%	Low	17	4.77
+xfinity internet speeds	USD	5000	0%	0%	Low	15	2.20
+xfinity fiber internet	USD	5000	0%	0%	Medium	53	4.06
+cheap home internet plans	USD	5000	900%	0%	Medium	56	4.90
+xfinity high speed internet	USD	5000	0%	0%	Low	15	2.20
+xfinity home internet plans	USD	5000	0%	0%	Low	23	2.58
+website performance test	USD	5000	0%	0%	Medium	56	2.60
+cox high speed internet	USD	5000	900%	900%	Low	21	1.62
+high speed wifi	USD	5000	900%	900%	Low	11	7.74
+cheap high speed internet	USD	5000	0%	-90%	Medium	63	4.57
+att fiber check	USD	5000	0%	0%	Low	18	1.98
+spectrum high speed internet	USD	5000	0%	0%	Medium	43	2.75
+unlimited home internet plans	USD	5000	900%	900%	Medium	55	4.49
+high speed home internet	USD	5000	0%	9900%	Low	2	5.99
+spectrum home internet plans	USD	5000	0%	0%	Low	24	2.85
+fastest home internet	USD	5000	0%	-90%	Medium	62	5.45
+verizon home internet speed	USD	5000	0%	0%	Low	11	3.29
+fastest internet provider	USD	5000	0%	0%	Low	22	4.76
+best internet deal	USD	5000	0%	0%	Medium	43	5.34
+fiber optic internet in my area	USD	5000	0%	0%	High	73	4.45
+google fiber wifi	USD	5000	0%	900%	Medium	35	3.19
+rural high speed internet	USD	5000	9900%	9900%	Low	2	4.60
+100 mbps internet speed	USD	5000	900%	900%	Low	26	4.21
+netspeed	USD	5000	0%	0%	Low	7	1.99
+good internet speed	USD	5000	0%	0%	Low	30	4.36
+spectrum fiber internet	USD	5000	0%	0%	Medium	44	2.85
+check wifi speed	USD	5000	0%	0%	Low	16	0.03
+wifi internet plans	USD	5000	-90%	0%	Low	17	4.77
+fiber optic wifi	USD	5000	0%	0%	Medium	60	6.00
+pingdom speed test	USD	5000	0%	0%	Low	6	2.18
+best internet services	USD	5000	0%	0%	High	74	4.54
+wifi checker	USD	5000	0%	0%	Low	15	0.03
+residential internet providers	USD	5000	-90%	900%	Low	6	5.05
+high speed internet for rural areas	USD	5000	9900%	9900%	Low	2	4.60
+comcast internet speed	USD	5000	0%	-90%	Low	27	1.76
+page speed test	USD	5000	0%	0%	Low	10	1.65
+centurylink speed test	USD	5000	0%	0%	Low	0	
+spectrum internet only	USD	5000	0%	0%	Medium	45	2.85
+home wireless internet plans	USD	5000	0%	0%	Medium	55	7.44
+optimum fiber internet	USD	5000	0%	0%	Medium	49	1.74
+fiber optic cable internet	USD	5000	0%	0%	High	84	0.97
+home internet wifi	USD	5000	0%	0%	High	68	5.92
+check website speed	USD	5000	0%	-90%	Medium	39	1.30
+xfinity internet only prices	USD	5000	0%	-90%	Medium	35	1.54
+check my wifi speed	USD	5000	0%	0%	Low	18	0.04
+comcast home internet plans	USD	5000	0%	0%	Low	23	2.58
+kinetic fiber internet	USD	5000	0%	0%	Medium	44	3.00
+300mbps internet	USD	5000	0%	0%	Medium	55	5.05
+spectrum internet test	USD	5000	0%	0%	Low	19	5.04
+google pagespeed	USD	5000	0%	-90%	Low	4	2.76
+1 gig internet speed	USD	5000	0%	0%	Medium	60	4.53
+my wifi speed	USD	5000	0%	0%	Low	14	0.04
+good internet speed for gaming	USD	5000	-90%	-90%	Medium	49	4.54
+verizon internet speeds	USD	5000	0%	0%	Low	14	7.00
+comcast internet only price	USD	5000	0%	-90%	Medium	35	1.54
+fiber home internet	USD	5000	0%	900%	Low	29	5.95
+pingdom website speed test	USD	5000	0%	0%	Low	6	2.18
+speed test net	USD	5000	900%	900%	Low	3	0.03
+att internet speeds	USD	5000	0%	0%	Low	26	1.38
+check internet	USD	5000	0%	0%	Low	27	0.70
+check my speed	USD	5000	0%	0%	Low	10	0.03
+broadband internet plans	USD	5000	0%	0%	Low	4	3.95
+velocity internet	USD	5000	0%	0%	Medium	36	1.97
+good wifi speed	USD	5000	-90%	-90%	Medium	35	4.86
+google website speed test	USD	5000	0%	0%	Low	4	2.50
+check website performance	USD	5000	0%	0%	Medium	56	2.60
+t mobile home internet speed	USD	5000	0%	0%	Low	32	3.91
+fibre optic internet near me	USD	5000	0%	0%	High	76	6.13
+cox internet speeds	USD	5000	-90%	-90%	Low	29	1.03
+t mobile 5g home internet speed	USD	5000	0%	0%	Low	27	4.23
+internet speed test online	USD	5000	900%	0%	Low	8	0.05
+check wifi signal strength	USD	5000	0%	0%	Low	15	0.09
+fios speed test	USD	5000	0%	0%	Low	3	10.38
+testmyspeed	USD	5000	0%	0%	Low	4	0.02
+check my internet connection	USD	5000	0%	0%	Low	16	1.06
+high speed broadband in my area	USD	5000	0%	0%	High	80	5.53
+verizon fios internet deals	USD	5000	0%	900%	Low	6	3.62
+best home internet providers	USD	5000	0%	0%	High	73	5.15
+frontier internet speeds	USD	5000	-90%	-90%	Low	22	1.20
+att internet check	USD	5000	0%	0%	Low	17	1.76
+highest speed internet in my area	USD	5000	0%	0%	High	80	5.53
+check your internet speed	USD	5000	0%	0%	Low	13	0.06
+2 gigabit internet	USD	5000	0%	0%	Medium	46	3.62
+optimum high speed internet	USD	5000	-90%	0%	Low	33	0.93
+mbps test	USD	5000	0%	0%	Low	4	0.03
+internet 100 mbps	USD	5000	0%	0%	Low	17	4.49
+verizon orbic speed mobile hotspot	USD	5000	-90%	-90%	Medium	61	0.23
+5g internet verizon	USD	5000	0%	0%	Low	22	3.38
+home wireless internet providers	USD	5000	0%	0%	Medium	43	3.89
+spectrum internet upload speed	USD	5000	0%	0%	Medium	42	3.00
+metronet fiber internet	USD	5000	0%	0%	Medium	35	2.48
+earthlink fiber internet	USD	5000	0%	900%	Medium	35	2.43
+fast internet connection	USD	5000	-90%	-90%	Low	15	4.63
+gigabyte internet	USD	5000	0%	0%	Medium	43	4.08
+website speed	USD	5000	0%	0%	Low	24	1.47
+internet download speed	USD	5000	0%	0%	Low	12	0.09
+computer speed test	USD	5000	0%	0%	Low	4	0.04
+broadband internet providers	USD	5000	0%	0%	Low	4	4.72
+test my wifi	USD	5000	0%	0%	Low	11	0.02
+internet connection speed	USD	5000	0%	0%	Low	9	0.96
+1 gigabit internet	USD	5000	0%	0%	Medium	61	5.38
+best internet speed test	USD	5000	0%	0%	Low	9	0.26
+fiber internet speed	USD	5000	0%	0%	Low	24	2.16
+internet 500 mbps	USD	5000	0%	0%	Medium	61	5.14
+high speed internet providers in my area	USD	5000	0%	0%	High	80	5.53
+att internet speed test	USD	5000	0%	0%	Low	1	0.01
+best internet in rural areas	USD	5000	0%	-90%	High	67	3.26
+rural area internet providers	USD	5000	-90%	-90%	Medium	41	4.56
+xfinity gig internet	USD	5000	0%	0%	Medium	34	3.79
+google fiber internet speed	USD	5000	0%	900%	Low	1	7.39
+fiber optic internet speed	USD	5000	0%	0%	Low	24	2.16
+rcn speed test	USD	5000	-90%	-90%	Low	5	6.00
+site speed	USD	5000	900%	0%	Low	12	1.53
+check my wifi	USD	5000	0%	900%	Low	22	0.03
+fastest internet in the world	USD	5000	-90%	-90%	Low	6	2.23
+google fiber home internet	USD	5000	0%	900%	Low	2	2.76
+check download speed	USD	5000	0%	0%	Low	12	0.03
+gaming internet speed	USD	5000	0%	0%	Low	8	3.07
+test my wifi speed	USD	5000	0%	0%	Low	10	0.03
+fastest internet available	USD	5000	0%	0%	Low	22	4.76
+wifi connection test	USD	5000	0%	0%	Low	8	0.04
+cox fastest internet	USD	5000	900%	900%	Low	21	1.62
+site performance test	USD	5000	0%	0%	Medium	56	2.60
+xfinity gigabit internet	USD	5000	0%	0%	Medium	34	3.79
+measure internet speed	USD	5000	0%	-90%	Low	16	0.04
+att speed check	USD	5000	-90%	-90%	Low	3	0.32
+fiber internet price	USD	5000	0%	900%	Low	15	2.10
+100 mbps internet plans	USD	5000	0%	900%	Low	9	3.27
+fiber internet cost	USD	5000	0%	900%	Low	15	2.10
+internet stability test	USD	5000	0%	0%	Low	1	2.69
+wifi strength test	USD	5000	0%	0%	Low	15	0.03
+current internet speed	USD	5000	0%	0%	Low	19	0.05
+brightspeed speed test	USD	5000	0%	0%	Low	6	0.06
+high speed internet connection	USD	5000	0%	0%	Low	6	4.63
+best wifi speed	USD	5000	-90%	-90%	Medium	35	4.86
+breezeline speed test	USD	5000	0%	0%	Low	0	
+fiber speed test	USD	5000	0%	0%	Low	6	0.91
+website loading speed	USD	5000	0%	-90%	Low	25	1.44
+download test	USD	5000	0%	0%	Low	2	0.02
+check network speed	USD	5000	0%	0%	Low	9	0.03
+test your internet speed	USD	5000	0%	0%	Low	14	0.05
+fiber connection internet	USD	5000	0%	900%	Low	8	3.77
+my speed	USD	5000	0%	0%	Low	6	0.06
+astound speed test	USD	5000	0%	0%	Low	5	7.00
+verizon fios speed test	USD	5000	0%	0%	Low	3	10.38
+t mobile internet speed test	USD	5000	0%	0%	Low	1	2.70
+pc speed test	USD	5000	0%	0%	Low	2	0.82
+verizon fios internet speeds	USD	5000	0%	0%	Low	17	9.19
+high speed broadband internet	USD	5000	900%	9900%	Low	0	2.88
+low income xfinity internet	USD	5000	0%	0%	Low	27	4.53
+internet ping test	USD	5000	0%	0%	Low	5	0.03
+internet latency test	USD	5000	0%	0%	Low	4	1.53
+connection speed	USD	5000	0%	0%	Low	5	0.96
+connection test	USD	5000	0%	0%	Low	4	1.40
+check internet speed online	USD	5000	0%	0%	Low	6	0.04
+gigabit internet providers	USD	5000	0%	0%	Low	9	4.57
+router speed test	USD	5000	0%	0%	Low	5	0.04
+test my internet connection	USD	5000	0%	0%	Low	5	0.86
+data speed test	USD	5000	0%	0%	Low	3	0.02
+fast com speed test	USD	5000	0%	0%	Low	2	0.05
+optimum internet speeds	USD	5000	-90%	0%	Low	33	0.93
+gigabit internet speed	USD	5000	-90%	-90%	Medium	38	3.71
+bandwidth speed test	USD	5000	0%	0%	Low	2	0.03
+fios internet speed test	USD	5000	0%	0%	Low	3	10.38
+data speed	USD	5000	-90%	-90%	Low	6	0.04
+fast internet speeds	USD	5000	0%	0%	Medium	42	3.61
+connection speed test	USD	5000	0%	0%	Low	3	1.54
+page load speed	USD	5000	0%	-90%	Low	25	1.44
+att check internet speed	USD	5000	-90%	-90%	Low	3	0.32
+check your internet connection	USD	5000	0%	0%	Low	4	1.43
+google speed insights	USD	5000	0%	-90%	Low	4	2.11
+starlink speeds in my area	USD	5000	0%	0%	Low	23	0.17
+starlink speed test	USD	5000	0%	0%	Low	1	0.56
+google page speed test	USD	5000	0%	0%	Low	5	2.35
+online ping test	USD	5000	-90%	-90%	Low	4	1.78
+my download speed	USD	5000	0%	-90%	Low	8	0.04
+internet speed test ookla	USD	5000	0%	0%	Low	1	0.04
+wifi signal test	USD	5000	0%	0%	Low	17	0.05
+google site speed test	USD	5000	0%	0%	Low	4	2.50
+high speed internet test	USD	5000	0%	0%	Low	19	0.03
+my speed test	USD	5000	0%	0%	Low	5	0.03
+xfinity wifi check	USD	5000	0%	0%	Low	3	4.93
+internet speed for working from home	USD	5000	0%	0%	Low	9	5.31
+att wifi speed	USD	5000	0%	0%	Low	7	1.14
+run internet speed test	USD	5000	0%	0%	Low	7	0.03
+network speed test tool	USD	5000	0%	900%	Low	1	0.17
+att com speed test	USD	5000	-90%	0%	Low	1	0.01
+internet 25 mbps	USD	5000	0%	0%	Low	23	5.68
+ping speed test	USD	5000	0%	0%	Low	4	0.03
+ookla speed	USD	5000	0%	0%	Low	1	0.09
+check my connection	USD	5000	0%	0%	Low	5	0.86
+testmynet	USD	5000	0%	0%	Low	2	0.40
+fiber optic internet installation	USD	5000	0%	0%	Low	6	5.00
+windstream speed test	USD	5000	0%	0%	Low	0	
+verizon wifi speed test	USD	5000	-90%	-90%	Low	11	12.44
+best speed test	USD	5000	0%	0%	Low	9	0.26
+att wifi speed test	USD	5000	0%	0%	Low	7	1.14
+modem speed test	USD	5000	0%	0%	Low	4	0.66
+mbps checker	USD	5000	0%	0%	Low	4	0.03
+optic cable internet	USD	5000	0%	0%	High	84	0.97
+ookla test	USD	5000	0%	0%	Low	1	0.05
+verizon com speed test	USD	5000	0%	0%	Low	7	4.49
+web speed	USD	5000	0%	0%	Low	24	1.47
+test my connection	USD	5000	0%	0%	Low	5	0.86
+att test speed	USD	5000	-90%	-90%	Low	3	0.32
+wireless speed test	USD	5000	0%	0%	Low	13	0.03
+rise broadband speed test	USD	5000	0%	0%	Low	0	
+ethernet speed tester	USD	5000	0%	0%	Low	13	0.04
+fast internet speed test	USD	5000	0%	0%	Low	2	0.05
+openspeedtest	USD	5000	0%	0%	Low	1	2.21
+fast com internet speed test	USD	5000	0%	900%	Low	1	0.13
+internet velocity	USD	5000	0%	0%	Low	24	1.22
+mbps speed test	USD	5000	0%	0%	Low	7	0.04
+speed test app	USD	5000	0%	0%	Low	4	0.20
+site loading speed	USD	5000	0%	-90%	Low	25	1.44
+google wifi speed test	USD	5000	0%	0%	Low	1	0.04
+test internet connection speed	USD	5000	0%	0%	Low	5	0.40
+isp speed test	USD	5000	0%	0%	Low	3	0.04
+ping internet speed	USD	5000	0%	0%	Low	4	0.03
+browser speed test	USD	5000	0%	0%	Low	1	1.23
+internet broadband connection	USD	5000	0%	0%	Low	3	4.96
+zscaler speed test	USD	5000	0%	0%	Low	0	2.55
+check broadband speed test	USD	5000	0%	0%	Low	4	0.05
+check website speed google	USD	5000	0%	0%	Low	5	2.35
+frontier speed test	USD	5000	0%	-90%	Low	5	0.01
+broad band speed test	USD	5000	0%	0%	Low	4	0.05
+at&t test internet speed	USD	5000	-90%	-90%	Low	3	0.32
+dsl internet connection	USD	5000	-90%	0%	Low	3	3.82
+free speed test	USD	5000	0%	0%	Low	3	0.42
+comcast internet test	USD	5000	0%	-90%	Low	1	7.37
+internet connection speed test	USD	5000	0%	0%	Low	5	1.12
+internet speed test app	USD	5000	-90%	-90%	Low	12	0.21
+10 gbps router	USD	5000	0%	-90%	High	100	0.29
+mediacom speed test	USD	5000	0%	0%	Low	1	4.70
+internet download speed test	USD	5000	0%	0%	Low	10	0.04
+internet velocity test	USD	5000	0%	0%	Low	15	0.04
+google fiber speedtest	USD	5000	0%	0%	Low	2	9.48
+metronet speed test	USD	5000	-90%	-90%	Low	0	
+internet upload speed test	USD	5000	900%	0%	Low	8	0.03
+ip speed test	USD	5000	0%	0%	Low	3	0.03
+internet speed com	USD	5000	-90%	-90%	Low	7	0.04
+download and upload speed test	USD	5000	0%	0%	Low	12	0.03
+t mobile speed test	USD	5000	0%	0%	Low	1	4.54
+check internet download speed	USD	5000	0%	0%	Low	10	0.04
+internet speed 200 mbps	USD	5000	0%	900%	Medium	50	4.26
+speed measure	USD	5000	0%	900%	Low	3	0.34
+wow speedtest	USD	5000	0%	0%	Low	2	4.50
+charter speed test	USD	5000	0%	0%	Low	13	5.78
+frontier internet speed test	USD	5000	0%	0%	Low	5	0.01
+speed test cloudflare	USD	5000	0%	0%	Low	0	0.12
+wifi connection checker	USD	5000	0%	0%	Low	8	0.04
+check web speed	USD	5000	0%	-90%	Medium	39	1.30
+upload download speed test	USD	5000	0%	0%	Low	12	0.03
+optimum speed test	USD	5000	0%	0%	Low	2	0.98
+open speed test	USD	5000	0%	0%	Low	1	0.44
+fiber optic internet connection	USD	5000	0%	900%	Low	8	3.77
+google web speed test	USD	5000	0%	0%	Low	4	2.50
+tds speed test	USD	5000	0%	0%	Low	0	2.34
+sonic speed test	USD	5000	0%	0%	Low	1	2.44
+a good internet speed	USD	5000	0%	0%	Low	20	3.35
+speed test mobile	USD	5000	0%	0%	Low	1	0.38
+speed test xfinity com	USD	5000	0%	0%	Low	1	7.98
+check internet ping	USD	5000	0%	0%	Low	5	0.03
+phone speed test	USD	5000	0%	0%	Low	4	0.03
+dsl tester	USD	5000	0%	0%	Low	3	0.03
+test router speed	USD	5000	0%	0%	Low	5	0.04
+free wifi speed test	USD	5000	0%	900%	Low	9	0.09
+calculate internet speed	USD	5000	0%	0%	Low	2	0.25
+check wireless speed	USD	5000	0%	0%	Low	13	0.03
+windstream internet speed test	USD	5000	0%	0%	Low	0	
+internet speed test upload and download	USD	5000	0%	0%	Low	12	0.03
+centurylink speed check	USD	5000	0%	0%	Low	0	
+mbps test speed	USD	5000	0%	0%	Low	7	0.04
+test upload and download speed	USD	5000	0%	0%	Low	12	0.03
+internet speed how much do i need	USD	5000	0%	0%	Medium	60	2.10
+run test speed	USD	5000	0%	0%	Low	4	0.02
+internet health test	USD	5000	0%	9900%	Low	0	0.99
+spectrum wifi speed test	USD	5000	0%	0%	Low	15	8.28
+www internet speed	USD	5000	0%	0%	Low	10	0.02
+midco speed test	USD	5000	0%	0%	Low	1	2.10
+speedtest net by ookla	USD	5000	-90%	0%	Low	2	0.03
+fast internet speed check	USD	5000	0%	0%	Low	2	0.05
+check internet latency	USD	5000	0%	0%	Low	4	1.53
+wifi speed test ookla	USD	5000	0%	0%	Low	1	0.02
+check my internet speed online	USD	5000	0%	0%	Low	14	0.05
+cable speed test	USD	5000	0%	-90%	Low	12	0.05
+measure my wifi speed	USD	5000	0%	0%	Low	18	0.04
+wifi speed test spectrum	USD	5000	0%	0%	Low	15	8.28
+www speed net	USD	5000	0%	0%	Low	10	0.02
+google page speed checker	USD	5000	0%	0%	Low	5	2.35
+test internet speed xfinity	USD	5000	0%	0%	Low	1	2.55
+optimum internet speed test	USD	5000	0%	0%	Low	2	0.98
+current internet speed test	USD	5000	0%	0%	Low	19	0.05
+phone internet speed test	USD	5000	0%	0%	Low	4	0.03
+midco internet speed test	USD	5000	0%	0%	Low	1	2.10
+wifi speed test xfinity	USD	5000	0%	0%	Low	1	5.19
+app to check internet speed	USD	5000	-90%	-90%	Low	12	0.21
+web browser speed test	USD	5000	0%	0%	Low	1	1.23
+measure your internet speed	USD	5000	0%	0%	Low	14	0.05
+www speedtest net test	USD	5000	0%	0%	Low	10	0.02
+best internet speed checker	USD	5000	0%	0%	Low	9	0.26
+internet speed test tool	USD	5000	0%	900%	Low	1	0.17
+test wireless speed	USD	5000	0%	0%	Low	13	0.03
+google site speed checker	USD	5000	0%	0%	Low	4	2.50
+ookla wifi speed	USD	5000	0%	0%	Low	1	0.02
+page insights google	USD	5000	0%	0%	Low	4	3.68
+fibre test speed	USD	5000	0%	0%	Low	6	0.91
+tds internet speed test	USD	5000	0%	0%	Low	0	2.34
+xfinity internet test	USD	5000	0%	-90%	Low	1	7.37
+test my internet speed xfinity	USD	5000	0%	0%	Low	1	2.55
+ookla speed test app	USD	5000	0%	0%	Low	4	0.20
+www fast com speed test	USD	5000	0%	0%	Low	4	0.04
+speed test tool	USD	5000	0%	0%	Low	1	0.33
+google net speed	USD	5000	-90%	0%	Low	0	
+xfinity wifi test	USD	5000	0%	0%	Low	3	4.93
+high speed internet speed test	USD	5000	0%	0%	Low	19	0.03
+ookla wifi	USD	5000	0%	0%	Low	1	0.02
+internet speed check spectrum	USD	5000	0%	0%	Low	15	8.28
+average speed of internet	USD	5000	0%	0%	Low	9	1.19
+test upload	USD	5000	-90%	0%	Low	3	0.02
+speed fiber test	USD	5000	0%	0%	Low	6	0.91
+sparklight speed test	USD	5000	0%	0%	Low	1	2.10
+internet speed internet speed	USD	5000	0%	0%	Low	1	0.19
+current speed test	USD	5000	0%	0%	Low	19	0.05
+test upload speed internet	USD	5000	900%	0%	Low	8	0.03
+mbps internet speed test	USD	5000	0%	0%	Low	7	0.04
+test internet speed wifi	USD	5000	0%	0%	Low	18	0.04
+fibernet speed test	USD	5000	0%	0%	Low	6	0.91
+most fastest internet in the world	USD	5000	-90%	-90%	Low	6	2.23
+test phone speed	USD	5000	0%	0%	Low	4	0.03
+check internet speed ookla	USD	5000	0%	0%	Low	1	0.04
+speedtest web	USD	5000	0%	0%	Low	7	1.06
+speed test internet speed test	USD	5000	900%	0%	Low	1	0.05
+testmy	USD	5000	0%	0%	Low	1	1.35
+best internet speed test website	USD	5000	0%	0%	Low	9	0.26
+broadband net speed test	USD	5000	0%	0%	Low	4	0.05
+calculate download speed	USD	5000	0%	0%	Low	0	0.16
+charter internet speed test	USD	5000	0%	0%	Low	13	5.78
+check stability of internet	USD	5000	0%	0%	Low	1	2.69
+check your connection	USD	5000	0%	900%	Low	0	
+comcast wifi speed test	USD	5000	0%	0%	Low	1	5.19
+command line speed test	USD	5000	0%	0%	Low	0	
+connect speed test	USD	5000	0%	0%	Low	3	1.54
+data speed test online	USD	5000	900%	0%	Low	8	0.05
+data speed test ookla	USD	5000	0%	0%	Low	3	0.02
+frontier communications speed test	USD	5000	0%	-90%	Low	5	0.01
+frontier speed check	USD	5000	0%	-90%	Low	5	0.01
+gci speed test	USD	5000	-90%	-90%	Low	1	0.03
+good internet speed test	USD	5000	0%	0%	Low	9	0.26
+google network speed test	USD	5000	-90%	0%	Low	0	
+google webpage speed test	USD	5000	0%	0%	Low	4	2.50
+html 5 speed test	USD	5000	-90%	-90%	Low	0	
+internet fast speed test	USD	5000	0%	0%	Low	2	0.05
+internet ookla speed test	USD	5000	0%	0%	Low	1	0.04
+internet speedtest ookla	USD	5000	0%	0%	Low	1	0.04
+iphone speed test	USD	5000	-90%	0%	Low	0	
+net speed com	USD	5000	-90%	-90%	Low	7	0.04
+net speed google	USD	5000	-90%	0%	Low	0	
+net speedtest	USD	5000	0%	0%	Low	7	1.99
+netflix speed test	USD	5000	0%	0%	Low	0	
+netflix test speed	USD	5000	0%	0%	Low	0	
+ookla speedtest net	USD	5000	900%	900%	Low	3	0.03
+ookla wifi test	USD	5000	0%	0%	Low	1	0.02
+ooklaspeed	USD	5000	0%	0%	Low	1	0.09
+run internet test speed	USD	5000	0%	0%	Low	7	0.03
+spectrum speed test wifi	USD	5000	0%	0%	Low	15	8.28
+speed load	USD	5000	0%	0%	Low	0	
+speed test by ookla app	USD	5000	0%	0%	Low	4	0.20
+speed test spectrum wifi	USD	5000	0%	0%	Low	15	8.28
+speed test wifi google	USD	5000	0%	0%	Low	1	0.04
+speed test wifi ookla	USD	5000	0%	0%	Low	1	0.02
+speed test xfinity wifi	USD	5000	0%	0%	Low	1	5.19
+speedtest midco	USD	5000	0%	0%	Low	1	2.10
+speedtest ne	USD	5000	900%	900%	Low	3	0.03
+speedtest net test	USD	5000	0%	0%	Low	3	0.03
+speedtest ping test	USD	5000	0%	0%	Low	4	0.03
+speedtest verizon com	USD	5000	0%	0%	Low	7	4.49
+spit test net	USD	5000	900%	900%	Low	3	0.03
+test my internet speed online	USD	5000	0%	0%	Low	14	0.05
+wifi ookla	USD	5000	0%	0%	Low	1	0.02
+wifi speed checking	USD	5000	0%	0%	Low	9	0.02
+wifi speed google	USD	5000	0%	0%	Low	1	0.04
+wifi speed ookla	USD	5000	0%	0%	Low	1	0.02
+wifi speed test by ookla	USD	5000	0%	0%	Low	1	0.02
+wifi test xfinity	USD	5000	0%	0%	Low	3	4.93
+xfinity speed test wifi	USD	5000	0%	0%	Low	1	5.19

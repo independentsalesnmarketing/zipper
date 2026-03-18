@@ -1,18 +1,19 @@
 ---
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
 import { generateBreadcrumbSchema } from '@lib/utils';
 ---
 <Base
-  title="Terms of Service — Internet 4 ALL"
-  description="Terms and conditions governing the use of Internet 4 ALL website and services."
-  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Terms of Service', url: 'https://internet4all.com/terms' }])]}
+  title="Terms of Service"
+  description="Terms and conditions governing the use of Internet 4 ALL website and services. Read our terms of service."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet-4-all.com' }, { name: 'Terms of Service', url: 'https://internet-4-all.com/terms' }])]}
 >
   <section class="section" style="padding-top:var(--space-xl);">
     <div class="container" style="max-width:740px;">
       <Breadcrumb items={[{ name: 'Terms of Service' }]} />
       <h1 class="reveal">Terms of <span class="gradient-text">Service</span></h1>
-      <p class="reveal" style="color:var(--text-muted);margin-top:var(--space-sm);">Last updated: January 2025</p>
+      <p class="reveal" style="color:var(--text-muted);margin-top:var(--space-sm);">Last updated: March 2026</p>
 
       <div class="reveal" style="margin-top:var(--space-xl);font-size:var(--text-sm);line-height:1.9;">
         <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Acceptance of Terms</h2>
@@ -25,7 +26,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
         <p>We strive to keep all pricing, speed, and availability information current and accurate. However, internet provider plans change frequently. Information on our site is for general comparison purposes and may not reflect real-time pricing or availability at your specific address. Always confirm exact pricing and plan details with the provider before committing.</p>
 
         <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Affiliate Disclosure</h2>
-        <p>Internet 4 ALL participates in affiliate/referral programs with internet service providers. When you sign up for service through our phone lines or referral links, we may earn a commission. This does not increase the cost to you. Our editorial ratings and rankings are independent of partnership status.</p>
+        <p>Internet 4 ALL participates in affiliate/referral programs with internet service providers. When you sign up for service through our referral links, chat, or Talk to Agent flows, we may earn a commission. This does not increase the cost to you. Our editorial ratings and rankings are independent of partnership status.</p>
 
         <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">User Conduct</h2>
         <p>You agree not to:</p>
@@ -54,4 +55,6 @@ import { generateBreadcrumbSchema } from '@lib/utils';
       </div>
     </div>
   </section>
+
+  <StickyCallBar text="Need help finding internet? We're here 24/7." />
 </Base>

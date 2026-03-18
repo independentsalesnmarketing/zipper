@@ -1,35 +1,36 @@
 ---
 import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
+import StickyCallBar from '@components/StickyCallBar.astro';
 import { generateBreadcrumbSchema } from '@lib/utils';
 ---
 <Base
-  title="Privacy Policy — Internet 4 ALL"
-  description="How Internet 4 ALL collects, uses, and protects your personal information. Your privacy matters to us."
-  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Privacy Policy', url: 'https://internet4all.com/privacy' }])]}
+  title="Privacy Policy"
+  description="How Internet 4 ALL collects, uses, and protects your personal information. Read our full privacy policy."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet-4-all.com' }, { name: 'Privacy Policy', url: 'https://internet-4-all.com/privacy' }])]}
 >
   <section class="section" style="padding-top:var(--space-xl);">
     <div class="container" style="max-width:740px;">
       <Breadcrumb items={[{ name: 'Privacy Policy' }]} />
       <h1 class="reveal">Privacy <span class="gradient-text">Policy</span></h1>
-      <p class="reveal" style="color:var(--text-muted);margin-top:var(--space-sm);">Last updated: January 2025</p>
+      <p class="reveal" style="color:var(--text-muted);margin-top:var(--space-sm);">Last updated: March 2026</p>
 
       <div class="reveal" style="margin-top:var(--space-xl);font-size:var(--text-sm);line-height:1.9;">
         <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Information We Collect</h2>
-        <p><strong>Information you provide:</strong> When you submit a callback request form, we collect your name, phone number, ZIP code, and preferred callback time. When you call our phone lines, your phone number and call details may be recorded.</p>
+        <p><strong>Information you provide:</strong> When you submit an order request form, we collect your name, email, and ZIP code so we can connect you with the right provider options. Chat and Talk to Agent interactions may also include the details you choose to share.</p>
         <p style="margin-top:var(--space-sm);"><strong>Automatically collected:</strong> We use privacy-friendly analytics to understand how visitors use our site. This includes page views, device type, and general geographic location (country/state level). We do not use invasive tracking cookies.</p>
         <p style="margin-top:var(--space-sm);"><strong>ZIP codes:</strong> When you enter a ZIP code to search for providers, it's used only to show relevant results. We do not store individual ZIP code searches.</p>
 
         <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">How We Use Your Information</h2>
         <ul style="list-style:disc;padding-left:var(--space-lg);">
-          <li>To connect you with internet providers when you request a callback</li>
-          <li>To provide customer support when you call us</li>
+          <li>To connect you with internet providers when you submit an order request</li>
+          <li>To provide customer support when you use chat, Talk to Agent, or place an order</li>
           <li>To improve our website and tools</li>
           <li>To display relevant providers in your area</li>
         </ul>
 
         <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Information Sharing</h2>
-        <p>When you request to be connected with a provider (via phone or callback form), we share the necessary contact information with that provider to complete the connection. We do not sell your personal information to third parties. We do not share your information with anyone for marketing purposes unrelated to your request.</p>
+        <p>When you request to be connected with a provider (via order form, chat, or Talk to Agent), we share the necessary contact information with that provider to complete the connection. We do not sell your personal information to third parties. We do not share your information with anyone for marketing purposes unrelated to your request.</p>
 
         <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Cookies & Tracking</h2>
         <p>We use minimal, privacy-respecting cookies necessary for site functionality. We do not use third-party advertising cookies. We do not participate in cross-site tracking or ad networks.</p>
@@ -46,15 +47,17 @@ import { generateBreadcrumbSchema } from '@lib/utils';
           <li>Request correction of inaccurate information</li>
         </ul>
 
-        <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">California Residents (CCPA)</h2>
+        <h2 id="do-not-sell" style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">California Residents (CCPA)</h2>
         <p>California residents have additional rights under the CCPA. We do not sell personal information. You may request disclosure of what information we collect and request deletion. Contact us using the information below to exercise these rights.</p>
 
         <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Contact Us</h2>
-        <p>For privacy-related questions or requests, please visit our <a href="/contact" style="color:var(--brand-blue-light);">Contact page</a> or call us directly.</p>
+        <p>For privacy-related questions or requests, please visit our <a href="/contact" style="color:var(--brand-blue-light);">Contact page</a>.</p>
 
         <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Changes to This Policy</h2>
         <p>We may update this policy periodically. Changes will be posted on this page with an updated "Last updated" date.</p>
       </div>
     </div>
   </section>
+
+  <StickyCallBar text="Need help finding internet? We're here 24/7." />
 </Base>

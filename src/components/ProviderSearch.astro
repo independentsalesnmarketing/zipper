@@ -8,7 +8,7 @@
  *   ZIP page:  <ProviderSearch ... autoSearch />  → fires immediately
  *   City page: <ProviderSearch ... />              → fires when user searches
  */
-import { providers as allProviders, MAIN_PHONE, getMaxSpeed, getMinPrice } from '@lib/providers';
+import { providers as allProviders, getMaxSpeed, getMinPrice } from '@lib/providers';
 
 interface Props {
   cityName: string;
@@ -29,7 +29,6 @@ const clientProviders = allProviders.map(p => ({
   types: p.types,
   rating: p.rating,
   pt: p.isPartner,
-  phone: p.phone,
   logo: p.logo,
   ms: getMaxSpeed(p),
   mp: getMinPrice(p),
@@ -39,7 +38,6 @@ const clientProviders = allProviders.map(p => ({
 <section
   id="ps-root"
   data-providers={JSON.stringify(clientProviders)}
-  data-main-phone={MAIN_PHONE}
   data-city={cityName}
   data-state={state}
   data-state-name={stateName}
@@ -60,14 +58,15 @@ const clientProviders = allProviders.map(p => ({
           placeholder={autoSearch ? `Refine — enter your exact address` : `Enter your ZIP code or address in ${cityName}`}
           autocomplete="off"
           spellcheck="false"
+          aria-label={autoSearch ? 'Refine your address' : `Enter your ZIP code or address in ${cityName}`}
         />
         <ul id="ps-suggest" class="ps-suggest"></ul>
       </div>
       <button type="submit" class="btn btn-cta">Check Availability</button>
     </form>
-    <div class="ps-phone-row">
+    <div class="ps-help-row">
       <span>or</span>
-      <a href="#get-connected" class="ps-phone-link">sign up for free help</a>
+      <a href="#get-connected" class="ps-help-link">sign up for free help</a>
     </div>
   </div>
 
@@ -127,7 +126,7 @@ const clientProviders = allProviders.map(p => ({
     border-color: var(--brand-blue);
     box-shadow: 0 0 0 3px rgba(0,82,255,0.15);
   }
-  .ps-phone-row {
+  .ps-help-row {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
@@ -135,12 +134,12 @@ const clientProviders = allProviders.map(p => ({
     font-size: var(--text-sm);
     color: var(--text-tertiary);
   }
-  .ps-phone-link {
+  .ps-help-link {
     font-weight: 700;
     color: var(--brand-green);
     text-decoration: none;
   }
-  .ps-phone-link:hover { text-decoration: underline; }
+  .ps-help-link:hover { text-decoration: underline; }
   .ps-suggest {
     display: none;
     position: absolute;
@@ -448,11 +447,11 @@ const clientProviders = allProviders.map(p => ({
     't-mobile fiber':'tmobile','metronet':'tmobile','metronet holdings':'tmobile','metronet inc':'tmobile',
     't-mobile':'tmobile-5g','tmobile':'tmobile-5g','t-mobile usa':'tmobile-5g','t-mobile home internet':'tmobile-5g',
     'verizon':'verizon','verizon communications':'verizon','verizon fios':'verizon','mci':'verizon',
-    'windstream':'windstream','windstream holdings':'windstream','kinetic':'windstream',
+    'windstream':'kinetic','windstream holdings':'kinetic','kinetic':'kinetic',
     'altice':'optimum','altice usa':'optimum','optimum':'optimum','suddenlink':'optimum','cablevision':'optimum',
     'frontier':'frontier','frontier communications':'frontier',
     'earthlink':'earthlink',
-    'brightspeed':'brightspeed','lumen':'brightspeed','centurylink':'brightspeed','centurytel':'brightspeed',
+    'brightspeed':'brightspeed','lumen':'lumen','centurylink':'lumen','centurytel':'lumen',
     'altafiber':'altafiber','cincinnati bell':'altafiber',
     'xfinity':'xfinity','comcast':'xfinity','comcast cable':'xfinity',
     'starlink':'starlink','spacex':'starlink',
@@ -525,7 +524,7 @@ const clientProviders = allProviders.map(p => ({
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 6000);
       const r = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${zip}&country=US&format=json&limit=1`,{
-        headers:{'User-Agent':'Internet4ALL/1.0'},
+        headers:{'User-Agent':'Internet-4-ALL/1.0'},
         signal:controller.signal
       });
       clearTimeout(timeoutId);
@@ -539,7 +538,7 @@ const clientProviders = allProviders.map(p => ({
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 6000);
       const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1&countrycodes=us`,{
-        headers:{'User-Agent':'Internet4ALL/1.0'},
+        headers:{'User-Agent':'Internet-4-ALL/1.0'},
         signal:controller.signal
       });
       clearTimeout(timeoutId);
@@ -615,14 +614,14 @@ const clientProviders = allProviders.map(p => ({
   }
 
   // ===== MATCH & ENRICH =====
-  interface LocalP { id:string; name:string; slug:string; types:string[]; rating:number; pt:boolean; phone:string; logo:string|null; ms:number; mp:number; }
+  interface LocalP { id:string; name:string; slug:string; types:string[]; rating:number; pt:boolean; logo:string|null; ms:number; mp:number; }
   interface EnrichedP {
     name:string; slug:string|null; types:string[]; maxDown:number; maxUp:number;
-    rating:number|null; phone:string; logo:string|null; minPrice:number;
+    rating:number|null; logo:string|null; minPrice:number;
     score:number; apiConfirmed:boolean; isPartner:boolean;
   }
 
-  function matchAndEnrich(apiProviders: any[], locals: LocalP[], mainPhone: string): EnrichedP[] {
+  function matchAndEnrich(apiProviders: any[], locals: LocalP[]): EnrichedP[] {
     const byName = new Map<string, {name:string,techs:string[],maxD:number,maxU:number}>();
     for (const p of apiProviders) {
       const n = p.name||'Unknown';
@@ -649,7 +648,6 @@ const clientProviders = allProviders.map(p => ({
           maxDown: api.maxD || local.ms,
           maxUp: api.maxU,
           rating: local.rating,
-          phone: local.pt ? local.phone : mainPhone,
           logo: local.logo,
           minPrice: local.mp,
           score: 0,
@@ -664,7 +662,6 @@ const clientProviders = allProviders.map(p => ({
           maxDown: api.maxD,
           maxUp: api.maxU,
           rating: null,
-          phone: mainPhone,
           logo: null,
           minPrice: 0,
           score: 0,
@@ -698,7 +695,7 @@ const clientProviders = allProviders.map(p => ({
   }
 
   // ===== RENDERING =====
-  function renderRow(p: EnrichedP, rank: number, mainPhone: string): string {
+  function renderRow(p: EnrichedP, rank: number): string {
     const logo = p.logo
       ? `<img class="ps-logo" src="${p.logo}" alt="${p.name}" width="140" height="140" loading="lazy" />`
       : `<div class="ps-logo-fallback">${p.name.charAt(0)}</div>`;
@@ -732,12 +729,12 @@ const clientProviders = allProviders.map(p => ({
     </div>`;
   }
 
-  function renderResults(providers: EnrichedP[], container: HTMLElement, mainPhone: string, location: string): void {
+  function renderResults(providers: EnrichedP[], container: HTMLElement, location: string): void {
     let html = `<div class="ps-header">
       <h3>${providers.length} Provider${providers.length!==1?'s':''} in ${location}</h3>
       <span class="ps-badge ps-badge-live">&#10003; VERIFIED — FCC Data</span>
     </div>`;
-    html += providers.map((p,i) => renderRow(p, i+1, mainPhone)).join('');
+    html += providers.map((p,i) => renderRow(p, i+1)).join('');
     html += `<div class="ps-cta-card">
       <h4>Not sure which plan is right for you?</h4>
       <p>Our free comparison tool checks every provider at your address — no obligation, no spam.</p>
@@ -747,7 +744,7 @@ const clientProviders = allProviders.map(p => ({
     container.innerHTML = html;
   }
 
-  function renderError(container: HTMLElement, mainPhone: string): void {
+  function renderError(container: HTMLElement): void {
     container.innerHTML = `<div class="ps-cta-card">
       <h4>We couldn't verify providers right now</h4>
       <p>Check availability at your address using our instant comparison tool — free, no commitment.</p>
@@ -765,20 +762,20 @@ const clientProviders = allProviders.map(p => ({
   }
 
   // ===== MAIN =====
-  async function runSearch(lat: number, lng: number, location: string, locals: LocalP[], mainPhone: string, container: HTMLElement): Promise<void> {
+  async function runSearch(lat: number, lng: number, location: string, locals: LocalP[], container: HTMLElement): Promise<void> {
     renderLoading(container, location);
     try {
       const raw = await fetchProviders(lat, lng);
-      const enriched = matchAndEnrich(raw, locals, mainPhone);
+      const enriched = matchAndEnrich(raw, locals);
       if (enriched.length > 0) {
-        renderResults(enriched, container, mainPhone, location);
+        renderResults(enriched, container, location);
         // Hide static fallback
         const fallback = document.getElementById('static-providers');
         if (fallback) fallback.style.display = 'none';
         // Dispatch event so parent page can update hero/state
         window.dispatchEvent(new CustomEvent('ps:results', { detail: { count: enriched.length, location } }));
       } else {
-        renderError(container, mainPhone);
+        renderError(container);
       }
     } catch (e: any) {
       // Suppress error logging, show user-friendly message instead
@@ -790,7 +787,7 @@ const clientProviders = allProviders.map(p => ({
         </div>`;
       } else {
         // Handle network errors, timeouts, and other errors gracefully
-        renderError(container, mainPhone);
+        renderError(container);
       }
     }
   }
@@ -800,7 +797,6 @@ const clientProviders = allProviders.map(p => ({
     if (!el) return;
 
     const locals: LocalP[] = JSON.parse(el.dataset.providers || '[]');
-    const mainPhone = el.dataset.mainPhone || '';
     const city = el.dataset.city || '';
     const st = el.dataset.state || '';
     const stName = el.dataset.stateName || '';
@@ -854,11 +850,11 @@ const clientProviders = allProviders.map(p => ({
       const lng = parseFloat(lngStr);
       const loc = zip ? `ZIP ${zip}` : `${city}, ${st}`;
       if (!isNaN(lat) && !isNaN(lng)) {
-        runSearch(lat, lng, loc, locals, mainPhone, container);
+        runSearch(lat, lng, loc, locals, container);
       } else if (zip) {
         geocodeZip(zip).then(geo => {
-          if (geo) runSearch(geo.lat, geo.lng, loc, locals, mainPhone, container);
-          else renderError(container, mainPhone);
+          if (geo) runSearch(geo.lat, geo.lng, loc, locals, container);
+          else renderError(container);
         });
       }
     }
@@ -873,18 +869,18 @@ const clientProviders = allProviders.map(p => ({
           geocodeZip(q).then(geo => {
             if (geo) {
               const loc = `ZIP ${q}` + (geo.city ? ` — ${geo.city}, ${geo.state}` : '');
-              runSearch(geo.lat, geo.lng, loc, locals, mainPhone, container);
+              runSearch(geo.lat, geo.lng, loc, locals, container);
             } else {
-              renderError(container, mainPhone);
+              renderError(container);
             }
           });
         } else {
           geocodeAddr(q).then(geo => {
             if (geo) {
               const loc = geo.display.split(',').slice(0,3).join(',');
-              runSearch(geo.lat, geo.lng, loc, locals, mainPhone, container);
+              runSearch(geo.lat, geo.lng, loc, locals, container);
             } else {
-              container.innerHTML = `<p style="color:#ff4444;padding:var(--space-md) 0;font-size:var(--text-sm);">Couldn't find that address. Try entering your 5-digit ZIP code, or call us for help.</p>`;
+              container.innerHTML = `<p style="color:#ff4444;padding:var(--space-md) 0;font-size:var(--text-sm);">Couldn't find that address. Try entering your 5-digit ZIP code, or use chat for help.</p>`;
             }
           });
         }
@@ -899,7 +895,6 @@ const clientProviders = allProviders.map(p => ({
     (window as any).psGeocode.geocodeAddr = geocodeAddr;
     (window as any).psGeocode.fetchSuggestions = fetchSuggestions;
     (window as any).psGeocode.runSearch = runSearch;
-    (window as any).psGeocode.mainPhone = mainPhone;
     (window as any).psGeocode.locals = locals;
     (window as any).psGeocode.container = container;
 
@@ -924,7 +919,7 @@ const clientProviders = allProviders.map(p => ({
         }
         // Otherwise run a search in place
         const loc = s.display;
-        runSearch(s.lat, s.lng, loc, locals, mainPhone, container);
+        runSearch(s.lat, s.lng, loc, locals, container);
       }
 
       input.addEventListener('input', () => {

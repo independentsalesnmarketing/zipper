@@ -6,13 +6,15 @@ import StickyCallBar from '@components/StickyCallBar.astro';
 import { getPartnerProviders, formatSpeed, formatPrice } from '@lib/providers';
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString('en-US', { month: 'long' });
 const partners = getPartnerProviders();
 const faqs = [
-  { q: 'Are these prices really available in my area?', a: 'Prices shown are starting promotional rates. Actual availability depends on your address. Enter your ZIP code above or sign up to get the exact pricing for your location — it may be even lower than listed.' },
-  { q: 'How long do promotional prices last?', a: 'Most promotions run 12-24 months. After that, rates go to standard pricing. Pro tip: Set a calendar reminder and reach out to us when your promo ends — we\'ll find you another deal.' },
-  { q: 'Is there a catch?', a: 'No catch from us — Internet 4 ALL is 100% free. Providers may require a contract or have installation fees, which we\'ll disclose before you commit. We only recommend providers we\'d use ourselves.' },
-  { q: 'Will I need to pay for a modem/router?', a: 'Some providers include equipment for free, others have a monthly rental fee ($5-$15/mo). You can often save by buying your own compatible modem and router — ask us which ones work best.' },
-  { q: 'Can I negotiate a lower price with my current provider?', a: 'Yes! Knowing competitor rates gives you leverage. Use our price data below to negotiate — or skip the hassle and let us find you a new provider deal that\'s already lower.' },
+  { question: 'Are these prices really available in my area?', answer: 'Prices shown are starting promotional rates. Actual availability depends on your address. Enter your ZIP code above or sign up to get the exact pricing for your location — it may be even lower than listed.' },
+  { question: 'How long do promotional prices last?', answer: 'Most promotions run 12-24 months. After that, rates go to standard pricing. Pro tip: Set a calendar reminder and reach out to us when your promo ends — we\'ll find you another deal.' },
+  { question: 'Is there a catch?', answer: 'No catch from us — Internet 4 ALL is 100% free. Providers may require a contract or have installation fees, which we\'ll disclose before you commit. We only recommend providers we\'d use ourselves.' },
+  { question: 'Will I need to pay for a modem/router?', answer: 'Some providers include equipment for free, others have a monthly rental fee ($5-$15/mo). You can often save by buying your own compatible modem and router — ask us which ones work best.' },
+  { question: 'Can I negotiate a lower price with my current provider?', answer: 'Yes! Knowing competitor rates gives you leverage. Use our price data below to negotiate — or skip the hassle and let us find you a new provider deal that\'s already lower.' },
 ];
 
 // Sort by cheapest promo price
@@ -23,14 +25,14 @@ const dealProviders = [...partners].sort((a, b) => {
 });
 ---
 <Base
-  title="Best Internet Deals & Specials (2026) — Affordable Internet Deals Near You"
-  description="Your internet bill too high? Find the best internet deals and internet specials near you. Compare affordable internet plans from top providers. Promo rates, price-lock guarantees. Save up to 50%."
+  title="Internet Deals Near Me — Home Internet Offers"
+  description="Find the best internet deals near you right now. Search home internet deals, cable and internet packages, and special offers from top ISPs in your area."
   schema={[
     generateBreadcrumbSchema([
-      { name: 'Home', url: 'https://internet4all.com' },
-      { name: 'Best Deals', url: 'https://internet4all.com/deals' }
+      { name: 'Home', url: 'https://internet-4-all.com' },
+      { name: 'Best Deals', url: 'https://internet-4-all.com/deals' }
     ]),
-    generateFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })))
+    generateFAQSchema(faqs)
   ]}
 >
   <!-- Hero -->
@@ -74,7 +76,7 @@ const dealProviders = [...partners].sort((a, b) => {
   <section class="section">
     <div class="container">
       <h2 class="text-center reveal">Today's <span class="gradient-text">Best Prices</span></h2>
-      <p class="text-center reveal" style="max-width:500px;margin:var(--space-sm) auto var(--space-xl);">Sorted by lowest price. New customer promo rates — call for exact pricing at your address.</p>
+      <p class="text-center reveal" style="max-width:500px;margin:var(--space-sm) auto var(--space-xl);">Sorted by lowest price. New customer promo rates — use chat or Talk to Agent for exact pricing at your address.</p>
       <div class="grid grid-2">
         {dealProviders.map((p, i) => {
           const cheapest = p.plans[0];
@@ -155,11 +157,11 @@ const dealProviders = [...partners].sort((a, b) => {
   <!-- Save money tips -->
   <section class="section" style="background:var(--bg-secondary);">
     <div class="container">
-      <h2 class="text-center reveal" style="margin-bottom:var(--space-xl);">5 Ways to <span class="gradient-text">Lower Your Internet Bill</span></h2>
+      <h2 class="text-center reveal" style="margin-bottom:var(--space-xl);">6 Ways to <span class="gradient-text">Lower Your Internet Bill</span></h2>
       <div class="grid grid-1" style="max-width:700px;margin:0 auto;">
         {[
           { num: '1', title: 'Switch to a new provider', desc: 'New customer promos give you the lowest rates. Most of the deals above are cheaper than what you\'re paying now.' },
-          { num: '2', title: 'Negotiate with your current provider', desc: 'Call and say "I\'m thinking of switching to [competitor] for $X/month." They\'ll often match or beat it.' },
+          { num: '2', title: 'Negotiate with your current provider', desc: 'Use provider chat/support and say "I\'m thinking of switching to [competitor] for $X/month." They\'ll often match or beat it.' },
           { num: '3', title: 'Downgrade your speed tier', desc: 'Most households don\'t need gigabit. If you\'re paying for 1 Gbps but only use 100 Mbps, downgrade and save $20-40/mo.' },
           { num: '4', title: 'Buy your own modem/router', desc: 'Equipment rental adds $10-15/month. A good modem costs ~$80 and pays for itself in 6 months.' },
           { num: '5', title: 'Bundle or remove extras', desc: 'Drop services you don\'t use (TV, phone line). Or bundle services with one provider for a multi-service discount.' },
@@ -184,8 +186,8 @@ const dealProviders = [...partners].sort((a, b) => {
       <div class="faq-list">
         {faqs.map(f => (
           <div class="faq-item reveal">
-            <button class="faq-question">{f.q}</button>
-            <div class="faq-answer"><div class="faq-answer-inner">{f.a}</div></div>
+            <button class="faq-question">{f.question}</button>
+            <div class="faq-answer"><div class="faq-answer-inner">{f.answer}</div></div>
           </div>
         ))}
       </div>
@@ -248,5 +250,5 @@ const dealProviders = [...partners].sort((a, b) => {
 
 
 
-  <StickyCallBar text="Stop overpaying. Call for today's best deal." />
+  <StickyCallBar text="Stop overpaying. Use chat or Talk to Agent for today's best deal." />
 </Base>

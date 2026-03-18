@@ -14,21 +14,23 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   noindex?: boolean;
+  noSuffix?: boolean;
   schema?: Record<string, any> | Record<string, any>[];
 }
 
 const {
   title,
-  description = 'Find the best internet providers in your area. Compare plans, prices, and speeds from top providers. Call now for exclusive deals.',
+  description = 'Find every internet provider at your address — fiber, cable, 5G, and wireless plans. See the cheapest home internet options available near you right now.',
   canonical,
-  ogImage = '/logo.svg',
+  ogImage = '/OG-Image.png',
   noindex = false,
+  noSuffix = true,
   schema,
 } = Astro.props;
 
 const siteName = 'Internet 4 ALL';
-const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
-const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site ?? 'https://internet4all.com').toString();
+const fullTitle = noSuffix || title === siteName ? title : `${title} | ${siteName}`;
+const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site ?? 'https://internet-4-all.com').toString();
 const schemas = schema
   ? (Array.isArray(schema) ? [generateWebsiteSchema(), generateOrganizationSchema(), ...schema] : [generateWebsiteSchema(), generateOrganizationSchema(), schema])
   : [generateWebsiteSchema(), generateOrganizationSchema()];
@@ -42,10 +44,16 @@ const schemas = schema
   <title>{fullTitle}</title>
 
   <link rel="canonical" href={canonicalUrl} />
-  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <!-- Favicons / App Icons -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   {noindex && <meta name="robots" content="noindex, nofollow" />}
 
@@ -68,20 +76,21 @@ const schemas = schema
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JV0XPY7ZEQ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'G-JV0XPY7ZEQ');
   </script>
 
   <!-- JSON-LD Schema -->
   {schemas.map(s => (
-    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    <script type="application/ld+json" set:html={JSON.stringify(s).replace(/<\//g, '<\/')} />
   ))}
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
   <!-- Page transition loader -->
   <div id="page-loader" class="pl-overlay" aria-hidden="true">
     <div class="pl-content">
@@ -94,6 +103,8 @@ const schemas = schema
     </div>
   </div>
   <style>
+    .skip-link{position:absolute;top:-100%;left:var(--space-md);z-index:100000;padding:var(--space-sm) var(--space-md);background:var(--brand-blue);color:#fff;border-radius:var(--radius-md);font-weight:700;text-decoration:none}
+    .skip-link:focus{top:var(--space-md)}
     .pl-overlay{position:fixed;inset:0;z-index:99999;background:rgba(10,15,30,.88);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s ease}
     .pl-overlay.active{opacity:1;pointer-events:auto}
     .pl-content{display:flex;flex-direction:column;align-items:center;gap:20px}
@@ -107,7 +118,7 @@ const schemas = schema
   </style>
 
   <Header />
-  <main>
+  <main id="main-content">
     <slot />
   </main>
   <Footer />
@@ -177,18 +188,16 @@ const schemas = schema
           });
         }
 
-        // Log to console for development
-        console.log(`[Analytics] Event: ${eventName}, Category: ${eventCategory}, Label: ${eventLabel}`);
       }
     });
 
     // Track form submissions
     document.addEventListener('submit', (e) => {
       const form = e.target;
-      if (form && form.getAttribute('data-form') === 'callback') {
-        const eventName = 'callback_form_submit';
+      if (form && form.getAttribute('data-form') === 'order') {
+        const eventName = 'order_form_submit';
         const eventCategory = 'conversion';
-        const eventLabel = 'callback-form';
+        const eventLabel = 'order-form';
 
         if (typeof gtag !== 'undefined') {
           gtag('event', eventName, {
@@ -197,7 +206,6 @@ const schemas = schema
           });
         }
 
-        console.log(`[Analytics] Event: ${eventName}, Category: ${eventCategory}, Label: ${eventLabel}`);
       }
     });
   </script>

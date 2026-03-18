@@ -36,7 +36,7 @@ const speedTiers = [
 ];
 
 const faqs = [
-  { question: 'What is the best home internet provider in 2025?', answer: `The best home internet provider depends on your address and needs. ${rankedProviders[0]?.name} is our top-rated provider overall. For pure speed, fiber providers like AT&T Fiber and Google Fiber lead. For value, Spectrum offers no-contract plans with no data caps. Sign up above for a personalized recommendation based on your address.` },
+  { question: `What is the best home internet provider in ${year}?`, answer: `The best home internet provider depends on your address and needs. ${rankedProviders[0]?.name} is our top-rated provider overall. For pure speed, fiber providers like AT&T Fiber and Google Fiber lead. For value, Spectrum offers no-contract plans with no data caps. Sign up above for a personalized recommendation based on your address.` },
   { question: 'How much does home internet cost per month?', answer: 'Home internet costs $25–100/mo depending on speed and provider. Basic plans (25–100 Mbps) cost $25–50/mo. Mid-tier plans (200–500 Mbps) run $50–75/mo. Gigabit fiber costs $60–100/mo. Many providers offer promotional pricing for the first 12 months.' },
   { question: 'What internet speed do I need for my home?', answer: 'For 1–2 people doing basic browsing, 50 Mbps is enough. Households with 3–5 people streaming and working from home need 200–500 Mbps. Large households with gamers and 4K TVs should get 500 Mbps–1 Gbps. We recommend at least 25 Mbps per person in your household.' },
   { question: 'Is fiber internet better than cable for home use?', answer: 'Fiber provides symmetrical upload/download speeds, lower latency, and more reliable service. Cable is more widely available and still offers fast downloads (up to 1.2 Gbps). If fiber is available at your address, it\'s generally the better choice. If not, cable is an excellent alternative.' },
@@ -48,18 +48,18 @@ const faqs = [
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Home Internet', url: 'https://internet4all.com/home-internet' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Home Internet', url: 'https://internet-4-all.com/home-internet' },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`Best Home Internet Providers & Plans (${month} ${year})`}
-  description={`Compare the best home internet providers and plans for ${year}. Find residential internet starting at $25/mo with speeds up to 8 Gbps. Compare ${allProviders.length}+ providers by speed, price, and rating.`}
+  title="Home Internet Plans — Get Connected to Providers Near Me"
+  description="Find the best home internet plans near you — fiber, cable, 5G, and wireless. Get connected today with same-day setup and the lowest prices available now."
   schema={schemas}
 >
-  <StickyCallBar text="Find the best home internet — call for exclusive deals" />
+  <StickyCallBar text="Find the best home internet — use chat or Talk to Agent for exclusive deals" />
 
   <section class="section" style="padding-top: var(--space-xl);">
     <div class="container">
@@ -73,7 +73,7 @@ const schemas = [
         </h1>
         <p class="hero-subtitle" style="max-width: 720px; margin-inline: auto;">
           Find the perfect residential internet plan for your household. We've compared speeds, prices, and coverage
-          from {allProviders.length}+ providers to help you choose the best home internet in {year}.
+          from every major provider to help you choose the best home internet in {year}.
         </p>
         <div style="margin-top: var(--space-xl);">
           <a href="#get-connected" class="btn btn-cta btn-lg">Talk to an Expert</a>
@@ -186,7 +186,7 @@ const schemas = [
         <div class="grid grid-2" style="gap: var(--space-md);">
           <a href="/internet-types/fiber" class="card" style="padding: var(--space-lg); text-decoration: none;">
             <h3 style="margin-bottom: var(--space-xs);">Fiber Internet</h3>
-            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin: 0;">The gold standard. Symmetrical speeds up to 8 Gbps, lowest latency. Available from AT&T, Verizon Fios, Google Fiber, Frontier, and more.</p>
+            <p style="font-size: var(--text-sm); color: var(--text-secondary); margin: 0;">The gold standard. Symmetrical speeds up to 8 Gbps, lowest latency. Available from AT&T Fiber, Frontier, EarthLink, Optimum, Brightspeed, and more.</p>
           </a>
           <a href="/internet-types/cable" class="card" style="padding: var(--space-lg); text-decoration: none;">
             <h3 style="margin-bottom: var(--space-xs);">Cable Internet</h3>

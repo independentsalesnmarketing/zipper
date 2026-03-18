@@ -32,24 +32,24 @@ const stateList = Object.entries(stateNames).sort((a, b) => a[1].localeCompare(b
 
 const faqs = [
   { question: 'What is the cheapest internet plan available?', answer: `The most affordable plans start at ${formatPrice(cheapPlans[0]?.plan.promoPrice || 25)}/mo from ${cheapPlans[0]?.provider.name || 'select providers'}. Prices vary by location and availability. Sign up above and we'll find the cheapest option at your address.` },
-  { question: 'Can I get internet for under $30 a month?', answer: `Yes. Several providers offer plans under $30/mo, including promotional pricing from T-Mobile, Mint Mobile, WOW!, and others. Some providers also offer discounted rates through the Affordable Connectivity Program (ACP) for qualifying households. Call us to check availability.` },
+  { question: 'Can I get internet for under $30 a month?', answer: `Yes. Several providers offer plans under $30/mo, including promotional pricing from T-Mobile, Mint Mobile, WOW!, and others. Some providers also offer discounted rates through low-income programs for qualifying households. Use chat or Talk to Agent to check availability.` },
   { question: 'Is cheap internet slow?', answer: 'Not necessarily. Many budget plans offer 100-300 Mbps, which is more than enough for streaming, video calls, and browsing. 5G home internet plans are especially competitive — offering high speeds at lower prices because they don\'t require expensive infrastructure to your home.' },
   { question: 'What is the best cheap internet for streaming?', answer: 'For budget streaming, look for plans with at least 50 Mbps download speed and no data caps. T-Mobile 5G Home Internet ($50/mo), Frontier Fiber 500 ($49.99/mo), and Spectrum Internet ($49.99/mo) all offer excellent streaming performance at affordable prices.' },
-  { question: 'How can I lower my internet bill?', answer: '1) Contact your provider and ask for retention deals. 2) Bundle less — internet-only is often cheaper. 3) Drop to a lower speed tier if you don\'t need gigabit. 4) Switch providers to get new-customer pricing. 5) Check if you qualify for the ACP discount. 6) Sign up above — we can find the best current deal for your address.' },
-  { question: 'Do cheap internet plans have data caps?', answer: 'It depends on the provider. Fiber providers (Verizon Fios, AT&T Fiber, Frontier) and 5G home internet (T-Mobile) typically have no data caps at any price. Cable providers like Xfinity impose 1.2 TB caps on lower tiers. Always check data caps before signing up — sign up above and we can help you compare.' },
+  { question: 'How can I lower my internet bill?', answer: '1) Contact your provider and ask for retention deals. 2) Bundle less — internet-only is often cheaper. 3) Drop to a lower speed tier if you don\'t need gigabit. 4) Switch providers to get new-customer pricing. 5) Check if you qualify for Lifeline or provider low-income programs. 6) Sign up above — we can find the best current deal for your address.' },
+  { question: 'Do cheap internet plans have data caps?', answer: 'It depends on the provider. Fiber providers (AT&T Fiber, Frontier, EarthLink) and 5G home internet (Verizon 5G Home, T-Mobile) typically have no data caps at any price. Cable providers like Xfinity impose 1.2 TB caps on lower tiers. Always check data caps before signing up — sign up above and we can help you compare.' },
 ];
 
 const schemas = [
   generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://internet4all.com' },
-    { name: 'Cheap Internet', url: 'https://internet4all.com/cheap-internet' },
+    { name: 'Home', url: 'https://internet-4-all.com' },
+    { name: 'Cheap Internet', url: 'https://internet-4-all.com/cheap-internet' },
   ]),
   generateFAQSchema(faqs),
 ];
 ---
 <Base
-  title={`Cheapest Internet Plans in ${year} — Plans Starting at ${formatPrice(cheapPlans[0]?.plan.promoPrice || 25)}/mo`}
-  description={`Find the cheapest internet plans near you. Compare affordable internet options from ${cheapProviders.length}+ providers. Plans starting at ${formatPrice(cheapPlans[0]?.plan.promoPrice || 25)}/mo. No data caps available.`}
+  title="Cheap Internet Plans — Affordable Home Internet"
+  description="Find cheap internet plans near you. Search affordable home internet, the cheapest internet providers in your area, and low-cost high speed internet options."
   schema={schemas}
 >
   <section class="section" style="padding-top: var(--space-xl);">
@@ -63,7 +63,7 @@ const schemas = [
           Cheapest <span class="gradient-text">Internet Plans</span>
         </h1>
         <p class="hero-subtitle" style="max-width: 680px; margin-inline: auto;">
-          Internet doesn't have to be expensive. We found {cheapPlans.length}+ plans under $50/mo from {cheapProviders.length} providers.
+          Internet doesn't have to be expensive. We found {cheapPlans.length}+ plans under $50/mo from every major provider.
           Get fast, reliable internet without breaking the bank.
         </p>
         <div class="flex justify-center gap-md mt-xl flex-wrap">
@@ -84,8 +84,8 @@ const schemas = [
           <div class="text-secondary" style="font-size: var(--text-sm);">Plans Under $50</div>
         </div>
         <div class="card text-center" style="padding: var(--space-xl);">
-          <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-green);">{cheapProviders.length}</div>
-          <div class="text-secondary" style="font-size: var(--text-sm);">Providers</div>
+          <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-green);">$0</div>
+          <div class="text-secondary" style="font-size: var(--text-sm);">Data Caps on Select Plans</div>
         </div>
         <div class="card text-center" style="padding: var(--space-xl);">
           <div style="font-size: var(--text-3xl); font-weight: 800; color: var(--brand-green);">0</div>
@@ -208,7 +208,7 @@ const schemas = [
           </div>
           <div>
             <h3 style="font-size: var(--text-base);">6. Check for Low-Income Programs</h3>
-            <p class="text-secondary" style="font-size:var(--text-sm);">Programs like Internet Essentials (Comcast), Access from AT&T, and the ACP offer $10-30/mo internet for qualifying households.</p>
+            <p class="text-secondary" style="font-size:var(--text-sm);">Programs like Internet Essentials (Comcast), Access from AT&T, and FCC Lifeline offer $10-30/mo internet for qualifying households.</p>
           </div>
           <div>
             <h3 style="font-size: var(--text-base);">7. Skip the Bundle</h3>

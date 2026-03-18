@@ -5,161 +5,245 @@ import StickyCallBar from '@components/StickyCallBar.astro';
 import SearchBar from '@components/SearchBar.astro';
 import { generateBreadcrumbSchema } from '@lib/utils';
 
-const guides = [
-  { title: 'How to Choose the Right Internet Provider', desc: 'Everything to consider — speed, price, technology, contracts, and data caps.', icon: '📋', href: '/resources' },
-  { title: 'Fiber vs Cable vs DSL vs 5G: What\'s the Difference?', desc: 'Understand the pros and cons of each internet technology type.', icon: '🔌', href: '/resources' },
-  { title: 'How Much Internet Speed Do I Need?', desc: 'Calculate your ideal speed based on your household size and usage habits.', icon: '⚡', href: '/resources' },
-  { title: 'How to Lower Your Internet Bill', desc: 'Proven strategies to negotiate a better rate or switch to save money.', icon: '💰', href: '/deals' },
-  { title: 'The Ultimate Guide to Moving Your Internet', desc: 'Step-by-step: transfer, cancel, or set up new internet when you move.', icon: '🏠', href: '/movers' },
-  { title: 'How to Switch Internet Providers Without Downtime', desc: 'Seamless switching — overlapping service, equipment returns, and more.', icon: '🔄', href: '/switch' },
-  { title: 'Internet for Rural Areas: Your Best Options', desc: 'Satellite, fixed wireless, and new 5G options for underserved areas.', icon: '🌾', href: '/resources' },
-  { title: 'Work From Home Internet Requirements', desc: 'What speed and features you need for reliable remote work.', icon: '💻', href: '/resources' },
-  { title: 'Gaming Internet: What You Actually Need', desc: 'Ping, jitter, and speed requirements for competitive and casual gaming.', icon: '🎮', href: '/resources' },
+const tools = [
+  {
+    title: 'Speed Test',
+    desc: 'Check your real download and upload speeds — not what your ISP claims. Takes 30 seconds.',
+    icon: '📊',
+    href: '/speed-test',
+    cta: 'Test My Speed',
+    color: '#0052ff',
+    bg: '#e6f2ff',
+  },
+  {
+    title: 'Internet Quiz',
+    desc: 'Answer 5 questions about your household and usage — get a plan recommendation matched to you.',
+    icon: '🎯',
+    href: '/quiz',
+    cta: 'Take the Quiz',
+    color: '#7c3aed',
+    bg: '#f3ecff',
+  },
+  {
+    title: 'Bill Analyzer',
+    desc: 'Paste your bill details and we\'ll tell you exactly what you\'re overpaying and what to do about it.',
+    icon: '🧾',
+    href: '/bill-analyzer',
+    cta: 'Analyze My Bill',
+    color: '#b45309',
+    bg: '#fffbeb',
+  },
+  {
+    title: 'Provider Compare',
+    desc: 'Put two or more providers head-to-head on speed, price, data caps, and contract terms.',
+    icon: '⚖️',
+    href: '/compare',
+    cta: 'Compare Plans',
+    color: '#0d7259',
+    bg: '#e6fff7',
+  },
+  {
+    title: 'Coverage Map',
+    desc: 'See which providers service your area on an interactive map — sorted by partner and technology type.',
+    icon: '🗺️',
+    href: '/coverage-map',
+    cta: 'View Map',
+    color: '#0052ff',
+    bg: '#e6f2ff',
+  },
+  {
+    title: 'Check Availability',
+    desc: 'Enter your ZIP to instantly see every internet provider available at your address.',
+    icon: '📍',
+    href: '/check-availability',
+    cta: 'Check My Address',
+    color: '#c2410c',
+    bg: '#fff5f0',
+  },
 ];
 
-const tools = [
-  { title: 'Speed Test', desc: 'Check your actual download and upload speeds.', icon: '📊', href: '/speed-test' },
-  { title: 'Internet Quiz', desc: 'Answer 5 questions and get a personalized recommendation.', icon: '❓', href: '/quiz' },
-  { title: 'Bill Analyzer', desc: 'Upload your bill — we\'ll find you a better deal.', icon: '🧾', href: '/bill-analyzer' },
-  { title: 'Provider Compare', desc: 'Compare providers side-by-side.', icon: '⚖️', href: '/compare' },
+const guides = [
+  { title: 'How to Choose the Right Internet Provider', desc: 'Speed, price, technology, contracts, and data caps — what actually matters and what doesn\'t.', icon: '📋', href: '/best-internet' },
+  { title: 'Fiber vs Cable vs DSL vs 5G', desc: 'Understand the real-world differences between internet technologies before you commit.', icon: '🔌', href: '/internet-types' },
+  { title: 'How Much Internet Speed Do I Actually Need?', desc: 'Stop overpaying for speed you don\'t use. Calculate the right tier for your household.', icon: '⚡', href: '/speed-test' },
+  { title: 'How to Lower Your Internet Bill', desc: 'Call scripts, negotiation tactics, and when it\'s smarter to just switch providers.', icon: '💰', href: '/deals' },
+  { title: 'Moving Your Internet: Complete Playbook', desc: 'Transfer, cancel, or set up new service — step-by-step for a zero-downtime move.', icon: '🏠', href: '/movers' },
+  { title: 'How to Switch Providers Without Downtime', desc: 'Overlapping service, equipment returns, and the exact order to do things.', icon: '🔄', href: '/switch' },
+  { title: 'Best Internet for Rural Areas', desc: 'Starlink, fixed wireless, and new 5G options for underserved and remote locations.', icon: '🌾', href: '/internet-for/rural' },
+  { title: 'Work From Home Internet Requirements', desc: 'What speed and reliability you actually need for Zoom, VPN, and cloud work.', icon: '💻', href: '/internet-for/work-from-home' },
+  { title: 'Gaming Internet: What You Actually Need', desc: 'Ping, jitter, and upload speed — what matters for competitive and casual gaming.', icon: '🎮', href: '/internet-for/gaming' },
+];
+
+const types = [
+  { label: 'Fiber', href: '/internet-types/fiber', desc: 'Fastest speeds, symmetrical upload', badge: 'tag-fiber', emoji: '💡' },
+  { label: 'Cable', href: '/internet-types/cable', desc: 'Widely available, no contracts', badge: 'tag-cable', emoji: '📡' },
+  { label: '5G Home', href: '/internet-types/5g', desc: 'Self-install, flexible, no wires', badge: 'tag-5g', emoji: '📶' },
+  { label: 'DSL', href: '/internet-types/dsl', desc: 'Budget option, uses phone lines', badge: 'tag-dsl', emoji: '☎️' },
+  { label: 'Satellite', href: '/internet-types/satellite', desc: 'Available almost everywhere', badge: 'tag-satellite', emoji: '🛰️' },
+];
+
+const audiences = [
+  { label: 'Gamers', href: '/internet-for/gaming', desc: 'Low latency, high speed picks', emoji: '🎮' },
+  { label: 'Streaming', href: '/internet-for/streaming', desc: 'Buffer-free 4K on every device', emoji: '📺' },
+  { label: 'Remote Work', href: '/internet-for/work-from-home', desc: 'Reliable upload for video calls', emoji: '💼' },
+  { label: 'Seniors', href: '/internet-for/seniors', desc: 'Simple plans, affordable rates', emoji: '🏡' },
+  { label: 'Students', href: '/internet-for/students', desc: 'Budget-friendly, no contracts', emoji: '🎓' },
+  { label: 'Rural Areas', href: '/internet-for/rural', desc: 'Options where fiber doesn\'t reach', emoji: '🌾' },
+  { label: 'Large Households', href: '/internet-for/large-households', desc: 'Enough bandwidth for everyone', emoji: '👨‍👩‍👧‍👦' },
+  { label: 'Smart Homes', href: '/internet-for/smart-home', desc: 'Keep all your devices connected', emoji: '🏠' },
 ];
 ---
 <Base
-  title="Internet Resources & Guides — How to Choose, Save, and Get Connected"
-  description="Expert guides on choosing internet providers, understanding speeds, lowering your bill, and getting connected. Free tools and resources."
-  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet4all.com' }, { name: 'Resources', url: 'https://internet4all.com/resources' }])]}
+  title="Free Internet Tools, Guides & Resources | Internet 4 ALL"
+  description="Free tools to test your speed, compare providers, analyze your bill, and find the best internet plan. Expert guides on fiber, cable, 5G, rural internet, and more."
+  schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet-4-all.com' }, { name: 'Resources', url: 'https://internet-4-all.com/resources' }])]}
 >
-  <section class="section" style="padding-top: var(--space-xl);">
+
+  <!-- Hero -->
+  <section class="hero-clean">
+    <div class="hero-background"></div>
     <div class="container">
-      <Breadcrumb items={[{ name: 'Resources' }]} />
-
-      <div class="text-center reveal">
-        <h1>Internet <span class="gradient-text">Resources</span> & Guides</h1>
-        <p class="hero-subtitle" style="max-width:550px;margin-inline:auto;">Everything you need to make smart decisions about your internet service.</p>
-      </div>
-
-      <!-- Quick Actions -->
-      <div class="flex justify-center reveal" style="margin-top: var(--space-xl); margin-bottom: var(--space-3xl);">
-        <SearchBar placeholder="Enter your ZIP to get started" />
-      </div>
-
-      <!-- Free Tools -->
-      <div class="reveal" style="margin-bottom:var(--space-3xl);">
-        <h2 style="margin-bottom:var(--space-xl);">Free Tools</h2>
-        <div class="grid grid-4">
-          {tools.map((tool, i) => (
-            <a href={tool.href} class={`card text-center reveal reveal-delay-${i + 1}`} style="cursor:pointer;">
-              <h4 style="font-size:var(--text-base);">{tool.title}</h4>
-              <p style="font-size:var(--text-sm);margin-top:var(--space-xs);">{tool.desc}</p>
-            </a>
-          ))}
+      <div class="hero-center reveal">
+        <div class="hero-badge">
+          🛠️ 100% Free — No Signup Required
         </div>
+        <h1 class="hero-title">
+          Free Internet <span class="gradient-text">Tools & Guides</span>
+        </h1>
+        <p class="hero-subtitle">
+          Speed tests, bill analyzers, provider comparisons, and expert guides — everything you need to find and keep the best internet deal.
+        </p>
       </div>
-
-      <!-- Guides -->
-      <div class="reveal">
-        <h2 style="margin-bottom:var(--space-xl);">Guides & Articles</h2>
-        <div class="grid grid-3">
-          {guides.map((guide, i) => (
-            <a href={guide.href} class={`card reveal`} style={`cursor:pointer;transition-delay:${Math.min(i * 70, 400)}ms;`}>
-              <h4 style="font-size:var(--text-lg);">{guide.title}</h4>
-              <p style="font-size:var(--text-sm);margin-top:var(--space-sm);">{guide.desc}</p>
-              <span style="display:inline-flex;align-items:center;gap:0.3em;margin-top:var(--space-md);font-size:var(--text-sm);color:var(--brand-blue-light);">
-                Read More →
-              </span>
-            </a>
-          ))}
-        </div>
+      <div class="hero-search reveal">
+        <SearchBar size="large" placeholder="Enter your ZIP to see plans in your area" />
+        <p class="hero-hint">No signup required &bull; See all providers in 10 seconds</p>
       </div>
+    </div>
+  </section>
 
-      <!-- Internet by Type -->
-      <div class="reveal" style="margin-top:var(--space-3xl);">
-        <h2 style="margin-bottom:var(--space-xl);">Browse by Internet Type</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-md);">
-          <a href="/internet-types/fiber" class="card text-center" style="padding: var(--space-lg); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Fiber Internet</h4>
-          </a>
-          <a href="/internet-types/cable" class="card text-center" style="padding: var(--space-lg); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Cable Internet</h4>
-          </a>
-          <a href="/internet-types/5g" class="card text-center" style="padding: var(--space-lg); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">5G Home Internet</h4>
-          </a>
-          <a href="/internet-types/dsl" class="card text-center" style="padding: var(--space-lg); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">DSL Internet</h4>
-          </a>
-          <a href="/internet-types/satellite" class="card text-center" style="padding: var(--space-lg); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Satellite Internet</h4>
-          </a>
-        </div>
+  <!-- Free Tools -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom:var(--space-2xl);">
+        <h2>Free Tools</h2>
+        <p class="section-subtitle">Built for real people, not ISPs. No account, no email, no BS.</p>
       </div>
-
-      <!-- Internet For You -->
-      <div class="reveal" style="margin-top:var(--space-3xl);">
-        <h2 style="margin-bottom:var(--space-xl);">Internet for Your Needs</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
-          <a href="/internet-for/gaming" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Best for Gaming</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Low latency, high speed picks</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:var(--space-lg);">
+        {tools.map((tool, i) => (
+          <a
+            href={tool.href}
+            class="card reveal"
+            style={`text-decoration:none;display:flex;flex-direction:column;gap:var(--space-md);padding:var(--space-xl);transition:transform 0.2s,box-shadow 0.2s;transition-delay:${Math.min(i * 60, 300)}ms;`}
+            onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,0.12)'"
+            onmouseout="this.style.transform='';this.style.boxShadow=''"
+          >
+            <div style={`width:52px;height:52px;border-radius:var(--radius-md);background:${tool.bg};display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;`}>
+              {tool.icon}
+            </div>
+            <div style="flex:1;">
+              <div style="font-weight:700;font-size:var(--text-lg);color:var(--text-primary);margin-bottom:var(--space-xs);">{tool.title}</div>
+              <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.55;">{tool.desc}</p>
+            </div>
+            <div style={`display:inline-flex;align-items:center;gap:6px;font-size:var(--text-sm);font-weight:600;color:${tool.color};`}>
+              {tool.cta} →
+            </div>
           </a>
-          <a href="/internet-for/streaming" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Best for Streaming</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Buffer-free 4K streaming</p>
-          </a>
-          <a href="/internet-for/work-from-home" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Work From Home</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Reliable remote work speeds</p>
-          </a>
-          <a href="/internet-for/seniors" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">For Seniors</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Simple, affordable plans</p>
-          </a>
-          <a href="/internet-for/students" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">For Students</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Budget-friendly student picks</p>
-          </a>
-          <a href="/internet-for/rural" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">For Rural Areas</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Options beyond city limits</p>
-          </a>
-          <a href="/internet-for/large-households" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Large Households</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Plans for 5+ people</p>
-          </a>
-          <a href="/internet-for/smart-home" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Smart Home</h4>
-            <p style="font-size: var(--text-xs); color: var(--text-secondary); margin-top: var(--space-xs);">Connect all your devices</p>
-          </a>
-        </div>
+        ))}
       </div>
+    </div>
+  </section>
 
-      <!-- Quick Links -->
-      <div class="reveal" style="margin-top:var(--space-3xl);">
-        <h2 style="margin-bottom:var(--space-xl);">Quick Links</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
-          <a href="/providers" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">All Providers</h4>
+  <!-- Expert Guides -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom:var(--space-2xl);">
+        <h2>Expert Guides</h2>
+        <p class="section-subtitle">Written by people who've spent thousands of hours studying the ISP industry — not marketing copy.</p>
+      </div>
+      <div class="grid grid-3">
+        {guides.map((guide, i) => (
+          <a
+            href={guide.href}
+            class="card reveal"
+            style={`text-decoration:none;display:flex;flex-direction:column;gap:var(--space-sm);padding:var(--space-xl);transition:transform 0.2s,box-shadow 0.2s;transition-delay:${Math.min(i * 60, 400)}ms;`}
+            onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 28px rgba(0,0,0,0.1)'"
+            onmouseout="this.style.transform='';this.style.boxShadow=''"
+          >
+            <div style="font-size:1.8rem;line-height:1;">{guide.icon}</div>
+            <div style="font-weight:700;font-size:var(--text-base);color:var(--text-primary);line-height:1.35;">{guide.title}</div>
+            <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.55;flex:1;">{guide.desc}</p>
+            <span style="font-size:var(--text-sm);font-weight:600;color:var(--brand-blue);margin-top:var(--space-xs);">Read Guide →</span>
           </a>
-          <a href="/compare" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Compare Plans</h4>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Internet by Type -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom:var(--space-2xl);">
+        <h2>Browse by Connection Type</h2>
+        <p class="section-subtitle">Not all internet is the same. Pick your technology to see the best providers and plans.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:var(--space-md);">
+        {types.map((t, i) => (
+          <a
+            href={t.href}
+            class="card reveal text-center"
+            style={`text-decoration:none;padding:var(--space-xl) var(--space-lg);display:flex;flex-direction:column;align-items:center;gap:var(--space-sm);transition:transform 0.2s,box-shadow 0.2s;transition-delay:${i * 60}ms;`}
+            onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 28px rgba(0,0,0,0.1)'"
+            onmouseout="this.style.transform='';this.style.boxShadow=''"
+          >
+            <div style="font-size:2rem;">{t.emoji}</div>
+            <span class={`tag ${t.badge}`} style="font-size:12px;">{t.label}</span>
+            <p style="font-size:var(--text-xs);color:var(--text-secondary);line-height:1.4;">{t.desc}</p>
           </a>
-          <a href="/deals" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Best Deals</h4>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Internet for Your Needs -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom:var(--space-2xl);">
+        <h2>Internet for Your Situation</h2>
+        <p class="section-subtitle">Different people need different things. Find what's right for you.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:var(--space-md);">
+        {audiences.map((a, i) => (
+          <a
+            href={a.href}
+            class="card reveal"
+            style={`text-decoration:none;padding:var(--space-lg);display:flex;align-items:center;gap:var(--space-md);transition:transform 0.2s,box-shadow 0.2s;transition-delay:${Math.min(i * 50, 350)}ms;`}
+            onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.08)'"
+            onmouseout="this.style.transform='';this.style.boxShadow=''"
+          >
+            <div style="font-size:1.6rem;flex-shrink:0;">{a.emoji}</div>
+            <div>
+              <div style="font-weight:700;font-size:var(--text-sm);color:var(--text-primary);">{a.label}</div>
+              <div style="font-size:var(--text-xs);color:var(--text-secondary);margin-top:2px;">{a.desc}</div>
+            </div>
           </a>
-          <a href="/cheap-internet" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Cheap Internet</h4>
-          </a>
-          <a href="/fastest-internet" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Fastest Internet</h4>
-          </a>
-          <a href="/home-internet" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Home Internet</h4>
-          </a>
-          <a href="/wireless-internet" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">Wireless Internet</h4>
-          </a>
-          <a href="/about" class="card" style="padding: var(--space-md); text-decoration: none;">
-            <h4 style="font-size: var(--text-sm);">About Us</h4>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="card reveal text-center" style="padding:var(--space-3xl) var(--space-xl);background:var(--gradient-hero);border:none;max-width:700px;margin:0 auto;">
+        <h2 style="color:#fff;font-size:var(--text-3xl);margin-bottom:var(--space-md);">Still not sure? Talk to a real person.</h2>
+        <p style="color:rgba(255,255,255,0.75);font-size:var(--text-base);max-width:480px;margin:0 auto var(--space-xl);">Our advisors compare every provider at your address in real time — no scripts, no upsells, just the best option for you.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-md);justify-content:center;">
+          <button class="btn btn-cta" data-open-chat style="font-size:var(--text-base);padding:14px 32px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px;vertical-align:-3px;"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Chat with an Advisor
+          </button>
+          <a href="/check-availability" class="btn btn-secondary" style="font-size:var(--text-base);padding:14px 32px;background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.3);color:#fff;">
+            Check My ZIP →
           </a>
         </div>
       </div>
@@ -168,3 +252,11 @@ const tools = [
 
   <StickyCallBar />
 </Base>
+
+<script>
+  document.querySelectorAll('[data-open-chat]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (typeof window.openAssistant === 'function') window.openAssistant('chat');
+    });
+  });
+</script>

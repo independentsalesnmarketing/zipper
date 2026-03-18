@@ -1,19 +1,18 @@
 ---
 import { getPartnerProviders, getMinPrice, getMaxSpeed } from '@lib/providers';
 
-const partners = getPartnerProviders().map(p => ({
+const partners = getPartnerProviders().map((p) => ({
   id: p.id,
   slug: p.slug,
   name: p.name,
   logo: p.logo,
-  phone: p.phone,
   types: p.types,
   rating: p.rating,
   reviewCount: p.reviewCount,
   coverage: p.coverage,
   minPrice: getMinPrice(p),
   maxSpeed: getMaxSpeed(p),
-  plans: p.plans.map(pl => ({
+  plans: p.plans.map((pl) => ({
     name: pl.name,
     speed: pl.speed,
     uploadSpeed: pl.uploadSpeed,
@@ -26,7 +25,6 @@ const partners = getPartnerProviders().map(p => ({
 }));
 ---
 
-<!-- Unified Internet Advisor — Chat + Talk in one widget -->
 <div id="ast" class="ast">
   <button id="ast-btn" class="ast-btn" aria-label="Chat with Internet Advisor">
     <svg id="ast-ico-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
@@ -50,25 +48,9 @@ const partners = getPartnerProviders().map(p => ({
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
-      <div class="ast-tabs" id="ast-tabs">
-        <button class="ast-tab ast-tab-on" data-mode="chat">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-          Chat
-        </button>
-        <button class="ast-tab" data-mode="talk">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg>
-          Talk
-        </button>
-      </div>
-    </div>
-
-    <div id="ast-vbar" class="ast-vbar" style="display:none">
-      <span class="ast-vbar-dot" id="ast-vdot"></span>
-      <span id="ast-vtxt">One moment…</span>
     </div>
 
     <div id="ast-msgs-chat" class="ast-msgs"></div>
-    <div id="ast-msgs-talk" class="ast-msgs" style="display:none"></div>
 
     <form id="ast-form" class="ast-form" autocomplete="off">
       <input type="text" id="ast-inp" class="ast-inp" placeholder="Ask about plans, speeds, pricing..." />
@@ -76,274 +58,187 @@ const partners = getPartnerProviders().map(p => ({
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
     </form>
-
-    <div id="ast-vctrl" class="ast-vctrl" style="display:none">
-      <div class="ast-vorb-wrap">
-        <div class="ast-vorb" id="ast-vorb">
-          <button id="ast-mic" class="ast-mic" aria-label="Tap to speak or interrupt">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-          </button>
-        </div>
-      </div>
-      <div id="ast-mic-hint" class="ast-mic-hint">Tap the mic and speak</div>
-      <p class="ast-vtranscript" id="ast-vtranscript"></p>
-      <form id="ast-vform" class="ast-vform" autocomplete="off">
-        <input type="text" id="ast-vinp" class="ast-vinp" placeholder="Or type here..." />
-        <button type="submit" class="ast-send" aria-label="Send">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        </button>
-      </form>
-    </div>
   </div>
 </div>
 
 <script id="ast-data" type="application/json" set:html={JSON.stringify(partners)} />
 
 <script>
-(function(){
-  /* ── Config ─────────────────────────────────────────────────── */
+(function () {
   const GEMINI_KEY = import.meta.env.PUBLIC_GEMINI_KEY;
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
-  const TTS_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${GEMINI_KEY}`;
   const partners = JSON.parse(document.getElementById('ast-data').textContent);
 
   const BROAD_SLUGS = ['att-air', 'earthlink'];
-  const broadProviders = partners.filter(p => BROAD_SLUGS.includes(p.slug));
+  const broadProviders = partners.filter((p) => BROAD_SLUGS.includes(p.slug));
 
-  /* Build name→slug lookup for auto-CTA injection */
   const nameToSlug = {};
-  partners.forEach(p => {
+  partners.forEach((p) => {
     nameToSlug[p.name.toLowerCase()] = p.slug;
-    /* common short names */
-    if(p.slug === 'att-fiber') nameToSlug['at&t'] = p.slug;
-    if(p.slug === 'att-air') nameToSlug['at&t air'] = p.slug;
-    if(p.slug === 'tmobile-fiber') nameToSlug['t-mobile'] = p.slug;
-    if(p.slug === 'tmobile-5g') nameToSlug['t-mobile 5g'] = p.slug;
+    if (p.slug === 'att-fiber') nameToSlug['at&t'] = p.slug;
+    if (p.slug === 'att-air') nameToSlug['at&t air'] = p.slug;
+    if (p.slug === 'tmobile-fiber') nameToSlug['t-mobile'] = p.slug;
+    if (p.slug === 'tmobile-5g') nameToSlug['t-mobile 5g'] = p.slug;
   });
 
-  /* ── ZIP Coverage ───────────────────────────────────────────── */
-  let zipData = null, zipLoading = null;
+  let zipData = null;
+  let zipLoading = null;
+  let _pendingMsg = null;
 
-  async function loadZipCoverage(){
-    if(zipData) return zipData;
-    if(zipLoading) return zipLoading;
-    zipLoading = fetch('/data/zip-coverage.json').then(r => r.ok ? r.json() : null).catch(() => null).then(d => { zipData = d; return d; });
+  async function loadZipCoverage() {
+    if (zipData) return zipData;
+    if (zipLoading) return zipLoading;
+    zipLoading = fetch('/data/zip-coverage.json')
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null)
+      .then((d) => {
+        zipData = d;
+        return d;
+      });
     return zipLoading;
   }
 
-  function buildZipContext(zip){
+  function buildZipContext(zip) {
     const confirmed = (zipData && zipData[zip]) || [];
-    const covIds = confirmed.map(e => e.id);
-    /* Match by BOTH id and slug — zip-coverage stores provider id (e.g. 'tmobile', 'att')
-       while partners have slug (e.g. 'tmobile-fiber', 'att-fiber'). Must check both. */
-    const matched = partners.filter(p => covIds.includes(p.slug) || covIds.includes(p.id));
+    const covIds = confirmed.map((e) => e.id);
+    const matched = partners.filter((p) => covIds.includes(p.slug) || covIds.includes(p.id));
     const count = matched.length;
-    let primary = [], secondary = [];
+    let primary = [];
+    let secondary = [];
 
-    if(count === 0){
+    if (count === 0) {
       primary = broadProviders;
-      secondary = partners.filter(p => !BROAD_SLUGS.includes(p.slug)).sort((a,b) => a.minPrice - b.minPrice).slice(0,2);
-    } else if(count <= 2){
-      primary = matched; secondary = broadProviders;
-    } else if(count <= 4){
-      primary = matched; secondary = broadProviders;
+      secondary = partners
+        .filter((p) => !BROAD_SLUGS.includes(p.slug))
+        .sort((a, b) => a.minPrice - b.minPrice)
+        .slice(0, 2);
+    } else if (count <= 4) {
+      primary = matched;
+      secondary = broadProviders;
     } else {
       primary = matched;
     }
 
-    const fiberIds = confirmed.filter(e => e.fiber).map(e => e.id);
-    const allRec = [...primary, ...secondary];
-    let s = `ZIP ${zip} — VERIFIED providers (ONLY recommend these, never others):\n`;
-    s += `Confirmed (${count}): ${matched.map(p => `${p.name} (${p.slug})${fiberIds.includes(p.id) || fiberIds.includes(p.slug) ? ' [FIBER]' : ''}`).join(', ') || 'none in our database'}.\n`;
-    if(primary.length){
-      s += `PRIMARY (recommend first):\n`;
-      primary.forEach(p => {
-        const best = p.plans[0];
-        s += `• ${p.name} (${p.slug}): from $${p.minPrice}/mo, up to ${p.maxSpeed}Mbps — top plan: ${best.name} ${best.speed}Mbps $${best.price}/mo\n`;
-      });
-    }
-    if(secondary.length){
-      s += `SECONDARY (also available):\n`;
-      secondary.forEach(p => { s += `• ${p.name} (${p.slug}): from $${p.minPrice}/mo, up to ${p.maxSpeed}Mbps\n`; });
-    }
-    s += `\nWhen responding in [chat] mode, use [[SHOW:slug1|slug2|slug3]] to display the provider cards (use the exact slugs from the list above, up to 3). Never mention providers in text without also showing their cards. Never recommend any provider not listed here.`;
-    return { text: s, providers: allRec };
+    return { providers: [...primary, ...secondary] };
   }
 
-  /* ── DOM Refs ───────────────────────────────────────────────── */
-  const btn       = document.getElementById('ast-btn');
-  const icoOpen   = document.getElementById('ast-ico-open');
-  const icoX      = document.getElementById('ast-ico-x');
-  const badge     = document.getElementById('ast-badge');
-  const panel     = document.getElementById('ast-panel');
-  const closeBtn  = document.getElementById('ast-x');
-  const tabs      = document.getElementById('ast-tabs');
-  const vbar      = document.getElementById('ast-vbar');
-  const vdot      = document.getElementById('ast-vdot');
-  const vtxt      = document.getElementById('ast-vtxt');
-  const chatMsgs  = document.getElementById('ast-msgs-chat');
-  const talkMsgs  = document.getElementById('ast-msgs-talk');
-  function getMsgs(){ return mode === 'chat' ? chatMsgs : talkMsgs; }
-  const chatForm  = document.getElementById('ast-form');
+  const btn = document.getElementById('ast-btn');
+  const icoOpen = document.getElementById('ast-ico-open');
+  const icoX = document.getElementById('ast-ico-x');
+  const badge = document.getElementById('ast-badge');
+  const panel = document.getElementById('ast-panel');
+  const closeBtn = document.getElementById('ast-x');
+  const chatMsgs = document.getElementById('ast-msgs-chat');
+  const chatForm = document.getElementById('ast-form');
   const chatInput = document.getElementById('ast-inp');
-  const vctrl     = document.getElementById('ast-vctrl');
-  const micBtn    = document.getElementById('ast-mic');
-  const vform     = document.getElementById('ast-vform');
-  const vinp      = document.getElementById('ast-vinp');
 
-  /* ── State ──────────────────────────────────────────────────── */
-  let mode = 'chat';
   let isOpen = false;
-  let hasGreetedChat = false;
-  let hasGreetedTalk = false;
+  let hasGreeted = false;
   let sending = false;
-  let isSpeaking = false;
-  let isListening = false;
-  let recognition = null;
-  let audioCtx = null;      /* TTS playback context (24kHz Gemini audio) */
-  let vadAudioCtx = null;   /* Mic analysis context (device-native sample rate) */
-  let currentSource = null;
-  let speakGen = 0;
-  let pendingMicMsg = null; /* live transcription bubble while user is speaking */
   let lastZip = null;
   let lastZipProviders = [];
   let collectedData = {};
   const chatHistory = [];
-  const talkHistory = [];
-  function getHistory(){ return mode === 'chat' ? chatHistory : talkHistory; }
 
-  /* ── System Instruction ─────────────────────────────────────── */
-  const sysInstruction = `You are a friendly internet advisor at Internet4All.com. Talk like a real person — warm, helpful, and to the point. Never sound like a bot or a script.
+  const sysInstruction = `You are a friendly internet advisor at Internet-4-All.com. Talk like a real person, warm and helpful.
 
 PROVIDERS YOU CAN RECOMMEND (never recommend any others):
-${partners.map(p => `• ${p.name} (slug: ${p.slug}) | ${p.types.join('/')} | From $${p.minPrice}/mo | Up to ${p.maxSpeed} Mbps | Plans: ${p.plans.map(pl => `${pl.name} ${pl.speed}Mbps $${pl.price}/mo`).join('; ')}`).join('\n')}
+${partners.map((p) => `- ${p.name} (slug: ${p.slug}) | ${p.types.join('/')} | From $${p.minPrice}/mo | Up to ${p.maxSpeed} Mbps`).join('\n')}
 
 If a [SYSTEM] block provides ZIP coverage data, only recommend the providers listed there.
 
-HOW TO TALK:
-- Skip filler like "Great question!" or "Absolutely!" — just answer naturally.
-- Lean toward the fastest/best plans first. Only bring up budget options when someone asks.
-- Keep your text brief — 1 or 2 casual sentences — then use [[SHOW:]] to display the cards. The cards do the heavy lifting.
-- When a user provides a ZIP code, immediately return available providers in that same response and include [[SHOW:...]].
-- In narrative text, name providers but do not quote pricing. Pricing belongs on cards only.
-- This is conversion-focused: guide users to tap Order Now and start signup.
-- Always finish your full sentence before adding any tags.
-- Never use your own knowledge of provider availability — only use what's given to you.
-- After presenting cards with [[SHOW:]], always end with a short warm close like "Tap Order Now on any of those to get started — or let me know if you have questions!" Then stop. Do not volunteer more information unless the user asks.
+RULES:
+- Keep responses short and natural.
+- Lean toward fastest and best plans unless user asks for cheapest.
+- Use [[SHOW:slug1|slug2|slug3]] whenever recommending providers.
+- Do not quote pricing in narrative text.
+- End with a short CTA to tap Order Now.
 
-TAGS — use these in [chat] mode only:
-  [[SHOW:slug1|slug2|slug3]] — display provider cards with all plans (use whenever recommending providers, up to 3 slugs)
-  [[PLAN:slug|Name|speed|upload|price|contract|cap]] — highlight a single specific plan
-  [[ORDER:slug:Plan Name]] — direct "order this plan" CTA
-  [[DATA:field:value]] — silently log: name, zip, email, phone, address, city, state, installDate
-  [[READY_TO_ORDER:slug:Plan Name]] — open signup form when ready
+TAGS:
+[[SHOW:slug1|slug2|slug3]]
+[[PLAN:slug|Name|speed|upload|price|contract|cap]]
+[[ORDER:slug:Plan Name]]
+[[DATA:field:value]]
+[[READY_TO_ORDER:slug:Plan Name]]`;
 
-In [voice] mode: speak naturally in 1-2 sentences. No tags whatsoever.
-
-CHIP SELECTIONS — when the message starts with [CHIP], follow the exact script for that chip:
-  [CHIP:check-area]   → Greet the user warmly (e.g., "Hey, welcome to Internet4All!"), say you'll find out what's available in their area, then ask: "What's your ZIP code?"
-  [CHIP:cheapest]     → Greet warmly, say you'll track down the most affordable plans near them, then ask: "What's your ZIP code?"
-  [CHIP:fast]         → Greet warmly, say you've got great high-speed picks for gaming and streaming, then ask: "What ZIP code are you in?"
-  [CHIP:compare]      → Greet warmly, say you're happy to walk through the providers that serve their area, then ask: "What's your ZIP code so I can see who's available?"
-  Always keep chip replies to 2 short sentences. Do not answer the question yet — just greet, acknowledge, and ask for ZIP.
-
-EXAMPLES:
-  User gives ZIP → "Here's what's available in your area:" [[SHOW:altafiber|spectrum|earthlink]] "Tap Order Now on any of those to get started — or let me know if you have questions!"
-  "what do you recommend?" → "For most households I'd go with the gig plan — fastest and most reliable." [[SHOW:altafiber|att-fiber]] "Hit Order Now to get signed up, or ask me anything else!"
-  "what's the cheapest?" → "Here are the most affordable options:" [[SHOW:spectrum|earthlink|att-air]] "Let me know if you'd like more details on any of those, otherwise tap Order Now to continue!"
-  "tell me about the plans" → "Here's a breakdown of what's in your area:" [[SHOW:altafiber|spectrum|earthlink]] "Any questions, or ready to pick one?"`;
-
-  /* ── Helpers ────────────────────────────────────────────────── */
-  function esc(s){ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-  function scroll(){ const m = getMsgs(); m.scrollTop = m.scrollHeight; }
-
-  /* Pre-create AudioContext on first user gesture */
-  function ensureAudioCtx(){
-    if(!audioCtx){
-      try { audioCtx = new AudioContext({ sampleRate: 24000 }); } catch(e){}
-    }
+  function esc(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
   }
 
-  function ensureVadAudioCtx(){
-    if(!vadAudioCtx){
-      try { vadAudioCtx = new AudioContext(); } catch(e){}
-    }
+  function scroll() {
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
   }
 
-  /* Set animated orb state: 'listening' | 'thinking' | 'speaking' | '' */
-  function setOrbState(state){
-    const orb = document.getElementById('ast-vorb');
-    if(!orb) return;
-    orb.classList.remove('listening','speaking','thinking');
-    if(state) orb.classList.add(state);
-  }
-
-  /* ── Messages ───────────────────────────────────────────────── */
-  function bindOrderBtns(container){
-    container.querySelectorAll('.ast-order-btn').forEach(b => {
-      if(b.dataset.bound === '1') return;
+  function bindOrderBtns(container) {
+    container.querySelectorAll('.ast-order-btn').forEach((b) => {
+      if (b.dataset.bound === '1') return;
       b.dataset.bound = '1';
-      b.addEventListener('click', e => { e.preventDefault(); openSignup(b.dataset.slug, b.dataset.plan); });
+      b.addEventListener('click', (e) => {
+        e.preventDefault();
+        openSignup(b.dataset.slug, b.dataset.plan);
+      });
     });
 
-    container.querySelectorAll('.ast-provider-card[data-slug]').forEach(card => {
-      if(card.dataset.bound === '1') return;
+    container.querySelectorAll('.ast-provider-card[data-slug]').forEach((card) => {
+      if (card.dataset.bound === '1') return;
       card.dataset.bound = '1';
-      card.addEventListener('click', e => {
-        if(e.target.closest('.ast-order-btn')) return;
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.ast-order-btn')) return;
         openSignup(card.dataset.slug, card.dataset.plan);
       });
-      card.addEventListener('keydown', e => {
-        if(e.key !== 'Enter' && e.key !== ' ') return;
+      card.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
         e.preventDefault();
         openSignup(card.dataset.slug, card.dataset.plan);
       });
     });
   }
 
-  function addMsg(html, role, animate = false){
+  function addMsg(html, role, animate = false) {
     const div = document.createElement('div');
     div.className = `ast-msg ${role === 'user' ? 'ast-msg-user' : 'ast-msg-bot'}`;
-    getMsgs().appendChild(div);
+    chatMsgs.appendChild(div);
     scroll();
 
-    if(role !== 'user' && animate){
+    if (role !== 'user' && animate) {
       typewrite(div, html);
-    } else {
-      div.innerHTML = html;
-      bindOrderBtns(div);
-      scroll();
+      return;
     }
+
+    div.innerHTML = html;
+    bindOrderBtns(div);
+    scroll();
   }
 
-  /* Typewriter effect — streams HTML token by token */
-  function typewrite(el, html){
-    /* Split html into tokens: tags and text runs */
+  function typewrite(el, html) {
     const tokens = [];
     let i = 0;
-    while(i < html.length){
-      if(html[i] === '<'){
+    while (i < html.length) {
+      if (html[i] === '<') {
         const end = html.indexOf('>', i);
-        if(end === -1){ tokens.push(html.slice(i)); i = html.length; }
-        else { tokens.push(html.slice(i, end+1)); i = end+1; }
+        if (end === -1) {
+          tokens.push(html.slice(i));
+          i = html.length;
+        } else {
+          tokens.push(html.slice(i, end + 1));
+          i = end + 1;
+        }
       } else {
         let j = i;
-        while(j < html.length && html[j] !== '<') j++;
-        /* chunk visible text into small bursts */
+        while (j < html.length && html[j] !== '<') j++;
         const chunk = html.slice(i, j);
-        for(let k = 0; k < chunk.length; k += 3){
-          tokens.push(chunk.slice(k, k+3));
-        }
+        for (let k = 0; k < chunk.length; k += 3) tokens.push(chunk.slice(k, k + 3));
         i = j;
       }
     }
 
     let buf = '';
     let idx = 0;
-    const delay = 12; /* ms per token burst — feels natural */
 
-    function step(){
-      if(idx >= tokens.length){
+    function step() {
+      if (idx >= tokens.length) {
         el.innerHTML = buf;
         bindOrderBtns(el);
         scroll();
@@ -352,31 +247,36 @@ EXAMPLES:
       buf += tokens[idx++];
       el.innerHTML = buf;
       scroll();
-      setTimeout(step, delay);
+      setTimeout(step, 12);
     }
+
     setTimeout(step, 80);
   }
 
-  function addTyping(){
+  function addTyping() {
     const d = document.createElement('div');
-    d.className = 'ast-msg ast-msg-bot ast-typing'; d.id = 'ast-typing';
+    d.className = 'ast-msg ast-msg-bot ast-typing';
+    d.id = 'ast-typing';
     d.innerHTML = '<span></span><span></span><span></span>';
-    getMsgs().appendChild(d); scroll();
+    chatMsgs.appendChild(d);
+    scroll();
   }
-  function removeTyping(){ document.getElementById('ast-typing')?.remove(); }
 
-  /* ── Parse Gemini response → HTML ───────────────────────────── */
-  function rankProviders(list){
+  function removeTyping() {
+    document.getElementById('ast-typing')?.remove();
+  }
+
+  function rankProviders(list) {
     return [...list].sort((a, b) => {
-      if((b.maxSpeed || 0) !== (a.maxSpeed || 0)) return (b.maxSpeed || 0) - (a.maxSpeed || 0);
+      if ((b.maxSpeed || 0) !== (a.maxSpeed || 0)) return (b.maxSpeed || 0) - (a.maxSpeed || 0);
       return (a.minPrice || 0) - (b.minPrice || 0);
     });
   }
 
-  function formatBandwidth(value){
+  function formatBandwidth(value) {
     const n = Number(value) || 0;
-    if(!n) return 'N/A';
-    if(n >= 1000){
+    if (!n) return 'N/A';
+    if (n >= 1000) {
       const gig = n / 1000;
       const shown = Number.isInteger(gig) ? String(gig) : gig.toFixed(1).replace(/\.0$/, '');
       return `${shown} Gig`;
@@ -384,50 +284,54 @@ EXAMPLES:
     return `${n} MB`;
   }
 
-  function buildProviderGrid(slugs){
+  function buildProviderGrid(slugs) {
     const provs = slugs
-      .map(s => partners.find(x => x.slug === s.trim()))
+      .map((s) => partners.find((x) => x.slug === s.trim()))
       .filter(Boolean)
       .slice(0, 3);
-    if(!provs.length) return '';
+    if (!provs.length) return '';
+
     let html = '<div class="ast-provider-grid">';
-    rankProviders(provs).forEach(p => {
+    rankProviders(provs).forEach((p) => {
       const plans = p.plans || [];
       const topPlan = plans[0] || { name: 'Best Plan' };
-      const minPrice = plans.length ? Math.min(...plans.map(pl => pl.price)) : null;
-      const maxSpeed = plans.length ? Math.max(...plans.map(pl => pl.speed)) : null;
-      const startingLine = minPrice != null
-        ? `Starting at <strong class="ast-prov-start-price">$${minPrice}<small>/mo</small></strong>${maxSpeed ? `<br><span class="ast-prov-start-speed">Up to ${formatBandwidth(maxSpeed)}</span>` : ''}`
-        : '';
+      const minPrice = plans.length ? Math.min(...plans.map((pl) => pl.price)) : null;
+      const maxSpeed = plans.length ? Math.max(...plans.map((pl) => pl.speed)) : null;
+      const startingLine =
+        minPrice != null
+          ? `Starting at <strong class="ast-prov-start-price">$${minPrice}<small>/mo</small></strong>${
+              maxSpeed ? `<br><span class="ast-prov-start-speed">Up to ${formatBandwidth(maxSpeed)}</span>` : ''
+            }`
+          : '';
+
       html += `<div class="ast-provider-card" data-slug="${esc(p.slug)}" data-plan="${esc(topPlan.name)}" role="button" tabindex="0" aria-label="Order from ${esc(p.name)}">
         <div class="ast-prov-hdr">
           <div class="ast-prov-logo-wrap">
-            ${p.logo
-              ? `<img src="${esc(p.logo)}" alt="${esc(p.name)}" class="ast-prov-logo">`
-              : `<span class="ast-prov-logo-fallback">${esc(p.name.charAt(0))}</span>`}
+            ${
+              p.logo
+                ? `<img src="${esc(p.logo)}" alt="${esc(p.name)}" class="ast-prov-logo">`
+                : `<span class="ast-prov-logo-fallback">${esc(p.name.charAt(0))}</span>`
+            }
           </div>
           <span class="ast-prov-name" title="${esc(p.name)}">${esc(p.name)}</span>
         </div>
         ${startingLine ? `<div class="ast-prov-starting">${startingLine}</div>` : ''}
-        <button class="ast-order-btn ast-prov-cta" data-slug="${esc(p.slug)}" data-plan="${esc(topPlan.name)}">
-          Order Now <span class="ast-order-icon">&#x2192;</span>
-        </button>
+        <button class="ast-order-btn ast-prov-cta" data-slug="${esc(p.slug)}" data-plan="${esc(topPlan.name)}">Order Now <span class="ast-order-icon">&#x2192;</span></button>
       </div>`;
     });
     html += '</div>';
     return html;
   }
 
-  function buildZipResultReply(zip, providerList){
+  function buildZipResultReply(zip, providerList) {
     const ranked = rankProviders(providerList || []).slice(0, 3);
-    if(!ranked.length) return `I can help with that. Share your ZIP code and I will pull available providers for your address.`;
-    const names = ranked.map(p => p.name).join(', ');
-    const slugs = ranked.map(p => p.slug).join('|');
-    return `In ${zip}, providers available include ${names}. Choose one below and tap Order Now to continue to signup.\n[[SHOW:${slugs}]]`;
+    if (!ranked.length) return 'Share your ZIP code and I will pull available providers for your address.';
+    const names = ranked.map((p) => p.name).join(', ');
+    const slugs = ranked.map((p) => p.slug).join('|');
+    return `In ${zip}, providers available include ${names}. Choose one below and tap Order Now to continue.\n[[SHOW:${slugs}]]`;
   }
 
-  function parseResponse(text){
-    /* Strip [[SHOW:]] from text first — render it separately after */
+  function parseResponse(text) {
     let gridHtml = '';
     text = text.replace(/\[\[SHOW:([^\]]+)\]\]/g, (_, slugList) => {
       gridHtml = buildProviderGrid(slugList.split('|'));
@@ -440,1433 +344,786 @@ EXAMPLES:
       return `<button class="ast-order-btn" data-slug="${esc(slug)}" data-plan="${esc(plan)}"><span class="ast-order-icon">&#x2192;</span> Order ${esc(plan)}</button>`;
     });
 
-    h = h.replace(/\[\[PLAN:([a-z0-9-]+)\|(.+?)\|(\d+)\|([^\|]*)\|([^\|]+)\|([^\|]*)\|([^\]]*)\]\]/g,
-      (_, slug, name, down, up, price, contract, cap) => {
-        const p = partners.find(x => x.slug === slug);
-        return `<div class="ast-plan-card">
-          <div class="ast-plan-hdr"><span class="ast-plan-provider">${esc(p ? p.name : slug)}</span><span class="ast-plan-price">$${esc(price)}<small>/mo</small></span></div>
-          <div class="ast-plan-name">${esc(name)}</div>
-          <div class="ast-plan-speed">${formatBandwidth(down)} down${up ? ' / ' + formatBandwidth(up) + ' up' : ''}</div>
-          <div class="ast-plan-meta">${contract && contract !== 'None' ? contract : 'No contract'} · ${cap && cap !== 'Unlimited' ? cap : 'Unlimited'}</div>
-          <button class="ast-order-btn" data-slug="${esc(slug)}" data-plan="${esc(name)}"><span class="ast-order-icon">&#x2192;</span> Order Now</button>
-        </div>`;
-      }
-    );
+    h = h.replace(/\[\[PLAN:([a-z0-9-]+)\|(.+?)\|(\d+)\|([^\|]*)\|([^\|]+)\|([^\|]*)\|([^\]]*)\]\]/g, (_, slug, name, down, up, price, contract, cap) => {
+      const p = partners.find((x) => x.slug === slug);
+      return `<div class="ast-plan-card">
+        <div class="ast-plan-hdr"><span class="ast-plan-provider">${esc(p ? p.name : slug)}</span><span class="ast-plan-price">$${esc(price)}<small>/mo</small></span></div>
+        <div class="ast-plan-name">${esc(name)}</div>
+        <div class="ast-plan-speed">${formatBandwidth(down)} down${up ? ' / ' + formatBandwidth(up) + ' up' : ''}</div>
+        <div class="ast-plan-meta">${contract && contract !== 'None' ? contract : 'No contract'} - ${cap && cap !== 'Unlimited' ? cap : 'Unlimited'}</div>
+        <button class="ast-order-btn" data-slug="${esc(slug)}" data-plan="${esc(name)}"><span class="ast-order-icon">&#x2192;</span> Order Now</button>
+      </div>`;
+    });
 
     h = h.replace(/\[\[DATA:\w+:.+?\]\]/g, '');
     h = h.replace(/\[\[READY_TO_ORDER:.+?\]\]/g, '');
     h = h.replace(/\[\[LOOKUP_ZIP:\d{5}\]\]/g, '');
 
-    /* Append provider grid after text */
     return (h.trim() ? h : '') + gridHtml;
   }
 
-  /* Detect which partner providers are mentioned in the response text */
-  function detectMentionedProviders(text){
-    const lower = text.toLowerCase();
-    const found = [];
-    const seen = new Set();
-    partners.forEach(p => {
-      if(seen.has(p.slug)) return;
-      const pName = p.name.toLowerCase();
-      if(lower.includes(pName)){
-        found.push(p); seen.add(p.slug);
-      }
-    });
-    return found.slice(0, 4);
-  }
-
-  function getSpokenText(text){
-    return text
-      .replace(/\[\[SHOW:[^\]]+\]\]/g, '')
-      .replace(/\[\[ORDER:.+?\]\]/g, '')
-      .replace(/\[\[PLAN:.+?\]\]/g, '')
-      .replace(/\[\[DATA:\w+:.+?\]\]/g, '')
-      .replace(/\[\[READY_TO_ORDER:.+?\]\]/g, '')
-      .replace(/\*\*(.+?)\*\*/g, '$1')
-      .replace(/\n+/g, ' ')
-      .trim();
-  }
-
-  /* ── Open SignUpForm ────────────────────────────────────────── */
-  function openSignup(slug, planName){
+  function openSignup(slug) {
     close();
     const modal = document.getElementById('signup-modal');
-    if(!modal) return;
+    if (!modal) return;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     const sel = document.getElementById('su-provider');
-    if(sel && slug){ sel.value = slug; sel.dispatchEvent(new Event('change')); }
+    if (sel && slug) {
+      sel.value = slug;
+      sel.dispatchEvent(new Event('change'));
+    }
+
     setTimeout(() => {
-      for(const [id, val] of Object.entries({
-        'su-name': collectedData.name, 'su-email': collectedData.email,
-        'su-phone': collectedData.phone, 'su-address': collectedData.address,
-        'su-city': collectedData.city, 'su-state': collectedData.state, 'su-zip': collectedData.zip,
-      })){
-        if(val){ const el = document.getElementById(id); if(el) el.value = val; }
-      }
+      const nameParts = (collectedData.name || '').split(' ');
+      const preset = {
+        'su-fname': nameParts[0] || '',
+        'su-lname': nameParts.slice(1).join(' ') || '',
+        'su-email': collectedData.email,
+        'su-address': collectedData.address,
+        'su-city': collectedData.city,
+        'su-state': collectedData.state,
+        'su-zip': collectedData.zip,
+      };
+      Object.entries(preset).forEach(([id, val]) => {
+        if (!val) return;
+        const el = document.getElementById(id);
+        if (el) el.value = val;
+      });
     }, 250);
   }
 
-  /* ── Suggestions (rendered inline in message stream) ─────── */
-  function clearSuggestions(){
-    getMsgs().querySelectorAll('.ast-sug-row,.ast-talk-sug').forEach(el => el.remove());
+  function clearSuggestions() {
+    chatMsgs.querySelectorAll('.ast-sug-row').forEach((el) => el.remove());
   }
 
-  function showSuggestions(){ /* no-op — chip suggestions removed */ }
-  function showFollowUps(){ /* no-op — chip suggestions removed */ }
-
-  /* ── Gemini API ─────────────────────────────────────────────── */
-  async function callGemini(text){
-    getHistory().push({ role: 'user', parts: [{ text }] });
+  async function callGemini(text) {
+    chatHistory.push({ role: 'user', parts: [{ text }] });
     const res = await fetch(GEMINI_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         system_instruction: { parts: [{ text: sysInstruction }] },
-        contents: getHistory(),
+        contents: chatHistory,
         generationConfig: { temperature: 0.6, topP: 0.9, maxOutputTokens: 1800 },
         safetySettings: [
           { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_ONLY_HIGH' },
           { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_ONLY_HIGH' },
           { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_ONLY_HIGH' },
           { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_ONLY_HIGH' },
-        ]
+        ],
       }),
       signal: AbortSignal.timeout(15000),
     });
-    if(!res.ok) throw new Error(`Gemini ${res.status}`);
+
+    if (!res.ok) throw new Error(`Gemini ${res.status}`);
     const data = await res.json();
     const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    if(reply) getHistory().push({ role: 'model', parts: [{ text: reply }] });
+    if (reply) chatHistory.push({ role: 'model', parts: [{ text: reply }] });
     return reply;
   }
 
-  /* ── Speech Recognition — cross-browser ────────────────────── */
-  /* Strategy: Use native SpeechRecognition where available (Chrome, Edge, Safari).
-     For Firefox and others, use MediaRecorder to capture mic audio then Gemini to
-     transcribe it (Gemini accepts audio natively). This gives us full cross-browser
-     voice support without any third-party STT service. */
+  function getFallback(text) {
+    const t = text.toLowerCase();
+    const sorted = [...partners].sort((a, b) => b.maxSpeed - a.maxSpeed);
+    const zipProviders = lastZipProviders.length ? lastZipProviders : sorted;
 
-  let micStream = null;
-  let mediaRecorder = null;
-  let audioChunks = [];
-  let useNativeSTT = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
-
-  function initRecognition(){
-    if(useNativeSTT) return initNativeRecognition();
-    /* For browsers without SpeechRecognition (Firefox), return a shim
-       that uses MediaRecorder. The actual recording logic is in startRecording()/stopRecording(). */
-    return { _fallback: true };
-  }
-
-  function initNativeRecognition(){
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if(!SR) return null;
-    const r = new SR();
-    r.continuous = true; r.interimResults = true; r.lang = 'en-US';
-
-    let lastInterimText = '';
-
-    /* ── Dual VAD system ─────────────────────────────────────────
-       1. Audio-level VAD: uses a SEPARATE AudioContext at the device's
-          native sample rate (not the 24kHz TTS context) so the
-          AnalyserNode actually gets mic data. Detects when audio
-          energy drops below threshold after speech.
-       2. Transcript-change timer: tracks when the interim transcript
-          text STOPS CHANGING. If the same text persists for the
-          silence duration, the user has stopped talking. This works
-          even if the AnalyserNode fails for any reason.
-       Whichever fires first wins and calls r.stop().
-       ─────────────────────────────────────────────────────────── */
-    let vadCtx = null;       /* separate AudioContext at native sample rate */
-    let vadSourceNode = null;
-    let vadAnalyser = null;
-    let vadRaf = null;
-    let vadSilenceTimer = null;
-    let vadHadSpeech = false;
-    let textChangeTimer = null; /* transcript-change timer */
-    let lastSeenText = '';      /* last transcript text we saw */
-    let gotAnyInterim = false;  /* have we seen any speech at all? */
-    const SILENCE_MS = 1800;    /* 1.8s of silence → stop */
-    const VAD_THRESHOLD = 6;    /* RMS energy threshold (0-255 scale) */
-
-    function startVAD(){
-      vadHadSpeech = false; gotAnyInterim = false;
-      lastSeenText = '';
-      clearTimeout(vadSilenceTimer); vadSilenceTimer = null;
-      clearTimeout(textChangeTimer); textChangeTimer = null;
-
-      /* Audio-level VAD: use a separate AudioContext at DEFAULT sample rate
-         so the AnalyserNode reads the mic correctly (the 24kHz TTS context
-         causes zero-energy readings on most browsers). */
-      requestMic().then(stream => {
-        if(!stream || !isListening) return;
-        try {
-          if(!vadCtx) vadCtx = new AudioContext(); /* default sample rate: 44100/48000 */
-          if(vadCtx.state === 'suspended') vadCtx.resume();
-          vadAnalyser = vadCtx.createAnalyser();
-          vadAnalyser.fftSize = 512;
-          vadSourceNode = vadCtx.createMediaStreamSource(stream);
-          vadSourceNode.connect(vadAnalyser);
-
-          const buf = new Uint8Array(vadAnalyser.frequencyBinCount);
-          const tick = () => {
-            if(!isListening) return;
-            vadAnalyser.getByteFrequencyData(buf);
-            let sum = 0;
-            for(let i = 0; i < buf.length; i++) sum += buf[i];
-            const rms = sum / buf.length;
-
-            if(rms > VAD_THRESHOLD){
-              vadHadSpeech = true;
-              clearTimeout(vadSilenceTimer); vadSilenceTimer = null;
-            } else if(vadHadSpeech && !vadSilenceTimer){
-              /* Speech → silence transition: start countdown */
-              vadSilenceTimer = setTimeout(() => {
-                vadSilenceTimer = null;
-                if(isListening){ try { r.stop(); } catch(e){} }
-              }, SILENCE_MS);
-            }
-            vadRaf = requestAnimationFrame(tick);
-          };
-          vadRaf = requestAnimationFrame(tick);
-        } catch(e){ /* Audio VAD setup failed — transcript timer is backup */ }
-      }).catch(() => {});
+    if (/\b\d{5}\b/.test(t)) {
+      return `Here are the top providers for your area:<br><br>${buildProviderGrid(zipProviders.slice(0, 3).map((p) => p.slug))}`;
     }
-
-    function stopVAD(){
-      clearTimeout(vadSilenceTimer); vadSilenceTimer = null;
-      clearTimeout(textChangeTimer); textChangeTimer = null;
-      cancelAnimationFrame(vadRaf);
-      vadHadSpeech = false; gotAnyInterim = false; lastSeenText = '';
-      if(vadSourceNode){ try { vadSourceNode.disconnect(); } catch(e){} vadSourceNode = null; }
+    if (/cheap|afford|budget|price/.test(t)) {
+      const byPrice = [...zipProviders].sort((a, b) => a.minPrice - b.minPrice);
+      return `Here are the most affordable options:<br><br>${buildProviderGrid(byPrice.slice(0, 3).map((p) => p.slug))}`;
     }
-
-    /* Reset the transcript-change timer. Called on every onresult.
-       If the transcript doesn't change for SILENCE_MS, assume user stopped. */
-    function resetTextTimer(currentText){
-      clearTimeout(textChangeTimer);
-      if(!gotAnyInterim) return; /* don't start timer until user has spoken */
-      textChangeTimer = setTimeout(() => {
-        textChangeTimer = null;
-        /* Transcript hasn't changed — user has stopped speaking */
-        if(isListening){ try { r.stop(); } catch(e){} }
-      }, SILENCE_MS);
+    if (/fast|speed|fiber|gig/.test(t)) {
+      const bySpeed = [...zipProviders].sort((a, b) => b.maxSpeed - a.maxSpeed);
+      return `Top picks for fast internet:<br><br>${buildProviderGrid(bySpeed.slice(0, 3).map((p) => p.slug))}`;
     }
-
-    r.onstart = () => {
-      isListening = true;
-      lastInterimText = '';
-      micBtn.classList.add('ast-mic-on');
-      setOrbState('listening');
-      setVoiceStatus('listen', '');
-      setMicHint('Speak now…');
-      if(pendingMicMsg){ pendingMicMsg.remove(); pendingMicMsg = null; }
-      startVAD();
-    };
-
-    r.onresult = (e) => {
-      let interim = '', final = '';
-      for(let i = e.resultIndex; i < e.results.length; i++){
-        if(e.results[i].isFinal) final += e.results[i][0].transcript;
-        else interim += e.results[i][0].transcript;
-      }
-      const liveText = final || interim;
-      if(interim){ lastInterimText = interim; gotAnyInterim = true; }
-
-      if(liveText){
-        if(!pendingMicMsg){
-          pendingMicMsg = document.createElement('div');
-          pendingMicMsg.className = 'ast-msg ast-msg-user ast-msg-pending';
-          getMsgs().appendChild(pendingMicMsg);
-        }
-        pendingMicMsg.textContent = liveText;
-        scroll();
-      }
-
-      if(final){
-        stopVAD();
-        lastInterimText = '';
-        if(pendingMicMsg){ pendingMicMsg.remove(); pendingMicMsg = null; }
-        const tr = document.getElementById('ast-vtranscript');
-        if(tr) tr.textContent = '';
-        try { r.stop(); } catch(e2){}
-        send(final.trim());
-      } else if(interim){
-        /* Always run transcript-change timer as backup VAD */
-        resetTextTimer(interim);
-      }
-    };
-
-    r.onerror = (e) => {
-      stopVAD();
-      isListening = false;
-      micBtn.classList.remove('ast-mic-on');
-      setOrbState('');
-      if(pendingMicMsg){ pendingMicMsg.remove(); pendingMicMsg = null; }
-      if(e.error === 'no-speech'){
-        setVoiceStatus('listen', '');
-        setMicHint('Tap the mic and speak');
-        /* Auto-restart in talk mode */
-        if(mode === 'talk' && isOpen && !isSpeaking && !sending){
-          setTimeout(() => {
-            if(mode === 'talk' && isOpen && !isListening && !isSpeaking && !sending){
-              try { r.start(); } catch(e2){}
-            }
-          }, 400);
-        }
-      }
-      else if(e.error === 'not-allowed') setVoiceStatus('idle', 'Mic access denied — type below');
-      else if(e.error !== 'aborted') setVoiceStatus('idle', 'Tap microphone to speak');
-    };
-
-    r.onend = () => {
-      stopVAD();
-      isListening = false;
-      micBtn.classList.remove('ast-mic-on');
-      if(!isSpeaking && !sending) setOrbState('');
-      if(!sending && lastInterimText.trim()){
-        const fallback = lastInterimText.trim();
-        lastInterimText = '';
-        if(pendingMicMsg){ pendingMicMsg.remove(); pendingMicMsg = null; }
-        send(fallback);
-      } else {
-        lastInterimText = '';
-        if(pendingMicMsg){ pendingMicMsg.remove(); pendingMicMsg = null; }
-        /* Auto-restart listening in talk mode if nothing was sent */
-        if(mode === 'talk' && isOpen && !isSpeaking && !sending){
-          setTimeout(() => {
-            if(mode === 'talk' && isOpen && !isListening && !isSpeaking && !sending){
-              try { r.start(); } catch(e2){}
-            }
-          }, 400);
-        }
-      }
-    };
-    return r;
+    return `I can help find the right plan. Share your ZIP code and I will pull what is available in your area.<br><br>${buildProviderGrid(sorted.slice(0, 3).map((p) => p.slug))}`;
   }
 
-  /* ── MediaRecorder fallback for Firefox / non-Chrome ─────── */
-  async function requestMic(){
-    if(micStream) return micStream;
-    try {
-      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      return micStream;
-    } catch(e){
-      setVoiceStatus('idle', 'Mic access denied — type below');
-      return null;
-    }
-  }
-
-  let vadTimer = null;       /* silence timeout handle */
-  let mediaVadRaf = null;    /* requestAnimationFrame handle for Firefox VAD loop */
-  let mediaVadSource = null; /* MediaStreamAudioSourceNode for Firefox VAD */
-  const VAD_SILENCE_MS = 900; /* shorter silence threshold for snappier turn-taking */
-
-  function cleanupMediaVad(){
-    clearTimeout(vadTimer); vadTimer = null;
-    cancelAnimationFrame(mediaVadRaf); mediaVadRaf = null;
-    if(mediaVadSource){ try { mediaVadSource.disconnect(); } catch(e){} mediaVadSource = null; }
-  }
-
-  async function startRecording(){
-    const stream = await requestMic();
-    if(!stream) return false;
-    audioChunks = [];
-    try {
-      mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm;codecs=opus' });
-    } catch {
-      try { mediaRecorder = new MediaRecorder(stream); } catch(e2){ return false; }
-    }
-    mediaRecorder.ondataavailable = (e) => { if(e.data.size > 0) audioChunks.push(e.data); };
-    mediaRecorder.start(100);
-    isListening = true;
-    micBtn.classList.add('ast-mic-on');
-    setOrbState('listening');
-    setVoiceStatus('listen', '');
-    setMicHint('Speak now…');
-
-    /* Firefox path: time-domain VAD on a separate native-sample-rate AudioContext */
-    cleanupMediaVad();
-    try {
-      ensureVadAudioCtx();
-      if(vadAudioCtx && vadAudioCtx.state === 'suspended') await vadAudioCtx.resume();
-      const analyser = vadAudioCtx.createAnalyser();
-      analyser.fftSize = 1024;
-      analyser.smoothingTimeConstant = 0.12;
-      mediaVadSource = vadAudioCtx.createMediaStreamSource(stream);
-      mediaVadSource.connect(analyser);
-
-      const buf = new Uint8Array(analyser.fftSize);
-      let speechFrames = 0;
-      let noiseFloor = 0.004; /* adaptive ambient noise estimate */
-
-      const tick = () => {
-        if(!isListening){ cleanupMediaVad(); return; }
-
-        analyser.getByteTimeDomainData(buf);
-        let sumSq = 0;
-        for(let i = 0; i < buf.length; i++){
-          const centered = (buf[i] - 128) / 128;
-          sumSq += centered * centered;
-        }
-        const rms = Math.sqrt(sumSq / buf.length);
-
-        /* Update ambient noise estimate only during low-energy windows. */
-        if(speechFrames < 3 || rms < 0.02){
-          noiseFloor = (noiseFloor * 0.92) + (rms * 0.08);
-        }
-        const startThreshold = Math.max(noiseFloor * 2.2, 0.008);
-        const stopThreshold = Math.max(noiseFloor * 1.6, 0.006);
-
-        if(rms > startThreshold){
-          speechFrames = Math.min(speechFrames + 1, 999);
-          clearTimeout(vadTimer); vadTimer = null;
-        } else if(speechFrames >= 3 && rms < stopThreshold && !vadTimer){
-          vadTimer = setTimeout(() => {
-            vadTimer = null;
-            if(isListening) stopListeningAndTranscribe();
-          }, VAD_SILENCE_MS);
-        }
-
-        mediaVadRaf = requestAnimationFrame(tick);
-      };
-
-      mediaVadRaf = requestAnimationFrame(tick);
-    } catch(e){
-      /* If VAD setup fails, user can still end turn manually with mic tap */
-    }
-
-    return true;
-  }
-
-  async function stopRecording(){
-    cleanupMediaVad();
-    if(!mediaRecorder || mediaRecorder.state === 'inactive') return '';
-    return new Promise(resolve => {
-      mediaRecorder.onstop = async () => {
-        isListening = false;
-        micBtn.classList.remove('ast-mic-on');
-        setOrbState('thinking');
-        setVoiceStatus('think', 'Transcribing...');
-        const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
-        audioChunks = [];
-        if(blob.size < 1000){ setOrbState(''); setVoiceStatus('idle', 'Tap mic to speak'); resolve(''); return; }
-        /* Send audio to Gemini for transcription */
-        try {
-          const buf = await blob.arrayBuffer();
-          const b64 = btoa(String.fromCharCode(...new Uint8Array(buf)));
-          const res = await fetch(GEMINI_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              contents: [{ role: 'user', parts: [
-                { inlineData: { mimeType: mediaRecorder.mimeType || 'audio/webm', data: b64 } },
-                { text: 'Transcribe this audio exactly. Return ONLY the spoken words, nothing else. No quotes, no labels, no extra text.' }
-              ]}],
-              generationConfig: { temperature: 0, maxOutputTokens: 500 },
-            }),
-            signal: AbortSignal.timeout(15000),
-          });
-          if(!res.ok) throw new Error('Transcription failed');
-          const data = await res.json();
-          const transcript = (data?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
-          resolve(transcript);
-        } catch(e){
-          console.warn('Gemini transcription failed:', e);
-          setOrbState(''); setVoiceStatus('idle', 'Could not transcribe — tap mic to retry');
-          resolve('');
-        }
-      };
-      mediaRecorder.stop();
-    });
-  }
-
-  /* Unified start/stop that works with both native and fallback */
-  function startListening(){
-    if(isListening) return;
-    if(recognition && !recognition._fallback){
-      try { recognition.start(); } catch(e){ setVoiceStatus('idle', 'Tap mic to speak'); }
-    } else {
-      startRecording();
-    }
-  }
-
-  async function stopListeningAndTranscribe(){
-    if(recognition && !recognition._fallback){
-      if(isListening) recognition.stop();
-      return; /* native handles send() in onresult */
-    }
-    const transcript = await stopRecording();
-    const tr = document.getElementById('ast-vtranscript');
-    if(tr) tr.textContent = '';
-    if(transcript) send(transcript);
-    else { setOrbState(''); setVoiceStatus('idle', 'Tap mic to speak'); }
-  }
-
-  /* ── Gemini TTS — real AI voice ─────────────────────────────── */
-  async function speak(text, { onStart } = {}){  /* onStart fires when audio actually begins playing */
-    if(!text) return;
-    const myGen = ++speakGen;
-    /* Stop any active mic before TTS — avoids feedback and interference */
-    if(isListening){
-      if(recognition && !recognition._fallback){ try { recognition.stop(); } catch(e){} }
-      else if(mediaRecorder && mediaRecorder.state !== 'inactive'){ try { mediaRecorder.stop(); } catch(e){} }
-      isListening = false; micBtn.classList.remove('ast-mic-on');
-    }
-    isSpeaking = true;
-    setVoiceStatus('speak', 'Speaking...');
-    setOrbState('speaking');
-
-    /* Preprocess ZIP codes for digit-by-digit pronunciation: 90210 → "9 0 2 1 0" */
-    text = text.replace(/\b(\d{5})\b/g, (m) => m.split('').join(' '));
-
-    try {
-      ensureAudioCtx();
-
-      const res = await fetch(TTS_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ role: 'user', parts: [{ text: `Say naturally, like a friendly phone advisor helping someone pick an internet plan: ${text}` }] }],
-          generationConfig: {
-            responseModalities: ['AUDIO'],
-            speechConfig: {
-              voiceConfig: {
-                prebuiltVoiceConfig: { voiceName: 'Sulafat' }
-              }
-            }
-          }
-        }),
-        signal: AbortSignal.timeout(25000),
-      });
-
-      if(myGen !== speakGen) return; /* aborted by new speak/stop */
-      if(!res.ok) throw new Error(`TTS ${res.status}`);
-      const data = await res.json();
-      if(myGen !== speakGen) return;
-      const part = data?.candidates?.[0]?.content?.parts?.[0];
-      const audioB64 = part?.inlineData?.data || part?.inline_data?.data;
-      if(!audioB64) throw new Error('No audio in response');
-
-      const raw = atob(audioB64);
-      const bytes = new Uint8Array(raw.length);
-      for(let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
-
-      if(audioCtx && audioCtx.state === 'suspended') await audioCtx.resume();
-
-      const samples = bytes.length / 2;
-      if(samples < 1) throw new Error('Empty audio');
-      const buffer = audioCtx.createBuffer(1, samples, 24000);
-      const channel = buffer.getChannelData(0);
-      const view = new DataView(bytes.buffer);
-      for(let i = 0; i < samples; i++) channel[i] = view.getInt16(i * 2, true) / 32768;
-
-      if(myGen !== speakGen) return;
-      await new Promise(resolve => {
-        if(currentSource){ try { currentSource.stop(); } catch(e){} }
-        const source = audioCtx.createBufferSource();
-        source.buffer = buffer;
-        source.connect(audioCtx.destination);
-        source.onended = resolve;
-        /* Fire onStart synchronously right before audio plays — text and voice in sync */
-        try { if(onStart) onStart(); } catch(e){}
-        source.start();
-        currentSource = source;
-      });
-    } catch(e){
-      console.warn('Gemini TTS unavailable:', e.message);
-    }
-
-    if(myGen !== speakGen) return; /* aborted — don't touch state */
-    isSpeaking = false;
-    currentSource = null;
-    setOrbState('');
-
-    /* Auto-listen after speaking in Talk mode */
-    if(mode === 'talk' && isOpen && recognition){
-      setVoiceStatus('listen', '');
-      setMicHint('Tap the mic and speak');
-      setTimeout(() => {
-        if(mode === 'talk' && isOpen && !isSpeaking && !isListening && !sending){
-          startListening();
-        }
-      }, 400);
-    } else if(mode === 'talk' && isOpen){
-      setVoiceStatus('idle', '');
-      setMicHint('Tap the mic and speak');
-    }
-  }
-
-  function stopSpeaking(){
-    speakGen++; /* invalidate any running speak() */
-    if(currentSource){ try { currentSource.stop(); } catch(e){} currentSource = null; }
-    isSpeaking = false;
-    setOrbState('');
-  }
-
-  /* ── Voice status bar ───────────────────────────────────────── */
-  function setVoiceStatus(state, text){
-    vtxt.textContent = text;
-    vdot.className = 'ast-vbar-dot ast-vdot-' + state;
-  }
-
-  function setMicHint(text){
-    const el = document.getElementById('ast-mic-hint');
-    if(el) el.textContent = text;
-  }
-
-  /* ── Send message ───────────────────────────────────────────── */
-  async function send(text, geminiOverride){
-    if(sending || !text.trim()) return;
+  async function send(text) {
+    if (sending || !text.trim()) return;
     sending = true;
-    stopSpeaking(); /* interrupt any current TTS so new message can proceed */
+
     const userText = text.trim();
     addMsg(esc(userText), 'user');
     clearSuggestions();
-    chatInput.value = ''; vinp.value = '';
+    chatInput.value = '';
     chatInput.disabled = true;
     addTyping();
-    if(mode === 'talk') setVoiceStatus('think', 'Thinking...');
-    if(mode === 'talk') setOrbState('thinking');
-
-    let reply = '';
-    let geminiOk = false;
 
     try {
-      const modeTag = mode === 'talk' ? '[voice] ' : '[chat] ';
-      let geminiText = modeTag + (geminiOverride || userText);
+      let reply = '';
+      let geminiOk = false;
 
       const zipMatch = userText.match(/\b(\d{5})\b/);
-      if(zipMatch){
+      if (zipMatch) {
         lastZip = zipMatch[1];
         await loadZipCoverage();
-        const ctx = buildZipContext(zipMatch[1]);
+        const ctx = buildZipContext(lastZip);
         lastZipProviders = rankProviders(ctx.providers || []);
         reply = buildZipResultReply(lastZip, lastZipProviders);
-        getHistory().push({ role: 'model', parts: [{ text: reply }] });
+        chatHistory.push({ role: 'model', parts: [{ text: reply }] });
         geminiOk = true;
       }
 
-      if(!geminiOk){
-        reply = await callGemini(geminiText);
-        geminiOk = true;
+      if (!geminiOk) {
+        reply = await callGemini(userText);
       }
 
-      if(mode === 'chat' && lastZipProviders.length && !/\[\[(SHOW|PLAN):/i.test(reply)){
-        const fallbackSlugs = rankProviders(lastZipProviders).slice(0, 3).map(p => p.slug).join('|');
-        if(fallbackSlugs) reply = `${reply.trim()}\n[[SHOW:${fallbackSlugs}]]`;
+      if (lastZipProviders.length && !/\[\[(SHOW|PLAN):/i.test(reply)) {
+        const fallbackSlugs = rankProviders(lastZipProviders)
+          .slice(0, 3)
+          .map((p) => p.slug)
+          .join('|');
+        if (fallbackSlugs) reply = `${reply.trim()}\n[[SHOW:${fallbackSlugs}]]`;
       }
 
-      /* Extract [[DATA:field:value]] silently */
-      for(const m of reply.matchAll(/\[\[DATA:(\w+):(.+?)\]\]/g)) collectedData[m[1]] = m[2];
+      for (const m of reply.matchAll(/\[\[DATA:(\w+):(.+?)\]\]/g)) {
+        collectedData[m[1]] = m[2];
+      }
 
-      /* Check for [[READY_TO_ORDER:slug:plan]] */
       const orderMatch = reply.match(/\[\[READY_TO_ORDER:([a-z0-9-]+):(.+?)\]\]/);
-      if(orderMatch){
+      if (orderMatch) {
         reply = reply.replace(/\[\[READY_TO_ORDER:.+?\]\]/, '').trim();
-        setOrbState('');
         removeTyping();
-        if(reply) addMsg(parseResponse(reply), 'bot', false);
-        /* TTS for order confirmation — separate try/catch */
-        if(mode === 'talk' && reply){
-          try { await speak(getSpokenText(reply)); } catch(e){}
-        }
+        if (reply) addMsg(parseResponse(reply), 'bot', false);
         openSignup(orderMatch[1], orderMatch[2]);
-        sending = false; chatInput.disabled = false;
+        sending = false;
+        chatInput.disabled = false;
         return;
       }
 
-      setOrbState('');
-      if(mode === 'chat'){
-        removeTyping();
-        addMsg(parseResponse(reply), 'bot', true);
-      } else {
-        /* Talk mode: typing indicator stays until audio starts */
-      }
-
-    } catch(e){
+      removeTyping();
+      addMsg(parseResponse(reply), 'bot', true);
+    } catch (e) {
       console.error('Assistant error:', e);
-      setOrbState('');
       removeTyping();
       addMsg(getFallback(userText), 'bot', false);
     }
 
-    /* Release sending lock BEFORE TTS so buttons/input work during voice playback */
     sending = false;
     chatInput.disabled = false;
-    if(mode === 'chat') chatInput.focus();
+    chatInput.focus();
+  }
 
-    /* Talk mode: show text in sync with audio via onStart — no 7-second gap */
-    if(mode === 'talk' && geminiOk && reply){
-      const displayHtml = parseResponse(reply);
-      let shown = false;
-      const showReply = () => { if(!shown){ shown = true; removeTyping(); addMsg(displayHtml, 'bot', false); } };
-      speak(getSpokenText(reply), { onStart: showReply })
-        .then(showReply)   /* Ensure shown after speak resolves (covers TTS failure) */
-        .catch(showReply);
-    } else if(mode === 'talk' && isOpen && !geminiOk){
-      setVoiceStatus('idle', '');
-      setMicHint('Tap the mic and speak');
+  async function greet() {
+    const greetings = [
+      'Hi there. I can help you find the fastest internet plans in your area. What ZIP code should I check?',
+      'Hey. I can help you find the right internet plan. Share your ZIP code and I will pull your options.',
+      'Hi and welcome. Let me find the best internet options in your area. What is your ZIP code?',
+    ];
+
+    const msg = greetings[Math.floor(Math.random() * greetings.length)];
+    chatHistory.push({ role: 'model', parts: [{ text: msg }] });
+
+    const connectDiv = document.createElement('div');
+    connectDiv.className = 'ast-msg ast-msg-system';
+    connectDiv.textContent = 'Connecting you to a live agent...';
+    chatMsgs.appendChild(connectDiv);
+    scroll();
+
+    await new Promise((r) => setTimeout(r, 900));
+    addTyping();
+    await new Promise((r) => setTimeout(r, 700));
+    removeTyping();
+    connectDiv.remove();
+    addMsg(msg, 'bot');
+
+    if (_pendingMsg) {
+      const queued = _pendingMsg;
+      _pendingMsg = null;
+      await new Promise((r) => setTimeout(r, 450));
+      send(queued);
     }
   }
 
-  /* ── Fallback response (when API fails) ─────────────────────── */
-  function getFallback(text){
-    const t = text.toLowerCase();
-    const sorted = [...partners].sort((a,b) => b.maxSpeed - a.maxSpeed);
-    const zipProviders = lastZipProviders.length ? lastZipProviders : sorted;
+  // Widget is hidden until explicitly triggered
+  const astRoot = document.getElementById('ast');
+  if (astRoot) astRoot.style.display = 'none';
 
-    const card = (p) => buildProviderGrid([p.slug]);
-
-    if(/\b\d{5}\b/.test(t)){
-      return `Here are the top providers for your area:<br><br>${buildProviderGrid(zipProviders.slice(0,3).map(p => p.slug))}`;
-    }
-    if(/cheap|afford|budget|price/.test(t)){
-      const byPrice = [...zipProviders].sort((a,b) => a.minPrice - b.minPrice);
-      return `Here are the most affordable options I have:<br><br>${buildProviderGrid(byPrice.slice(0,3).map(p => p.slug))}`;
-    }
-    if(/fast|speed|fiber|gig/.test(t)){
-      const bySpeed = [...zipProviders].sort((a,b) => b.maxSpeed - a.maxSpeed);
-      return `Top picks for fast internet:<br><br>${buildProviderGrid(bySpeed.slice(0,3).map(p => p.slug))}`;
-    }
-    return `I can help find the right plan. Share your ZIP code and I’ll pull up what’s available in your area. Here are some top providers to start:<br><br>${buildProviderGrid(sorted.slice(0,3).map(p => p.slug))}`;
-  }
-
-  /* ── Mode switching ─────────────────────────────────────────── */
-  function switchMode(newMode){
-    if(mode === newMode) return;
-    if(mode === 'talk'){
-      stopSpeaking();
-      if(isListening){
-        if(recognition && !recognition._fallback && recognition.abort) recognition.abort();
-        else if(mediaRecorder && mediaRecorder.state !== 'inactive') try { mediaRecorder.stop(); } catch(e){}
-        isListening = false; micBtn.classList.remove('ast-mic-on');
-      }
-    }
-    mode = newMode;
-
-    /* Swap message panes */
-    chatMsgs.style.display = newMode === 'chat' ? 'flex' : 'none';
-    talkMsgs.style.display = newMode === 'talk' ? 'flex' : 'none';
-
-    tabs.querySelectorAll('.ast-tab').forEach(t => {
-      t.classList.toggle('ast-tab-on', t.dataset.mode === newMode);
-    });
-
-    if(newMode === 'chat'){
-      chatForm.style.display = 'flex';
-      vctrl.style.display = 'none';
-      vbar.style.display = 'none';
-      chatInput.focus();
-    } else {
-      chatForm.style.display = 'none';
-      vctrl.style.display = 'flex';
-      vbar.style.display = 'flex';
-      if(!recognition) recognition = initRecognition();
-      ensureAudioCtx();
-
-      if(!hasGreetedTalk){
-        /* First time in talk mode — show suggestions */
-        hasGreetedTalk = true;
-        loadZipCoverage();
-        showTalkSuggestions();
-        setVoiceStatus('idle', '');
-        setMicHint('');
-      } else {
-        /* Returning to talk — resume listening */
-        setVoiceStatus('listen', '');
-        setMicHint('Tap the mic and speak');
-        requestMic().then(stream => {
-          if(stream && !isListening && !isSpeaking && !sending){
-            setTimeout(() => { startListening(); }, 300);
-          }
-        });
-      }
-    }
-  }
-
-  /* ── Open / Close ───────────────────────────────────────────── */
-  function open(targetMode){
+  function open() {
+    if (astRoot) astRoot.style.display = '';
     isOpen = true;
     panel.style.display = 'flex';
     icoOpen.style.display = 'none';
     icoX.style.display = 'block';
     badge.style.display = 'none';
-    ensureAudioCtx();
 
-    if(targetMode && targetMode !== mode) switchMode(targetMode);
-
-    if(mode === 'chat' && !hasGreetedChat){
-      hasGreetedChat = true;
+    if (!hasGreeted) {
+      hasGreeted = true;
       loadZipCoverage();
       greet();
-    } else if(mode === 'chat'){
+    } else {
       chatInput.focus();
     }
-    /* talk mode first-entry is handled entirely by switchMode() */
   }
 
-  function close(){
+  function close() {
     isOpen = false;
     panel.style.display = 'none';
     icoOpen.style.display = 'block';
     icoX.style.display = 'none';
-    stopSpeaking();
-    if(isListening){
-      if(recognition && !recognition._fallback && recognition.abort) recognition.abort();
-      else if(mediaRecorder && mediaRecorder.state !== 'inactive') try { mediaRecorder.stop(); } catch(e){}
-      isListening = false; micBtn.classList.remove('ast-mic-on');
-    }
+    // Re-hide the floating button — user must re-trigger from nav
+    if (astRoot) astRoot.style.display = 'none';
   }
 
-  /* ── Talk-mode suggestion chips ────────────────────────────── */
-  function showTalkSuggestions(){
-    if(document.getElementById('ast-talk-sug')) return;
-    const wrap = document.createElement('div');
-    wrap.id = 'ast-talk-sug';
-    wrap.className = 'ast-talk-sug';
-    wrap.innerHTML = `
-      <p class="ast-sug-prompt">Hi! What can I help you with today?</p>
-      <div class="ast-sug-chips">
-        <button class="ast-sug-chip" data-chip="check-area">📍 Check my area</button>
-        <button class="ast-sug-chip" data-chip="cheapest">💰 Find cheapest plans</button>
-        <button class="ast-sug-chip" data-chip="fast">⚡ Fast internet options</button>
-        <button class="ast-sug-chip" data-chip="compare">📊 Compare providers</button>
-      </div>
-    `;
-    wrap.querySelectorAll('.ast-sug-chip').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const label = btn.textContent.trim();
-        const chipKey = btn.dataset.chip;
-        wrap.remove();
-        await showConnectingBanner();
-        send(label, `[CHIP:${chipKey}]`);
-      });
-    });
-    talkMsgs.appendChild(wrap);
-  }
-
-  /* ── Prominent connecting banner ────────────────────────────── */
-  async function showConnectingBanner(){
-    const banner = document.createElement('div');
-    banner.className = 'ast-connecting-prominent';
-    banner.innerHTML = `
-      <div class="ast-connecting-prominent-dot"></div>
-      <span class="ast-connecting-prominent-text">Connecting to a live agent…</span>
-    `;
-    talkMsgs.appendChild(banner);
-    talkMsgs.scrollTop = talkMsgs.scrollHeight;
-    setVoiceStatus('think', 'Connecting…');
-    setOrbState('thinking');
-    if(!recognition) recognition = initRecognition();
-    ensureAudioCtx();
-    requestMic().catch(() => {});
-    await new Promise(r => setTimeout(r, 2600));
-    banner.remove();
-  }
-
-  /* ── Greeting ───────────────────────────────────────────────── */
-  async function greet(){
-    /* Talk mode: show suggestion chips instead of auto-speaking */
-    if(mode === 'talk'){
-      showTalkSuggestions();
-      setVoiceStatus('idle', '');
-      setMicHint('');
-      return;
-    }
-
-    /* Chat greeting */
-    const greetings = [
-      "Hi there — I can help you find the fastest internet plans available in your area and compare the best options. What ZIP code should I check for you?",
-      "Hey! I'm here to help you find the right internet plan. I can pull up what's available at your address if you share your ZIP code.",
-      "Hi — welcome! Let me find the best internet options in your area. What's your ZIP code?",
-    ];
-    const msg = greetings[Math.floor(Math.random() * greetings.length)];
-    getHistory().push({ role: 'model', parts: [{ text: msg }] });
-
-    const connectDiv = document.createElement('div');
-    connectDiv.className = 'ast-msg ast-msg-system';
-    connectDiv.textContent = 'Connecting you to a live agent\u2026';
-    getMsgs().appendChild(connectDiv);
-    scroll();
-    await new Promise(r => setTimeout(r, 900));
-    addTyping();
-    await new Promise(r => setTimeout(r, 700));
-    removeTyping();
-    connectDiv.remove();
-    addMsg(msg, 'bot');
-  }
-
-  /* ── Mic toggle ─────────────────────────────────────────────── */
-  function toggleMic(){
-    ensureAudioCtx();
-    if(isSpeaking){
-      /* Interrupt AI speech and start listening */
-      stopSpeaking();
-      startListening();
-      return;
-    }
-    if(!recognition){
-      recognition = initRecognition();
-      if(!recognition){
-        setVoiceStatus('idle', 'No mic support — type below');
-        vinp.focus();
-        return;
-      }
-    }
-    /* Toggle: listening → stop & transcribe; idle → start */
-    if(isListening){
-      stopListeningAndTranscribe();
-    } else {
-      startListening();
-    }
-  }
-
-  /* ── Events ─────────────────────────────────────────────────── */
-  btn.addEventListener('click', () => { ensureAudioCtx(); isOpen ? close() : open('chat'); });
+  btn.addEventListener('click', () => {
+    if (isOpen) close();
+    else open();
+  });
   closeBtn.addEventListener('click', close);
-
-  tabs.addEventListener('click', e => {
-    const tab = e.target.closest('.ast-tab');
-    if(tab) switchMode(tab.dataset.mode);
+  chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    send(chatInput.value);
   });
 
-  chatForm.addEventListener('submit', e => { e.preventDefault(); send(chatInput.value); });
-  vform.addEventListener('submit', e => { e.preventDefault(); send(vinp.value); });
-  micBtn.addEventListener('click', toggleMic);
-
-  /* Badge after 3s */
-  setTimeout(() => { if(!isOpen) badge.style.display = 'flex'; }, 3000);
-
-  /* Global API */
-  window.openAssistant = function(targetMode){ open(targetMode || 'chat'); };
-  window.openVoiceAgent = function(){ open('talk'); };
+  window.openAssistant = function (initialMsg) {
+    if (initialMsg && typeof initialMsg === 'string' && !hasGreeted) {
+      _pendingMsg = initialMsg.trim();
+    }
+    open();
+  };
 })();
 </script>
 
 <style is:global>
-  /* ═══════════════════════════════════════════════════════════════
-     Unified Assistant — fully isolated dark theme
-     ═══════════════════════════════════════════════════════════════ */
   .ast {
-    position: fixed; bottom: 80px; right: 20px; z-index: 9999;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 9999;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
-  /* Nuclear reset — prevent global bleed */
-  .ast-panel, .ast-panel *, .ast-panel *::before, .ast-panel *::after {
+  .ast-panel,
+  .ast-panel *,
+  .ast-panel *::before,
+  .ast-panel *::after {
     color: #e0e4ee !important;
-    border-color: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
     box-sizing: border-box;
   }
 
-  /* ── Toggle button ──────────────────────────────────────────── */
   .ast-btn {
-    width: 60px; height: 60px; border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     background: linear-gradient(135deg, #667eea, #764ba2) !important;
-    color: #fff !important; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 6px 24px rgba(102,126,234,0.45);
-    cursor: pointer; transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s;
-    position: relative; border: none;
+    color: #fff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(102, 126, 234, 0.45);
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s;
+    position: relative;
+    border: none;
   }
-  .ast-btn:hover { transform: scale(1.1); box-shadow: 0 10px 36px rgba(102,126,234,0.55); }
-  .ast-btn svg { color: #fff !important; }
+
+  .ast-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 36px rgba(102, 126, 234, 0.55);
+  }
+
+  .ast-btn svg {
+    color: #fff !important;
+  }
+
   .ast-badge {
-    position: absolute; top: -3px; right: -3px;
-    width: 20px; height: 20px; border-radius: 50%;
-    background: #ef4444 !important; color: #fff !important;
-    font-size: 11px; font-weight: 700;
-    display: none; align-items: center; justify-content: center;
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ef4444 !important;
+    color: #fff !important;
+    font-size: 11px;
+    font-weight: 700;
+    display: none;
+    align-items: center;
+    justify-content: center;
     border: 2px solid #111827 !important;
   }
 
-  /* ── Panel ──────────────────────────────────────────────────── */
   .ast-panel {
-    position: absolute; bottom: 72px; right: 0;
-    width: 400px; max-height: 600px;
+    position: absolute;
+    bottom: 72px;
+    right: 0;
+    width: 400px;
+    max-height: 600px;
     background: #0f1629 !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 20px;
-    display: flex; flex-direction: column; overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(102,126,234,0.15);
-    animation: astSlideUp 0.3s cubic-bezier(.34,1.56,.64,1);
-  }
-  @keyframes astSlideUp {
-    from { opacity:0; transform: translateY(12px) scale(0.96); }
-    to { opacity:1; transform: translateY(0) scale(1); }
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(102, 126, 234, 0.15);
+    animation: astSlideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  /* ── Header ─────────────────────────────────────────────────── */
+  @keyframes astSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
   .ast-hdr {
     background: linear-gradient(135deg, #667eea, #764ba2) !important;
     flex-shrink: 0;
   }
-  .ast-hdr *, .ast-hdr *::before, .ast-hdr *::after { color: #fff !important; }
+
+  .ast-hdr *,
+  .ast-hdr *::before,
+  .ast-hdr *::after {
+    color: #fff !important;
+  }
+
   .ast-hdr-row {
-    padding: 14px 16px 0; display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-  .ast-hdr-left { display: flex; align-items: center; gap: 10px; }
+
+  .ast-hdr-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .ast-avatar {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: rgba(255,255,255,0.2) !important;
-    display: flex; align-items: center; justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .ast-avatar svg { color: #fff !important; }
-  .ast-name { font-size: 14px; font-weight: 700; display: block; }
-  .ast-online { display: block; font-size: 11px; color: rgba(255,255,255,0.8) !important; }
+
+  .ast-name {
+    font-size: 14px;
+    font-weight: 700;
+    display: block;
+  }
+
+  .ast-online {
+    display: block;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
   .ast-dot-on {
-    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-    background: #34d399 !important; margin-right: 3px; vertical-align: middle;
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34d399 !important;
+    margin-right: 3px;
+    vertical-align: middle;
   }
+
   .ast-x-btn {
-    color: rgba(255,255,255,0.7) !important; cursor: pointer; padding: 4px;
-    background: none !important; border: none !important;
-  }
-  .ast-x-btn:hover { color: #fff !important; }
-  .ast-x-btn svg { color: rgba(255,255,255,0.7) !important; }
-
-  /* ── Tabs ────────────────────────────────────────────────────── */
-  .ast-tabs {
-    display: flex; padding: 0 16px; gap: 0;
-  }
-  .ast-tab {
-    flex: 1; padding: 10px 0 8px; text-align: center;
-    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55) !important;
-    background: none !important; border: none !important;
-    border-bottom: 2px solid transparent !important;
-    cursor: pointer; transition: color 0.2s, border-color 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 5px;
-  }
-  .ast-tab svg { color: rgba(255,255,255,0.55) !important; transition: color 0.2s; }
-  .ast-tab:hover { color: rgba(255,255,255,0.85) !important; }
-  .ast-tab:hover svg { color: rgba(255,255,255,0.85) !important; }
-  .ast-tab-on { color: #fff !important; border-bottom-color: #fff !important; }
-  .ast-tab-on svg { color: #fff !important; }
-
-  /* ── Voice status bar ───────────────────────────────────────── */
-  .ast-vbar {
-    padding: 8px 16px; display: flex; align-items: center; gap: 8px;
-    background: #111b33 !important; flex-shrink: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04) !important;
-  }
-  .ast-vbar-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: #4b5563 !important; flex-shrink: 0;
-    transition: background 0.2s;
-  }
-  .ast-vdot-listen { background: #34d399 !important; animation: astPulse 1.4s infinite; }
-  .ast-vdot-think { background: #fbbf24 !important; animation: astPulse 0.8s infinite; }
-  .ast-vdot-speak { background: #818cf8 !important; animation: astPulse 1s infinite; }
-  .ast-vdot-idle { background: #4b5563 !important; }
-  #ast-vtxt { font-size: 12px; color: #9ca3af !important; }
-  @keyframes astPulse {
-    0%,100% { opacity:0.5; transform: scale(1); }
-    50% { opacity:1; transform: scale(1.4); }
+    color: rgba(255, 255, 255, 0.7) !important;
+    cursor: pointer;
+    padding: 4px;
+    background: none !important;
+    border: none !important;
   }
 
-  /* ── Messages ───────────────────────────────────────────────── */
+  .ast-x-btn:hover {
+    color: #fff !important;
+  }
+
   .ast-msgs {
-    flex: 1; overflow-y: auto; padding: 16px;
-    display: flex; flex-direction: column; gap: 10px;
-    min-height: 150px; max-height: 320px; scroll-behavior: smooth;
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 150px;
+    max-height: 320px;
+    scroll-behavior: smooth;
     background: #0f1629 !important;
   }
-  .ast-msgs::-webkit-scrollbar { width: 4px; }
-  .ast-msgs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1) !important; border-radius: 4px; }
+
+  .ast-msgs::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .ast-msgs::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 4px;
+  }
 
   .ast-msg {
-    max-width: 88%; padding: 8px 12px; border-radius: 14px;
-    font-size: 12.5px; line-height: 1.45; word-wrap: break-word;
+    max-width: 88%;
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-size: 12.5px;
+    line-height: 1.45;
+    word-wrap: break-word;
     animation: astMsgIn 0.25s ease-out;
   }
+
   @keyframes astMsgIn {
-    from { opacity:0; transform: translateY(6px); }
-    to { opacity:1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
+
   .ast-msg-bot {
-    background: #1a2240 !important; align-self: flex-start;
+    background: #1a2240 !important;
+    align-self: flex-start;
     border-bottom-left-radius: 4px;
-    border: 1px solid rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
   }
-  .ast-msg-bot, .ast-msg-bot * { color: #e0e4ee !important; }
-  .ast-msg-bot strong { color: #f0f2f8 !important; }
+
+  .ast-msg-bot,
+  .ast-msg-bot * {
+    color: #e0e4ee !important;
+  }
+
   .ast-msg-user {
     background: linear-gradient(135deg, #667eea, #5a67d8) !important;
-    align-self: flex-end; border-bottom-right-radius: 4px; border: none !important;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+    border: none !important;
   }
-  .ast-msg-user, .ast-msg-user * { color: #fff !important; }
 
-  /* Live transcription bubble — appears while user is speaking */
-  .ast-msg-pending {
-    opacity: 0.65 !important;
-    border: 1px dashed rgba(255,255,255,0.35) !important;
-    font-style: italic !important;
+  .ast-msg-user,
+  .ast-msg-user * {
+    color: #fff !important;
   }
-  .ast-msg-pending::after {
-    content: ' \258B'; /* blinking cursor */
-    animation: astBlink 0.75s step-end infinite;
-  }
-  .ast-msg-pending, .ast-msg-pending * { color: rgba(255,255,255,0.9) !important; }
-  @keyframes astBlink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-  /* ── Typing ─────────────────────────────────────────────────── */
-  .ast-typing { display: flex; gap: 5px; padding: 14px 18px; background: #1a2240 !important; }
+  .ast-msg-system {
+    align-self: center !important;
+    text-align: center;
+    font-size: 11.5px;
+    color: #6b7280 !important;
+    font-style: italic;
+    letter-spacing: 0.03em;
+    padding: 6px 14px !important;
+    border-radius: 20px !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: none !important;
+  }
+
+  .ast-typing {
+    display: flex;
+    gap: 5px;
+    padding: 14px 18px;
+    background: #1a2240 !important;
+  }
+
   .ast-typing span {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: #4b5563 !important; color: #4b5563 !important;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4b5563 !important;
     animation: astBounce 1.4s infinite;
   }
-  .ast-typing span:nth-child(2) { animation-delay: 0.2s; }
-  .ast-typing span:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes astBounce {
-    0%,60%,100% { transform: translateY(0); opacity: 0.4; }
-    30% { transform: translateY(-5px); opacity: 1; }
+
+  .ast-typing span:nth-child(2) {
+    animation-delay: 0.2s;
   }
 
-  /* ── Plan cards — compact, professional ──────────────────── */
+  .ast-typing span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes astBounce {
+    0%,
+    60%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.4;
+    }
+    30% {
+      transform: translateY(-5px);
+      opacity: 1;
+    }
+  }
+
   .ast-plan-card {
     background: linear-gradient(135deg, #131b32 0%, #172041 100%) !important;
-    border: 1px solid rgba(102,126,234,0.15) !important;
-    border-radius: 12px; padding: 10px 12px; margin: 4px 0;
-    transition: border-color 0.15s;
+    border: 1px solid rgba(102, 126, 234, 0.15) !important;
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin: 4px 0;
   }
-  .ast-plan-card:hover { border-color: rgba(102,126,234,0.35) !important; }
-  .ast-plan-card * { color: #e0e4ee !important; }
-  .ast-plan-hdr {
-    display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;
-  }
-  .ast-plan-provider {
-    font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em;
-    color: #818cf8 !important; font-weight: 700;
-  }
-  .ast-plan-price {
-    font-weight: 800; color: #34d399 !important; font-size: 15px; line-height: 1;
-  }
-  .ast-plan-price small { font-size: 10px; font-weight: 600; color: #6ee7b7 !important; }
-  .ast-plan-name {
-    font-weight: 700; font-size: 12.5px; color: #e0e4ee !important; margin-bottom: 2px;
-  }
-  .ast-plan-speed { font-size: 11px; color: #9ca3af !important; margin-bottom: 1px; }
-  .ast-plan-meta { font-size: 10px; color: #6b7280 !important; margin-bottom: 6px; }
 
-  /* ── CTA / Order button — sleek, professional ───────────── */
+  .ast-plan-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+  }
+
+  .ast-plan-provider {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #818cf8 !important;
+    font-weight: 700;
+  }
+
+  .ast-plan-price {
+    font-weight: 800;
+    color: #34d399 !important;
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  .ast-plan-name {
+    font-weight: 700;
+    font-size: 12.5px;
+    color: #e0e4ee !important;
+    margin-bottom: 2px;
+  }
+
+  .ast-plan-speed {
+    font-size: 11px;
+    color: #9ca3af !important;
+    margin-bottom: 1px;
+  }
+
+  .ast-plan-meta {
+    font-size: 10px;
+    color: #6b7280 !important;
+    margin-bottom: 6px;
+  }
+
   .ast-order-btn {
-    display: flex !important; align-items: center !important; justify-content: center !important;
-    gap: 6px !important; width: 100% !important;
-    padding: 9px 14px !important; margin: 4px 0 2px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    width: 100% !important;
+    padding: 9px 14px !important;
+    margin: 4px 0 2px !important;
     background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%) !important;
-    color: #ffffff !important; font-size: 12px !important; font-weight: 700 !important;
-    border: none !important; border-radius: 8px !important; cursor: pointer !important;
-    text-align: center !important; letter-spacing: 0.02em !important; line-height: 1.2 !important;
-    box-shadow: 0 2px 8px rgba(34,197,94,0.3) !important;
-    transition: all 0.18s ease !important;
+    color: #ffffff !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3) !important;
   }
-  .ast-order-icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 18px; height: 18px; border-radius: 50%;
-    background: rgba(255,255,255,0.2) !important;
-    font-size: 12px; line-height: 1;
-  }
-  .ast-panel .ast-order-btn,
-  .ast-panel .ast-order-btn *,
-  .ast-panel .ast-order-icon { color: #ffffff !important; }
+
   .ast-order-btn:hover {
     background: linear-gradient(135deg, #16a34a 0%, #15803d 100%) !important;
-    box-shadow: 0 4px 16px rgba(34,197,94,0.45) !important;
+    box-shadow: 0 4px 16px rgba(34, 197, 94, 0.45) !important;
     transform: translateY(-1px) !important;
   }
-  .ast-order-btn:hover, .ast-panel .ast-order-btn:hover { color: #ffffff !important; }
-  .ast-auto-cta { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
 
-  /* ── Provider grid — max 3, each with all plans + CTA ──────── */
+  .ast-order-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2) !important;
+    font-size: 12px;
+  }
+
   .ast-provider-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 6px; margin: 8px 0 4px; width: 100%;
+    gap: 6px;
+    margin: 8px 0 4px;
+    width: 100%;
   }
+
   .ast-provider-card {
     background: linear-gradient(135deg, #131b32 0%, #172041 100%) !important;
-    border: 1px solid rgba(102,126,234,0.2) !important;
-    border-radius: 11px; padding: 8px 6px;
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-    transition: border-color 0.15s, transform 0.15s;
-    cursor: pointer; text-align: center;
+    border: 1px solid rgba(102, 126, 234, 0.2) !important;
+    border-radius: 11px;
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    text-align: center;
   }
-  .ast-provider-card:hover {
-    border-color: rgba(102,126,234,0.45) !important;
-    transform: translateY(-1px);
+
+  .ast-provider-card:focus-visible {
+    outline: 2px solid #818cf8;
+    outline-offset: 1px;
   }
-  .ast-provider-card:focus-visible { outline: 2px solid #818cf8; outline-offset: 1px; }
+
   .ast-prov-hdr {
-    display: flex; flex-direction: column; align-items: center; gap: 5px; width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
   }
+
   .ast-prov-logo-wrap {
     width: 100%;
     height: 52px;
     border-radius: 8px;
     background: #ffffff;
-    border: 1px solid rgba(255,255,255,0.28);
+    border: 1px solid rgba(255, 255, 255, 0.28);
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
     padding: 4px;
-    box-sizing: border-box;
   }
+
   .ast-prov-logo {
     max-height: 44px;
     max-width: 100%;
     width: auto;
     object-fit: contain;
-    flex-shrink: 0;
   }
+
   .ast-prov-logo-fallback {
     color: #111827 !important;
     font-size: 22px;
     font-weight: 800;
     line-height: 1;
   }
+
   .ast-prov-name {
     font-size: 11px;
     font-weight: 800;
     color: #e0e4ee !important;
-    letter-spacing: 0.01em;
     line-height: 1.2;
     overflow-wrap: anywhere;
     width: 100%;
   }
+
   .ast-prov-starting {
-    font-size: 10px; color: #9ca3af !important;
-    line-height: 1.4; width: 100%;
-  }
-  .ast-prov-start-price { font-size: 12px; color: #34d399 !important; font-weight: 800; }
-  .ast-prov-start-price small { font-size: 8px; color: #6ee7b7 !important; font-weight: 600; }
-  .ast-prov-start-speed { font-size: 9px; color: #818cf8 !important; font-weight: 600; }
-  .ast-prov-cta { margin-top: 2px !important; font-size: 10px !important; padding: 6px 8px !important; width: 100%; }
-
-  @media (max-width: 520px){
-    .ast-provider-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
-    .ast-prov-name { font-size: 10px; }
-    .ast-prov-cta { font-size: 9px !important; padding: 5px 4px !important; }
+    font-size: 10px;
+    color: #9ca3af !important;
+    line-height: 1.4;
+    width: 100%;
   }
 
-  /* ── System / connecting message ───────────────────────────── */
-  .ast-msg-system {
-    align-self: center !important; text-align: center;
-    font-size: 11.5px; color: #6b7280 !important;
-    font-style: italic; letter-spacing: 0.03em;
-    padding: 6px 14px !important; border-radius: 20px !important;
-    background: rgba(255,255,255,0.04) !important;
-    border: none !important; box-shadow: none !important;
-    animation: astMsgIn 0.3s ease-out;
-  }
-  .ast-connecting {
-    align-self: center !important; text-align: center;
-    font-size: 12px; color: #818cf8 !important;
-    font-style: italic; letter-spacing: 0.04em;
-    padding: 7px 18px !important; border-radius: 20px !important;
-    background: rgba(102,126,234,0.07) !important;
-    border: 1px solid rgba(102,126,234,0.18) !important;
-    box-shadow: none !important;
-    animation: astMsgIn 0.25s ease-out, astConnectingFlash 0.9s ease-in-out infinite;
-  }
-  @keyframes astConnectingFlash {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.35; }
+  .ast-prov-start-price {
+    font-size: 12px;
+    color: #34d399 !important;
+    font-weight: 800;
   }
 
-  /* ── Mic hint text ──────────────────────────────────────────── */
-  .ast-mic-hint {
-    font-size: 11.5px; color: #6b7280; text-align: center;
-    margin-top: 4px; letter-spacing: 0.02em; min-height: 16px;
-    transition: color 0.2s;
+  .ast-prov-start-speed {
+    font-size: 9px;
+    color: #818cf8 !important;
+    font-weight: 600;
   }
 
-  /* ── Suggestions (inline in message stream) ─────────────── */
-  .ast-sug-row {
-    display: none; /* hidden — chip suggestions removed */
+  .ast-prov-cta {
+    margin-top: 2px !important;
+    font-size: 10px !important;
+    padding: 6px 8px !important;
+    width: 100%;
   }
-  .ast-sug-btn { display: none; }
 
-  /* ── Chat form ──────────────────────────────────────────────── */
   .ast-form {
-    padding: 12px 14px; display: flex; gap: 8px; flex-shrink: 0;
+    padding: 12px 14px;
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
     background: #0f1629 !important;
-    border-top: 1px solid rgba(255,255,255,0.06) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
   }
+
   .ast-inp {
-    flex: 1; padding: 10px 14px;
-    border: 1px solid #2d3752 !important; border-radius: 12px;
-    background: #1a2240 !important; color: #e0e4ee !important;
-    font-size: 13px; outline: none; transition: border-color 0.15s;
-  }
-  .ast-inp::placeholder { color: #6b7280 !important; }
-  .ast-inp:focus { border-color: #667eea !important; }
-  .ast-inp:disabled { opacity: 0.5; cursor: not-allowed; }
-  .ast-send {
-    width: 40px; height: 40px; border-radius: 12px;
-    background: linear-gradient(135deg, #667eea, #764ba2) !important;
-    color: #fff !important; display: flex; align-items: center; justify-content: center;
-    cursor: pointer; flex-shrink: 0; transition: filter 0.15s; border: none !important;
-  }
-  .ast-send svg { color: #fff !important; }
-  .ast-send:hover { filter: brightness(1.15); }
-
-  /* ── Voice controls ─────────────────────────────────────────── */
-  .ast-vctrl {
-    padding: 0 14px 14px; flex-shrink: 0;
-    background: #0f1629 !important;
-    border-top: 1px solid rgba(255,255,255,0.06) !important;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-  }
-  .ast-mic {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: linear-gradient(135deg, #667eea, #764ba2) !important;
-    color: #fff !important; display: flex; align-items: center; justify-content: center;
-    border: none !important; cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(102,126,234,0.3);
-  }
-  .ast-mic svg { color: #fff !important; }
-  .ast-mic:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(102,126,234,0.45); }
-  .ast-mic-on {
-    background: linear-gradient(135deg, #34d399, #059669) !important;
-    box-shadow: 0 4px 20px rgba(52,211,153,0.4);
-    animation: astMicPulse 1.5s infinite;
-  }
-  @keyframes astMicPulse {
-    0%,100% { box-shadow: 0 4px 20px rgba(52,211,153,0.3); }
-    50% { box-shadow: 0 4px 36px rgba(52,211,153,0.6); }
-  }
-
-  /* ── Voice orb wrapper ──────────────────────────────────────── */
-  .ast-vorb-wrap {
-    display: flex; justify-content: center; padding: 20px 0 6px;
-  }
-  .ast-vorb {
-    position: relative; display: flex; align-items: center; justify-content: center;
-    width: 80px; height: 80px;
-  }
-  /* Animated rings behind the mic button */
-  .ast-vorb::before, .ast-vorb::after {
-    content: ''; position: absolute; border-radius: 50%;
-    pointer-events: none; opacity: 0; transition: opacity 0.3s;
-  }
-  /* Listening — green rings */
-  .ast-vorb.listening::before {
-    inset: -14px; background: rgba(52,211,153,0.18) !important;
-    opacity: 1; animation: vorbRing 1.8s ease-in-out infinite;
-  }
-  .ast-vorb.listening::after {
-    inset: -28px; background: rgba(52,211,153,0.07) !important;
-    opacity: 1; animation: vorbRing 1.8s 0.6s ease-in-out infinite;
-  }
-  /* Speaking — purple rings */
-  .ast-vorb.speaking::before {
-    inset: -14px; background: rgba(129,140,248,0.2) !important;
-    opacity: 1; animation: vorbRing 1.1s ease-in-out infinite;
-  }
-  .ast-vorb.speaking::after {
-    inset: -28px; background: rgba(129,140,248,0.08) !important;
-    opacity: 1; animation: vorbRing 1.1s 0.35s ease-in-out infinite;
-  }
-  /* Thinking — amber spinner */
-  .ast-vorb.thinking::before {
-    inset: -14px;
-    border: 2px solid rgba(251,191,36,0.55) !important;
-    border-right-color: transparent !important;
-    background: transparent !important;
-    opacity: 1; animation: vorbSpin 0.85s linear infinite;
-  }
-  @keyframes vorbRing {
-    0%, 100% { transform: scale(1); opacity: 0.75; }
-    50% { transform: scale(1.12); opacity: 0.2; }
-  }
-  @keyframes vorbSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  /* Mic button inside orb is a bit larger */
-  .ast-vorb .ast-mic { width: 68px; height: 68px; }
-  /* Real-time transcription */
-  .ast-vtranscript {
-    min-height: 18px; margin: 0; text-align: center;
-    font-size: 13px; color: #a5b4fc !important;
-    font-style: italic; padding: 0 20px 2px; line-height: 1.4;
-  }
-  .ast-vtranscript:empty { min-height: 0; }
-
-  .ast-vform { display: flex; gap: 8px; width: 100%; }
-  .ast-vinp {
-    flex: 1; padding: 10px 14px;
-    border: 1px solid #2d3752 !important; border-radius: 12px;
-    background: #1a2240 !important; color: #e0e4ee !important;
-    font-size: 13px; outline: none;
-  }
-  .ast-vinp::placeholder { color: #6b7280 !important; }
-  .ast-vinp:focus { border-color: #667eea !important; }
-
-  /* ── Mobile ─────────────────────────────────────────────────── */
-  @media (max-width: 480px) {
-    .ast { bottom: 70px; right: 12px; }
-    .ast-panel { width: calc(100vw - 24px); right: -6px; max-height: 80vh; }
-    .ast-btn { width: 52px; height: 52px; }
-    .ast-msgs { max-height: 42vh; }
-    .ast-mic { width: 50px; height: 50px; }
-  }
-
-  /* ── Talk-mode suggestion chips ────────────────────────────── */
-  .ast-talk-sug {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 12px; padding: 18px 4px 8px; width: 100%;
-  }
-  .ast-sug-prompt {
-    font-size: 13.5px; font-weight: 600; color: #c4c9e0 !important;
-    text-align: center; margin: 0; line-height: 1.4;
-  }
-  .ast-sug-chips { display: flex; flex-direction: column; gap: 8px; width: 100%; }
-  .ast-sug-chip {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #2d3752 !important;
+    border-radius: 12px;
     background: #1a2240 !important;
-    border: 1px solid rgba(102,126,234,0.28) !important;
-    border-radius: 10px; color: #d4d8f0 !important;
-    font-size: 13px; padding: 11px 14px;
-    text-align: left; cursor: pointer; width: 100%;
-    transition: background 0.15s, border-color 0.15s, transform 0.1s;
-    line-height: 1.35;
-  }
-  .ast-sug-chip:hover {
-    background: #1e2a4d !important;
-    border-color: rgba(102,126,234,0.55) !important;
-    transform: translateX(2px);
+    color: #e0e4ee !important;
+    font-size: 13px;
+    outline: none;
   }
 
-  /* ── Prominent connecting banner ────────────────────────────── */
-  .ast-connecting-prominent {
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: center; gap: 14px;
-    padding: 36px 20px 28px; width: 100%;
-    animation: astMsgIn 0.3s ease-out;
+  .ast-inp::placeholder {
+    color: #6b7280 !important;
   }
-  .ast-connecting-prominent-dot {
-    width: 16px; height: 16px; border-radius: 50%;
-    background: linear-gradient(135deg, #818cf8, #667eea) !important;
-    box-shadow: 0 0 0 0 rgba(129,140,248,0.5);
-    animation: astConnectDotPulse 1s ease-in-out infinite;
+
+  .ast-inp:focus {
+    border-color: #667eea !important;
   }
-  .ast-connecting-prominent-text {
-    font-size: 15px; font-weight: 700; letter-spacing: 0.04em;
-    color: #a5b4fc !important; text-align: center;
-    animation: astConnectFlash 0.8s ease-in-out infinite;
+
+  .ast-inp:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
-  @keyframes astConnectDotPulse {
-    0%   { transform: scale(1);    box-shadow: 0 0 0 0    rgba(129,140,248,0.6); }
-    50%  { transform: scale(1.15); box-shadow: 0 0 0 12px rgba(129,140,248,0); }
-    100% { transform: scale(1);    box-shadow: 0 0 0 0    rgba(129,140,248,0); }
+
+  .ast-send {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    color: #fff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    border: none !important;
   }
-  @keyframes astConnectFlash {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.3; }
+
+  .ast-send:hover {
+    filter: brightness(1.15);
+  }
+
+  @media (max-width: 520px) {
+    .ast-provider-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+    }
+
+    .ast-prov-name {
+      font-size: 10px;
+    }
+
+    .ast-prov-cta {
+      font-size: 9px !important;
+      padding: 5px 4px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ast {
+      bottom: 70px;
+      right: 12px;
+    }
+
+    .ast-panel {
+      width: calc(100vw - 24px);
+      right: -6px;
+      max-height: 80vh;
+    }
+
+    .ast-btn {
+      width: 52px;
+      height: 52px;
+    }
+
+    .ast-msgs {
+      max-height: 42vh;
+    }
   }
 </style>

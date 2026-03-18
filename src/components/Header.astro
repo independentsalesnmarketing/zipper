@@ -2,6 +2,8 @@
 ---
 <header class="site-header">
   <div class="container header-inner">
+
+    <!-- Logo -->
     <a href="/" class="logo" aria-label="Internet 4 ALL Home">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" fill="none" role="img" aria-label="Internet 4 ALL" class="logo-svg" width="200" height="52">
         <defs>
@@ -27,51 +29,331 @@
       </svg>
     </a>
 
+    <!-- Desktop nav (hidden on mobile via CSS) -->
     <nav id="main-nav" aria-label="Main navigation">
-      <a href="/providers">Providers</a>
-      <a href="/check-availability">Availability</a>
-      <a href="/best-internet">Rankings</a>
-      <a href="/compare">Compare</a>
-      <a href="/speed-test">Speed Test</a>
-      <a href="/deals">Deals</a>
-      <a href="/low-income-internet">Assistance</a>
+
+      <div class="nav-group" data-group="find">
+        <button class="nav-trigger" aria-expanded="false" aria-haspopup="true">
+          Find Internet
+          <svg class="nav-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/></svg>
+        </button>
+        <div class="nav-dropdown" role="region" aria-label="Find Internet options">
+          <a href="/check-availability"><strong>Check Your ZIP</strong><em>See providers at your address</em></a>
+          <a href="/coverage-map"><strong>Coverage Map</strong><em>See which ISPs serve your address</em></a>
+          <a href="/broadband-internet"><strong>Broadband Options</strong><em>Fiber, cable, DSL &amp; more</em></a>
+          <a href="/wireless-internet"><strong>Wireless &amp; 5G</strong><em>Home internet without a cable</em></a>
+          <a href="/business-internet"><strong>Business Internet</strong><em>Plans for offices &amp; SMBs</em></a>
+          <a href="/movers"><strong>Moving Soon?</strong><em>Find service at your new home</em></a>
+        </div>
+      </div>
+
+      <div class="nav-group" data-group="providers">
+        <button class="nav-trigger" aria-expanded="false" aria-haspopup="true">
+          Providers
+          <svg class="nav-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/></svg>
+        </button>
+        <div class="nav-dropdown" role="region" aria-label="Provider options">
+          <a href="/providers"><strong>Browse All Providers</strong><em>Compare every major ISP</em></a>
+          <a href="/best-internet"><strong>Top Rated Plans</strong><em>Our expert rankings</em></a>
+          <a href="/fastest-internet"><strong>Fastest Internet</strong><em>Gigabit &amp; multi-gig plans</em></a>
+          <a href="/compare"><strong>Compare Plans</strong><em>Side-by-side comparison</em></a>
+        </div>
+      </div>
+
+      <div class="nav-group" data-group="deals">
+        <button class="nav-trigger" aria-expanded="false" aria-haspopup="true">
+          Plans &amp; Deals
+          <svg class="nav-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/></svg>
+        </button>
+        <div class="nav-dropdown" role="region" aria-label="Plans and deals">
+          <a href="/deals"><strong>Current Deals</strong><em>Limited-time offers &amp; promos</em></a>
+          <a href="/cheap-internet"><strong>Cheap Internet</strong><em>Plans under $30/mo</em></a>
+          <a href="/no-contract-internet"><strong>No-Contract Plans</strong><em>Cancel anytime, no fees</em></a>
+          <a href="/low-income-internet"><strong>Low-Income Help</strong><em>ACP, Lifeline &amp; free options</em></a>
+          <a href="/affordable-internet"><strong>Affordable Plans</strong><em>Best value per dollar</em></a>
+        </div>
+      </div>
+
+      <div class="nav-group" data-group="tools">
+        <button class="nav-trigger" aria-expanded="false" aria-haspopup="true">
+          Tools
+          <svg class="nav-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/></svg>
+        </button>
+        <div class="nav-dropdown" role="region" aria-label="Tools">
+          <a href="/speed-test"><strong>Speed Test</strong><em>Test your current speeds</em></a>
+          <a href="/bill-analyzer"><strong>Bill Analyzer</strong><em>Are you overpaying?</em></a>
+          <a href="/quiz"><strong>Find My Plan</strong><em>Quick quiz to match your needs</em></a>
+          <a href="/resources"><strong>Learning Center</strong><em>Guides, tips &amp; explainers</em></a>
+        </div>
+      </div>
+
     </nav>
 
-    <button class="btn btn-cta header-cta" id="talk-to-agent-btn" data-event="header-voice" data-event-category="conversion" data-event-label="header-talk-to-agent">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;vertical-align:-2px;"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg>Talk to Agent
+    <!-- Desktop CTA -->
+    <button class="btn btn-cta header-cta" id="chat-assistant-btn" data-event="header-chat" data-event-category="conversion" data-event-label="header-chat-assistant">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;vertical-align:-2px;"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Chat with Advisor
     </button>
 
-    <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <!-- Hamburger (mobile only) -->
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+      <span class="ham-bar"></span>
+      <span class="ham-bar"></span>
+      <span class="ham-bar"></span>
     </button>
+
   </div>
 </header>
 
-<script>
-  const menuBtn = document.querySelector('.mobile-menu-btn');
-  const nav = document.getElementById('main-nav');
-  if (menuBtn && nav) {
-    menuBtn.addEventListener('click', () => {
-      const isOpen = nav.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', String(isOpen));
-    });
-  }
+<!-- Mobile scrim + drawer are injected into <body> by JS to escape header stacking context -->
+<div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>
 
-  // Mark active nav link
-  const path = window.location.pathname;
-  document.querySelectorAll('#main-nav a').forEach(a => {
+<div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+
+  <div class="drawer-header">
+    <a href="/" class="drawer-logo" aria-label="Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" fill="none" width="120" height="40">
+        <defs>
+          <linearGradient id="dPinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#0052FF"/><stop offset="100%" style="stop-color:#b700ff"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(1,1)">
+          <path d="M18 2C12.5 2 8 6.5 8 12c0 7.5 10 20 10 20s10-12.5 10-20c0-5.5-4.5-10-10-10z" fill="url(#dPinGrad)"/>
+          <circle cx="18" cy="12" r="2" fill="white"/>
+        </g>
+        <text x="44" y="15" font-family="'Inter',sans-serif" font-size="10" font-weight="700" fill="#0052FF">INTERNET</text>
+        <text x="44" y="30" font-family="'Inter',sans-serif" font-size="15" font-weight="900" fill="#0A0E1E">4 ALL</text>
+      </svg>
+    </a>
+    <button class="drawer-close" id="drawer-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- ZIP search -->
+  <div class="drawer-zip">
+    <label for="drawer-zip-input" class="drawer-zip-label">Find internet at your address</label>
+    <div class="drawer-zip-row">
+      <input type="text" id="drawer-zip-input" class="drawer-zip-input" placeholder="Enter ZIP code" maxlength="5" inputmode="numeric" pattern="\d{5}" autocomplete="postal-code">
+      <button class="drawer-zip-btn" id="drawer-zip-go" aria-label="Search by ZIP">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Accordion nav groups -->
+  <nav class="drawer-nav" aria-label="Site navigation">
+
+    <div class="drawer-group">
+      <button class="drawer-group-btn" aria-expanded="false">
+        Find Internet
+        <svg class="drawer-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/></svg>
+      </button>
+      <div class="drawer-links">
+        <a href="/check-availability">Check Your ZIP</a>
+        <a href="/broadband-internet">Broadband Options</a>
+        <a href="/wireless-internet">Wireless &amp; 5G</a>
+        <a href="/business-internet">Business Internet</a>
+        <a href="/movers">Moving Soon?</a>
+      </div>
+    </div>
+
+    <div class="drawer-group">
+      <button class="drawer-group-btn" aria-expanded="false">
+        Providers
+        <svg class="drawer-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/></svg>
+      </button>
+      <div class="drawer-links">
+        <a href="/providers">Browse All Providers</a>
+        <a href="/best-internet">Top Rated Plans</a>
+        <a href="/fastest-internet">Fastest Internet</a>
+        <a href="/compare">Compare Plans</a>
+      </div>
+    </div>
+
+    <div class="drawer-group">
+      <button class="drawer-group-btn" aria-expanded="false">
+        Plans &amp; Deals
+        <svg class="drawer-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/></svg>
+      </button>
+      <div class="drawer-links">
+        <a href="/deals">Current Deals</a>
+        <a href="/cheap-internet">Cheap Internet</a>
+        <a href="/no-contract-internet">No-Contract Plans</a>
+        <a href="/low-income-internet">Low-Income Help</a>
+        <a href="/affordable-internet">Affordable Plans</a>
+      </div>
+    </div>
+
+    <div class="drawer-group">
+      <button class="drawer-group-btn" aria-expanded="false">
+        Tools
+        <svg class="drawer-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06z" clip-rule="evenodd"/></svg>
+      </button>
+      <div class="drawer-links">
+        <a href="/speed-test">Speed Test</a>
+        <a href="/bill-analyzer">Bill Analyzer</a>
+        <a href="/quiz">Find My Plan</a>
+        <a href="/resources">Learning Center</a>
+      </div>
+    </div>
+
+  </nav>
+
+  <!-- Sticky bottom CTA -->
+  <div class="drawer-cta">
+    <button class="btn btn-cta drawer-chat-btn" id="drawer-chat-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px;vertical-align:-3px;"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Chat with Advisor
+    </button>
+    <a href="/check-availability" class="drawer-avail-link">Check Availability →</a>
+  </div>
+
+</div>
+
+<script>
+  // Move scrim + drawer to <body> to escape header backdrop-filter stacking context
+  const scrim = document.getElementById('nav-scrim');
+  const drawer = document.getElementById('mobile-drawer');
+  if (scrim) document.body.appendChild(scrim);
+  if (drawer) document.body.appendChild(drawer);
+
+  // ── Desktop dropdowns ──────────────────────────────────────
+  const navGroups = document.querySelectorAll('.nav-group');
+  const closeAllDropdowns = () => {
+    navGroups.forEach(g => {
+      g.classList.remove('open');
+      g.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'false');
+    });
+  };
+
+  navGroups.forEach(group => {
+    group.querySelector('.nav-trigger')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = group.classList.contains('open');
+      closeAllDropdowns();
+      if (!isOpen) {
+        group.classList.add('open');
+        group.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  document.addEventListener('click', closeAllDropdowns);
+
+  // ── Mobile drawer ──────────────────────────────────────────
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const drawerCloseBtn = document.getElementById('drawer-close');
+
+  const isSoftKeyboardOpen = () => {
+    const vv = window.visualViewport;
+    return !!vv && vv.height < window.innerHeight - 120;
+  };
+
+  const openDrawer = () => {
+    drawer?.classList.add('open');
+    scrim?.classList.add('visible');
+    mobileBtn?.classList.add('open');
+    mobileBtn?.setAttribute('aria-expanded', 'true');
+    mobileBtn?.setAttribute('aria-label', 'Close menu');
+    drawer?.setAttribute('aria-hidden', 'false');
+    if (!isSoftKeyboardOpen()) {
+      document.body.style.overflow = 'hidden';
+    }
+    setTimeout(() => {
+      const focusTarget = drawer?.querySelector('button, a, [tabindex]:not([tabindex="-1"])');
+      if (focusTarget && typeof focusTarget.focus === 'function') focusTarget.focus();
+    }, 60);
+  };
+
+  const closeDrawer = () => {
+    drawer?.classList.remove('open');
+    scrim?.classList.remove('visible');
+    mobileBtn?.classList.remove('open');
+    mobileBtn?.setAttribute('aria-expanded', 'false');
+    mobileBtn?.setAttribute('aria-label', 'Open menu');
+    drawer?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  mobileBtn?.addEventListener('click', () =>
+    drawer?.classList.contains('open') ? closeDrawer() : openDrawer()
+  );
+  drawerCloseBtn?.addEventListener('click', closeDrawer);
+  scrim?.addEventListener('click', closeDrawer);
+
+  // Escape closes both dropdowns and drawer
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { closeAllDropdowns(); closeDrawer(); }
+  });
+
+  // Focus trap inside drawer
+  drawer?.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !drawer.classList.contains('open')) return;
+    const focusable = Array.from(
+      drawer.querySelectorAll('a, button, input, [tabindex]:not([tabindex="-1"])')
+    ).filter((el) => !el.hasAttribute('disabled'));
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  // ── Drawer accordion ───────────────────────────────────────
+  document.querySelectorAll('.drawer-group-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.closest('.drawer-group');
+      const isOpen = group?.classList.contains('open');
+      document.querySelectorAll('.drawer-group').forEach(g => {
+        g.classList.remove('open');
+        g.querySelector('.drawer-group-btn')?.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        group?.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ── ZIP search ─────────────────────────────────────────────
+  const zipInput = document.getElementById('drawer-zip-input');
+  const zipGo = document.getElementById('drawer-zip-go');
+  const doZipSearch = () => {
+    const zip = zipInput?.value.trim() ?? '';
+    if (/^\d{5}$/.test(zip)) {
+      window.location.href = `/zip/${zip}`;
+    } else if (zipInput) {
+      zipInput.style.borderColor = 'var(--brand-red)';
+      zipInput.focus();
+      setTimeout(() => (zipInput.style.borderColor = ''), 1200);
+    }
+  };
+  zipGo?.addEventListener('click', doZipSearch);
+  zipInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') doZipSearch(); });
+
+  // ── Chat buttons ───────────────────────────────────────────
+  const openChat = () => {
+    closeDrawer();
+    if (typeof window.openAssistant === 'function') window.openAssistant('chat');
+  };
+  document.getElementById('chat-assistant-btn')?.addEventListener('click', openChat);
+  document.getElementById('drawer-chat-btn')?.addEventListener('click', openChat);
+
+  // ── Active state: highlight trigger when child link is current page ──
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.nav-dropdown a, .drawer-links a').forEach((a) => {
     const href = a.getAttribute('href');
-    if (href && (path === href || path.startsWith(href + '/'))) {
+    if (href && (currentPath === href || currentPath.startsWith(href + '/'))) {
+      a.closest('.nav-group')?.querySelector('.nav-trigger')?.classList.add('active');
       a.classList.add('active');
     }
   });
 
-  // Talk to Agent button → opens voice agent
-  const agentBtn = document.getElementById('talk-to-agent-btn');
-  if(agentBtn){
-    agentBtn.addEventListener('click', () => {
-      if(typeof window.openAssistant === 'function') window.openAssistant('talk');
-      else if(typeof window.openVoiceAgent === 'function') window.openVoiceAgent();
-    });
-  }
+  // ── Scroll shadow ──────────────────────────────────────────
+  const header = document.querySelector('.site-header');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header?.classList.toggle('scrolled', y > 10);
+    lastScroll = y;
+  }, { passive: true });
 </script>

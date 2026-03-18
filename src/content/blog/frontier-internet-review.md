@@ -69,7 +69,7 @@ The transformation isn't complete — some areas still only have legacy DSL — 
 
 - **Aggressive pricing** — 500 Mbps symmetrical at $49.99/mo is one of the best values in broadband
 - **Symmetrical speeds on all plans** — Upload matches download across every tier
-- **5 Gbps option** — Matches AT&T Fiber's top tier, exceeds Verizon Fios
+- **5 Gbps option** — Matches AT&T Fiber's top tier; no fixed wireless provider comes close
 - **No contracts or data caps** — Commitment-free unlimited internet
 - **Price lock guarantee** — Frontier guarantees your rate won't increase for the first year
 
@@ -86,8 +86,8 @@ The transformation isn't complete — some areas still only have legacy DSL — 
 | Provider | Entry Price | Entry Speed | Max Speed | Upload | Data Cap |
 |----------|-----------|------------|-----------|--------|----------|
 | **[Frontier Fiber](/provider/frontier)** | $49.99 | 500/500 | 5 Gbps | Symm. | None |
-| [AT&T Fiber](/provider/att) | $55 | 300/300 | 5 Gbps | Symm. | None |
-| [Verizon Fios](/provider/verizon) | $49.99 | 300/300 | 2 Gbps | Symm. | None |
+| [AT&T Fiber](/provider/att-fiber) | $55 | 300/300 | 5 Gbps | Symm. | None |
+| [Verizon 5G Home](/provider/verizon) | $50 | 100–1000 Mbps | 1 Gbps | Varies | None |
 | [Spectrum](/provider/spectrum) | $49.99 | 300/10 | 1 Gbps | 35 Mbps | None |
 | [EarthLink Fiber](/provider/earthlink) | $49.99 | 300/300 | 5 Gbps | Symm. | None |
 

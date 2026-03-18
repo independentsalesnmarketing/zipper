@@ -66,7 +66,7 @@ Self-install kits are usually free and take 15-30 minutes. You just plug in the 
 
 ## Need Help?
 
-Moving to a new area and not sure what's available? Call us. We'll:
+Moving to a new area and not sure what's available? Use chat or Talk to Agent. We'll:
 - Check every provider at your new address
 - Find the best deals and promotional prices
 - Schedule installation for your move-in date

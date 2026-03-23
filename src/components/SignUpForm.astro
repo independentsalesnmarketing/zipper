@@ -75,37 +75,48 @@ const partnerData = providers
       <div class="su-page" data-page="1">
         <div class="su-field">
           <label class="su-label" for="su-provider">Select Provider</label>
-          <select id="su-provider" name="provider" class="su-select" required>
-            <option value="">Choose a provider...</option>
-            {providers.filter(p => p.isPartner).map(p => (
-              <option value={p.slug} selected={providerSlug === p.slug}>{p.name}</option>
-            ))}
-            <option value="other">Other / Not sure yet</option>
-          </select>
+          <div class="su-select-wrap">
+            <select id="su-provider" name="provider" class="su-select" required>
+              <option value="">Choose a provider...</option>
+              {providers.filter(p => p.isPartner).map(p => (
+                <option value={p.slug} selected={providerSlug === p.slug}>{p.name}</option>
+              ))}
+              <option value="other">Other / Not sure yet</option>
+            </select>
+          </div>
         </div>
 
         <div class="su-field" id="su-plan-field" style="display:none;">
           <label class="su-label" for="su-plan">Select Plan</label>
-          <select id="su-plan" name="plan" class="su-select">
-            <option value="">Choose a plan...</option>
-          </select>
+          <div class="su-plan-picker" id="su-plan-picker">
+            <button type="button" class="su-plan-trigger" id="su-plan-trigger" aria-haspopup="listbox" aria-expanded="false" disabled>
+              <span id="su-plan-trigger-text">Choose a plan...</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="su-plan-menu" id="su-plan-menu" role="listbox" aria-label="Select Plan"></div>
+            <select id="su-plan" name="plan" class="su-select su-plan-native" tabindex="-1" aria-hidden="true">
+              <option value="">Choose a plan...</option>
+            </select>
+          </div>
         </div>
 
         <div id="su-plan-details" class="su-plan-details" style="display:none;"></div>
 
         <div class="su-field">
           <label class="su-label" for="su-need">What's your situation?</label>
-          <select id="su-need" name="need" class="su-select" required>
-            <option value="new-service">I need internet service</option>
-            <option value="switching">Switching from another provider</option>
-            <option value="moving">Moving to a new address</option>
-            <option value="upgrading">Upgrading my current plan</option>
-            <option value="cheaper">Looking for a cheaper option</option>
-            <option value="no-service">I currently don't have internet</option>
-          </select>
+          <div class="su-select-wrap">
+            <select id="su-need" name="need" class="su-select" required>
+              <option value="new-service">I need internet service</option>
+              <option value="switching">Switching from another provider</option>
+              <option value="moving">Moving to a new address</option>
+              <option value="upgrading">Upgrading my current plan</option>
+              <option value="cheaper">Looking for a cheaper option</option>
+              <option value="no-service">I currently don't have internet</option>
+            </select>
+          </div>
         </div>
 
-        <button type="button" class="su-btn su-btn-primary" id="su-next-1">
+        <button type="button" class="su-btn su-btn-primary" id="su-next-1" disabled>
           Next: Your Details
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
@@ -116,36 +127,102 @@ const partnerData = providers
         <div class="su-row">
           <div class="su-field">
             <label class="su-label" for="su-fname">First Name</label>
-            <input id="su-fname" name="first_name" type="text" class="su-input" required placeholder="John" autocomplete="given-name" />
+            <input id="su-fname" name="first_name" type="text" class="su-input" required placeholder="" autocomplete="given-name" />
           </div>
           <div class="su-field">
             <label class="su-label" for="su-lname">Last Name</label>
-            <input id="su-lname" name="last_name" type="text" class="su-input" required placeholder="Smith" autocomplete="family-name" />
+            <input id="su-lname" name="last_name" type="text" class="su-input" required placeholder="" autocomplete="family-name" />
           </div>
         </div>
 
         <div class="su-field">
           <label class="su-label" for="su-address">Service Address</label>
-          <input id="su-address" name="address" type="text" class="su-input" required placeholder="123 Main St, City, State ZIP" autocomplete="street-address" />
+          <input id="su-address" name="address" type="text" class="su-input" required placeholder="" autocomplete="address-line1" />
+          <span class="su-field-hint">Include apt, unit, or suite # if applicable</span>
         </div>
 
-        <div class="su-row">
+        <div class="su-row su-row-3">
           <div class="su-field">
-            <label class="su-label" for="su-email">Email Address</label>
-            <input id="su-email" name="email" type="email" class="su-input" required placeholder="john@example.com" autocomplete="email" />
+            <label class="su-label" for="su-city">City</label>
+            <input id="su-city" name="city" type="text" class="su-input" required placeholder="" autocomplete="address-level2" />
+          </div>
+          <div class="su-field">
+            <label class="su-label" for="su-state">State</label>
+            <div class="su-select-wrap">
+              <select id="su-state" name="state" class="su-select" required autocomplete="address-level1">
+                <option value="">State</option>
+                <option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option>
+                <option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option>
+                <option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option>
+                <option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option>
+                <option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option>
+                <option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option>
+                <option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option>
+                <option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option>
+                <option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option>
+                <option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option>
+                <option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option>
+                <option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option>
+                <option value="WI">WI</option><option value="WY">WY</option>
+              </select>
+            </div>
+          </div>
+          <div class="su-field">
+            <label class="su-label" for="su-zip">ZIP Code</label>
+            <input id="su-zip" name="zip" type="text" class="su-input" required placeholder="" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" />
           </div>
         </div>
 
         <div class="su-row">
           <div class="su-field">
-            <label class="su-label" for="su-dob">Date of Birth</label>
-            <input id="su-dob" name="dob" type="date" class="su-input" required autocomplete="bday" />
+            <label class="su-label" for="su-phone">Phone Number</label>
+            <input id="su-phone" name="phone" type="tel" class="su-input" required placeholder="" autocomplete="tel" inputmode="tel" />
+          </div>
+          <div class="su-field">
+            <label class="su-label" for="su-email">Email Address</label>
+            <input id="su-email" name="email" type="email" class="su-input" required placeholder="" autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="su-row">
+          <div class="su-field">
+            <label class="su-label" for="su-dob">Date of Birth <span class="su-required">*</span></label>
+            <input id="su-dob" name="dob" type="text" class="su-input" required autocomplete="bday" inputmode="numeric" placeholder="MM/DD/YYYY" maxlength="10" pattern="^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(19|20)\d{2}$" />
+            <span id="su-dob-err" class="su-field-error" style="display:none">You must be 18 years or older to apply.</span>
           </div>
           <div class="su-field">
             <label class="su-label" for="su-install-date">Preferred Install Date</label>
-            <input id="su-install-date" name="install_date" type="date" class="su-input" autocomplete="off" />
+            <div class="su-calendar-wrap" id="su-install-calendar-wrap">
+              <input id="su-install-date-display" type="text" class="su-input" autocomplete="off" readonly placeholder="Select a date" />
+              <input id="su-install-date" name="install_date" type="hidden" />
+              <div id="su-install-calendar" class="su-install-calendar" style="display:none;" role="dialog" aria-label="Install date calendar">
+                <div class="su-cal-header">
+                  <button type="button" class="su-cal-nav" id="su-cal-prev" aria-label="Previous month">&#8249;</button>
+                  <div class="su-cal-title" id="su-cal-title"></div>
+                  <button type="button" class="su-cal-nav" id="su-cal-next" aria-label="Next month">&#8250;</button>
+                </div>
+                <div class="su-cal-grid su-cal-weekdays">
+                  <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                </div>
+                <div class="su-cal-grid" id="su-cal-days"></div>
+              </div>
+            </div>
+            <span class="su-date-legend">
+              <span class="su-date-dot su-date-open"></span>Available dates
+              &nbsp;&nbsp;<span class="su-date-dot su-date-closed"></span>Unavailable dates
+            </span>
           </div>
         </div>
+
+        <div class="su-field" id="su-id-field">
+          <label class="su-label">Identity Verification <span class="su-required">*</span></label>
+          <button type="button" id="su-id-trigger" class="su-id-trigger-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span id="su-id-status">Verify Identity &rarr;</span>
+          </button>
+          <span id="su-idv4-err" class="su-field-error" style="display:none">Identity verification is required to continue.</span>
+        </div>
+        <input type="hidden" id="su-idv4" autocomplete="off" />
 
         <div class="su-nav-row">
           <button type="button" class="su-btn su-btn-back" id="su-back-2">
@@ -165,13 +242,18 @@ const partnerData = providers
           <!-- Populated by JS -->
         </div>
 
-        <div class="su-consent">
-          <label class="su-checkbox-wrap">
+        <div class="su-consent" id="su-consent-box">
+          <div class="su-consent-hdr">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Required — Read &amp; Check to Continue
+          </div>
+          <label class="su-checkbox-wrap" id="su-consent-wrap">
             <input type="checkbox" id="su-consent" name="consent" required />
             <span class="su-checkbox-label">
-              I agree to be contacted by Internet 4 ALL and its partners via email and in-app chat regarding internet service options. I understand I can opt out at any time. By submitting, I confirm I am 18 years or older and agree to the <a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.
+              By submitting this form, I authorize Internet 4 ALL and its network of licensed service partners to contact me via email, SMS/text, phone call, and in-app messaging regarding internet service availability, pricing, and offers at the address provided. I understand that: (1) submitting this form does not guarantee service availability or activation; (2) Internet 4 ALL is an independent referral service, not a direct provider; (3) final service terms are subject to provider approval and address serviceability. I may opt out at any time by emailing <a href="mailto:privacy@internet-4-all.com">privacy@internet-4-all.com</a>. By submitting, I confirm I am 18 or older and agree to the <a href="/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a> and <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
             </span>
           </label>
+          <span id="su-consent-err" class="su-field-error" style="display:none;">&#9888; You must agree to the terms and conditions before submitting your order.</span>
         </div>
 
         <div class="su-nav-row">
@@ -179,9 +261,11 @@ const partnerData = providers
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
             Back
           </button>
-          <button type="submit" class="su-btn su-btn-submit">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Get Connected Now
+          <button type="submit" class="su-btn su-btn-submit" id="su-submit-btn" disabled>
+            <span id="su-submit-inner">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Get Connected Now
+            </span>
           </button>
         </div>
       </div>
@@ -206,6 +290,36 @@ const partnerData = providers
         </div>
       </div>
     </div>
+
+    <!-- Identity Verification Overlay (within modal) -->
+    <div id="su-id-overlay" class="su-id-overlay" style="display:none" role="dialog" aria-modal="true" aria-label="Identity Verification">
+      <div class="su-id-box">
+        <div class="su-id-hdr">
+          <div class="su-id-lock-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <h4 class="su-id-title">Identity Verification</h4>
+            <p class="su-id-subtitle">Secure &amp; Encrypted</p>
+          </div>
+        </div>
+        <p class="su-id-desc">To verify your identity with your service provider, please enter your <strong>Social Security Number (SSN)</strong>. Your information is encrypted and never shared beyond service activation.</p>
+        <div class="su-field" style="margin-bottom:var(--space-sm)">
+          <label class="su-label" for="su-idv-entry">Social Security Number (SSN)</label>
+          <input id="su-idv-entry" type="text" inputmode="numeric" pattern="[0-9]{3}-[0-9]{2}-[0-9]{4}" maxlength="11" autocomplete="off" data-lpignore="true" data-form-type="other" placeholder="000-00-0000" class="su-input su-id-input" />
+          <span id="su-idv-entry-err" class="su-field-error" style="display:none">Please enter your full 9-digit SSN (format: XXX-XX-XXXX).</span>
+        </div>
+        <p class="su-id-security">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          256-bit encrypted &nbsp;·&nbsp; Required by provider for activation &nbsp;·&nbsp; Securely transmitted
+        </p>
+        <div class="su-id-actions">
+          <button type="button" id="su-id-cancel" class="su-btn su-btn-back">Cancel</button>
+          <button type="button" id="su-id-confirm" class="su-btn su-btn-primary" style="flex:1">Confirm &rarr;</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -226,6 +340,7 @@ const partnerData = providers
   }
   .su-modal {
     background: var(--white);
+    position: relative;
     border-radius: var(--radius-xl);
     box-shadow: 0 32px 80px rgba(0,0,0,0.25), 0 0 1px rgba(0,0,0,0.1);
     max-width: 660px;
@@ -314,6 +429,7 @@ const partnerData = providers
   .su-form { display: flex; flex-direction: column; }
   .su-page { display: flex; flex-direction: column; gap: var(--space-md); }
   .su-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+  .su-row-3 { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); }
   .su-field { display: flex; flex-direction: column; gap: 4px; }
   .su-label {
     font-size: var(--text-sm);
@@ -331,24 +447,168 @@ const partnerData = providers
     transition: all 0.2s ease;
     min-height: 48px;
   }
-  .su-select {
+  /* Select wrapper — provides all visual styling cross-browser */
+  .su-select-wrap {
+    position: relative;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    display: block;
+  }
+  .su-select-wrap::after {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230052ff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .su-select-wrap:focus-within {
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 4px rgba(0,82,255,0.10);
+  }
+  .su-select-wrap:has(.su-select.su-error),
+  .su-select-wrap.su-error {
+    border-color: var(--brand-red);
+    background: rgba(255,45,74,0.03);
+  }
+  /* Select inside wrapper — transparent, no border, no native arrow */
+  .su-select-wrap .su-select {
     appearance: none;
     -webkit-appearance: none;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    outline: none;
     padding-right: 2.75rem;
-    background-image: linear-gradient(45deg, transparent 50%, var(--text-tertiary) 50%), linear-gradient(135deg, var(--text-tertiary) 50%, transparent 50%);
-    background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 12px) calc(50% - 3px);
-    background-size: 6px 6px, 6px 6px;
-    background-repeat: no-repeat;
-  }
-  .su-select option {
     color: var(--text-primary);
-    background: var(--white);
+    font-weight: 500;
+    font-size: var(--text-base);
+    min-height: 44px;
+    width: 100%;
+    cursor: pointer;
   }
+  .su-select-wrap .su-select:focus {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    outline: none;
+  }
+  .su-plan-picker {
+    position: relative;
+  }
+  .su-plan-trigger {
+    width: 100%;
+    min-height: 48px;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    color: var(--text-primary);
+    font-size: var(--text-base);
+    font-weight: 600;
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .su-plan-trigger:hover { border-color: #b6c7de; }
+  .su-plan-trigger:focus-visible {
+    outline: none;
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 4px rgba(0,82,255,0.12);
+  }
+  .su-plan-trigger[disabled] {
+    cursor: not-allowed;
+    color: var(--text-tertiary);
+    background: var(--gray-50);
+  }
+  .su-plan-picker.open .su-plan-trigger {
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 4px rgba(0,82,255,0.10);
+  }
+  .su-plan-picker.open .su-plan-trigger svg { transform: rotate(180deg); }
+  .su-plan-trigger svg {
+    transition: transform 0.18s ease;
+    flex-shrink: 0;
+  }
+  .su-plan-menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 6px);
+    background: #fff;
+    border: 1px solid #d0dfef;
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 28px rgba(0,20,60,0.14);
+    max-height: 260px;
+    overflow-y: auto;
+    z-index: 30;
+    display: none;
+    padding: 6px;
+  }
+  .su-plan-picker.open .su-plan-menu { display: block; }
+  :global(.su-plan-option) {
+    width: 100%;
+    border: none;
+    background: #fff;
+    color: var(--text-primary);
+    text-align: left;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  :global(.su-plan-option:hover),
+  :global(.su-plan-option:focus-visible) {
+    background: #edf4ff;
+    color: #003bba;
+    outline: none;
+  }
+  :global(.su-plan-option.selected) {
+    background: #dcebff;
+    color: #003bba;
+    font-weight: 700;
+  }
+  .su-plan-native {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+  }
+  /* Ensure placeholder text is always light and unobtrusive */
+  .su-input::placeholder {
+    color: var(--text-tertiary, #9ca3af);
+    font-weight: 400;
+    opacity: 0.65;
+  }
+
   .su-input:focus, .su-select:focus {
     outline: none;
     border-color: var(--brand-blue);
     background: var(--white);
     box-shadow: 0 0 0 4px rgba(0,82,255,0.12);
+  }
+  /* Inputs inside select-wrap don't need their own focus ring — wrapper handles it */
+  .su-select-wrap .su-select:focus {
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
   }
   .su-input.su-error, .su-select.su-error {
     border-color: var(--brand-red);
@@ -378,24 +638,82 @@ const partnerData = providers
     font-size: var(--text-lg);
   }
   .su-btn-primary:hover { background: var(--brand-blue-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,82,255,0.3); }
+  .su-btn-primary.su-btn-ready {
+    background: var(--brand-green);
+    box-shadow: 0 4px 12px rgba(0, 213, 132, 0.28);
+  }
+  .su-btn-primary.su-btn-ready:hover {
+    background: #00bb78;
+    box-shadow: 0 6px 14px rgba(0, 213, 132, 0.34);
+  }
+  .su-btn-primary[disabled] {
+    cursor: not-allowed;
+    opacity: 0.72;
+    transform: none;
+    box-shadow: none;
+  }
+  .su-btn-primary[disabled]:hover {
+    background: var(--brand-blue);
+    transform: none;
+    box-shadow: none;
+  }
   .su-btn-submit {
-    background: var(--gradient-cta);
-    color: #000d2e;
+    background: var(--brand-blue);
+    color: #fff;
     flex: 1;
     font-size: var(--text-xl);
     min-height: 58px;
     padding: var(--space-md) var(--space-lg);
     letter-spacing: -0.01em;
     font-weight: 900;
-    box-shadow: 0 4px 16px rgba(0,213,132,0.25);
+    box-shadow: 0 4px 16px rgba(0,82,255,0.28);
   }
   .su-btn-submit:hover {
     transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,82,255,0.38);
+    filter: brightness(1.03);
+  }
+  .su-btn-submit.su-btn-ready {
+    background: var(--brand-green);
+    box-shadow: 0 8px 32px rgba(0,213,132,0.34);
+  }
+  .su-btn-submit.su-btn-ready:hover {
+    background: #00bb78;
     box-shadow: 0 8px 32px rgba(0,213,132,0.45);
-    filter: brightness(1.05);
   }
   .su-btn-submit:active {
     transform: translateY(0);
+  }
+  .su-btn-submit:disabled {
+    background: var(--gray-200, #e5e7eb);
+    color: var(--text-tertiary, #6b7280);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+  .su-btn-submit:disabled:hover {
+    transform: none;
+    filter: none;
+    box-shadow: none;
+  }
+  #su-submit-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+  @keyframes su-spin {
+    to { transform: rotate(360deg); }
+  }
+  .su-spin {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2.5px solid rgba(0,0,0,0.15);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: su-spin 0.7s linear infinite;
+    vertical-align: -3px;
+    margin-right: 6px;
   }
   .su-btn-back {
     background: var(--gray-100);
@@ -419,25 +737,282 @@ const partnerData = providers
 
   /* Review card */
   .su-review-card {
-    background: var(--gray-50);
-    border: 2px solid var(--gray-200);
+    background: var(--white);
+    border: 1.5px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: var(--space-lg);
+    overflow: hidden;
     margin-bottom: var(--space-md);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
   }
-  .su-review-card .su-review-row {
+  /* Review card inner elements — must use :global() because they are injected via innerHTML */
+  .su-review-card :global(.su-rev-head) {
     display: flex;
-    justify-content: space-between;
-    padding: var(--space-xs) 0;
-    font-size: var(--text-sm);
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: linear-gradient(135deg, #0052ff 0%, #003bba 100%);
+    color: white;
+  }
+  .su-review-card :global(.su-rev-logo-wrap) {
+    width: 52px;
+    height: 52px;
+    background: rgba(255,255,255,0.15);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .su-review-card :global(.su-rev-logo-wrap img) { width: 44px; height: 44px; object-fit: contain; }
+  .su-review-card :global(.su-rev-logo-initial) {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: white;
+  }
+  .su-review-card :global(.su-rev-head-info) { flex: 1; min-width: 0; }
+  .su-review-card :global(.su-rev-prov-name) {
+    font-size: var(--text-base);
+    font-weight: 800;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .su-review-card :global(.su-rev-plan-badge) {
+    display: inline-block;
+    margin-top: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    background: rgba(255,255,255,0.2);
+    border-radius: 99px;
+    padding: 2px 10px;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: 0.02em;
+  }
+  .su-review-card :global(.su-rev-price-block) { text-align: right; flex-shrink: 0; }
+  .su-review-card :global(.su-rev-price) {
+    font-size: var(--text-xl);
+    font-weight: 900;
+    color: var(--brand-yellow, #ffe500);
+    line-height: 1.1;
+  }
+  .su-review-card :global(.su-rev-price small) { font-size: 11px; font-weight: 600; opacity: 0.85; }
+  .su-review-card :global(.su-rev-order-label) {
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .su-review-card :global(.su-rev-body) { padding: var(--space-md) var(--space-lg); }
+  .su-review-card :global(.su-rev-section) { margin-bottom: var(--space-md); }
+  .su-review-card :global(.su-rev-section:last-child) { margin-bottom: 0; }
+  .su-review-card :global(.su-rev-section-title) {
+    font-size: var(--text-xs);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-xs);
+    padding-bottom: 4px;
     border-bottom: 1px solid var(--gray-100);
   }
-  .su-review-card .su-review-row:last-child { border-bottom: none; }
-  .su-review-card .su-review-label { color: var(--text-tertiary); font-weight: 500; }
-  .su-review-card .su-review-val { color: var(--text-primary); font-weight: 600; text-align: right; }
+  .su-review-card :global(.su-rev-row) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    gap: var(--space-md);
+  }
+  .su-review-card :global(.su-rev-row:last-child) { border-bottom: none; }
+  .su-review-card :global(.su-rev-label) {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .su-review-card :global(.su-rev-val) {
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    font-weight: 700;
+    text-align: right;
+    word-break: break-word;
+  }
+  .su-review-card :global(.su-rev-trust) {
+    display: flex;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    background: rgba(0,213,132,0.06);
+    border-top: 1px solid rgba(0,213,132,0.15);
+    flex-wrap: wrap;
+  }
+  .su-review-card :global(.su-rev-trust-item) {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--brand-green);
+    white-space: nowrap;
+  }
+
+  /* Field helpers */
+  .su-required { color: var(--brand-red); }
+  .su-field-error {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--brand-red);
+    font-weight: 600;
+    margin-top: 3px;
+  }
+  .su-field-hint {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    font-weight: 500;
+    margin-top: 3px;
+  }
+
+  /* Identity verify trigger button */
+  .su-id-trigger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--text-base);
+    font-weight: 700;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    color: var(--text-secondary);
+    cursor: pointer;
+    min-height: 48px;
+    transition: all 0.2s;
+  }
+  .su-id-trigger-btn:hover { border-color: var(--brand-blue); color: var(--brand-blue); }
+  .su-id-trigger-btn.su-id-verified {
+    border-color: var(--brand-green);
+    color: var(--brand-green);
+    background: rgba(0,213,132,0.06);
+  }
+  .su-id-trigger-btn.su-error { border-color: var(--brand-red); }
+
+  /* Identity verification overlay */
+  .su-id-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+    border-radius: var(--radius-xl);
+  }
+  .su-id-box {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    width: 100%;
+    max-width: 360px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    animation: su-slide-up 0.25s ease;
+  }
+  .su-id-hdr {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+  .su-id-lock-wrap {
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg, #0052ff 0%, #003bba 100%);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  .su-id-title {
+    font-size: var(--text-lg);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+  }
+  .su-id-subtitle {
+    font-size: var(--text-xs);
+    color: var(--brand-green);
+    font-weight: 700;
+    margin: 0;
+  }
+  .su-id-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+  .su-id-input {
+    letter-spacing: 0.18em;
+    font-size: 1.15rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    text-align: left;
+    caret-color: var(--brand-blue);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .su-id-security {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    font-weight: 500;
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+  .su-id-actions {
+    display: flex;
+    gap: var(--space-sm);
+  }
 
   /* Consent */
-  .su-consent { margin-bottom: var(--space-md); }
+  .su-consent {
+    margin-bottom: var(--space-md);
+    border: 2px solid #f59e0b;
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md) var(--space-md);
+    background: rgba(245,158,11,0.04);
+    animation: consent-attention 1.8s ease-in-out 3;
+  }
+  .su-consent.su-consent-done {
+    border-color: var(--brand-green);
+    background: rgba(0,213,132,0.04);
+    animation: none;
+  }
+  @keyframes consent-attention {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.4); }
+    50% { box-shadow: 0 0 0 10px rgba(245,158,11,0); }
+  }
+  .su-consent-hdr {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #92400e;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-sm);
+  }
+  .su-consent.su-consent-done .su-consent-hdr {
+    color: var(--brand-green);
+  }
   .su-checkbox-wrap {
     display: flex;
     gap: var(--space-sm);
@@ -446,13 +1021,14 @@ const partnerData = providers
   }
   .su-checkbox-wrap input[type="checkbox"] {
     margin-top: 3px;
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     flex-shrink: 0;
     accent-color: var(--brand-blue);
+    cursor: pointer;
   }
   .su-checkbox-label {
-    font-size: var(--text-xs);
+    font-size: 0.72rem;
     color: var(--text-secondary);
     line-height: 1.6;
   }
@@ -538,13 +1114,165 @@ const partnerData = providers
     font-weight: 600;
   }
 
+  /* Date availability legend */
+  .su-date-legend {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  .su-date-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .su-date-open { background: var(--brand-green); }
+  .su-date-closed { background: var(--brand-red); }
+
+  .su-calendar-wrap {
+    position: relative;
+  }
+  .su-install-calendar {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    left: auto;
+    z-index: 40;
+    min-width: 280px;
+    width: max(100%, 280px);
+    max-width: 320px;
+    background:
+      radial-gradient(140% 110% at 0% 0%, rgba(0, 82, 255, 0.09) 0%, rgba(0, 82, 255, 0) 52%),
+      linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+    border: 1px solid #b9d1ef;
+    border-radius: 14px;
+    box-shadow: 0 18px 38px rgba(0, 40, 100, 0.18);
+    padding: 12px;
+  }
+  .su-cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .su-cal-title {
+    font-size: var(--text-sm);
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+  .su-cal-nav {
+    border: 1px solid #bdd2ea;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text-secondary);
+    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    box-shadow: 0 2px 6px rgba(0, 34, 86, 0.08);
+  }
+  .su-cal-nav:hover {
+    border-color: #9bb7e0;
+    color: var(--brand-blue);
+  }
+  .su-cal-nav:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .su-cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 5px;
+  }
+  .su-cal-weekdays {
+    margin-bottom: 4px;
+  }
+  .su-cal-weekdays span {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+  }
+  /* Calendar day buttons are injected via innerHTML — must use :global() so Astro scoping doesn't strip these rules */
+  :global(.su-cal-day) {
+    border: 1px solid transparent;
+    border-radius: 10px;
+    min-height: 36px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    background: #fff;
+    color: #16314f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease, border-color 0.14s ease;
+  }
+  :global(.su-cal-day.su-cal-day-available) {
+    background: linear-gradient(160deg, #b7f0d4 0%, #80ddb0 100%);
+    border-color: #2db87a;
+    color: #095c32;
+    box-shadow: 0 2px 7px rgba(0, 150, 80, 0.22);
+  }
+  :global(.su-cal-day.su-cal-day-available:hover),
+  :global(.su-cal-day.su-cal-day-available:focus-visible) {
+    background: linear-gradient(160deg, #8ee8bb 0%, #50c990 100%);
+    box-shadow: 0 5px 14px rgba(0, 140, 70, 0.32);
+    transform: translateY(-2px);
+    outline: none;
+    border-color: #15944f;
+  }
+  :global(.su-cal-day.su-cal-day-unavailable) {
+    background: linear-gradient(160deg, #fdc5ca 0%, #f99aa2 100%);
+    border-color: #e04060;
+    color: #7a0f25;
+    cursor: not-allowed;
+    box-shadow: 0 1px 5px rgba(200, 30, 55, 0.18);
+  }
+  :global(.su-cal-day:disabled) {
+    opacity: 1;
+  }
+  :global(.su-cal-day.su-cal-day-selected) {
+    background: var(--brand-green);
+    border-color: #009955;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(0, 145, 93, 0.42);
+    transform: scale(1.08);
+    z-index: 1;
+  }
+  :global(.su-cal-day-empty) {
+    min-height: 34px;
+  }
+
+  /* Consent error state */
+  .su-checkbox-wrap.su-consent-required {
+    outline: 2px solid var(--brand-red);
+    border-radius: var(--radius-sm);
+    padding: var(--space-xs) var(--space-sm);
+    margin: -4px -8px;
+  }
+
   @media (max-width: 600px) {
-    .su-modal { padding: var(--space-lg); max-height: 95vh; }
+    .su-modal { padding: var(--space-md) var(--space-md); max-height: 96vh; }
     .su-row { grid-template-columns: 1fr; }
     .su-step-label { display: none; }
-    .su-nav-row { flex-direction: column-reverse; }
+    .su-nav-row { flex-direction: column-reverse; gap: var(--space-sm); }
     .su-btn { white-space: normal; text-align: center; }
-    .su-btn-submit { font-size: var(--text-lg); padding: var(--space-md); }
+    .su-btn-submit { font-size: var(--text-lg); padding: var(--space-md); width: 100%; }
+    .su-btn-back { width: 100%; justify-content: center; }
+    .su-btn-primary { font-size: var(--text-base); }
+    .su-consent { padding: var(--space-sm) var(--space-sm) var(--space-sm); }
+    .su-consent-hdr { font-size: 10px; }
+    #su-submit-inner { gap: 6px; }
+    .su-step-dots { gap: var(--space-xs); }
+    .su-step-dot { width: 28px; height: 4px; }
   }
 </style>
 
@@ -556,6 +1284,175 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('su-form') as HTMLFormElement;
   const successEl = document.getElementById('su-success') as HTMLElement;
   if (!modal || !form) return;
+
+  // Set install date min/max: 2 days from today → 21 days from today
+  const installInput = document.getElementById('su-install-date') as HTMLInputElement;
+  const installDisplayInput = document.getElementById('su-install-date-display') as HTMLInputElement;
+  const installCalendarWrap = document.getElementById('su-install-calendar-wrap') as HTMLElement;
+  const installCalendar = document.getElementById('su-install-calendar') as HTMLElement;
+  const installCalendarDays = document.getElementById('su-cal-days') as HTMLElement;
+  const installCalendarTitle = document.getElementById('su-cal-title') as HTMLElement;
+  const installPrevBtn = document.getElementById('su-cal-prev') as HTMLButtonElement;
+  const installNextBtn = document.getElementById('su-cal-next') as HTMLButtonElement;
+  let installMinDate: Date | null = null;
+  let installMaxDate: Date | null = null;
+  let installViewDate: Date | null = null;
+
+  function atDayStart(date: Date): Date {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+
+  function toISODate(date: Date): string {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }
+
+  function formatDisplayDate(date: Date): string {
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  }
+
+  function parseISODate(value: string): Date | null {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+    const [y, m, d] = value.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+
+  function installIsAvailable(date: Date): boolean {
+    if (!installMinDate || !installMaxDate) return false;
+    const d = atDayStart(date).getTime();
+    return d >= installMinDate.getTime() && d <= installMaxDate.getTime();
+  }
+
+  function syncInstallDateUI() {
+    const selectedDate = parseISODate(installInput?.value || '');
+    if (installDisplayInput) {
+      installDisplayInput.value = selectedDate ? formatDisplayDate(selectedDate) : '';
+    }
+  }
+
+  function openInstallCalendar() {
+    if (!installCalendar) return;
+    installCalendar.style.display = '';
+    renderInstallCalendar();
+  }
+
+  function closeInstallCalendar() {
+    if (!installCalendar) return;
+    installCalendar.style.display = 'none';
+  }
+
+  function moveInstallViewMonth(offset: number) {
+    if (!installViewDate) return;
+    installViewDate = new Date(installViewDate.getFullYear(), installViewDate.getMonth() + offset, 1);
+    renderInstallCalendar();
+  }
+
+  function renderInstallCalendar() {
+    if (!installCalendarDays || !installCalendarTitle || !installViewDate || !installMinDate || !installMaxDate) return;
+
+    const year = installViewDate.getFullYear();
+    const month = installViewDate.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstWeekday = firstDay.getDay();
+    const selected = parseISODate(installInput.value);
+
+    installCalendarTitle.textContent = installViewDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+    const monthStart = new Date(year, month, 1).getTime();
+    const minMonth = new Date(installMinDate.getFullYear(), installMinDate.getMonth(), 1).getTime();
+    const maxMonth = new Date(installMaxDate.getFullYear(), installMaxDate.getMonth(), 1).getTime();
+    if (installPrevBtn) installPrevBtn.disabled = monthStart <= minMonth;
+    if (installNextBtn) installNextBtn.disabled = monthStart >= maxMonth;
+
+    let html = '';
+    for (let i = 0; i < firstWeekday; i += 1) {
+      html += '<div class="su-cal-day-empty"></div>';
+    }
+    for (let day = 1; day <= daysInMonth; day += 1) {
+      const current = new Date(year, month, day);
+      const available = installIsAvailable(current);
+      const iso = toISODate(current);
+      const selectedCls = selected && toISODate(selected) === iso ? ' su-cal-day-selected' : '';
+      html += `<button type="button" class="su-cal-day ${available ? 'su-cal-day-available' : 'su-cal-day-unavailable'}${selectedCls}" data-install-date="${iso}" ${available ? '' : 'disabled'}>${day}</button>`;
+    }
+    installCalendarDays.innerHTML = html;
+  }
+
+  if (installInput) {
+    const minD = new Date();
+    minD.setDate(minD.getDate() + 2);
+    const maxD = new Date();
+    maxD.setDate(maxD.getDate() + 21);
+    installMinDate = atDayStart(minD);
+    installMaxDate = atDayStart(maxD);
+    installInput.value = '';
+    installViewDate = new Date(installMinDate.getFullYear(), installMinDate.getMonth(), 1);
+    syncInstallDateUI();
+
+    installDisplayInput?.addEventListener('focus', openInstallCalendar);
+    installDisplayInput?.addEventListener('click', openInstallCalendar);
+    installPrevBtn?.addEventListener('click', () => moveInstallViewMonth(-1));
+    installNextBtn?.addEventListener('click', () => moveInstallViewMonth(1));
+
+    installCalendarDays?.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('button[data-install-date]') as HTMLButtonElement | null;
+      if (!btn?.dataset.installDate) return;
+      installInput.value = btn.dataset.installDate;
+      syncInstallDateUI();
+      closeInstallCalendar();
+      refreshButtonStates();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!installCalendarWrap?.contains(e.target as Node)) {
+        closeInstallCalendar();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeInstallCalendar();
+    });
+  }
+
+  function formatDobInputValue(raw: string): string {
+    const digits = raw.replace(/\D/g, '').slice(0, 8);
+    if (digits.length <= 2) return digits;
+    if (digits.length <= 4) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+    return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
+  }
+
+  function parseDobValue(value: string): Date | null {
+    const v = value.trim();
+    const iso = v.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (iso) {
+      const y = Number(iso[1]);
+      const m = Number(iso[2]);
+      const d = Number(iso[3]);
+      const dt = new Date(y, m - 1, d);
+      if (dt.getFullYear() === y && dt.getMonth() === m - 1 && dt.getDate() === d) return dt;
+      return null;
+    }
+    const us = v.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if (!us) return null;
+    const mm = Number(us[1]);
+    const dd = Number(us[2]);
+    const yyyy = Number(us[3]);
+    const dt = new Date(yyyy, mm - 1, dd);
+    if (dt.getFullYear() === yyyy && dt.getMonth() === mm - 1 && dt.getDate() === dd) return dt;
+    return null;
+  }
+
+  function normalizeDobToIso(value: string): string {
+    const dt = parseDobValue(value);
+    return dt ? toISODate(dt) : value.trim();
+  }
 
   // Partner data from server
   interface PartnerPlan { name: string; speed: number; uploadSpeed: number; price: number; regularPrice: number; contract: string; dataCap: string; features: string[]; }
@@ -569,6 +1466,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const providerSelect = document.getElementById('su-provider') as HTMLSelectElement;
   const planField = document.getElementById('su-plan-field') as HTMLElement;
   const planSelect = document.getElementById('su-plan') as HTMLSelectElement;
+  const planPicker = document.getElementById('su-plan-picker') as HTMLElement;
+  const planTrigger = document.getElementById('su-plan-trigger') as HTMLButtonElement;
+  const planMenu = document.getElementById('su-plan-menu') as HTMLElement;
+  const planTriggerText = document.getElementById('su-plan-trigger-text') as HTMLElement;
   const logoRow = document.getElementById('su-logo-row') as HTMLElement;
   const providerLogo = document.getElementById('su-provider-logo') as HTMLImageElement;
   const defaultHeader = document.getElementById('su-default-header') as HTMLElement;
@@ -576,6 +1477,231 @@ document.addEventListener('DOMContentLoaded', () => {
   const subtitleEl = document.getElementById('su-subtitle') as HTMLElement;
   const reviewEl = document.getElementById('su-review') as HTMLElement;
   const planDetailsEl = document.getElementById('su-plan-details') as HTMLElement;
+  const submitBtn = document.getElementById('su-submit-btn') as HTMLButtonElement;
+  const nextStepOneBtn = document.getElementById('su-next-1') as HTMLButtonElement;
+  const nextStepTwoBtn = document.getElementById('su-next-2') as HTMLButtonElement;
+  const submitInner = document.getElementById('su-submit-inner') as HTMLElement;
+  const consentBox = document.getElementById('su-consent-box') as HTMLElement;
+  const consentWrap = document.getElementById('su-consent-wrap') as HTMLElement;
+  const consentErr = document.getElementById('su-consent-err') as HTMLElement;
+  const orderRefEl = document.getElementById('su-order-ref') as HTMLElement;
+  const DEFAULT_SUBMIT_INNER_HTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Get Connected Now';
+
+  // ── Identity Verification Popup ─────────────────────────────────────────
+  let idVerified = false;
+  const idOverlay = document.getElementById('su-id-overlay') as HTMLElement;
+  const idEntry   = document.getElementById('su-idv-entry') as HTMLInputElement;
+  const idEntryErr = document.getElementById('su-idv-entry-err') as HTMLElement;
+  const idHidden  = document.getElementById('su-idv4') as HTMLInputElement;
+  const idTrigger = document.getElementById('su-id-trigger') as HTMLButtonElement;
+  const idStatus  = document.getElementById('su-id-status') as HTMLElement;
+  const idConfirm = document.getElementById('su-id-confirm');
+  const idCancel  = document.getElementById('su-id-cancel');
+  let idRawDigits = '';
+
+  function renderFullyMaskedSsn(rawDigits: string): string {
+    let out = '';
+    for (let i = 0; i < rawDigits.length; i += 1) {
+      if (i === 3 || i === 5) out += '-';
+      out += '\u2022'; // bullet •
+    }
+    return out;
+  }
+
+  function renderProgressiveMaskedSsn(rawDigits: string): string {
+    if (!rawDigits.length) return '';
+    let out = '';
+    for (let i = 0; i < rawDigits.length; i += 1) {
+      if (i === 3 || i === 5) out += '-';
+      // Show the most-recently typed digit; mask all previous ones
+      out += i === rawDigits.length - 1 ? rawDigits[i] : '\u2022';
+    }
+    return out;
+  }
+
+  function setSsnCursorToEnd() {
+    const len = idEntry.value.length;
+    idEntry.setSelectionRange(len, len);
+  }
+
+  function openIdOverlay() {
+    if (idOverlay) {
+      idRawDigits = idHidden.value ? idHidden.value.replace(/\D/g, '').slice(0, 9) : '';
+      idEntry.value = renderFullyMaskedSsn(idRawDigits);
+      idEntryErr.style.display = 'none';
+      idOverlay.style.display = 'flex';
+      setTimeout(() => idEntry.focus(), 100);
+    }
+  }
+  function closeIdOverlay() {
+    if (idOverlay) idOverlay.style.display = 'none';
+  }
+  function confirmId() {
+    const val = idRawDigits;
+    if (val.length !== 9) {
+      idEntryErr.style.display = '';
+      idEntry.focus();
+      return;
+    }
+    idEntryErr.style.display = 'none';
+    idHidden.value = val;
+    idVerified = true;
+    closeIdOverlay();
+    idTrigger.classList.add('su-id-verified');
+    idTrigger.classList.remove('su-error');
+    if (idStatus) idStatus.textContent = '✓ Identity Verified';
+    refreshButtonStates();
+  }
+  idTrigger?.addEventListener('click', openIdOverlay);
+  idConfirm?.addEventListener('click', confirmId);
+  idCancel?.addEventListener('click', closeIdOverlay);
+
+  // Force cursor to always stay at the end — prevents typing "in the middle"
+  idEntry?.addEventListener('mousedown', () => {
+    requestAnimationFrame(setSsnCursorToEnd);
+  });
+  idEntry?.addEventListener('click', setSsnCursorToEnd);
+  idEntry?.addEventListener('focus', () => { setTimeout(setSsnCursorToEnd, 0); });
+
+  idEntry?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); confirmId(); return; }
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.key === 'Backspace') {
+      e.preventDefault();
+      idRawDigits = idRawDigits.slice(0, -1);
+      idEntry.value = renderProgressiveMaskedSsn(idRawDigits);
+      setSsnCursorToEnd();
+      idEntryErr.style.display = 'none';
+      return;
+    }
+    if (e.key === 'Delete') {
+      e.preventDefault();
+      idRawDigits = '';
+      idEntry.value = '';
+      setSsnCursorToEnd();
+      idEntryErr.style.display = 'none';
+      return;
+    }
+    if (e.key === 'Tab' || e.key.startsWith('Arrow') || e.key === 'Home' || e.key === 'End') return;
+    if (/^\d$/.test(e.key)) {
+      e.preventDefault();
+      if (idRawDigits.length < 9) {
+        idRawDigits += e.key;
+        idEntry.value = renderProgressiveMaskedSsn(idRawDigits);
+        setSsnCursorToEnd();
+        idEntryErr.style.display = 'none';
+      }
+      return;
+    }
+    e.preventDefault();
+  });
+
+  idEntry?.addEventListener('paste', (e) => {
+    e.preventDefault();
+    const pasted = e.clipboardData?.getData('text') || '';
+    const digits = pasted.replace(/\D/g, '');
+    if (!digits) return;
+    idRawDigits = (idRawDigits + digits).slice(0, 9);
+    idEntry.value = renderProgressiveMaskedSsn(idRawDigits);
+    setSsnCursorToEnd();
+    idEntryErr.style.display = 'none';
+  });
+
+  function findFieldErrorMessageEl(el: HTMLElement): HTMLElement | null {
+    const field = el.closest('.su-field');
+    if (!field) return null;
+    return field.querySelector('.su-field-error[data-generated="true"]') as HTMLElement | null;
+  }
+
+  function showFieldErrorMessage(el: HTMLElement, message: string) {
+    const field = el.closest('.su-field');
+    if (!field) return;
+    let msgEl = findFieldErrorMessageEl(el);
+    if (!msgEl) {
+      msgEl = document.createElement('span');
+      msgEl.className = 'su-field-error';
+      msgEl.dataset.generated = 'true';
+      field.appendChild(msgEl);
+    }
+    msgEl.textContent = message;
+    msgEl.style.display = '';
+  }
+
+  function hideFieldErrorMessage(el: HTMLElement) {
+    const msgEl = findFieldErrorMessageEl(el);
+    if (msgEl) msgEl.style.display = 'none';
+  }
+
+  function focusInvalidField(el: HTMLElement | null) {
+    if (!el) return;
+    const target = el.classList.contains('su-select-wrap')
+      ? (el.querySelector('.su-select') as HTMLElement | null)
+      : el;
+    target?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => target?.focus(), 120);
+  }
+
+  function isStepOneValid(): boolean {
+    if (!providerSelect.value) return false;
+    if (planField.style.display === 'none') return true;
+    return !!planSelect.value;
+  }
+
+  function isAdultDobValue(value: string): boolean {
+    if (!value) return false;
+    const dob = parseDobValue(value);
+    if (!dob) return false;
+    if (Number.isNaN(dob.getTime())) return false;
+    const today = new Date();
+    if (dob > today) return false;
+    const minAge = new Date();
+    minAge.setFullYear(minAge.getFullYear() - 18);
+    return dob <= minAge;
+  }
+
+  function isStepTwoValid(): boolean {
+    const fname = (document.getElementById('su-fname') as HTMLInputElement)?.value.trim();
+    const lname = (document.getElementById('su-lname') as HTMLInputElement)?.value.trim();
+    const address = (document.getElementById('su-address') as HTMLInputElement)?.value.trim();
+    const city = (document.getElementById('su-city') as HTMLInputElement)?.value.trim();
+    const phone = (document.getElementById('su-phone') as HTMLInputElement)?.value.trim();
+    const email = (document.getElementById('su-email') as HTMLInputElement)?.value.trim();
+    const zip = (document.getElementById('su-zip') as HTMLInputElement)?.value.trim();
+    const state = (document.getElementById('su-state') as HTMLSelectElement)?.value;
+    const dobValue = (document.getElementById('su-dob') as HTMLInputElement)?.value;
+    return !!fname && !!lname && !!address && !!city && !!phone && !!email && !!zip
+      && isValidPhone(phone)
+      && isValidEmail(email)
+      && isValidZip(zip)
+      && isValidUsState(state)
+      && isAdultDobValue(dobValue)
+      && idVerified;
+  }
+
+  function isStepThreeValid(): boolean {
+    const consent = document.getElementById('su-consent') as HTMLInputElement | null;
+    return !!consent?.checked;
+  }
+
+  function setProgressButtonState(btn: HTMLButtonElement | null, ready: boolean) {
+    if (!btn) return;
+    btn.classList.toggle('su-btn-ready', ready);
+  }
+
+  function refreshButtonStates() {
+    const stepOneReady = isStepOneValid();
+    const stepTwoReady = isStepTwoValid();
+    const stepThreeReady = isStepThreeValid();
+
+    if (nextStepOneBtn) nextStepOneBtn.disabled = !stepOneReady;
+    setProgressButtonState(nextStepOneBtn, stepOneReady);
+    setProgressButtonState(nextStepTwoBtn, stepTwoReady);
+
+    if (submitBtn) {
+      submitBtn.disabled = !stepThreeReady;
+      setProgressButtonState(submitBtn, stepThreeReady);
+    }
+  }
 
   function formatBandwidth(value: number): string {
     if (!value) return 'N/A';
@@ -598,6 +1724,83 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     return `${cleanName} ${formatBandwidth(speed)}`;
+  }
+
+  function isValidEmail(value: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  function isValidZip(value: string): boolean {
+    return /^\d{5}$/.test(value);
+  }
+
+  function isValidUsState(value: string): boolean {
+    return /^[A-Z]{2}$/.test(value);
+  }
+
+  function isValidPhone(value: string): boolean {
+    return value.replace(/\D/g, '').length >= 10;
+  }
+
+  function formatPhoneInput(value: string): string {
+    const digits = value.replace(/\D/g, '').slice(0, 10);
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  }
+
+  function setFieldError(el: HTMLElement | null, hasError: boolean) {
+    if (!el) return;
+    el.classList.toggle('su-error', hasError);
+    if (el.classList.contains('su-select')) {
+      el.closest('.su-select-wrap')?.classList.toggle('su-error', hasError);
+    }
+  }
+
+  function clearTransientErrors() {
+    form.querySelectorAll('.su-error').forEach(el => el.classList.remove('su-error'));
+    form.querySelectorAll('.su-select-wrap.su-error').forEach(el => el.classList.remove('su-error'));
+    form.querySelectorAll('.su-field-error[data-generated="true"]').forEach(el => ((el as HTMLElement).style.display = 'none'));
+    const dobErr = document.getElementById('su-dob-err') as HTMLElement | null;
+    const idvErr = document.getElementById('su-idv4-err') as HTMLElement | null;
+    if (dobErr) dobErr.style.display = 'none';
+    if (idvErr) idvErr.style.display = 'none';
+    if (consentErr) consentErr.style.display = 'none';
+    consentWrap?.classList.remove('su-consent-required');
+  }
+
+  function resetPlanSelection() {
+    planSelect.value = '';
+    planTriggerText.textContent = 'Choose a plan...';
+    updatePlanDetails(null);
+    closePlanMenu();
+  }
+
+  function resetFormState() {
+    form.reset();
+    clearTransientErrors();
+    idVerified = false;
+    idRawDigits = '';
+    idHidden.value = '';
+    idEntry.value = '';
+    idTrigger?.classList.remove('su-id-verified', 'su-error');
+    if (idStatus) idStatus.textContent = 'Verify Identity →';
+    if (consentBox) consentBox.classList.remove('su-consent-done');
+    if (submitBtn) submitBtn.disabled = true;
+    submitBtn?.classList.remove('su-btn-ready');
+    nextStepOneBtn?.classList.remove('su-btn-ready');
+    nextStepTwoBtn?.classList.remove('su-btn-ready');
+    if (submitInner) submitInner.innerHTML = DEFAULT_SUBMIT_INNER_HTML;
+    if (orderRefEl) orderRefEl.textContent = '';
+    lastSubmitTime = 0;
+
+    // Ensure provider/plan visuals are fresh on next open.
+    updateProviderUI(providerSelect.value || '');
+    resetPlanSelection();
+    if (installInput) installInput.value = '';
+    syncInstallDateUI();
+    goToStep(1);
+    refreshButtonStates();
   }
 
   function updatePlanDetails(opt: HTMLOptionElement | null) {
@@ -634,17 +1837,99 @@ document.addEventListener('DOMContentLoaded', () => {
     planDetailsEl.style.display = '';
   }
 
+  function closePlanMenu() {
+    planPicker?.classList.remove('open');
+    planTrigger?.setAttribute('aria-expanded', 'false');
+  }
+
+  function selectPlanValue(value: string) {
+    planSelect.value = value;
+    planSelect.dispatchEvent(new Event('change'));
+    closePlanMenu();
+  }
+
+  function renderPlanMenu() {
+    if (!planMenu || !planTrigger || !planTriggerText) return;
+    const options = Array.from(planSelect.options || []).filter(o => o.value);
+    if (!options.length) {
+      planMenu.innerHTML = '';
+      planTriggerText.textContent = 'Choose a plan...';
+      planTrigger.disabled = true;
+      closePlanMenu();
+      return;
+    }
+
+    planTrigger.disabled = false;
+    planMenu.innerHTML = options.map((o, i) => {
+      const selected = o.value === planSelect.value;
+      const check = selected ? '<span aria-hidden="true">✓</span>' : '';
+      return `<button type="button" class="su-plan-option${selected ? ' selected' : ''}" data-plan-index="${i}" role="option" aria-selected="${selected ? 'true' : 'false'}"><span>${o.textContent || ''}</span>${check}</button>`;
+    }).join('');
+  }
+
   planSelect.addEventListener('change', () => {
     const opt = planSelect.options[planSelect.selectedIndex];
     updatePlanDetails(opt as HTMLOptionElement);
+    if (planTriggerText) {
+      planTriggerText.textContent = planSelect.value ? (opt?.textContent || planSelect.value) : 'Choose a plan...';
+    }
+    renderPlanMenu();
+    setFieldError(planTrigger, !planSelect.value && planField.style.display !== 'none');
+    if (planSelect.value) hideFieldErrorMessage(planTrigger);
+    refreshButtonStates();
+    // Auto-scroll to Next button so user sees the enabled action
+    if (planSelect.value) {
+      setTimeout(() => {
+        nextStepOneBtn?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 180);
+    }
   });
 
-  function openModal(providerSlug?: string) {
+  planTrigger?.addEventListener('click', () => {
+    if (planTrigger.disabled) return;
+    const isOpen = planPicker.classList.toggle('open');
+    planTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  planMenu?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('.su-plan-option') as HTMLButtonElement | null;
+    if (!btn) return;
+    const idx = Number(btn.dataset.planIndex);
+    const options = Array.from(planSelect.options || []).filter(o => o.value);
+    const target = options[idx];
+    if (!target) return;
+    selectPlanValue(target.value);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!planPicker?.contains(e.target as Node)) closePlanMenu();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePlanMenu();
+  });
+
+  function selectPlan(planName?: string) {
+    if (!planName) return;
+    const target = planName.trim().toLowerCase();
+    if (!target) return;
+    const options = Array.from(planSelect.options || []);
+    const exact = options.find(o => o.value.trim().toLowerCase() === target);
+    const partial = options.find(o => o.value.trim().toLowerCase().includes(target) || target.includes(o.value.trim().toLowerCase()));
+    const chosen = exact || partial;
+    if (chosen) {
+      selectPlanValue(chosen.value);
+    }
+  }
+
+  function openModal(providerSlug?: string, planName?: string) {
+    resetFormState();
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     if (providerSlug) {
       providerSelect.value = providerSlug;
       updateProviderUI(providerSlug);
+      selectPlan(planName);
     }
     goToStep(1);
   }
@@ -652,6 +1937,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeModal() {
     modal.classList.remove('open');
     document.body.style.overflow = '';
+    closePlanMenu();
   }
 
   function updateProviderUI(slug: string) {
@@ -681,9 +1967,8 @@ document.addEventListener('DOMContentLoaded', () => {
         planSelect.appendChild(opt);
       });
       planField.style.display = '';
-
-      // Show plan details card when plan is selected
-      updatePlanDetails(null);
+      resetPlanSelection();
+      renderPlanMenu();
     } else {
       logoRow.style.display = 'none';
       defaultHeader.style.display = '';
@@ -691,6 +1976,10 @@ document.addEventListener('DOMContentLoaded', () => {
       subtitleEl.textContent = "Fill in your details and we'll get you the best internet deal. No obligation, 100% free.";
       modalInner.classList.remove('su-branded');
       planField.style.display = 'none';
+      planSelect.innerHTML = '<option value="">Choose a plan...</option>';
+      resetPlanSelection();
+      renderPlanMenu();
+      closePlanMenu();
     }
   }
 
@@ -710,32 +1999,190 @@ document.addEventListener('DOMContentLoaded', () => {
     form.style.display = step <= totalSteps ? '' : 'none';
     successEl.style.display = step > totalSteps ? '' : 'none';
     document.getElementById('su-steps')!.style.display = step <= totalSteps ? '' : 'none';
+    if (modalInner) {
+      modalInner.scrollTo({ top: 0, behavior: 'smooth' });
+      modalInner.scrollTop = 0;
+    }
   }
 
   function buildReview() {
     const data = new FormData(form);
-    const rows = [
-      ['Provider', (providerSelect.options[providerSelect.selectedIndex]?.text || '').split(' — ')[0]],
-      ['Plan', data.get('plan') as string || 'Best available'],
-      ['Situation', (document.getElementById('su-need') as HTMLSelectElement).options[(document.getElementById('su-need') as HTMLSelectElement).selectedIndex]?.text || ''],
-      ['Name', `${data.get('first_name')} ${data.get('last_name')}`],
-      ['Address', data.get('address') as string],
-      ['Email', data.get('email') as string],
-      ['Date of Birth', data.get('dob') as string || 'Not provided'],
-      ['Preferred Install', data.get('install_date') as string || 'As soon as possible'],
-    ].filter(r => r[1]);
+    const provName = (providerSelect.options[providerSelect.selectedIndex]?.text || '').split(' — ')[0];
+    const planName = (data.get('plan') as string) || 'Best Available';
+    const situation = (document.getElementById('su-need') as HTMLSelectElement).options[(document.getElementById('su-need') as HTMLSelectElement).selectedIndex]?.text || '';
+    const firstName = (data.get('first_name') as string) || '';
+    const lastName  = (data.get('last_name') as string) || '';
+    const phone     = (data.get('phone') as string) || '';
+    const address   = (data.get('address') as string) || '';
+    const city      = (data.get('city') as string) || '';
+    const state     = (data.get('state') as string) || '';
+    const zip       = (data.get('zip') as string) || '';
+    const email     = (data.get('email') as string) || '';
+    const dob       = (data.get('dob') as string) || '';
+    const installDate = (data.get('install_date') as string) || '';
+    const fullAddress = [address, [city, state].filter(Boolean).join(', '), zip].filter(Boolean).join(', ').replace(', ,', ',');
 
-    reviewEl.innerHTML = rows.map(([label, val]) =>
-      `<div class="su-review-row"><span class="su-review-label">${label}</span><span class="su-review-val">${val}</span></div>`
-    ).join('');
+    const partner = partners.find(p => p.slug === providerSelect.value);
+    const selectedPlanOption = planSelect.options[planSelect.selectedIndex];
+    const planPrice = selectedPlanOption?.dataset?.price ? parseFloat(selectedPlanOption.dataset.price) : null;
+
+    const logoHtml = partner?.logo
+      ? `<img src="${partner.logo}" alt="${partner.name}" />`
+      : `<span class="su-rev-logo-initial">${(partner?.name || provName || '?').charAt(0)}</span>`;
+
+    const priceHtml = planPrice
+      ? `<div class="su-rev-price">$${planPrice.toFixed(0)}<small>/mo</small></div><div class="su-rev-order-label">Starting price</div>`
+      : '';
+
+    function fmtDate(d: string) {
+      if (!d) return '';
+      const parts = d.split('-');
+      if (parts.length !== 3) return d;
+      return `${parts[1]}/${parts[2]}/${parts[0]}`;
+    }
+
+    let html = `
+      <div class="su-rev-head">
+        <div class="su-rev-logo-wrap">${logoHtml}</div>
+        <div class="su-rev-head-info">
+          <div class="su-rev-prov-name">${provName || 'Provider'}</div>
+          <span class="su-rev-plan-badge">${planName}</span>
+        </div>
+        ${priceHtml ? `<div class="su-rev-price-block">${priceHtml}</div>` : ''}
+      </div>
+      <div class="su-rev-body">
+        <div class="su-rev-section">
+          <div class="su-rev-section-title">👤 Your Details</div>
+          ${firstName || lastName ? `<div class="su-rev-row"><span class="su-rev-label">Name</span><span class="su-rev-val">${firstName} ${lastName}</span></div>` : ''}
+          ${phone ? `<div class="su-rev-row"><span class="su-rev-label">Phone</span><span class="su-rev-val">${phone}</span></div>` : ''}
+          ${email ? `<div class="su-rev-row"><span class="su-rev-label">Email</span><span class="su-rev-val">${email}</span></div>` : ''}
+          ${fullAddress ? `<div class="su-rev-row"><span class="su-rev-label">Address</span><span class="su-rev-val">${fullAddress}</span></div>` : ''}
+          ${dob ? `<div class="su-rev-row"><span class="su-rev-label">Date of Birth</span><span class="su-rev-val">${fmtDate(dob)}</span></div>` : ''}
+        </div>
+        <div class="su-rev-section">
+          <div class="su-rev-section-title">📡 Service Details</div>
+          ${situation ? `<div class="su-rev-row"><span class="su-rev-label">Situation</span><span class="su-rev-val">${situation}</span></div>` : ''}
+          <div class="su-rev-row"><span class="su-rev-label">Preferred Install</span><span class="su-rev-val">${installDate ? fmtDate(installDate) : 'As soon as possible'}</span></div>
+          <div class="su-rev-row"><span class="su-rev-label">ID Verified</span><span class="su-rev-val" style="color:var(--brand-green)">✓ Confirmed</span></div>
+        </div>
+      </div>
+      <div class="su-rev-trust">
+        <span class="su-rev-trust-item">✓ No hidden fees</span>
+        <span class="su-rev-trust-item">🔒 Secure order</span>
+        <span class="su-rev-trust-item">⚡ Fast activation</span>
+      </div>`;
+    reviewEl.innerHTML = html;
   }
 
   // Event handlers
-  providerSelect.addEventListener('change', () => updateProviderUI(providerSelect.value));
+  providerSelect.addEventListener('change', () => {
+    updateProviderUI(providerSelect.value);
+    providerSelect.closest('.su-select-wrap')?.classList.remove('su-error');
+    hideFieldErrorMessage(providerSelect);
+    refreshButtonStates();
+  });
+
+  const phoneEl = document.getElementById('su-phone') as HTMLInputElement;
+  const zipEl = document.getElementById('su-zip') as HTMLInputElement;
+  const stateEl = document.getElementById('su-state') as HTMLSelectElement;
+  const cityEl = document.getElementById('su-city') as HTMLInputElement;
+  const emailEl = document.getElementById('su-email') as HTMLInputElement;
+  const dobEl = document.getElementById('su-dob') as HTMLInputElement;
+
+  phoneEl?.addEventListener('input', () => {
+    phoneEl.value = formatPhoneInput(phoneEl.value);
+    setFieldError(phoneEl, !isValidPhone(phoneEl.value));
+    if (phoneEl.value.trim()) hideFieldErrorMessage(phoneEl);
+    refreshButtonStates();
+  });
+
+  zipEl?.addEventListener('input', () => {
+    zipEl.value = zipEl.value.replace(/\D/g, '').slice(0, 5);
+    setFieldError(zipEl, zipEl.value.length > 0 && !isValidZip(zipEl.value));
+    if (zipEl.value.trim()) hideFieldErrorMessage(zipEl);
+    refreshButtonStates();
+  });
+
+  [cityEl, emailEl].forEach((el) => {
+    el?.addEventListener('input', () => {
+      if (!el) return;
+      const isEmail = el.id === 'su-email';
+      const hasError = isEmail ? (!!el.value && !isValidEmail(el.value.trim())) : !el.value.trim();
+      setFieldError(el, hasError);
+      if (el.value.trim()) hideFieldErrorMessage(el);
+      refreshButtonStates();
+    });
+  });
+
+  stateEl?.addEventListener('change', () => {
+    setFieldError(stateEl, !isValidUsState(stateEl.value));
+    if (stateEl.value) hideFieldErrorMessage(stateEl);
+    refreshButtonStates();
+  });
+  dobEl?.addEventListener('change', () => {
+    const dobErrEl = document.getElementById('su-dob-err') as HTMLElement;
+    dobEl.value = formatDobInputValue(dobEl.value);
+    if (!dobEl.value) {
+      setFieldError(dobEl, true);
+      if (dobErrEl) dobErrEl.style.display = '';
+      showFieldErrorMessage(dobEl, 'Date of birth is required.');
+      refreshButtonStates();
+      return;
+    }
+    const dob = parseDobValue(dobEl.value);
+    const minAge = new Date();
+    minAge.setFullYear(minAge.getFullYear() - 18);
+    const invalid = !dob || dob > minAge;
+    setFieldError(dobEl, invalid);
+    if (dobErrEl) dobErrEl.style.display = invalid ? '' : 'none';
+    if (invalid) showFieldErrorMessage(dobEl, 'You must be 18 years or older.');
+    else hideFieldErrorMessage(dobEl);
+    refreshButtonStates();
+  });
+
+  dobEl?.addEventListener('input', () => {
+    dobEl.value = formatDobInputValue(dobEl.value);
+    if (dobEl.value.length === 10 && parseDobValue(dobEl.value)) {
+      setFieldError(dobEl, false);
+      hideFieldErrorMessage(dobEl);
+      const dobErrEl = document.getElementById('su-dob-err') as HTMLElement;
+      if (dobErrEl) dobErrEl.style.display = 'none';
+    }
+    refreshButtonStates();
+  });
+
+  ['su-fname', 'su-lname', 'su-address'].forEach(id => {
+    const el = document.getElementById(id) as HTMLInputElement;
+    el?.addEventListener('input', () => {
+      setFieldError(el, !el.value.trim());
+      if (el.value.trim()) hideFieldErrorMessage(el);
+      refreshButtonStates();
+    });
+  });
 
   document.getElementById('su-next-1')?.addEventListener('click', () => {
-    if (!providerSelect.value) { providerSelect.classList.add('su-error'); providerSelect.focus(); return; }
-    providerSelect.classList.remove('su-error');
+    let firstInvalid: HTMLElement | null = null;
+    if (!providerSelect.value) {
+      providerSelect.closest('.su-select-wrap')?.classList.add('su-error');
+      showFieldErrorMessage(providerSelect, 'Please select a provider.');
+      firstInvalid = providerSelect;
+    } else {
+      hideFieldErrorMessage(providerSelect);
+      providerSelect.closest('.su-select-wrap')?.classList.remove('su-error');
+    }
+    if (planField.style.display !== 'none' && !planSelect.value) {
+      setFieldError(planTrigger, true);
+      showFieldErrorMessage(planTrigger, 'Please select a plan before continuing.');
+      if (!firstInvalid) firstInvalid = planTrigger;
+    } else {
+      setFieldError(planTrigger, false);
+      hideFieldErrorMessage(planTrigger);
+    }
+    refreshButtonStates();
+    if (firstInvalid) {
+      focusInvalidField(firstInvalid);
+      return;
+    }
     goToStep(2);
   });
 
@@ -744,22 +2191,94 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('su-next-2')?.addEventListener('click', () => {
     // Validate required fields on step 2
     let valid = true;
-    ['su-fname', 'su-lname', 'su-address', 'su-email'].forEach(id => {
+    let firstInvalid: HTMLElement | null = null;
+    const setFirstInvalid = (el: HTMLElement) => {
+      if (!firstInvalid) firstInvalid = el;
+    };
+
+    ['su-fname', 'su-lname', 'su-address', 'su-city', 'su-phone', 'su-email', 'su-zip'].forEach(id => {
       const el = document.getElementById(id) as HTMLInputElement;
-      if (!el.value.trim()) { el.classList.add('su-error'); valid = false; } else { el.classList.remove('su-error'); }
+      if (!el.value.trim()) {
+        setFieldError(el, true);
+        showFieldErrorMessage(el, 'This field is required.');
+        valid = false;
+        setFirstInvalid(el);
+      } else {
+        setFieldError(el, false);
+        hideFieldErrorMessage(el);
+      }
     });
-    const emailEl = document.getElementById('su-email') as HTMLInputElement;
-    if (emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) { emailEl.classList.add('su-error'); valid = false; }
-    const dobEl = document.getElementById('su-dob') as HTMLInputElement;
-    if (!dobEl.value) {
-      dobEl.classList.add('su-error'); valid = false;
+    const stateEl = document.getElementById('su-state') as HTMLSelectElement;
+    if (!isValidUsState(stateEl.value)) {
+      setFieldError(stateEl, true);
+      showFieldErrorMessage(stateEl, 'Please select your state.');
+      valid = false;
+      setFirstInvalid(stateEl);
     } else {
-      const dob = new Date(dobEl.value);
+      setFieldError(stateEl, false);
+      hideFieldErrorMessage(stateEl);
+    }
+    const emailEl = document.getElementById('su-email') as HTMLInputElement;
+    if (emailEl.value && !isValidEmail(emailEl.value.trim())) {
+      setFieldError(emailEl, true);
+      showFieldErrorMessage(emailEl, 'Please enter a valid email address.');
+      valid = false;
+      setFirstInvalid(emailEl);
+    }
+    const phoneEl = document.getElementById('su-phone') as HTMLInputElement;
+    if (phoneEl.value && !isValidPhone(phoneEl.value)) {
+      setFieldError(phoneEl, true);
+      showFieldErrorMessage(phoneEl, 'Please enter a valid phone number.');
+      valid = false;
+      setFirstInvalid(phoneEl);
+    }
+    const zipEl = document.getElementById('su-zip') as HTMLInputElement;
+    if (zipEl.value && !isValidZip(zipEl.value)) {
+      setFieldError(zipEl, true);
+      showFieldErrorMessage(zipEl, 'Please enter a valid 5-digit ZIP code.');
+      valid = false;
+      setFirstInvalid(zipEl);
+    }
+    const dobEl = document.getElementById('su-dob') as HTMLInputElement;
+    const dobErrEl = document.getElementById('su-dob-err') as HTMLElement;
+    if (!dobEl.value) {
+      setFieldError(dobEl, true);
+      if (dobErrEl) dobErrEl.style.display = '';
+      showFieldErrorMessage(dobEl, 'Date of birth is required.');
+      valid = false;
+      setFirstInvalid(dobEl);
+    } else {
+      const dob = parseDobValue(dobEl.value);
       const minAge = new Date();
       minAge.setFullYear(minAge.getFullYear() - 18);
-      if (dob > minAge) { dobEl.classList.add('su-error'); valid = false; }
+      if (!dob || dob > minAge) {
+        setFieldError(dobEl, true);
+        if (dobErrEl) dobErrEl.style.display = '';
+        showFieldErrorMessage(dobEl, 'You must be 18 years or older.');
+        valid = false;
+        setFirstInvalid(dobEl);
+      } else {
+        setFieldError(dobEl, false);
+        if (dobErrEl) dobErrEl.style.display = 'none';
+        hideFieldErrorMessage(dobEl);
+      }
     }
-    if (!valid) return;
+    // Identity verification required
+    const idvErrEl = document.getElementById('su-idv4-err') as HTMLElement;
+    if (!idVerified) {
+      idTrigger?.classList.add('su-error');
+      if (idvErrEl) idvErrEl.style.display = '';
+      valid = false;
+      setFirstInvalid(idTrigger);
+    } else {
+      idTrigger?.classList.remove('su-error');
+      if (idvErrEl) idvErrEl.style.display = 'none';
+    }
+    refreshButtonStates();
+    if (!valid) {
+      focusInvalidField(firstInvalid);
+      return;
+    }
     buildReview();
     goToStep(3);
   });
@@ -773,37 +2292,86 @@ document.addEventListener('DOMContentLoaded', () => {
     if (now - lastSubmitTime < 10000) return; // 10-second cooldown
     lastSubmitTime = now;
     const consent = document.getElementById('su-consent') as HTMLInputElement;
-    if (!consent.checked) { consent.focus(); return; }
+    if (!consent.checked) {
+      if (consentErr) consentErr.style.display = '';
+      document.getElementById('su-consent-wrap')?.classList.add('su-consent-required');
+      focusInvalidField(consent);
+      return;
+    }
+    if (consentErr) consentErr.style.display = 'none';
+
+    // Show submitting state
+    if (submitBtn) submitBtn.disabled = true;
+    if (submitInner) submitInner.innerHTML = '<span class="su-spin"></span>Submitting…';
+
     // Generate order reference number
     const orderRef = 'IA-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substring(2, 5).toUpperCase();
-    const orderRefEl = document.getElementById('su-order-ref');
     if (orderRefEl) orderRefEl.textContent = 'Order #' + orderRef;
 
-    // Submit to Google Sheet
+    // Submit to Google Sheet (minimum 2s spinner)
     const { submitLead } = await import('@lib/client/submit-lead');
     const providerSelect = document.getElementById('su-provider') as HTMLSelectElement;
     const planSelect = document.getElementById('su-plan') as HTMLSelectElement;
-    const ok = await submitLead({
-      form_type: 'signup',
-      order_ref: orderRef,
-      first_name: (document.getElementById('su-fname') as HTMLInputElement).value,
-      last_name: (document.getElementById('su-lname') as HTMLInputElement).value,
-      email: (document.getElementById('su-email') as HTMLInputElement).value,
-      address: (document.getElementById('su-address') as HTMLInputElement).value,
-      provider: providerSelect.options[providerSelect.selectedIndex]?.text || '',
-      plan: planSelect.options[planSelect.selectedIndex]?.text || '',
-      need: (document.getElementById('su-need') as HTMLSelectElement).value,
-      dob: (document.getElementById('su-dob') as HTMLInputElement).value,
-      install_date: (document.getElementById('su-install-date') as HTMLInputElement).value,
-    });
+    const addressLine = (document.getElementById('su-address') as HTMLInputElement).value.trim();
+    const city = (document.getElementById('su-city') as HTMLInputElement).value.trim();
+    const state = (document.getElementById('su-state') as HTMLSelectElement).value.trim();
+    const zip = (document.getElementById('su-zip') as HTMLInputElement).value.trim();
+    const fullAddress = [addressLine, [city, state].filter(Boolean).join(', '), zip].filter(Boolean).join(', ').replace(', ,', ',');
+    const [ok] = await Promise.all([
+      submitLead({
+        form_type: 'signup',
+        order_ref: orderRef,
+        first_name: (document.getElementById('su-fname') as HTMLInputElement).value,
+        last_name: (document.getElementById('su-lname') as HTMLInputElement).value,
+        phone: (document.getElementById('su-phone') as HTMLInputElement).value,
+        email: (document.getElementById('su-email') as HTMLInputElement).value,
+        address: addressLine,
+        city,
+        state,
+        zip,
+        provider: providerSelect.options[providerSelect.selectedIndex]?.text || '',
+        plan: planSelect.options[planSelect.selectedIndex]?.text || '',
+        need: (document.getElementById('su-need') as HTMLSelectElement).value,
+        dob: normalizeDobToIso((document.getElementById('su-dob') as HTMLInputElement).value),
+        install_date: (document.getElementById('su-install-date') as HTMLInputElement).value,
+        ssn: (document.getElementById('su-idv4') as HTMLInputElement).value,
+      }),
+      new Promise<void>(r => setTimeout(r, 2000)),
+    ]);
 
     if (!ok) {
+      // Reset button on error
+      if (submitBtn) submitBtn.disabled = false;
+      if (submitInner) submitInner.innerHTML = DEFAULT_SUBMIT_INNER_HTML;
       alert('Something went wrong while submitting your order. Please try again.');
       return;
     }
 
+    if (submitInner) submitInner.textContent = 'Submitted';
     goToStep(totalSteps + 1);
+
+    // Prevent stale success/submitted state when user reopens the form.
+    setTimeout(() => {
+      closeModal();
+      resetFormState();
+    }, 3500);
   });
+
+  // Enable/disable submit button based on consent checkbox
+  document.getElementById('su-consent')?.addEventListener('change', (e) => {
+    const checked = (e.target as HTMLInputElement).checked;
+    const submitBtn = document.getElementById('su-submit-btn') as HTMLButtonElement;
+    if (submitBtn) submitBtn.disabled = !checked;
+    document.getElementById('su-consent-box')?.classList.toggle('su-consent-done', checked);
+    if (checked) {
+      const errEl = document.getElementById('su-consent-err') as HTMLElement;
+      if (errEl) errEl.style.display = 'none';
+      document.getElementById('su-consent-wrap')?.classList.remove('su-consent-required');
+    }
+    refreshButtonStates();
+  });
+
+  refreshButtonStates();
 
   // Open triggers — use event delegation to handle dynamically created elements
   document.addEventListener('click', (e) => {
@@ -811,7 +2379,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!target) return;
     e.preventDefault();
     const slug = target.dataset.signupProvider || '';
-    openModal(slug || undefined);
+    const plan = target.dataset.signupPlan || '';
+    openModal(slug || undefined, plan || undefined);
   });
 
   // Close handlers

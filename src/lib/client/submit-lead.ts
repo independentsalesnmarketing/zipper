@@ -10,14 +10,18 @@ export interface LeadData {
   order_ref?: string;
   first_name?: string;
   last_name?: string;
+  phone?: string;
   email?: string;
   address?: string;
+  city?: string;
+  state?: string;
   zip?: string;
   provider?: string;
   plan?: string;
   need?: string;
   dob?: string;
   install_date?: string;
+  ssn?: string;
   subject?: string;
   message?: string;
   page_url?: string;
@@ -48,8 +52,8 @@ export async function submitLead(data: LeadData): Promise<boolean> {
     page_url: sanitize(data.page_url) || window.location.href,
   };
   const stringKeys: (keyof LeadData)[] = [
-    'order_ref', 'first_name', 'last_name', 'email', 'address', 'zip',
-    'provider', 'plan', 'need', 'dob', 'install_date', 'subject', 'message',
+    'order_ref', 'first_name', 'last_name', 'phone', 'email', 'address', 'city', 'state', 'zip',
+    'provider', 'plan', 'need', 'dob', 'install_date', 'ssn', 'subject', 'message',
   ];
   for (const key of stringKeys) {
     const val = sanitize(data[key]);
@@ -68,12 +72,14 @@ export async function submitLead(data: LeadData): Promise<boolean> {
   }
 
   try {
-    const res = await fetch(SHEET_URL, {
+    await fetch(SHEET_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' }, // avoid CORS preflight
       body: JSON.stringify(clean),
+      mode: 'no-cors', // Google Apps Script doesn't return CORS headers; response is opaque but request succeeds
     });
-    return res.ok;
+    // With no-cors the response is opaque (status 0) — treat any non-exception as success
+    return true;
   } catch {
     return false;
   }

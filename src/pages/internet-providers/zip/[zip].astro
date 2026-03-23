@@ -1130,7 +1130,7 @@ const meta = buildZipMeta(`/internet-providers/zip/${zipData.zip}`, zipData.zip,
   #hero-refine-suggest {
     list-style: none;
     margin: 0;
-    padding: 4px 0;
+    padding: 6px 0;
     display: none;
     position: absolute;
     top: calc(100% + 4px);
@@ -1138,32 +1138,87 @@ const meta = buildZipMeta(`/internet-providers/zip/${zipData.zip}`, zipData.zip,
     right: 0;
     z-index: 50;
     background: var(--white);
-    border: 2px solid var(--brand-blue);
+    border: 1px solid color-mix(in srgb, var(--brand-blue) 35%, #ffffff);
     border-radius: var(--radius-md);
     max-height: 280px;
     overflow-y: auto;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    box-shadow: 0 16px 40px rgba(10,23,55,0.18);
   }
 
   #hero-refine-suggest li {
-    padding: var(--space-sm) var(--space-lg);
+    padding: 10px 14px;
     cursor: pointer;
-    font-size: var(--text-base);
+    font-size: 0.97rem;
     color: var(--text-primary);
-    transition: background 0.1s;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    transition: background 0.12s ease, transform 0.12s ease;
+    white-space: normal;
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 85%, #ffffff);
   }
+
+  #hero-refine-suggest li:last-child { border-bottom: none; }
 
   #hero-refine-suggest li:hover,
   #hero-refine-suggest li.active {
-    background: rgba(0,82,255,0.06);
-    color: var(--brand-blue);
+    background: color-mix(in srgb, var(--brand-blue) 8%, #ffffff);
+    color: var(--text-primary);
+    transform: translateX(1px);
+  }
+
+  #hero-refine-suggest .sg-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
   }
 
   #hero-refine-suggest .sg-main {
-    font-weight: 500;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-primary);
+  }
+
+  #hero-refine-suggest .sg-meta {
+    margin-top: 4px;
+    font-size: 0.82rem;
+    color: var(--text-tertiary);
+    line-height: 1.3;
+  }
+
+  #hero-refine-suggest .sg-badge {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: color-mix(in srgb, var(--surface-secondary) 85%, #ffffff);
+    color: var(--text-secondary);
+  }
+
+  #hero-refine-suggest .sg-badge-local {
+    background: color-mix(in srgb, var(--brand-green) 22%, #ffffff);
+    color: color-mix(in srgb, var(--brand-green) 78%, #0d3d2c);
+  }
+
+  #hero-refine-suggest .sg-badge-national {
+    background: color-mix(in srgb, var(--brand-blue) 14%, #ffffff);
+    color: color-mix(in srgb, var(--brand-blue) 82%, #12307a);
+  }
+
+  #hero-refine-suggest li.sg-empty {
+    cursor: default;
+    line-height: 1.35;
+    color: var(--text-secondary);
+    border-bottom: none;
+  }
+
+  #hero-refine-suggest li.sg-empty:hover {
+    background: transparent;
+    color: var(--text-secondary);
+    transform: none;
   }
 
   @media (max-width: 1100px) {
@@ -1235,48 +1290,42 @@ const meta = buildZipMeta(`/internet-providers/zip/${zipData.zip}`, zipData.zip,
         return;
       }
 
-      const { geocodeZip, geocodeAddr, runSearch, locals, container } = (window as any).psGeocode;
+      const { geocodeZip, geocodeAddr, runSearch, locals, container, renderSuggestionItems } = (window as any).psGeocode;
       let heroAcTimer: ReturnType<typeof setTimeout>;
-      let heroAcItems: {display:string,zip:string,lat:number,lng:number}[] = [];
+      let heroAcItems: Array<{display:string,zip:string,lat:number,lng:number,isLocal?:boolean,city?:string,state?:string}> = [];
       let heroAcIdx = -1;
 
-      // Fetch suggestions
+      // Fetch suggestions — delegate to ProviderSearch's Photon-backed fetchSuggestions
+      // which already has lat/lon bias seeded from the page data.
       async function fetchHeroSuggestions(q: string) {
-        if (q.length<4) return [];
-        try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 5000);
-          const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=6&countrycodes=us&addressdetails=1`,{
-            headers:{'User-Agent':'Internet-4-ALL/1.0'},
-            signal: controller.signal
-          });
-          clearTimeout(timeoutId);
-          if (!r.ok) return [];
-          const d = await r.json();
-          return d.map((x:any)=>{
-            const addr = x.address || {};
-            const zip = addr.postcode || '';
-            const parts: string[] = [];
-            if (addr.house_number && addr.road) parts.push(addr.house_number + ' ' + addr.road);
-            else if (addr.road) parts.push(addr.road);
-            else if (addr.neighbourhood) parts.push(addr.neighbourhood);
-            if (addr.city || addr.town || addr.village || addr.hamlet) parts.push(addr.city || addr.town || addr.village || addr.hamlet);
-            if (addr.state) parts.push(addr.state);
-            if (zip) parts.push(zip);
-            const display = parts.length ? parts.join(', ') : (x.display_name || '').split(',').slice(0,4).join(', ');
-            return {display, zip, lat:+x.lat, lng:+x.lon};
-          });
-        } catch (e) {
-          console.debug('Suggestion fetch error (non-critical):', e);
-          return [];
-        }
+        if (q.length < 3) return [];
+        const psRoot = document.getElementById('ps-root');
+        const biasLat = psRoot ? parseFloat(psRoot.dataset.lat || '0') : 0;
+        const biasLon = psRoot ? parseFloat(psRoot.dataset.lng || '0') : 0;
+        return (window as any).psGeocode.fetchSuggestions(
+          q,
+          biasLat || undefined,
+          biasLon || undefined
+        );
       }
 
       // Show/hide suggestions
       function showHeroSugs(items: typeof heroAcItems) {
         heroAcItems = items; heroAcIdx = -1;
-        if (!items.length) { heroRefineSuggest.style.display='none'; return; }
-        heroRefineSuggest.innerHTML = items.map((s,i)=>`<li data-i="${i}"><div class="sg-main">${s.display}</div></li>`).join('');
+        if (!items.length) {
+          if (/^\d+\s*$/.test(heroRefineInput.value.trim())) {
+            heroRefineSuggest.innerHTML = `<li class="sg-empty"><div class="sg-main">No exact match yet. Keep typing the street name, for example: 2722 Burnet</div></li>`;
+            heroRefineSuggest.style.display = 'block';
+            return;
+          }
+          heroRefineSuggest.style.display='none';
+          return;
+        }
+        if (typeof renderSuggestionItems === 'function') {
+          heroRefineSuggest.innerHTML = renderSuggestionItems(items);
+        } else {
+          heroRefineSuggest.innerHTML = items.map((s,i)=>`<li data-i="${i}"><div class="sg-main">${s.display}</div></li>`).join('');
+        }
         heroRefineSuggest.style.display = 'block';
       }
 
@@ -1315,10 +1364,10 @@ const meta = buildZipMeta(`/internet-providers/zip/${zipData.zip}`, zipData.zip,
       heroRefineInput.addEventListener('input', () => {
         clearTimeout(heroAcTimer);
         const v = heroRefineInput.value.trim();
-        if (v.length<4 || /^\d{5}$/.test(v)) { closeHeroSugs(); return; }
+        if (v.length < 3 || /^\d{5}$/.test(v)) { closeHeroSugs(); return; }
         heroAcTimer = setTimeout(async () => {
           const items = await fetchHeroSuggestions(v);
-          if (document.activeElement===heroRefineInput && heroRefineInput.value.trim().length>=4) showHeroSugs(items);
+          if (document.activeElement===heroRefineInput && heroRefineInput.value.trim().length>=3) showHeroSugs(items);
         }, 350);
       });
 

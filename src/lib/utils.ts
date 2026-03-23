@@ -75,7 +75,7 @@ export function generateOrganizationSchema() {
     '@type': 'Organization',
     name: 'Internet 4 ALL',
     url: 'https://internet-4-all.com',
-    logo: 'https://internet-4-all.com/logo.png',
+    logo: 'https://internet-4-all.com/logo.svg',
     description: 'Find the best internet providers in your area. Compare plans, prices, and speeds from every major provider.',
     contactPoint: {
       '@type': 'ContactPoint',
@@ -207,7 +207,7 @@ export function generateArticleSchema(opts: {
       url: 'https://internet-4-all.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://internet-4-all.com/logo.png',
+        url: 'https://internet-4-all.com/logo.svg',
       },
     },
   };

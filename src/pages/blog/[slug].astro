@@ -44,12 +44,15 @@ const schemas = [
       '@type': 'Person',
       name: post.data.author,
       url: 'https://internet-4-all.com/about',
-      jobTitle: 'Senior Broadband Analyst',
     },
     publisher: {
       '@type': 'Organization',
       name: 'Internet 4 ALL',
       url: 'https://internet-4-all.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://internet-4-all.com/logo.svg',
+      },
     },
     mainEntityOfPage: `https://internet-4-all.com/blog/${post.slug}`,
   },

@@ -36,6 +36,7 @@ const faqs = [
             { icon: '🛠️', title: 'Free Tools', desc: 'Speed tests, bill analyzers, internet quizzes — all free, no signup required. Built to help you make smarter decisions.' },
           ].map(item => (
             <div class="card flex items-center" style="gap:var(--space-lg);">
+              <div style="font-size:1.75rem;flex-shrink:0;line-height:1;">{item.icon}</div>
               <div>
                 <h4 style="margin-bottom:var(--space-xs);">{item.title}</h4>
                 <p style="font-size:var(--text-sm);">{item.desc}</p>
@@ -53,7 +54,7 @@ const faqs = [
       <div class="reveal" style="margin-top:var(--space-xl);">
         <h2 style="margin-bottom:var(--space-lg);">By the Numbers</h2>
         <div class="stats-bar">
-          <div><div class="stat-value">15+</div><div class="stat-label">Providers Tracked</div></div>
+          <div><div class="stat-value">30+</div><div class="stat-label">Providers Tracked</div></div>
           <div><div class="stat-value">50</div><div class="stat-label">States Covered</div></div>
           <div><div class="stat-value">500K+</div><div class="stat-label">People Helped</div></div>
           <div><div class="stat-value">100%</div><div class="stat-label">Free</div></div>

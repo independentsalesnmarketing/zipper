@@ -70,7 +70,14 @@ const partners = getPartnerProviders().map((p) => ({
   const partners = JSON.parse(document.getElementById('ast-data').textContent);
 
   const BROAD_SLUGS = ['att-air', 'earthlink'];
-  const broadProviders = partners.filter((p) => BROAD_SLUGS.includes(p.slug));
+  const NATIONAL_PRIORITY: Record<string, number> = {
+    'att-air': 2,
+    earthlink: 1,
+  };
+
+  function getBroadProviders() {
+    return BROAD_SLUGS.map((slug) => partners.find((p) => p.slug === slug)).filter(Boolean);
+  }
 
   const nameToSlug = {};
   partners.forEach((p) => {
@@ -105,6 +112,7 @@ const partners = getPartnerProviders().map((p) => ({
     const count = matched.length;
     let primary = [];
     let secondary = [];
+    const broadProviders = getBroadProviders();
 
     if (count === 0) {
       primary = broadProviders;
@@ -150,7 +158,8 @@ If a [SYSTEM] block provides ZIP coverage data, only recommend the providers lis
 RULES:
 - Keep responses short and natural.
 - Lean toward fastest and best plans unless user asks for cheapest.
-- Use [[SHOW:slug1|slug2|slug3]] whenever recommending providers.
+- IMPORTANT: Do NOT use [[SHOW:...]] or [[PLAN:...]] tags until the user has provided their ZIP code. Before ZIP, only ask for it.
+- Once ZIP is known (provided in a [SYSTEM] block), use [[SHOW:slug1|slug2|slug3]] to show available providers.
 - Do not quote pricing in narrative text.
 - End with a short CTA to tap Order Now.
 
@@ -268,6 +277,8 @@ TAGS:
 
   function rankProviders(list) {
     return [...list].sort((a, b) => {
+      const natDelta = (NATIONAL_PRIORITY[b.slug] || 0) - (NATIONAL_PRIORITY[a.slug] || 0);
+      if (natDelta !== 0) return natDelta;
       if ((b.maxSpeed || 0) !== (a.maxSpeed || 0)) return (b.maxSpeed || 0) - (a.maxSpeed || 0);
       return (a.minPrice || 0) - (b.minPrice || 0);
     });
@@ -334,7 +345,8 @@ TAGS:
   function parseResponse(text) {
     let gridHtml = '';
     text = text.replace(/\[\[SHOW:([^\]]+)\]\]/g, (_, slugList) => {
-      gridHtml = buildProviderGrid(slugList.split('|'));
+      // Only render provider cards after ZIP is known
+      if (lastZip) gridHtml = buildProviderGrid(slugList.split('|'));
       return '';
     });
 
@@ -362,7 +374,7 @@ TAGS:
     return (h.trim() ? h : '') + gridHtml;
   }
 
-  function openSignup(slug) {
+  function openSignup(slug, planName) {
     close();
     const modal = document.getElementById('signup-modal');
     if (!modal) return;
@@ -372,6 +384,21 @@ TAGS:
     if (sel && slug) {
       sel.value = slug;
       sel.dispatchEvent(new Event('change'));
+
+      if (planName) {
+        const planSelect = document.getElementById('su-plan');
+        if (planSelect && planSelect instanceof HTMLSelectElement) {
+          const target = String(planName).trim().toLowerCase();
+          const options = Array.from(planSelect.options);
+          const exact = options.find((o) => o.value.trim().toLowerCase() === target);
+          const partial = options.find((o) => o.value.trim().toLowerCase().includes(target) || target.includes(o.value.trim().toLowerCase()));
+          const pick = exact || partial;
+          if (pick) {
+            planSelect.value = pick.value;
+            planSelect.dispatchEvent(new Event('change'));
+          }
+        }
+      }
     }
 
     setTimeout(() => {
@@ -439,7 +466,7 @@ TAGS:
       const bySpeed = [...zipProviders].sort((a, b) => b.maxSpeed - a.maxSpeed);
       return `Top picks for fast internet:<br><br>${buildProviderGrid(bySpeed.slice(0, 3).map((p) => p.slug))}`;
     }
-    return `I can help find the right plan. Share your ZIP code and I will pull what is available in your area.<br><br>${buildProviderGrid(sorted.slice(0, 3).map((p) => p.slug))}`;
+    return 'I can help find the right plan. Share your ZIP code and I will show you what’s available in your area.';
   }
 
   async function send(text) {

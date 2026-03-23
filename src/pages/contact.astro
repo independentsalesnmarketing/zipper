@@ -98,6 +98,10 @@ const faqs = [
   <script>
     document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const btn = (e.currentTarget as HTMLFormElement).querySelector('[type="submit"]') as HTMLButtonElement;
+      const origText = btn?.textContent || 'Send Message';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
       const name = (document.getElementById('contact-name') as HTMLInputElement).value;
       const email = (document.getElementById('contact-email') as HTMLInputElement).value;
       const subject = (document.getElementById('contact-subject') as HTMLSelectElement).value;
@@ -111,14 +115,17 @@ const faqs = [
           email,
           subject,
           message,
+          page_url: window.location.href,
         });
         if (!ok) {
+          if (btn) { btn.disabled = false; btn.textContent = origText; }
           alert('Something went wrong. Please try again.');
           return;
         }
         document.getElementById('contact-form')!.style.display = 'none';
         document.getElementById('form-success')!.style.display = 'block';
       } catch {
+        if (btn) { btn.disabled = false; btn.textContent = origText; }
         alert('Something went wrong. Please try again.');
       }
     });

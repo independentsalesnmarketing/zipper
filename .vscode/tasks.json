@@ -1,4 +1,19 @@
 {
   "version": "2.0.0",
-  "tasks": []
+  "tasks": [
+    {
+      "label": "test-autocomplete",
+      "type": "shell",
+      "command": "node /workspaces/zipper/test-autocomplete.mjs",
+      "presentation": { "reveal": "always", "panel": "new" },
+      "group": "test"
+    },
+    {
+      "label": "test-lead-submit",
+      "type": "shell",
+      "command": "node /workspaces/zipper/test-lead-submit.mjs https://script.google.com/macros/s/AKfycbzFWGBRRdw1FI0ywstfehvtG9OW-Y_kZoNg4PQWQ2Rsjrf2yCvJipBIc3-vJXfw-iwk5g/exec",
+      "presentation": { "reveal": "always", "panel": "new" },
+      "group": "test"
+    }
+  ]
 }

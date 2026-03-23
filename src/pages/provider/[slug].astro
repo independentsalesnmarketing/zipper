@@ -76,11 +76,13 @@ const brandTokensBySlug: Record<string, string[]> = {
   viasat: ['viasat', 'exede'],
   'tmobile-5g': ['tmobile home internet', 't mobile home internet', '5g home internet'],
   uscellular: ['uscellular', 'us cellular'],
-  geolinks: ['geolinks'],  'astound': ['astound', 'wave broadband', 'rcn', 'grande communications', 'entouch'],
+  geolinks: ['geolinks'],
+  astound: ['astound', 'wave broadband', 'rcn', 'grande communications', 'entouch'],
   'consolidated-communications': ['consolidated communications', 'consolidated', 'fidium', 'consolidated telephone'],
-  'lumen': ['lumen', 'centurylink', 'century link', 'quantum fiber'],
-  'metronet': ['metronet'],
-  'sparklight': ['sparklight', 'cable one', 'cableone'],};
+  lumen: ['lumen', 'centurylink', 'century link', 'quantum fiber'],
+  metronet: ['metronet'],
+  sparklight: ['sparklight', 'cable one', 'cableone'],
+};
 
 function getProviderKeywordClusters(slug: string, providerName: string) {
   const keywordFile = keywordFileBySlug[slug];

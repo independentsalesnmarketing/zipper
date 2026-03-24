@@ -36,6 +36,7 @@ var HEADERS = [
   'plan',
   'need',
   'form_type',
+  'requested_provider',
   'subject',
   'message',
   'page_url',
@@ -131,7 +132,11 @@ function sendNotification(data) {
   var formType = data.form_type || 'unknown';
   var subjectLine = 'New ' + capitalize(formType) + ' Lead';
   if (data.first_name) subjectLine += ' - ' + data.first_name + (data.last_name ? ' ' + data.last_name : '');
-  if (data.provider && data.provider !== 'Other / Not sure yet') subjectLine += ' (' + data.provider + ')';
+  var displayProvider = (data.provider || '').trim();
+  if (data.requested_provider && displayProvider === 'Other / Not sure yet') {
+    displayProvider = data.requested_provider + ' (non-partner)';
+  }
+  if (displayProvider && displayProvider !== 'Other / Not sure yet') subjectLine += ' (' + displayProvider + ')';
 
   var htmlBody = '<div style="font-family:sans-serif;max-width:600px;margin:0 auto;">';
   htmlBody += '<div style="background:#0052ff;color:#fff;padding:16px 24px;border-radius:8px 8px 0 0;">';

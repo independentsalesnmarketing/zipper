@@ -1121,6 +1121,11 @@ const badgeLabels: Record<string, string> = {
     justify-content: space-between;
     padding: 20px 24px;
     border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    z-index: 2;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   }
   .pc-modal-close {
     background: none;
@@ -1210,51 +1215,92 @@ const badgeLabels: Record<string, string> = {
     text-align: center;
   }
   @media (max-width: 600px) {
+    .pc-modal-overlay {
+      padding: 0;
+      align-items: flex-end;
+    }
     .pc-modal {
-      max-height: 95vh;
-      border-radius: var(--radius-md);
+      max-height: 92vh;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      width: 100%;
+      max-width: 100%;
+      animation: pcModalInMobile 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+    @keyframes pcModalInMobile {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
+    .pc-modal-header {
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 2;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     }
     .pc-modal-body {
       grid-template-columns: 1fr;
       padding: 16px;
+      gap: 12px;
     }
   }
 </style>
 
 <script>
+  function closeAllPlanModals() {
+    document.querySelectorAll<HTMLElement>('.pc-modal-overlay').forEach((m) => {
+      m.style.display = 'none';
+    });
+    document.body.style.overflow = '';
+  }
+
+  // Move all plan modals to document.body so they escape any
+  // parent stacking contexts (transforms, overflow:hidden, etc.)
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll<HTMLElement>('.pc-modal-overlay').forEach((m) => {
+      document.body.appendChild(m);
+    });
+  });
+
   document.addEventListener('click', (e) => {
+    // Open modal
     const btn = (e.target as HTMLElement).closest('.pc-view-plans-btn') as HTMLElement | null;
     if (btn) {
       const slug = btn.getAttribute('data-provider-slug');
-      const modal = document.querySelector(`.pc-modal-overlay[data-modal-for="${slug}"]`) as HTMLElement | null;
+      closeAllPlanModals();
+      const modal = document.querySelector<HTMLElement>(`.pc-modal-overlay[data-modal-for="${slug}"]`);
       if (modal) {
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
+        // Scroll to top of modal content
+        const inner = modal.querySelector<HTMLElement>('.pc-modal');
+        if (inner) inner.scrollTop = 0;
       }
       return;
     }
+
+    // Close via X button
     const closeBtn = (e.target as HTMLElement).closest('.pc-modal-close') as HTMLElement | null;
     if (closeBtn) {
-      const overlay = closeBtn.closest('.pc-modal-overlay') as HTMLElement | null;
-      if (overlay) {
-        overlay.style.display = 'none';
-        document.body.style.overflow = '';
-      }
+      closeAllPlanModals();
       return;
     }
-    const overlay = e.target as HTMLElement;
-    if (overlay.classList.contains('pc-modal-overlay')) {
-      overlay.style.display = 'none';
-      document.body.style.overflow = '';
+
+    // Close via backdrop click (clicking the overlay itself, not the modal box)
+    const target = e.target as HTMLElement;
+    if (target.classList.contains('pc-modal-overlay')) {
+      closeAllPlanModals();
     }
   });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      const open = document.querySelector('.pc-modal-overlay[style*="flex"]') as HTMLElement | null;
-      if (open) {
-        open.style.display = 'none';
-        document.body.style.overflow = '';
-      }
+
+  // Stop clicks inside .pc-modal from bubbling to the overlay backdrop handler
+  document.addEventListener('click', (e) => {
+    const inner = (e.target as HTMLElement).closest('.pc-modal');
+    if (inner) {
+      // Allow normal inner clicks but do NOT close — just let it bubble without matching overlay
     }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllPlanModals();
   });
 </script>

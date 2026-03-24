@@ -22,6 +22,8 @@ export interface LeadData {
   dob?: string;
   install_date?: string;
   ssn?: string;
+  requested_provider?: string;
+  requested_provider_slug?: string;
   subject?: string;
   message?: string;
   page_url?: string;
@@ -53,7 +55,7 @@ export async function submitLead(data: LeadData): Promise<boolean> {
   };
   const stringKeys: (keyof LeadData)[] = [
     'order_ref', 'first_name', 'last_name', 'phone', 'email', 'address', 'city', 'state', 'zip',
-    'provider', 'plan', 'need', 'dob', 'install_date', 'ssn', 'subject', 'message',
+    'provider', 'plan', 'need', 'dob', 'install_date', 'ssn', 'requested_provider', 'requested_provider_slug', 'subject', 'message',
   ];
   for (const key of stringKeys) {
     const val = sanitize(data[key]);

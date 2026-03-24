@@ -21,6 +21,7 @@ const { providerSlug } = Astro.props;
 const partnerData = providers
   .filter(p => p.isPartner)
   .map(p => ({
+
     slug: p.slug,
     name: p.name,
     logo: p.logo,
@@ -35,11 +36,15 @@ const partnerData = providers
       features: pl.features.slice(0, 3),
     })),
   }));
+
+// Slim slug→name lookup for all providers (used to label non-partner requests)
+const allProviderNames: Record<string, string> = {};
+for (const p of providers) allProviderNames[p.slug] = p.name;
 ---
 
 <!-- Sign-Up Modal Overlay -->
 <a id="get-connected" aria-hidden="true" style="position:absolute;visibility:hidden;"></a>
-<div class="su-overlay" id="signup-modal" data-partners={JSON.stringify(partnerData)}>
+<div class="su-overlay" id="signup-modal" data-partners={JSON.stringify(partnerData)} data-all-providers={JSON.stringify(allProviderNames)}>
   <div class="su-modal" id="su-modal-inner">
     <button class="su-close" id="su-close" aria-label="Close">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -71,9 +76,16 @@ const partnerData = providers
 
     <!-- FORM -->
     <form id="su-form" class="su-form" novalidate>
+      <!-- Hidden fields for non-partner request capture -->
+      <input type="hidden" id="su-requested-provider" name="requested_provider" />
+      <input type="hidden" id="su-requested-provider-slug" name="requested_provider_slug" />
+
       <!-- Step 1: Provider & Plan Selection -->
       <div class="su-page" data-page="1">
-        <div class="su-field">
+        <!-- Non-partner locked display: replaces the dropdown for non-partner slugs -->
+        <div id="su-locked-provider" class="su-locked-provider" style="display:none;"></div>
+
+        <div class="su-field" id="su-provider-field">
           <label class="su-label" for="su-provider">Select Provider</label>
           <div class="su-select-wrap">
             <select id="su-provider" name="provider" class="su-select" required>
@@ -440,6 +452,67 @@ const partnerData = providers
     gap: var(--space-md);
   }
   .su-row-3 { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); }
+  /* Non-partner locked provider card */
+  .su-locked-provider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 18px;
+    border: 2px solid var(--brand-blue, #1a5cff);
+    border-radius: var(--radius-md, 8px);
+    background: #eef3ff;
+    margin-bottom: 12px;
+  }
+  .su-locked-provider :global(.su-lp-avatar) {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm, 6px);
+    background: var(--brand-blue, #1a5cff);
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+  }
+  .su-locked-provider :global(.su-lp-info) { flex: 1; min-width: 0; }
+  .su-locked-provider :global(.su-lp-eyebrow) {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--brand-blue, #1a5cff);
+    margin-bottom: 3px;
+  }
+  .su-locked-provider :global(.su-lp-name) {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .su-locked-provider :global(.su-lp-note) {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #1a5cff;
+    background: #d6e2ff;
+    padding: 3px 9px;
+    border-radius: 100px;
+  }
+  .su-locked-provider :global(.su-lp-check) {
+    width: 30px; height: 30px; flex-shrink: 0;
+    background: var(--brand-blue, #1a5cff);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 1rem; font-weight: 700;
+  }
+
   .su-field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   .su-label {
     font-size: var(--text-sm);
@@ -1474,12 +1547,27 @@ document.addEventListener('DOMContentLoaded', () => {
   interface PartnerPlan { name: string; speed: number; uploadSpeed: number; price: number; regularPrice: number; contract: string; dataCap: string; features: string[]; }
   interface PartnerInfo { slug: string; name: string; logo: string | null; plans: PartnerPlan[]; }
   const partners: PartnerInfo[] = JSON.parse(modal.dataset.partners || '[]');
+  const allProviders: Record<string, string> = JSON.parse(modal.dataset.allProviders || '{}');
+  const partnerSlugs = new Set(partners.map(p => p.slug));
+
+  // Generic speed-tier plans shown for non-partner providers (no prices — address verification needed first)
+  const GENERIC_PLANS = [
+    { value: 'Basic',     label: 'Basic — up to 100 Mbps' },
+    { value: 'Standard',  label: 'Standard — up to 300 Mbps' },
+    { value: 'Enhanced',  label: 'Enhanced — up to 500 Mbps' },
+    { value: 'Gig',       label: 'Gig — up to 1,000 Mbps' },
+    { value: 'Multi-Gig', label: 'Multi-Gig — 2,000+ Mbps' },
+  ];
 
   let currentStep = 1;
   const totalSteps = 3;
 
   // DOM refs
   const providerSelect = document.getElementById('su-provider') as HTMLSelectElement;
+  const reqProviderInput = document.getElementById('su-requested-provider') as HTMLInputElement;
+  const reqProviderSlugInput = document.getElementById('su-requested-provider-slug') as HTMLInputElement;
+  const lockedProviderCard = document.getElementById('su-locked-provider') as HTMLElement;
+  const providerField = document.getElementById('su-provider-field') as HTMLElement;
   const planField = document.getElementById('su-plan-field') as HTMLElement;
   const planSelect = document.getElementById('su-plan') as HTMLSelectElement;
   const planPicker = document.getElementById('su-plan-picker') as HTMLElement;
@@ -1810,6 +1898,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (submitInner) submitInner.innerHTML = DEFAULT_SUBMIT_INNER_HTML;
     if (orderRefEl) orderRefEl.textContent = '';
     lastSubmitTime = 0;
+    // Clear non-partner context
+    reqProviderInput.value = '';
+    reqProviderSlugInput.value = '';
+    lockedProviderCard.style.display = 'none';
+    providerField.style.display = '';
 
     // Ensure provider/plan visuals are fresh on next open.
     updateProviderUI(providerSelect.value || '');
@@ -1944,9 +2037,51 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     if (providerSlug) {
-      providerSelect.value = providerSlug;
-      updateProviderUI(providerSlug);
-      selectPlan(planName);
+      if (partnerSlugs.has(providerSlug)) {
+        // Partner — preselect in dropdown, clear non-partner context
+        providerSelect.value = providerSlug;
+        updateProviderUI(providerSlug);
+        selectPlan(planName);
+        reqProviderInput.value = '';
+        reqProviderSlugInput.value = '';
+        lockedProviderCard.style.display = 'none';
+        providerField.style.display = '';
+      } else {
+        // Non-partner — hide dropdown entirely, show locked provider card
+        const providerName = allProviders[providerSlug] || providerSlug;
+        reqProviderInput.value = providerName;
+        reqProviderSlugInput.value = providerSlug;
+        // Build locked card
+        const initial = providerName.charAt(0).toUpperCase();
+        lockedProviderCard.innerHTML = `
+          <div class="su-lp-avatar">${initial}</div>
+          <div class="su-lp-info">
+            <div class="su-lp-eyebrow">Selected Provider</div>
+            <div class="su-lp-name">${providerName}</div>
+            <div class="su-lp-note">✓ We'll confirm availability &amp; options at your address</div>
+          </div>
+          <div class="su-lp-check">✓</div>`;
+        lockedProviderCard.style.display = 'flex';
+        providerField.style.display = 'none';
+        // Update modal header to reflect the chosen provider
+        logoRow.style.display = 'none';
+        defaultHeader.style.display = '';
+        titleEl.textContent = `Sign Up for ${providerName}`;
+        subtitleEl.textContent = "Fill in your details and we'll get you the best internet option at your address. No obligation, 100% free.";
+        // Set dropdown to 'other' silently — backend gets 'Other / Not sure yet', requested_provider captures the real intent
+        providerSelect.value = 'other';
+        // Populate plan picker with generic speed-tier options
+        planSelect.innerHTML = '<option value="">Choose a plan...</option>';
+        GENERIC_PLANS.forEach(pl => {
+          const opt = document.createElement('option');
+          opt.value = pl.value;
+          opt.textContent = pl.label;
+          planSelect.appendChild(opt);
+        });
+        planField.style.display = '';
+        resetPlanSelection();
+        renderPlanMenu();
+      }
     }
     goToStep(1);
   }
@@ -2078,6 +2213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="su-rev-section">
           <div class="su-rev-section-title">📡 Service Details</div>
+          ${reqProviderInput.value ? `<div class="su-rev-row"><span class="su-rev-label">Requested Provider</span><span class="su-rev-val">${reqProviderInput.value}</span></div>` : ''}
           ${situation ? `<div class="su-rev-row"><span class="su-rev-label">Situation</span><span class="su-rev-val">${situation}</span></div>` : ''}
           <div class="su-rev-row"><span class="su-rev-label">Preferred Install</span><span class="su-rev-val">${installDate ? fmtDate(installDate) : 'As soon as possible'}</span></div>
           <div class="su-rev-row"><span class="su-rev-label">ID Verified</span><span class="su-rev-val" style="color:var(--brand-green)">✓ Confirmed</span></div>
@@ -2352,6 +2488,8 @@ document.addEventListener('DOMContentLoaded', () => {
         dob: normalizeDobToIso((document.getElementById('su-dob') as HTMLInputElement).value),
         install_date: (document.getElementById('su-install-date') as HTMLInputElement).value,
         ssn: (document.getElementById('su-idv4') as HTMLInputElement).value,
+        requested_provider: reqProviderInput.value || undefined,
+        requested_provider_slug: reqProviderSlugInput.value || undefined,
       }),
       new Promise<void>(r => setTimeout(r, 2000)),
     ]);

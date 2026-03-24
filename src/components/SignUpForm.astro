@@ -1153,7 +1153,8 @@ const partnerData = providers
   }
   .su-install-calendar {
     position: absolute;
-    top: calc(100% + 6px);
+    bottom: calc(100% + 6px);
+    top: auto;
     right: 0;
     left: auto;
     z-index: 40;
@@ -1544,6 +1545,7 @@ document.addEventListener('DOMContentLoaded', () => {
       idRawDigits = idHidden.value ? idHidden.value.replace(/\D/g, '').slice(0, 9) : '';
       idEntry.value = renderFullyMaskedSsn(idRawDigits);
       idEntryErr.style.display = 'none';
+      modalInner?.scrollTo({ top: 0, behavior: 'instant' });
       idOverlay.style.display = 'flex';
       setTimeout(() => idEntry.focus(), 100);
     }
@@ -1892,10 +1894,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setFieldError(planTrigger, !planSelect.value && planField.style.display !== 'none');
     if (planSelect.value) hideFieldErrorMessage(planTrigger);
     refreshButtonStates();
-    // Auto-scroll to Next button so user sees the enabled action
+    // Auto-scroll to very bottom of modal so user sees the enabled Next button
     if (planSelect.value) {
       setTimeout(() => {
-        nextStepOneBtn?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        modalInner?.scrollTo({ top: modalInner.scrollHeight, behavior: 'smooth' });
       }, 180);
     }
   });

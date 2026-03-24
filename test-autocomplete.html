@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Autocomplete API Test</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font: 14px/1.5 monospace; background: #0d1117; color: #c9d1d9; padding: 20px; }
+  h1 { font-size: 18px; margin-bottom: 6px; color: #58a6ff; }
+  .controls { display: flex; gap: 8px; align-items: center; margin: 16px 0; flex-wrap: wrap; }
+  .controls label { color: #8b949e; font-size: 12px; }
+  .controls input { background: #161b22; color: #c9d1d9; border: 1px solid #30363d; border-radius: 4px; padding: 4px 8px; font-family: monospace; width: 220px; }
+  .controls .btn { background: #238636; color: #fff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-family: monospace; }
+  .controls .btn:hover { background: #2ea043; }
+  .controls .btn.preset { background: #1f6feb; }
+  .controls .btn.preset:hover { background: #388bfd; }
+  #output { margin-top: 16px; }
+  .query-block { border: 1px solid #30363d; border-radius: 6px; margin-bottom: 20px; overflow: hidden; }
+  .query-header { background: #161b22; padding: 8px 12px; color: #f0883e; font-size: 13px; font-weight: bold; border-bottom: 1px solid #30363d; }
+  .source-block { padding: 10px 12px; border-bottom: 1px solid #21262d; }
+  .source-title { color: #58a6ff; font-size: 11px; margin-bottom: 4px; }
+  .url-line { color: #484f58; font-size: 10px; word-break: break-all; margin-bottom: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  th { text-align: left; color: #8b949e; border-bottom: 1px solid #21262d; padding: 3px 6px; }
+  td { padding: 3px 6px; border-bottom: 1px solid #161b22; vertical-align: top; }
+  .tag-local { background: #1a4731; color: #3fb950; border-radius: 3px; padding: 1px 5px; font-size: 10px; }
+  .tag-us { background: #1a3a5c; color: #79c0ff; border-radius: 3px; padding: 1px 5px; font-size: 10px; }
+  .tag-pass { background: #1a4731; color: #3fb950; border-radius: 3px; padding: 1px 5px; font-size: 10px; }
+  .tag-fail { background: #4a1c1c; color: #ff7b72; border-radius: 3px; padding: 1px 5px; font-size: 10px; }
+  .tag-warn { background: #3d2f00; color: #e3b341; border-radius: 3px; padding: 1px 5px; font-size: 10px; }
+  .no-house { color: #ff7b72; }
+  .has-house { color: #3fb950; }
+  .display-col { max-width: 300px; }
+  .empty { color: #484f58; font-style: italic; padding: 6px; }
+  .spinner { color: #8b949e; padding: 8px; }
+</style>
+</head>
+<body>
+
+<h1>Autocomplete API Inspector</h1>
+<p style="color:#8b949e;font-size:12px;margin:4px 0 0">Shows raw Photon + Nominatim results with filter analysis. Adjust bias to your market.</p>
+
+<div class="controls">
+  <label>Bias lat</label>
+  <input id="bLat" value="39.1031">
+  <label>lon</label>
+  <input id="bLon" value="-84.5120">
+  <label>city</label>
+  <input id="bCity" value="Cincinnati">
+  <label>state</label>
+  <input id="bState" value="Ohio">
+</div>
+<div class="controls">
+  <label>Query</label>
+  <input id="qInput" value="2722" placeholder="type a query">
+  <button class="btn" onclick="runSingle()">Run</button>
+  <button class="btn preset" onclick="runPresets()">Run All Presets</button>
+  <span style="color:#484f58;font-size:11px">Presets: 2722 | 2722 bur | 2722 Burnet | 1494 | 1494 main | 123 main | forest</span>
+</div>
+
+<div id="output"></div>
+
+<script>
+const PRESETS = ['2722','2722 bur','2722 Burnet','1494','1494 main','123 main','forest','Reading'];
+
+function getBias() {
+  return {
+    lat: parseFloat(document.getElementById('bLat').value) || 0,
+    lon: parseFloat(document.getElementById('bLon').value) || 0,
+    city: document.getElementById('bCity').value.trim(),
+    state: document.getElementById('bState').value.trim(),
+  };
+}
+
+function distMiles(lat1,lon1,lat2,lon2) {
+  const R=3958.8, dLat=(lat2-lat1)*Math.PI/180, dLon=(lon2-lon1)*Math.PI/180;
+  const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
+function normText(s){return String(s||'').toLowerCase().replace(/[^a-z0-9\s]/g,'').trim();}
+function leadingDigits(s){const m=String(s||'').match(/^(\d+)/);return m?m[1]:'';}
+
+function mapDisplay(house,street,city,state,zip,fallback){
+  if(!house&&!street)return fallback;
+  const addr=[house,street].filter(Boolean).join(' ');
+  return [addr,city,state,zip].filter(Boolean).join(', ');
+}
+
+function parsePhoton(data, biasLat, biasLon) {
+  return (data.features||[])
+    .filter(f=>f.properties?.countrycode==='US')
+    .map(f=>{
+      const p=f.properties||{};
+      const coords=Array.isArray(f.geometry?.coordinates)?f.geometry.coordinates:[];
+      const lng=Number(coords[0]||0), lat=Number(coords[1]||0);
+      const house=String(p.housenumber||'').trim();
+      const street=String(p.street||p.name||'').trim();
+      const city=String(p.city||p.town||p.village||p.hamlet||'').trim();
+      const state=String(p.state||'').trim();
+      const zip=(String(p.postcode||'').match(/\d{5}/)||[''])[0];
+      const d=distMiles(biasLat,biasLon,lat,lng);
+      return {display:mapDisplay(house,street,city,state,zip,String(p.name||'').trim()),
+              house,street,city,state,zip,lat,lng,dist:d.toFixed(1),local:d<=50};
+    }).filter(s=>s.display);
+}
+
+function parseNominatim(rows, biasLat, biasLon) {
+  return rows.map(x=>{
+    const addr=x.address||{};
+    const house=String(addr.house_number||'').trim();
+    const street=String(addr.road||addr.pedestrian||addr.footway||addr.path||'').trim();
+    const city=String(addr.city||addr.town||addr.village||addr.hamlet||addr.county||'').trim();
+    const state=String(addr.state||addr.region||'').trim();
+    const zip=(String(addr.postcode||'').match(/\d{5}/)||[''])[0];
+    const fallback=String(x.display_name||'').split(',').slice(0,4).join(', ').trim();
+    const lat=Number(x.lat||0), lng=Number(x.lon||0);
+    const d=distMiles(biasLat,biasLon,lat,lng);
+    return {display:mapDisplay(house,street,city,state,zip,fallback),
+            house,street,city,state,zip,lat,lng,dist:d.toFixed(1),local:d<=50,
+            _type:x.type,_class:x.class};
+  }).filter(s=>s.display);
+}
+
+function filterStatus(item, query) {
+  const numM = query.trim().match(/^(\d{1,6})(?:\s+(.+))?$/);
+  if (!numM) return {pass:true, msg:''};
+  const prefix = numM[1];
+  const sh = (numM[2]||'').trim();
+  const sToks = normText(sh).split(/\s+/).filter(Boolean);
+  const hd = leadingDigits(item.house);
+  if (!hd || !hd.startsWith(prefix)) return {pass:false, msg:`house "${item.house}" ≠ prefix "${prefix}"`};
+  if (sToks.length) {
+    const sn = normText(item.street||item.display);
+    if (!sToks.some(t=>sn.includes(t))) return {pass:false, msg:`street "${item.street}" missing ${JSON.stringify(sToks)}`};
+  }
+  return {pass:true, msg:''};
+}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function renderTable(results, query) {
+  if (!results.length) return '<div class="empty">no results</div>';
+  const rows = results.map(r=>{
+    const {pass,msg} = filterStatus(r,query);
+    const localTag = r.local
+      ? `<span class="tag-local">LOCAL ${r.dist}mi</span>`
+      : `<span class="tag-us">US ${r.dist}mi</span>`;
+    const houseTag = r.house
+      ? `<span class="has-house">${esc(r.house)}</span>`
+      : `<span class="no-house">—</span>`;
+    const filterTag = pass
+      ? `<span class="tag-pass">PASS</span>`
+      : `<span class="tag-fail">FAIL: ${esc(msg)}</span>`;
+    return `<tr>
+      <td>${localTag}</td>
+      <td>${houseTag}</td>
+      <td class="display-col">${esc(r.display||'')}</td>
+      <td>${esc(r.street||'')}</td>
+      <td>${esc(r.city||'')}</td>
+      <td>${esc(r.state||'')}</td>
+      <td>${esc(r.zip||'')}</td>
+      <td>${filterTag}</td>
+    </tr>`;
+  }).join('');
+  return `<table><thead><tr><th>Loc</th><th>House#</th><th>Display</th><th>Street</th><th>City</th><th>St</th><th>ZIP</th><th>Filter</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+async function fetchPhoton(q, biasLat, biasLon, limit=20) {
+  const p = new URLSearchParams({q, limit:String(limit), lang:'en'});
+  if (biasLat&&biasLon){p.set('lat',String(biasLat));p.set('lon',String(biasLon));p.set('zoom','14');}
+  const url=`https://photon.komoot.io/api/?${p}`;
+  try {
+    const r=await fetch(url);
+    if(!r.ok)return{url,results:[]};
+    const data=await r.json();
+    return {url, results:parsePhoton(data,biasLat||0,biasLon||0)};
+  } catch(e){return {url,results:[],error:String(e)};}
+}
+
+async function fetchNominatim(q, biasLat, biasLon, limit=12) {
+  const p = new URLSearchParams({q, format:'json', addressdetails:'1', limit:String(limit), countrycodes:'us'});
+  if (biasLat&&biasLon){
+    p.set('viewbox',`${biasLon-1},${biasLat+0.7},${biasLon+1},${biasLat-0.7}`);
+    p.set('bounded','1');
+  }
+  const url=`https://nominatim.openstreetmap.org/search?${p}`;
+  try {
+    const r=await fetch(url,{headers:{'User-Agent':'Internet-4-ALL/test'}});
+    if(!r.ok)return{url,results:[]};
+    const data=await r.json();
+    return {url, results:parseNominatim(data,biasLat||0,biasLon||0)};
+  } catch(e){return {url,results:[],error:String(e)};}
+}
+
+function renderQueryBlock(query, sources) {
+  const bias = getBias();
+  const localQ = query.match(/^\d/) && bias.city ? `${query} ${bias.city} ${bias.state}` : query;
+  const header = `<div class="query-header">🔍 "${esc(query)}"  →  localQuery: "${esc(localQ)}"</div>`;
+  const sections = sources.map(s=>{
+    const errorLine = s.error ? `<div style="color:#ff7b72;font-size:11px">Error: ${esc(s.error)}</div>` : '';
+    return `<div class="source-block">
+      <div class="source-title">${esc(s.label)}</div>
+      <div class="url-line">${esc(s.url)}</div>
+      ${errorLine}
+      ${renderTable(s.results, query)}
+    </div>`;
+  }).join('');
+  return `<div class="query-block">${header}${sections}</div>`;
+}
+
+async function runQuery(query) {
+  const bias = getBias();
+  const localQ = query.match(/^\d/) && bias.city ? `${query} ${bias.city} ${bias.state}` : query;
+
+  const placeholder = document.createElement('div');
+  placeholder.className = 'query-block';
+  placeholder.innerHTML = `<div class="query-header">🔍 "${esc(query)}"</div><div class="spinner">Fetching…</div>`;
+  document.getElementById('output').prepend(placeholder);
+
+  const [photonLocal, photonNational, nomLocal, nomNational] = await Promise.all([
+    fetchPhoton(localQ, bias.lat, bias.lon, 20),
+    fetchPhoton(query, undefined, undefined, 20),
+    fetchNominatim(localQ, bias.lat, bias.lon, 12),
+    fetchNominatim(query, undefined, undefined, 12),
+  ]);
+
+  const html = renderQueryBlock(query, [
+    {label:'Photon · LOCAL biased',       ...photonLocal},
+    {label:'Photon · NATIONAL',           ...photonNational},
+    {label:'Nominatim · LOCAL bounded',   ...nomLocal},
+    {label:'Nominatim · NATIONAL',        ...nomNational},
+  ]);
+  placeholder.outerHTML = html;
+  // Re-grab since outerHTML replaces the node
+  document.getElementById('output').firstElementChild.outerHTML = html;
+}
+
+function runSingle() {
+  document.getElementById('output').innerHTML = '';
+  runQuery(document.getElementById('qInput').value.trim());
+}
+
+async function runPresets() {
+  document.getElementById('output').innerHTML = '';
+  for (const q of PRESETS) await runQuery(q);
+}
+
+// Run on load
+runQuery('2722');
+</script>
+</body>
+</html>

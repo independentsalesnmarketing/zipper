@@ -155,7 +155,7 @@ const badgeLabels: Record<string, string> = {
           <ul class="pc-modal-plan-features">
             {plan.features.slice(0, 3).map(f => <li>{f}</li>)}
           </ul>
-          <a href="#get-connected" class="btn btn-cta w-full" style="margin-top:auto;font-size:var(--text-sm);" data-signup-provider={provider.slug}>
+          <a href="#get-connected" class="btn btn-cta w-full" style="margin-top:auto;font-size:var(--text-sm);" data-signup-provider={provider.slug} data-signup-plan={plan.name}>
             Get This Plan
           </a>
         </div>
@@ -1262,6 +1262,15 @@ const badgeLabels: Record<string, string> = {
   });
 
   document.addEventListener('click', (e) => {
+    // If a sign-up CTA is clicked from inside the plan modal, close the modal first
+    // so the SignUpForm behind it becomes visible immediately.
+    const signupTrigger = (e.target as HTMLElement).closest('[data-signup-provider]') as HTMLElement | null;
+    if (signupTrigger && signupTrigger.closest('.pc-modal-overlay')) {
+      closeAllPlanModals();
+      // Let the event continue bubbling — SignUpForm's delegated listener will catch it.
+      return;
+    }
+
     // Open modal
     const btn = (e.target as HTMLElement).closest('.pc-view-plans-btn') as HTMLElement | null;
     if (btn) {

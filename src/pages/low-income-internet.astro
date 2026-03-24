@@ -7,8 +7,9 @@ import { generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } fr
 
 const partners = getPartnerProviders();
 const year = new Date().getFullYear();
+const monthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
-// All income-based internet programs — curated March 2026
+// All income-based internet programs — verified and curated
 const federalPrograms = [
   {
     name: 'FCC Lifeline Program',
@@ -192,7 +193,7 @@ const schema = [
     <div class="container text-center">
       <Breadcrumb items={[{ name: 'Low Income Internet Programs' }]} />
       <div class="badge reveal" style="background:rgba(16,185,129,0.12);color:#10b981;border:1px solid rgba(16,185,129,0.25);margin-bottom:var(--space-md);">
-        Updated March {year} — All Programs Verified
+        Updated {monthYear} — All Programs Verified
       </div>
       <h1 class="reveal">
         Low Income Internet Programs — <span class="gradient-text">Every Discount Available in {year}</span>

@@ -1,8 +1,8 @@
 ---
-title: "Best Internet Deals & Promotions March 2026"
-description: "Current internet deals and promotions for March 2026. Compare the best offers from top providers including sign-up bonuses, waived fees, and price drops."
+title: "Best Internet Deals & Promotions — Updated Monthly"
+description: "Current internet deals and promotions updated every month. Compare the best offers from top providers including sign-up bonuses, waived fees, and price drops."
 date: 2026-03-01
-updated: 2026-03-01
+updated: 2026-03-24
 author: "Jason Meyers, Senior Broadband Analyst"
 category: "deals"
 tags: ["internet deals", "internet promotions", "internet offers", "cheap internet", "internet specials"]
@@ -11,7 +11,7 @@ featured: true
 
 ## Best Internet Deals This Month
 
-We track promotions from every major ISP to find the best deals for new and existing customers. Here are the top internet offers for March 2026.
+We track promotions from every major ISP to find the best deals for new and existing customers. Here are the top internet offers available right now.
 
 ## Top Deals at a Glance
 
@@ -118,7 +118,7 @@ These programs are available to qualifying low-income households receiving SNAP,
 
 ## This Month's Best Overall Value
 
-**Our March 2026 pick**: [Frontier Fiber](/provider/frontier) at $49.99/mo for 500/500 Mbps offers the best combination of speed, price, and reliability for anyone in their service area. For areas without Frontier, [T-Mobile](/provider/tmobile-5g) at $50/mo flat delivers the most honest pricing with zero surprises.
+**Our current top pick**: [Frontier Fiber](/provider/frontier) at $49.99/mo for 500/500 Mbps offers the best combination of speed, price, and reliability for anyone in their service area. For areas without Frontier, [T-Mobile](/provider/tmobile-5g) at $50/mo flat delivers the most honest pricing with zero surprises.
 
 Check what's available at your address with our [availability checker](/check-availability) and lock in today's rates before they change.
 

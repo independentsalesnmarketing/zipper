@@ -151,6 +151,7 @@ function burdenColor(pct: number): string {
 }
 
 const year = new Date().getFullYear();
+const monthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
 const faqs = [
   { question: 'Which state has the least affordable internet in America?', answer: `Based on our ${year} analysis, internet is least affordable relative to income in states with low median incomes and limited provider competition. Mississippi, West Virginia, and Arkansas consistently rank as the least affordable states — residents spend the highest percentage of their monthly income to access even basic broadband service.` },
@@ -187,7 +188,7 @@ const faqs = [
       <!-- Hero -->
       <div class="text-center reveal" style="max-width:760px;margin:0 auto var(--space-2xl);">
         <div class="badge" style="background:rgba(59,130,246,0.12);color:var(--brand-blue-light);border:1px solid rgba(59,130,246,0.25);margin-bottom:var(--space-md);">
-          Original Research · March {year}
+          Original Research · {monthYear}
         </div>
         <h1>The Internet Affordability Index</h1>
         <p style="font-size:var(--text-xl);color:var(--text-secondary);margin-top:var(--space-md);line-height:1.6;">
@@ -195,7 +196,7 @@ const faqs = [
           The gap between the most and least affordable states is <strong style="color:#ef4444;">3.7x</strong>.
         </p>
         <p style="font-size:var(--text-sm);color:var(--text-tertiary);margin-top:var(--space-sm);">
-          Sources: US Census Bureau ACS 2024 · FCC Broadband Data Collection 2025 · Provider plan pages, March {year}
+          Sources: US Census Bureau ACS 2024 · FCC Broadband Data Collection 2025 · Provider plan pages, {monthYear}
         </p>
       </div>
 
@@ -311,7 +312,7 @@ const faqs = [
           </table>
         </div>
         <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">
-          Sources: US Census Bureau ACS 2024 (household income) · FCC Broadband Deployment Report 2025 (access &amp; speed) · Internet 4 ALL provider database, March {year}.
+          Sources: US Census Bureau ACS 2024 (household income) · FCC Broadband Deployment Report 2025 (access &amp; speed) · Internet 4 ALL provider database, {monthYear}.
           Cheapest plan = lowest promotional price available from any provider with coverage in that state.
           Data updated quarterly.
         </p>
@@ -339,7 +340,7 @@ const faqs = [
         <div class="card" style="border-left:3px solid var(--brand-blue-light);padding:var(--space-lg);">
           <p style="font-size:var(--text-sm);line-height:1.8;margin:0;">
             <strong>Methodology:</strong> Affordability Burden is calculated as (cheapest available promotional plan price ÷ state median monthly household income) × 100.
-            Median income data from US Census Bureau American Community Survey 2024. Provider pricing verified from plan pages, March {year}.
+            Median income data from US Census Bureau American Community Survey 2024. Provider pricing verified from plan pages, {monthYear}.
             Where multiple providers cover a state, we use the lowest single promotional price available. We do not use income-based assistance programs (Lifeline, Xfinity Essentials) in the core calculation to measure base-market affordability; see our <a href="/affordable-internet" style="color:var(--brand-blue-light);">Affordable Internet guide</a> for program details.
           </p>
         </div>

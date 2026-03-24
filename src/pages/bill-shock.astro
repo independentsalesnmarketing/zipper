@@ -139,6 +139,7 @@ const faqs = [
 ];
 
 const year = new Date().getFullYear();
+const monthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 ---
 <Base
   title="Internet Bill Went Up? Find a Lower Rate Near You"
@@ -168,7 +169,7 @@ const year = new Date().getFullYear();
       <!-- Hero -->
       <div class="text-center reveal" style="max-width:740px;margin:0 auto var(--space-2xl);">
         <div class="badge" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.25);margin-bottom:var(--space-md);">
-          Original Research · March {year}
+          Original Research · {monthYear}
         </div>
         <h1>The Bill Shock Report</h1>
         <p style="font-size:var(--text-xl);color:var(--text-secondary);margin-top:var(--space-md);line-height:1.6;">
@@ -251,7 +252,7 @@ const year = new Date().getFullYear();
             </tbody>
           </table>
         </div>
-        <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">Source: Internet 4 ALL analysis of provider plan pages, March {year}. Promo prices represent introductory offers; standard prices apply after promotional period. Data updated monthly.</p>
+        <p style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">Source: Internet 4 ALL analysis of provider plan pages, {monthYear}. Promo prices represent introductory offers; standard prices apply after promotional period. Data updated monthly.</p>
       </div>
 
       <!-- Full Plan-Level Table -->

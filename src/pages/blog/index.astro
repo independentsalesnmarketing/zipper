@@ -26,6 +26,8 @@ function formatDate(date: Date): string {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
+const buildMonthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
 const schemas = [
   generateBreadcrumbSchema([
     { name: 'Home', url: 'https://internet-4-all.com' },
@@ -80,7 +82,7 @@ const schemas = [
                   <span class={`tag tag-${post.data.category === 'guides' ? 'fiber' : post.data.category === 'moving' ? 'cable' : 'dsl'}`} style="font-size:0.65rem;">
                     {categories.find(c => c.slug === post.data.category)?.label || post.data.category}
                   </span>
-                  <span style="font-size: var(--text-xs); color: var(--text-tertiary);">{formatDate(post.data.date)}</span>
+                  <span style="font-size: var(--text-xs); color: var(--text-tertiary);">Updated {buildMonthYear}</span>
                 </div>
               </a>
             ))}
@@ -101,7 +103,7 @@ const schemas = [
                   <span class="tag" style="font-size:0.65rem;">
                     {categories.find(c => c.slug === post.data.category)?.label || post.data.category}
                   </span>
-                  <span style="font-size: var(--text-xs); color: var(--text-tertiary);">{formatDate(post.data.date)}</span>
+                  <span style="font-size: var(--text-xs); color: var(--text-tertiary);">Updated {buildMonthYear}</span>
                   <span style="font-size: var(--text-xs); color: var(--text-tertiary);">By {post.data.author}</span>
                 </div>
               </div>

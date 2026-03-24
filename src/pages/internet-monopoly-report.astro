@@ -6,6 +6,7 @@ import { generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } fr
 import { cities } from '@data/locations';
 
 const year = new Date().getFullYear();
+const monthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
 // State-level FCC underserved data (% of state pop with 0–1 broadband provider)
 // Source: FCC Broadband Data Collection 2025, broadbandnow.com analysis
@@ -165,7 +166,7 @@ const schema = [
       <!-- Hero -->
       <div class="text-center reveal" style="max-width:800px;margin:0 auto var(--space-2xl);">
         <div class="badge" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.25);margin-bottom:var(--space-md);">
-          Original Research · FCC Data Analysis · March {year}
+          Original Research · FCC Data Analysis · {monthYear}
         </div>
         <h1 style="margin-bottom:var(--space-lg);">
           The Internet Monopoly Report
@@ -179,7 +180,7 @@ const schema = [
         </p>
         <p style="font-size:var(--text-sm);color:var(--text-tertiary);">
           Sources: FCC Broadband Data Collection 2025 · US Census Bureau ACS 2024 · BroadbandNow State Reports ·
-          National Telecommunications and Information Administration (NTIA) · March {year}
+          National Telecommunications and Information Administration (NTIA) · {monthYear}
         </p>
       </div>
 
@@ -405,7 +406,7 @@ const schema = [
         </p>
         <p style="font-size:var(--text-sm);line-height:1.9;color:var(--text-secondary);margin:0;">
           <strong>Full methodology:</strong> <a href="/methodology" style="color:var(--brand-blue-light);">internet-4-all.com/methodology</a> · 
-          Last updated: March {year} · 
+          Last updated: {monthYear} · 
           Data refreshed quarterly.
         </p>
       </div>

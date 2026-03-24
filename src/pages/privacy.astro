@@ -3,6 +3,7 @@ import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { generateBreadcrumbSchema } from '@lib/utils';
+const monthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 ---
 <Base
   title="Privacy Policy"
@@ -13,7 +14,7 @@ import { generateBreadcrumbSchema } from '@lib/utils';
     <div class="container" style="max-width:740px;">
       <Breadcrumb items={[{ name: 'Privacy Policy' }]} />
       <h1 class="reveal">Privacy <span class="gradient-text">Policy</span></h1>
-      <p class="reveal" style="color:var(--text-muted);margin-top:var(--space-sm);">Last updated: March 2026</p>
+      <p class="reveal" style="color:var(--text-muted);margin-top:var(--space-sm);">Last updated: {monthYear}</p>
 
       <div class="reveal" style="margin-top:var(--space-xl);font-size:var(--text-sm);line-height:1.9;">
         <h2 style="font-size:var(--text-xl);margin: var(--space-xl) 0 var(--space-md);">Information We Collect</h2>

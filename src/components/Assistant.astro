@@ -69,14 +69,15 @@ const partners = getPartnerProviders().map((p) => ({
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
   const partners = JSON.parse(document.getElementById('ast-data').textContent);
 
-  const BROAD_SLUGS = ['att-air', 'earthlink'];
+  const NATIONWIDE_SLUGS = ['att-air', 'earthlink', 'verizon'];
   const NATIONAL_PRIORITY: Record<string, number> = {
+    verizon: 3,
     'att-air': 2,
     earthlink: 1,
   };
 
-  function getBroadProviders() {
-    return BROAD_SLUGS.map((slug) => partners.find((p) => p.slug === slug)).filter(Boolean);
+  function getNationwideProviders() {
+    return NATIONWIDE_SLUGS.map((slug) => partners.find((p) => p.slug === slug)).filter(Boolean);
   }
 
   const nameToSlug = {};
@@ -108,26 +109,23 @@ const partners = getPartnerProviders().map((p) => ({
   function buildZipContext(zip) {
     const confirmed = (zipData && zipData[zip]) || [];
     const covIds = confirmed.map((e) => e.id);
-    const matched = partners.filter((p) => covIds.includes(p.slug) || covIds.includes(p.id));
-    const count = matched.length;
-    let primary = [];
-    let secondary = [];
-    const broadProviders = getBroadProviders();
 
-    if (count === 0) {
-      primary = broadProviders;
-      secondary = partners
-        .filter((p) => !BROAD_SLUGS.includes(p.slug))
-        .sort((a, b) => a.minPrice - b.minPrice)
-        .slice(0, 2);
-    } else if (count <= 4) {
-      primary = matched;
-      secondary = broadProviders;
-    } else {
-      primary = matched;
-    }
+    // Tier 1: local providers confirmed for this ZIP (excluding nationwide slugs)
+    const local = partners.filter(
+      (p) => (covIds.includes(p.slug) || covIds.includes(p.id)) && !NATIONWIDE_SLUGS.includes(p.slug)
+    );
+    const localSorted = [...local].sort(
+      (a, b) => (b.maxSpeed || 0) - (a.maxSpeed || 0) || (a.minPrice || 0) - (b.minPrice || 0)
+    );
 
-    return { providers: [...primary, ...secondary] };
+    // Tier 2: nationwide fallback providers (verizon, att-air, earthlink)
+    const nationwide = getNationwideProviders();
+
+    // Always exactly 3: up to 3 local first, fill remaining slots with nationwide
+    const local3 = localSorted.slice(0, 3);
+    const fill = nationwide.slice(0, 3 - local3.length);
+
+    return { providers: [...local3, ...fill] };
   }
 
   const btn = document.getElementById('ast-btn');
@@ -303,7 +301,7 @@ TAGS:
     if (!provs.length) return '';
 
     let html = '<div class="ast-provider-grid">';
-    rankProviders(provs).forEach((p) => {
+    provs.forEach((p) => {
       const plans = p.plans || [];
       const topPlan = plans[0] || { name: 'Best Plan' };
       const minPrice = plans.length ? Math.min(...plans.map((pl) => pl.price)) : null;
@@ -335,10 +333,10 @@ TAGS:
   }
 
   function buildZipResultReply(zip, providerList) {
-    const ranked = rankProviders(providerList || []).slice(0, 3);
-    if (!ranked.length) return 'Share your ZIP code and I will pull available providers for your address.';
-    const names = ranked.map((p) => p.name).join(', ');
-    const slugs = ranked.map((p) => p.slug).join('|');
+    const top3 = (providerList || []).slice(0, 3);
+    if (!top3.length) return 'Share your ZIP code and I will pull available providers for your address.';
+    const names = top3.map((p) => p.name).join(', ');
+    const slugs = top3.map((p) => p.slug).join('|');
     return `In ${zip}, providers available include ${names}. Choose one below and tap Order Now to continue.\n[[SHOW:${slugs}]]`;
   }
 
@@ -489,7 +487,7 @@ TAGS:
         lastZip = zipMatch[1];
         await loadZipCoverage();
         const ctx = buildZipContext(lastZip);
-        lastZipProviders = rankProviders(ctx.providers || []);
+        lastZipProviders = ctx.providers || []; // already ordered: local-first, nationwide fill
         reply = buildZipResultReply(lastZip, lastZipProviders);
         chatHistory.push({ role: 'model', parts: [{ text: reply }] });
         geminiOk = true;
@@ -545,17 +543,9 @@ TAGS:
     const msg = greetings[Math.floor(Math.random() * greetings.length)];
     chatHistory.push({ role: 'model', parts: [{ text: msg }] });
 
-    const connectDiv = document.createElement('div');
-    connectDiv.className = 'ast-msg ast-msg-system';
-    connectDiv.textContent = 'Connecting you to a live agent...';
-    chatMsgs.appendChild(connectDiv);
-    scroll();
-
-    await new Promise((r) => setTimeout(r, 900));
     addTyping();
-    await new Promise((r) => setTimeout(r, 700));
+    await new Promise((r) => setTimeout(r, 800));
     removeTyping();
-    connectDiv.remove();
     addMsg(msg, 'bot');
 
     if (_pendingMsg) {

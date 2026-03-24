@@ -256,7 +256,7 @@ const audiences = [
 <script>
   document.querySelectorAll('[data-open-chat]').forEach(btn => {
     btn.addEventListener('click', () => {
-      if (typeof window.openAssistant === 'function') window.openAssistant('chat');
+      if (typeof window.openAssistant === 'function') window.openAssistant();
     });
   });
 </script>

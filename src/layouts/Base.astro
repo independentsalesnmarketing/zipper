@@ -70,10 +70,11 @@ const schemas = schema
   <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
 
-  <!-- Preload fonts -->
+  <!-- Preload fonts — non-blocking to avoid render-blocking LCP penalty -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
 
   <!-- Google Analytics 4 — loaded after interaction to avoid INP penalty -->
   <script>

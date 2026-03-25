@@ -25,7 +25,7 @@ const partners = getPartnerProviders().map((p) => ({
 }));
 ---
 
-<div id="ast" class="ast">
+<div id="ast" class="ast" style="display:none">
   <button id="ast-btn" class="ast-btn" aria-label="Chat with Internet Advisor">
     <svg id="ast-ico-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
     <svg id="ast-ico-x" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -65,6 +65,10 @@ const partners = getPartnerProviders().map((p) => ({
 
 <script>
 (function () {
+  var _astInitDone = false;
+  function _initAssistant() {
+    if (_astInitDone) return;
+    _astInitDone = true;
   const GEMINI_KEY = import.meta.env.PUBLIC_GEMINI_KEY;
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
   const partners = JSON.parse(document.getElementById('ast-data').textContent);
@@ -556,9 +560,7 @@ TAGS:
     }
   }
 
-  // Widget is hidden until explicitly triggered
   const astRoot = document.getElementById('ast');
-  if (astRoot) astRoot.style.display = 'none';
 
   function open() {
     if (astRoot) astRoot.style.display = '';
@@ -602,6 +604,20 @@ TAGS:
     }
     open();
   };
+  } // end _initAssistant
+
+  // Stub so external callers (Header, etc.) work before first init
+  window.openAssistant = function (msg) {
+    _initAssistant();
+    window.openAssistant(msg);
+  };
+
+  // Preload during idle time so first open feels instant
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(_initAssistant, { timeout: 4000 });
+  } else {
+    setTimeout(_initAssistant, 1000);
+  }
 })();
 </script>
 

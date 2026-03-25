@@ -8,6 +8,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://internet-4-all.com',
   output: 'static',
+  prefetch: true,
   integrations: [],
   vite: {
     css: {

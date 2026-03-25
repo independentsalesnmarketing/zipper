@@ -1,6 +1,6 @@
 ---
 import type { Provider } from '@lib/providers';
-import { formatPrice, getMinPrice, getMaxSpeed, getSpeedValue, getSpeedUnit, getTypeLabel } from '@lib/providers';
+import { formatPrice, formatSpeed, getMinPrice, getMaxSpeed, getSpeedValue, getSpeedUnit, getTypeLabel } from '@lib/providers';
 
 interface Props {
   provider: Provider;
@@ -33,7 +33,7 @@ const badgeLabels: Record<string, string> = {
   <div class="pc-col-logo">
     <a href={`/provider/${provider.slug}`} class="pc-logo-link" aria-label={`${provider.name} details`}>
       {provider.logo ? (
-        <img src={provider.logo} alt={`${provider.name} logo`} width="160" height="80" loading="lazy" decoding="async" onerror="this.style.display='none';if(this.nextElementSibling)this.nextElementSibling.style.display='flex'" />
+        <img src={provider.logo} alt={`${provider.name} logo — ${provider.types.map(t => getTypeLabel(t)).join('/')} internet provider. Plans from ${formatPrice(minPrice)}/mo, speeds up to ${formatSpeed(maxSpeed)}. Compare plans and check availability at your address.`} width="160" height="80" loading="lazy" decoding="async" onerror="this.style.display='none';if(this.nextElementSibling)this.nextElementSibling.style.display='flex'" />
       ) : (
         <div class="pc-logo-fallback">{provider.name.charAt(0)}</div>
       )}
@@ -126,7 +126,7 @@ const badgeLabels: Record<string, string> = {
     <div class="pc-modal-header">
       <div style="display:flex;align-items:center;gap:12px;">
         {provider.logo ? (
-          <img src={provider.logo} alt={provider.name} width="40" height="40" style="object-fit:contain;" />
+          <img src={provider.logo} alt={`${provider.name} internet provider logo`} width="40" height="40" style="object-fit:contain;" />
         ) : (
           <span style="font-weight:800;font-size:var(--text-xl);color:var(--brand-blue);">{provider.name.charAt(0)}</span>
         )}

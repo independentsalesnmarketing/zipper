@@ -40,14 +40,14 @@ const stateTitles: ((s: string) => string)[] = [
 ];
 
 const stateDescs: ((s: string) => string)[] = [
-  (s) => `Best local internet options near you in ${s}. Check availability at your address and find the right plan — one search shows every provider.`,
-  (s) => `Fast fiber internet available near you in ${s}. Check availability at your address and find local fiber plans — one search, every provider.`,
-  (s) => `High speed internet deals near you in ${s}. Check availability at your address and find fast local plans — one search shows every provider.`,
-  (s) => `5G home internet available near you in ${s}. Check availability at your address and find local plans — one quick search, every provider.`,
-  (s) => `Best home WiFi options near you in ${s}. Check availability at your address and find the best local WiFi plans — one search, all providers.`,
-  (s) => `Cheap fast home internet near you in ${s}. Check availability at your address and find affordable local plans — one search, every provider.`,
-  (s) => `Cheapest internet deals near you in ${s}. Check availability at your address and find affordable plans from local providers — one search.`,
-  (s) => `Get fast internet today in ${s}. Check availability at your address now — one search shows every local internet provider and plan near you.`,
+  (s) => `${s} is served by multiple competing internet providers across every region. Compare plans, check availability at your address, and find the right option in one search.`,
+  (s) => `Fiber internet is available in ${s} from providers including AT&T Fiber, Frontier, and Google Fiber. Check availability at your address and find the fastest local plan.`,
+  (s) => `High-speed internet in ${s} reaches speeds up to 5 Gbps in fiber-served areas. Check availability at your address and compare fast local plans in one search.`,
+  (s) => `5G home internet is available in ${s} from T-Mobile and Verizon with no annual contract. Check availability at your address and compare wireless broadband options.`,
+  (s) => `Home WiFi providers in ${s} offer plans starting under $30/mo for qualifying households. Check availability at your address and find the best local WiFi option.`,
+  (s) => `Home internet in ${s} is offered by cable, fiber, DSL, and wireless providers competing for your address. Compare all plans in one search to find the best deal.`,
+  (s) => `Cheap internet in ${s} starts at $25/mo from providers like T-Mobile and Spectrum. Check availability at your address and find the lowest price near you.`,
+  (s) => `Internet service in ${s} is available at your address from national and regional providers. One search shows every plan, speed, and price near you — completely free.`,
 ];
 
 export function buildStateMeta(pagePath: string, state: string) {
@@ -72,14 +72,14 @@ const cityTitles: ((c: string, st: string) => string)[] = [
 ];
 
 const cityDescs: ((c: string, sf: string) => string)[] = [
-  (c, sf) => `Best local internet options near you in ${c}, ${sf}. Check availability at your address and find the right plan — one search shows every provider.`,
-  (c, sf) => `Fast fiber internet available near you in ${c}, ${sf}. Check availability at your address — one search shows every local fiber provider.`,
-  (c, sf) => `High speed internet deals near you in ${c}, ${sf}. Check availability at your address and find fast local plans — one search, all providers.`,
-  (c, sf) => `5G home internet available near you in ${c}, ${sf}. Check availability at your address — one quick search shows every local provider.`,
-  (c, sf) => `Best home WiFi options near you in ${c}, ${sf}. Check availability at your address and find the best local WiFi plans — one search.`,
-  (c, sf) => `Cheap fast home internet near you in ${c}, ${sf}. Check availability at your address and find affordable local plans — one search.`,
-  (c, sf) => `Cheapest internet deals near you in ${c}, ${sf}. Check availability at your address and find affordable plans from local providers.`,
-  (c, sf) => `Get fast internet today in ${c}, ${sf}. Check availability at your address now — one search shows every local provider near you.`,
+  (c, sf) => `${c}, ${sf} is served by multiple internet providers including cable, fiber, and wireless options. Check availability at your address and find the right plan in one search.`,
+  (c, sf) => `Fiber internet is available in parts of ${c}, ${sf} from local and national providers. Check availability at your address — one search shows every local fiber plan.`,
+  (c, sf) => `High-speed internet in ${c}, ${sf} reaches up to 5 Gbps in fiber-served neighborhoods. Check availability at your address and compare fast local plans in one search.`,
+  (c, sf) => `5G home internet is available in ${c}, ${sf} from T-Mobile and Verizon with no installation required. Check availability at your address for a same-week connection.`,
+  (c, sf) => `Home WiFi in ${c}, ${sf} is offered by cable, fiber, and wireless providers competing for your address. Find the best local plan in one search — completely free.`,
+  (c, sf) => `Internet service in ${c}, ${sf} is provided by both regional and nationwide ISPs. Check availability at your address and compare every plan and price near you.`,
+  (c, sf) => `Cheap internet in ${c}, ${sf} starts at $25/mo from providers like T-Mobile and Spectrum. Check availability at your address and find the lowest price in your area.`,
+  (c, sf) => `Internet providers in ${c}, ${sf} offer plans from budget to gigabit speeds. Check availability at your address now — one search shows every local provider near you.`,
 ];
 
 export function buildCityMeta(
@@ -109,14 +109,14 @@ const zipTitles: ((z: string, c: string, st: string) => string)[] = [
 ];
 
 const zipDescs: ((z: string, c: string, sf: string) => string)[] = [
-  (z, c, sf) => `Best local internet options in ${z}, ${c}, ${sf}. Check availability at your address — one search shows every provider near you.`,
-  (z, c, sf) => `Fast fiber internet available in ${z}, ${c}, ${sf}. Check availability at your address — one search shows every local provider.`,
-  (z, c, sf) => `High speed internet deals in ${z}, ${c}, ${sf}. Check availability at your address and find fast plans — one search, all providers.`,
-  (z, c, sf) => `5G home internet available in ${z}, ${c}, ${sf}. Check availability at your address — one quick search shows every local provider.`,
-  (z, c, sf) => `Best home WiFi options in ${z}, ${c}, ${sf}. Check availability at your address and find the best local plans — one search.`,
-  (z, c, sf) => `Cheap fast home internet in ${z}, ${c}, ${sf}. Check availability at your address and find affordable local plans — one search.`,
-  (z, c, sf) => `Cheapest internet deals in ${z}, ${c}, ${sf}. Check availability at your address and find affordable plans from local providers.`,
-  (z, c, sf) => `Get fast internet today in ${z}, ${c}, ${sf}. Check availability at your address now — one search shows every local provider.`,
+  (z, c, sf) => `ZIP code ${z} in ${c}, ${sf} is served by multiple internet providers with plans starting under $50/mo. Check availability at your exact address in one free search.`,
+  (z, c, sf) => `Fiber internet is available in ZIP code ${z}, ${c}, ${sf} from local and national providers. Check your exact address — one search shows every fiber plan near you.`,
+  (z, c, sf) => `High-speed internet in ZIP code ${z}, ${c}, ${sf} reaches up to 5 Gbps in fiber-served streets. Compare fast local plans by entering your address — one search.`,
+  (z, c, sf) => `5G home internet is available in ${z}, ${c}, ${sf} from T-Mobile and Verizon without a technician visit. Check availability at your address for available plans.`,
+  (z, c, sf) => `Home WiFi in ZIP code ${z}, ${c}, ${sf} is offered by cable, fiber, and wireless providers. Check your exact address and find the best local plan — completely free.`,
+  (z, c, sf) => `Internet service in ${z}, ${c}, ${sf} is provided by both regional and nationwide ISPs. Check availability at your address and compare every plan and price near you.`,
+  (z, c, sf) => `Cheap internet in ZIP code ${z}, ${c}, ${sf} starts at $25/mo from providers offering no-contract plans. Check your address and find the lowest price available now.`,
+  (z, c, sf) => `Internet providers in ${z}, ${c}, ${sf} offer plans from basic to gigabit speeds. Check availability at your exact address now — one search shows every local option.`,
 ];
 
 export function buildZipMeta(
@@ -147,14 +147,14 @@ const nhTitles: ((n: string, st: string) => string)[] = [
 ];
 
 const nhDescs: ((n: string, c: string) => string)[] = [
-  (n, c) => `Best local internet options near you in ${n}, ${c}. Check availability at your address — one search shows every provider.`,
-  (n, c) => `Fast fiber internet available near you in ${n}, ${c}. Check availability at your address — one search shows local providers.`,
-  (n, c) => `High speed internet deals near you in ${n}, ${c}. Check availability at your address — one search shows every provider.`,
-  (n, c) => `5G home internet available near you in ${n}, ${c}. Check availability at your address — one search shows local providers.`,
-  (n, c) => `Best home WiFi options near you in ${n}, ${c}. Check availability at your address — one search shows every local plan.`,
-  (n, c) => `Cheap fast home internet near you in ${n}, ${c}. Check availability at your address — one search shows every local provider.`,
-  (n, c) => `Cheapest internet deals near you in ${n}, ${c}. Check availability at your address — one search shows affordable local plans.`,
-  (n, c) => `Get fast internet today in ${n}, ${c}. Check availability at your address now — one search shows every local provider.`,
+  (n, c) => `${n} in ${c} is served by multiple internet providers offering cable, fiber, and wireless plans. Check availability at your address to see every local option in one search.`,
+  (n, c) => `Fiber internet is available in parts of ${n}, ${c} from local and national providers. Check availability at your exact address — one search shows every local plan.`,
+  (n, c) => `High-speed internet in ${n}, ${c} includes cable and fiber options with speeds up to 5 Gbps. Check availability at your address and compare fast local plans.`,
+  (n, c) => `5G home internet is available in ${n}, ${c} from T-Mobile and Verizon with no annual contract. Check availability at your address for the latest wireless plans.`,
+  (n, c) => `Home WiFi in ${n}, ${c} is offered by cable, fiber, and wireless providers. Check availability at your address and find the best local plan — completely free.`,
+  (n, c) => `Internet service in ${n}, ${c} is provided by regional and nationwide ISPs with plans starting under $50/mo. Check your address and compare every available plan.`,
+  (n, c) => `Cheap internet in ${n}, ${c} starts at $25/mo from providers offering no-contract monthly plans. Check availability at your address to find the best local price.`,
+  (n, c) => `Internet providers in ${n}, ${c} offer plans from basic broadband to multi-gigabit fiber. Check availability at your exact address now — one search, all local options.`,
 ];
 
 /** Build neighborhood title with long-name fallback per plan rules. */

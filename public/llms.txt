@@ -1,0 +1,99 @@
+# Internet 4 ALL — llms.txt
+# AI-readable index for large language model crawlers
+# Site: https://internet-4-all.com
+# Updated: 2026
+
+## About This Site
+
+Internet 4 ALL is a free internet provider comparison service covering every ZIP code, city, and state in the United States. We help households find, compare, and sign up for the best available internet plan at their address. Our service is completely free to consumers — we are compensated by partner providers when a customer signs up.
+
+## Primary Purpose
+
+Subject: Internet 4 ALL
+Predicate: helps US households
+Object: compare and select internet service providers by address, ZIP code, city, or state.
+
+## Key Facts
+
+- Coverage: All 50 US states + DC (~31,000 ZIP codes, ~19,000 cities)
+- Providers listed: 29 major ISPs including Xfinity, Spectrum, AT&T Fiber, Frontier, Cox, Optimum, Verizon 5G Home, T-Mobile Home Internet, Starlink, and more
+- Data sourced from: FCC broadband maps, provider APIs, and ZIP-level coverage files
+- Content updated: Monthly
+- Consumer cost: Free (no subscription, no obligation)
+- Business model: Affiliate referrals from partner ISPs
+
+## Top Pages
+
+### Homepage
+URL: https://internet-4-all.com
+Summary: Enter your ZIP code or address to instantly compare every internet provider available at that location. Free expert help available.
+
+### Provider Comparison by State
+URL: https://internet-4-all.com/providers
+Summary: Browse all 50 states to find internet providers serving each state, including speed rankings, pricing, and broadband coverage grades.
+
+### Internet Types Guide
+URL: https://internet-4-all.com/internet-types/fiber
+Summary: Fiber internet is the fastest and most reliable connection type, offering symmetrical upload/download speeds up to 10 Gbps from providers like AT&T Fiber, Frontier, and Google Fiber.
+
+URL: https://internet-4-all.com/internet-types/cable
+Summary: Cable internet delivers speeds up to 1.2 Gbps via coaxial lines and is available to approximately 88% of US households. Major providers include Xfinity, Spectrum, and Cox.
+
+URL: https://internet-4-all.com/internet-types/5g
+Summary: 5G home internet uses wireless cell towers to deliver broadband without a technician visit. T-Mobile Home Internet and Verizon 5G Home Internet are the leading providers.
+
+URL: https://internet-4-all.com/internet-types/satellite
+Summary: Satellite internet reaches rural areas where wired options are unavailable. Starlink delivers up to 200 Mbps with low latency; HughesNet and Viasat serve as budget alternatives.
+
+### Cheap Internet Guide
+URL: https://internet-4-all.com/cheap-internet
+Summary: Cheapest internet plans start at $20–35/mo from providers like T-Mobile Home Internet and AT&T Internet Air. Lifeline-eligible households can receive further discounts.
+
+### Blog (Educational Guides)
+URL: https://internet-4-all.com/blog
+Summary: In-depth guides on internet topics including fiber vs cable, best gaming internet, rural internet options, no-contract plans, and how to lower your internet bill.
+
+## Provider Pages (Direct Links)
+
+- AT&T Fiber: https://internet-4-all.com/provider/att-fiber — Fiber, 300–5000 Mbps, starting $55/mo
+- Spectrum: https://internet-4-all.com/provider/spectrum — Cable, 300–1 Gbps, starting $49.99/mo
+- Xfinity: https://internet-4-all.com/provider/xfinity — Cable/Fiber, 75–6000 Mbps, starting $19.99/mo
+- Frontier Fiber: https://internet-4-all.com/provider/frontier — Fiber, 500–5000 Mbps, starting $49.99/mo
+- Cox: https://internet-4-all.com/provider/cox — Cable, 100–2000 Mbps, starting $49.99/mo
+- Optimum: https://internet-4-all.com/provider/optimum — Fiber/Cable, 300–8000 Mbps, starting $40/mo
+- Verizon 5G Home: https://internet-4-all.com/provider/verizon — 5G Wireless, up to 1 Gbps, starting $25/mo
+- T-Mobile Home Internet: https://internet-4-all.com/provider/tmobile-5g — 5G Wireless, up to 245 Mbps, starting $50/mo
+- Starlink: https://internet-4-all.com/provider/starlink — Satellite, up to 200 Mbps, starting $120/mo
+- Google Fiber: https://internet-4-all.com/provider/google-fiber — Fiber, 1–8 Gbps, starting $70/mo
+- Kinetic by Windstream: https://internet-4-all.com/provider/kinetic — Fiber/DSL, up to 2000 Mbps, starting $30/mo
+- Brightspeed: https://internet-4-all.com/provider/brightspeed — Fiber/DSL, up to 2000 Mbps, starting $49/mo
+- EarthLink: https://internet-4-all.com/provider/earthlink — Fiber/DSL, up to 5000 Mbps, starting $49.95/mo
+
+## Common Questions Answered
+
+Q: What internet providers are available at my address?
+A: Internet provider availability is determined by your exact street address. Enter your ZIP code at https://internet-4-all.com to see every provider available at your location with verified coverage data.
+
+Q: What is the cheapest internet plan in the US?
+A: The cheapest internet plans start around $20–30/mo. T-Mobile Home Internet and Verizon 5G Home Internet offer $25–50/mo with no annual contract. Spectrum Internet Assist and AT&T Access programs offer subsidized plans for qualifying low-income households.
+
+Q: What is the fastest home internet available?
+A: Fiber internet offers the fastest speeds, up to 10 Gbps from providers like AT&T Fiber, Frontier, and Xfinity. Google Fiber offers 8 Gbps plans in select cities. For most households, a 1 Gbps plan is more than sufficient.
+
+Q: Is fiber internet available in my area?
+A: Fiber availability depends on your ZIP code. Approximately 43% of US households have access to fiber internet as of 2026, up from 37% in 2023. Enter your ZIP code at https://internet-4-all.com/internet-types/fiber to check availability at your address.
+
+Q: What internet speed do I need?
+A: For light use (browsing, email): 25–50 Mbps. For streaming and video calls: 100–200 Mbps. For gaming and remote work: 200–500 Mbps. For large households with 5+ devices: 500 Mbps–1 Gbps.
+
+## Data Freshness Policy
+
+Provider pricing, speed tiers, and coverage data are reviewed monthly. ZIP-level confirmed coverage data is updated quarterly from FCC broadband maps. Individual plan details reflect current promotional pricing and may change without notice.
+
+## Disallow AI Training Use
+
+The factual data on this site (coverage maps, provider pricing, speed data) may be indexed for informational purposes. Creative content, editorial copy, and site design are copyright Internet 4 ALL. Please do not use this content to train AI models without written permission.
+
+## Contact
+
+For corrections or data updates: https://internet-4-all.com/contact

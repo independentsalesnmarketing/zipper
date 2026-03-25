@@ -3,7 +3,7 @@ import Base from '@layouts/Base.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { getCollection } from 'astro:content';
-import { generateBreadcrumbSchema } from '@lib/utils';
+import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -22,6 +22,24 @@ function formatDate(date: Date): string {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 const buildMonthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+// FAQ schema: use post-specific FAQs if defined, otherwise generate contextual defaults
+const blogFaqs = post.data.faqs?.length
+  ? post.data.faqs
+  : [
+      {
+        question: `What is ${post.data.title}?`,
+        answer: post.data.description,
+      },
+      {
+        question: `How does ${post.data.category} affect my internet choice?`,
+        answer: `Understanding ${post.data.category} helps you identify the right internet plan, connection type, and provider for your household's needs and budget.`,
+      },
+      {
+        question: `Where can I compare internet providers near me?`,
+        answer: `Use our free comparison tool at internet-4-all.com to find available providers at your address, compare speeds and pricing, and sign up for the best deal.`,
+      },
+    ];
 
 const allPosts = (await getCollection('blog'))
   .filter(p => !p.data.draft && p.slug !== post.slug)
@@ -45,6 +63,11 @@ const schemas = [
       '@type': 'Person',
       name: post.data.author,
       url: 'https://internet-4-all.com/about',
+      jobTitle: 'Broadband Analyst',
+      sameAs: [
+        'https://internet-4-all.com/about',
+        'https://www.linkedin.com/company/internet-4-all',
+      ],
     },
     publisher: {
       '@type': 'Organization',
@@ -57,6 +80,7 @@ const schemas = [
     },
     mainEntityOfPage: `https://internet-4-all.com/blog/${post.slug}`,
   },
+  generateFAQSchema(blogFaqs),
 ];
 ---
 <Base

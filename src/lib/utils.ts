@@ -136,6 +136,8 @@ export function generateProductSchema(provider: {
   reviewCount: number;
   slug: string;
   plans: Array<{ name: string; price: number; promoPrice: number; speed: number }>;
+  additionalProperties?: Array<{ name: string; value: string }>;
+  reviews?: Array<{ author: string; rating: number; body: string }>;
 }) {
   return {
     '@context': 'https://schema.org',
@@ -154,6 +156,32 @@ export function generateProductSchema(provider: {
       worstRating: '1',
       ratingCount: provider.reviewCount,
     },
+    ...(provider.additionalProperties?.length
+      ? {
+          additionalProperty: provider.additionalProperties.map(p => ({
+            '@type': 'PropertyValue',
+            name: p.name,
+            value: p.value,
+          })),
+        }
+      : {}),
+    ...(provider.reviews?.length
+      ? {
+          review: provider.reviews.map(r => ({
+            '@type': 'Review',
+            reviewRating: {
+              '@type': 'Rating',
+              ratingValue: r.rating,
+              bestRating: 5,
+            },
+            author: {
+              '@type': 'Person',
+              name: r.author,
+            },
+            reviewBody: r.body,
+          })),
+        }
+      : {}),
     offers: provider.plans.map(plan => ({
       '@type': 'Offer',
       name: plan.name,
@@ -260,5 +288,80 @@ export function generateLocalBusinessSchema(opts: {
         closes: '20:00',
       },
     ],
+  };
+}
+
+// Speakable schema — marks content sections suitable for text-to-speech AI
+export function generateSpeakableSchema(cssSelectors: string[], url: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': url,
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: cssSelectors,
+    },
+  };
+}
+
+export function generateFactCheckSchema(opts: {
+  url: string;
+  claim: string;
+  ratingValue: number;
+  bestRating: number;
+  reviewerName?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ClaimReview',
+    url: opts.url,
+    claimReviewed: opts.claim,
+    itemReviewed: {
+      '@type': 'Claim',
+      appearance: { '@type': 'WebPage', url: opts.url },
+    },
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: opts.ratingValue,
+      bestRating: opts.bestRating,
+      alternateName: 'Verified',
+    },
+    author: {
+      '@type': 'Organization',
+      name: opts.reviewerName ?? 'Internet 4 ALL',
+      url: 'https://internet-4-all.com',
+    },
+  };
+}
+
+export function generateDatasetSchema(opts: {
+  name: string;
+  description: string;
+  url: string;
+  dateModified: string;
+  keywords: string[];
+  variables: Array<{ name: string; value: string }>;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    dateModified: opts.dateModified,
+    keywords: opts.keywords,
+    creator: {
+      '@type': 'Organization',
+      name: 'Internet 4 ALL',
+      url: 'https://internet-4-all.com',
+    },
+    license: 'https://creativecommons.org/licenses/by/4.0/',
+    isAccessibleForFree: true,
+    measurementTechnique: 'FCC Broadband Data Collection, provider-reported data, verified speed tests',
+    variableMeasured: opts.variables.map(v => ({
+      '@type': 'PropertyValue',
+      name: v.name,
+      value: v.value,
+    })),
   };
 }

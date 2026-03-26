@@ -524,6 +524,7 @@ const badgeLabels: Record<string, string> = {
     border-radius: 10px;
     text-decoration: none;
     text-align: center;
+    white-space: nowrap;
     transition: filter 0.15s, box-shadow 0.15s, transform 0.15s;
     box-shadow: 0 3px 10px rgba(0, 213, 132, 0.22);
     min-height: 44px;
@@ -1067,6 +1068,10 @@ const badgeLabels: Record<string, string> = {
       margin-top: var(--space-sm);
     }
     .pc-actions-compact { flex-direction: row; align-items: center; gap: 8px; }
+    /* Prevent pc-col-* from spilling into implicit columns */
+    .pc-col-info { grid-column: 2; }
+    .pc-col-metrics { grid-column: 1 / -1; }
+    .pc-col-actions { grid-column: 1 / -1; grid-row: 3; }
   }
 
   @media (max-width: 640px) {
@@ -1085,6 +1090,11 @@ const badgeLabels: Record<string, string> = {
       align-items: stretch;
     }
     .pc-actions-compact { flex-direction: column; }
+    /* Ensure all pc-col-* items stack in single column */
+    .pc-col-logo { grid-column: 1; grid-row: 1; }
+    .pc-col-info { grid-column: 1; grid-row: 2; }
+    .pc-col-metrics { grid-column: 1; grid-row: 3; }
+    .pc-col-actions { grid-column: 1; grid-row: 4; }
   }
 </style>
 

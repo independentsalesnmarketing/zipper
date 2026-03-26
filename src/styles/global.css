@@ -555,6 +555,7 @@
     position: relative;
     overflow: hidden;
     min-height: 56px;
+    white-space: nowrap;
   }
   .btn-cta::before {
     content: '';

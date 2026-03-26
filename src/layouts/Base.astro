@@ -156,9 +156,17 @@ const schemas = schema
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0, rootMargin: '0px 0px 80px 0px' }
     );
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // Mark elements already in view on load as visible immediately
+    document.querySelectorAll('.reveal').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        el.classList.add('visible');
+      } else {
+        observer.observe(el);
+      }
+    });
   </script>
 
   <!-- Sticky CTA bar logic -->

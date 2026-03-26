@@ -2916,6 +2916,26 @@
       font-size: var(--text-xs);
     }
 
+    /* ── Hide on mobile utilities ── */
+    .hide-mobile {
+      display: none !important;
+    }
+
+    /* ── Breadcrumb: hide on location pages mobile ── */
+    .breadcrumb {
+      display: none !important;
+    }
+
+    /* ── Provider hero action buttons: stack vertically ── */
+    .provider-hero-actions {
+      flex-direction: column !important;
+      width: 100%;
+    }
+    .provider-hero-actions .btn {
+      width: 100%;
+      text-align: center;
+    }
+
     /* ── Editorial content tighter on mobile ── */
     .editorial-content p {
       font-size: var(--text-sm) !important;

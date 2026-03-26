@@ -635,26 +635,55 @@ const badgeLabels: Record<string, string> = {
   }
 
   /* ── Responsive ── */
-  @media (max-width: 1040px) {
+  @media (max-width: 1200px) {
     .provider-card {
-      grid-template-columns: 170px 1fr 230px 200px;
+      grid-template-columns: 160px 1fr 220px 180px;
     }
   }
 
-  @media (max-width: 860px) {
+  @media (max-width: 1040px) {
+    .provider-card {
+      grid-template-columns: 140px 1fr 200px 170px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .provider-card {
+      grid-template-columns: 120px 1fr 180px 160px;
+      gap: 12px;
+    }
+    .pc-col-logo {
+      padding: 20px 12px;
+    }
+    .pc-col-info {
+      padding: 20px 16px;
+    }
+    .pc-col-metrics {
+      padding: 20px 12px;
+    }
+    .pc-col-actions {
+      padding: 16px 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
     .provider-card {
       grid-template-columns: auto 1fr auto;
       grid-template-rows: auto auto;
+      gap: 16px;
+      padding: 20px;
     }
     .pc-col-logo {
       grid-column: 1;
       grid-row: 1;
       border-right: none;
-      padding-right: 0;
+      padding: 0;
+      align-self: flex-start;
     }
     .pc-col-info {
       grid-column: 2 / 4;
       grid-row: 1;
+      padding: 0 0 12px 0;
     }
     .pc-col-metrics {
       grid-column: 1 / 3;
@@ -662,48 +691,151 @@ const badgeLabels: Record<string, string> = {
       border-left: none;
       border-right: none;
       border-top: 1px solid var(--gray-100);
+      padding: 16px 0 0 0;
     }
     .pc-col-actions {
       grid-column: 3;
       grid-row: 2;
       border-left: 1px solid var(--gray-100);
-      padding-left: 16px;
+      padding: 16px 0 0 16px;
+    }
+    .pc-metric {
+      padding: 12px 8px;
+    }
+    .pc-btn-primary,
+    .pc-btn-secondary {
+      min-height: 40px;
+      font-size: 0.8rem;
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .provider-card {
       grid-template-columns: 1fr;
       grid-template-rows: auto;
+      gap: 16px;
+      padding: 16px;
     }
     .pc-col-logo {
       grid-column: 1;
       grid-row: 1;
       flex-direction: row;
       justify-content: flex-start;
-      padding: 16px 16px 0;
+      padding: 0;
       gap: 12px;
+      align-self: flex-start;
     }
     .pc-col-info {
       grid-column: 1;
       grid-row: 2;
-      padding-top: 12px;
+      padding: 8px 0 12px 0;
     }
     .pc-col-metrics {
       grid-column: 1;
       grid-row: 3;
       border-top: 1px solid var(--gray-100);
+      border-left: none;
+      padding: 16px 0;
+      flex-direction: row;
+      justify-content: space-around;
     }
     .pc-col-actions {
       grid-column: 1;
       grid-row: 4;
       border-left: none;
       border-top: 1px solid var(--gray-100);
-      padding: 16px;
+      padding: 16px 0 0 0;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pc-metric {
+      flex: 1;
+      padding: 8px 4px;
+      text-align: center;
     }
     .pc-btn-primary,
     .pc-btn-secondary {
       width: 100%;
+      white-space: nowrap;
+      min-height: 44px;
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .provider-card {
+      padding: 12px;
+      gap: 12px;
+    }
+    .pc-col-logo {
+      gap: 8px;
+    }
+    .pc-logo-link {
+      width: 120px;
+      height: 60px;
+    }
+    .pc-col-info {
+      padding: 4px 0 8px 0;
+    }
+    .pc-name {
+      font-size: var(--text-lg);
+    }
+    .pc-col-metrics {
+      padding: 12px 0;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .pc-metric {
+      padding: 6px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .pc-metric:last-child {
+      border-bottom: none;
+    }
+    .pc-metric-value strong {
+      font-size: 1.5rem;
+    }
+    .pc-col-actions {
+      padding: 12px 0 0 0;
+      gap: 8px;
+    }
+    .pc-btn-primary,
+    .pc-btn-secondary {
+      min-height: 40px;
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .provider-card {
+      padding: 8px;
+    }
+    .pc-col-logo {
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+    }
+    .pc-logo-link {
+      width: 100px;
+      height: 50px;
+    }
+    .pc-col-info {
+      padding: 2px 0 6px 0;
+    }
+    .pc-name {
+      font-size: var(--text-base);
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+    }
+    .pc-col-metrics {
+      padding: 8px 0;
+    }
+    .pc-metric-value strong {
+      font-size: 1.25rem;
+    }
+    .pc-col-actions {
+      padding: 8px 0 0 0;
     }
   }
 </style>
@@ -1049,7 +1181,7 @@ const badgeLabels: Record<string, string> = {
   }
 
   /* Responsive adjustments */
-  @media (max-width: 960px) {
+  @media (max-width: 1200px) {
     .provider-card {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto;
@@ -1068,13 +1200,9 @@ const badgeLabels: Record<string, string> = {
       margin-top: var(--space-sm);
     }
     .pc-actions-compact { flex-direction: row; align-items: center; gap: 8px; }
-    /* Prevent pc-col-* from spilling into implicit columns */
-    .pc-col-info { grid-column: 2; }
-    .pc-col-metrics { grid-column: 1 / -1; }
-    .pc-col-actions { grid-column: 1 / -1; grid-row: 3; }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 960px) {
     .provider-card {
       grid-template-columns: 1fr;
     }
@@ -1090,11 +1218,82 @@ const badgeLabels: Record<string, string> = {
       align-items: stretch;
     }
     .pc-actions-compact { flex-direction: column; }
-    /* Ensure all pc-col-* items stack in single column */
-    .pc-col-logo { grid-column: 1; grid-row: 1; }
-    .pc-col-info { grid-column: 1; grid-row: 2; }
-    .pc-col-metrics { grid-column: 1; grid-row: 3; }
-    .pc-col-actions { grid-column: 1; grid-row: 4; }
+  }
+
+  @media (max-width: 640px) {
+    .provider-card {
+      padding: var(--space-md);
+    }
+    .pc-left {
+      flex-direction: column;
+      gap: var(--space-sm);
+      text-align: center;
+    }
+    .pc-logo-compact {
+      width: 60px;
+      height: 60px;
+    }
+    .pc-center {
+      gap: var(--space-md);
+    }
+    .metric-compact {
+      min-width: 70px;
+    }
+    .pc-actions-compact {
+      gap: 8px;
+    }
+    .pc-btn-order,
+    .pc-btn-plans {
+      min-height: 40px;
+      font-size: var(--text-sm);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .provider-card {
+      padding: var(--space-sm);
+    }
+    .pc-left {
+      gap: var(--space-xs);
+    }
+    .pc-logo-compact {
+      width: 50px;
+      height: 50px;
+    }
+    .pc-name-compact {
+      font-size: var(--text-base);
+    }
+    .pc-center {
+      gap: var(--space-sm);
+    }
+    .metric-value-compact {
+      font-size: var(--text-base);
+    }
+    .pc-actions-compact {
+      gap: 6px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .provider-card {
+      padding: var(--space-xs);
+    }
+    .pc-logo-compact {
+      width: 40px;
+      height: 40px;
+    }
+    .pc-name-compact {
+      font-size: var(--text-sm);
+    }
+    .metric-value-compact {
+      font-size: var(--text-sm);
+    }
+    .pc-btn-order,
+    .pc-btn-plans {
+      min-height: 36px;
+      font-size: var(--text-xs);
+      padding: 6px 12px;
+    }
   }
 </style>
 

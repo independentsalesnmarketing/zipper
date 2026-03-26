@@ -455,8 +455,8 @@ const clientProviders = allProviders.map(p => ({
       height: 130px;
     }
     :global(.ps-metrics) { width: 100%; justify-content: space-around; }
-    :global(.ps-actions) { width: 100%; flex-direction: row; }
-    :global(.ps-actions .btn) { flex: 1; text-align: center; font-size: var(--text-sm) !important; }
+    :global(.ps-actions) { width: 100%; flex-direction: column; }
+    :global(.ps-actions .btn) { width: 100%; text-align: center; font-size: var(--text-sm) !important; }
   }
   @media (max-width: 768px) {
     :global(.ps-row) {
@@ -484,8 +484,8 @@ const clientProviders = allProviders.map(p => ({
     }
     :global(.ps-info) { text-align: center; }
     :global(.ps-metrics) { width: 100%; justify-content: space-around; flex-wrap: wrap; }
-    :global(.ps-actions) { width: 100%; }
-    :global(.ps-actions .btn) { width: 100%; }
+    :global(.ps-actions) { width: 100%; flex-direction: column; }
+    :global(.ps-actions .btn) { width: 100%; white-space: nowrap; }
   }
 </style>
 

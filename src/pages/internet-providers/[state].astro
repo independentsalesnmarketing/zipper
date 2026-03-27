@@ -217,18 +217,14 @@ const meta = buildStateMeta(`/internet-providers/${stateData.slug}`, stateData.n
   <Breadcrumb items={[
     { name: 'Internet Providers', url: '/providers' },
     { name: stateData.name },
+  ]} toc={[
+    { label: 'Best For', href: '#best-for' },
+    { label: 'Providers', href: '#providers' },
+    { label: 'Compare', href: '#compare' },
+    { label: 'Plans', href: '#plans' },
+    { label: 'About', href: '#about' },
+    { label: 'FAQ', href: '#faq' },
   ]} />
-
-  <!-- On This Page — anchor nav -->
-  <nav aria-label="On this page" style="margin-bottom: var(--space-lg); display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center;">
-    <span style="font-size: var(--text-xs); font-weight: 700; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; margin-right: var(--space-xs);">On this page:</span>
-    <a href="#best-for" style="font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--border); white-space: nowrap;">Best For</a>
-    <a href="#providers" style="font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--border); white-space: nowrap;">Providers</a>
-    <a href="#compare" style="font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--border); white-space: nowrap;">Compare</a>
-    <a href="#plans" style="font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--border); white-space: nowrap;">Plans</a>
-    <a href="#about" style="font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--border); white-space: nowrap;">About</a>
-    <a href="#faq" style="font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--border); white-space: nowrap;">FAQ</a>
-  </nav>
 
   <!-- ═══════════════════════════════════════════
        HERO

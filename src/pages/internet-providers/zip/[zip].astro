@@ -349,17 +349,13 @@ const meta = buildZipMeta(`/internet-providers/zip/${zipData.zip}`, zipData.zip,
     { name: stateName, url: `/internet-providers/${stateSlug}` },
     { name: zipData.city, url: `/internet-providers/${zipData.citySlug}` },
     { name: `ZIP ${zipData.zip}` },
+  ]} toc={[
+    { label: 'Best For', href: '#best-for' },
+    { label: 'Compare', href: '#compare' },
+    { label: 'Plans', href: '#plans' },
+    { label: 'About', href: '#about' },
+    { label: 'FAQ', href: '#faq' },
   ]} />
-
-  <!-- On This Page — anchor nav -->
-  <nav aria-label="On this page" style="margin-bottom: var(--space-lg); display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center;">
-    <span style="font-size: var(--text-xs); font-weight: 700; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; margin-right: var(--space-xs);">On this page:</span>
-    <a href="#best-for" style="font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--border); white-space: nowrap;">Best For</a>
-    <a href="#compare" style="font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--border); white-space: nowrap;">Compare</a>
-    <a href="#plans" style="font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--border); white-space: nowrap;">Plans</a>
-    <a href="#about" style="font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--border); white-space: nowrap;">About</a>
-    <a href="#faq" style="font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--border); white-space: nowrap;">FAQ</a>
-  </nav>
 
   <!-- ═══════════════════════════════════════════
        HERO — with refinement search on right
@@ -1378,7 +1374,7 @@ const meta = buildZipMeta(`/internet-providers/zip/${zipData.zip}`, zipData.zip,
       let heroAcItems: Array<{display:string,zip:string,lat:number,lng:number,isLocal?:boolean,city?:string,state?:string}> = [];
       let heroAcIdx = -1;
 
-      // Fetch suggestions — delegate to ProviderSearch's Photon-backed fetchSuggestions
+      // Fetch suggestions — delegate to ProviderSearch's Mapbox-backed fetchSuggestions
       // which already has lat/lon bias seeded from the page data.
       async function fetchHeroSuggestions(q: string) {
         if (q.length < 3) return [];
@@ -1396,11 +1392,6 @@ const meta = buildZipMeta(`/internet-providers/zip/${zipData.zip}`, zipData.zip,
       function showHeroSugs(items: typeof heroAcItems) {
         heroAcItems = items; heroAcIdx = -1;
         if (!items.length) {
-          if (/^\d+\s*$/.test(heroRefineInput.value.trim())) {
-            heroRefineSuggest.innerHTML = `<li class="sg-empty"><div class="sg-main">No exact match yet. Keep typing the street name, for example: 2722 Burnet</div></li>`;
-            heroRefineSuggest.style.display = 'block';
-            return;
-          }
           heroRefineSuggest.style.display='none';
           return;
         }
@@ -1418,14 +1409,29 @@ const meta = buildZipMeta(`/internet-providers/zip/${zipData.zip}`, zipData.zip,
         const s = heroAcItems[i]; if (!s) return;
         heroRefineInput.value = s.display;
         closeHeroSugs();
+        const isFullAddress = !!(s.house && s.street);
+        const pageZip = (document.getElementById('ps-root') as HTMLElement)?.dataset?.zip || '';
+        if (isFullAddress) {
+          if (!pageZip || !s.zip || s.zip === pageZip) {
+            // Same area — search in place at exact address coordinates
+            runSearch(s.lat, s.lng, s.display, locals, container, true);
+          } else {
+            // Different ZIP — route to check-availability with exact coords
+            if (typeof (window as any).showPageLoader === 'function') (window as any).showPageLoader('Finding providers at your address…');
+            window.location.href = `/check-availability?lat=${s.lat}&lng=${s.lng}&addr=${encodeURIComponent(s.display)}`;
+          }
+          return;
+        }
+        // ZIP only → navigate to ZIP page
         if (s.zip && /^\d{5}$/.test(s.zip)) {
           window.location.href = `/internet-providers/zip/${s.zip}`;
-        } else {
-          window.location.href = `/check-availability?q=${encodeURIComponent(s.display)}`;
+          return;
         }
+        // City / neighborhood → check-availability
+        window.location.href = `/check-availability?lat=${s.lat}&lng=${s.lng}&addr=${encodeURIComponent(s.display)}`;
       }
 
-      // Form submit — always navigate to the ZIP page
+      // Form submit — navigate or search in place based on address/ZIP context
       heroRefineForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const q = heroRefineInput.value.trim();
@@ -1434,10 +1440,20 @@ const meta = buildZipMeta(`/internet-providers/zip/${zipData.zip}`, zipData.zip,
           window.location.href = `/internet-providers/zip/${q}`;
         } else {
           geocodeAddr(q).then((geo: any) => {
-            if (geo?.zip && /^\d{5}$/.test(geo.zip)) {
+            if (!geo) {
+              if (container) container.innerHTML = `<p style="color:#ff4444;padding:var(--space-md) 0;font-size:var(--text-sm);">Couldn't find that address. Try a full street address or 5-digit ZIP code.</p>`;
+              return;
+            }
+            const isFullAddr = !!(geo.house && geo.street);
+            const pageZip = (document.getElementById('ps-root') as HTMLElement)?.dataset?.zip || '';
+            if (isFullAddr && pageZip && geo.zip && geo.zip !== pageZip) {
+              // Different ZIP — check-availability with exact coords
+              if (typeof (window as any).showPageLoader === 'function') (window as any).showPageLoader('Finding providers at your address…');
+              window.location.href = `/check-availability?lat=${geo.lat}&lng=${geo.lng}&addr=${encodeURIComponent(geo.display || q)}`;
+            } else if (!isFullAddr && geo.zip && /^\d{5}$/.test(geo.zip)) {
               window.location.href = `/internet-providers/zip/${geo.zip}`;
             } else {
-              window.location.href = `/check-availability?q=${encodeURIComponent(q)}`;
+              runSearch(geo.lat, geo.lng, geo.display || q, locals, container, isFullAddr);
             }
           });
         }

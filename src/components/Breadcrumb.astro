@@ -1,19 +1,35 @@
 ---
+interface TocItem {
+  label: string;
+  href: string;
+}
+
 interface Props {
   items: { name: string; url?: string }[];
+  class?: string;
+  toc?: TocItem[];
 }
-const { items } = Astro.props;
+const { items, class: className, toc } = Astro.props;
 ---
-<nav class="breadcrumb" aria-label="Breadcrumb">
-  <a href="/">Home</a>
-  {items.map((item, i) => (
-    <>
-      <span class="separator">/</span>
-      {item.url && i < items.length - 1 ? (
-        <a href={item.url}>{item.name}</a>
-      ) : (
-        <span aria-current={i === items.length - 1 ? 'page' : undefined}>{item.name}</span>
-      )}
-    </>
-  ))}
-</nav>
+<div class={`page-meta-bar ${className || ''}`.trim()}>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    {items.map((item, i) => (
+      <>
+        <span class="separator">/</span>
+        {item.url && i < items.length - 1 ? (
+          <a href={item.url}>{item.name}</a>
+        ) : (
+          <span aria-current={i === items.length - 1 ? 'page' : undefined}>{item.name}</span>
+        )}
+      </>
+    ))}
+  </nav>
+  {toc && toc.length > 0 && (
+    <nav class="page-toc" aria-label="On this page">
+      {toc.map(item => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+  )}
+</div>

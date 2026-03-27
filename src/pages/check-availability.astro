@@ -236,6 +236,46 @@ const schemas = [
 <script>
 (function () {
   const params = new URLSearchParams(window.location.search);
+
+  // ── Address-level deep link: /check-availability?lat=X&lng=Y&addr=... ──
+  const lat = params.get('lat');
+  const lng = params.get('lng');
+  const addr = params.get('addr');
+  if (lat && lng && addr) {
+    const latNum = parseFloat(lat);
+    const lngNum = parseFloat(lng);
+    if (!isNaN(latNum) && !isNaN(lngNum)) {
+      // Sanitize addr for safe HTML injection
+      const safeAddr = addr.replace(/[<>&"']/g, function(c) {
+        return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c] || c;
+      });
+
+      // Update hero heading
+      const h1 = document.querySelector('h1');
+      if (h1) h1.innerHTML = 'Internet Providers at <span class="gradient-text">Your Address</span>';
+
+      // Hide the generic section heading — ProviderSearch renders the address banner itself
+      const heading = document.getElementById('ca-ps-heading');
+      if (heading) heading.style.display = 'none';
+
+      // Show the ProviderSearch section and trigger auto-search at exact coordinates
+      const wrap = document.getElementById('ca-ps-wrap');
+      if (wrap) {
+        wrap.style.display = '';
+        const psRoot = wrap.querySelector('#ps-root');
+        if (psRoot) {
+          psRoot.setAttribute('data-lat', String(latNum));
+          psRoot.setAttribute('data-lng', String(lngNum));
+          psRoot.setAttribute('data-addr-label', addr);
+          psRoot.setAttribute('data-auto', '1');
+        }
+        setTimeout(function () { wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
+      }
+      return;
+    }
+  }
+
+  // ── ZIP deep link: /check-availability?zip=XXXXX ──
   const zip = params.get('zip');
   if (!zip || !/^[0-9]{5}$/.test(zip)) return;
 

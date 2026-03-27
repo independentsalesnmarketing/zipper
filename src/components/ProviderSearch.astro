@@ -140,87 +140,7 @@ const clientProviders = allProviders.map(p => ({
     text-decoration: none;
   }
   .ps-help-link:hover { text-decoration: underline; }
-  .ps-suggest {
-    display: none;
-    position: absolute;
-    top: calc(100% + 2px);
-    left: 0; right: 0;
-    z-index: 50;
-    background: var(--white);
-    border: 1px solid color-mix(in srgb, var(--brand-blue) 35%, #ffffff);
-    border-radius: var(--radius-md);
-    list-style: none;
-    margin: 0; padding: 6px 0;
-    max-height: 280px;
-    overflow-y: auto;
-    box-shadow: 0 16px 40px rgba(10, 23, 55, 0.18);
-  }
-  .ps-suggest li {
-    padding: 10px 14px;
-    cursor: pointer;
-    font-size: 0.97rem;
-    color: var(--text-primary);
-    transition: background 0.12s ease, transform 0.12s ease;
-    white-space: normal;
-    border-bottom: 1px solid color-mix(in srgb, var(--border) 85%, #ffffff);
-  }
-  .ps-suggest li:last-child { border-bottom: none; }
-  .ps-suggest li:hover, .ps-suggest li.active {
-    background: color-mix(in srgb, var(--brand-blue) 8%, #ffffff);
-    color: var(--text-primary);
-    transform: translateX(1px);
-  }
-  .ps-suggest .sg-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  .ps-suggest .sg-main {
-    font-weight: 600;
-    line-height: 1.3;
-    color: var(--text-primary);
-    letter-spacing: 0.01em;
-  }
-  .ps-suggest .sg-meta {
-    margin-top: 4px;
-    font-size: 0.82rem;
-    color: var(--text-tertiary);
-    line-height: 1.3;
-  }
-  .ps-suggest .sg-badge {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    border-radius: 999px;
-    padding: 2px 8px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    background: color-mix(in srgb, var(--surface-secondary) 85%, #ffffff);
-    color: var(--text-secondary);
-  }
-  .ps-suggest .sg-badge-local {
-    background: color-mix(in srgb, var(--brand-green) 22%, #ffffff);
-    color: color-mix(in srgb, var(--brand-green) 78%, #0d3d2c);
-  }
-  .ps-suggest .sg-badge-national {
-    background: color-mix(in srgb, var(--brand-blue) 14%, #ffffff);
-    color: color-mix(in srgb, var(--brand-blue) 82%, #12307a);
-  }
-  .ps-suggest li.sg-empty {
-    cursor: default;
-    white-space: normal;
-    line-height: 1.35;
-    color: var(--text-secondary);
-    border-bottom: none;
-  }
-  .ps-suggest li.sg-empty:hover {
-    background: transparent;
-    color: var(--text-secondary);
-    transform: none;
-  }
+  /* dropdown styles moved to <style is:global> block below */
 
   /* Loading */
   .ps-loading { padding: var(--space-lg) 0; }
@@ -587,16 +507,36 @@ const clientProviders = allProviders.map(p => ({
     return null;
   }
 
+  const MB_TOKEN = 'pk.eyJ1Ijoic3RhbmNlLW1hcmtldGluZyIsImEiOiJjbW44MjFla2UwNnNyMm9va2U5YnR3OXY3In0.7ZnJGh1XAcyt6FRa35XQTA';
+
+  function parseMbFeature(f: any): ParsedSuggestion {
+    const ctx: any[] = f.context || [];
+    const zip = (ctx.find((c: any) => c.id?.startsWith('postcode'))?.text || '').match(/\d{5}/)?.[0] || '';
+    const city = ctx.find((c: any) => c.id?.startsWith('place'))?.text || '';
+    const stateRaw = ctx.find((c: any) => c.id?.startsWith('region'))?.short_code || '';
+    const state = stateRaw.replace('US-', '');
+    const house = String(f.address || '').trim();
+    const street = String(f.text || '').trim();
+    const [lng, lat] = f.center || [0, 0];
+    const display = f.place_name?.replace(', United States', '') || '';
+    return { display, zip, lat: Number(lat), lng: Number(lng), house, street, city, state };
+  }
+
   async function geocodeAddr(q: string): Promise<{lat:number,lng:number,display:string}|null> {
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 6000);
-      const r = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=1&countrycodes=us`,{
-        headers:{'User-Agent':'Internet-4-ALL/1.0'},
-        signal:controller.signal
-      });
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(q)}.json?access_token=${MB_TOKEN}&country=US&types=address&limit=1`;
+      const r = await fetch(url, { signal: controller.signal });
       clearTimeout(timeoutId);
-      if (r.ok) { const d=await r.json(); if (d[0]) return {lat:+d[0].lat,lng:+d[0].lon,display:d[0].display_name}; }
+      if (r.ok) {
+        const d = await r.json();
+        const f = d.features?.[0];
+        if (f) {
+          const s = parseMbFeature(f);
+          return { lat: s.lat, lng: s.lng, display: s.display, zip: s.zip, house: s.house, street: s.street };
+        }
+      }
     } catch {}
     return null;
   }
@@ -619,19 +559,11 @@ const clientProviders = allProviders.map(p => ({
   let acTimer: ReturnType<typeof setTimeout>;
   let acItems: SuggestionItem[] = [];
   let acIdx = -1;
-  // IP-detected location for autocomplete bias (set by init)
+  // IP-detected location for autocomplete bias
   let _biasCity = '';
   let _biasState = '';
   let _biasLat = 0;
   let _biasLon = 0;
-
-  function normText(v: string): string {
-    return String(v || '')
-      .toLowerCase()
-      .replace(/[^a-z0-9\s]/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
-  }
 
   function escHtml(v: string): string {
     return String(v || '')
@@ -642,172 +574,38 @@ const clientProviders = allProviders.map(p => ({
       .replace(/'/g, '&#39;');
   }
 
-  function tokenize(v: string): string[] {
-    return normText(v).split(' ').filter(Boolean);
-  }
-
-  function leadingDigits(v: string): string {
-    const m = String(v || '').trim().match(/^(\d{1,8})/);
-    return m ? m[1] : '';
-  }
-
-  function stateMatches(candidate: string, target: string): boolean {
-    const cand = normText(candidate);
-    const want = normText(target);
-    if (!want) return true;
-    if (!cand) return false;
-    return cand === want || cand.startsWith(want) || want.startsWith(cand);
-  }
-
-  function streetHintMatches(street: string, hintTokens: string[]): boolean {
-    if (!hintTokens.length) return true;
-    const streetNorm = normText(street);
-    if (!streetNorm) return false;
-    const words = streetNorm.split(' ').filter(Boolean);
-    return hintTokens.every((t) => {
-      if (t.length <= 2) return words.some((w) => w.startsWith(t));
-      return words.some((w) => w.startsWith(t)) || streetNorm.includes(t);
-    });
-  }
-
-  function distanceMiles(lat1: number, lon1: number, lat2: number, lon2: number): number {
-    const toRad = (d: number) => (d * Math.PI) / 180;
-    const R = 3958.7613;
-    const dLat = toRad(lat2 - lat1);
-    const dLon = toRad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
-  }
-
-  function isLocalCandidate(
-    s: ParsedSuggestion,
-    biasCityNorm: string,
-    biasStateNorm: string,
-    biasLat?: number,
-    biasLon?: number
-  ): boolean {
-    if (biasLat && biasLon) {
-      const d = distanceMiles(biasLat, biasLon, s.lat, s.lng);
-      if (d <= 45) return true;
-    }
-    const cityNorm = normText(s.city);
-    if (biasCityNorm && cityNorm && cityNorm === biasCityNorm) {
-      if (!biasStateNorm) return true;
-      return stateMatches(s.state, biasStateNorm);
-    }
-    return false;
-  }
-
-  function dedupeParsed(list: ParsedSuggestion[]): ParsedSuggestion[] {
-    const out: ParsedSuggestion[] = [];
-    const seen = new Set<string>();
-    for (const s of list) {
-      const key = `${leadingDigits(s.house)}|${normText(s.street)}|${normText(s.city)}|${normText(s.state)}|${s.zip}|${s.lat.toFixed(4)}|${s.lng.toFixed(4)}`;
-      if (seen.has(key)) continue;
-      seen.add(key);
-      out.push(s);
-    }
-    return out;
-  }
-
-  function mapToDisplay(house: string, street: string, city: string, state: string, zip: string, fallback = ''): string {
-    const parts: string[] = [];
-    if (house && street) parts.push(`${house} ${street}`);
-    else if (street) parts.push(street);
-    if (city) parts.push(city);
-    if (state) parts.push(state);
-    if (zip) parts.push(zip);
-    return parts.length ? parts.join(', ') : fallback;
-  }
-
-  async function fetchPhotonSuggestions(rawQuery: string, biasLat?: number, biasLon?: number, limit = 12): Promise<ParsedSuggestion[]> {
+  // ── Mapbox Geocoding ──────────────────────────────────────────────────────────
+  // Returns up to 6 structured address suggestions. Mapbox data covers 100% of
+  // US addresses (USPS + Census TIGER + HERE) and returns a clean postcode field
+  // on every result — no coordinate-to-ZIP guessing needed.
+  async function fetchSuggestions(q: string, biasLat?: number, biasLon?: number): Promise<SuggestionItem[]> {
+    const raw = q.trim();
+    if (raw.length < 2) return [];
+    // Let the ZIP-only path (5 digits) stay handled by submit — don't autocomplete it
+    if (/^\d{5}$/.test(raw)) return [];
+    // Pure number with no street: show a hint rather than bad results
+    if (/^\d+\s*$/.test(raw)) return [];
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000);
-      const params = new URLSearchParams({ q: rawQuery, limit: String(limit), lang: 'en' });
-      if (biasLat && biasLon) {
-        params.set('lat', String(biasLat));
-        params.set('lon', String(biasLon));
-        params.set('zoom', '14');
-      }
-      const r = await fetch(`https://photon.komoot.io/api/?${params.toString()}`, { signal: controller.signal });
+      const timeoutId = setTimeout(() => controller.abort(), 4000);
+      const params = new URLSearchParams({
+        access_token: MB_TOKEN,
+        country: 'US',
+        types: 'address',
+        autocomplete: 'true',
+        limit: '6',
+        language: 'en',
+      });
+      if (biasLat && biasLon) params.set('proximity', `${biasLon},${biasLat}`);
+      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(raw)}.json?${params.toString()}`;
+      const r = await fetch(url, { signal: controller.signal });
       clearTimeout(timeoutId);
       if (!r.ok) return [];
       const data = await r.json();
-
-      return ((data.features || []) as any[])
-        .filter((f: any) => f.properties?.countrycode === 'US')
-        .map((f: any) => {
-          const p = f.properties || {};
-          const coords = Array.isArray(f.geometry?.coordinates) ? f.geometry.coordinates : [];
-          const lon = Number(coords[0] || 0);
-          const lat = Number(coords[1] || 0);
-          const house = String(p.housenumber || '').trim();
-          const street = String(p.street || p.name || '').trim();
-          const city = String(p.city || p.town || p.village || p.hamlet || '').trim();
-          const state = String(p.state || '').trim();
-          const zip = String(p.postcode || '').match(/\d{5}/)?.[0] || '';
-          const display = mapToDisplay(house, street, city, state, zip, String(p.name || '').trim());
-          return { display, zip, lat, lng: lon, house, street, city, state };
-        })
-        .filter((s: ParsedSuggestion) => s.display && Number.isFinite(s.lat) && Number.isFinite(s.lng));
-    } catch {
-      return [];
-    }
-  }
-
-  async function fetchNominatimSuggestions(rawQuery: string, biasLat?: number, biasLon?: number, limit = 12): Promise<ParsedSuggestion[]> {
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5200);
-      const params = new URLSearchParams({
-        q: rawQuery,
-        format: 'json',
-        addressdetails: '1',
-        limit: String(limit),
-        countrycodes: 'us',
-      });
-
-      if (biasLat && biasLon) {
-        const latDelta = 0.7;
-        const lonDelta = 1.0;
-        params.set('viewbox', `${biasLon - lonDelta},${biasLat + latDelta},${biasLon + lonDelta},${biasLat - latDelta}`);
-        params.set('bounded', '1');
-      }
-
-      const r = await fetch(`https://nominatim.openstreetmap.org/search?${params.toString()}`, {
-        headers: { 'User-Agent': 'Internet-4-ALL/1.0' },
-        signal: controller.signal,
-      });
-      clearTimeout(timeoutId);
-      if (!r.ok) return [];
-      const rows = await r.json();
-
-      return (rows as any[])
-        .map((x: any) => {
-          const addr = x.address || {};
-          const house = String(addr.house_number || '').trim();
-          const street = String(addr.road || addr.pedestrian || addr.footway || addr.path || addr.cycleway || '').trim();
-          const city = String(addr.city || addr.town || addr.village || addr.hamlet || addr.county || '').trim();
-          const state = String(addr.state || addr.region || '').trim();
-          const zip = String(addr.postcode || '').match(/\d{5}/)?.[0] || '';
-          const fallbackDisplay = String(x.display_name || '').split(',').slice(0, 4).join(', ').trim();
-          const display = mapToDisplay(house, street, city, state, zip, fallbackDisplay);
-          return {
-            display,
-            zip,
-            lat: Number(x.lat || 0),
-            lng: Number(x.lon || 0),
-            house,
-            street,
-            city,
-            state,
-          };
-        })
-        .filter((s: ParsedSuggestion) => s.display && Number.isFinite(s.lat) && Number.isFinite(s.lng));
+      return ((data.features || []) as any[]).map((f: any) => {
+        const s = parseMbFeature(f);
+        return { ...s, isLocal: Boolean(biasLat && biasLon) };
+      }).filter((s: SuggestionItem) => s.display && s.zip && s.house);
     } catch {
       return [];
     }
@@ -816,162 +614,16 @@ const clientProviders = allProviders.map(p => ({
   function renderSuggestionItems(items: SuggestionItem[]): string {
     return items
       .map((s, i) => {
-        const meta = [s.city, s.state, s.zip].filter(Boolean).join(', ');
-        const badgeClass = s.isLocal ? 'sg-badge sg-badge-local' : 'sg-badge sg-badge-national';
-        const badgeText = s.isLocal ? 'Local' : 'US';
+        const addr = s.house && s.street ? `${s.house} ${s.street}` : s.display;
+        const loc  = [s.city, s.state, s.zip].filter(Boolean).join(', ');
         return `<li data-i="${i}">
-          <div class="sg-row">
-            <div class="sg-main">${escHtml(s.display)}</div>
-            <span class="${badgeClass}">${badgeText}</span>
+          <div class="sg-item">
+            <span class="sg-addr">${escHtml(addr)}</span>
+            ${loc ? `<span class="sg-loc">${escHtml(loc)}</span>` : ''}
           </div>
-          ${meta ? `<div class="sg-meta">${escHtml(meta)}</div>` : ''}
         </li>`;
       })
       .join('');
-  }
-
-  // Photon + Nominatim with adaptive ranking:
-  // local exact matches first, nationwide fallback only when local runs out.
-  async function fetchSuggestions(q: string, biasLat?: number, biasLon?: number): Promise<SuggestionItem[]> {
-    const raw = q.trim();
-    if (raw.length < 2) return [];
-
-    const numericMatch = raw.match(/^(\d{1,6})(?:\s+(.+))?$/);
-    const numericPrefix = numericMatch ? numericMatch[1] : '';
-    const streetHint = numericMatch ? String(numericMatch[2] || '').trim() : '';
-    const hasNumericPrefix = Boolean(numericMatch);
-    const isNumberOnly = hasNumericPrefix && !streetHint;
-
-    // Number-only (e.g. "1494", "2722"): geocoders cannot prefix-search by house number.
-    // Every result gets filtered. Return empty and show street-name guidance instead.
-    if (isNumberOnly) return [];
-
-    const biasCityNorm = normText(_biasCity);
-    const biasStateNorm = normText(_biasState);
-    const hasLocalContext = Boolean((biasLat && biasLon) || biasCityNorm || biasStateNorm);
-    const streetTokens = tokenize(streetHint);
-    const queryTokens = tokenize(raw).filter((t) => t.length >= 2);
-
-    // Always use the raw query for both APIs. Photon uses lat/lon bias for locality;
-    // Nominatim uses bounded viewbox. Appending city/state to the query string confuses
-    // Photon — it returns nearby landmarks with wrong house numbers instead of matching
-    // the house number prefix. The bounded viewbox alone constrains Nominatim correctly.
-    const localQuery = raw;
-
-    const rankPool = (pool: ParsedSuggestion[], localOnly: boolean): SuggestionItem[] => {
-      const ranked = pool
-        .map((s) => {
-          const haystack = normText(`${s.house} ${s.street} ${s.city} ${s.state} ${s.zip} ${s.display}`);
-          const local = isLocalCandidate(s, biasCityNorm, biasStateNorm, biasLat, biasLon);
-
-          if (localOnly && hasLocalContext && !local) return null;
-
-          let score = 0;
-          if (hasNumericPrefix) {
-            const houseDigits = leadingDigits(s.house);
-            if (!houseDigits || !houseDigits.startsWith(numericPrefix)) return null;
-            if (streetTokens.length && !streetHintMatches(s.street || s.display, streetTokens)) return null;
-
-            if (houseDigits === numericPrefix) score += 900;
-            else score += 700;
-
-            if (streetTokens.length) {
-              const streetNorm = normText(s.street || s.display);
-              const words = streetNorm.split(' ').filter(Boolean);
-              if (words.some((w) => w.startsWith(streetTokens[0]))) score += 170;
-              score += streetTokens.length * 65;
-            }
-
-            if (s.house) score += 50;
-          } else {
-            let tokenHits = 0;
-            for (const token of queryTokens) {
-              if (haystack.includes(token)) tokenHits += 1;
-            }
-            if (queryTokens.length && tokenHits === 0) return null;
-            score += tokenHits * 65;
-            if (queryTokens.length && tokenHits === queryTokens.length) score += 95;
-          }
-
-          if (local) score += 260;
-          if (biasCityNorm && normText(s.city) === biasCityNorm) score += 110;
-          if (biasStateNorm && stateMatches(s.state, biasStateNorm)) score += 50;
-          if (biasLat && biasLon) {
-            const d = distanceMiles(biasLat, biasLon, s.lat, s.lng);
-            score += Math.max(0, 140 - d * 2.2);
-          }
-          if (s.zip) score += 8;
-
-          return { ...s, isLocal: local, score };
-        })
-        .filter((s): s is SuggestionItem & { score: number } => Boolean(s))
-        .sort((a, b) => b.score - a.score);
-
-      const out: SuggestionItem[] = [];
-      const seen = new Set<string>();
-      for (const s of ranked) {
-        const key = `${leadingDigits(s.house)}|${normText(s.street)}|${normText(s.city)}|${normText(s.state)}|${s.zip}`;
-        if (seen.has(key)) continue;
-        seen.add(key);
-        out.push({
-          display: s.display,
-          zip: s.zip,
-          lat: s.lat,
-          lng: s.lng,
-          house: s.house,
-          street: s.street,
-          city: s.city,
-          state: s.state,
-          isLocal: s.isLocal,
-        });
-        if (out.length >= 8) break;
-      }
-      return out;
-    };
-
-    // For numeric+street queries, fetch Photon and Nominatim LOCAL in parallel.
-    // Test data shows Nominatim LOCAL bounded is the most reliable source for
-    // house-number address queries (returns e.g. "1494 Main Street, Cincinnati"
-    // while Photon LOCAL with the same query returns nearby POIs with wrong numbers).
-    let localPool: ParsedSuggestion[];
-    if (hasNumericPrefix && biasLat && biasLon) {
-      const [localPhoton, localNominatim] = await Promise.all([
-        fetchPhotonSuggestions(localQuery, biasLat, biasLon, 20),
-        fetchNominatimSuggestions(localQuery, biasLat, biasLon, 15),
-      ]);
-      localPool = dedupeParsed([...localNominatim, ...localPhoton]);
-    } else {
-      const localPhoton = await fetchPhotonSuggestions(localQuery, biasLat, biasLon, 14);
-      localPool = [...localPhoton];
-      if (localPool.length < 5) {
-        const localNominatim = await fetchNominatimSuggestions(localQuery, biasLat, biasLon, 10);
-        localPool = dedupeParsed([...localPool, ...localNominatim]);
-      }
-    }
-
-    const localRanked = rankPool(localPool, true);
-    if (localRanked.length >= 6) return localRanked.slice(0, 6);
-
-    const nationalPhoton = await fetchPhotonSuggestions(raw, undefined, undefined, hasNumericPrefix ? 36 : 16);
-    let nationalPool = [...nationalPhoton];
-    if (hasNumericPrefix || nationalPool.length < 4) {
-      const nationalNominatim = await fetchNominatimSuggestions(raw, undefined, undefined, hasNumericPrefix ? 24 : 12);
-      nationalPool = dedupeParsed([...nationalPool, ...nationalNominatim]);
-    }
-
-    const nationalRanked = rankPool(nationalPool, false);
-
-    const combined: SuggestionItem[] = [];
-    const seenCombined = new Set<string>();
-    for (const s of [...localRanked, ...nationalRanked]) {
-      const key = `${leadingDigits(s.house)}|${normText(s.street)}|${normText(s.city)}|${normText(s.state)}|${s.zip}`;
-      if (seenCombined.has(key)) continue;
-      seenCombined.add(key);
-      combined.push(s);
-      if (combined.length >= 6) break;
-    }
-
-    return combined;
   }
 
   // ===== API =====
@@ -1109,9 +761,24 @@ const clientProviders = allProviders.map(p => ({
     </div>`;
   }
 
-  function renderResults(providers: EnrichedP[], container: HTMLElement, location: string): void {
-    let html = `<div class="ps-header">
-      <h3>${providers.length} Provider${providers.length!==1?'s':''} in ${location}</h3>
+  function renderResults(providers: EnrichedP[], container: HTMLElement, location: string, isAddress = false): void {
+    const addressBanner = isAddress
+      ? `<div class="ps-addr-banner" id="ps-addr-banner">
+          <div class="ps-addr-banner-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="ps-addr-banner-content">
+            <div class="ps-addr-banner-eyebrow">Showing internet providers for</div>
+            <div class="ps-addr-banner-addr">${escHtml(location)}</div>
+            <div class="ps-addr-banner-meta">
+              <span class="ps-addr-banner-verified">&#10003; Address verified</span>
+              <span class="ps-addr-banner-fcc">FCC Broadband Data</span>
+            </div>
+          </div>
+        </div>`
+      : '';
+    let html = addressBanner + `<div class="ps-header">
+      <h3>${providers.length} Provider${providers.length!==1?'s':''} ${isAddress ? 'at This Address' : 'in ' + escHtml(location)}</h3>
       <span class="ps-badge ps-badge-live">&#10003; VERIFIED — FCC Data</span>
     </div>`;
     html += providers.map((p,i) => renderRow(p, i+1)).join('');
@@ -1122,6 +789,13 @@ const clientProviders = allProviders.map(p => ({
       <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-xs);">Takes less than 2 minutes · No commitment required</div>
     </div>`;
     container.innerHTML = html;
+    // Scroll the address banner into view after results render
+    if (isAddress) {
+      requestAnimationFrame(() => {
+        const banner = document.getElementById('ps-addr-banner');
+        if (banner) banner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
   }
 
   function renderError(container: HTMLElement): void {
@@ -1142,13 +816,13 @@ const clientProviders = allProviders.map(p => ({
   }
 
   // ===== MAIN =====
-  async function runSearch(lat: number, lng: number, location: string, locals: LocalP[], container: HTMLElement): Promise<void> {
+  async function runSearch(lat: number, lng: number, location: string, locals: LocalP[], container: HTMLElement, isAddress = false): Promise<void> {
     renderLoading(container, location);
     try {
       const raw = await fetchProviders(lat, lng);
       const enriched = matchAndEnrich(raw, locals);
       if (enriched.length > 0) {
-        renderResults(enriched, container, location);
+        renderResults(enriched, container, location, isAddress);
         // Hide static fallback
         const fallback = document.getElementById('static-providers');
         if (fallback) fallback.style.display = 'none';
@@ -1230,16 +904,18 @@ const clientProviders = allProviders.map(p => ({
         });
     }
 
-    // Auto-search (ZIP pages)
+    // Auto-search (ZIP pages and address deep-links)
     if (auto) {
       const lat = parseFloat(latStr);
       const lng = parseFloat(lngStr);
-      const loc = zip ? `ZIP ${zip}` : `${city}, ${st}`;
+      const addrLabel = (el as HTMLElement).dataset.addrLabel || '';
+      const loc = addrLabel || (zip ? `ZIP ${zip}` : `${city}, ${st}`);
+      const isAddrSearch = !!addrLabel;
       if (!isNaN(lat) && !isNaN(lng)) {
-        runSearch(lat, lng, loc, locals, container);
+        runSearch(lat, lng, loc, locals, container, isAddrSearch);
       } else if (zip) {
         geocodeZip(zip).then(geo => {
-          if (geo) runSearch(geo.lat, geo.lng, loc, locals, container);
+          if (geo) runSearch(geo.lat, geo.lng, loc, locals, container, false);
           else renderError(container);
         });
       }
@@ -1263,8 +939,15 @@ const clientProviders = allProviders.map(p => ({
         } else {
           geocodeAddr(q).then(geo => {
             if (geo) {
-              const loc = geo.display.split(',').slice(0,3).join(',');
-              runSearch(geo.lat, geo.lng, loc, locals, container);
+              const isFullAddr = !!(geo.house && geo.street);
+              if (isFullAddr && zip && geo.zip && geo.zip !== zip) {
+                // Address is in a different ZIP — route to check-availability
+                if (typeof window.showPageLoader === 'function') window.showPageLoader('Finding providers at your address\u2026');
+                window.location.href = `/check-availability?lat=${geo.lat}&lng=${geo.lng}&addr=${encodeURIComponent(geo.display)}`;
+              } else {
+                const loc = geo.display.split(',').slice(0,3).join(',');
+                runSearch(geo.lat, geo.lng, loc, locals, container, isFullAddr);
+              }
             } else {
               container.innerHTML = `<p style="color:#ff4444;padding:var(--space-md) 0;font-size:var(--text-sm);">Couldn't find that address. Try entering your 5-digit ZIP code, or use chat for help.</p>`;
             }
@@ -1290,31 +973,38 @@ const clientProviders = allProviders.map(p => ({
       function showSugs(items: typeof acItems) {
         acItems = items; acIdx = -1;
         if (!items.length) {
-          if (/^\d+\s*$/.test(input.value.trim())) {
-            suggestEl.innerHTML = `<li class="sg-empty"><div class="sg-main">Add the street name — for example: <strong>2722 Burnet Ave</strong></div></li>`;
-            suggestEl.style.display = 'block';
-            return;
-          }
-          suggestEl.style.display='none';
+          suggestEl.classList.remove('open');
           return;
         }
         suggestEl.innerHTML = renderSuggestionItems(items);
-        suggestEl.style.display = 'block';
+        suggestEl.classList.add('open');
       }
-      function closeSugs() { suggestEl.style.display='none'; acItems=[]; acIdx=-1; }
+      function closeSugs() { suggestEl.classList.remove('open'); acItems=[]; acIdx=-1; }
       function selectSug(i: number) {
         const s = acItems[i]; if (!s) return;
         input.value = s.display;
         closeSugs();
-        // If we have a ZIP code, navigate to the ZIP page for best experience
+        const isFullAddress = !!(s.house && s.street);
+        // page ZIP comes from init() closure — used to detect cross-ZIP navigation
+        if (isFullAddress) {
+          if (!zip || !s.zip || s.zip === zip) {
+            // Same area — search in place at exact address coordinates
+            runSearch(s.lat, s.lng, s.display, locals, container, true);
+          } else {
+            // Different ZIP — route to check-availability as address-level landing page
+            if (typeof window.showPageLoader === 'function') window.showPageLoader('Finding providers at your address…');
+            window.location.href = `/check-availability?lat=${s.lat}&lng=${s.lng}&addr=${encodeURIComponent(s.display)}`;
+          }
+          return;
+        }
+        // ZIP-only suggestion → navigate to ZIP page
         if (s.zip && /^\d{5}$/.test(s.zip)) {
           if (typeof window.showPageLoader === 'function') window.showPageLoader('Finding providers in ' + s.zip + '…');
           window.location.href = `/internet-providers/zip/${s.zip}`;
           return;
         }
-        // Otherwise run a search in place
-        const loc = s.display;
-        runSearch(s.lat, s.lng, loc, locals, container);
+        // City / neighborhood → search in place
+        runSearch(s.lat, s.lng, s.display, locals, container, false);
       }
 
       input.addEventListener('input', () => {
@@ -1357,3 +1047,152 @@ const clientProviders = allProviders.map(p => ({
   else init();
 })();
 </script>
+
+<style is:global>
+  /* ── Autocomplete dropdown ── */
+  .ps-suggest {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: var(--surface, #fff);
+    border: 2px solid var(--brand-blue, #0052ff);
+    border-radius: var(--radius-md, 8px);
+    box-shadow: 0 8px 24px rgba(0, 82, 255, 0.15);
+    z-index: 1000;
+    max-height: 280px;
+    overflow-y: auto;
+    display: none;
+  }
+  .ps-suggest.open { display: block; }
+
+  .ps-suggest li {
+    cursor: pointer;
+    border-bottom: 1px solid var(--border, #e5e7eb);
+  }
+  .ps-suggest li:last-child { border-bottom: none; }
+
+  .ps-suggest li:hover,
+  .ps-suggest li.active {
+    background: rgba(0, 82, 255, 0.07);
+  }
+
+  .sg-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 14px;
+  }
+
+  .sg-addr {
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--text-primary, #111827);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sg-loc {
+    font-size: var(--text-xs, 0.75rem);
+    color: var(--text-tertiary, #9ca3af);
+  }
+
+  /* ── Address-level results banner ── */
+  .ps-addr-banner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, #001060 0%, #0036e0 55%, #0047c8 100%);
+    border-radius: var(--radius-lg, 12px);
+    margin-bottom: var(--space-xl, 24px);
+    scroll-margin-top: 88px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ps-addr-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+    pointer-events: none;
+  }
+
+  .ps-addr-banner-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .ps-addr-banner-content {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+  }
+
+  .ps-addr-banner-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 6px;
+  }
+
+  .ps-addr-banner-addr {
+    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    overflow-wrap: break-word;
+  }
+
+  .ps-addr-banner-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .ps-addr-banner-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.92);
+    background: rgba(0,213,132,0.25);
+    border: 1px solid rgba(0,213,132,0.45);
+    padding: 4px 12px;
+    border-radius: 9999px;
+  }
+
+  .ps-addr-banner-fcc {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.45);
+  }
+
+  @media (max-width: 640px) {
+    .ps-addr-banner {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 22px 20px;
+      gap: 14px;
+    }
+    .ps-addr-banner-addr { font-size: 1.1rem; }
+  }
+</style>

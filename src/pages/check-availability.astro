@@ -245,11 +245,6 @@ const schemas = [
     const latNum = parseFloat(lat);
     const lngNum = parseFloat(lng);
     if (!isNaN(latNum) && !isNaN(lngNum)) {
-      // Sanitize addr for safe HTML injection
-      const safeAddr = addr.replace(/[<>&"']/g, function(c) {
-        return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c] || c;
-      });
-
       // Update hero heading
       const h1 = document.querySelector('h1');
       if (h1) h1.innerHTML = 'Internet Providers at <span class="gradient-text">Your Address</span>';
@@ -258,19 +253,24 @@ const schemas = [
       const heading = document.getElementById('ca-ps-heading');
       if (heading) heading.style.display = 'none';
 
-      // Show the ProviderSearch section and trigger auto-search at exact coordinates
+      // Show the ProviderSearch section
       const wrap = document.getElementById('ca-ps-wrap');
       if (wrap) {
         wrap.style.display = '';
-        const psRoot = wrap.querySelector('#ps-root');
-        if (psRoot) {
-          psRoot.setAttribute('data-lat', String(latNum));
-          psRoot.setAttribute('data-lng', String(lngNum));
-          psRoot.setAttribute('data-addr-label', addr);
-          psRoot.setAttribute('data-auto', '1');
-        }
         setTimeout(function () { wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
       }
+
+      // Wait for psGeocode to be ready (ProviderSearch exposes it after init),
+      // then call runSearch directly to avoid the race condition with data attributes
+      function triggerAddrSearch() {
+        var ps = (window as any).psGeocode;
+        if (!ps || !ps.runSearch || !ps.container) {
+          setTimeout(triggerAddrSearch, 50);
+          return;
+        }
+        ps.runSearch(latNum, lngNum, addr, ps.locals, ps.container, true);
+      }
+      triggerAddrSearch();
       return;
     }
   }
@@ -292,17 +292,27 @@ const schemas = [
     (el as HTMLInputElement).value = zip;
   });
 
-  // Show the ProviderSearch section and point it at this ZIP
+  // Show the ProviderSearch section
   const wrap = document.getElementById('ca-ps-wrap');
   if (wrap) {
     wrap.style.display = '';
-    // Inject ZIP into the ProviderSearch root so it auto-searches
-    const psRoot = wrap.querySelector('#ps-root');
-    if (psRoot) {
-      psRoot.setAttribute('data-zip', zip);
-      psRoot.setAttribute('data-auto', '1');
-    }
     setTimeout(function () { wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
   }
+
+  // Wait for psGeocode to be ready, then geocode the ZIP and run the search
+  function triggerZipSearch() {
+    var ps = (window as any).psGeocode;
+    if (!ps || !ps.runSearch || !ps.geocodeZip || !ps.container) {
+      setTimeout(triggerZipSearch, 50);
+      return;
+    }
+    ps.geocodeZip(zip).then(function (geo: any) {
+      if (geo) {
+        var loc = 'ZIP ' + zip + (geo.city ? ' \u2014 ' + geo.city + ', ' + geo.state : '');
+        ps.runSearch(geo.lat, geo.lng, loc, ps.locals, ps.container, false);
+      }
+    });
+  }
+  triggerZipSearch();
 })();
 </script>

@@ -124,8 +124,6 @@ const typeProviders = allProviders
     return getMaxSpeed(b) - getMaxSpeed(a);
   });
 
-const year = new Date().getFullYear();
-
 const faqs = [
   { question: `What is ${td.h1.toLowerCase()}?`, answer: td.howItWorks },
   { question: `How fast is ${td.h1.toLowerCase()}?`, answer: `${td.h1} typically offers speeds ranging from ${td.speedRange}. Actual speeds depend on your provider, plan, and location. ${typeSlug === 'fiber' ? 'Fiber offers the fastest speeds available, with many providers offering symmetrical upload and download speeds.' : typeSlug === 'cable' ? 'Cable speeds are typically fast for downloads but slower for uploads due to the asymmetric nature of DOCSIS technology.' : typeSlug === 'satellite' ? 'Satellite speeds have improved dramatically with Starlink, but can be affected by weather and network congestion.' : 'Speeds vary by provider and your specific location.'}` },

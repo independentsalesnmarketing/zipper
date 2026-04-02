@@ -5,6 +5,7 @@ import StickyCallBar from '@components/StickyCallBar.astro';
 import { getPartnerProviders, formatSpeed, formatPrice } from '@lib/providers';
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 
+const year = new Date().getFullYear();
 const partners = getPartnerProviders().slice(0, 6);
 
 const faqs = [
@@ -18,8 +19,8 @@ const faqs = [
 ];
 ---
 <Base
-  title="Internet Disconnected? Get Home Internet Today"
-  description="Internet cut off? Find providers at your address with same-day setup. Affordable home internet options available now — get back online today, no long wait."
+  title={`Internet Disconnected? Get Reconnected Today (${year})`}
+  description="Lost internet service? Get reconnected today with no credit check options. Compare same-day 5G home internet and other providers available at your address now."
   schema={[
     generateBreadcrumbSchema([
       { name: 'Home', url: 'https://internet-4-all.com' },

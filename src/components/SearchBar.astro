@@ -2,35 +2,208 @@
 interface Props {
   placeholder?: string;
   size?: 'default' | 'large';
+  mode?: 'zip' | 'address';
 }
-const { placeholder = 'Enter your ZIP code', size = 'default' } = Astro.props;
+const { placeholder = 'Enter your ZIP code', size = 'default', mode = 'zip' } = Astro.props;
+const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || '';
 ---
-<form class="search-bar" style={size === 'large' ? 'max-width: 580px;' : ''}>
+<form class="search-bar" data-mode={mode} data-mapbox-token={mapboxToken} style={size === 'large' ? 'max-width: 580px;' : ''}>
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; color: var(--text-tertiary);"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-  <input
-    type="text"
-    name="zip"
-    inputmode="numeric"
-    pattern="[0-9]{5}"
-    maxlength="5"
-    placeholder={placeholder}
-    aria-label="ZIP code"
-    required
-    autocomplete="postal-code"
-  />
+  <div class="sb-input-wrap">
+    <input
+      type="text"
+      name={mode === 'address' ? 'address' : 'zip'}
+      inputmode={mode === 'address' ? 'text' : 'numeric'}
+      pattern={mode === 'address' ? undefined : '[0-9]{5}'}
+      maxlength={mode === 'address' ? undefined : '5'}
+      placeholder={placeholder}
+      aria-label={mode === 'address' ? 'Street address' : 'ZIP code'}
+      required
+      autocomplete={mode === 'address' ? 'street-address' : 'postal-code'}
+    />
+  </div>
   <button type="submit" class="btn btn-primary btn-lg" data-event="search-providers" data-event-category="cta" data-event-label="search-bar">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
     Search
   </button>
+  <ul class="sb-suggest" hidden></ul>
 </form>
 
 <script>
   document.querySelectorAll('.search-bar').forEach(form => {
+    const mode = form.getAttribute('data-mode') || 'zip';
+    const input = form.querySelector('input') as HTMLInputElement;
+    const suggest = form.querySelector('.sb-suggest') as HTMLUListElement | null;
+    const token = form.getAttribute('data-mapbox-token') || '';
+
+    let acTimer: ReturnType<typeof setTimeout> | null = null;
+    let acItems: Array<{ label: string; text: string; context: string; lat: number; lng: number }> = [];
+    let acIdx = -1;
+
+    function closeSuggestions() {
+      if (!suggest) return;
+      suggest.hidden = true;
+      suggest.innerHTML = '';
+      acItems = [];
+      acIdx = -1;
+    }
+
+    function highlightSuggestion() {
+      if (!suggest) return;
+      suggest.querySelectorAll('li').forEach((li, i) => {
+        if (i === acIdx) li.classList.add('active');
+        else li.classList.remove('active');
+      });
+    }
+
+    function showSuggestions(items: Array<{ label: string; text: string; context: string; lat: number; lng: number }>) {
+      if (!suggest) return;
+      if (!items.length) {
+        closeSuggestions();
+        return;
+      }
+      acItems = items;
+      acIdx = -1;
+      suggest.innerHTML = items.map((item, i) =>
+        `<li data-i="${i}"><div class="sg-item"><span class="sg-addr" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.label}</span></div></li>`
+      ).join('');
+      suggest.hidden = false;
+    }
+
+    function navigateToAddress(addressLabel: string, lat?: number, lng?: number) {
+      if (typeof window.showPageLoader === 'function') {
+        window.showPageLoader('Finding providers at ' + addressLabel + '…');
+      }
+      if (typeof lat === 'number' && typeof lng === 'number') {
+        window.location.href = `/check-availability?lat=${encodeURIComponent(String(lat))}&lng=${encodeURIComponent(String(lng))}&addr=${encodeURIComponent(addressLabel)}`;
+      } else {
+        window.location.href = `/check-availability?addr=${encodeURIComponent(addressLabel)}`;
+      }
+    }
+
+    function selectSuggestion(i: number) {
+      const selected = acItems[i];
+      if (!selected) return;
+      input.value = selected.label;
+      closeSuggestions();
+      navigateToAddress(selected.label, selected.lat, selected.lng);
+    }
+
+    async function fetchSuggestions(query: string) {
+      // Don't fire on pure digits/spaces (house number being typed — no street yet)
+      if (!token || query.length < 3 || /^[\d\s]+$/.test(query)) {
+        closeSuggestions();
+        return;
+      }
+      const endpoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${encodeURIComponent(token)}&country=US&types=address,postcode,place,locality&autocomplete=true&limit=5`;
+      try {
+        const res = await fetch(endpoint);
+        const data = await res.json();
+        const items = (data?.features || [])
+          .map((f: any) => {
+            const [lng, lat] = f?.center || [];
+            if (typeof lat !== 'number' || typeof lng !== 'number') return null;
+            // Full display, strip trailing ", United States"
+            const label = (f?.place_name || query).replace(/, United States$/, '');
+            // House number + street name = full street address line
+            const house = String(f?.address || '').trim();
+            const street = String(f?.text || '').trim();
+            const text = house && street ? `${house} ${street}` : (street || label.split(',')[0]);
+            // Everything after the first comma = city, state ZIP
+            const commaIdx = label.indexOf(',');
+            const context = commaIdx > 0 ? label.slice(commaIdx + 2) : '';
+            return { label, text, context, lat, lng };
+          })
+          .filter(Boolean) as Array<{ label: string; text: string; context: string; lat: number; lng: number }>;
+        showSuggestions(items);
+      } catch {
+        closeSuggestions();
+      }
+    }
+
+    if (mode === 'address') {
+      input.addEventListener('input', () => {
+        const q = input.value.trim();
+        if (acTimer) clearTimeout(acTimer);
+        acTimer = setTimeout(() => {
+          fetchSuggestions(q);
+        }, 180);
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (!acItems.length) return;
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          acIdx = Math.min(acIdx + 1, acItems.length - 1);
+          highlightSuggestion();
+          return;
+        }
+        if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          acIdx = Math.max(acIdx - 1, 0);
+          highlightSuggestion();
+          return;
+        }
+        if (e.key === 'Escape') {
+          closeSuggestions();
+          return;
+        }
+        if (e.key === 'Enter' && acIdx >= 0) {
+          e.preventDefault();
+          selectSuggestion(acIdx);
+        }
+      });
+
+      suggest?.addEventListener('mousedown', (e) => {
+        const li = (e.target as HTMLElement).closest('li');
+        if (!li) return;
+        e.preventDefault();
+        const i = Number(li.getAttribute('data-i'));
+        if (!Number.isNaN(i)) selectSuggestion(i);
+      });
+
+      input.addEventListener('blur', () => {
+        setTimeout(closeSuggestions, 120);
+      });
+    }
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       // If a page-specific handler already claimed this form, do nothing
       if ((form as HTMLElement).hasAttribute('data-handled')) return;
-      const input = form.querySelector('input[name="zip"]') as HTMLInputElement;
+
+      if (mode === 'address') {
+        if (acIdx >= 0 && acItems[acIdx]) {
+          selectSuggestion(acIdx);
+          return;
+        }
+
+        const address = input?.value?.trim();
+        if (!address || address.length < 5) return;
+
+        if (!token) {
+          window.location.href = `/check-availability?addr=${encodeURIComponent(address)}`;
+          return;
+        }
+
+        const endpoint = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=${encodeURIComponent(token)}&country=US&types=address,postcode&autocomplete=true&limit=1`;
+        fetch(endpoint)
+          .then(res => res.json())
+          .then(data => {
+            const f = data?.features?.[0];
+            const center = f?.center;
+            const lng = Array.isArray(center) ? center[0] : null;
+            const lat = Array.isArray(center) ? center[1] : null;
+            const label = f?.place_name || address;
+
+            navigateToAddress(label, lat, lng);
+          })
+          .catch(() => {
+            window.location.href = `/check-availability?addr=${encodeURIComponent(address)}`;
+          });
+        return;
+      }
+
       const zip = input?.value?.trim();
       if (zip && /^[0-9]{5}$/.test(zip)) {
         if (typeof window.showPageLoader === 'function') window.showPageLoader('Finding providers in ' + zip + '…');
@@ -50,3 +223,83 @@ const { placeholder = 'Enter your ZIP code', size = 'default' } = Astro.props;
     });
   });
 </script>
+
+<style>
+  /* Static template elements — scoped is fine */
+  .search-bar[data-mode='address'] {
+    overflow: visible;
+    z-index: 5000;
+  }
+
+  .sb-input-wrap {
+    flex: 1 1 auto;
+    min-width: 180px;
+  }
+
+  .sb-input-wrap > input {
+    width: 100%;
+  }
+</style>
+
+<!-- Dropdown styles must be global: li/.sg-main/.sg-meta are injected via innerHTML
+     and don't receive Astro's scoped data-cid attribute. Same pattern as ProviderSearch. -->
+<style is:global>
+  /* Positioned relative to .search-bar form (which has position:relative in global.css) */
+  .sb-suggest {
+    text-align: left;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    margin: 0;
+    padding: 6px 0;
+    list-style: none;
+    background: var(--white, #fff);
+    border: 1px solid color-mix(in srgb, var(--brand-blue, #0052ff) 35%, #ffffff);
+    border-radius: var(--radius-md, 8px);
+    box-shadow: 0 16px 40px rgba(10,23,55,0.18);
+    max-height: 280px;
+    overflow-y: auto;
+  }
+
+  .sb-suggest li {
+    padding: 0;
+    cursor: pointer;
+    border-bottom: 1px solid color-mix(in srgb, var(--border, #e5e7eb) 85%, #ffffff);
+    transition: background 0.12s ease, transform 0.12s ease;
+  }
+
+  .sb-suggest li:last-child {
+    border-bottom: none;
+  }
+
+  .sb-suggest li:hover,
+  .sb-suggest li.active {
+    background: color-mix(in srgb, var(--brand-blue, #0052ff) 8%, #ffffff);
+    transform: translateX(1px);
+  }
+
+  .sb-suggest .sg-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 14px;
+  }
+
+  .sb-suggest .sg-addr {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary, #111827);
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sb-suggest .sg-loc {
+    font-size: 0.78rem;
+    color: var(--text-tertiary, #9ca3af);
+    line-height: 1.3;
+  }
+</style>

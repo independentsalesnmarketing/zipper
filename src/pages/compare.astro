@@ -17,8 +17,8 @@ const faqs = [
 ];
 ---
 <Base
-  title="Compare Internet Providers Near Me — Plans & Prices"
-  description="Compare every internet provider near you side by side — speed, price, contracts, and availability. Find the best ISP for your address with one search."
+  title={`Compare Internet Providers Side-by-Side (${year})`}
+  description="Side-by-side internet comparison: fiber vs cable, 5G vs satellite. Compare speeds, prices, data caps & contracts from 25+ providers. Find your best ISP."
   schema={[generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet-4-all.com' }, { name: 'Compare', url: 'https://internet-4-all.com/compare' }]), generateFAQSchema(faqs)]}
 >
   <section class="section" style="padding-top: var(--space-xl);">
@@ -26,7 +26,7 @@ const faqs = [
       <Breadcrumb items={breadcrumbs} />
 
       <div class="text-center reveal" style="margin-bottom: var(--space-2xl);">
-        <h1>Compare Internet Providers <span class="gradient-text">Side-by-Side</span></h1>
+        <h1>Compare Internet <span class="gradient-text">Plans & Prices</span></h1>
         <p class="hero-subtitle" style="max-width:550px;margin-inline:auto;">All the details you need to make the right choice — in one clear table.</p>
       </div>
 

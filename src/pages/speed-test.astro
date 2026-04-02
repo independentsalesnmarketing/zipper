@@ -4,6 +4,8 @@ import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import { generateBreadcrumbSchema, generateFAQSchema, generateHowToSchema } from '@lib/utils';
 
+const year = new Date().getFullYear();
+
 const speedTestFaqs = [
   {
     question: 'How accurate is this internet speed test?',
@@ -78,8 +80,8 @@ const webAppSchema = {
 const monthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 ---
 <Base
-  title="Internet Speed Test — Check Your WiFi Speed"
-  description="Run a free internet speed test. Check download, upload, and wifi speed instantly. Slow? Find faster internet providers available at your address right now."
+  title="Free Internet Speed Test — Check Speed, Ping & Jitter"
+  description="Test your download speed, upload speed, ping & jitter in seconds. See if your ISP delivers what you pay for — then compare faster plans at your address."
   schema={[
     generateBreadcrumbSchema([{ name: 'Home', url: 'https://internet-4-all.com' }, { name: 'Speed Test', url: 'https://internet-4-all.com/speed-test' }]),
     generateFAQSchema(speedTestFaqs),

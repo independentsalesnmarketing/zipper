@@ -18,9 +18,13 @@ interface Props {
   lat?: number;
   lng?: number;
   autoSearch?: boolean;
+  inputPlaceholder?: string;
 }
 
-const { cityName, state, stateName, zip, lat, lng, autoSearch = false } = Astro.props;
+const { cityName, state, stateName, zip, lat, lng, autoSearch = false, inputPlaceholder } = Astro.props;
+
+const defaultPlaceholder = autoSearch ? 'Refine - enter exact address' : `Enter ZIP code or address in ${cityName}`;
+const placeholderText = inputPlaceholder || defaultPlaceholder;
 
 const clientProviders = allProviders.map(p => ({
   id: p.id,
@@ -55,10 +59,10 @@ const clientProviders = allProviders.map(p => ({
         <input
           id="ps-input"
           type="text"
-          placeholder={autoSearch ? `Refine — enter exact address` : `Enter ZIP code or address in ${cityName}`}
+          placeholder={placeholderText}
           autocomplete="off"
           spellcheck="false"
-          aria-label={autoSearch ? 'Refine your address' : `Enter your ZIP code or address in ${cityName}`}
+          aria-label={placeholderText}
         />
         <ul id="ps-suggest" class="ps-suggest"></ul>
       </div>

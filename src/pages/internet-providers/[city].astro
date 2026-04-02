@@ -270,7 +270,7 @@ const meta = buildCityMeta(`/internet-providers/${cityData.slug}`, cityData.name
           <span class="city-pill">Updated {lastUpdatedDisplay}</span>
         </div>
         <h1 class="city-hero-title">
-          Best Internet Providers in <span class="gradient-text">{cityData.name}, {stateName}</span>
+          {meta.h1Prefix} <span class="gradient-text">{cityData.name}, {stateName}</span>
         </h1>
         <p class="city-hero-brief">
           {cityData.name} is a {popBracket} of {popStr} residents in {stateName} with a {competitionLevel} internet market.

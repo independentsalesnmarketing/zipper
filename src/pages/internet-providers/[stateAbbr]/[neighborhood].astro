@@ -397,7 +397,7 @@ const meta = buildNeighborhoodMeta(`/internet-providers/${nhData.st.toLowerCase(
           <span class="nh-pill">Updated {lastUpdatedDisplay}</span>
         </div>
         <h1 class="nh-hero-title">
-          Internet Providers in <span class="gradient-text">{nhData.n}, {stateName}</span>
+          {meta.h1Prefix} <span class="gradient-text">{nhData.n}, {stateName}</span>
         </h1>
         <p class="nh-hero-brief">
           {locationDesc}{popDesc}. {techSummary} Plans start at <strong>{formatPrice(minPrc)}/mo</strong> with speeds up to <strong>{formatSpeed(maxSpd)}</strong>.

@@ -47,8 +47,8 @@ const schemas = [
 ];
 ---
 <Base
-  title="Best Internet Provider in My Area — Top ISPs Ranked"
-  description="Find the best internet provider in your area. Top-rated home internet providers ranked by speed, reliability, and price. Search by ZIP to check availability."
+  title={`Best Internet Providers of ${year} — Ranked by Speed & Price`}
+  description="The best internet providers ranked by speed, price & reliability. Compare 25+ ISPs, find who's #1 in your area, and see top home internet picks for 2026."
   schema={schemas}
 >
   <section class="section" style="padding-top: var(--space-xl);">
@@ -59,7 +59,7 @@ const schemas = [
       <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
         <div class="badge badge-blue" style="margin-bottom: var(--space-md);">Updated {month} {year}</div>
         <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
-          Best <span class="gradient-text">Internet Providers</span> of {year}
+          Best <span class="gradient-text">Internet Providers</span> Ranked {year}
         </h1>
         <p class="hero-subtitle" style="max-width: 680px; margin-inline: auto;">
           We analyzed {rankedProviders.length} internet providers across speed, price, reliability, coverage, and customer satisfaction.

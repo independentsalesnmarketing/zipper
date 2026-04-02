@@ -371,7 +371,7 @@ const meta = buildZipMeta(`/internet-providers/zip/${zipData.zip}`, zipData.zip,
           <span class="zip-pill">Updated {lastUpdatedDisplay}</span>
         </div>
         <h1 id="hero-title" class="zip-hero-title">
-          Internet Providers in <span class="gradient-text" id="hero-location">{zipData.zip}</span> — <span id="hero-city">{zipData.city}, {stateName}</span>
+          {meta.h1Prefix} <span class="gradient-text" id="hero-location">{zipData.zip}</span> — <span id="hero-city">{zipData.city}, {stateName}</span>
         </h1>
         {neighborhoods.length > 0 && (
           <p id="hero-neighborhoods" class="zip-hero-nhs">

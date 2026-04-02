@@ -7,12 +7,14 @@ import { getAllProviders, getPartnerProviders, getProvidersByType, formatSpeed, 
 import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
 
+const year = new Date().getFullYear();
+
 const typeData: Record<string, { title: string; slug: string; h1: string; description: string; intro: string; howItWorks: string; speedRange: string; priceRange: string; bestFor: string; icon: string }> = {
   fiber: {
-    title: 'Fiber Internet Near Me — Fiber Optic Providers & High Speed Plans',
+    title: `Fiber Internet Plans & Providers (${year})`,
     slug: 'fiber',
-    h1: 'Fiber Internet',
-    description: 'Find fiber optic internet providers and plans near you. Explore fiber high speed internet options — the fastest low-latency connection available. Compare fiber internet plans, pricing, and availability at your address.',
+    h1: 'Fiber Internet Plans & Providers',
+    description: 'Compare fiber optic internet from AT&T, Google Fiber, Frontier, Ziply & Fidium. Plans from $30/mo, speeds to 8 Gbps. Check fiber availability at your address.',
     intro: `Fiber optic internet delivers data using light signals through ultra-thin glass strands, achieving the fastest speeds available to consumers — up to 8 Gbps symmetrical. With virtually zero latency and no signal degradation over distance, fiber is the gold standard for internet connectivity in ${new Date().getFullYear()}.`,
     howItWorks: 'Fiber optic cables transmit data as pulses of light through thin glass or plastic fibers. Unlike copper-based connections (cable, DSL), light signals don\'t degrade over distance, don\'t suffer from electromagnetic interference, and can carry far more data simultaneously. There are three delivery methods: FTTH (Fiber to the Home) brings fiber directly to your residence for maximum speed; FTTC (Fiber to the Curb) uses fiber to a nearby junction box then copper for the last stretch; and FTTN (Fiber to the Node) brings fiber to a neighborhood node.',
     speedRange: '100 Mbps – 8 Gbps',
@@ -21,10 +23,10 @@ const typeData: Record<string, { title: string; slug: string; h1: string; descri
     icon: '⚡',
   },
   cable: {
-    title: 'Cable Internet Providers Near Me — Plans & Prices in My Area',
+    title: `Cable Internet Plans & Providers (${year})`,
     slug: 'cable',
-    h1: 'Cable Internet',
-    description: 'Compare cable internet providers and plans near you. Cable & internet bundles, high speeds up to 2 Gbps — find every cable internet provider available at your address right now.',
+    h1: 'Cable Internet Plans & Providers',
+    description: 'Compare cable internet from Xfinity, Spectrum, Cox & Optimum. Plans from $25/mo, speeds up to 2 Gbps. No contract available. Check cable availability at your address.',
     intro: 'Cable internet uses the same coaxial cable network that delivers cable TV to provide high-speed internet access. It\'s the most widely available broadband technology in the US, reaching over 88% of households. With speeds up to 1.2 Gbps download, cable offers an excellent balance of speed, reliability, and availability.',
     howItWorks: 'Cable internet transmits data over coaxial cables using DOCSIS (Data Over Cable Service Interface Specification) technology. The latest standard, DOCSIS 3.1, supports speeds up to 10 Gbps downstream and 1 Gbps upstream. Data travels from your ISP\'s head-end facility through neighborhood nodes to your home\'s coaxial connection, where a cable modem converts the signal for your router. Because cable is a shared medium, speeds can fluctuate during peak usage times in your neighborhood.',
     speedRange: '25 Mbps – 1.2 Gbps',
@@ -33,10 +35,10 @@ const typeData: Record<string, { title: string; slug: string; h1: string; descri
     icon: '📡',
   },
   dsl: {
-    title: 'DSL Internet Providers',
+    title: `DSL Internet Plans & Providers (${year})`,
     slug: 'dsl',
-    h1: 'DSL Internet',
-    description: 'Compare DSL internet providers and plans. Affordable internet using existing phone lines. Available in areas without cable or fiber.',
+    h1: 'DSL Internet Plans & Providers',
+    description: 'Compare DSL internet providers and plans near you. Affordable high-speed internet using existing phone lines — available in areas without cable or fiber.',
     intro: 'DSL (Digital Subscriber Line) delivers internet through existing copper telephone lines. While not as fast as fiber or cable, DSL reaches rural and underserved areas where other broadband options don\'t exist. It\'s a reliable, affordable option for basic to moderate internet use.',
     howItWorks: 'DSL uses the higher frequency bands of telephone copper wiring to transmit data while the lower bands carry voice calls — allowing internet and phone service simultaneously. ADSL (Asymmetric DSL) provides faster downloads than uploads, while VDSL (Very-high-bit-rate DSL) uses shorter copper runs from street-level cabinets for higher speeds. Speed depends heavily on your distance from the DSLAM (the provider\'s equipment): closer means faster. Typical range is within 3 miles for good speeds.',
     speedRange: '1 Mbps – 100 Mbps',
@@ -45,10 +47,10 @@ const typeData: Record<string, { title: string; slug: string; h1: string; descri
     icon: '📞',
   },
   satellite: {
-    title: 'Satellite Internet Plans — Rural Internet Providers',
+    title: `Satellite Internet Providers (${year})`,
     slug: 'satellite',
-    h1: 'Satellite Internet',
-    description: 'Find satellite internet plans for your address. High speed rural internet options including Starlink, Viasat & HughesNet. Compare rural internet providers, speeds, pricing, and nationwide availability — where cable and fiber don\'t reach.',
+    h1: 'Satellite Internet Providers',
+    description: 'Compare Starlink, HughesNet & Viasat satellite internet. Plans, speeds & rural coverage. Available everywhere in the US — check plans at your address.',
     intro: 'Satellite internet beams your connection from space, making it available virtually anywhere in the US — including remote rural areas where no ground-based infrastructure exists. With Starlink\'s low-earth orbit constellation dramatically improving speeds and latency, satellite internet has evolved from a last resort into a competitive broadband option.',
     howItWorks: 'Traditional satellite internet (Viasat, HughesNet) uses geostationary satellites orbiting 22,236 miles above Earth. Your dish sends signals to the satellite, which relays them to ground stations connected to the internet backbone. This high altitude creates ~600ms round-trip latency. Starlink uses low-earth orbit (LEO) satellites at just 340 miles altitude, with thousands of satellites forming a mesh network. LEO dramatically reduces latency to 20-50ms and enables much higher speeds, approaching ground-based broadband performance.',
     speedRange: '25 Mbps – 500 Mbps',
@@ -57,10 +59,10 @@ const typeData: Record<string, { title: string; slug: string; h1: string; descri
     icon: '🛰️',
   },
   '5g': {
-    title: '5G Home Internet Plans — T-Mobile, Verizon & Wireless Providers Near Me',
+    title: `5G Home Internet Plans & Providers (${year})`,
     slug: '5g',
-    h1: '5G Home Internet',
-    description: 'Compare 5G home internet plans near you — including T-Mobile Home Internet plans, Verizon 5G Home Internet, and AT\'T Air. No contracts, no cables — see wireless home internet availability at your address.',
+    h1: '5G Home Internet Plans & Providers',
+    description: 'Compare 5G home internet from T-Mobile, Verizon & AT&T. Fixed wireless, no contract, unlimited data. Plans from $25/mo — check 5G availability at your address.',
     intro: '5G home internet uses cellular tower signals to deliver broadband to your home without any wires, cables, or professional installation. Simply plug in a 5G gateway device, and you\'re online. With T-Mobile and Verizon leading the space, 5G home internet offers a compelling cable alternative with competitive speeds and no contracts.',
     howItWorks: '5G home internet works like a giant WiFi hotspot connected to the nearest 5G cell tower. Your provider sends a small indoor gateway device that receives the 5G signal and creates a WiFi network in your home. There are two types: 5G UC/UW (Ultra Capacity/Ultra Wideband) uses mmWave and mid-band spectrum for speeds up to 1+ Gbps; 5G (extended range) uses low-band spectrum for wider coverage at lower speeds. No installation appointment needed — it\'s literally plug-and-play.',
     speedRange: '50 Mbps – 1 Gbps',
@@ -69,10 +71,10 @@ const typeData: Record<string, { title: string; slug: string; h1: string; descri
     icon: '📱',
   },
   'fixed-wireless': {
-    title: 'Fixed Wireless Internet Providers',
+    title: `Fixed Wireless Internet Providers (${year})`,
     slug: 'fixed-wireless',
-    h1: 'Fixed Wireless Internet',
-    description: 'Compare fixed wireless internet providers. A wireless alternative for rural and suburban areas. No cables needed — just line of sight to a tower.',
+    h1: 'Fixed Wireless Internet Providers',
+    description: 'Compare fixed wireless internet providers near you. A faster wireless alternative for rural and suburban areas. No cables needed — check availability at your address.',
     intro: 'Fixed wireless internet delivers broadband via radio signals from a nearby tower to an antenna on your home. It serves as a crucial bridge technology in areas where fiber and cable infrastructure hasn\'t been built. With speeds improving rapidly and more providers entering the market, fixed wireless is becoming a legitimate broadband option for millions of Americans.',
     howItWorks: 'A fixed wireless provider installs a small antenna or receiver on your roof or exterior wall. This antenna communicates with the nearest wireless tower (usually within 10 miles) via radio waves. The signal is then routed to an indoor unit or router that provides WiFi throughout your home. Line of sight to the tower is important — trees, buildings, and terrain can affect signal quality. Newer technologies like CBRS and millimeter wave are improving speeds and reliability.',
     speedRange: '10 Mbps – 500 Mbps',

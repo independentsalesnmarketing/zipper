@@ -46,8 +46,8 @@ const schemas = [
 ];
 ---
 <Base
-  title="Cable & Internet Bundle Plans — TV + Internet Deals"
-  description="Find cable and internet bundle plans near you. TV and internet packages, cable TV deals, and the best bundle pricing from local providers — save when you bundle."
+  title={`Cable & Internet Bundle Plans — TV + Internet Deals (${year})`}
+  description="Find cable and internet bundle plans near you. TV and internet packages, cable TV deals, and bundle pricing from local providers — save $20+/mo when you bundle."
   schema={schemas}
 >
   <section class="section" style="padding-top: var(--space-xl);">
@@ -58,7 +58,7 @@ const schemas = [
       <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
         <div class="badge badge-blue" style="margin-bottom: var(--space-md);">Updated {month} {year}</div>
         <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
-          Cable & Internet <span class="gradient-text">Plans & Bundle Deals</span>
+          Cable & Internet <span class="gradient-text">Bundle Deals</span>
         </h1>
         <p class="hero-subtitle" style="max-width: 680px; margin-inline: auto;">
           Save up to $30/mo by bundling internet and TV with the same cable or fiber provider. Compare {bundleDeals.length} top <strong>cable and internet plans</strong> from major providers.

@@ -52,8 +52,8 @@ const schemas = [
 ];
 ---
 <Base
-  title="Check Internet Availability — Providers at Your Address"
-  description="Enter your address and see every internet provider available. Fiber, cable, 5G, and high speed options — one search, all local providers, no runaround."
+  title={`Check Internet Availability by Address (${year})`}
+  description="Enter your address and see every internet provider available. Fiber, cable, 5G & satellite — one search shows all local providers, speeds, and real pricing."
   schema={schemas}
 >
   <StickyCallBar text="Check internet at your address — get instant results" />
@@ -63,18 +63,18 @@ const schemas = [
       <Breadcrumb items={[{ name: 'Check Availability' }]} />
 
       <!-- Hero -->
-      <div class="text-center reveal" style="margin-bottom: var(--space-3xl);">
+      <div class="text-center reveal" style="margin-bottom: var(--space-3xl); position: relative; z-index: 2;">
         <div class="badge badge-blue" style="margin-bottom: var(--space-md);">🔍 Powered by FCC Broadband Data</div>
         <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
-          Check Internet <span class="gradient-text">Availability</span> at Your Address
+          Check Internet <span class="gradient-text">at Your Address</span>
         </h1>
         <p class="hero-subtitle" style="max-width: 700px; margin-inline: auto;">
           Find every internet provider, plan, and price available where you live. Our free tool searches every major provider
           using real FCC broadband data — updated {month} {year}.
         </p>
 
-        <div style="max-width: 580px; margin: var(--space-xl) auto 0;">
-          <SearchBar size="large" placeholder="Enter ZIP code to check availability" />
+        <div style="max-width: 580px; margin: var(--space-xl) auto 0; position: relative; z-index: 2100;">
+          <SearchBar size="large" mode="address" placeholder="Enter your full address" />
           <p style="font-size: var(--text-xs); color: var(--text-tertiary); margin-top: var(--space-sm);">
             No signup required • Works for any US address • Results in 10 seconds
           </p>

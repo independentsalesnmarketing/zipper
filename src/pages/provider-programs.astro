@@ -6,6 +6,8 @@ import { generateBreadcrumbSchema, generateFAQSchema } from '@lib/utils';
 
 const year = new Date().getFullYear();
 
+return Astro.redirect('/low-income-internet', 301);
+
 const faqs = [
   { q: 'What is the Lifeline program?', a: 'Lifeline is a permanent FCC program that provides $9.25 per month off qualifying internet or phone service for low-income households. You qualify if your household income is at or below 135% of the Federal Poverty Guidelines, or if you receive SNAP, Medicaid, SSI, Federal Public Housing Assistance, or Veterans Pension/Survivors Benefit. Apply at lifelinesupport.org.' },
   { q: 'Is the Affordable Connectivity Program (ACP) still available?', a: 'No. ACP funding ended in May 2024 and the program has been discontinued. However, Lifeline ($9.25/mo) is still active and permanent. Additionally, many providers run their own low-income programs that fill part of the gap left by ACP.' },
@@ -18,7 +20,7 @@ const faqs = [
 ---
 <Base
   title={`Internet Assistance Programs (${year}) — Lifeline & More`}
-  description={`Low-income internet programs in ${year}: Lifeline ($9.25/mo off), Spectrum Assist ($19.99/mo), Xfinity Essentials ($9.95/mo), AT&T Access ($30/mo). Find programs at your address.`}
+  description={`Low-income internet programs in ${year}: Lifeline ($9.25/mo off), Spectrum Assist ($17.99/mo), Xfinity Essentials ($9.95/mo), AT&T Access ($30/mo). Find programs at your address.`}
   schema={[
     generateBreadcrumbSchema([
       { name: 'Home', url: 'https://internet-4-all.com' },

@@ -242,7 +242,7 @@ const meta = buildStateMeta(`/internet-providers/${stateData.slug}`, stateData.n
       <span style="font-size:var(--text-xs);color:var(--text-tertiary);">Updated {lastUpdatedDisplay}</span>
     </div>
     <h1 style="font-size:var(--text-4xl);margin-bottom:var(--space-md);">
-      Best Internet Providers in <span class="gradient-text">{stateData.name}</span> ({year})
+      {meta.h1Prefix} <span class="gradient-text">{stateData.name}</span> ({year})
     </h1>
     {census ? (
       <p style="font-size:var(--text-lg);color:var(--text-secondary);max-width:750px;line-height:1.7;">
@@ -935,7 +935,7 @@ const meta = buildStateMeta(`/internet-providers/${stateData.slug}`, stateData.n
     <p style="color:var(--text-secondary);font-size:var(--text-sm);margin-bottom:var(--space-lg);">
       Explore internet options in {stateData.name}'s largest cities. Each city page shows local providers, speeds, and pricing.
     </p>
-    <div class="grid grid-4 gap-md">
+    <div class="grid grid-4 gap-md" style="margin-bottom:var(--space-lg);">
       {cities.slice(0, 12).map(city => (
         <a href={`/internet-providers/${city.slug}`} style="text-decoration:none;">
           <div class="card hover-lift" style="padding:var(--space-lg);text-align:center;">
@@ -947,8 +947,17 @@ const meta = buildStateMeta(`/internet-providers/${stateData.slug}`, stateData.n
       ))}
     </div>
     {cities.length > 12 && (
-      <div style="text-align:center;margin-top:var(--space-lg);">
-        <a href="/internet-providers" class="btn btn-secondary">Browse All Cities in {stateData.name} →</a>
+      <div style="border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-lg);background:var(--surface-secondary);">
+        <p style="font-size:var(--text-sm);font-weight:600;color:var(--text-secondary);margin-bottom:var(--space-md);">
+          All {cities.length} Cities in {stateData.name}
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-xs);">
+          {cities.slice(12).map(city => (
+            <a href={`/internet-providers/${city.slug}`} style="font-size:var(--text-sm);color:var(--brand-blue);padding:3px 8px;border-radius:var(--radius-sm);background:var(--surface-primary);border:1px solid var(--border);text-decoration:none;white-space:nowrap;">
+              {city.name}
+            </a>
+          ))}
+        </div>
       </div>
     )}
   </div>

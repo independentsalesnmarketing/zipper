@@ -104,7 +104,7 @@ If you've been with your provider for 2+ years, contact support and ask for a lo
 | Spectrum | Internet Assist | $17.99/mo | 30 Mbps |
 | Optimum | Advantage Internet | $14.99/mo | 30 Mbps |
 | AT&T | Access | $30/mo | 100 Mbps |
-| Windstream | Internet First | $9.95/mo | 25 Mbps |
+| Kinetic | Internet First | $9.95/mo | 25 Mbps |
 
 These programs are available to qualifying low-income households receiving SNAP, Medicaid, SSI, or similar benefits.
 

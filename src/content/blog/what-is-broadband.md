@@ -62,7 +62,7 @@ Fixed wireless uses cell towers to deliver internet without wires. The biggest b
 
 DSL uses copper telephone lines to deliver internet. It's the oldest broadband technology still in use and is being phased out by most providers in favor of fiber. Speed depends heavily on your distance from the provider's equipment.
 
-**DSL providers**: AT&T, Windstream, Frontier (legacy), Brightspeed (legacy)
+**DSL providers**: AT&T, Kinetic, Frontier (legacy), Brightspeed (legacy)
 
 ### Satellite
 | Feature | Details |

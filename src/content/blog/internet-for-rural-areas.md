@@ -39,14 +39,14 @@ Here's what's actually available for rural homes and how each option compares.
 
 Frontier is actively expanding fiber into smaller towns and rural corridors. If Frontier Fiber has reached your address, it's hands-down the best option — true fiber speeds at a price that matches urban competitors.
 
-### 3. Windstream Kinetic — Rural Fiber Specialist
+### 3. Kinetic — Rural Fiber Specialist
 | Feature | Details |
 |---------|---------|
 | Price | $39.99/mo |
 | Speed | 200 Mbps – 1 Gbps (fiber) / 25-100 Mbps (DSL) |
 | Data Cap | None (fiber) |
 
-Windstream specifically targets rural markets that other fiber ISPs skip. Their Kinetic fiber service is available in parts of 18 states, often in communities with no other high-speed option. If Kinetic fiber is available, jump on it.
+Kinetic specifically targets rural markets that other fiber ISPs skip. Its fiber service is available in parts of 18 states, often in communities with no other high-speed option. If Kinetic fiber is available, jump on it.
 
 ### 4. Starlink — Best Satellite Option
 | Feature | Details |
@@ -95,7 +95,7 @@ DSL is still the only option for some rural addresses. If you're stuck with DSL:
 - **It's being phased out** — Most providers are deploying fiber or shutting down DSL lines, not investing in them
 - **Check for alternatives first** — Before accepting DSL, see if T-Mobile 5G Home or Starlink covers your address
 
-If DSL is truly your only option, Windstream Kinetic and Brightspeed sometimes offer reasonable DSL in rural areas. But treat it as a bridge until fiber or 5G reaches you.
+If DSL is truly your only option, Kinetic and Brightspeed sometimes offer reasonable DSL in rural areas. But treat it as a bridge until fiber or 5G reaches you.
 
 ## How to Check Rural Availability
 
@@ -103,7 +103,7 @@ Rural broadband is improving rapidly. Providers are adding coverage monthly. Her
 
 1. **Use our [availability checker](/check-availability)** — Enter your address to see all options
 2. **Check T-Mobile's coverage map** — Even if it wasn't available 6 months ago, it might be now
-3. **Ask about fiber buildout timelines** — Call Frontier, Windstream, or Brightspeed to ask when fiber is expected in your area
+3. **Ask about fiber buildout timelines** — Call Frontier, Kinetic, or Brightspeed to ask when fiber is expected in your area
 4. **Check for local fixed wireless ISPs** — Many small WISPs serve rural communities
 5. **Consider Starlink as a bridge** — Use Starlink while waiting for ground-based broadband to arrive
 

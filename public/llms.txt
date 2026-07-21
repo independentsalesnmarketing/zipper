@@ -65,7 +65,7 @@ Summary: In-depth guides on internet topics including fiber vs cable, best gamin
 - T-Mobile Home Internet: https://internet-4-all.com/provider/tmobile-5g — 5G Wireless, up to 245 Mbps, starting $50/mo
 - Starlink: https://internet-4-all.com/provider/starlink — Satellite, up to 200 Mbps, starting $120/mo
 - Google Fiber: https://internet-4-all.com/provider/google-fiber — Fiber, 1–8 Gbps, starting $70/mo
-- Kinetic by Windstream: https://internet-4-all.com/provider/kinetic — Fiber/DSL, up to 2000 Mbps, starting $30/mo
+- Kinetic: https://internet-4-all.com/provider/kinetic — Fiber/DSL, up to 2000 Mbps, starting $30/mo
 - Brightspeed: https://internet-4-all.com/provider/brightspeed — Fiber/DSL, up to 2000 Mbps, starting $49/mo
 - EarthLink: https://internet-4-all.com/provider/earthlink — Fiber/DSL, up to 5000 Mbps, starting $49.95/mo
 

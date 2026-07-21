@@ -26,7 +26,7 @@ You don't need to spend $80/mo for fast internet. Several major providers offer 
 | 7 | EarthLink | $49.99/mo | 300 Mbps | Fiber/Cable |
 | 8 | Brightspeed | $49/mo | 200 Mbps | Fiber/DSL |
 | 9 | AltaFiber | $39.99/mo | 250 Mbps | Fiber |
-| 10 | Windstream Kinetic | $39.99/mo | 200 Mbps | Fiber/DSL |
+| 10 | Kinetic | $39.99/mo | 200 Mbps | Fiber/DSL |
 
 ## 1. [T-Mobile 5G Home Internet](/provider/tmobile-5g) — Best Overall Value
 
@@ -116,13 +116,13 @@ AltaFiber (formerly Cincinnati Bell) offers fiber internet starting at just $39.
 
 [Check AltaFiber availability →](/check-availability)
 
-## 10. [Windstream Kinetic](/provider/kinetic) — Rural Fiber Option
+## 10. [Kinetic](/provider/kinetic) — Rural Fiber Option
 
 **$39.99/mo** | 200 Mbps | Fiber/DSL, no contract
 
-Windstream's Kinetic brand delivers fiber internet to many rural and underserved areas that other providers skip. Starting at $39.99 for 200 Mbps, it's a lifeline for rural communities.
+Kinetic delivers fiber internet to many rural and underserved areas that other providers skip. Starting at $39.99 for 200 Mbps, it's a lifeline for rural communities.
 
-[Check Windstream availability →](/check-availability)
+[Check Kinetic availability →](/check-availability)
 
 ## How to Save Even More on Internet
 

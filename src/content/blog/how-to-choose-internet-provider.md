@@ -121,7 +121,7 @@ Before signing up, verify:
 | Easiest setup | [T-Mobile Home Internet](/provider/tmobile-5g) | Plug in and go |
 | Best value (speed/dollar) | [Frontier Fiber](/provider/frontier) | 500 Mbps for $49.99 |
 | Privacy focus | [EarthLink](/provider/earthlink) | Doesn't sell your data |
-| Rural coverage | [T-Mobile](/provider/tmobile-5g) or Windstream | Best rural reach |
+| Rural coverage | [T-Mobile](/provider/tmobile-5g) or Kinetic | Best rural reach |
 
 ## Red Flags to Avoid
 

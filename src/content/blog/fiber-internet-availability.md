@@ -73,14 +73,14 @@ Brightspeed acquired CenturyLink's consumer operations and is building fiber spe
 
 A regional powerhouse offering some of the most affordable fiber pricing in the country.
 
-### Windstream Kinetic
+### Kinetic
 | Coverage | 18 states |
 |----------|---------------------|
 | Speeds | 200 Mbps – 1 Gbps |
 | Price | Starting at $39.99/mo |
 | Expansion | Targeting rural and small-town markets |
 
-Windstream focuses fiber deployment on rural communities — areas where residents have been waiting years for broadband alternatives.
+Kinetic focuses fiber deployment on rural communities — areas where residents have been waiting years for broadband alternatives.
 
 ### EarthLink
 | Coverage | Uses partner networks (AT&T, Frontier, etc.) |

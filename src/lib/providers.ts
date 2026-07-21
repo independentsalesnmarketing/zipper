@@ -31,6 +31,7 @@ export interface Provider {
   promo?: string;
   reviewSource?: string;
   reviewUrl?: string;
+  callForPricing?: boolean;
 }
 
 export const providers: Provider[] = data.providers as Provider[];
@@ -100,6 +101,20 @@ export function getSpeedUnit(speed: number): string {
 
 export function formatPrice(price: number): string {
   return '$' + price.toFixed(2);
+}
+
+// Some providers advertise "Call for current offer!" instead of a fixed
+// starting rate. Use this label wherever a provider's headline price is shown.
+export const CALL_FOR_PRICING_LABEL = 'Call for current offer!';
+
+export function isCallForPricing(provider: Provider): boolean {
+  return provider.callForPricing === true;
+}
+
+// Headline price label for a provider, e.g. "$29.99/mo" or the call-for-offer text.
+export function getPriceLabel(provider: Provider): string {
+  if (isCallForPricing(provider)) return CALL_FOR_PRICING_LABEL;
+  return formatPrice(getMinPrice(provider)) + '/mo';
 }
 
 export function getTypeLabel(type: string): string {

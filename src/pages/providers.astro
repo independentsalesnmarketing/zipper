@@ -872,7 +872,7 @@ const zip3ToState = {
       // Call BroadbandMap API
       let apiProviders = [];
       try {
-        const resp = await fetchWithTimeout(`https://broadbandmap.com/api/v1/location/internet?lat=${geo.lat}&lng=${geo.lng}`, 10000);
+        const resp = await fetchWithTimeout(`/api/broadband?lat=${geo.lat}&lng=${geo.lng}`, 10000);
         if (resp.ok) {
           const data = await resp.json();
           apiProviders = normalizeApiResponse(data);

@@ -635,7 +635,7 @@ const clientProviders = allProviders.map(p => ({
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000);
-      const r = await fetch(`https://broadbandmap.com/api/v1/location/internet?lat=${lat}&lng=${lng}`,{signal:controller.signal});
+      const r = await fetch(`/api/broadband?lat=${lat}&lng=${lng}`,{signal:controller.signal});
       clearTimeout(timeoutId);
       if (r.status===429) throw new Error('RATE_LIMITED');
       if (!r.ok) throw new Error('HTTP_'+r.status);

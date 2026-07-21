@@ -4,7 +4,7 @@ import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import CoverageMap from '@components/CoverageMap.astro';
 import { existsSync, readFileSync } from 'node:fs';
-import { getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor, renderStars, stateNames } from '@lib/providers';
+import { getAllProviders, formatSpeed, formatPrice, getMinPrice, getMaxSpeed, getMaxUpload, getTypeLabel, getTypeColor, renderStars, stateNames, isCallForPricing } from '@lib/providers';
 import { getCityPages, getStateSlug } from '@data/locations';
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema, generateSpeakableSchema, generateFactCheckSchema } from '@lib/utils';
 import type { Provider } from '@lib/providers';
@@ -23,6 +23,7 @@ const { provider } = Astro.props;
 const minPrice = getMinPrice(provider);
 const maxSpeed = getMaxSpeed(provider);
 const maxUpload = getMaxUpload(provider);
+const callForPricing = isCallForPricing(provider);
 const year = new Date().getFullYear();
 
 const keywordFileBySlug: Record<string, string> = {
@@ -632,7 +633,7 @@ const schemas = [
             <div class="stat-label">Max Upload</div>
           </div>
           <div class="stat-item">
-            <div class="stat-value brand-stat-value">{formatPrice(minPrice)}</div>
+            <div class="stat-value brand-stat-value" style={callForPricing ? 'font-size:var(--text-lg);' : ''}>{callForPricing ? 'Call for current offer!' : formatPrice(minPrice)}</div>
             <div class="stat-label">Starting Price</div>
           </div>
           <div class="stat-item">

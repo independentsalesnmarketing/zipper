@@ -39,3 +39,6 @@ test-*.mjs
 .cache/
 .parcel-cache/
 .vite/
+
+# Local Netlify folder
+.netlify

@@ -1,6 +1,6 @@
 ---
 import type { Provider } from '@lib/providers';
-import { formatPrice, formatSpeed, getMinPrice, getMaxSpeed, getSpeedValue, getSpeedUnit, getTypeLabel } from '@lib/providers';
+import { formatPrice, formatSpeed, getMinPrice, getMaxSpeed, getSpeedValue, getSpeedUnit, getTypeLabel, isCallForPricing } from '@lib/providers';
 
 interface Props {
   provider: Provider;
@@ -13,6 +13,7 @@ interface Props {
 const { provider, rank, badge, showPlans = false, coverageStatus } = Astro.props;
 const minPrice = getMinPrice(provider);
 const maxSpeed = getMaxSpeed(provider);
+const callForPricing = isCallForPricing(provider);
 
 const badgeLabels: Record<string, string> = {
   'best-overall': 'Best Overall',
@@ -76,7 +77,9 @@ const badgeLabels: Record<string, string> = {
     <div class="pc-metric">
       <div class="pc-metric-label">Plans Starting At</div>
       <div class="pc-metric-value">
-        <strong>{formatPrice(minPrice)}</strong><span class="pc-metric-unit">/mo</span>
+        {callForPricing
+          ? <strong style="font-size:var(--text-base);">Call for current offer!</strong>
+          : <><strong>{formatPrice(minPrice)}</strong><span class="pc-metric-unit">/mo</span></>}
       </div>
     </div>
     <div class="pc-metric">

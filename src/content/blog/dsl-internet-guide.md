@@ -40,7 +40,7 @@ Most DSL service today uses VDSL or VDSL2 technology, marketed as "high-speed in
 | Provider | Max DSL Speed | Price | Markets |
 |----------|-------------|-------|---------|
 | AT&T Internet | 100 Mbps | $55/mo | 21 states |
-| Windstream Kinetic | 100 Mbps | $39.99/mo | 18 states |
+| Kinetic | 100 Mbps | $39.99/mo | 18 states |
 | Brightspeed | 100 Mbps | $49/mo | 20 states |
 | Frontier | 115 Mbps | $37.99/mo | Limited areas |
 | CenturyLink | 100 Mbps | $50/mo | Select areas |

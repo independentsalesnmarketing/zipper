@@ -64,15 +64,15 @@ AT&T Access offers higher speeds than most low-income programs, especially where
 
 The lowest-priced option from any major ISP, available in NY, NJ, and CT.
 
-### Windstream Kinetic Internet First
+### Kinetic Internet First
 | Detail | Info |
 |--------|------|
 | Price | **$9.95/mo** |
 | Speed | 25 Mbps |
 | Eligibility | SNAP, Medicaid, SSI, WIC |
-| How to Apply | windstream.com or Windstream online support |
+| How to Apply | Kinetic online support |
 
-At $9.95/mo, this is the cheapest broadband program in the country. Available in 18 states across Windstream's service area.
+At $9.95/mo, this is the cheapest broadband program in the country. Available in 18 states across Kinetic's service area.
 
 ### Frontier Fundamental Internet
 | Detail | Info |
@@ -99,7 +99,7 @@ Check your state's public utility commission or broadband office website for loc
 
 ## Eligibility at a Glance
 
-| Qualifying Benefit | [Spectrum](/provider/spectrum) | [AT&T](/provider/att-fiber) | [Optimum](/provider/optimum) | Windstream | Lifeline |
+| Qualifying Benefit | [Spectrum](/provider/spectrum) | [AT&T](/provider/att-fiber) | [Optimum](/provider/optimum) | Kinetic | Lifeline |
 |-------------------|---------|------|---------|------------|---------|
 | SNAP | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Medicaid | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -158,7 +158,7 @@ Most programs re-verify eligibility annually. If you no longer qualify, you'll b
 Programs offering 30 Mbps support HD streaming on 1-2 devices, video calls, and web browsing. For larger families or heavier use, AT&T Access (100 Mbps at $30/mo) is the most capable option.
 
 ### Can I get these programs in rural areas?
-Yes. Windstream and Frontier serve many rural areas with low-income programs. Lifeline is available everywhere.
+Yes. Kinetic and Frontier serve many rural areas with low-income programs. Lifeline is available everywhere.
 
 ## Find Affordable Internet at Your Address
 

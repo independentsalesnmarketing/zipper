@@ -70,7 +70,7 @@ The most budget-friendly approach: one internet plan, split evenly.
 ### Provider Programs
 - **Spectrum Internet Assist**: $17.99/mo for 30 Mbps — available to students receiving Pell Grants
 - **AT&T Access**: $30/mo for 100 Mbps — available to Pell Grant recipients
-- **Windstream Internet First**: $9.95/mo for 25 Mbps — qualifying students
+- **Kinetic Internet First**: $9.95/mo for 25 Mbps — qualifying students
 
 ### Government Programs
 - **Federal Lifeline**: $9.25/mo discount for qualifying households

@@ -28,7 +28,7 @@ If you receive government assistance (Medicaid, SNAP, SSI, WIC, free school lunc
 | [Optimum](/provider/optimum) | Advantage Internet | **$14.99/mo** | 30 Mbps |
 | [AT&T](/provider/att-fiber) | Access | **$30/mo** | 100 Mbps |
 | [Frontier](/provider/frontier) | Lifeline Discount | **Varies** | Varies |
-| Windstream | Kinetic Internet First | **$9.95/mo** | 25 Mbps |
+| Kinetic | Internet First | **$9.95/mo** | 25 Mbps |
 
 ### How to Apply
 1. Check if you receive qualifying benefits (SNAP, Medicaid, SSI, WIC, free school lunch)
@@ -47,7 +47,7 @@ If you don't qualify for assistance programs, here are the cheapest standard pla
 |----------|------|-------|-------|-------|
 | Optimum | Internet 300 | $40/mo | 300 Mbps | Northeast only |
 | AltaFiber | Basic | $39.99/mo | 250 Mbps | OH/KY/IN only |
-| Windstream | Kinetic 200 | $39.99/mo | 200 Mbps | Limited areas |
+| Kinetic | Kinetic 200 | $39.99/mo | 200 Mbps | Limited areas |
 | Spectrum | Internet | $49.99/mo | 300 Mbps | 41 states |
 | Frontier Fiber | Fiber 500 | $49.99/mo | 500 Mbps | Limited |
 | T-Mobile | Home Internet | $50/mo | 72-245 Mbps | Cellular coverage |

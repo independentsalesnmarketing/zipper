@@ -220,7 +220,7 @@
     },
     {
       "id": "kinetic",
-      "name": "Kinetic by Windstream",
+      "name": "Kinetic",
       "slug": "kinetic",
       "logo": "/kinetic-logo.png",
       "types": ["fiber","dsl"],
@@ -229,7 +229,7 @@
       "reviewSource": "PCMag Editors' Rating",
       "reviewUrl": "https://www.pcmag.com/reviews/kinetic-by-windstream",
       "isPartner": true,
-      "description": "Kinetic by Windstream offers fiber internet with speeds up to 2 Gbps, no contracts, and free installation for fiber upgrades. Save $20/mo by bundling with AT&T Wireless. Kinetic specializes in bringing high-speed fiber to rural and suburban communities across 18 states.",
+      "description": "Kinetic offers fiber internet with speeds up to 2 Gbps, no contracts, and free installation for fiber upgrades. Save $20/mo by bundling with AT&T Wireless. Kinetic specializes in bringing high-speed fiber to rural and suburban communities across 18 states.",
       "pros": ["$20/mo off with AT&T Wireless bundle", "No contracts", "Free installation for fiber upgrades", "Speeds up to 2 Gbps", "No data caps on fiber", "Available in rural areas"],
       "cons": ["Fiber still expanding to new areas", "DSL speeds vary by distance from node"],
       "coverage": ["AR","GA","KY","NE","NM","NY","NC","OH","OK","PA","SC","TX","FL","IA","MN","AL","MS","WV"],

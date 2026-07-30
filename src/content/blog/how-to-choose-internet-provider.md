@@ -116,7 +116,7 @@ Before signing up, verify:
 |--------------|---------|-----|
 | Lowest price | [Optimum](/provider/optimum) ($40) or [T-Mobile](/provider/tmobile-5g) ($50) | Best starting prices |
 | Fastest speeds | [AT&T Fiber](/provider/att-fiber) or [Frontier Fiber](/provider/frontier) | Up to 5 Gbps |
-| Best no-install setup | [Verizon 5G Home](/provider/verizon) | Plug in and stream — 4-yr price lock |
+| Best no-install setup | Verizon 5G Home | Plug in and stream — 4-yr price lock |
 | Widest availability | [Spectrum](/provider/spectrum) | 41 states |
 | Easiest setup | [T-Mobile Home Internet](/provider/tmobile-5g) | Plug in and go |
 | Best value (speed/dollar) | [Frontier Fiber](/provider/frontier) | 500 Mbps for $49.99 |

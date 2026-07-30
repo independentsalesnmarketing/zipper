@@ -56,7 +56,7 @@ When you're on a Zoom call with your camera on while uploading a file to Google 
 Based on our analysis of upload speeds, reliability, and latency:
 
 1. **[AT&T Fiber](/provider/att-fiber)** — Symmetrical speeds up to 5 Gbps, no data caps
-2. **[Verizon 5G Home Internet](/provider/verizon)** — Nationwide self-install, 4-year price lock, up to 100 Mbps upload on Plus plan
+2. **Verizon 5G Home Internet** — Nationwide self-install, 4-year price lock, up to 100 Mbps upload on Plus plan
 3. **[Frontier Fiber](/provider/frontier)** — Affordable fiber with great upload speeds
 4. **[Spectrum](/provider/spectrum)** — Widely available cable with 35 Mbps upload on higher tiers
 5. **[T-Mobile 5G Home](/provider/tmobile-5g)** — Good option where fiber isn't available

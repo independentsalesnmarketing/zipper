@@ -37,7 +37,6 @@ const keywordFileBySlug: Record<string, string> = {
   earthlink: 'EarthlinkKeywords.txt',
   optimum: 'OptimumKeywords.txt',
   'tmobile-fiber': 'T-FiberKeywords.txt',
-  verizon: 'Verizon5GKeywords.txt',
   xfinity: 'XfinityKeywords.txt',
   cox: 'CoxKeywords.txt',
   starlink: 'StarlinkKeywords.txt',
@@ -64,7 +63,6 @@ const brandTokensBySlug: Record<string, string[]> = {
   earthlink: ['earthlink'],
   optimum: ['optimum', 'altice'],
   'tmobile-fiber': ['t mobile', 'tmobile'],
-  verizon: ['verizon', '5g home internet', 'verizon 5g', 'verizon home internet'],
   xfinity: ['xfinity', 'comcast', 'xfi'],
   cox: ['cox', 'cox communications'],
   starlink: ['starlink', 'spacex'],
@@ -185,7 +183,6 @@ const researchHeadingBySlug: Record<string, string> = {
   'wow': 'WOW! (WideOpenWest)',
   'mediacom': 'Mediacom',
   'att-fiber': 'AT&T Fiber',
-  'verizon': 'Verizon 5G Home Internet',
   'frontier': 'Frontier Fiber',
   'google-fiber': 'Google Fiber (GFiber)',
   'ziply': 'Ziply Fiber',
@@ -269,7 +266,6 @@ const topCityLinks = topCities.map((entry) => {
 // Brand colors for each provider
 const brandColors: Record<string, { primary: string; light: string; dark: string }> = {
   'spectrum': { primary: '#0052FF', light: '#e6eeff', dark: '#003bba' },
-  'verizon': { primary: '#CD040B', light: '#fce8e9', dark: '#9b0308' },
   'att-fiber': { primary: '#009FDB', light: '#e0f4fc', dark: '#007bad' },
   'frontier': { primary: '#FF0037', light: '#ffe6ec', dark: '#cc002c' },
   'att-air': { primary: '#009FDB', light: '#e0f4fc', dark: '#007bad' },
@@ -687,6 +683,9 @@ const schemas = [
               <div class="plan-name">{plan.name}</div>
               <div class="plan-speed">{formatSpeed(plan.speed)}</div>
               <div class="plan-speed-unit">download · {formatSpeed(plan.uploadSpeed)} upload</div>
+              {plan.pricePrefix && (
+                <div style="font-size: var(--text-xs); color: var(--text-tertiary); margin-top: var(--space-sm);">{plan.pricePrefix}</div>
+              )}
               <div class="plan-price">
                 {formatPrice(plan.promoPrice)} <span>/mo</span>
               </div>

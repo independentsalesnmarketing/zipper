@@ -14,7 +14,7 @@ tags: ["verizon", "5g", "spectrum", "provider comparison", "fixed wireless vs ca
 
 ## Plans & Pricing Side-by-Side
 
-| Plan | [Verizon 5G Home](/provider/verizon) | [Spectrum](/provider/spectrum) |
+| Plan | Verizon 5G Home | [Spectrum](/provider/spectrum) |
 |------|-------------|---------|
 | Entry | $50/mo (5G Home, ~300 Mbps) | $49.99/mo (300 Mbps) |
 | Mid | $70/mo (5G Home Plus, ~1 Gbps) | $69.99/mo (500 Mbps) |

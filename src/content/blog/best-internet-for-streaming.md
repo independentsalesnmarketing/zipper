@@ -42,7 +42,7 @@ Here's the honest answer that ISPs don't want you to hear: **you don't need giga
 - No data caps (important for heavy streamers)
 - Symmetrical speed means your uploads don't compete with streams
 
-### 2. [Verizon 5G Home Internet](/provider/verizon) — Best Nationwide No-Install Option
+### 2. Verizon 5G Home Internet — Best Nationwide No-Install Option
 - **$50/mo** for up to 300 Mbps (no equipment fee)
 - No technician needed — self-install in 15 minutes
 - No data caps — stream 24/7 without limits

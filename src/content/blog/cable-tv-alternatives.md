@@ -123,7 +123,7 @@ Most cable-replacement streaming requires a **200-300 Mbps internet plan** for c
 | [Frontier Fiber](/provider/frontier) | 500/500 Mbps | $49.99/mo | None |
 | [Spectrum](/provider/spectrum) | 300 Mbps | $49.99/mo | None |
 | [T-Mobile](/provider/tmobile-5g) | 72-245 Mbps | $50/mo | None |
-| [Verizon 5G Home](/provider/verizon) | 100–300 Mbps | $50/mo | None |
+| Verizon 5G Home | 100–300 Mbps | $50/mo | None |
 
 ## Making the Switch
 

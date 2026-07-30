@@ -76,7 +76,7 @@ Spectrum's biggest advantage is reach — available in 41 states. The 300 Mbps p
 
 [Check Spectrum availability →](/check-availability)
 
-## 5. [Verizon 5G Home Internet](/provider/verizon) — Best Nationwide No-Install Deal
+## 5. Verizon 5G Home Internet — Best Nationwide No-Install Deal
 
 **$50/mo** | 100–1000 Mbps | Fixed Wireless, no contract
 

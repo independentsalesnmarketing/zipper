@@ -32,7 +32,7 @@ Here's how to navigate these challenges and get the best internet in your apartm
 
 **Why it's perfect for apartments**: No installation means no waiting for a technician, no drilling holes, and no wiring your landlord might complain about. When you move, unplug the gateway, take it to your new place, and plug it back in. T-Mobile's $50 price includes everything — no equipment fees, no hidden charges.
 
-### 2. [Verizon 5G Home Internet](/provider/verizon) — Best No-Wires Option
+### 2. Verizon 5G Home Internet — Best No-Wires Option
 | Feature | Details |
 |---------|----------|
 | Price | $50/mo |

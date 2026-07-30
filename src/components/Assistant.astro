@@ -73,9 +73,8 @@ const partners = getPartnerProviders().map((p) => ({
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
   const partners = JSON.parse(document.getElementById('ast-data').textContent);
 
-  const NATIONWIDE_SLUGS = ['att-air', 'earthlink', 'verizon'];
+  const NATIONWIDE_SLUGS = ['att-air', 'earthlink'];
   const NATIONAL_PRIORITY: Record<string, number> = {
-    verizon: 3,
     'att-air': 2,
     earthlink: 1,
   };

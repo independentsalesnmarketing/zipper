@@ -148,6 +148,7 @@ const badgeLabels: Record<string, string> = {
           )}
           <div class="pc-modal-plan-name">{plan.name}</div>
           <div class="pc-modal-plan-speed">{plan.speed >= 1000 ? (plan.speed / 1000).toFixed(plan.speed % 1000 === 0 ? 0 : 1) + ' Gbps' : plan.speed + ' Mbps'}</div>
+          {plan.pricePrefix && <div style="font-size:var(--text-xs);color:var(--text-tertiary);">{plan.pricePrefix}</div>}
           <div class="pc-modal-plan-price">
             {formatPrice(plan.promoPrice)}<span>/mo</span>
           </div>
@@ -177,6 +178,7 @@ const badgeLabels: Record<string, string> = {
         <div class="plan-name">{plan.name}</div>
         <div class="plan-speed">{plan.speed >= 1000 ? (plan.speed / 1000).toFixed(plan.speed % 1000 === 0 ? 0 : 1) + ' Gbps' : plan.speed + ' Mbps'}</div>
         <div class="plan-speed-unit">download speed</div>
+        {plan.pricePrefix && <div style="font-size:var(--text-xs);color:var(--text-tertiary);margin-top:var(--space-sm);">{plan.pricePrefix}</div>}
         <div class="plan-price">
           {formatPrice(plan.promoPrice)} <span>/mo</span>
         </div>

@@ -26,29 +26,6 @@
       ]
     },
     {
-      "id": "verizon",
-      "name": "Verizon 5G Home Internet",
-      "slug": "verizon",
-      "logo": "/verizon-logo.png",
-      "types": ["5g"],
-      "rating": 4.3,
-      "reviewCount": 48200,
-      "reviewSource": "PCMag Editors' Rating",
-      "reviewUrl": "https://www.pcmag.com/reviews/verizon-5g-home-internet",
-      "isPartner": true,
-      "description": "Verizon 5G Home Internet delivers wireless broadband over Verizon's nationwide 5G and LTE network — no wires, no technician, no installation hassle. Plans start at $50/mo with a 4-year price lock guarantee, and bundle pricing drops as low as $35/mo with a qualifying Verizon mobile plan. The gateway device ships directly to your door; just plug in and you're online in minutes. No data caps, no annual contracts, no equipment fees.",
-      "pros": ["Available nationwide over Verizon 5G & LTE", "4-year price lock guarantee", "No annual contracts", "No equipment fees", "No data caps", "Self-setup — no technician needed", "As low as $35/mo with qualifying Verizon mobile plan", "$200–$300 Prepaid Mastercard for new customers", "30-day money-back guarantee"],
-      "cons": ["Speeds vary by 5G/LTE tower proximity and congestion", "Not a wired connection — fiber is faster where available", "Requires coverage at your specific address"],
-      "coverage": ["Nationwide"],
-      "promo": "$200–$300 Prepaid Mastercard + 4-year price lock — as low as $35/mo with Verizon mobile plan",
-      "topCities": ["New York, NY","Los Angeles, CA","Chicago, IL","Houston, TX","Phoenix, AZ","Philadelphia, PA","San Antonio, TX","San Diego, CA","Dallas, TX","San Jose, CA","Austin, TX","Jacksonville, FL","Fort Worth, TX","Columbus, OH","Charlotte, NC","San Francisco, CA","Indianapolis, IN","Seattle, WA","Denver, CO","Washington, DC","Boston, MA","El Paso, TX","Nashville, TN","Detroit, MI","Oklahoma City, OK","Portland, OR","Las Vegas, NV","Memphis, TN","Louisville, KY","Baltimore, MD","Milwaukee, WI","Albuquerque, NM","Tucson, AZ","Fresno, CA","Sacramento, CA","Kansas City, MO","Mesa, AZ","Atlanta, GA","Omaha, NE","Colorado Springs, CO","Raleigh, NC","Long Beach, CA","Virginia Beach, VA","Miami, FL","Oakland, CA","Minneapolis, MN","Tulsa, OK","Bakersfield, CA","Wichita, KS","Arlington, TX"],
-      "plans": [
-        { "name": "5G Home", "speed": 300, "uploadSpeed": 50, "price": 50.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "type": "5g", "features": ["4-year price lock", "$35/mo with qualifying Verizon mobile plan", "No equipment fees", "Self-setup in minutes", "$200–$300 Prepaid Mastercard"] },
-        { "name": "5G Home Plus", "speed": 1000, "uploadSpeed": 100, "price": 70.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "type": "5g", "features": ["4-year price lock", "$45/mo with qualifying Verizon mobile plan", "Premium streaming perks", "Wi-Fi Cloud storage", "$200–$300 Prepaid Mastercard"] },
-        { "name": "5G Home Ultimate", "speed": 1000, "uploadSpeed": 100, "price": 85.00, "promoPrice": 85.00, "contract": "None", "dataCap": "Unlimited", "type": "5g", "features": ["5-year price lock", "$60/mo with qualifying Verizon mobile plan", "Premium hardware included", "Best 5G experience", "$300 Prepaid Mastercard"] }
-      ]
-    },
-    {
       "id": "att",
       "name": "AT&T Fiber",
       "slug": "att-fiber",
@@ -91,7 +68,7 @@
       "promo": "🔥 Extreme Bundle: $0/mo for 6 months with Verizon Mobile + Free Eero Pro router — Fiber 1 Gig just $49.99/mo",
       "topCities": ["Los Angeles, CA","Tampa, FL","Dallas, TX","Fort Worth, TX","Hartford, CT","New Haven, CT","Rochester, NY","Fort Wayne, IN","Long Beach, CA","Sarasota, FL","Bradenton, FL","St. Petersburg, FL","Clearwater, FL","Lakeland, FL","Durham, NC","Beaverton, OR","Gresham, OR","Hillsboro, OR","Everett, WA","Kirkland, WA","Redmond, WA","Bothell, WA","Denton, TX","Plano, TX","Irving, TX","Garland, TX","Carrollton, TX","Lewisville, TX","Frisco, TX","McKinney, TX"],
       "plans": [
-        { "name": "Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 49.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "features": ["Free Eero Pro router", "YouTube TV $10/mo off (1 yr)", "Extreme Bundle available", "No data caps"] },
+        { "name": "Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 29.99, "promoPrice": 29.99, "contract": "None", "dataCap": "Unlimited", "features": ["Free Eero Pro router", "YouTube TV $10/mo off (1 yr)", "Extreme Bundle available", "No data caps"] },
         { "name": "Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 49.99, "promoPrice": 49.99, "contract": "None", "dataCap": "Unlimited", "features": ["Free Eero Pro router", "YouTube TV $10/mo off (1 yr)", "Extreme Bundle: $0/mo for 6 mos w/ Verizon Mobile", "No data caps"] },
         { "name": "Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 64.99, "promoPrice": 64.99, "contract": "None", "dataCap": "Unlimited", "features": ["Free Eero Pro router", "YouTube TV $10/mo off (1 yr)", "No data caps", "Multi-gig symmetrical"] },
         { "name": "Fiber 5 Gig", "speed": 5000, "uploadSpeed": 5000, "price": 89.99, "promoPrice": 89.99, "contract": "None", "dataCap": "Unlimited", "features": ["Free Eero Pro mesh router", "YouTube TV $10/mo off (1 yr)", "No data caps", "Ultra-fast fiber"] },
@@ -233,13 +210,14 @@
       "pros": ["$20/mo off with AT&T Wireless bundle", "No contracts", "Free installation for fiber upgrades", "Speeds up to 2 Gbps", "No data caps on fiber", "Available in rural areas"],
       "cons": ["Fiber still expanding to new areas", "DSL speeds vary by distance from node"],
       "coverage": ["AR","GA","KY","NE","NM","NY","NC","OH","OK","PA","SC","TX","FL","IA","MN","AL","MS","WV"],
-      "promo": "💰 $200 Reward Card on 2 Gig + save $20/mo with AT&T Wireless — Fiber 100 just $29.99/mo",
+      "promo": "Kinetic fiber plans starting at $19.99/mo, with speeds up to 2 Gig",
       "topCities": ["Lexington, KY","Lincoln, NE","Richmond, TX","Sugar Land, TX","Broken Arrow, OK","Concord, NC","Lexington, SC","Canton, GA","Dalton, GA","Moultrie, GA","Valdosta, GA","Waycross, GA","Albemarle, NC","Asheboro, NC","Kannapolis, NC","Matthews, NC","Monroe, NC","Mooresville, NC","Salisbury, NC","Statesville, NC","Nicholasville, KY","Somerset, KY","Winchester, KY","Beatrice, NE","Columbus, NE","Fremont, NE","Kearney, NE","Norfolk, NE","Pflugerville, TX","Bastrop, TX"],
       "plans": [
-        { "name": "Fiber 100", "speed": 100, "uploadSpeed": 100, "price": 29.99, "promoPrice": 29.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Intro rate for 12 months", "No contracts", "No data caps"] },
-        { "name": "Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 39.99, "promoPrice": 39.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["$20/mo off with AT&T Wireless", "No contracts", "No data caps"] },
-        { "name": "Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 64.99, "promoPrice": 64.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["$20/mo off with AT&T Wireless", "No contracts", "No data caps"] },
-        { "name": "Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 69.99, "promoPrice": 69.99, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["$200 Reward Card", "$20/mo off with AT&T Wireless", "No contracts", "No data caps"] }
+        { "name": "100M", "speed": 100, "uploadSpeed": 100, "price": 19.99, "promoPrice": 19.99, "pricePrefix": "Starting at", "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["No contracts", "No data caps"] },
+        { "name": "300M", "speed": 300, "uploadSpeed": 300, "price": 29.99, "promoPrice": 29.99, "pricePrefix": "Starting at", "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["No contracts", "No data caps"] },
+        { "name": "1G", "speed": 1000, "uploadSpeed": 1000, "price": 39.99, "promoPrice": 39.99, "pricePrefix": "Starting at", "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["No contracts", "No data caps"] },
+        { "name": "2G", "speed": 2000, "uploadSpeed": 2000, "price": 59.99, "promoPrice": 59.99, "pricePrefix": "Starting at", "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["No contracts", "No data caps", "Multi-gig symmetrical"] },
+        { "name": "Fiber Max/Max up to 2G", "speed": 2000, "uploadSpeed": 2000, "price": 79.99, "promoPrice": 79.99, "pricePrefix": "Starting at", "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["No contracts", "No data caps", "Premium fiber plan"] }
       ]
     },
     {
@@ -253,19 +231,18 @@
       "reviewSource": "PCMag Editors' Rating",
       "reviewUrl": "https://www.pcmag.com/reviews/altice-optimum-internet",
       "isPartner": true,
-      "description": "Optimum delivers lightning-fast fiber internet with an industry-leading 5-year price lock on every plan — Fiber 300 from just $30/mo and 1 Gig at only $45/mo. New customers get up to $200 in Visa Prepaid Cards, free installation, HBO Max free for a year on Gig+ plans, and no contracts or data caps ever.",
+      "description": "Optimum delivers lightning-fast fiber internet with an industry-leading 5-year price lock on every plan — Fiber 300 from just $30/mo and 1 Gig at $50/mo. New customers get up to $200 in Visa Prepaid Cards, free installation, HBO Max free for a year on Gig+ plans, and no contracts or data caps ever.",
       "pros": ["5-year price lock on all plans", "No annual contracts", "No data caps", "Up to $200 Visa Prepaid Card", "Free installation for online orders", "Speeds up to 8 Gbps"],
       "cons": ["Limited to select regions (Northeast, NV, TX, WV)", "Cable plans being phased out in favor of fiber"],
       "coverage": ["NY","NJ","CT","PA","NV","TX","WV"],
-      "promo": "5-year price lock + up to $200 Visa Prepaid Card + FREE HBO Max (1 yr on Gig+) — Fiber 300 just $30/mo, 1 Gig just $45/mo",
+      "promo": "5-year price lock + up to $200 Visa Prepaid Card + FREE HBO Max (1 yr on Gig+) — Fiber 300 just $30/mo, 1 Gig $50/mo",
       "topCities": ["New York, NY","Newark, NJ","Jersey City, NJ","Henderson, NV","Amarillo, TX","Lubbock, TX","Stamford, CT","Bridgeport, CT","Norwalk, CT","Waterbury, CT","Danbury, CT","Milford, CT","Stratford, CT","Fairfield, CT","Greenwich, CT","Westport, CT","Bryan, TX","College Station, TX","Charleston, WV","Parkersburg, WV"],
       "plans": [
         { "name": "Fiber 300", "speed": 300, "uploadSpeed": 300, "price": 30.00, "promoPrice": 30.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps"] },
-        { "name": "Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 45.00, "promoPrice": 45.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps"] },
-        { "name": "Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 45.00, "promoPrice": 45.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps", "Free HBO Max (1 yr)"] },
-        { "name": "Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 80.00, "promoPrice": 80.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps"] },
-        { "name": "Fiber 5 Gig", "speed": 5000, "uploadSpeed": 5000, "price": 120.00, "promoPrice": 120.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps"] },
-        { "name": "Fiber 8 Gig", "speed": 8000, "uploadSpeed": 8000, "price": 150.00, "promoPrice": 150.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "Fastest Optimum plan"] }
+        { "name": "Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 40.00, "promoPrice": 40.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps"] },
+        { "name": "Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 50.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps", "Free HBO Max (1 yr)"] },
+        { "name": "Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 60.00, "promoPrice": 60.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps"] },
+        { "name": "Fiber 8 Gig", "speed": 8000, "uploadSpeed": 8000, "price": 90.00, "promoPrice": 90.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "Fastest Optimum plan"] }
       ]
     },
     {

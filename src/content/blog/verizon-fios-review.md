@@ -103,7 +103,7 @@ No technician scheduling. No 4-hour wait windows. No drilling holes in walls. Th
 
 | Provider | Price | Speed | Price Lock | Install | Availability |
 |----------|-------|-------|-----------|---------|-------------|
-| **[Verizon 5G Home](/provider/verizon)** | $50/mo | 100–1000 Mbps | **4–5 years** | Self | Nationwide |
+| **Verizon 5G Home** | $50/mo | 100–1000 Mbps | **4–5 years** | Self | Nationwide |
 | [AT&T Air](/provider/att-air) | $60/mo ($47 w/ bundle) | ~200 Mbps | None stated | Self | Nationwide |
 | T-Mobile 5G Home | $50/mo | 133–415 Mbps | "Promise" | Self | Nationwide |
 | [Spectrum](/provider/spectrum) | $49.99/mo | 300 Mbps | 12 months | Technician | 41 states |

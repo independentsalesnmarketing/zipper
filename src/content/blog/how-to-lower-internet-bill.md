@@ -76,7 +76,7 @@ New customer promotions are real money. If your rate has increased post-promo an
 3. Return old equipment
 4. Enjoy lower pricing for 12+ months
 
-With no-contract plans from [Spectrum](/provider/spectrum), [Frontier](/provider/frontier), [Verizon](/provider/verizon), [AT&T](/provider/att-fiber), and [T-Mobile](/provider/tmobile-5g), switching is painless.
+With no-contract plans from [Spectrum](/provider/spectrum), [Frontier](/provider/frontier), Verizon, [AT&T](/provider/att-fiber), and [T-Mobile](/provider/tmobile-5g), switching is painless.
 
 ## 6. Set Up Autopay (Savings: $5-10/mo)
 
@@ -86,7 +86,7 @@ Most providers discount $5-10/mo for enrolling in automatic payments:
 |----------|-----------------|
 | [Spectrum](/provider/spectrum) | $5/mo |
 | [AT&T](/provider/att-fiber) | $5/mo |
-| [Verizon 5G Home](/provider/verizon) | $5/mo |
+| Verizon 5G Home | $5/mo |
 | [Frontier](/provider/frontier) | $5/mo |
 | [Optimum](/provider/optimum) | $5/mo |
 

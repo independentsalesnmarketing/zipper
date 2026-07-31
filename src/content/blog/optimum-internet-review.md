@@ -99,7 +99,7 @@ Fiber consistently outperforms cable, especially during prime-time hours when ca
 | Provider | Entry Price | Entry Speed | Max Speed | Upload |
 |----------|-----------|------------|-----------|--------|
 | **[Optimum Fiber](/provider/optimum)** | $40/mo | 300/300 | 8 Gbps | Symm. |
-| [Verizon 5G Home](/provider/verizon) | $50/mo | 100–300 Mbps | 1 Gbps (Plus) | Up to 100 Mbps |
+| Verizon 5G Home | $50/mo | 100–300 Mbps | 1 Gbps (Plus) | Up to 100 Mbps |
 | [Spectrum](/provider/spectrum) | $49.99/mo | 300/10 | 1 Gbps | 35 Mbps |
 | [Frontier Fiber](/provider/frontier) | $49.99/mo | 500/500 | 5 Gbps | Symm. |
 

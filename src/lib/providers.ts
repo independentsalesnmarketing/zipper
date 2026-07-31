@@ -7,6 +7,7 @@ export interface Plan {
   uploadSpeed: number;
   price: number;
   promoPrice: number;
+  pricePrefix?: string;
   contract: string;
   dataCap: string;
   type?: string;

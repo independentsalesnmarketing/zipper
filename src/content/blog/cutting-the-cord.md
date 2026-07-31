@@ -34,7 +34,7 @@ Before cutting cable TV, make sure your internet can handle streaming. You need:
 |----------|-------|-------|----------|
 | [Frontier Fiber](/provider/frontier) | 500/500 Mbps | $49.99/mo | None |
 | [Spectrum](/provider/spectrum) | 300 Mbps | $49.99/mo | None |
-| [Verizon 5G Home](/provider/verizon) | 100–1000 Mbps | $50/mo | None |
+| Verizon 5G Home | 100–1000 Mbps | $50/mo | None |
 | [T-Mobile 5G Home](/provider/tmobile-5g) | 72-245 Mbps | $50/mo | None |
 | [AT&T Fiber](/provider/att-fiber) | 300/300 Mbps | $55/mo | None |
 

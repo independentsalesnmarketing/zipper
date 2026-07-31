@@ -87,7 +87,7 @@ The transformation isn't complete — some areas still only have legacy DSL — 
 |----------|-----------|------------|-----------|--------|----------|
 | **[Frontier Fiber](/provider/frontier)** | $49.99 | 500/500 | 5 Gbps | Symm. | None |
 | [AT&T Fiber](/provider/att-fiber) | $55 | 300/300 | 5 Gbps | Symm. | None |
-| [Verizon 5G Home](/provider/verizon) | $50 | 100–1000 Mbps | 1 Gbps | Varies | None |
+| Verizon 5G Home | $50 | 100–1000 Mbps | 1 Gbps | Varies | None |
 | [Spectrum](/provider/spectrum) | $49.99 | 300/10 | 1 Gbps | 35 Mbps | None |
 | [EarthLink Fiber](/provider/earthlink) | $49.99 | 300/300 | 5 Gbps | Symm. | None |
 

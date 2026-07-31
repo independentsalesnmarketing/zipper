@@ -37,7 +37,7 @@ Frontier doesn't do contracts on any plan. 500 Mbps symmetrical at $49.99/mo is 
 
 Spectrum pioneered the no-contract model for cable internet. Every plan is month-to-month. The tradeoff: promotional pricing increases after 12 months, but you're free to negotiate or switch.
 
-### 4. [Verizon 5G Home Internet](/provider/verizon)
+### 4. Verizon 5G Home Internet
 | Price | Speed | Technology | Data Cap |
 |-------|-------|-----------|----------|
 | $50/mo ($35 with Verizon wireless) | 100–1000 Mbps | Fixed Wireless | None |

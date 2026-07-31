@@ -21,7 +21,7 @@ We track promotions from every major ISP to find the best deals for new and exis
 | [T-Mobile](/provider/tmobile-5g) | $10 off with phone plan | **$40/mo** | 72-245 Mbps |
 | [Frontier Fiber](/provider/frontier) | New customer rate | **$49.99/mo** | 500/500 Mbps |
 | [Spectrum](/provider/spectrum) | New customer pricing | **$49.99/mo** | 300 Mbps |
-| [Verizon 5G Home](/provider/verizon) | $200–$300 Prepaid Mastercard | **$50/mo** ($35 w/ mobile) | 100–1000 Mbps |
+| Verizon 5G Home | $200–$300 Prepaid Mastercard | **$50/mo** ($35 w/ mobile) | 100–1000 Mbps |
 | [AT&T Fiber](/provider/att-fiber) | Online-only pricing | **$55/mo** | 300/300 Mbps |
 
 ## Featured Deals by Provider

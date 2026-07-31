@@ -101,7 +101,7 @@ Fiber consistently delivers **95%+ of advertised speeds** regardless of time of 
 | Provider | Starting Price | Max Speed | Upload Speed | Data Cap |
 |----------|---------------|-----------|-------------|----------|
 | **[AT&T Fiber](/provider/att-fiber)** | $55/mo | 5 Gbps | Symmetrical | None |
-| [Verizon 5G Home](/provider/verizon) | $50/mo | 1 Gbps | ~100 Mbps | None |
+| Verizon 5G Home | $50/mo | 1 Gbps | ~100 Mbps | None |
 | [Spectrum](/provider/spectrum) | $49.99/mo | 1 Gbps | 35 Mbps | None |
 | [Frontier Fiber](/provider/frontier) | $49.99/mo | 5 Gbps | Symmetrical | None |
 | [T-Mobile 5G Home](/provider/tmobile-5g) | $50/mo | 245 Mbps | 23 Mbps | None |

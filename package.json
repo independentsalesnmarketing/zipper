@@ -16,6 +16,8 @@
   "dependencies": {
     "@astrojs/check": "^0.9.6",
     "@astrojs/sitemap": "^3.2.0",
+    "@netlify/blobs": "^10.7.11",
+    "@netlify/database": "^1.1.0",
     "@resvg/resvg-js": "^2.6.2",
     "astro": "^4.16.0",
     "sharp": "^0.34.5",

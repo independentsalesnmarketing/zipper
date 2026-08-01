@@ -636,7 +636,10 @@ const clientProviders = allProviders.map(p => ({
       const timeoutId = setTimeout(() => controller.abort(), 10000);
       const r = await fetch(`/api/broadband?lat=${lat}&lng=${lng}`,{signal:controller.signal});
       clearTimeout(timeoutId);
-      if (r.status===429) throw new Error('RATE_LIMITED');
+      // 429/503 mean the lookup was throttled or the daily credit budget is
+      // spent — both are temporary, so show the "try again" copy rather than
+      // an error, and keep steering the visitor to the signup form.
+      if (r.status===429 || r.status===503) throw new Error('RATE_LIMITED');
       if (!r.ok) throw new Error('HTTP_'+r.status);
       const d = await r.json();
       return d?.providers || [];

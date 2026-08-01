@@ -320,9 +320,15 @@ if (uniquePages.length <= MAX_URLS_PER_SITEMAP) {
   console.log('  ✅ Written sitemap-debug.json');
 }
 
-// Update robots.txt in dist
+// Update robots.txt in dist.
+// The Disallow rules are not optional: /api/broadband is a proxy to a metered
+// BroadbandMap plan, so crawling it spends real money. Keep them in sync with
+// public/robots.txt, and never reduce this to a bare "Allow: /".
 const robotsTxt = `User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /*?*
 
 Sitemap: ${SITE}/sitemap.xml
 `;

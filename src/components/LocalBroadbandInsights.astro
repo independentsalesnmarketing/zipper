@@ -1,0 +1,33 @@
+---
+interface Signal {name:string;frn:string;tech:string;pct:number;count:number}
+interface Snapshot {bsl:number;reporters:number;fiber:Signal[];cable:Signal[];wireless:Signal[]}
+const {zip,city,state,data,comparison}=Astro.props as {zip:string;city:string;state:string;data:Snapshot;comparison?:{zip:string;data:Snapshot}|null};
+const providers=[...data.fiber.map(p=>({...p,kind:'Fiber'})),...data.cable.map(p=>({...p,kind:'Cable'})),...data.wireless.map(p=>({...p,kind:'Fixed wireless'}))];
+const label=(n:string)=>n==='altafiber Network Solutions'?'altafiber':n;
+const top=data.fiber[0];
+const neighbor=comparison?.data.fiber?.[0];
+const sameFiber=!!(top&&neighbor&&top.frn===neighbor.frn);
+const delta=sameFiber?Math.abs(top.pct-neighbor.pct):0;
+---
+<section class="local-data" aria-labelledby={`local-data-${zip}`}>
+  <h2 id={`local-data-${zip}`}>What broadband coverage looks like in {zip}</h2>
+  {top?<p>{label(top.name)} reports fiber service meeting 100/20 Mbps at approximately {top.pct.toFixed(1)}% of broadband-serviceable locations in this ZIP area. Compare that with other providers below.</p>:<p>This ZIP area's reporting data did not identify a fiber network exceeding the presentation threshold. Other technologies may be available.</p>}
+  <p><strong>{data.bsl.toLocaleString('en-US')}</strong> estimated broadband-serviceable locations in this Census ZIP area.</p>
+  <div class="scroll-table"><table>
+  <caption>FCC-reported local broadband coverage estimates</caption>
+  <thead><tr><th>Provider</th><th>Technology</th><th>Estimated reach</th></tr></thead>
+  <tbody>{providers.map(p=><tr><th scope="row">{label(p.name)}</th><td>{p.kind}</td><td><strong>{p.pct.toFixed(1)}%</strong><progress value={p.pct} max="100" aria-label={`${p.pct.toFixed(1)} percent`}/></td></tr>)}</tbody>
+  </table></div>
+  {sameFiber&&delta>=3&&<p>Compared with ZIP <a href={`/internet-providers/zip/${comparison!.zip}/`}>{comparison!.zip}</a>, {label(top.name)}'s qualifying fiber footprint is {delta.toFixed(1)} percentage points {top.pct>neighbor.pct?'higher':'lower'} here.</p>}
+  <p class="source-note">Source: FCC December 2025 Broadband Data Collection, via Esri, aggregated to Census ZIP Code Tabulation Areas. These estimates refer to reported coverage meeting 100 Mbps download / 20 Mbps upload, not eligibility or speeds at a specific address. <a href="https://www.arcgis.com/home/item.html?id=e1343efcefc344709057260ee57290a0">Data source</a>.</p>
+</section>
+<style>
+.local-data{border:1px solid var(--border);padding:clamp(1rem,3vw,2rem);border-radius:var(--radius-lg);margin:2rem 0;background:var(--surface)}
+.local-data h2{font-size:clamp(1.25rem,2.5vw,1.75rem);margin-bottom:.7rem}
+.local-data p{line-height:1.6;color:var(--text-secondary)}
+.local-data .scroll-table{overflow-x:auto}
+.local-data table{width:100%;border-collapse:collapse;min-width:420px}
+.local-data th,.local-data td{border-bottom:1px solid var(--border);text-align:left;padding:.75rem}
+.local-data progress{display:inline-block;width:110px;height:10px;margin-left:.6rem;accent-color:var(--brand-blue)}
+.local-data .source-note{font-size:.75rem;color:var(--text-tertiary)}
+</style>

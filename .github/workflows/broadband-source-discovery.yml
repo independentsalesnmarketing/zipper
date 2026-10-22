@@ -1,5 +1,8 @@
 name: National broadband provider inventory
 on:
+  push:
+    branches:
+      - internet4all-broadband-data-foundation-20261022
   workflow_dispatch:
     inputs:
       run_import:
@@ -21,7 +24,7 @@ jobs:
       - name: Inspect official Esri FCC dataset metadata
         run: node scripts/broadband-data/discover-providers.mjs
       - name: Import all state-level ISP offering records
-        if: ${{ inputs.run_import }}
+        if: ${{ github.event_name == 'push' || inputs.run_import }}
         env:
           MAX_PROVIDER_ROWS: '1000000'
         run: node scripts/broadband-data/import-national-providers.mjs

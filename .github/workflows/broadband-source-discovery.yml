@@ -1,22 +1,35 @@
-name: Broadband source discovery
+name: National broadband provider inventory
 on:
   workflow_dispatch:
+    inputs:
+      run_import:
+        description: 'Extract state-level all-provider offerings (default: metadata only)'
+        required: true
+        type: boolean
+        default: true
 permissions:
   contents: read
 jobs:
-  inspect-official-source:
+  import:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Discover FCC/Esri source layers
+      - name: Inspect official Esri FCC dataset metadata
         run: node scripts/broadband-data/discover-providers.mjs
-      - uses: actions/upload-artifact@v4
+      - name: Import all state-level ISP offering records
+        if: ${{ inputs.run_import }}
+        env:
+          MAX_PROVIDER_ROWS: '1000000'
+        run: node scripts/broadband-data/import-national-providers.mjs
+      - name: Upload reviewable results
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: broadband-source-manifest
+          name: broadband-national-provider-inventory
           path: data/broadband-research/
           if-no-files-found: ignore
+          retention-days: 30

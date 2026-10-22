@@ -1,0 +1,22 @@
+name: Broadband source discovery
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect-official-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Discover FCC/Esri source layers
+        run: node scripts/broadband-data/discover-providers.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: broadband-source-manifest
+          path: data/broadband-research/
+          if-no-files-found: ignore

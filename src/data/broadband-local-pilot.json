@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "source": "FCC BDC December 2025 / Esri",
+    "source_url": "https://www.arcgis.com/home/item.html?id=e1343efcefc344709057260ee57290a0",
+    "measure": "Reported broadband-serviceable locations served at 100/20 Mbps, assigned to Census ZCTAs using H3 centroid."
+  },
+  "zips": {
+    "27601": {
+      "bsl": 2359,
+      "reporters": 12,
+      "fiber": [
+        {
+          "name": "AT&T",
+          "frn": "0001857952",
+          "tech": "50",
+          "pct": 76.1,
+          "count": 1796
+        },
+        {
+          "name": "Google Fiber",
+          "frn": "0025681123",
+          "tech": "50",
+          "pct": 70.9,
+          "count": 1672
+        },
+        {
+          "name": "Spectrum",
+          "frn": "0025646373",
+          "tech": "50",
+          "pct": 6.5,
+          "count": 153
+        }
+      ],
+      "cable": [
+        {
+          "name": "Spectrum",
+          "frn": "0025646373",
+          "tech": "40",
+          "pct": 97.8,
+          "count": 2306
+        }
+      ],
+      "wireless": [
+        {
+          "name": "T-Mobile",
+          "frn": "0006945950",
+          "tech": "71",
+          "pct": 66.6,
+          "count": 1571
+        },
+        {
+          "name": "Verizon",
+          "frn": "0018506568",
+          "tech": "71",
+          "pct": 28,
+          "count": 660
+        }
+      ]
+    },
+    "45240": {
+      "bsl": 8952,
+      "reporters": 10,
+      "fiber": [
+        {
+          "name": "altafiber Network Solutions",
+          "frn": "0012486437",
+          "tech": "50",
+          "pct": 97.1,
+          "count": 8692
+        }
+      ],
+      "cable": [
+        {
+          "name": "Spectrum",
+          "frn": "0025646373",
+          "tech": "40",
+          "pct": 99.6,
+          "count": 8917
+        }
+      ],
+      "wireless": [
+        {
+          "name": "Verizon",
+          "frn": "0018506568",
+          "tech": "71",
+          "pct": 32.9,
+          "count": 2949
+        },
+        {
+          "name": "T-Mobile",
+          "frn": "0006945950",
+          "tech": "71",
+          "pct": 12.9,
+          "count": 1156
+        }
+      ]
+    },
+    "45246": {
+      "bsl": 4262,
+      "reporters": 12,
+      "fiber": [
+        {
+          "name": "altafiber Network Solutions",
+          "frn": "0012486437",
+          "tech": "50",
+          "pct": 85.8,
+          "count": 3658
+        }
+      ],
+      "cable": [
+        {
+          "name": "Spectrum",
+          "frn": "0025646373",
+          "tech": "40",
+          "pct": 97.5,
+          "count": 4156
+        }
+      ],
+      "wireless": [
+        {
+          "name": "Verizon",
+          "frn": "0018506568",
+          "tech": "71",
+          "pct": 39,
+          "count": 1662
+        },
+        {
+          "name": "T-Mobile",
+          "frn": "0006945950",
+          "tech": "71",
+          "pct": 35.6,
+          "count": 1517
+        }
+      ]
+    }
+  }
+}

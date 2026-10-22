@@ -1,5 +1,7 @@
 ---
 import Base from '@layouts/Base.astro';
+import LocalBroadbandInsights from '@components/LocalBroadbandInsights.astro';
+import broadbandPilot from '@data/broadband-local-pilot.json';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import ProviderSearch from '@components/ProviderSearch.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
@@ -22,6 +24,9 @@ export function getStaticPaths() {
 
 interface Props { zipData: ZipData; }
 const { zipData } = Astro.props;
+const localSnapshot = (broadbandPilot.zips as Record<string, any>)[zipData.zip];
+const neighborZip = zipData.zip === '45240' ? '45246' : zipData.zip === '45246' ? '45240' : null;
+const neighborSnapshot = neighborZip ? (broadbandPilot.zips as Record<string, any>)[neighborZip] : null;
 
 const parentCity = cities.find(c => c.slug === zipData.citySlug);
 const stateName = getStateName(zipData.state);
@@ -430,6 +435,8 @@ const meta = buildZipMeta(`/internet-providers/zip/${zipData.zip}`, zipData.zip,
       autoSearch
     />
   </div>
+
+  {localSnapshot && <LocalBroadbandInsights zip={zipData.zip} city={zipData.city} state={stateName} data={localSnapshot} comparison={neighborZip && neighborSnapshot ? {zip:neighborZip,data:neighborSnapshot} : null} />}
 
   <!-- ═══════════════════════════════════════════
        STATIC FALLBACK — hidden by JS when live results load

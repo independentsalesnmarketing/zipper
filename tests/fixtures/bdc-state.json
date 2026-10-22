@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "table": "BDC Records for States"
+  },
+  "table": {
+    "maxRecordCount": 1000,
+    "fields": [
+      {
+        "name": "OBJECTID",
+        "type": "esriFieldTypeOID"
+      },
+      {
+        "name": "GEOID",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "name": "ProviderName",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "name": "FRN",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "name": "Technology",
+        "type": "esriFieldTypeInteger"
+      },
+      {
+        "name": "TotalBSLs",
+        "type": "esriFieldTypeInteger"
+      },
+      {
+        "name": "ServedBSLs",
+        "type": "esriFieldTypeInteger"
+      },
+      {
+        "name": "UnderservedBSLs",
+        "type": "esriFieldTypeInteger"
+      },
+      {
+        "name": "UnservedBSLs",
+        "type": "esriFieldTypeInteger"
+      }
+    ]
+  },
+  "features": [
+    {
+      "attributes": {
+        "OBJECTID": 1,
+        "GEOID": "39",
+        "ProviderName": "Example Fiber A",
+        "FRN": "0000000001",
+        "Technology": 50,
+        "TotalBSLs": 100,
+        "ServedBSLs": 60,
+        "UnderservedBSLs": 20,
+        "UnservedBSLs": 20
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 2,
+        "GEOID": "39",
+        "ProviderName": "Example Cable B",
+        "FRN": "0000000002",
+        "Technology": 40,
+        "TotalBSLs": 100,
+        "ServedBSLs": 90,
+        "UnderservedBSLs": 5,
+        "UnservedBSLs": 5
+      }
+    }
+  ]
+}

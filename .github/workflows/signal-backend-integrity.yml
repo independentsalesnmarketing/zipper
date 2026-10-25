@@ -1,0 +1,29 @@
+name: SIGNAL backend integrity
+on:
+  push:
+    branches: [signal-market-engine-v1-20261025]
+    paths:
+      - 'signal-engine/**'
+      - '.github/workflows/signal-backend-integrity.yml'
+  pull_request:
+    paths:
+      - 'signal-engine/**'
+      - '.github/workflows/signal-backend-integrity.yml'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify release snapshot digest and unpack
+        working-directory: signal-engine
+        run: python3 scripts/unpack_snapshot.py
+      - name: Audit national coverage and route populations
+        working-directory: signal-engine
+        run: python3 scripts/audit_snapshot.py
+      - name: Test server, sales restrictions, ZIP and URL routing
+        working-directory: signal-engine
+        run: npm test

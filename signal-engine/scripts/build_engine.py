@@ -233,7 +233,9 @@ def main():
  write('states.json',sjson)
  write('cities.json',{x['slug']:x for x in city_index})
  write('rules.json',{'policies':POLICIES,'fcc_technology_codes':TECH,'channels_valid_for_instant_online_checkout':[], 'address_required_for_every_order':True})
- write('providers.json',{k:{'name':POLICIES[k]['name'] if k in POLICIES else k,'market_zips':len(v['zcta_with_network']),'channel':POLICIES.get(k,{}).get('channel')} for k,v in providers.items()})
+ provider_index={k:{'name':POLICIES[k]['name'] if k in POLICIES else k,'market_zips':len(v['zcta_with_network']),'channel':POLICIES.get(k,{}).get('channel')} for k,v in providers.items()}
+ provider_index['earthlink']={'name':'EarthLink','channel':'online_phone_quote','market_zips':sum(st['earthlink_inquiry'] for st in states.values()),'partner_fiber_proxy_zctas':el_count['fiber_proxy'],'inquiry_only':True,'address_eligible':None,'nextStep':'earthlink_dealer_address_quote'}
+ write('providers.json',provider_index)
  manifest['zip_shards']=len(shards);manifest['route_shards']=len(route_shards);manifest['zip_bytes']=sum(sizes);manifest['route_bytes']=sum(route_sizes)
  write('manifest.json',manifest)
  print(json.dumps(manifest,indent=2))

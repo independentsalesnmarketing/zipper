@@ -62,6 +62,8 @@ test('city, ZIP, and neighborhood existing URL routes can be searched',async()=>
 test('all 50 state hubs are present and a state summary is grounded',async()=>{
  const oh=await store.state('OH');assert(oh.known_zips>1000);assert(oh.special_by_provider.verizon>=1432);
  const pr=await store.provider('frontier');assert(pr.market_zips>1000);
+ const earthlink=await store.provider('earthlink');assert.equal(earthlink.name,'EarthLink');assert.equal(earthlink.channel,'online_phone_quote');assert.equal(earthlink.market_zips,40690);assert.equal(earthlink.partner_fiber_proxy_zctas,10014);assert.equal(earthlink.address_eligible,null);
+ assert.equal(await store.provider('totally_not_a_provider'),null);
  assert.equal(normalizePath('https://internet-4-all.com/internet-providers/zip/45202?x=1'),'/internet-providers/zip/45202/');
 });
 test('address qualification rejects untrusted claims and needs server adapter',async()=>{
@@ -83,6 +85,7 @@ test('HTTP API real request paths and no upstream billing dependency',async()=>{
   r=await request('/v1/zip/45202');assert.equal(r.status,200);assert.equal(r.data.sales.direct[0].provider,'altafiber');
   r=await request('/v1/zip/32303');assert.equal(r.status,200);assert(r.data.sales.restricted.some(v=>v.channel==='door_to_door'));
   r=await request('/v1/state/OH');assert.equal(r.status,200);assert(r.data.special_by_provider.verizon>=1432);
+  r=await request('/v1/provider/earthlink');assert.equal(r.status,200);assert.equal(r.data.market_zips,40690);assert.equal(r.data.inquiry_only,true);
   r=await request('/v1/city/cincinnati-oh');assert.equal(r.status,200);assert(r.data.marketSummary.directProviders.some(x=>x.provider==='altafiber'));
   r=await request('/v1/compare/45202?a=altafiber&b=spectrum');assert.equal(r.status,200);assert.equal(r.data.addressesVerified,0);
   r=await request('/v1/route?path=%2Finternet-providers%2Fzip%2F45202%2F');assert.equal(r.status,200);assert.equal(r.data.family,'zip');

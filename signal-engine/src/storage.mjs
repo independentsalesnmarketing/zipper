@@ -26,7 +26,24 @@ export class FileMarketStore{
  }
  async city(slug){const x=(await this.json('cities.json'))||{};const query=slug.toLowerCase().trim();const city=x[query];return city?this.route(city.route):{found:false,slug:query}}
  async state(code){code=String(code||'').toUpperCase();return (await this.json('states.json'))?.[code]||null}
- async provider(id){return (await this.json('providers.json'))?.[id]||null}
+ async provider(id){
+  id=String(id||'').toLowerCase().trim();
+  const published=(await this.json('providers.json'))?.[id];
+  if(published)return published;
+  // Original v1 snapshot omitted EarthLink from provider.json despite
+  // retaining every EarthLink inquiry opportunity in ZIP/state indexes.
+  // Derive the missing view from those source-backed indexes.
+  if(id==='earthlink'){
+   const [states,manifest]=await Promise.all([this.json('states.json'),this.manifest()]);
+   if(!states||!manifest)return null;
+   return {name:'EarthLink',channel:'online_phone_quote',
+    market_zips:Object.values(states).reduce((n,s)=>n+(s.earthlink_inquiry||0),0),
+    partner_fiber_proxy_zctas:manifest.earthlink_proxy_zctas||0,
+    inquiry_only:true,address_eligible:null,
+    nextStep:'earthlink_dealer_address_quote'};
+  }
+  return null;
+ }
  async lookupCity(term,{limit=10}={}){const q=String(term||'').toLowerCase().trim();if(q.length<2)return [];
   const all=await this.json('cities.json');return Object.values(all||{}).filter(v=>v.name.toLowerCase().includes(q)||v.slug.includes(q)).slice(0,Math.min(100,limit))}
  async compare(zip,first,second){return comparison(first,second,await this.rawZip(zip))}

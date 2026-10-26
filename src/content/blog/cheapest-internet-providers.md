@@ -18,13 +18,13 @@ You don't need to spend $80/mo for fast internet. Several major providers offer 
 | Rank | Provider | Price | Speed | Technology |
 |------|----------|-------|-------|-----------|
 | 1 | T-Mobile 5G Home | $50/mo | 72-245 Mbps | Fixed Wireless |
-| 2 | Frontier Fiber | $49.99/mo | 500/500 Mbps | Fiber |
-| 3 | Optimum | $40/mo | 300 Mbps | Cable/Fiber |
+| 2 | Frontier Fiber | $44.99/mo | 500/500 Mbps | Fiber |
+| 3 | Optimum | $35/mo | 300 Mbps | Cable/Fiber |
 | 4 | Spectrum | $49.99/mo | 300 Mbps | Cable |
 | 5 | Verizon 5G Home | $50/mo | 100–1000 Mbps | Fixed Wireless |
 | 6 | AT&T Fiber | $55/mo | 300/300 Mbps | Fiber |
-| 7 | EarthLink | $49.99/mo | 300 Mbps | Fiber/Cable |
-| 8 | Brightspeed | $49/mo | 200 Mbps | Fiber/DSL |
+| 7 | EarthLink | $39.95/mo | 100 Mbps | Fiber/Cable |
+| 8 | Brightspeed | $59.99/mo | 500 Mbps | Fiber/DSL |
 | 9 | AltaFiber | $39.99/mo | 250 Mbps | Fiber |
 | 10 | Kinetic | $39.99/mo | 200 Mbps | Fiber/DSL |
 
@@ -42,7 +42,7 @@ T-Mobile's fixed wireless internet is the simplest affordable option. The $50 pr
 
 ## 2. [Frontier Fiber](/provider/frontier) — Best Speed for the Price
 
-**$49.99/mo** | 500/500 Mbps | Fiber, no contract
+**$44.99/mo** | 500/500 Mbps | Fiber, no contract
 
 Frontier's entry-level fiber plan delivers **500 Mbps symmetrical** — meaning you get 500 Mbps upload AND download. That's more speed per dollar than any other wired provider at this price point.
 
@@ -54,11 +54,11 @@ Frontier's entry-level fiber plan delivers **500 Mbps symmetrical** — meaning 
 
 ## 3. [Optimum](/provider/optimum) — Cheapest Fiber Starting Price
 
-**$40/mo** | 300 Mbps | Cable or Fiber, no contract
+**$35/mo** | 300 Mbps | Cable or Fiber, no contract
 
-Optimum's $40 starting price is the lowest entry point from any major provider. If fiber is available at your address, you'll get symmetrical 300/300 speeds. Cable addresses get 300/20.
+Optimum Fiber starts at $35/month with qualifying ACH AutoPay and paperless billing. If fiber is available at your address, you'll get symmetrical 300/300 speeds. Cable addresses get 300/20.
 
-**Why it's great**: Forty bucks for 300 Mbps fiber is a steal. In the limited NY/NJ/CT market, Optimum Fiber undercuts everyone.
+**Why it's great**: Thirty-five dollars for 300 Mbps fiber is a steal. In the limited NY/NJ/CT market, Optimum Fiber undercuts everyone.
 
 **The catch**: Service area limited to parts of New York, New Jersey, and Connecticut. Cable addresses have weak upload speeds.
 
@@ -94,7 +94,7 @@ AT&T Fiber costs $5-10 more than competitors at the entry level but delivers an 
 
 ## 7. [EarthLink](/provider/earthlink) — Best for Privacy
 
-**$49.99/mo** | 300 Mbps | Fiber or Cable, no contract
+**$39.95/mo** | 100 Mbps | Fiber or Cable, no contract
 
 EarthLink doesn't sell your browsing data and includes a security suite. They use partner networks (AT&T, Frontier) for the physical connection, so speeds match the underlying provider.
 
@@ -102,7 +102,7 @@ EarthLink doesn't sell your browsing data and includes a security suite. They us
 
 ## 8. [Brightspeed](/provider/brightspeed) — Emerging Fiber Value
 
-**$49/mo** | 200 Mbps | Fiber/DSL, no contract
+**$59.99/mo** | 500 Mbps | Fiber/DSL, no contract
 
 Brightspeed is the new name for CenturyLink's assets in 20 states. Where fiber is available, it's competitively priced. The company is investing aggressively in fiber expansion.
 

@@ -10,36 +10,44 @@ tags: ["frontier", "fiber internet", "provider review", "internet plans"]
 
 ## Frontier Internet Overview
 
-Frontier Communications has undergone a dramatic transformation. After emerging from bankruptcy in 2021, Frontier has aggressively invested in fiber-optic infrastructure, rebranding its fiber service as **Frontier Fiber**. The result? One of the most competitive fiber offerings in the country — with speeds up to 5 Gbps and prices starting at just $49.99/mo.
+Frontier Communications has undergone a dramatic transformation. After emerging from bankruptcy in 2021, Frontier has aggressively invested in fiber-optic infrastructure, rebranding its fiber service as **Frontier Fiber**. The result? One of the most competitive fiber offerings in the country — with speeds up to 7 Gbps and prices starting at just $29.99/mo.
 
 | Feature | Frontier Fiber | Frontier DSL (Legacy) |
 |---------|---------------|---------------------|
 | Technology | Fiber optic | DSL |
-| Speed Range | 500 Mbps – 5 Gbps | 6 – 115 Mbps |
-| Starting Price | $49.99/mo | $37.99/mo |
+| Speed Range | 200 Mbps – 7 Gbps | 6 – 115 Mbps |
+| Starting Price | $29.99/mo | $37.99/mo |
 | Contract | No | No |
 | Data Cap | None | None |
 
 ## Frontier Fiber Plans
 
-### Fiber 500 — $49.99/mo
+### Fiber 200 — $29.99/mo
+- **200 Mbps** download and upload
+
+### Fiber 500 — $44.99/mo
 - **500 Mbps** download / **500 Mbps** upload
 - Symmetrical speeds
 - Best for: Households of 1-4, streaming, gaming, remote work
 
-### Fiber 1 Gig — $69.99/mo
+### Fiber 1 Gig — $64.99/mo
 - **1 Gbps** download / **1 Gbps** upload
 - Best for: Large families, multiple 4K streams, content creation
 
-### Fiber 2 Gig — $99.99/mo
+### Fiber 2 Gig — $79.99/mo
 - **2 Gbps** download / **2 Gbps** upload
 - Best for: Power users, smart home enthusiasts
 
-### Fiber 5 Gig — $154.99/mo
+### Fiber 5 Gig — $104.99/mo
 - **5 Gbps** download / **5 Gbps** upload
 - Best for: Future-proofing, home offices with extreme bandwidth needs
 
-**Value highlight**: Frontier's 500 Mbps plan at $49.99/mo offers **symmetrical speeds** — that's 500 Mbps upload included. Spectrum charges the same price for 300/10 Mbps. Frontier's entry tier is a significantly better deal.
+**Value highlight**: Frontier's 500 Mbps plan at $44.99/mo offers **symmetrical speeds** — that's 500 Mbps upload included. Spectrum charges the same price for 300/10 Mbps. Frontier's entry tier is a significantly better deal.
+
+### Fiber 7 Gig — $124.99/mo
+- Up to **7 Gbps** over compatible wired connections
+
+Promotional prices require bank-account AutoPay and paperless billing and are guaranteed for 12 months. Qualifying promotions may carry a prorated early termination fee during months 1–12. See [Frontier Offer Details](/provider/frontier/#provider-plans).
 
 ## Speed Performance
 
@@ -67,7 +75,7 @@ The transformation isn't complete — some areas still only have legacy DSL — 
 
 ## What We Like
 
-- **Aggressive pricing** — 500 Mbps symmetrical at $49.99/mo is one of the best values in broadband
+- **Aggressive pricing** — 500 Mbps symmetrical at $44.99/mo is one of the best values in broadband
 - **Symmetrical speeds on all plans** — Upload matches download across every tier
 - **5 Gbps option** — Matches AT&T Fiber's top tier; no fixed wireless provider comes close
 - **No contracts or data caps** — Commitment-free unlimited internet
@@ -77,7 +85,7 @@ The transformation isn't complete — some areas still only have legacy DSL — 
 
 - **Availability is patchy** — Fiber footprint is growing but still limited; many Frontier areas only have DSL
 - **Legacy DSL is poor** — If fiber isn't at your address, Frontier's DSL isn't worth considering
-- **Equipment fee** — $10/mo router rental (though you can use your own)
+- **Equipment conditions** — Eligible plans may include an eero router; restocking and unreturned-equipment charges may apply.
 - **Customer service reputation** — Improved but still shaking off negative brand perception from pre-bankruptcy era
 - **No TV bundling** — No cable TV option; you'll need separate streaming subscriptions
 
@@ -85,13 +93,13 @@ The transformation isn't complete — some areas still only have legacy DSL — 
 
 | Provider | Entry Price | Entry Speed | Max Speed | Upload | Data Cap |
 |----------|-----------|------------|-----------|--------|----------|
-| **[Frontier Fiber](/provider/frontier)** | $49.99 | 500/500 | 5 Gbps | Symm. | None |
+| **[Frontier Fiber](/provider/frontier)** | $29.99 | 200/200 | 7 Gbps | Symm. | None |
 | [AT&T Fiber](/provider/att-fiber) | $55 | 300/300 | 5 Gbps | Symm. | None |
 | Verizon 5G Home | $50 | 100–1000 Mbps | 1 Gbps | Varies | None |
 | [Spectrum](/provider/spectrum) | $49.99 | 300/10 | 1 Gbps | 35 Mbps | None |
-| [EarthLink Fiber](/provider/earthlink) | $49.99 | 300/300 | 5 Gbps | Symm. | None |
+| [EarthLink Fiber](/provider/earthlink) | $39.95 | 100/100 | 5 Gbps | Symm. | None |
 
-Frontier Fiber's entry tier offers the most bandwidth per dollar among major fiber ISPs — 500/500 Mbps at $49.99 beats AT&T's 300/300 at $55 and Verizon's 300/300 at $49.99.
+Frontier Fiber's entry tier offers the most bandwidth per dollar among major fiber ISPs — 500/500 Mbps at $44.99 beats AT&T's 300/300 at $55 and Verizon's 300/300 at $49.99.
 
 ## Who Should Choose Frontier?
 

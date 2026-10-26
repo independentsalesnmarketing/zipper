@@ -37,7 +37,7 @@ Here's the honest answer that ISPs don't want you to hear: **you don't need giga
 ## Best Internet Providers for Streaming
 
 ### 1. [Frontier Fiber](/provider/frontier) — Best Value for Streamers
-- **$49.99/mo** for 500/500 Mbps
+- **$44.99/mo** for 500/500 Mbps
 - Handles unlimited simultaneous 4K streams without breaking a sweat
 - No data caps (important for heavy streamers)
 - Symmetrical speed means your uploads don't compete with streams

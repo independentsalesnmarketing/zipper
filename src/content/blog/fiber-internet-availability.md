@@ -40,8 +40,8 @@ Verizon's fixed wireless product is nationwide, no-install, and backed by one of
 | Coverage | ~7+ million homes |
 |----------|---------------------|
 | States | 25 states |
-| Speeds | 500 Mbps – 5 Gbps |
-| Price | Starting at $49.99/mo |
+| Speeds | 200 Mbps – 7 Gbps |
+| Price | Starting at $29.99/mo |
 | Expansion | Rapid (2+ million homes per year) |
 
 Frontier is the fiber expansion story of 2024-2026. After emerging from bankruptcy, they're building fiber at an aggressive pace — often in smaller markets that AT&T and Verizon overlook.
@@ -49,8 +49,8 @@ Frontier is the fiber expansion story of 2024-2026. After emerging from bankrupt
 ### Optimum (Altice) Fiber
 | Coverage | Parts of NY, NJ, CT |
 |----------|---------------------|
-| Speeds | 300 Mbps – 8 Gbps |
-| Price | Starting at $40/mo |
+| Speeds | 300 Mbps – 2 Gbps |
+| Price | Starting at $35/mo |
 | Expansion | Replacing cable network with fiber throughout service area |
 
 Optimum is systematically replacing its cable infrastructure with fiber. If you're in their service area and don't have fiber yet, it's likely coming within 1-2 years.
@@ -59,7 +59,7 @@ Optimum is systematically replacing its cable infrastructure with fiber. If you'
 | Coverage | 20 states |
 |----------|---------------------|
 | Speeds | 500 Mbps – 2 Gbps |
-| Price | Starting at $49/mo |
+| Price | Starting at $59.99/mo |
 | Expansion | Rapid (targeting underserved areas) |
 
 Brightspeed acquired CenturyLink's consumer operations and is building fiber specifically in areas with poor existing broadband — exactly where it's needed most.
@@ -85,8 +85,8 @@ Kinetic focuses fiber deployment on rural communities — areas where residents 
 ### EarthLink
 | Coverage | Uses partner networks (AT&T, Frontier, etc.) |
 |----------|---------------------|
-| Speeds | 300 Mbps – 5 Gbps |
-| Price | Starting at $49.99/mo |
+| Speeds | 100 Mbps – 5 Gbps |
+| Price | Starting at $39.95/mo |
 | Expansion | Grows as partner networks expand |
 
 EarthLink resells fiber from the providers above, often with competitive pricing and better customer service.

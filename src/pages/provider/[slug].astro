@@ -1,5 +1,6 @@
 ---
 import Base from '@layouts/Base.astro';
+import OfferDetails from '@components/OfferDetails.astro';
 import Breadcrumb from '@components/Breadcrumb.astro';
 import StickyCallBar from '@components/StickyCallBar.astro';
 import CoverageMap from '@components/CoverageMap.astro';
@@ -331,7 +332,7 @@ const baseFaqs = [
   { question: `Is ${provider.name} available in my area?`, answer: `${provider.name} is available in ${provider.coverage.includes('Nationwide') ? 'all 50 states' : provider.coverage.length + ' states: ' + provider.coverage.join(', ')}. Enter your ZIP code above to check exact availability at your address.` },
   { question: `What is ${provider.name}'s fastest plan?`, answer: `${provider.name}'s fastest plan offers up to ${formatSpeed(maxSpeed)} download speed. Prices start at ${formatPrice(minPrice)}/mo.` },
   { question: `Does ${provider.name} have data caps?`, answer: provider.plans[0]?.dataCap === 'Unlimited' ? `No, ${provider.name} offers unlimited data on all plans — no throttling, no overage fees.` : `${provider.name} plans include data allowances. See plan details above for specific caps.` },
-  { question: `Does ${provider.name} require a contract?`, answer: provider.plans[0]?.contract === 'None' ? `No, ${provider.name} does not require annual contracts. You can cancel anytime.` : `Some ${provider.name} plans require a contract. Check plan details above.` },
+  { question: `Does ${provider.name} require a contract?`, answer: provider.plans[0]?.contract === 'None' ? provider.slug === 'frontier' ? 'Qualifying Frontier promotional offers may carry a prorated early termination fee during months 1–12. See Offer Details for cancellation and equipment fees.' : `No, ${provider.name} does not require annual contracts. You can cancel anytime.` : `Some ${provider.name} plans require a contract. Check plan details above.` },
   { question: `How does ${provider.name} compare to other providers?`, answer: `${provider.name} offers speeds up to ${formatSpeed(maxSpeed)} starting at ${formatPrice(minPrice)}/mo with a ${provider.rating.toFixed(1)}/5 rating from ${provider.reviewCount.toLocaleString()} reviews. Compare plans side-by-side on our comparison page.` },
   { question: `What technology does ${provider.name} use?`, answer: `${provider.name} uses ${provider.types.map(t => getTypeLabel(t)).join(' and ')} technology. ${primaryType === 'fiber' ? 'Fiber provides the fastest, most reliable connection with symmetrical upload/download speeds.' : primaryType === '5g' ? '5G home internet offers fast wireless speeds without requiring a wired connection.' : 'This provides reliable coverage for most internet activities.'}` },
 ];
@@ -706,6 +707,7 @@ const schemas = [
             </div>
           ))}
         </div>
+        <OfferDetails slug={provider.slug} name={provider.name} />
       </div>
 
       <!-- Technology Deep-Dive — SEO content -->

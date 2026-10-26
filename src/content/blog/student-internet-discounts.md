@@ -37,7 +37,7 @@ Whether you're in an off-campus apartment, a house with roommates, or need a bac
 ### 3. Frontier Fiber — Best Value
 | Feature | Details |
 |---------|---------|
-| Price | **$49.99/mo** |
+| Price | **$44.99/mo** |
 | Speed | 500/500 Mbps |
 | Contract | None |
 
@@ -46,11 +46,11 @@ Whether you're in an off-campus apartment, a house with roommates, or need a bac
 ### 4. Optimum — Cheapest Starting Price
 | Feature | Details |
 |---------|---------|
-| Price | **$40/mo** |
+| Price | **$35/mo** |
 | Speed | 300 Mbps |
 | Contract | None |
 
-At $40/mo for 300 Mbps, Optimum is the cheapest entry point. Available in NY, NJ, and CT — covering many East Coast college areas.
+At $35/mo for 300 Mbps, Optimum is the cheapest entry point. Available in NY, NJ, and CT — covering many East Coast college areas.
 
 ## Splitting Internet with Roommates
 
@@ -58,9 +58,9 @@ The most budget-friendly approach: one internet plan, split evenly.
 
 | Plan | Total Cost | Per Person (2) | Per Person (3) | Per Person (4) |
 |------|-----------|---------------|---------------|---------------|
-| Optimum 300 | $40/mo | $20 | $13.33 | $10 |
+| Optimum 300 | $35/mo | $17.50 | $11.67 | $8.75 |
 | Spectrum 300 | $49.99/mo | $25 | $16.66 | $12.50 |
-| Frontier 500 | $49.99/mo | $25 | $16.66 | $12.50 |
+| Frontier 500 | $44.99/mo | $22.50 | $15.00 | $11.25 |
 | T-Mobile | $50/mo | $25 | $16.67 | $12.50 |
 
 **Tip**: Use Venmo, Zelle, or Splitwise to automate monthly bill splitting. Put the account in one person's name and have roommates auto-pay their share.

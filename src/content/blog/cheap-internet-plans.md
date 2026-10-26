@@ -45,11 +45,11 @@ If you don't qualify for assistance programs, here are the cheapest standard pla
 
 | Provider | Plan | Price | Speed | Notes |
 |----------|------|-------|-------|-------|
-| Optimum | Internet 300 | $40/mo | 300 Mbps | Northeast only |
+| Optimum | Internet 300 | $35/mo | 300 Mbps | Northeast only |
 | AltaFiber | Basic | $39.99/mo | 250 Mbps | OH/KY/IN only |
 | Kinetic | Kinetic 200 | $39.99/mo | 200 Mbps | Limited areas |
 | Spectrum | Internet | $49.99/mo | 300 Mbps | 41 states |
-| Frontier Fiber | Fiber 500 | $49.99/mo | 500 Mbps | Limited |
+| Frontier Fiber | Fiber 500 | $44.99/mo | 500 Mbps | Limited |
 | T-Mobile | Home Internet | $50/mo | 72-245 Mbps | Cellular coverage |
 
 The true floor for standard internet is around **$40/mo** from major providers. Under $40 requires either a low-income program, a regional deal, or sacrificing significant speed.

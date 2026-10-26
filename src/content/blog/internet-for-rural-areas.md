@@ -32,7 +32,7 @@ Here's what's actually available for rural homes and how each option compares.
 ### 2. Frontier Fiber — Best Where Available
 | Feature | Details |
 |---------|---------|
-| Price | $49.99/mo |
+| Price | $44.99/mo |
 | Speed | 500/500 Mbps |
 | Data Cap | None |
 | Latency | 5-10ms |
@@ -61,8 +61,8 @@ Starlink has revolutionized satellite internet. Unlike traditional satellite (Hu
 ### 5. Brightspeed — Expanding Rural Fiber
 | Feature | Details |
 |---------|---------|
-| Price | $49/mo |
-| Speed | 200 Mbps – 1 Gbps (fiber) |
+| Price | $59.99/mo |
+| Speed | 500 Mbps – 1 Gbps (fiber) |
 | Data Cap | None |
 
 Brightspeed (formerly CenturyLink's rural operations) is building fiber in underserved communities across 20 states. Their fiber deployment prioritizes areas with poor existing broadband — exactly where it's needed most.

@@ -119,7 +119,7 @@ Before signing up, verify:
 | Best no-install setup | Verizon 5G Home | Plug in and stream — 4-yr price lock |
 | Widest availability | [Spectrum](/provider/spectrum) | 41 states |
 | Easiest setup | [T-Mobile Home Internet](/provider/tmobile-5g) | Plug in and go |
-| Best value (speed/dollar) | [Frontier Fiber](/provider/frontier) | 500 Mbps for $49.99 |
+| Best value (speed/dollar) | [Frontier Fiber](/provider/frontier) | 500 Mbps for $44.99 |
 | Privacy focus | [EarthLink](/provider/earthlink) | Doesn't sell your data |
 | Rural coverage | [T-Mobile](/provider/tmobile-5g) or Kinetic | Best rural reach |
 

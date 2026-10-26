@@ -15,8 +15,8 @@ EarthLink is a unique player in the broadband market. Unlike ISPs that own their
 | Feature | EarthLink Fiber | EarthLink Wireless |
 |---------|----------------|-------------------|
 | Technology | Fiber (via partner networks) | Fixed Wireless / 5G |
-| Speed Range | 300 Mbps – 5 Gbps | 50 – 100 Mbps |
-| Starting Price | $49.99/mo | $49.99/mo |
+| Speed Range | 100 Mbps – 5 Gbps | 50 – 100 Mbps |
+| Starting Price | $39.95/mo | $49.99/mo |
 | Contract | No | No |
 | Data Cap | None | Varies |
 
@@ -25,13 +25,14 @@ EarthLink is a unique player in the broadband market. Unlike ISPs that own their
 ### Fiber Plans
 EarthLink's fiber plans use the fiber networks of providers like AT&T, Frontier, and CenturyLink:
 
-- **300 Mbps** — $49.99/mo
-- **500 Mbps** — $59.99/mo
-- **1 Gbps** — $69.99/mo
-- **2 Gbps** — $99.99/mo
-- **5 Gbps** — $149.99/mo
+- **100 Mbps** — $39.95/mo
+- **300 Mbps** — $49.95/mo
+- **500 Mbps** — $54.95/mo
+- **1 Gbps** — $74.95/mo
+- **2 Gbps** — $109.95/mo
+- **5 Gbps** — $149.95/mo
 
-All fiber plans include symmetrical upload speeds and no data cap.
+Qualifying fiber plans offer unlimited data without speed throttling. Equipment lease fees may apply; eligible price-lock offers last up to 24 months. See [EarthLink Offer Details](/provider/earthlink/#provider-plans).
 
 ### Wireless Home Internet
 For areas without fiber:
@@ -84,10 +85,10 @@ The infrastructure quality depends on which provider serves your address. EarthL
 
 | Provider | Entry Price | Entry Speed | Technology | Data Cap |
 |----------|-----------|------------|-----------|----------|
-| **[EarthLink](/provider/earthlink)** | $49.99 | 300 Mbps | Fiber/Wireless | None (fiber) |
+| **[EarthLink](/provider/earthlink)** | $49.95 | 300 Mbps | Fiber/Wireless | None (fiber) |
 | [AT&T Fiber](/provider/att-fiber) | $55 | 300 Mbps | Fiber | None |
 | [Spectrum](/provider/spectrum) | $49.99 | 300 Mbps | Cable | None |
-| [Frontier Fiber](/provider/frontier) | $49.99 | 500 Mbps | Fiber | None |
+| [Frontier Fiber](/provider/frontier) | $44.99 | 500 Mbps | Fiber | None |
 | [T-Mobile 5G](/provider/tmobile-5g) | $50 | 72-245 Mbps | Fixed Wireless | None |
 
 ## Who Should Choose EarthLink?

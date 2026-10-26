@@ -74,7 +74,7 @@ T-Mobile's phone support is also rated above average, and you can get in-person 
 
 | Feature | Details |
 |---------|---------|
-| Price | **$49.99/mo** |
+| Price | **$44.99/mo** |
 | Speed | 500/500 Mbps |
 | Contract | None |
 

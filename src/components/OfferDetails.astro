@@ -1,0 +1,75 @@
+---
+import { offerDetails } from '@data/offer-details';
+interface Props { slug: string; name: string }
+const { slug, name } = Astro.props;
+const details = offerDetails[slug];
+const id = `offer-details-${slug}`;
+---
+{details && (
+  <div class="offer-details">
+    <button type="button" class="offer-link" data-offer-open={id} aria-haspopup="dialog" aria-controls={id}>Offer Details</button>
+    <dialog id={id} aria-labelledby={`${id}-title`}>
+      <div class="offer-header">
+        <h2 id={`${id}-title`} tabindex="-1">{name} Offer Details</h2>
+        <button type="button" class="offer-close" data-offer-close aria-label={`Close ${name} Offer Details`}>Close <span aria-hidden="true">×</span></button>
+      </div>
+      <div class="offer-content" tabindex="0" aria-label="Offer disclosure content">
+        {details.sections.map(section => (
+          <section>
+            <h3>{section.title}</h3>
+            {section.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+          </section>
+        ))}
+        {details.copyright && <p class="copyright">{details.copyright}</p>}
+      </div>
+    </dialog>
+  </div>
+)}
+<style>
+  .offer-details { margin-top: var(--space-lg); }
+  .offer-link { border: 0; padding: .5rem 0; background: transparent; color: var(--brandPrimary, var(--text-primary)); text-decoration: underline; text-underline-offset: .2em; font: inherit; cursor: pointer; }
+  dialog { width: min(720px, calc(100% - 2rem)); max-height: min(85dvh, 900px); margin: auto; padding: 0; border: 1px solid var(--border); border-radius: var(--radius-lg); color: var(--text-primary); background: var(--bg-primary, #fff); box-shadow: 0 24px 80px #0b173640; }
+  dialog[open] { display: flex; flex-direction: column; }
+  dialog::backdrop { background: #0b1736a6; }
+  .offer-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); }
+  .offer-header h2 { font-size: 1.3rem; margin: 0; }
+  .offer-close { flex-shrink: 0; background: transparent; color: inherit; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .5rem .75rem; font: inherit; cursor: pointer; }
+  .offer-content { overflow-y: auto; overscroll-behavior: contain; padding: 1.5rem; line-height: 1.7; }
+  section + section { margin-top: 1.5rem; }
+  h3 { font-size: 1.05rem; margin-bottom: .6rem; }
+  p { margin-bottom: .8rem; }
+  .copyright { margin-top: 1.5rem; font-size: .875rem; }
+  button:focus-visible, .offer-content:focus-visible { outline: 3px solid var(--brandPrimary, #0052ff); outline-offset: 3px; }
+  @media (max-width: 480px) { .offer-header, .offer-content { padding: 1rem; } .offer-header h2 { font-size: 1.1rem; } }
+</style>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-offer-open]').forEach(trigger => {
+    const dialog = document.getElementById(trigger.dataset.offerOpen!) as HTMLDialogElement | null;
+    if (!dialog) return;
+    let previousOverflow = '';
+    trigger.addEventListener('click', () => {
+      previousOverflow = document.body.style.overflow;
+      dialog.showModal();
+      document.body.style.overflow = 'hidden';
+      dialog.querySelector<HTMLElement>('h2')?.focus();
+    });
+    dialog.querySelector('[data-offer-close]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('keydown', event => {
+      if (event.key !== 'Tab') return;
+      const targets = Array.from(dialog.querySelectorAll<HTMLElement>('button, a[href], [tabindex="0"]'));
+      const first = targets[0];
+      const last = targets[targets.length - 1];
+      if (event.shiftKey && (document.activeElement === first || document.activeElement === dialog.querySelector('h2'))) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    });
+    dialog.addEventListener('close', () => {
+      document.body.style.overflow = previousOverflow;
+      trigger.focus();
+    });
+  });
+</script>

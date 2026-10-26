@@ -26,9 +26,9 @@ The ultimate no-strings internet. No contract, no equipment fee, no hidden charg
 ### 2. [Frontier Fiber](/provider/frontier)
 | Price | Speed | Technology | Data Cap |
 |-------|-------|-----------|----------|
-| $49.99/mo | 500/500 Mbps | Fiber | None |
+| $44.99/mo | 500/500 Mbps | Fiber | None |
 
-Frontier doesn't do contracts on any plan. 500 Mbps symmetrical at $49.99/mo is an outstanding value with complete flexibility to cancel anytime.
+Qualifying Frontier promotions may carry a prorated early termination fee during months 1–12. 500 Mbps symmetrical at $44.99/mo is an outstanding value with a 12-month promotional price guarantee.
 
 ### 3. [Spectrum](/provider/spectrum)
 | Price | Speed | Technology | Data Cap |
@@ -54,16 +54,16 @@ AT&T dropped contracts on fiber plans years ago. Month-to-month service with sym
 ### 6. [EarthLink](/provider/earthlink)
 | Price | Speed | Technology | Data Cap |
 |-------|-------|-----------|----------|
-| $49.99/mo | 300 Mbps | Fiber/Cable | None (fiber) |
+| $39.95/mo | 100 Mbps | Fiber/Cable | None (fiber) |
 
 EarthLink's reseller model comes with no contracts on any plan. Switch or cancel without penalties.
 
 ### 7. [Optimum](/provider/optimum)
 | Price | Speed | Technology | Data Cap |
 |-------|-------|-----------|----------|
-| $40/mo | 300 Mbps | Cable/Fiber | None |
+| $35/mo | 300 Mbps | Cable/Fiber | None |
 
-The cheapest no-contract option in the Northeast at just $40/mo for 300 Mbps. No ETFs on any plan.
+The cheapest no-contract option in the Northeast at just $35/mo for 300 Mbps. No ETFs on any plan.
 
 ## No-Contract vs Contract: What You Save
 

@@ -78,25 +78,183 @@ data = {
       "id": "frontier",
       "name": "Frontier",
       "slug": "frontier",
-      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F2b7ba1b758ee4b8a9c57cc4b6a65c54c?format=webp&width=200",
-      "types": ["fiber"],
+      "logo": "/frontier-logo.png",
+      "types": [
+        "fiber"
+      ],
       "rating": 4.1,
       "reviewCount": 24680,
+      "reviewSource": "PCMag Editors' Rating",
+      "reviewUrl": "https://www.pcmag.com/reviews/frontier-internet",
       "isPartner": True,
-      "description": "Frontier Fiber delivers 100% fiber-optic internet from 200 Mbps to 7 Gbps — the widest speed tier range of any fiber provider. All plans include a premium WiFi router, no data caps, no overage charges, and discounts for Verizon Mobile bundling and YouTube TV subscribers.",
-      "pros": ["Speeds from 200 Mbps to 7 Gbps", "No annual contracts", "No data caps or overage charges", "Premium WiFi router included", "Verizon Mobile bundle discount", "YouTube TV discount", "Auto Pay discount"],
-      "cons": ["Fiber not available everywhere", "Limited TV bundle options"],
-      "coverage": ["CA","TX","FL","CT","NY","WV","IN","OH","PA","AZ","AL","IL","SC","TN","NM","GA","NC","MN","WI","MS","NE","IA","OR","WA"],
-      "phone": "",
-      "promo": "Fiber from $30/mo + Verizon Mobile bundle savings + premium WiFi router included",
-      "topCities": ["Los Angeles, CA","Tampa, FL","Dallas, TX","Fort Worth, TX","Hartford, CT","New Haven, CT","Rochester, NY","Fort Wayne, IN","Long Beach, CA","Sarasota, FL","St. Petersburg, FL","Clearwater, FL","Lakeland, FL","Durham, NC","Plano, TX","Irving, TX","Frisco, TX","McKinney, TX","Denton, TX","Beaverton, OR"],
+      "description": "Frontier Fiber offers 200 Mbps to 7 Gbps, starting at $29.99/month. 2 Gig Fiber is $79.99/month. Promotional prices are guaranteed for 12 months with bank-account AutoPay and paperless billing. Eligible plans include an eero Wi-Fi router and unlimited data. Taxes, fees, and promotional restrictions apply.",
+      "pros": [
+        "Speeds from 200 Mbps to 7 Gbps",
+        "12-month promotional price guarantee",
+        "No data caps",
+        "Eligible eero Wi-Fi router included",
+        "2 Gig Fiber for $79.99/mo"
+      ],
+      "cons": [
+        "Fiber not available everywhere",
+        "Limited TV bundle options"
+      ],
+      "coverage": [
+        "CA",
+        "TX",
+        "FL",
+        "CT",
+        "NY",
+        "WV",
+        "IN",
+        "OH",
+        "PA",
+        "AZ",
+        "AL",
+        "IL",
+        "SC",
+        "TN",
+        "NM",
+        "GA",
+        "NC",
+        "MN",
+        "WI",
+        "MS",
+        "NE",
+        "IA",
+        "OR",
+        "WA"
+      ],
+      "promo": "Fiber from $29.99/mo — 1 Gig $64.99/mo and 2 Gig $79.99/mo. 12-month promotional price guarantee with bank-account AutoPay and paperless billing.",
+      "topCities": [
+        "Los Angeles, CA",
+        "Tampa, FL",
+        "Dallas, TX",
+        "Fort Worth, TX",
+        "Hartford, CT",
+        "New Haven, CT",
+        "Rochester, NY",
+        "Fort Wayne, IN",
+        "Long Beach, CA",
+        "Sarasota, FL",
+        "Bradenton, FL",
+        "St. Petersburg, FL",
+        "Clearwater, FL",
+        "Lakeland, FL",
+        "Durham, NC",
+        "Beaverton, OR",
+        "Gresham, OR",
+        "Hillsboro, OR",
+        "Everett, WA",
+        "Kirkland, WA",
+        "Redmond, WA",
+        "Bothell, WA",
+        "Denton, TX",
+        "Plano, TX",
+        "Irving, TX",
+        "Garland, TX",
+        "Carrollton, TX",
+        "Lewisville, TX",
+        "Frisco, TX",
+        "McKinney, TX"
+      ],
       "plans": [
-        {"name": "Fiber 200", "speed": 200, "uploadSpeed": 200, "price": 30.00, "promoPrice": 30.00, "contract": "None", "dataCap": "Unlimited", "features": ["Premium WiFi router", "Verizon Mobile bundle discount", "YouTube TV discount", "Auto Pay discount"]},
-        {"name": "Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 45.00, "promoPrice": 45.00, "contract": "None", "dataCap": "Unlimited", "features": ["Premium WiFi router", "Verizon Mobile bundle discount", "YouTube TV discount", "Auto Pay discount"]},
-        {"name": "Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 65.00, "promoPrice": 65.00, "contract": "None", "dataCap": "Unlimited", "features": ["Premium WiFi router", "Verizon Mobile bundle discount", "YouTube TV discount", "Auto Pay discount"]},
-        {"name": "Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 100.00, "promoPrice": 100.00, "contract": "None", "dataCap": "Unlimited", "features": ["Premium WiFi router", "YouTube TV discount", "Auto Pay discount", "Multi-gig speeds"]},
-        {"name": "Fiber 5 Gig", "speed": 5000, "uploadSpeed": 5000, "price": 150.00, "promoPrice": 150.00, "contract": "None", "dataCap": "Unlimited", "features": ["Premium mesh WiFi", "YouTube TV discount", "Auto Pay discount", "Ultra-fast fiber"]},
-        {"name": "Fiber 7 Gig", "speed": 7000, "uploadSpeed": 7000, "price": 200.00, "promoPrice": 200.00, "contract": "None", "dataCap": "Unlimited", "features": ["Fastest residential plan available", "Premium mesh WiFi", "YouTube TV discount", "Best for power users"]}
+        {
+          "name": "Fiber 200",
+          "speed": 200,
+          "uploadSpeed": 200,
+          "price": 29.99,
+          "promoPrice": 29.99,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "features": [
+            "12-month promotional price guarantee",
+            "Bank-account AutoPay and paperless billing required",
+            "Eligible eero Wi-Fi router included",
+            "No data caps"
+          ],
+          "type": "fiber"
+        },
+        {
+          "name": "Fiber 500",
+          "speed": 500,
+          "uploadSpeed": 500,
+          "price": 44.99,
+          "promoPrice": 44.99,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "features": [
+            "12-month promotional price guarantee",
+            "Bank-account AutoPay and paperless billing required",
+            "Eligible eero Wi-Fi router included",
+            "No data caps"
+          ],
+          "type": "fiber"
+        },
+        {
+          "name": "Fiber 1 Gig",
+          "speed": 1000,
+          "uploadSpeed": 1000,
+          "price": 64.99,
+          "promoPrice": 64.99,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "features": [
+            "12-month promotional price guarantee",
+            "Bank-account AutoPay and paperless billing required",
+            "Eligible eero Wi-Fi router included",
+            "No data caps"
+          ],
+          "type": "fiber"
+        },
+        {
+          "name": "Fiber 2 Gig",
+          "speed": 2000,
+          "uploadSpeed": 2000,
+          "price": 79.99,
+          "promoPrice": 79.99,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "features": [
+            "12-month promotional price guarantee",
+            "Bank-account AutoPay and paperless billing required",
+            "Eligible eero Wi-Fi router included",
+            "No data caps"
+          ],
+          "type": "fiber"
+        },
+        {
+          "name": "Fiber 5 Gig",
+          "speed": 5000,
+          "uploadSpeed": 5000,
+          "price": 104.99,
+          "promoPrice": 104.99,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "features": [
+            "12-month promotional price guarantee",
+            "Bank-account AutoPay and paperless billing required",
+            "Eligible eero Wi-Fi router included",
+            "No data caps"
+          ],
+          "type": "fiber"
+        },
+        {
+          "name": "Fiber 7 Gig",
+          "speed": 7000,
+          "uploadSpeed": 7000,
+          "price": 124.99,
+          "promoPrice": 124.99,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "features": [
+            "12-month promotional price guarantee",
+            "Bank-account AutoPay and paperless billing required",
+            "Eligible eero Wi-Fi router included",
+            "No data caps"
+          ],
+          "type": "fiber"
+        }
       ]
     },
     {
@@ -238,74 +396,401 @@ data = {
       "id": "optimum",
       "name": "Optimum",
       "slug": "optimum",
-      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F38a2edd4db2944e597f7499c46ec551d?format=webp&width=200",
-      "types": ["fiber","cable"],
+      "logo": "/optimum-logo.png",
+      "types": [
+        "fiber",
+        "cable"
+      ],
       "rating": 4.0,
       "reviewCount": 31250,
+      "reviewSource": "PCMag Editors' Rating",
+      "reviewUrl": "https://www.pcmag.com/reviews/altice-optimum-internet",
       "isPartner": True,
-      "description": "Optimum delivers fiber internet with an industry-leading 5-year price lock on every plan — no surprises, no annual contracts, no data caps. Plans from $30/mo to 8 Gbps for power users, plus up to $200 in Visa Prepaid Cards for new customers. Free installation on online orders.",
-      "pros": ["5-year price lock on all plans", "No annual contracts", "No data caps", "Up to $200 Visa Prepaid Card", "Free installation for online orders", "Speeds up to 8 Gbps"],
-      "cons": ["Limited to select regions (Northeast, NV, TX, WV)", "Cable plans being phased out in favor of fiber"],
-      "coverage": ["NY","NJ","CT","PA","NV","TX","WV"],
-      "phone": "",
-      "promo": "5-year price lock + up to $200 Visa Prepaid Card — fiber from just $30/mo",
-      "topCities": ["New York, NY","Newark, NJ","Jersey City, NJ","Henderson, NV","Amarillo, TX","Lubbock, TX","Stamford, CT","Bridgeport, CT","Norwalk, CT","Waterbury, CT","Danbury, CT","Milford, CT","Stratford, CT","Fairfield, CT","Greenwich, CT","Westport, CT","Bryan, TX","College Station, TX","Charleston, WV","Parkersburg, WV"],
+      "description": "Optimum offers 300 Mbps, 500 Mbps, 1 Gig, and 2 Gig Fiber from $35/month with a 1-Year Price Lock. Advertised prices include ACH AutoPay and paperless billing. Eligible 1 Gig Internet with qualifying Optimum Mobile service includes a $50 Visa Prepaid Card. Taxes and fees are additional.",
+      "pros": [
+        "1-Year Price Lock",
+        "No annual contracts",
+        "No data caps",
+        "$50 Visa Prepaid Card with eligible 1 Gig Internet and qualifying Optimum Mobile service",
+        "Fiber plans from $35/mo",
+        "Speeds up to 2 Gbps"
+      ],
+      "cons": [
+        "Limited to select regions (Northeast, NV, TX, WV)",
+        "Cable plans being phased out in favor of fiber"
+      ],
+      "coverage": [
+        "NY",
+        "NJ",
+        "CT",
+        "PA",
+        "NV",
+        "TX",
+        "WV"
+      ],
+      "promo": "1-Year Price Lock — Fiber 300 $35/mo, 500 $45/mo, 1 Gig $55/mo, 2 Gig $65/mo. $50 Visa Prepaid Card with eligible 1 Gig Internet and qualifying Optimum Mobile service.",
+      "topCities": [
+        "New York, NY",
+        "Newark, NJ",
+        "Jersey City, NJ",
+        "Henderson, NV",
+        "Amarillo, TX",
+        "Lubbock, TX",
+        "Stamford, CT",
+        "Bridgeport, CT",
+        "Norwalk, CT",
+        "Waterbury, CT",
+        "Danbury, CT",
+        "Milford, CT",
+        "Stratford, CT",
+        "Fairfield, CT",
+        "Greenwich, CT",
+        "Westport, CT",
+        "Bryan, TX",
+        "College Station, TX",
+        "Charleston, WV",
+        "Parkersburg, WV"
+      ],
       "plans": [
-        {"name": "Fiber 300", "speed": 300, "uploadSpeed": 300, "price": 30.00, "promoPrice": 30.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps"]},
-        {"name": "Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 45.00, "promoPrice": 45.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps"]},
-        {"name": "Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 60.00, "promoPrice": 60.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps"]},
-        {"name": "Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 80.00, "promoPrice": 80.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps"]},
-        {"name": "Fiber 5 Gig", "speed": 5000, "uploadSpeed": 5000, "price": 120.00, "promoPrice": 120.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "No contracts, no data caps"]},
-        {"name": "Fiber 8 Gig", "speed": 8000, "uploadSpeed": 8000, "price": 150.00, "promoPrice": 150.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["5-year price lock", "Up to $200 Visa Prepaid Card", "Free installation", "Fastest Optimum plan"]}
+        {
+          "name": "Fiber 300",
+          "speed": 300,
+          "uploadSpeed": 300,
+          "price": 35,
+          "promoPrice": 35,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "1-Year Price Lock",
+            "Includes $10/mo ACH AutoPay and paperless billing discount",
+            "No data caps"
+          ]
+        },
+        {
+          "name": "Fiber 500",
+          "speed": 500,
+          "uploadSpeed": 500,
+          "price": 45,
+          "promoPrice": 45,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "1-Year Price Lock",
+            "Includes $10/mo ACH AutoPay and paperless billing discount",
+            "No data caps"
+          ]
+        },
+        {
+          "name": "Fiber 1 Gig",
+          "speed": 1000,
+          "uploadSpeed": 940,
+          "price": 55,
+          "promoPrice": 55,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "1-Year Price Lock",
+            "Includes $10/mo ACH AutoPay and paperless billing discount",
+            "No data caps",
+            "$50 Visa Prepaid Card with eligible 1 Gig Internet and qualifying Optimum Mobile service"
+          ]
+        },
+        {
+          "name": "Fiber 2 Gig",
+          "speed": 2000,
+          "uploadSpeed": 2000,
+          "price": 65,
+          "promoPrice": 65,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "1-Year Price Lock",
+            "Includes $10/mo ACH AutoPay and paperless billing discount",
+            "No data caps"
+          ]
+        }
       ]
     },
     {
       "id": "earthlink",
       "name": "EarthLink",
       "slug": "earthlink",
-      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F3e0270cc21bc43a5afc4d42a4c9a79d9?format=webp&width=200",
-      "types": ["fiber","fixed-wireless"],
+      "logo": "/earthlink-logo.png",
+      "types": [
+        "fiber",
+        "fixed-wireless"
+      ],
       "rating": 3.8,
       "reviewCount": 12340,
+      "reviewSource": "PCMag Editors' Rating",
+      "reviewUrl": "https://www.pcmag.com/reviews/earthlink-wireless-home-internet",
       "isPartner": True,
-      "description": "EarthLink delivers internet nationwide through partnerships with major fiber networks, offering speeds up to 5 Gbps. Enjoy introductory rates as low as $39.95/mo on Fiber 1 Gig, $100–$200 Mastercard Reward Cards, and straightforward pricing with no data caps or speed throttling.",
-      "pros": ["No data caps", "No speed throttling", "Nationwide availability", "$100–$200 Mastercard Reward Cards", "Intro rate: Fiber 1 Gig from $39.95/mo", "24/7 customer support", "Wireless Home Internet option"],
-      "cons": ["Uses partner networks (availability varies)", "One-time professional installation fee"],
-      "coverage": ["Nationwide"],
-      "phone": "",
-      "promo": "Fiber 1 Gig from $39.95/mo intro + $100–$200 Mastercard Reward — no data caps",
-      "topCities": ["Chicago, IL","Los Angeles, CA","Atlanta, GA","Dallas, TX","Houston, TX","Miami, FL","New York, NY","Philadelphia, PA","Phoenix, AZ","San Antonio, TX","San Diego, CA","Austin, TX","Jacksonville, FL","Charlotte, NC","San Francisco, CA","Indianapolis, IN","Seattle, WA","Denver, CO","Washington, DC","Nashville, TN"],
+      "description": "EarthLink Fiber offers 100 Mbps to 5 Gbps, starting at $39.95/month. Qualifying fiber plans include unlimited data without speed throttling. Eligible offers may include a price-lock guarantee of up to 24 months. Equipment lease fees may apply; availability and pricing vary by address.",
+      "pros": [
+        "Fiber from $39.95/mo",
+        "Unlimited data on qualifying fiber plans",
+        "No speed throttling on qualifying fiber plans",
+        "Eligible price-lock offers up to 24 months",
+        "24/7 customer support"
+      ],
+      "cons": [
+        "Uses partner networks (availability varies)",
+        "One-time professional installation fee"
+      ],
+      "coverage": [
+        "Nationwide"
+      ],
+      "promo": "Fiber from $39.95/mo — 1 Gig $74.95/mo, with unlimited data on qualifying plans.",
+      "topCities": [
+        "Chicago, IL",
+        "Los Angeles, CA",
+        "Atlanta, GA",
+        "Dallas, TX",
+        "Houston, TX",
+        "Miami, FL",
+        "New York, NY",
+        "Philadelphia, PA",
+        "Phoenix, AZ",
+        "San Antonio, TX",
+        "San Diego, CA",
+        "Austin, TX",
+        "Jacksonville, FL",
+        "Charlotte, NC",
+        "San Francisco, CA",
+        "Indianapolis, IN",
+        "Seattle, WA",
+        "Denver, CO",
+        "Washington, DC",
+        "Nashville, TN"
+      ],
       "plans": [
-        {"name": "Fiber 100", "speed": 100, "uploadSpeed": 100, "price": 49.95, "promoPrice": 49.95, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["No data caps", "24/7 support", "No speed throttling"]},
-        {"name": "Fiber 300", "speed": 300, "uploadSpeed": 300, "price": 54.95, "promoPrice": 54.95, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["Symmetrical speeds", "No data caps", "24/7 support"]},
-        {"name": "Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 89.95, "promoPrice": 39.95, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["$39.95/mo for first 3 months", "$100–$200 Mastercard Reward Card", "No data caps"]},
-        {"name": "Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 110.00, "promoPrice": 110.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["$100–$200 Mastercard Reward Card", "Multi-gig speeds", "No data caps"]},
-        {"name": "Fiber 5 Gig", "speed": 5000, "uploadSpeed": 5000, "price": 150.00, "promoPrice": 150.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["$100–$200 Mastercard Reward Card", "Fastest EarthLink plan", "No data caps"]},
-        {"name": "Wireless Home Internet", "speed": 200, "uploadSpeed": 25, "price": 55.00, "promoPrice": 55.00, "contract": "None", "dataCap": "Unlimited", "type": "fixed-wireless", "features": ["No wiring needed", "Self-install option", "No data caps"]}
+        {
+          "name": "Fiber 100",
+          "speed": 100,
+          "uploadSpeed": 100,
+          "price": 39.95,
+          "promoPrice": 39.95,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "Unlimited data without speed throttling",
+            "24/7 support",
+            "Equipment lease fees may apply"
+          ]
+        },
+        {
+          "name": "Fiber 300",
+          "speed": 300,
+          "uploadSpeed": 300,
+          "price": 49.95,
+          "promoPrice": 49.95,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "Unlimited data without speed throttling",
+            "24/7 support",
+            "Equipment lease fees may apply"
+          ]
+        },
+        {
+          "name": "Fiber 500",
+          "speed": 500,
+          "uploadSpeed": 500,
+          "price": 54.95,
+          "promoPrice": 54.95,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "Unlimited data without speed throttling",
+            "24/7 support",
+            "Equipment lease fees may apply"
+          ]
+        },
+        {
+          "name": "Fiber 1 Gig",
+          "speed": 1000,
+          "uploadSpeed": 1000,
+          "price": 74.95,
+          "promoPrice": 74.95,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "Unlimited data without speed throttling",
+            "24/7 support",
+            "Equipment lease fees may apply"
+          ]
+        },
+        {
+          "name": "Fiber 2 Gig",
+          "speed": 2000,
+          "uploadSpeed": 2000,
+          "price": 109.95,
+          "promoPrice": 109.95,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "Unlimited data without speed throttling",
+            "24/7 support",
+            "Equipment lease fees may apply"
+          ]
+        },
+        {
+          "name": "Fiber 5 Gig",
+          "speed": 5000,
+          "uploadSpeed": 5000,
+          "price": 149.95,
+          "promoPrice": 149.95,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "Unlimited data without speed throttling",
+            "24/7 support",
+            "Equipment lease fees may apply"
+          ]
+        }
       ]
     },
     {
       "id": "brightspeed",
       "name": "Brightspeed",
       "slug": "brightspeed",
-      "logo": "https://cdn.builder.io/api/v1/image/assets%2F3e261a0dd1144caf9d53950dd45223ca%2F39cee5de8f0e40889266615565a12003?format=webp&width=200",
-      "types": ["fiber","dsl"],
+      "logo": "/brightspeed-logo.png",
+      "types": [
+        "fiber",
+        "dsl"
+      ],
       "rating": 3.7,
       "reviewCount": 8920,
+      "reviewSource": "PCMag Editors' Rating",
+      "reviewUrl": "https://www.pcmag.com/reviews/brightspeed-fiber-internet",
       "isPartner": True,
-      "description": "Brightspeed is rapidly deploying next-gen fiber across 20 states, from 200 Mbps to an industry-leading 8 Gbps. Enjoy $100–$200 Prepaid Cards for new customers, free installation on higher tiers, and a 1-year price lock on the 2 Gig plan. Fiber starts at just $30/mo.",
-      "pros": ["Fiber from just $30/mo", "Speeds up to 8 Gbps", "$100–$200 Prepaid Cards for new customers", "Free installation on higher tiers", "No data caps", "Aggressive fiber expansion in underserved areas"],
-      "cons": ["Fiber still limited in many areas", "DSL speeds on legacy network are slower"],
-      "coverage": ["NC","SC","OH","PA","FL","TX","MN","WI","IL","IN","VA","TN","AL","MS","MO","KS","OK","AR","LA","NM"],
-      "phone": "",
-      "promo": "$100–$200 Prepaid Card + free installation — fiber from just $30/mo",
-      "topCities": ["Fayetteville, NC","Wilmington, NC","Greenville, NC","High Point, NC","Gastonia, NC","Concord, NC","Hickory, NC","Burlington, NC","Salisbury, NC","Mooresville, NC","Rocky Mount, NC","Wilson, NC","Goldsboro, NC","Jacksonville, NC","Columbia, MO","Jefferson City, MO","Mansfield, OH","Charlottesville, VA","Statesville, NC","Kannapolis, NC"],
+      "description": "Brightspeed offers 500 Mbps, 1 Gig, and 2 Gig Fiber starting at $59.99/month. Qualifying plans offer $100, $150, and $200 prepaid cards respectively. Rewards require qualifying service and successful redemption. Taxes and fees are additional; availability varies by address.",
+      "pros": [
+        "Fiber from $59.99/mo",
+        "Speeds up to 2 Gbps",
+        "$100 card with qualifying 500 Mbps",
+        "$150 card with qualifying 1 Gig",
+        "$200 card with qualifying 2 Gig",
+        "No data caps"
+      ],
+      "cons": [
+        "Fiber still limited in many areas",
+        "DSL speeds on legacy network are slower"
+      ],
+      "coverage": [
+        "NC",
+        "SC",
+        "OH",
+        "PA",
+        "FL",
+        "TX",
+        "MN",
+        "WI",
+        "IL",
+        "IN",
+        "VA",
+        "TN",
+        "AL",
+        "MS",
+        "MO",
+        "KS",
+        "OK",
+        "AR",
+        "LA",
+        "NM"
+      ],
+      "promo": "500 Mbps $59.99/mo + $100 Prepaid Card; 1 Gig $79.99/mo + $150; 2 Gig $89.99/mo + $200. Eligibility and redemption required.",
+      "topCities": [
+        "Columbia, MO",
+        "Jefferson City, MO",
+        "Fayetteville, NC",
+        "Mansfield, OH",
+        "Charlottesville, VA",
+        "Greenville, NC",
+        "Rocky Mount, NC",
+        "Wilson, NC",
+        "Goldsboro, NC",
+        "Kinston, NC",
+        "New Bern, NC",
+        "Jacksonville, NC",
+        "Wilmington, NC",
+        "Burlington, NC",
+        "High Point, NC",
+        "Salisbury, NC",
+        "Concord, NC",
+        "Gastonia, NC",
+        "Hickory, NC",
+        "Lenoir, NC",
+        "Morganton, NC",
+        "Shelby, NC",
+        "Statesville, NC",
+        "Mooresville, NC",
+        "Kannapolis, NC",
+        "Albemarle, NC",
+        "Asheboro, NC",
+        "Sanford, NC",
+        "Southern Pines, NC",
+        "Pinehurst, NC"
+      ],
       "plans": [
-        {"name": "Fiber 200", "speed": 200, "uploadSpeed": 200, "price": 30.00, "promoPrice": 30.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["$100–$200 Prepaid Card", "Symmetrical speeds", "No data caps"]},
-        {"name": "Fiber 500", "speed": 500, "uploadSpeed": 500, "price": 50.00, "promoPrice": 50.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["$100–$200 Prepaid Card", "Symmetrical speeds", "No data caps"]},
-        {"name": "Fiber 1 Gig", "speed": 1000, "uploadSpeed": 1000, "price": 65.00, "promoPrice": 65.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["$100–$200 Prepaid Card", "1 Gig symmetrical", "No data caps"]},
-        {"name": "Fiber 2 Gig", "speed": 2000, "uploadSpeed": 2000, "price": 70.00, "promoPrice": 70.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["1-year price lock", "$100–$200 Prepaid Card", "Free installation", "No data caps"]},
-        {"name": "Fiber 8 Gig", "speed": 8000, "uploadSpeed": 8000, "price": 90.00, "promoPrice": 90.00, "contract": "None", "dataCap": "Unlimited", "type": "fiber", "features": ["$100–$200 Prepaid Card", "Free installation", "Fastest Brightspeed plan", "No data caps"]}
+        {
+          "name": "Fiber 500",
+          "speed": 500,
+          "uploadSpeed": 500,
+          "price": 59.99,
+          "promoPrice": 59.99,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "$100 Prepaid Card",
+            "Symmetrical speeds",
+            "No data caps",
+            "Rewards require qualifying service and redemption"
+          ]
+        },
+        {
+          "name": "Fiber 1 Gig",
+          "speed": 1000,
+          "uploadSpeed": 1000,
+          "price": 79.99,
+          "promoPrice": 79.99,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "$150 Prepaid Card",
+            "Symmetrical speeds",
+            "No data caps",
+            "Rewards require qualifying service and redemption"
+          ]
+        },
+        {
+          "name": "Fiber 2 Gig",
+          "speed": 2000,
+          "uploadSpeed": 2000,
+          "price": 89.99,
+          "promoPrice": 89.99,
+          "contract": "None",
+          "dataCap": "Unlimited",
+          "type": "fiber",
+          "features": [
+            "$200 Prepaid Card",
+            "Symmetrical speeds",
+            "No data caps",
+            "Rewards require qualifying service and redemption"
+          ]
+        }
       ]
     },
     {

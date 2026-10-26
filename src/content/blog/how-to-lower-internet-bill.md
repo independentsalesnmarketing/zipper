@@ -87,8 +87,8 @@ Most providers discount $5-10/mo for enrolling in automatic payments:
 | [Spectrum](/provider/spectrum) | $5/mo |
 | [AT&T](/provider/att-fiber) | $5/mo |
 | Verizon 5G Home | $5/mo |
-| [Frontier](/provider/frontier) | $5/mo |
-| [Optimum](/provider/optimum) | $5/mo |
+| [Frontier](/provider/frontier) | $10/mo with bank-account AutoPay and paperless billing |
+| [Optimum](/provider/optimum) | $10/mo with eligible checking-account AutoPay and paperless billing |
 
 This is free money for something you should probably be doing anyway.
 

@@ -17,9 +17,9 @@ We track promotions from every major ISP to find the best deals for new and exis
 
 | Provider | Deal | Effective Price | Speed |
 |----------|------|----------------|-------|
-| [Optimum](/provider/optimum) | New customer pricing | **$40/mo** | 300 Mbps |
+| [Optimum](/provider/optimum) | New customer pricing | **$35/mo** | 300 Mbps |
 | [T-Mobile](/provider/tmobile-5g) | $10 off with phone plan | **$40/mo** | 72-245 Mbps |
-| [Frontier Fiber](/provider/frontier) | New customer rate | **$49.99/mo** | 500/500 Mbps |
+| [Frontier Fiber](/provider/frontier) | New customer rate | **$44.99/mo** | 500/500 Mbps |
 | [Spectrum](/provider/spectrum) | New customer pricing | **$49.99/mo** | 300 Mbps |
 | Verizon 5G Home | $200–$300 Prepaid Mastercard | **$50/mo** ($35 w/ mobile) | 100–1000 Mbps |
 | [AT&T Fiber](/provider/att-fiber) | Online-only pricing | **$55/mo** | 300/300 Mbps |
@@ -27,7 +27,7 @@ We track promotions from every major ISP to find the best deals for new and exis
 ## Featured Deals by Provider
 
 ### Optimum — Best Price
-**$40/mo for 300 Mbps** (fiber or cable)
+**$35/mo for 300 Mbps** (fiber or cable)
 - No contract required
 - No data cap
 - Equipment fee: $10/mo for router (or bring your own)
@@ -45,7 +45,7 @@ This is the lowest starting price from any major ISP. If you're in Optimum's Nor
 When you factor in the zero equipment fees and zero hidden charges, T-Mobile's $50 (or $40 for phone customers) is often the cheapest total monthly cost.
 
 ### Frontier Fiber — Best Speed for the Price
-**$49.99/mo for 500/500 Mbps**
+**$44.99/mo for 500/500 Mbps**
 - Symmetrical upload speeds
 - No contract, no data cap
 - Price lock guarantee for 12 months
@@ -89,7 +89,7 @@ Your provider has unadvertised deals for customers threatening to cancel. Use su
 | Verizon 5G Home | $5/mo (autopay) |
 | AT&T | $5/mo |
 | Spectrum | $5/mo |
-| Frontier | $5/mo |
+| Frontier | $10/mo with bank-account AutoPay and paperless billing |
 
 ### 3. Referral Programs
 Some providers offer credits for referring friends and family. Check your provider's website for current referral bonuses.
@@ -118,7 +118,7 @@ These programs are available to qualifying low-income households receiving SNAP,
 
 ## This Month's Best Overall Value
 
-**Our current top pick**: [Frontier Fiber](/provider/frontier) at $49.99/mo for 500/500 Mbps offers the best combination of speed, price, and reliability for anyone in their service area. For areas without Frontier, [T-Mobile](/provider/tmobile-5g) at $50/mo flat delivers the most honest pricing with zero surprises.
+**Our current top pick**: [Frontier Fiber](/provider/frontier) at $44.99/mo for 500/500 Mbps offers the best combination of speed, price, and reliability for anyone in their service area. For areas without Frontier, [T-Mobile](/provider/tmobile-5g) at $50/mo flat delivers the most honest pricing with zero surprises.
 
 Check what's available at your address with our [availability checker](/check-availability) and lock in today's rates before they change.
 

@@ -41,8 +41,8 @@ Cable uses coaxial lines shared among neighborhood nodes. During peak evening ho
 Fiber has reached price parity with cable in most markets. Here's what our partner providers charge:
 
 - **[AT&T Fiber](/provider/att-fiber)**: Starting at $55/mo for 300 Mbps symmetrical
-- **[Frontier Fiber](/provider/frontier)**: Starting at $49.99/mo for 500 Mbps
-- **[Optimum Fiber](/provider/optimum)**: Starting at $40/mo for 300 Mbps
+- **[Frontier Fiber](/provider/frontier)**: Starting at $44.99/mo for 500 Mbps
+- **[Optimum Fiber](/provider/optimum)**: Starting at $35/mo for 300 Mbps
 
 Cable providers like [Spectrum](/provider/spectrum) start around $49.99/mo for 300 Mbps download — but with only 10 Mbps upload.
 

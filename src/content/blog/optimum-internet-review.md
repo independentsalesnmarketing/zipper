@@ -10,44 +10,38 @@ tags: ["optimum", "cable internet", "fiber internet", "provider review"]
 
 ## Optimum Internet at a Glance
 
-Optimum (owned by Altice USA) serves parts of **New York, New Jersey, and Connecticut** with both cable and fiber internet. Since launching its fiber network, Optimum has become increasingly competitive — offering some of the lowest fiber prices in the country with speeds up to 8 Gbps.
+Optimum (owned by Altice USA) serves parts of **New York, New Jersey, and Connecticut** with both cable and fiber internet. Since launching its fiber network, Optimum has become increasingly competitive — offering some of the lowest fiber prices in the country with speeds up to 2 Gbps.
 
 | Feature | Optimum Fiber | Optimum Cable |
 |---------|-------------|-------------|
 | Technology | Fiber (GPON) | Cable (DOCSIS 3.1) |
-| Speed Range | 300 Mbps – 8 Gbps | 300 Mbps – 1 Gbps |
-| Starting Price | $40/mo | $40/mo |
+| Speed Range | 300 Mbps – 2 Gbps | 300 Mbps – 1 Gbps |
+| Starting Price | $35/mo | Varies by address |
 | Contract | No | No |
 | Data Cap | None | None |
 
 ## Optimum Plans & Pricing
 
-### Optimum 300 — $40/mo
+### Optimum 300 — $35/mo
 - **300 Mbps** download / 20 Mbps upload (cable) or 300/300 (fiber)
 - Best for: 1-2 person households, basic streaming and browsing
 
-### Optimum 500 — $60/mo
+### Optimum 500 — $45/mo
 - **500 Mbps** download / 500 Mbps upload (fiber)
 - Best for: Families, multiple devices, 4K streaming
 
-### Optimum 1 Gig — $80/mo
-- **1 Gbps** download / 1 Gbps upload (fiber)
+### Optimum 1 Gig — $55/mo
+- Up to **940 Mbps** download and upload (1 Gig Fiber)
 - Best for: Large households, gamers, remote work
 
-### Optimum 2 Gig — $120/mo
+### Optimum 2 Gig — $65/mo
 - **2 Gbps** download / 2 Gbps upload
 - Fiber only
 - Best for: Power users, content creators
 
-### Optimum 5 Gig — $180/mo
-- **5 Gbps** download / 5 Gbps upload
-- Fiber only
+**The $35/mo starting price** makes Optimum one of the cheapest entry points in the Northeast, undercutting AT&T Fiber at the 300 Mbps tier.
 
-### Optimum 8 Gig — $300/mo
-- **8 Gbps** download / 8 Gbps upload
-- Fiber only — fastest residential tier in the U.S.
-
-**The $25/mo starting price** makes Optimum one of the cheapest entry points in the Northeast, undercutting AT&T Fiber at the 300 Mbps tier.
+Fiber pricing includes a $10/month ACH AutoPay and paperless billing discount and a 1-Year Price Lock. Eligible 1 Gig Internet and qualifying Optimum Mobile service include a $50 Visa Prepaid Card. See [Optimum Offer Details](/provider/optimum/#provider-plans).
 
 ## Fiber vs Cable: Check Your Address
 
@@ -80,8 +74,8 @@ Fiber consistently outperforms cable, especially during prime-time hours when ca
 
 ## What We Like
 
-- **Lowest fiber starting price in the Northeast** — $40/mo for 300 Mbps fiber
-- **8 Gbps option** — Fastest residential service available from any major ISP
+- **Lowest fiber starting price in the Northeast** — $35/mo for 300 Mbps fiber
+- **2 Gbps option** — Multi-gig fiber for demanding households
 - **No data caps** — Unlimited on both cable and fiber
 - **No contracts** — Cancel anytime
 - **Fiber expansion** — Rapidly building out fiber to replace aging cable infrastructure
@@ -98,19 +92,19 @@ Fiber consistently outperforms cable, especially during prime-time hours when ca
 
 | Provider | Entry Price | Entry Speed | Max Speed | Upload |
 |----------|-----------|------------|-----------|--------|
-| **[Optimum Fiber](/provider/optimum)** | $40/mo | 300/300 | 8 Gbps | Symm. |
+| **[Optimum Fiber](/provider/optimum)** | $35/mo | 300/300 | 2 Gbps | Symm. |
 | Verizon 5G Home | $50/mo | 100–300 Mbps | 1 Gbps (Plus) | Up to 100 Mbps |
 | [Spectrum](/provider/spectrum) | $49.99/mo | 300/10 | 1 Gbps | 35 Mbps |
-| [Frontier Fiber](/provider/frontier) | $49.99/mo | 500/500 | 5 Gbps | Symm. |
+| [Frontier Fiber](/provider/frontier) | $29.99/mo | 200/200 | 7 Gbps | Symm. |
 
-In the Northeast market, Optimum Fiber offers the best price-to-speed ratio at the entry level. The 8 Gbps top tier also makes it technically the fastest residential ISP in the U.S.
+In the Northeast market, Optimum Fiber offers the best price-to-speed ratio at the entry level. The advertised fiber selection includes plans up to 2 Gbps.
 
 ## Who Should Choose Optimum?
 
 **Optimum is ideal for:**
 - Budget-conscious users in NY/NJ/CT who want fiber at the lowest price
 - Anyone in Optimum's fiber coverage area (always choose fiber over their cable if available)
-- Households that want an 8 Gbps future-proof option
+- Households that want a 2 Gbps future-proof option
 
 **Consider alternatives if:**
 - You need the absolute fastest upload speeds (AT&T Fiber or Frontier Fiber offer symmetrical speeds)

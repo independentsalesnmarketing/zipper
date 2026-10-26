@@ -29,14 +29,14 @@ Speed beyond 100 Mbps doesn't improve gaming performance. A 50 Mbps fiber connec
 
 ### 2. [Frontier Fiber](/provider/frontier) — Best Upload for Game Streaming
 - **Latency**: 5-10ms (excellent)
-- **Plans**: 500 Mbps–5 Gbps, starting at $49.99/mo
-- **Why**: 500 Mbps symmetrical at $49.99 is the most speed per dollar from any fiber ISP. Handles 4K Twitch streaming plus a full gaming household without breaking a sweat.
+- **Plans**: 500 Mbps–5 Gbps, starting at $44.99/mo
+- **Why**: 500 Mbps symmetrical at $44.99 is the most speed per dollar from any fiber ISP. Handles 4K Twitch streaming plus a full gaming household without breaking a sweat.
 - **For gamers who**: Want top fiber performance without overpaying
 
 ### 3. [Frontier Fiber](/provider/frontier) — Best Value Fiber for Gaming
 - **Latency**: 5-10ms (excellent)
-- **Plans**: 500-5000 Mbps, starting at $49.99/mo
-- **Why**: 500 Mbps symmetrical at $49.99 is the most speed per dollar from any fiber provider. More than enough for gaming plus household use.
+- **Plans**: 500-5000 Mbps, starting at $44.99/mo
+- **Why**: 500 Mbps symmetrical at $44.99 is the most speed per dollar from any fiber provider. More than enough for gaming plus household use.
 - **For gamers who**: Want fiber performance without overpaying
 
 ### 4. [Spectrum](/provider/spectrum) — Best Cable Option for Gaming

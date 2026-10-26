@@ -65,11 +65,11 @@ Newer apartment complexes often have AT&T Fiber pre-wired. The symmetrical 300/3
 ### 5. [Frontier Fiber](/provider/frontier) — Best Value
 | Feature | Details |
 |---------|---------|
-| Price | $49.99/mo |
+| Price | $44.99/mo |
 | Speed | 500/500 Mbps |
 | Contract | None |
 
-Where available, Frontier's 500 Mbps plan for $49.99 is the best speed-per-dollar in apartment buildings with fiber connectivity.
+Where available, Frontier's 500 Mbps plan for $44.99 is the best speed-per-dollar in apartment buildings with fiber connectivity.
 
 ## How to Check What's Available in Your Apartment
 
